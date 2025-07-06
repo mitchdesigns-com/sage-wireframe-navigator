@@ -1,0 +1,58 @@
+{
+  "name": "sage-wireframe-navigator",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Next.js wireframe navigator for Sage Healthcare Platform",
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "framer-motion": "^11.0.0",
+    "lucide-react": "^0.518.0",
+    "next": "15.3.2",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4.1.7",
+    "@types/node": "^20",
+    "@types/react": "^19.1.5",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "15.3.2",
+    "eslint-config-prettier": "^10.1.5",
+    "postcss": "^8.5.3",
+    "prettier": "3.5.3",
+    "tailwindcss": "^4.1.7",
+    "typescript": "^5",
+    "vercel": "39.1.1"
+  },
+  "overrides": {
+    "vercel": "$vercel"
+  },
+  "engines": {
+    "node": ">=18.18.0 <23.0.0"
+  },
+  "keywords": [
+    "wireframe",
+    "prototype",
+    "healthcare",
+    "saudi-arabia",
+    "nextjs",
+    "navigation",
+    "user-experience"
+  ],
+  "author": "Mitch Designs",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ojja/sage-wireframe-navigator"
+  }
+}
