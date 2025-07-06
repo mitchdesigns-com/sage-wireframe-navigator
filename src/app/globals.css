@@ -1,0 +1,127 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom CSS for Sage Healthcare Platform */
+
+@layer base {
+  /* Arabic font support */
+  html[dir="rtl"] {
+    font-family: 'Noto Sans Arabic', system-ui, sans-serif;
+  }
+  
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Focus styles for accessibility */
+  *:focus {
+    @apply outline-none ring-2 ring-sage-400 ring-offset-2;
+  }
+}
+
+@layer components {
+  /* Button styles */
+  .btn-primary {
+    @apply bg-sage-400 hover:bg-sage-500 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-200;
+  }
+  
+  .btn-secondary {
+    @apply bg-healthcare-blue hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-200;
+  }
+  
+  .btn-outline {
+    @apply border-2 border-sage-400 text-sage-400 hover:bg-sage-400 hover:text-white px-6 py-3 rounded-lg font-medium transition-all duration-200;
+  }
+  
+  /* Card styles */
+  .card {
+    @apply bg-white rounded-xl shadow-lg border border-gray-100 p-6 transition-shadow duration-200 hover:shadow-xl;
+  }
+  
+  /* Section padding */
+  .section-padding {
+    @apply py-16 px-4 sm:px-6 lg:px-8;
+  }
+  
+  /* Container */
+  .container {
+    @apply max-w-7xl mx-auto;
+  }
+  
+  /* Text styles */
+  .heading-xl {
+    @apply text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight;
+  }
+  
+  .heading-lg {
+    @apply text-3xl sm:text-4xl font-bold text-gray-900 leading-tight;
+  }
+  
+  .heading-md {
+    @apply text-2xl sm:text-3xl font-bold text-gray-900 leading-tight;
+  }
+  
+  .text-body {
+    @apply text-lg text-gray-600 leading-relaxed;
+  }
+}
+
+@layer utilities {
+  /* Animation utilities */
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.5s ease-out;
+  }
+  
+  /* Gradient backgrounds */
+  .bg-sage-gradient {
+    background: linear-gradient(135deg, #87a96b 0%, #6b8c52 100%);
+  }
+  
+  .bg-healthcare-gradient {
+    background: linear-gradient(135deg, #1E3A8A 0%, #1E40AF 100%);
+  }
+}
+
+/* Loading states */
+.loading {
+  position: relative;
+  overflow: hidden;
+}
+
+.loading::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
