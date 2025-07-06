@@ -51,8 +51,8 @@ export default function HowItWorks() {
             <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-sage-300 -z-10"></div>
             
             <div className="space-y-8">
-              {steps.map((step, index) => {
-                const Icon = step.icon
+              {steps.map((step, _index) => {
+                const _Icon = step.icon
                 return (
                   <div key={step.number} className="flex items-start space-x-4">
                     {/* Step Number Circle */}

@@ -8,7 +8,7 @@ export default function Hero() {
         {/* Main Heading */}
         <h1 className="heading-xl mb-6">
           Your Trusted Gateway to{' '}
-          <span className="text-sage-400">Saudi's Medical Care</span>
+          <span className="text-sage-400">Saudi&apos;s Medical Care</span>
         </h1>
         
         {/* Subtitle */}

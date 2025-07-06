@@ -43,7 +43,7 @@ export default function ComprehensiveServices() {
         
         {/* Service Categories Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {serviceCategories.map((category, index) => (
+          {serviceCategories.map((category, _index) => (
             <div key={category.title} className="">
               {/* Service Image Placeholder */}
               <div className="bg-gray-200 rounded-xl h-64 mb-6 flex items-center justify-center">

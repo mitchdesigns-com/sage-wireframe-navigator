@@ -1,5 +1,14 @@
 import Link from 'next/link'
-import { Users, Building2, GraduationCap, Heart, Globe, Handshake } from 'lucide-react'
+import {
+  Users,
+  Building2,
+  GraduationCap,
+  Heart,
+  Globe,
+  Handshake,
+  TrendingUp,
+  Target,
+} from 'lucide-react'
 
 const organizationTypes = [
   {
@@ -127,9 +136,9 @@ export default function OrganizationsPage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="section-padding bg-gradient-to-br from-sage-50 to-white">
+      <section className="section-padding from-sage-50 bg-gradient-to-br to-white">
         <div className="container mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
             <div>
               <h1 className="heading-xl mb-6">
                 Strategic Healthcare <span className="text-sage-400">Partnerships</span>
@@ -139,7 +148,7 @@ export default function OrganizationsPage() {
                 Whether you're an academic institution, NGO, government agency, or international 
                 organization, we facilitate partnerships that advance healthcare and improve lives.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col gap-4 sm:flex-row">
                 <Link href="/contact?service=organizations" className="btn-primary">
                   Explore Partnership
                 </Link>
@@ -148,7 +157,7 @@ export default function OrganizationsPage() {
                 </Link>
               </div>
             </div>
-            <div className="bg-gray-200 rounded-2xl h-96 flex items-center justify-center">
+            <div className="flex h-96 items-center justify-center rounded-2xl bg-gray-200">
               <div className="text-center text-gray-400">
                 <Users size={48} className="mx-auto mb-4" />
                 <p>Strategic Partnerships</p>
@@ -162,35 +171,35 @@ export default function OrganizationsPage() {
       {/* Organization Types */}
       <section id="programs" className="section-padding bg-white">
         <div className="container mx-auto">
-          <div className="text-center mb-16">
+          <div className="mb-16 text-center">
             <h2 className="heading-lg mb-6">Partnership Opportunities</h2>
-            <p className="text-body max-w-3xl mx-auto">
+            <p className="text-body mx-auto max-w-3xl">
               We work with diverse organizations to create impactful healthcare partnerships 
               that benefit communities, advance knowledge, and improve health outcomes globally.
             </p>
           </div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
             {organizationTypes.map((org, index) => {
               const Icon = org.icon
               return (
                 <div key={index} className="card group">
                   <div className="flex items-start space-x-4">
-                    <div className="flex-shrink-0 w-14 h-14 bg-sage-100 rounded-lg flex items-center justify-center group-hover:bg-sage-400 group-hover:text-white transition-colors duration-200">
+                    <div className="bg-sage-100 group-hover:bg-sage-400 flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-lg transition-colors duration-200 group-hover:text-white">
                       <Icon size={28} />
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-xl font-bold text-gray-900 mb-3">
+                      <h3 className="mb-3 text-xl font-bold text-gray-900">
                         {org.title}
                       </h3>
-                      <p className="text-gray-600 mb-4">
+                      <p className="mb-4 text-gray-600">
                         {org.description}
                       </p>
                       <div className="space-y-2">
-                        <h4 className="font-semibold text-gray-900 text-sm">Partnership Programs:</h4>
+                        <h4 className="text-sm font-semibold text-gray-900">Partnership Programs:</h4>
                         {org.programs.map((program, programIndex) => (
                           <div key={programIndex} className="flex items-start space-x-2 text-sm text-gray-600">
-                            <div className="w-1.5 h-1.5 bg-sage-400 rounded-full mt-2 flex-shrink-0"></div>
+                            <div className="bg-sage-400 mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full"></div>
                             <span>{program}</span>
                           </div>
                         ))}
@@ -207,24 +216,24 @@ export default function OrganizationsPage() {
       {/* Partnership Benefits */}
       <section className="section-padding bg-gray-50">
         <div className="container mx-auto">
-          <div className="text-center mb-16">
+          <div className="mb-16 text-center">
             <h2 className="heading-lg mb-6">Partnership Benefits</h2>
-            <p className="text-body max-w-3xl mx-auto">
+            <p className="text-body mx-auto max-w-3xl">
               Our collaborative approach ensures mutual benefit and sustainable impact 
               for all participating organizations and the communities they serve.
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
             {partnershipBenefits.map((benefit, index) => {
               const Icon = benefit.icon
               return (
                 <div key={index} className="flex items-start space-x-4">
-                  <div className="flex-shrink-0 w-12 h-12 bg-sage-100 rounded-lg flex items-center justify-center">
+                  <div className="bg-sage-100 flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg">
                     <Icon size={24} className="text-sage-400" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-bold text-gray-900 mb-2">
+                    <h3 className="mb-2 text-lg font-bold text-gray-900">
                       {benefit.title}
                     </h3>
                     <p className="text-gray-600">
@@ -241,27 +250,27 @@ export default function OrganizationsPage() {
       {/* Success Stories */}
       <section className="section-padding bg-white">
         <div className="container mx-auto">
-          <div className="text-center mb-16">
+          <div className="mb-16 text-center">
             <h2 className="heading-lg mb-6">Partnership Success Stories</h2>
-            <p className="text-body max-w-3xl mx-auto">
+            <p className="text-body mx-auto max-w-3xl">
               See how our strategic partnerships have created lasting impact and 
               advanced healthcare capabilities across different sectors.
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
             {successStories.map((story, index) => (
               <div key={index} className="card">
                 <div className="mb-4">
-                  <h3 className="text-lg font-bold text-gray-900 mb-2">
+                  <h3 className="mb-2 text-lg font-bold text-gray-900">
                     {story.organization}
                   </h3>
-                  <div className="inline-block px-3 py-1 bg-sage-100 text-sage-700 rounded-full text-sm font-medium">
+                  <div className="bg-sage-100 text-sage-700 inline-block rounded-full px-3 py-1 text-sm font-medium">
                     {story.type}
                   </div>
                 </div>
                 
-                <p className="text-gray-600 mb-4">
+                <p className="mb-4 text-gray-600">
                   {story.impact}
                 </p>
                 
@@ -284,9 +293,9 @@ export default function OrganizationsPage() {
       {/* Collaboration Process */}
       <section className="section-padding bg-gray-50">
         <div className="container mx-auto">
-          <div className="text-center mb-16">
+          <div className="mb-16 text-center">
             <h2 className="heading-lg mb-6">Collaboration Process</h2>
-            <p className="text-body max-w-3xl mx-auto">
+            <p className="text-body mx-auto max-w-3xl">
               Our structured approach ensures successful partnerships from initial 
               consultation through long-term collaboration and impact measurement.
             </p>
@@ -294,15 +303,15 @@ export default function OrganizationsPage() {
           
           <div className="relative">
             {/* Process Timeline */}
-            <div className="hidden lg:block absolute left-1/2 transform -translate-x-1/2 w-1 bg-sage-300 h-full"></div>
+            <div className="bg-sage-300 absolute left-1/2 hidden h-full w-1 -translate-x-1/2 transform lg:block"></div>
             
             <div className="space-y-12">
               {collaborationProcess.map((step, index) => (
                 <div key={index} className={`flex items-center ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'}`}>
                   <div className={`flex-1 ${index % 2 === 0 ? 'lg:pr-12' : 'lg:pl-12'}`}>
-                    <div className="card max-w-md mx-auto lg:mx-0">
-                      <div className="flex items-center space-x-4 mb-4">
-                        <div className="w-12 h-12 bg-sage-400 text-white rounded-full flex items-center justify-center font-bold">
+                    <div className="card mx-auto max-w-md lg:mx-0">
+                      <div className="mb-4 flex items-center space-x-4">
+                        <div className="bg-sage-400 flex h-12 w-12 items-center justify-center rounded-full font-bold text-white">
                           {step.step}
                         </div>
                         <h3 className="text-xl font-bold text-gray-900">
@@ -316,7 +325,7 @@ export default function OrganizationsPage() {
                   </div>
                   
                   {/* Timeline dot */}
-                  <div className="hidden lg:block w-6 h-6 bg-sage-400 rounded-full border-4 border-white relative z-10"></div>
+                  <div className="bg-sage-400 relative z-10 hidden h-6 w-6 rounded-full border-4 border-white lg:block"></div>
                   
                   <div className="flex-1"></div>
                 </div>
@@ -329,24 +338,24 @@ export default function OrganizationsPage() {
       {/* CTA Section */}
       <section className="section-padding bg-sage-400 text-white">
         <div className="container mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-6">
+          <h2 className="mb-6 text-3xl font-bold">
             Ready to Build a Strategic Partnership?
           </h2>
-          <p className="text-xl mb-8 opacity-90 max-w-3xl mx-auto">
+          <p className="mx-auto mb-8 max-w-3xl text-xl opacity-90">
             Let's explore how we can work together to advance healthcare, share knowledge, 
             and create lasting impact in the communities we serve.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col justify-center gap-4 sm:flex-row">
             <Link 
               href="/contact?service=organizations" 
-              className="inline-flex items-center space-x-2 bg-white text-sage-400 px-8 py-4 rounded-lg font-medium hover:bg-gray-100 transition-colors duration-200"
+              className="text-sage-400 inline-flex items-center space-x-2 rounded-lg bg-white px-8 py-4 font-medium transition-colors duration-200 hover:bg-gray-100"
             >
               <span>Start Partnership Discussion</span>
               <Handshake size={20} />
             </Link>
             <Link 
               href="/our-network" 
-              className="inline-flex items-center space-x-2 border-2 border-white text-white px-8 py-4 rounded-lg font-medium hover:bg-white hover:text-sage-400 transition-all duration-200"
+              className="hover:text-sage-400 inline-flex items-center space-x-2 rounded-lg border-2 border-white px-8 py-4 font-medium text-white transition-all duration-200 hover:bg-white"
             >
               <span>View Our Network</span>
               <Globe size={20} />

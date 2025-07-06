@@ -52,3 +52,14 @@ logs
 # Wireframe exports
 /exports/
 /screenshots/
+
+# Cloudflare
+.wrangler/
+/functions/
+/.dev.vars
+wrangler.toml.backup
+
+# Cloudflare Pages
+/dist/
+/.vercel/
+/.cloudflare/

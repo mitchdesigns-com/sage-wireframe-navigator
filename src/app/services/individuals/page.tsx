@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Heart, Shield, Users, Globe, ArrowRight, CheckCircle } from 'lucide-react'
+import { Heart, Shield, Users, Globe, ArrowRight } from 'lucide-react'
 
 const services = [
   {

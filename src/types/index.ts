@@ -118,7 +118,7 @@ export interface ComponentVariation {
   id: string
   name: string
   description: string
-  props: Record<string, any>
+  props: Record<string, unknown>
   notes?: string
 }
 

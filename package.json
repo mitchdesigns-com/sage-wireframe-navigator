@@ -4,8 +4,12 @@
   "private": true,
   "description": "Next.js wireframe navigator for Sage Healthcare Platform",
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev",
+    "dev:turbo": "next dev --turbopack",
     "build": "next build",
+    "build:cf": "npx @cloudflare/next-on-pages",
+    "preview:cf": "npm run build:cf && wrangler pages dev",
+    "deploy:cf": "npm run build:cf && wrangler pages deploy",
     "start": "next start",
     "lint": "next lint",
     "format": "prettier --write .",
@@ -21,6 +25,7 @@
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
+    "@cloudflare/next-on-pages": "^1.13.5",
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4.1.7",
     "@types/node": "^20",
@@ -33,7 +38,8 @@
     "prettier": "3.5.3",
     "tailwindcss": "^4.1.7",
     "typescript": "^5",
-    "vercel": "39.1.1"
+    "vercel": "39.1.1",
+    "wrangler": "^3.57.0"
   },
   "overrides": {
     "vercel": "$vercel"

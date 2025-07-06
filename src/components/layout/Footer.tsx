@@ -18,7 +18,7 @@ export default function Footer() {
               </div>
             </div>
             <p className="text-gray-400 mb-4 max-w-md">
-              Your trusted gateway to Saudi Arabia's world-class medical care. 
+              Your trusted gateway to Saudi Arabia&apos;s world-class medical care. 
               Experience the perfect blend of healthcare expertise, cultural hospitality, 
               and personalized service.
             </p>

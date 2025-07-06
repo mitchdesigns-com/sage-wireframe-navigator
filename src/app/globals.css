@@ -1,13 +1,42 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+/* Tailwind v4 Theme Configuration */
+@theme {
+  /* Color System */
+  --color-sage-50: #f6f8f4;
+  --color-sage-100: #e9f1e6;
+  --color-sage-200: #d4e3ce;
+  --color-sage-300: #b3cda6;
+  --color-sage-400: #87a96b; /* Primary Sage Green */
+  --color-sage-500: #6b8c52;
+  --color-sage-600: #546f40;
+  --color-sage-700: #435834;
+  --color-sage-800: #36472c;
+  --color-sage-900: #2d3c26;
+
+  --color-healthcare-blue: #1E3A8A;
+  --color-healthcare-gold: #F59E0B;
+
+  /* Font Families */
+  --font-family-sans: Inter, system-ui, sans-serif;
+  --font-family-arabic: "Noto Sans Arabic", system-ui, sans-serif;
+
+  /* Custom Spacing */
+  --spacing-18: 4.5rem;
+  --spacing-88: 22rem;
+
+  /* Animation Timing */
+  --animate-fade-in: fadeIn 0.5s ease-in-out;
+  --animate-slide-up: slideUp 0.5s ease-out;
+  --animate-slide-down: slideDown 0.5s ease-out;
+}
 
 /* Custom CSS for Sage Healthcare Platform */
 
 @layer base {
   /* Arabic font support */
   html[dir="rtl"] {
-    font-family: 'Noto Sans Arabic', system-ui, sans-serif;
+    font-family: var(--font-family-arabic);
   }
   
   /* Smooth scrolling */
@@ -17,74 +46,194 @@
   
   /* Focus styles for accessibility */
   *:focus {
-    @apply outline-none ring-2 ring-sage-400 ring-offset-2;
+    outline: none;
+    box-shadow: 0 0 0 2px var(--color-sage-400);
   }
 }
 
 @layer components {
   /* Button styles */
   .btn-primary {
-    @apply bg-sage-400 hover:bg-sage-500 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-200;
+    background-color: var(--color-sage-400);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    transition: background-color 0.2s;
+  }
+  
+  .btn-primary:hover {
+    background-color: var(--color-sage-500);
   }
   
   .btn-secondary {
-    @apply bg-healthcare-blue hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-200;
+    background-color: var(--color-healthcare-blue);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    transition: background-color 0.2s;
+  }
+  
+  .btn-secondary:hover {
+    background-color: #1e40af;
   }
   
   .btn-outline {
-    @apply border-2 border-sage-400 text-sage-400 hover:bg-sage-400 hover:text-white px-6 py-3 rounded-lg font-medium transition-all duration-200;
+    border: 2px solid var(--color-sage-400);
+    color: var(--color-sage-400);
+    background-color: transparent;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    transition: all 0.2s;
+  }
+  
+  .btn-outline:hover {
+    background-color: var(--color-sage-400);
+    color: white;
   }
   
   /* Card styles */
   .card {
-    @apply bg-white rounded-xl shadow-lg border border-gray-100 p-6 transition-shadow duration-200 hover:shadow-xl;
+    background-color: white;
+    border-radius: 0.75rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    border: 1px solid #f3f4f6;
+    padding: 1.5rem;
+    transition: box-shadow 0.2s;
+  }
+  
+  .card:hover {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
   }
   
   /* Section padding */
   .section-padding {
-    @apply py-16 px-4 sm:px-6 lg:px-8;
+    padding: 4rem 1rem;
   }
   
   /* Container */
   .container {
-    @apply max-w-7xl mx-auto;
+    max-width: 80rem;
+    margin: 0 auto;
   }
   
   /* Text styles */
   .heading-xl {
-    @apply text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700;
+    color: #111827;
+    line-height: 1.1;
   }
   
   .heading-lg {
-    @apply text-3xl sm:text-4xl font-bold text-gray-900 leading-tight;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: #111827;
+    line-height: 1.2;
   }
   
   .heading-md {
-    @apply text-2xl sm:text-3xl font-bold text-gray-900 leading-tight;
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    font-weight: 700;
+    color: #111827;
+    line-height: 1.3;
   }
   
   .text-body {
-    @apply text-lg text-gray-600 leading-relaxed;
+    font-size: 1.125rem;
+    color: #6b7280;
+    line-height: 1.75;
   }
 }
 
 @layer utilities {
+  /* Color utilities for Sage theme */
+  .text-sage-50 { color: var(--color-sage-50); }
+  .text-sage-100 { color: var(--color-sage-100); }
+  .text-sage-200 { color: var(--color-sage-200); }
+  .text-sage-300 { color: var(--color-sage-300); }
+  .text-sage-400 { color: var(--color-sage-400); }
+  .text-sage-500 { color: var(--color-sage-500); }
+  .text-sage-600 { color: var(--color-sage-600); }
+  .text-sage-700 { color: var(--color-sage-700); }
+  .text-sage-800 { color: var(--color-sage-800); }
+  .text-sage-900 { color: var(--color-sage-900); }
+  
+  .bg-sage-50 { background-color: var(--color-sage-50); }
+  .bg-sage-100 { background-color: var(--color-sage-100); }
+  .bg-sage-200 { background-color: var(--color-sage-200); }
+  .bg-sage-300 { background-color: var(--color-sage-300); }
+  .bg-sage-400 { background-color: var(--color-sage-400); }
+  .bg-sage-500 { background-color: var(--color-sage-500); }
+  .bg-sage-600 { background-color: var(--color-sage-600); }
+  .bg-sage-700 { background-color: var(--color-sage-700); }
+  .bg-sage-800 { background-color: var(--color-sage-800); }
+  .bg-sage-900 { background-color: var(--color-sage-900); }
+  
+  .border-sage-50 { border-color: var(--color-sage-50); }
+  .border-sage-100 { border-color: var(--color-sage-100); }
+  .border-sage-200 { border-color: var(--color-sage-200); }
+  .border-sage-300 { border-color: var(--color-sage-300); }
+  .border-sage-400 { border-color: var(--color-sage-400); }
+  .border-sage-500 { border-color: var(--color-sage-500); }
+  .border-sage-600 { border-color: var(--color-sage-600); }
+  .border-sage-700 { border-color: var(--color-sage-700); }
+  .border-sage-800 { border-color: var(--color-sage-800); }
+  .border-sage-900 { border-color: var(--color-sage-900); }
+  
+  .text-healthcare-blue { color: var(--color-healthcare-blue); }
+  .text-healthcare-gold { color: var(--color-healthcare-gold); }
+  .bg-healthcare-blue { background-color: var(--color-healthcare-blue); }
+  .bg-healthcare-gold { background-color: var(--color-healthcare-gold); }
+  .border-healthcare-blue { border-color: var(--color-healthcare-blue); }
+  .border-healthcare-gold { border-color: var(--color-healthcare-gold); }
+  
   /* Animation utilities */
   .animate-fade-in {
-    animation: fadeIn 0.5s ease-in-out;
+    animation: var(--animate-fade-in);
   }
   
   .animate-slide-up {
-    animation: slideUp 0.5s ease-out;
+    animation: var(--animate-slide-up);
   }
   
   /* Gradient backgrounds */
   .bg-sage-gradient {
-    background: linear-gradient(135deg, #87a96b 0%, #6b8c52 100%);
+    background: linear-gradient(135deg, var(--color-sage-400) 0%, var(--color-sage-500) 100%);
   }
   
   .bg-healthcare-gradient {
-    background: linear-gradient(135deg, #1E3A8A 0%, #1E40AF 100%);
+    background: linear-gradient(135deg, var(--color-healthcare-blue) 0%, #1e40af 100%);
+  }
+}
+
+/* Keyframes */
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes slideUp {
+  0% { 
+    transform: translateY(20px); 
+    opacity: 0; 
+  }
+  100% { 
+    transform: translateY(0); 
+    opacity: 1; 
+  }
+}
+
+@keyframes slideDown {
+  0% { 
+    transform: translateY(-20px); 
+    opacity: 0; 
+  }
+  100% { 
+    transform: translateY(0); 
+    opacity: 1; 
   }
 }
 
@@ -123,5 +272,20 @@
 @media print {
   .no-print {
     display: none !important;
+  }
+}
+
+/* Mobile Responsive Adjustments */
+@media (max-width: 768px) {
+  .section-padding {
+    padding: 2rem 1rem;
+  }
+  
+  .heading-xl {
+    font-size: 2.5rem;
+  }
+  
+  .heading-lg {
+    font-size: 2rem;
   }
 }

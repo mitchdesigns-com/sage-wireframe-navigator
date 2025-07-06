@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Building, Users, TrendingUp, Shield, Award, Target } from 'lucide-react'
+import { Building, Users, TrendingUp, Shield, Award } from 'lucide-react'
 
 const businessServices = [
   {
