@@ -1,0 +1,6 @@
+name = "sage-wireframe-navigator"
+compatibility_date = "2024-10-15"
+
+# Use npm instead of yarn to avoid version conflicts
+[build]
+command = "npm run build"
