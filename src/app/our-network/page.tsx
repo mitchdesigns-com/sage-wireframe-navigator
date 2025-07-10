@@ -101,12 +101,13 @@ export default function OurNetworkPage() {
           <h1 className="heading-xl mb-6">
             Our Healthcare <span className="text-sage-400">Network</span>
           </h1>
-          <p className="text-body max-w-4xl mx-auto mb-8">
-            Sage Healthcare partners with Saudi Arabia's most prestigious medical institutions, 
-            ensuring you have access to world-class facilities and internationally recognized specialists 
-            throughout your healthcare journey.
+          <p className="text-body max-w-5xl mx-auto mb-8">
+            Sage Healthcare partners with Saudi Arabia's most prestigious
+            medical institutions, ensuring you have access to world-class
+            facilities and internationally recognized specialists throughout
+            your healthcare journey.
           </p>
-          <div className="bg-gray-200 rounded-2xl h-64 flex items-center justify-center mx-auto max-w-4xl">
+          <div className="bg-gray-200 rounded-2xl h-64 flex items-center justify-center mx-auto max-w-5xl">
             <div className="text-center text-gray-400">
               <MapPin size={48} className="mx-auto mb-4" />
               <p>Saudi Arabia Healthcare Network Map</p>
@@ -122,15 +123,18 @@ export default function OurNetworkPage() {
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold mb-6">Our Network by Numbers</h2>
             <p className="text-xl opacity-90 max-w-3xl mx-auto">
-              A comprehensive healthcare ecosystem spanning the Kingdom of Saudi Arabia
+              A comprehensive healthcare ecosystem spanning the Kingdom of Saudi
+              Arabia
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {networkStats.map((stat, index) => (
               <div key={index} className="text-center">
                 <div className="text-4xl font-bold mb-2">{stat.number}</div>
-                <div className="text-xl font-semibold mb-2 opacity-90">{stat.label}</div>
+                <div className="text-xl font-semibold mb-2 opacity-90">
+                  {stat.label}
+                </div>
                 <div className="text-sm opacity-75">{stat.description}</div>
               </div>
             ))}
@@ -144,11 +148,12 @@ export default function OurNetworkPage() {
           <div className="text-center mb-16">
             <h2 className="heading-lg mb-6">Premier Partner Hospitals</h2>
             <p className="text-body max-w-3xl mx-auto">
-              Our carefully selected partner hospitals represent the highest standards 
-              of medical care, technology, and patient experience in Saudi Arabia.
+              Our carefully selected partner hospitals represent the highest
+              standards of medical care, technology, and patient experience in
+              Saudi Arabia.
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {hospitals.map((hospital, index) => (
               <div key={index} className="card group">
@@ -173,13 +178,15 @@ export default function OurNetworkPage() {
                     <div>{hospital.beds} beds</div>
                   </div>
                 </div>
-                
+
                 {/* Specialties */}
                 <div className="mb-4">
-                  <h4 className="font-semibold text-gray-900 mb-2">Key Specialties:</h4>
+                  <h4 className="font-semibold text-gray-900 mb-2">
+                    Key Specialties:
+                  </h4>
                   <div className="flex flex-wrap gap-2">
                     {hospital.specialties.map((specialty, specIndex) => (
-                      <span 
+                      <span
                         key={specIndex}
                         className="px-3 py-1 bg-sage-100 text-sage-700 rounded-full text-sm"
                       >
@@ -188,13 +195,15 @@ export default function OurNetworkPage() {
                     ))}
                   </div>
                 </div>
-                
+
                 {/* Accreditations */}
                 <div className="mb-4">
-                  <h4 className="font-semibold text-gray-900 mb-2">Accreditations:</h4>
+                  <h4 className="font-semibold text-gray-900 mb-2">
+                    Accreditations:
+                  </h4>
                   <div className="flex items-center space-x-3">
                     {hospital.accreditations.map((accred, accredIndex) => (
-                      <span 
+                      <span
                         key={accredIndex}
                         className="flex items-center space-x-1 text-sm text-gray-600"
                       >
@@ -204,9 +213,9 @@ export default function OurNetworkPage() {
                     ))}
                   </div>
                 </div>
-                
+
                 <div className="pt-4 border-t border-gray-100">
-                  <Link 
+                  <Link
                     href={`/contact?hospital=${encodeURIComponent(hospital.name)}`}
                     className="text-sage-400 hover:text-sage-500 font-medium text-sm group-hover:underline"
                   >
@@ -225,11 +234,12 @@ export default function OurNetworkPage() {
           <div className="text-center mb-16">
             <h2 className="heading-lg mb-6">Nationwide Coverage</h2>
             <p className="text-body max-w-3xl mx-auto">
-              Our network spans all major regions of Saudi Arabia, ensuring accessible 
-              healthcare regardless of your location or travel preferences.
+              Our network spans all major regions of Saudi Arabia, ensuring
+              accessible healthcare regardless of your location or travel
+              preferences.
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {regions.map((region, index) => (
               <div key={index} className="card">
@@ -238,18 +248,22 @@ export default function OurNetworkPage() {
                     {region.name}
                   </h3>
                   <div className="text-right">
-                    <div className="text-2xl font-bold text-sage-400">{region.hospitals}</div>
+                    <div className="text-2xl font-bold text-sage-400">
+                      {region.hospitals}
+                    </div>
                     <div className="text-sm text-gray-600">Hospitals</div>
                   </div>
                 </div>
-                
+
                 <p className="text-gray-600 mb-4">{region.highlights}</p>
-                
+
                 <div className="mb-4">
-                  <h4 className="font-semibold text-gray-900 mb-2">Leading Specialties:</h4>
+                  <h4 className="font-semibold text-gray-900 mb-2">
+                    Leading Specialties:
+                  </h4>
                   <div className="flex flex-wrap gap-2">
                     {region.specialties.map((specialty, specIndex) => (
-                      <span 
+                      <span
                         key={specIndex}
                         className="px-2 py-1 bg-gray-100 text-gray-700 rounded text-sm"
                       >
@@ -269,46 +283,73 @@ export default function OurNetworkPage() {
         <div className="container mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="heading-lg mb-6">
-                Rigorous Quality Standards
-              </h2>
+              <h2 className="heading-lg mb-6">Rigorous Quality Standards</h2>
               <p className="text-body mb-8">
-                Every hospital in our network meets stringent quality criteria, ensuring 
-                you receive care that meets or exceeds international standards.
+                Every hospital in our network meets stringent quality criteria,
+                ensuring you receive care that meets or exceeds international
+                standards.
               </p>
-              
+
               <div className="space-y-4">
                 <div className="flex items-start space-x-3">
-                  <Award size={20} className="text-sage-400 mt-1 flex-shrink-0" />
+                  <Award
+                    size={20}
+                    className="text-sage-400 mt-1 flex-shrink-0"
+                  />
                   <div>
-                    <h3 className="font-semibold text-gray-900 mb-1">International Accreditation</h3>
-                    <p className="text-gray-600 text-sm">JCI, CBAHI, and other recognized quality certifications</p>
+                    <h3 className="font-semibold text-gray-900 mb-1">
+                      International Accreditation
+                    </h3>
+                    <p className="text-gray-600 text-sm">
+                      JCI, CBAHI, and other recognized quality certifications
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
-                  <Users size={20} className="text-sage-400 mt-1 flex-shrink-0" />
+                  <Users
+                    size={20}
+                    className="text-sage-400 mt-1 flex-shrink-0"
+                  />
                   <div>
-                    <h3 className="font-semibold text-gray-900 mb-1">Expert Medical Staff</h3>
-                    <p className="text-gray-600 text-sm">Board-certified physicians with international training</p>
+                    <h3 className="font-semibold text-gray-900 mb-1">
+                      Expert Medical Staff
+                    </h3>
+                    <p className="text-gray-600 text-sm">
+                      Board-certified physicians with international training
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
-                  <Star size={20} className="text-sage-400 mt-1 flex-shrink-0" />
+                  <Star
+                    size={20}
+                    className="text-sage-400 mt-1 flex-shrink-0"
+                  />
                   <div>
-                    <h3 className="font-semibold text-gray-900 mb-1">Advanced Technology</h3>
-                    <p className="text-gray-600 text-sm">State-of-the-art medical equipment and treatment protocols</p>
+                    <h3 className="font-semibold text-gray-900 mb-1">
+                      Advanced Technology
+                    </h3>
+                    <p className="text-gray-600 text-sm">
+                      State-of-the-art medical equipment and treatment protocols
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
-                  <Phone size={20} className="text-sage-400 mt-1 flex-shrink-0" />
+                  <Phone
+                    size={20}
+                    className="text-sage-400 mt-1 flex-shrink-0"
+                  />
                   <div>
-                    <h3 className="font-semibold text-gray-900 mb-1">Patient Support Services</h3>
-                    <p className="text-gray-600 text-sm">Comprehensive care coordination and cultural sensitivity</p>
+                    <h3 className="font-semibold text-gray-900 mb-1">
+                      Patient Support Services
+                    </h3>
+                    <p className="text-gray-600 text-sm">
+                      Comprehensive care coordination and cultural sensitivity
+                    </p>
                   </div>
                 </div>
               </div>
             </div>
-            
+
             <div className="bg-gray-200 rounded-2xl h-96 flex items-center justify-center">
               <div className="text-center text-gray-400">
                 <Award size={48} className="mx-auto mb-4" />
@@ -327,8 +368,8 @@ export default function OurNetworkPage() {
             Ready to Connect with Our Network?
           </h2>
           <p className="text-body mb-8 max-w-2xl mx-auto">
-            Let our team help you identify the best facility and specialists 
-            for your specific healthcare needs within our extensive network.
+            Let our team help you identify the best facility and specialists for
+            your specific healthcare needs within our extensive network.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/contact" className="btn-primary">

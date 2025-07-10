@@ -1,5 +1,5 @@
-import Link from 'next/link'
 import { MapPin, Plane, Globe } from 'lucide-react'
+import Button from '@/components/ui/Button'
 
 const benefits = [
   {
@@ -51,12 +51,9 @@ export default function VisitSaudi() {
             </div>
             
             {/* CTA Button */}
-            <Link 
-              href="/visit-saudi" 
-              className="btn-primary"
-            >
+            <Button href="/visit-saudi">
               Visit Saudi
-            </Link>
+            </Button>
           </div>
           
           {/* Right Content - Image */}

@@ -115,10 +115,12 @@ export default function HowItWorksPage() {
           <h1 className="heading-xl mb-6">
             How <span className="text-sage-400">It Works</span>
           </h1>
-          <p className="text-body max-w-4xl mx-auto mb-8">
-            Your healthcare journey with Sage follows a carefully designed process that prioritizes 
-            your comfort, safety, and peace of mind. From initial consultation to post-treatment care, 
-            we guide you through every step with personalized attention and expert coordination.
+          <p className="text-body max-w-5xl mx-auto mb-8">
+            Your healthcare journey with Sage follows a carefully designed
+            process that prioritizes your comfort, safety, and peace of mind.
+            From initial consultation to post-treatment care, we guide you
+            through every step with personalized attention and expert
+            coordination.
           </p>
           <Link href="/contact" className="btn-primary">
             Start Your Journey Today
@@ -133,9 +135,12 @@ export default function HowItWorksPage() {
             {detailedSteps.map((step, index) => {
               const Icon = step.icon
               const isEven = index % 2 === 0
-              
+
               return (
-                <div key={step.number} className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${!isEven ? 'lg:grid-flow-col-dense' : ''}`}>
+                <div
+                  key={step.number}
+                  className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${!isEven ? 'lg:grid-flow-col-dense' : ''}`}
+                >
                   {/* Content */}
                   <div className={isEven ? '' : 'lg:col-start-2'}>
                     <div className="flex items-center space-x-4 mb-6">
@@ -151,36 +156,45 @@ export default function HowItWorksPage() {
                         </p>
                       </div>
                     </div>
-                    
-                    <p className="text-body mb-6">
-                      {step.description}
-                    </p>
-                    
+
+                    <p className="text-body mb-6">{step.description}</p>
+
                     <div className="mb-6">
                       <div className="flex items-center space-x-2 text-sm text-gray-600 mb-4">
                         <Clock size={16} className="text-sage-400" />
                         <span>Typical Duration: {step.duration}</span>
                       </div>
-                      
-                      <h3 className="font-semibold text-gray-900 mb-3">What's Included:</h3>
+
+                      <h3 className="font-semibold text-gray-900 mb-3">
+                        What's Included:
+                      </h3>
                       <ul className="space-y-2">
                         {step.details.map((detail, detailIndex) => (
-                          <li key={detailIndex} className="flex items-start space-x-2 text-gray-600">
+                          <li
+                            key={detailIndex}
+                            className="flex items-start space-x-2 text-gray-600"
+                          >
                             <div className="w-1.5 h-1.5 bg-sage-400 rounded-full mt-2 flex-shrink-0"></div>
                             <span>{detail}</span>
                           </li>
                         ))}
                       </ul>
                     </div>
-                    
+
                     <div className="bg-sage-50 rounded-lg p-4">
-                      <h4 className="font-semibold text-gray-900 mb-2">What to Expect:</h4>
-                      <p className="text-sm text-gray-600">{step.whatToExpect}</p>
+                      <h4 className="font-semibold text-gray-900 mb-2">
+                        What to Expect:
+                      </h4>
+                      <p className="text-sm text-gray-600">
+                        {step.whatToExpect}
+                      </p>
                     </div>
                   </div>
-                  
+
                   {/* Visual */}
-                  <div className={isEven ? '' : 'lg:col-start-1 lg:row-start-1'}>
+                  <div
+                    className={isEven ? '' : 'lg:col-start-1 lg:row-start-1'}
+                  >
                     <div className="bg-gray-200 rounded-2xl h-96 flex items-center justify-center">
                       <div className="text-center text-gray-400">
                         <Icon size={64} className="mx-auto mb-4" />
@@ -200,13 +214,16 @@ export default function HowItWorksPage() {
       <section className="section-padding bg-gray-50">
         <div className="container mx-auto">
           <div className="text-center mb-16">
-            <h2 className="heading-lg mb-6">Comprehensive Support Throughout Your Journey</h2>
+            <h2 className="heading-lg mb-6">
+              Comprehensive Support Throughout Your Journey
+            </h2>
             <p className="text-body max-w-3xl mx-auto">
-              Beyond medical treatment, we provide comprehensive support services to ensure 
-              your entire experience is comfortable, convenient, and stress-free.
+              Beyond medical treatment, we provide comprehensive support
+              services to ensure your entire experience is comfortable,
+              convenient, and stress-free.
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {supportServices.map((service, index) => {
               const Icon = service.icon
@@ -218,9 +235,7 @@ export default function HowItWorksPage() {
                   <h3 className="text-lg font-bold text-gray-900 mb-3">
                     {service.title}
                   </h3>
-                  <p className="text-gray-600">
-                    {service.description}
-                  </p>
+                  <p className="text-gray-600">{service.description}</p>
                 </div>
               )
             })}
@@ -234,20 +249,18 @@ export default function HowItWorksPage() {
           <div className="text-center mb-16">
             <h2 className="heading-lg mb-6">Frequently Asked Questions</h2>
             <p className="text-body max-w-3xl mx-auto">
-              Get answers to common questions about our process and what to expect 
-              during your healthcare journey with Sage.
+              Get answers to common questions about our process and what to
+              expect during your healthcare journey with Sage.
             </p>
           </div>
-          
-          <div className="max-w-4xl mx-auto space-y-6">
+
+          <div className="max-w-5xl mx-auto space-y-6">
             {faqs.map((faq, index) => (
               <div key={index} className="card">
                 <h3 className="text-lg font-bold text-gray-900 mb-3">
                   {faq.question}
                 </h3>
-                <p className="text-gray-600">
-                  {faq.answer}
-                </p>
+                <p className="text-gray-600">{faq.answer}</p>
               </div>
             ))}
           </div>
@@ -261,19 +274,20 @@ export default function HowItWorksPage() {
             Ready to Begin Your Healthcare Journey?
           </h2>
           <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-            Take the first step towards exceptional medical care. Our team is ready 
-            to guide you through our proven process with personalized attention.
+            Take the first step towards exceptional medical care. Our team is
+            ready to guide you through our proven process with personalized
+            attention.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link 
-              href="/contact" 
+            <Link
+              href="/contact"
               className="inline-flex items-center space-x-2 bg-white text-sage-400 px-8 py-4 rounded-lg font-medium hover:bg-gray-100 transition-colors duration-200"
             >
               <span>Schedule Free Consultation</span>
               <MessageCircle size={20} />
             </Link>
-            <Link 
-              href="/services" 
+            <Link
+              href="/services"
               className="inline-flex items-center space-x-2 border-2 border-white text-white px-8 py-4 rounded-lg font-medium hover:bg-white hover:text-sage-400 transition-all duration-200"
             >
               <span>Explore Our Services</span>
