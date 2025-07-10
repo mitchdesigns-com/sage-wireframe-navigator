@@ -1,5 +1,5 @@
 import Button from '@/components/ui/Button'
-import { ArrowRight, Image as ImageIcon, User } from 'lucide-react'
+import { Image as ImageIcon, User } from 'lucide-react'
 
 const newsArticles = [
   {
