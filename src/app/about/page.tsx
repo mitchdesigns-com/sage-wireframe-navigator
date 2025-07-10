@@ -35,17 +35,17 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="section-padding bg-gradient-to-br from-sage-50 to-white">
+      <section className="section-padding from-sage-50 bg-gradient-to-br to-white">
         <div className="container mx-auto text-center">
           <h1 className="heading-xl mb-6">
             About <span className="text-sage-400">Sage Healthcare</span>
           </h1>
-          <p className="text-body max-w-4xl mx-auto mb-8">
+          <p className="text-body mx-auto mb-8 max-w-4xl">
             We are Saudi Arabia's premier healthcare gateway, dedicated to connecting patients 
             with world-class medical facilities and services. Our mission is to provide exceptional 
             healthcare experiences that combine medical excellence with cultural hospitality.
           </p>
-          <div className="bg-gray-200 rounded-2xl h-64 flex items-center justify-center mx-auto max-w-4xl">
+          <div className="mx-auto flex h-64 max-w-4xl items-center justify-center rounded-2xl bg-gray-200">
             <div className="text-center text-gray-400">
               <Users size={48} className="mx-auto mb-4" />
               <p>Team Photo / Company Image</p>
@@ -57,7 +57,7 @@ export default function AboutPage() {
       {/* Mission & Vision */}
       <section className="section-padding bg-white">
         <div className="container mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
             <div>
               <h2 className="heading-md mb-6">Our Mission</h2>
               <p className="text-body mb-6">
@@ -90,23 +90,23 @@ export default function AboutPage() {
       {/* Values */}
       <section className="section-padding bg-gray-50">
         <div className="container mx-auto">
-          <div className="text-center mb-16">
+          <div className="mb-16 text-center">
             <h2 className="heading-lg mb-6">Our Core Values</h2>
-            <p className="text-body max-w-3xl mx-auto">
+            <p className="text-body mx-auto max-w-3xl">
               These fundamental principles guide everything we do and shape the way 
               we serve our patients, partners, and communities.
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
             {values.map((value, index) => {
               const Icon = value.icon
               return (
                 <div key={index} className="text-center">
-                  <div className="inline-flex items-center justify-center w-16 h-16 bg-sage-100 rounded-full mb-6">
+                  <div className="bg-sage-100 mb-6 inline-flex h-16 w-16 items-center justify-center rounded-full">
                     <Icon size={32} className="text-sage-400" />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-4">
+                  <h3 className="mb-4 text-xl font-bold text-gray-900">
                     {value.title}
                   </h3>
                   <p className="text-gray-600">
@@ -122,19 +122,19 @@ export default function AboutPage() {
       {/* Statistics */}
       <section className="section-padding bg-sage-400 text-white">
         <div className="container mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold mb-6">Our Impact in Numbers</h2>
-            <p className="text-xl opacity-90 max-w-3xl mx-auto">
+          <div className="mb-16 text-center">
+            <h2 className="mb-6 text-3xl font-bold">Our Impact in Numbers</h2>
+            <p className="mx-auto max-w-3xl text-xl opacity-90">
               These numbers represent our commitment to excellence and the trust 
               patients place in our services.
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
             {stats.map((stat, index) => (
               <div key={index} className="text-center">
-                <div className="text-4xl font-bold mb-2">{stat.number}</div>
-                <div className="text-xl font-semibold mb-2 opacity-90">{stat.label}</div>
+                <div className="mb-2 text-4xl font-bold">{stat.number}</div>
+                <div className="mb-2 text-xl font-semibold opacity-90">{stat.label}</div>
                 <div className="text-sm opacity-75">{stat.description}</div>
               </div>
             ))}
@@ -145,24 +145,24 @@ export default function AboutPage() {
       {/* Team Section */}
       <section className="section-padding bg-white">
         <div className="container mx-auto">
-          <div className="text-center mb-16">
+          <div className="mb-16 text-center">
             <h2 className="heading-lg mb-6">Our Leadership Team</h2>
-            <p className="text-body max-w-3xl mx-auto">
+            <p className="text-body mx-auto max-w-3xl">
               Meet the experienced professionals who lead Sage Healthcare's mission 
               to provide exceptional medical care experiences.
             </p>
           </div>
           
           {/* Team Grid Placeholder */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
             {[1, 2, 3].map((item) => (
               <div key={item} className="text-center">
-                <div className="w-48 h-48 bg-gray-200 rounded-full mx-auto mb-6 flex items-center justify-center">
+                <div className="mx-auto mb-6 flex h-48 w-48 items-center justify-center rounded-full bg-gray-200">
                   <Users size={48} className="text-gray-400" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Team Member {item}</h3>
-                <p className="text-sage-400 font-medium mb-3">Executive Position</p>
-                <p className="text-gray-600 text-sm">
+                <h3 className="mb-2 text-xl font-bold text-gray-900">Team Member {item}</h3>
+                <p className="text-sage-400 mb-3 font-medium">Executive Position</p>
+                <p className="text-sm text-gray-600">
                   Brief description of team member's background and expertise in healthcare.
                 </p>
               </div>
@@ -177,11 +177,11 @@ export default function AboutPage() {
           <h2 className="heading-md mb-6">
             Ready to Experience the Sage Difference?
           </h2>
-          <p className="text-body mb-8 max-w-2xl mx-auto">
+          <p className="text-body mx-auto mb-8 max-w-2xl">
             Join thousands of patients who have trusted Sage Healthcare with their 
             medical journey. Let us guide you to exceptional care.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col justify-center gap-4 sm:flex-row">
             <Link href="/contact" className="btn-primary">
               Get Started Today
             </Link>
