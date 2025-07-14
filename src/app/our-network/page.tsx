@@ -97,7 +97,7 @@ export default function OurNetworkPage() {
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="section-padding bg-gradient-to-br from-sage-50 to-white">
-        <div className="container mx-auto text-center">
+        <div className="container-custom mx-auto text-center">
           <h1 className="heading-xl mb-6">
             Our Healthcare <span className="text-sage-400">Network</span>
           </h1>
@@ -119,7 +119,7 @@ export default function OurNetworkPage() {
 
       {/* Network Statistics */}
       <section className="section-padding bg-sage-400 text-white">
-        <div className="container mx-auto">
+        <div className="container-custom mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold mb-6">Our Network by Numbers</h2>
             <p className="text-xl opacity-90 max-w-3xl mx-auto">
@@ -144,7 +144,7 @@ export default function OurNetworkPage() {
 
       {/* Featured Hospitals */}
       <section className="section-padding bg-white">
-        <div className="container mx-auto">
+        <div className="container-custom mx-auto">
           <div className="text-center mb-16">
             <h2 className="heading-lg mb-6">Premier Partner Hospitals</h2>
             <p className="text-body max-w-3xl mx-auto">
@@ -230,7 +230,7 @@ export default function OurNetworkPage() {
 
       {/* Regional Coverage */}
       <section className="section-padding bg-gray-50">
-        <div className="container mx-auto">
+        <div className="container-custom mx-auto">
           <div className="text-center mb-16">
             <h2 className="heading-lg mb-6">Nationwide Coverage</h2>
             <p className="text-body max-w-3xl mx-auto">
@@ -280,7 +280,7 @@ export default function OurNetworkPage() {
 
       {/* Quality Standards */}
       <section className="section-padding bg-white">
-        <div className="container mx-auto">
+        <div className="container-custom mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="heading-lg mb-6">Rigorous Quality Standards</h2>
@@ -363,7 +363,7 @@ export default function OurNetworkPage() {
 
       {/* CTA Section */}
       <section className="section-padding bg-gray-50">
-        <div className="container mx-auto text-center">
+        <div className="container-custom mx-auto text-center">
           <h2 className="heading-md mb-6">
             Ready to Connect with Our Network?
           </h2>

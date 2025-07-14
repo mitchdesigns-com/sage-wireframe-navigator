@@ -1,13 +1,14 @@
 import Button from '../ui/Button'
+import { ChevronRight } from 'lucide-react'
 
 export default function Hero() {
   return (
-    <section className="section-padding bg-white">
-      <div className="container mx-auto text-center">
+    <section className="bg-white lg:py-28 py-14">
+      <div className="container-custom mx-auto text-center">
         {/* Main Heading */}
-        <h1 className="heading-xl mb-6">
-          Your Trusted Gateway to{' '}
-          <span className="text-sage-400">Saudi&apos;s Medical Care</span>
+        <h1 className="heading-xl mb-6 [&>span]:block">
+          <span className="font-normal">Your Trusted Gateway to</span>
+          Saudi&apos;s Medical Care
         </h1>
 
         {/* Subtitle */}
@@ -18,13 +19,18 @@ export default function Hero() {
         </p>
 
         {/* CTA Button */}
-        <Button href="/contact" size="xl" variant="primary">
-          Schedule Call
+        <Button
+          href="/contact"
+          size="xl"
+          variant="primary"
+          rightIcon={<ChevronRight />}
+        >
+          Speak With Our Team
         </Button>
 
         {/* Hero Image Placeholder */}
         <div className="mt-12">
-          <div className="mx-auto flex h-96 max-w-5xl items-center justify-center rounded-2xl bg-gray-200">
+          <div className="mx-auto flex aspect-video items-center justify-center rounded-2xl bg-gray-200">
             <div className="text-center text-gray-400">
               <div className="mx-auto mb-4 flex h-24 w-24 items-center justify-center rounded-lg bg-gray-300">
                 <svg

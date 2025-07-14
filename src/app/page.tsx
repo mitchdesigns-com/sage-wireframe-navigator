@@ -19,23 +19,23 @@ export default function HomePage() {
       {/* Services Overview */}
       <Services />
 
-      {/* How It Works Section */}
-      <HowItWorks />
-
       {/* Visit Saudi Section */}
       <VisitSaudi />
-
-      {/* Awards & Recognition */}
-      <Awards />
-
-      {/* Client Experiences */}
-      <ClientExperiences />
 
       {/* Comprehensive Services */}
       <ComprehensiveServices />
 
+      {/* How It Works Section */}
+      <HowItWorks />
+
+      {/* Awards & Recognition */}
+      <Awards />
+
       {/* Resources Section */}
       <Resources />
+
+      {/* Client Experiences */}
+      <ClientExperiences />
 
       {/* Join Our Network */}
       <JoinNetwork />

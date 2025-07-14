@@ -1,64 +1,125 @@
-import Link from 'next/link'
-import { Target, Users, Award, Globe } from 'lucide-react'
+import Button from '@/components/ui/Button'
+import {
+  ChevronLeft,
+  ChevronRight,
+  Dribbble,
+  Linkedin,
+  Twitter,
+} from 'lucide-react'
+import { HeroText, JoinNetwork } from '../../components/sections'
+import Image from 'next/image'
 
 const values = [
   {
-    icon: Target,
-    title: 'Excellence',
-    description: 'We are committed to providing the highest quality healthcare services and exceeding patient expectations.',
+    title: 'Structured: Clarity and Reliability in Care',
+    description:
+      'We prioritize clear processes to ensure dependable healthcare experiences.',
+    image: 'https://placehold.co/400x300/d1d5db/9ca3af?text=Healthcare+Process',
   },
   {
-    icon: Users,
-    title: 'Cultural Sensitivity',
-    description: 'We understand and respect diverse cultural backgrounds, providing culturally appropriate care.',
+    title: 'Scalable: Adaptable Solutions for Every Patient',
+    description:
+      'Our services evolve to meet the diverse needs of our patients.',
+    image: 'https://placehold.co/400x300/d1d5db/9ca3af?text=Adaptable+Care',
   },
   {
-    icon: Award,
-    title: 'Trust & Transparency',
-    description: 'We build lasting relationships through honest communication and transparent processes.',
+    title: 'Transparent: Honest Communication and Pricing',
+    description: 'We believe in open dialogue and clear pricing structures.',
+    image:
+      'https://placehold.co/400x300/d1d5db/9ca3af?text=Clear+Communication',
+  },
+]
+
+const teamMembers = [
+  {
+    name: 'Dr. Amina',
+    role: 'Medical Director',
+    description:
+      'Expert in healthcare innovation with over 15 years of experience in medical tourism.',
+    image: 'https://placehold.co/400x400/d1d5db/9ca3af?text=Dr.+Amina',
+    social: {
+      linkedin: '#',
+      twitter: '#',
+      dribbble: '#',
+    },
   },
   {
-    icon: Globe,
-    title: 'Global Expertise',
-    description: 'We combine international best practices with local knowledge and cultural understanding.',
+    name: 'Mr. Khalid',
+    role: 'Operations Manager',
+    description:
+      'Specializes in optimizing patient experiences and operational efficiency across our services.',
+    image: 'https://placehold.co/400x400/d1d5db/9ca3af?text=Mr.+Khalid',
+    social: {
+      linkedin: '#',
+      twitter: '#',
+      dribbble: '#',
+    },
+  },
+  {
+    name: 'Ms. Layla',
+    role: 'Client Relations',
+    description:
+      'Dedicated to ensuring seamless communication and support for all our international patients.',
+    image: 'https://placehold.co/400x400/d1d5db/9ca3af?text=Ms.+Layla',
+    social: {
+      linkedin: '#',
+      twitter: '#',
+      dribbble: '#',
+    },
+  },
+  {
+    name: 'Dr. Omar',
+    role: 'Quality Assurance',
+    description:
+      'Committed to maintaining the highest standards of patient safety and care quality.',
+    image: 'https://placehold.co/400x400/d1d5db/9ca3af?text=Dr.+Omar',
+    social: {
+      linkedin: '#',
+      twitter: '#',
+      dribbble: '#',
+    },
   },
 ]
 
 const stats = [
-  { number: '1000+', label: 'Patients Served', description: 'Successful medical journeys facilitated' },
-  { number: '50+', label: 'Partner Hospitals', description: 'World-class medical facilities' },
-  { number: '25+', label: 'Countries', description: 'International patients welcomed' },
-  { number: '99%', label: 'Satisfaction Rate', description: 'Patient satisfaction score' },
+  {
+    number: '1000+',
+    label: 'Patients Served',
+    description: 'Successful medical journeys facilitated',
+  },
+  {
+    number: '50+',
+    label: 'Partner Hospitals',
+    description: 'World-class medical facilities',
+  },
+  {
+    number: '25+',
+    label: 'Countries',
+    description: 'International patients welcomed',
+  },
+  {
+    number: '99%',
+    label: 'Satisfaction Rate',
+    description: 'Patient satisfaction score',
+  },
 ]
 
 export default function AboutPage() {
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="section-padding from-sage-50 bg-gradient-to-br to-white">
-        <div className="container mx-auto text-center">
-          <h1 className="heading-xl mb-6">
-            About <span className="text-sage-400">Sage Healthcare</span>
-          </h1>
-          <p className="text-body mx-auto mb-8 max-w-5xl">
-            We are Saudi Arabia's premier healthcare gateway, dedicated to
-            connecting patients with world-class medical facilities and
-            services. Our mission is to provide exceptional healthcare
-            experiences that combine medical excellence with cultural
-            hospitality.
-          </p>
-          <div className="mx-auto flex h-64 max-w-5xl items-center justify-center rounded-2xl bg-gray-200">
-            <div className="text-center text-gray-400">
-              <Users size={48} className="mx-auto mb-4" />
-              <p>Team Photo / Company Image</p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <HeroText
+        title="About Sage"
+        description="Discover how we redefine healthcare concierge services for a transformative medical tourism experience."
+        size="large"
+        variant="default"
+        backgroundImage="https://placehold.co/1512x370"
+        backgroundOverlay={true}
+        animated={true}
+      />
 
       {/* Mission & Vision */}
       <section className="section-padding bg-white">
-        <div className="container mx-auto">
+        <div className="container-custom mx-auto">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
             <div>
               <h2 className="heading-md mb-6">Our Mission</h2>
@@ -92,23 +153,31 @@ export default function AboutPage() {
       </section>
 
       {/* Values */}
-      <section className="section-padding bg-gray-50">
-        <div className="container mx-auto">
-          <div className="mb-16 text-center">
-            <h2 className="heading-lg mb-6">Our Core Values</h2>
-            <p className="text-body mx-auto max-w-3xl">
-              These fundamental principles guide everything we do and shape the
-              way we serve our patients, partners, and communities.
+      <section className="section-padding bg-white">
+        <div className="container-custom mx-auto">
+          <div className="mb-4">
+            <p className="text-sage-600 font-medium mb-2">Our Values</p>
+            <h2 className="heading-lg mb-6">
+              Our Core Values That Drive Us Forward
+            </h2>
+            <p className="text-body max-w-3xl">
+              At Sage, our core values shape every interaction and service we
+              provide. They reflect our commitment to excellence and
+              patient-centered care.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-3 mt-16">
             {values.map((value, index) => {
-              const Icon = value.icon
               return (
-                <div key={index} className="text-center">
-                  <div className="bg-sage-100 mb-6 inline-flex h-16 w-16 items-center justify-center rounded-full">
-                    <Icon size={32} className="text-sage-400" />
+                <div key={index} className="">
+                  <div className="mb-6 aspect-video rounded-2xl bg-gray-200 overflow-hidden relative">
+                    <Image
+                      fill
+                      src={value.image}
+                      alt={value.title}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                   <h3 className="mb-4 text-xl font-bold text-gray-900">
                     {value.title}
@@ -121,85 +190,103 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Statistics */}
-      <section className="section-padding bg-sage-400 text-white">
-        <div className="container mx-auto">
-          <div className="mb-16 text-center">
-            <h2 className="mb-6 text-3xl font-bold">Our Impact in Numbers</h2>
-            <p className="mx-auto max-w-3xl text-xl opacity-90">
-              These numbers represent our commitment to excellence and the trust
-              patients place in our services.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
-            {stats.map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="mb-2 text-4xl font-bold">{stat.number}</div>
-                <div className="mb-2 text-xl font-semibold opacity-90">
-                  {stat.label}
-                </div>
-                <div className="text-sm opacity-75">{stat.description}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Team Section */}
-      <section className="section-padding bg-white">
-        <div className="container mx-auto">
-          <div className="mb-16 text-center">
-            <h2 className="heading-lg mb-6">Our Leadership Team</h2>
-            <p className="text-body mx-auto max-w-3xl">
-              Meet the experienced professionals who lead Sage Healthcare's
-              mission to provide exceptional medical care experiences.
+      <section className="section-padding bg-gray-50">
+        <div className="container-custom mx-auto">
+          <div className="mb-16">
+            <h2 className="heading-lg mb-4">Our Team</h2>
+            <p className="text-body">
+              Meet our experienced and dedicated healthcare professionals.
             </p>
           </div>
 
-          {/* Team Grid Placeholder */}
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-            {[1, 2, 3].map((item) => (
-              <div key={item} className="text-center">
-                <div className="mx-auto mb-6 flex h-48 w-48 items-center justify-center rounded-full bg-gray-200">
-                  <Users size={48} className="text-gray-400" />
+          {/* Team Carousel */}
+          <div className="relative">
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              {teamMembers.map((member, index) => (
+                <div key={index} className="">
+                  <div className="mb-6 aspect-square rounded-2xl bg-gray-200 overflow-hidden">
+                    <img
+                      src={member.image}
+                      alt={member.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <h3 className="mb-1 text-xl font-bold text-gray-900">
+                    {member.name}
+                  </h3>
+                  <p className="text-gray-600 mb-3 font-medium">
+                    {member.role}
+                  </p>
+                  <p className="text-sm text-gray-600 mb-4">
+                    {member.description}
+                  </p>
+
+                  {/* Social Icons */}
+                  <div className="flex space-x-3">
+                    <a
+                      href={member.social.linkedin}
+                      className="text-gray-400 hover:text-sage-600 transition-colors"
+                    >
+                      <Linkedin size={20} />
+                    </a>
+                    <a
+                      href={member.social.twitter}
+                      className="text-gray-400 hover:text-sage-600 transition-colors"
+                    >
+                      <Twitter size={20} />
+                    </a>
+                    <a
+                      href={member.social.dribbble}
+                      className="text-gray-400 hover:text-sage-600 transition-colors"
+                    >
+                      <Dribbble size={20} />
+                    </a>
+                  </div>
                 </div>
-                <h3 className="mb-2 text-xl font-bold text-gray-900">
-                  Team Member {item}
-                </h3>
-                <p className="text-sage-400 mb-3 font-medium">
-                  Executive Position
-                </p>
-                <p className="text-sm text-gray-600">
-                  Brief description of team member's background and expertise in
-                  healthcare.
-                </p>
+              ))}
+            </div>
+
+            {/* Carousel Navigation */}
+            <div className="flex items-center justify-between mt-8">
+              {/* Dots */}
+              <div className="flex space-x-2">
+                {[0, 1, 2, 3, 4, 5].map((dot) => (
+                  <button
+                    key={dot}
+                    className={`w-2 h-2 rounded-full transition-colors ${
+                      dot === 0 ? 'bg-sage-600' : 'bg-gray-300'
+                    }`}
+                  />
+                ))}
               </div>
-            ))}
+
+              {/* Arrow Navigation */}
+              <div className="flex space-x-2">
+                <button className="p-2 rounded-full border border-gray-300 hover:bg-gray-50 transition-colors">
+                  <ChevronLeft size={20} className="text-gray-600" />
+                </button>
+                <button className="p-2 rounded-full border border-gray-300 hover:bg-gray-50 transition-colors">
+                  <ChevronRight size={20} className="text-gray-600" />
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* We're Hiring Section */}
+          <div className="mt-16">
+            <h3 className="heading-4 mb-4">We're hiring!</h3>
+            <p className="text-body mb-6">
+              Join our team of dedicated healthcare professionals.
+            </p>
+            <Button href="/careers" variant="outline" size="lg">
+              Open Positions
+            </Button>
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="section-padding bg-gray-50">
-        <div className="container mx-auto text-center">
-          <h2 className="heading-md mb-6">
-            Ready to Experience the Sage Difference?
-          </h2>
-          <p className="text-body mx-auto mb-8 max-w-2xl">
-            Join thousands of patients who have trusted Sage Healthcare with
-            their medical journey. Let us guide you to exceptional care.
-          </p>
-          <div className="flex flex-col justify-center gap-4 sm:flex-row">
-            <Link href="/contact" className="btn-primary">
-              Get Started Today
-            </Link>
-            <Link href="/services" className="btn-outline">
-              Explore Our Services
-            </Link>
-          </div>
-        </div>
-      </section>
+      <JoinNetwork />
     </div>
   )
 }

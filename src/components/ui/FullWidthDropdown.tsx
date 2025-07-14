@@ -42,7 +42,7 @@ function ServicesFullWidthDropdown({
 }) {
   return (
     <div className="bg-white border-t border-gray-100 shadow-2xl">
-      <div className="container mx-auto px-4 py-12 sm:px-6 lg:px-8">
+      <div className="container-custom mx-auto px-4 py-12 sm:px-6 lg:px-8">
         <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 lg:grid-cols-3">
           {items.map((category, index) => (
             <motion.div
@@ -58,19 +58,22 @@ function ServicesFullWidthDropdown({
                 </h3>
                 <div className="w-12 h-px bg-sage-600 mx-auto lg:mx-0"></div>
               </div>
-              
+
               <div className="space-y-6">
                 {category.children?.map((service, serviceIndex) => (
                   <motion.div
                     key={service.href}
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: (index * 0.1) + (serviceIndex * 0.05), duration: 0.3 }}
+                    transition={{
+                      delay: index * 0.1 + serviceIndex * 0.05,
+                      duration: 0.3,
+                    }}
                   >
                     <Link
                       href={service.href!}
                       onClick={onItemClick}
-                      className="group block p-4 rounded-xl hover:bg-gray-50 transition-all duration-300"
+                      className="group block p-4 rounded-4xl hover:bg-gray-50 transition-all duration-300"
                     >
                       <div className="flex items-start space-x-4">
                         <div className="flex-shrink-0 p-2 bg-sage-50 rounded-lg group-hover:bg-sage-100 transition-colors duration-300">
@@ -97,7 +100,7 @@ function ServicesFullWidthDropdown({
             </motion.div>
           ))}
         </div>
-        
+
         {/* Call to Action Section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -111,11 +114,12 @@ function ServicesFullWidthDropdown({
                 Ready to Transform Your Healthcare Experience?
               </h3>
               <p className="text-gray-600 text-lg">
-                Discover our comprehensive healthcare solutions tailored for your specific needs
+                Discover our comprehensive healthcare solutions tailored for
+                your specific needs
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Button 
+              <Button
                 href="/services"
                 size="lg"
                 rightIcon={<ArrowRight size={18} />}
@@ -123,7 +127,7 @@ function ServicesFullWidthDropdown({
               >
                 Explore All Services
               </Button>
-              <Button 
+              <Button
                 href="/contact"
                 variant="secondary"
                 size="lg"
@@ -160,7 +164,7 @@ function ResourcesFullWidthDropdown({
 
   return (
     <div className="bg-white border-t border-gray-100 shadow-2xl">
-      <div className="container mx-auto px-4 py-12 sm:px-6 lg:px-8">
+      <div className="container-custom mx-auto px-4 py-12 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <motion.div
@@ -169,9 +173,12 @@ function ResourcesFullWidthDropdown({
             transition={{ duration: 0.3 }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Healthcare Resources</h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              Healthcare Resources
+            </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Access comprehensive resources, insights, and tools to support your healthcare journey
+              Access comprehensive resources, insights, and tools to support
+              your healthcare journey
             </p>
           </motion.div>
 
@@ -191,22 +198,22 @@ function ResourcesFullWidthDropdown({
                   </h3>
                   <div className="w-16 h-px bg-sage-600 mx-auto lg:mx-0"></div>
                 </div>
-                
+
                 <div className="space-y-4">
                   {category.items.map((item, itemIndex) => (
                     <motion.div
                       key={item.href}
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
-                      transition={{ 
-                        delay: (categoryIndex * 0.15) + (itemIndex * 0.05), 
-                        duration: 0.3 
+                      transition={{
+                        delay: categoryIndex * 0.15 + itemIndex * 0.05,
+                        duration: 0.3,
                       }}
                     >
                       <Link
                         href={item.href!}
                         onClick={onItemClick}
-                        className="group block p-4 rounded-xl hover:bg-gray-50 transition-all duration-300"
+                        className="group block p-4 rounded-4xl hover:bg-gray-50 transition-all duration-300"
                       >
                         <div className="flex items-start space-x-4">
                           <div className="flex-shrink-0 p-2 bg-gray-50 rounded-lg group-hover:bg-sage-50 transition-colors duration-300">
@@ -247,7 +254,8 @@ function ResourcesFullWidthDropdown({
                   Latest Healthcare Insights
                 </h3>
                 <p className="text-gray-600 mb-6">
-                  Stay updated with the latest trends, research, and best practices in healthcare and medical tourism.
+                  Stay updated with the latest trends, research, and best
+                  practices in healthcare and medical tourism.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3">
                   <Button
@@ -267,7 +275,7 @@ function ResourcesFullWidthDropdown({
                 </div>
               </div>
               <div className="hidden lg:block">
-                <div className="w-full h-32 bg-gradient-to-br from-sage-100 to-sage-200 rounded-xl flex items-center justify-center">
+                <div className="w-full h-32 bg-gradient-to-br from-sage-100 to-sage-200 rounded-4xl flex items-center justify-center">
                   <div className="text-sage-600 text-center">
                     <div className="text-4xl mb-2">📚</div>
                     <div className="font-medium">Resource Center</div>

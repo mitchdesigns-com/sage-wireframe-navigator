@@ -81,8 +81,8 @@ export default function Footer() {
   return (
     <footer className="bg-white">
       {/* Newsletter Subscription Section */}
-      <div className="bg-gradient-to-r from-green-200 to-green-300 py-16">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="bg-Primary-Spring py-16">
+        <div className="container-custom mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mx-auto flex flex-col items-center justify-between gap-8 lg:flex-row">
             {/* Left Content */}
             <div className="text-center lg:text-left">
@@ -108,11 +108,7 @@ export default function Footer() {
                   className="flex-1 rounded-full border border-gray-300 bg-white px-4 py-3 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-green-500"
                   required
                 />
-                <Button
-                  type="submit"
-                  loading={isSubmitting}
-                  className="whitespace-nowrap bg-green-800 px-8 py-3 font-medium text-white hover:bg-green-900"
-                >
+                <Button type="submit" loading={isSubmitting}>
                   Join
                 </Button>
               </form>
@@ -120,7 +116,7 @@ export default function Footer() {
                 We respect your privacy. Read our{' '}
                 <Link
                   href="/privacy"
-                  className="font-medium text-green-800 hover:underline"
+                  className="font-medium text-Primary-Palm hover:underline"
                 >
                   Privacy Policy
                 </Link>
@@ -133,7 +129,7 @@ export default function Footer() {
 
       {/* Main Footer */}
       <div className="bg-green-800 py-16 text-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="container-custom mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-6">
             {/* Logo Section */}
             <div className="lg:col-span-1">
@@ -241,7 +237,7 @@ export default function Footer() {
 
       {/* Footer Bottom */}
       <div className="bg-green-900 py-4 text-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="container-custom mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
             {/* Copyright */}
             <div className="text-sm text-green-200">

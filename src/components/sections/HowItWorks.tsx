@@ -31,7 +31,7 @@ const steps = [
 export default function HowItWorks() {
   return (
     <section className="section-padding bg-white">
-      <div className="container mx-auto">
+      <div className="container-custom mx-auto">
         <div className="grid grid-cols-1 items-start gap-20 lg:grid-cols-2">
           {/* Left Content */}
           <div className="lg:sticky lg:top-24">
@@ -65,36 +65,26 @@ export default function HowItWorks() {
                   {/* Step Content */}
                   <div className="ml-8 pb-8">
                     <div className="mb-3">
-                      <span className="text-2xl font-bold text-gray-900">
+                      <span className="heading-3 font-bold">
                         Step {step.number}
                       </span>
                     </div>
-                    <h3 className="mb-3 text-xl font-bold text-gray-900">
-                      {step.title}
-                    </h3>
-                    <p className="max-w-md leading-relaxed text-gray-600">
-                      {step.description}
-                    </p>
+                    <h3 className="mb-8 heading-4">{step.title}</h3>
+                    <p className="max-w-md text-medium">{step.description}</p>
+
+                    {index === steps.length - 1 && (
+                      <div className="mt-5">
+                        <Button
+                          href="/contact"
+                          rightIcon={<ArrowRight size={16} />}
+                        >
+                          Request Free Consultation
+                        </Button>
+                      </div>
+                    )}
                   </div>
                 </div>
               ))}
-
-              {/* CTA Button */}
-              <div className="relative flex items-start">
-                {/* Final Timeline Dot */}
-                <div className="-ml-px h-6 w-6 flex-shrink-0 rounded-full bg-gray-900"></div>
-
-                {/* CTA Content */}
-                <div className="ml-8">
-                  <Button
-                    href="/contact"
-                    variant="ghost"
-                    rightIcon={<ArrowRight size={16} />}
-                  >
-                    Request Free Consultation
-                  </Button>
-                </div>
-              </div>
             </div>
           </div>
         </div>

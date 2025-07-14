@@ -659,29 +659,29 @@ export default function AboutPage() {
           <div className="flex w-full max-w-[1280px] flex-col items-center justify-start gap-2">
             <div className="inline-flex flex-wrap content-start items-start justify-start gap-2 self-stretch">
               <img
-                className="h-[124px] w-[420px] rounded-xl"
+                className="h-[124px] w-[420px] rounded-4xl"
                 src="https://placehold.co/420x124"
               />
               <img
-                className="h-[124px] w-[420px] rounded-xl"
+                className="h-[124px] w-[420px] rounded-4xl"
                 src="https://placehold.co/420x124"
               />
               <img
-                className="h-[124px] w-[420px] rounded-xl"
+                className="h-[124px] w-[420px] rounded-4xl"
                 src="https://placehold.co/420x124"
               />
             </div>
             <div className="inline-flex flex-wrap content-start items-start justify-start gap-2 self-stretch">
               <img
-                className="h-[124px] w-[420px] rounded-xl"
+                className="h-[124px] w-[420px] rounded-4xl"
                 src="https://placehold.co/420x124"
               />
               <img
-                className="h-[124px] w-[420px] rounded-xl"
+                className="h-[124px] w-[420px] rounded-4xl"
                 src="https://placehold.co/420x124"
               />
               <img
-                className="h-[124px] w-[420px] rounded-xl"
+                className="h-[124px] w-[420px] rounded-4xl"
                 src="https://placehold.co/420x124"
               />
             </div>
@@ -968,27 +968,27 @@ export default function AboutPage() {
               </div>
               <div className="flex flex-1 flex-wrap content-start items-start justify-start gap-2">
                 <img
-                  className="h-[84px] w-[296px] rounded-xl"
+                  className="h-[84px] w-[296px] rounded-4xl"
                   src="https://placehold.co/296x84"
                 />
                 <img
-                  className="h-[84px] w-[296px] rounded-xl"
+                  className="h-[84px] w-[296px] rounded-4xl"
                   src="https://placehold.co/296x84"
                 />
                 <img
-                  className="h-[84px] w-[296px] rounded-xl"
+                  className="h-[84px] w-[296px] rounded-4xl"
                   src="https://placehold.co/296x84"
                 />
                 <img
-                  className="h-[84px] w-[296px] rounded-xl"
+                  className="h-[84px] w-[296px] rounded-4xl"
                   src="https://placehold.co/296x84"
                 />
                 <img
-                  className="h-[84px] w-[296px] rounded-xl"
+                  className="h-[84px] w-[296px] rounded-4xl"
                   src="https://placehold.co/296x84"
                 />
                 <img
-                  className="h-[84px] w-[296px] rounded-xl"
+                  className="h-[84px] w-[296px] rounded-4xl"
                   src="https://placehold.co/296x84"
                 />
               </div>
@@ -1220,7 +1220,7 @@ export default function AboutPage() {
                 <div
                   data-alternate="False"
                   data-type="Default"
-                  className="flex h-12 w-[352px] items-center justify-start gap-2 rounded-xl bg-white px-3 py-2 outline outline-1 outline-[#f0f0ee]"
+                  className="flex h-12 w-[352px] items-center justify-start gap-2 rounded-4xl bg-white px-3 py-2 outline outline-1 outline-[#f0f0ee]"
                 >
                   <div className="flex-1 justify-start font-['Aeonik'] text-base font-normal leading-normal text-[#626262]">
                     Enter Your Email

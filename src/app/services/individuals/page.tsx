@@ -52,16 +52,18 @@ export default function IndividualsPage() {
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="section-padding bg-gradient-to-br from-sage-50 to-white">
-        <div className="container mx-auto">
+        <div className="container-custom mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="heading-xl mb-6">
-                Healthcare Services <span className="text-sage-400">for Individuals</span>
+                Healthcare Services{' '}
+                <span className="text-sage-400">for Individuals</span>
               </h1>
               <p className="text-body mb-8">
-                Experience personalized healthcare solutions designed specifically for your 
-                individual needs. Our comprehensive support ensures you receive world-class 
-                medical care with the cultural sensitivity and personal attention you deserve.
+                Experience personalized healthcare solutions designed
+                specifically for your individual needs. Our comprehensive
+                support ensures you receive world-class medical care with the
+                cultural sensitivity and personal attention you deserve.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link href="/contact" className="btn-primary">
@@ -84,15 +86,16 @@ export default function IndividualsPage() {
 
       {/* Services Grid */}
       <section className="section-padding bg-white">
-        <div className="container mx-auto">
+        <div className="container-custom mx-auto">
           <div className="text-center mb-16">
             <h2 className="heading-lg mb-6">Our Individual Services</h2>
             <p className="text-body max-w-3xl mx-auto">
-              We provide comprehensive support throughout your entire healthcare journey, 
-              ensuring every aspect of your care is coordinated and personalized.
+              We provide comprehensive support throughout your entire healthcare
+              journey, ensuring every aspect of your care is coordinated and
+              personalized.
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {services.map((service, index) => {
               const Icon = service.icon
@@ -106,9 +109,7 @@ export default function IndividualsPage() {
                       <h3 className="text-xl font-bold text-gray-900 mb-3">
                         {service.title}
                       </h3>
-                      <p className="text-gray-600">
-                        {service.description}
-                      </p>
+                      <p className="text-gray-600">{service.description}</p>
                     </div>
                   </div>
                 </div>
@@ -120,15 +121,15 @@ export default function IndividualsPage() {
 
       {/* Process Section */}
       <section className="section-padding bg-gray-50">
-        <div className="container mx-auto">
+        <div className="container-custom mx-auto">
           <div className="text-center mb-16">
             <h2 className="heading-lg mb-6">Your Journey With Sage</h2>
             <p className="text-body max-w-3xl mx-auto">
-              Our proven 4-step process ensures you receive the best possible care 
-              with minimal stress and maximum support.
+              Our proven 4-step process ensures you receive the best possible
+              care with minimal stress and maximum support.
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {process.map((item, index) => (
               <div key={index} className="text-center">
@@ -138,9 +139,7 @@ export default function IndividualsPage() {
                 <h3 className="text-lg font-bold text-gray-900 mb-3">
                   {item.title}
                 </h3>
-                <p className="text-gray-600">
-                  {item.description}
-                </p>
+                <p className="text-gray-600">{item.description}</p>
               </div>
             ))}
           </div>
@@ -149,16 +148,16 @@ export default function IndividualsPage() {
 
       {/* CTA Section */}
       <section className="section-padding bg-sage-400 text-white">
-        <div className="container mx-auto text-center">
+        <div className="container-custom mx-auto text-center">
           <h2 className="text-3xl font-bold mb-6">
             Ready to Experience World-Class Healthcare?
           </h2>
           <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-            Take the first step towards exceptional medical care. Our team is ready 
-            to guide you through every aspect of your healthcare journey.
+            Take the first step towards exceptional medical care. Our team is
+            ready to guide you through every aspect of your healthcare journey.
           </p>
-          <Link 
-            href="/contact" 
+          <Link
+            href="/contact"
             className="inline-flex items-center space-x-2 bg-white text-sage-400 px-8 py-4 rounded-lg font-medium hover:bg-gray-100 transition-colors duration-200"
           >
             <span>Schedule Free Consultation</span>

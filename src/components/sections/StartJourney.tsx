@@ -4,7 +4,7 @@ import { ArrowRight, Image as ImageIcon } from 'lucide-react'
 export default function StartJourney() {
   return (
     <section className="section-padding bg-white">
-      <div className="container mx-auto">
+      <div className="container-custom mx-auto">
         <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
           {/* Left Content */}
           <div>

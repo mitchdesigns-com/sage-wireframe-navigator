@@ -13,7 +13,7 @@ const networkImages = [
 export default function JoinNetwork() {
   return (
     <section className="section-padding bg-gray-50">
-      <div className="container mx-auto">
+      <div className="container-custom mx-auto">
         <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
           {/* Left Content */}
           <div>
@@ -39,11 +39,11 @@ export default function JoinNetwork() {
           </div>
 
           {/* Right Content - Image Grid */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             {networkImages.map((image) => (
               <div
                 key={image.id}
-                className="flex aspect-[4/3] items-center justify-center rounded-2xl bg-gray-200 transition-colors duration-200 hover:bg-gray-300"
+                className="flex aspect-[296/84] items-center justify-center rounded-2xl bg-gray-200 transition-colors duration-200 hover:bg-gray-300"
               >
                 <div className="text-center text-gray-400">
                   <div className="mx-auto flex h-8 w-12 items-center justify-center rounded-lg bg-gray-400">

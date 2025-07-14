@@ -32,7 +32,7 @@ const resources = [
 export default function Resources() {
   return (
     <section className="section-padding bg-white">
-      <div className="container mx-auto">
+      <div className="container-custom mx-auto">
         {/* Section Header */}
         <div className="mb-16 text-center">
           <div className="mb-4 text-sm font-medium text-gray-600">

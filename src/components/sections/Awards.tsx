@@ -12,16 +12,14 @@ const awards = [
 export default function Awards() {
   return (
     <section className="section-padding bg-white">
-      <div className="container mx-auto">
+      <div className="container-custom mx-auto">
         {/* Section Header */}
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">
-            Awards & Recognition
-          </h2>
+          <h2 className="text-tagline font-medium">Awards & Recognition</h2>
         </div>
 
         {/* Awards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
           {awards.map((award) => (
             <div
               key={award.id}

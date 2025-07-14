@@ -1,4 +1,4 @@
-import { Building, User, Users } from 'lucide-react'
+import { Building, ChevronRight, User, Users } from 'lucide-react'
 import Link from 'next/link'
 import Button from '../ui/Button'
 
@@ -47,9 +47,9 @@ const services = [
 export default function Services() {
   return (
     <section className="section-padding bg-white">
-      <div className="container mx-auto">
+      <div className="container-custom mx-auto">
         {/* Section Header */}
-        <div className="mb-16 text-center">
+        <div className="mb-16 text-center max-w-3xl mx-auto">
           <div className="text-sage-400 mb-4 text-sm font-medium">
             Our Services
           </div>
@@ -76,37 +76,18 @@ export default function Services() {
                 </div>
 
                 {/* Content */}
-                <h3 className="mb-4 text-xl font-bold text-gray-900">
-                  for {service.title}
+                <h3 className="mb-4 heading-4">
+                  <span className="text-large">for</span> {service.title}
                 </h3>
                 <p className="mb-6 text-gray-600">{service.description}</p>
-
-                {/* Features List */}
-                <ul className="mb-6 space-y-1 text-sm text-gray-500">
-                  {service.features.map((feature, index) => (
-                    <li key={index}>• {feature}</li>
-                  ))}
-                </ul>
 
                 {/* Learn More Link */}
                 <Link
                   href={service.href}
-                  className="text-sage-400 hover:text-sage-500 group inline-flex items-center space-x-2 font-medium"
+                  className="hover:gap-3 group inline-flex items-center gap-2 font-medium transition-all"
                 >
                   <span>Learn More</span>
-                  <svg
-                    className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
+                  <ChevronRight />
                 </Link>
               </div>
             )
@@ -114,7 +95,7 @@ export default function Services() {
         </div>
 
         {/* Explore Services CTA */}
-        <div className="text-center">
+        <div className="text-center pt-10">
           <Button href="/services" variant="primary">
             Explore Our Services
           </Button>

@@ -111,7 +111,7 @@ export default function HowItWorksPage() {
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="section-padding bg-gradient-to-br from-sage-50 to-white">
-        <div className="container mx-auto text-center">
+        <div className="container-custom mx-auto text-center">
           <h1 className="heading-xl mb-6">
             How <span className="text-sage-400">It Works</span>
           </h1>
@@ -130,7 +130,7 @@ export default function HowItWorksPage() {
 
       {/* Detailed Process Steps */}
       <section className="section-padding bg-white">
-        <div className="container mx-auto">
+        <div className="container-custom mx-auto">
           <div className="space-y-16">
             {detailedSteps.map((step, index) => {
               const Icon = step.icon
@@ -212,7 +212,7 @@ export default function HowItWorksPage() {
 
       {/* Support Services */}
       <section className="section-padding bg-gray-50">
-        <div className="container mx-auto">
+        <div className="container-custom mx-auto">
           <div className="text-center mb-16">
             <h2 className="heading-lg mb-6">
               Comprehensive Support Throughout Your Journey
@@ -245,7 +245,7 @@ export default function HowItWorksPage() {
 
       {/* FAQ Section */}
       <section className="section-padding bg-white">
-        <div className="container mx-auto">
+        <div className="container-custom mx-auto">
           <div className="text-center mb-16">
             <h2 className="heading-lg mb-6">Frequently Asked Questions</h2>
             <p className="text-body max-w-3xl mx-auto">
@@ -269,7 +269,7 @@ export default function HowItWorksPage() {
 
       {/* CTA Section */}
       <section className="section-padding bg-sage-400 text-white">
-        <div className="container mx-auto text-center">
+        <div className="container-custom mx-auto text-center">
           <h2 className="text-3xl font-bold mb-6">
             Ready to Begin Your Healthcare Journey?
           </h2>

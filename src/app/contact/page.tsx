@@ -32,20 +32,21 @@ export default function ContactPage() {
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="section-padding bg-gradient-to-br from-sage-50 to-white">
-        <div className="container mx-auto text-center">
+        <div className="container-custom mx-auto text-center">
           <h1 className="heading-xl mb-6">
             Get in <span className="text-sage-400">Touch</span>
           </h1>
           <p className="text-body max-w-3xl mx-auto">
-            Ready to begin your healthcare journey? Our team is here to answer your questions, 
-            provide guidance, and help you take the first step toward exceptional medical care.
+            Ready to begin your healthcare journey? Our team is here to answer
+            your questions, provide guidance, and help you take the first step
+            toward exceptional medical care.
           </p>
         </div>
       </section>
 
       {/* Contact Methods */}
       <section className="section-padding bg-white">
-        <div className="container mx-auto">
+        <div className="container-custom mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
             {contactMethods.map((method, index) => {
               const Icon = method.icon
@@ -60,9 +61,7 @@ export default function ContactPage() {
                   <p className="text-sage-400 font-medium mb-2">
                     {method.value}
                   </p>
-                  <p className="text-sm text-gray-600">
-                    {method.description}
-                  </p>
+                  <p className="text-sm text-gray-600">{method.description}</p>
                 </div>
               )
             })}
@@ -72,7 +71,7 @@ export default function ContactPage() {
 
       {/* Contact Form */}
       <section className="section-padding bg-gray-50">
-        <div className="container mx-auto">
+        <div className="container-custom mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Form */}
             <div className="bg-white rounded-2xl p-8 shadow-lg">
@@ -80,7 +79,10 @@ export default function ContactPage() {
               <form className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label
+                      htmlFor="firstName"
+                      className="block text-sm font-medium text-gray-700 mb-2"
+                    >
                       First Name *
                     </label>
                     <input
@@ -93,7 +95,10 @@ export default function ContactPage() {
                     />
                   </div>
                   <div>
-                    <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label
+                      htmlFor="lastName"
+                      className="block text-sm font-medium text-gray-700 mb-2"
+                    >
                       Last Name *
                     </label>
                     <input
@@ -106,9 +111,12 @@ export default function ContactPage() {
                     />
                   </div>
                 </div>
-                
+
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label
+                    htmlFor="email"
+                    className="block text-sm font-medium text-gray-700 mb-2"
+                  >
                     Email Address *
                   </label>
                   <input
@@ -120,9 +128,12 @@ export default function ContactPage() {
                     placeholder="Enter your email address"
                   />
                 </div>
-                
+
                 <div>
-                  <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label
+                    htmlFor="phone"
+                    className="block text-sm font-medium text-gray-700 mb-2"
+                  >
                     Phone Number
                   </label>
                   <input
@@ -133,9 +144,12 @@ export default function ContactPage() {
                     placeholder="Enter your phone number"
                   />
                 </div>
-                
+
                 <div>
-                  <label htmlFor="serviceType" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label
+                    htmlFor="serviceType"
+                    className="block text-sm font-medium text-gray-700 mb-2"
+                  >
                     Service Interest *
                   </label>
                   <select
@@ -147,13 +161,18 @@ export default function ContactPage() {
                     <option value="">Select a service</option>
                     <option value="individuals">Individual Healthcare</option>
                     <option value="businesses">Business Solutions</option>
-                    <option value="organizations">Organization Partnerships</option>
+                    <option value="organizations">
+                      Organization Partnerships
+                    </option>
                     <option value="general">General Inquiry</option>
                   </select>
                 </div>
-                
+
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label
+                    htmlFor="message"
+                    className="block text-sm font-medium text-gray-700 mb-2"
+                  >
                     Message *
                   </label>
                   <textarea
@@ -165,16 +184,13 @@ export default function ContactPage() {
                     placeholder="Tell us about your healthcare needs or questions..."
                   ></textarea>
                 </div>
-                
-                <button
-                  type="submit"
-                  className="w-full btn-primary"
-                >
+
+                <button type="submit" className="w-full btn-primary">
                   Send Message
                 </button>
               </form>
             </div>
-            
+
             {/* Additional Info */}
             <div>
               <h2 className="heading-md mb-6">Why Choose Sage Healthcare?</h2>
@@ -186,12 +202,13 @@ export default function ContactPage() {
                       Personalized Care Coordination
                     </h3>
                     <p className="text-gray-600">
-                      Every patient receives individualized attention with dedicated care coordinators 
-                      who understand your unique needs and cultural preferences.
+                      Every patient receives individualized attention with
+                      dedicated care coordinators who understand your unique
+                      needs and cultural preferences.
                     </p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-start space-x-4">
                   <div className="w-2 h-2 bg-sage-400 rounded-full mt-3 flex-shrink-0"></div>
                   <div>
@@ -199,12 +216,13 @@ export default function ContactPage() {
                       World-Class Medical Network
                     </h3>
                     <p className="text-gray-600">
-                      Access to Saudi Arabia's top hospitals and medical specialists, 
-                      all vetted for quality and excellence in patient care.
+                      Access to Saudi Arabia's top hospitals and medical
+                      specialists, all vetted for quality and excellence in
+                      patient care.
                     </p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-start space-x-4">
                   <div className="w-2 h-2 bg-sage-400 rounded-full mt-3 flex-shrink-0"></div>
                   <div>
@@ -212,12 +230,13 @@ export default function ContactPage() {
                       Cultural Sensitivity & Support
                     </h3>
                     <p className="text-gray-600">
-                      Our team understands diverse cultural backgrounds and provides 
-                      appropriate support throughout your healthcare journey.
+                      Our team understands diverse cultural backgrounds and
+                      provides appropriate support throughout your healthcare
+                      journey.
                     </p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-start space-x-4">
                   <div className="w-2 h-2 bg-sage-400 rounded-full mt-3 flex-shrink-0"></div>
                   <div>
@@ -225,23 +244,25 @@ export default function ContactPage() {
                       Transparent & Comprehensive
                     </h3>
                     <p className="text-gray-600">
-                      Clear communication about costs, timelines, and processes ensures 
-                      you can make informed decisions about your healthcare.
+                      Clear communication about costs, timelines, and processes
+                      ensures you can make informed decisions about your
+                      healthcare.
                     </p>
                   </div>
                 </div>
               </div>
-              
+
               {/* Emergency Contact */}
-              <div className="mt-8 p-6 bg-sage-50 rounded-xl">
+              <div className="mt-8 p-6 bg-sage-50 rounded-4xl">
                 <h3 className="text-lg font-semibold text-gray-900 mb-3">
                   Need Urgent Assistance?
                 </h3>
                 <p className="text-gray-600 mb-4">
-                  For urgent medical inquiries or emergencies, please call our 24/7 hotline:
+                  For urgent medical inquiries or emergencies, please call our
+                  24/7 hotline:
                 </p>
-                <a 
-                  href="tel:+966111234567" 
+                <a
+                  href="tel:+966111234567"
                   className="text-sage-400 font-bold text-xl hover:text-sage-500"
                 >
                   +966 11 123 4567

@@ -99,20 +99,25 @@ export default function BusinessesPage() {
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="section-padding bg-gradient-to-br from-sage-50 to-white">
-        <div className="container mx-auto">
+        <div className="container-custom mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="heading-xl mb-6">
-                Corporate Health <span className="text-sage-400">Solutions</span>
+                Corporate Health{' '}
+                <span className="text-sage-400">Solutions</span>
               </h1>
               <p className="text-body mb-8">
-                Transform your workplace with comprehensive health programs that boost employee 
-                satisfaction, reduce healthcare costs, and enhance productivity. Our corporate 
-                solutions are designed for businesses of all sizes seeking to invest in their 
-                most valuable asset - their people.
+                Transform your workplace with comprehensive health programs that
+                boost employee satisfaction, reduce healthcare costs, and
+                enhance productivity. Our corporate solutions are designed for
+                businesses of all sizes seeking to invest in their most valuable
+                asset - their people.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Link href="/contact?service=businesses" className="btn-primary">
+                <Link
+                  href="/contact?service=businesses"
+                  className="btn-primary"
+                >
                   Request Consultation
                 </Link>
                 <Link href="#services" className="btn-outline">
@@ -133,15 +138,15 @@ export default function BusinessesPage() {
 
       {/* Business Benefits */}
       <section className="section-padding bg-white">
-        <div className="container mx-auto">
+        <div className="container-custom mx-auto">
           <div className="text-center mb-16">
             <h2 className="heading-lg mb-6">Why Invest in Employee Health?</h2>
             <p className="text-body max-w-3xl mx-auto">
-              Companies that prioritize employee health see measurable returns in productivity, 
-              retention, and overall business performance.
+              Companies that prioritize employee health see measurable returns
+              in productivity, retention, and overall business performance.
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {benefits.map((benefit, index) => (
               <div key={index} className="text-center">
@@ -151,9 +156,7 @@ export default function BusinessesPage() {
                 <h3 className="text-lg font-bold text-gray-900 mb-3">
                   {benefit.title}
                 </h3>
-                <p className="text-gray-600 text-sm">
-                  {benefit.description}
-                </p>
+                <p className="text-gray-600 text-sm">{benefit.description}</p>
               </div>
             ))}
           </div>
@@ -162,15 +165,16 @@ export default function BusinessesPage() {
 
       {/* Services Grid */}
       <section id="services" className="section-padding bg-gray-50">
-        <div className="container mx-auto">
+        <div className="container-custom mx-auto">
           <div className="text-center mb-16">
             <h2 className="heading-lg mb-6">Our Corporate Health Services</h2>
             <p className="text-body max-w-3xl mx-auto">
-              Comprehensive health solutions designed to meet the unique needs of your business 
-              and workforce, from startups to large enterprises.
+              Comprehensive health solutions designed to meet the unique needs
+              of your business and workforce, from startups to large
+              enterprises.
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {businessServices.map((service, index) => {
               const Icon = service.icon
@@ -189,7 +193,10 @@ export default function BusinessesPage() {
                       </p>
                       <ul className="space-y-2">
                         {service.features.map((feature, featureIndex) => (
-                          <li key={featureIndex} className="flex items-start space-x-2 text-sm text-gray-600">
+                          <li
+                            key={featureIndex}
+                            className="flex items-start space-x-2 text-sm text-gray-600"
+                          >
                             <div className="w-1.5 h-1.5 bg-sage-400 rounded-full mt-2 flex-shrink-0"></div>
                             <span>{feature}</span>
                           </li>
@@ -206,15 +213,15 @@ export default function BusinessesPage() {
 
       {/* Implementation Process */}
       <section className="section-padding bg-white">
-        <div className="container mx-auto">
+        <div className="container-custom mx-auto">
           <div className="text-center mb-16">
             <h2 className="heading-lg mb-6">Implementation Process</h2>
             <p className="text-body max-w-3xl mx-auto">
-              Our proven 4-step process ensures smooth implementation and maximum 
-              employee engagement with your new health programs.
+              Our proven 4-step process ensures smooth implementation and
+              maximum employee engagement with your new health programs.
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {implementationSteps.map((step, index) => (
               <div key={index} className="text-center">
@@ -224,9 +231,7 @@ export default function BusinessesPage() {
                 <h3 className="text-lg font-bold text-gray-900 mb-3">
                   {step.title}
                 </h3>
-                <p className="text-gray-600">
-                  {step.description}
-                </p>
+                <p className="text-gray-600">{step.description}</p>
               </div>
             ))}
           </div>
@@ -235,44 +240,54 @@ export default function BusinessesPage() {
 
       {/* Case Study Section */}
       <section className="section-padding bg-sage-400 text-white">
-        <div className="container mx-auto">
+        <div className="container-custom mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-3xl font-bold mb-6">
                 Success Story: Regional Tech Company
               </h2>
               <p className="text-xl mb-6 opacity-90">
-                A 500-employee technology company saw remarkable improvements after 
-                implementing our comprehensive wellness program.
+                A 500-employee technology company saw remarkable improvements
+                after implementing our comprehensive wellness program.
               </p>
-              
+
               <div className="grid grid-cols-2 gap-6 mb-8">
                 <div>
                   <div className="text-3xl font-bold mb-2">42%</div>
-                  <div className="text-sm opacity-75">Reduction in sick days</div>
+                  <div className="text-sm opacity-75">
+                    Reduction in sick days
+                  </div>
                 </div>
                 <div>
                   <div className="text-3xl font-bold mb-2">$2.3M</div>
-                  <div className="text-sm opacity-75">Annual healthcare savings</div>
+                  <div className="text-sm opacity-75">
+                    Annual healthcare savings
+                  </div>
                 </div>
                 <div>
                   <div className="text-3xl font-bold mb-2">89%</div>
-                  <div className="text-sm opacity-75">Employee participation rate</div>
+                  <div className="text-sm opacity-75">
+                    Employee participation rate
+                  </div>
                 </div>
                 <div>
                   <div className="text-3xl font-bold mb-2">4.8/5</div>
-                  <div className="text-sm opacity-75">Program satisfaction score</div>
+                  <div className="text-sm opacity-75">
+                    Program satisfaction score
+                  </div>
                 </div>
               </div>
             </div>
-            
+
             <div className="bg-white bg-opacity-10 rounded-2xl p-8">
               <blockquote className="text-lg italic mb-4">
-                "Sage Healthcare's corporate wellness program transformed our company culture. 
-                Our employees are healthier, happier, and more productive than ever before."
+                "Sage Healthcare's corporate wellness program transformed our
+                company culture. Our employees are healthier, happier, and more
+                productive than ever before."
               </blockquote>
               <div className="text-sm opacity-75">
-                - Sarah Al-Rashid, HR Director<br />
+                - Sarah Al-Rashid, HR Director
+                <br />
                 Regional Technology Solutions
               </div>
             </div>
@@ -282,13 +297,14 @@ export default function BusinessesPage() {
 
       {/* CTA Section */}
       <section className="section-padding bg-gray-50">
-        <div className="container mx-auto text-center">
+        <div className="container-custom mx-auto text-center">
           <h2 className="heading-md mb-6">
             Ready to Transform Your Workplace Health?
           </h2>
           <p className="text-body mb-8 max-w-2xl mx-auto">
-            Let's discuss how our corporate health solutions can benefit your organization. 
-            Our team will work with you to design a program that fits your company's unique needs and culture.
+            Let's discuss how our corporate health solutions can benefit your
+            organization. Our team will work with you to design a program that
+            fits your company's unique needs and culture.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/contact?service=businesses" className="btn-primary">

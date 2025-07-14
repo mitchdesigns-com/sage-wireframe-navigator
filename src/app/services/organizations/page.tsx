@@ -137,19 +137,24 @@ export default function OrganizationsPage() {
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="section-padding from-sage-50 bg-gradient-to-br to-white">
-        <div className="container mx-auto">
+        <div className="container-custom mx-auto">
           <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
             <div>
               <h1 className="heading-xl mb-6">
-                Strategic Healthcare <span className="text-sage-400">Partnerships</span>
+                Strategic Healthcare{' '}
+                <span className="text-sage-400">Partnerships</span>
               </h1>
               <p className="text-body mb-8">
-                Forge meaningful collaborations with Saudi Arabia's healthcare ecosystem. 
-                Whether you're an academic institution, NGO, government agency, or international 
-                organization, we facilitate partnerships that advance healthcare and improve lives.
+                Forge meaningful collaborations with Saudi Arabia's healthcare
+                ecosystem. Whether you're an academic institution, NGO,
+                government agency, or international organization, we facilitate
+                partnerships that advance healthcare and improve lives.
               </p>
               <div className="flex flex-col gap-4 sm:flex-row">
-                <Link href="/contact?service=organizations" className="btn-primary">
+                <Link
+                  href="/contact?service=organizations"
+                  className="btn-primary"
+                >
                   Explore Partnership
                 </Link>
                 <Link href="#programs" className="btn-outline">
@@ -170,15 +175,16 @@ export default function OrganizationsPage() {
 
       {/* Organization Types */}
       <section id="programs" className="section-padding bg-white">
-        <div className="container mx-auto">
+        <div className="container-custom mx-auto">
           <div className="mb-16 text-center">
             <h2 className="heading-lg mb-6">Partnership Opportunities</h2>
             <p className="text-body mx-auto max-w-3xl">
-              We work with diverse organizations to create impactful healthcare partnerships 
-              that benefit communities, advance knowledge, and improve health outcomes globally.
+              We work with diverse organizations to create impactful healthcare
+              partnerships that benefit communities, advance knowledge, and
+              improve health outcomes globally.
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
             {organizationTypes.map((org, index) => {
               const Icon = org.icon
@@ -192,13 +198,16 @@ export default function OrganizationsPage() {
                       <h3 className="mb-3 text-xl font-bold text-gray-900">
                         {org.title}
                       </h3>
-                      <p className="mb-4 text-gray-600">
-                        {org.description}
-                      </p>
+                      <p className="mb-4 text-gray-600">{org.description}</p>
                       <div className="space-y-2">
-                        <h4 className="text-sm font-semibold text-gray-900">Partnership Programs:</h4>
+                        <h4 className="text-sm font-semibold text-gray-900">
+                          Partnership Programs:
+                        </h4>
                         {org.programs.map((program, programIndex) => (
-                          <div key={programIndex} className="flex items-start space-x-2 text-sm text-gray-600">
+                          <div
+                            key={programIndex}
+                            className="flex items-start space-x-2 text-sm text-gray-600"
+                          >
                             <div className="bg-sage-400 mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full"></div>
                             <span>{program}</span>
                           </div>
@@ -215,15 +224,16 @@ export default function OrganizationsPage() {
 
       {/* Partnership Benefits */}
       <section className="section-padding bg-gray-50">
-        <div className="container mx-auto">
+        <div className="container-custom mx-auto">
           <div className="mb-16 text-center">
             <h2 className="heading-lg mb-6">Partnership Benefits</h2>
             <p className="text-body mx-auto max-w-3xl">
-              Our collaborative approach ensures mutual benefit and sustainable impact 
-              for all participating organizations and the communities they serve.
+              Our collaborative approach ensures mutual benefit and sustainable
+              impact for all participating organizations and the communities
+              they serve.
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
             {partnershipBenefits.map((benefit, index) => {
               const Icon = benefit.icon
@@ -236,9 +246,7 @@ export default function OrganizationsPage() {
                     <h3 className="mb-2 text-lg font-bold text-gray-900">
                       {benefit.title}
                     </h3>
-                    <p className="text-gray-600">
-                      {benefit.description}
-                    </p>
+                    <p className="text-gray-600">{benefit.description}</p>
                   </div>
                 </div>
               )
@@ -249,15 +257,15 @@ export default function OrganizationsPage() {
 
       {/* Success Stories */}
       <section className="section-padding bg-white">
-        <div className="container mx-auto">
+        <div className="container-custom mx-auto">
           <div className="mb-16 text-center">
             <h2 className="heading-lg mb-6">Partnership Success Stories</h2>
             <p className="text-body mx-auto max-w-3xl">
-              See how our strategic partnerships have created lasting impact and 
+              See how our strategic partnerships have created lasting impact and
               advanced healthcare capabilities across different sectors.
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
             {successStories.map((story, index) => (
               <div key={index} className="card">
@@ -269,11 +277,9 @@ export default function OrganizationsPage() {
                     {story.type}
                   </div>
                 </div>
-                
-                <p className="mb-4 text-gray-600">
-                  {story.impact}
-                </p>
-                
+
+                <p className="mb-4 text-gray-600">{story.impact}</p>
+
                 <div className="grid grid-cols-2 gap-4 text-sm text-gray-500">
                   <div>
                     <div className="font-semibold text-gray-900">Duration</div>
@@ -292,23 +298,29 @@ export default function OrganizationsPage() {
 
       {/* Collaboration Process */}
       <section className="section-padding bg-gray-50">
-        <div className="container mx-auto">
+        <div className="container-custom mx-auto">
           <div className="mb-16 text-center">
             <h2 className="heading-lg mb-6">Collaboration Process</h2>
             <p className="text-body mx-auto max-w-3xl">
-              Our structured approach ensures successful partnerships from initial 
-              consultation through long-term collaboration and impact measurement.
+              Our structured approach ensures successful partnerships from
+              initial consultation through long-term collaboration and impact
+              measurement.
             </p>
           </div>
-          
+
           <div className="relative">
             {/* Process Timeline */}
             <div className="bg-sage-300 absolute left-1/2 hidden h-full w-1 -translate-x-1/2 transform lg:block"></div>
-            
+
             <div className="space-y-12">
               {collaborationProcess.map((step, index) => (
-                <div key={index} className={`flex items-center ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'}`}>
-                  <div className={`flex-1 ${index % 2 === 0 ? 'lg:pr-12' : 'lg:pl-12'}`}>
+                <div
+                  key={index}
+                  className={`flex items-center ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'}`}
+                >
+                  <div
+                    className={`flex-1 ${index % 2 === 0 ? 'lg:pr-12' : 'lg:pl-12'}`}
+                  >
                     <div className="card mx-auto max-w-md lg:mx-0">
                       <div className="mb-4 flex items-center space-x-4">
                         <div className="bg-sage-400 flex h-12 w-12 items-center justify-center rounded-full font-bold text-white">
@@ -318,15 +330,13 @@ export default function OrganizationsPage() {
                           {step.title}
                         </h3>
                       </div>
-                      <p className="text-gray-600">
-                        {step.description}
-                      </p>
+                      <p className="text-gray-600">{step.description}</p>
                     </div>
                   </div>
-                  
+
                   {/* Timeline dot */}
                   <div className="bg-sage-400 relative z-10 hidden h-6 w-6 rounded-full border-4 border-white lg:block"></div>
-                  
+
                   <div className="flex-1"></div>
                 </div>
               ))}
@@ -337,24 +347,24 @@ export default function OrganizationsPage() {
 
       {/* CTA Section */}
       <section className="section-padding bg-sage-400 text-white">
-        <div className="container mx-auto text-center">
+        <div className="container-custom mx-auto text-center">
           <h2 className="mb-6 text-3xl font-bold">
             Ready to Build a Strategic Partnership?
           </h2>
           <p className="mx-auto mb-8 max-w-3xl text-xl opacity-90">
-            Let's explore how we can work together to advance healthcare, share knowledge, 
-            and create lasting impact in the communities we serve.
+            Let's explore how we can work together to advance healthcare, share
+            knowledge, and create lasting impact in the communities we serve.
           </p>
           <div className="flex flex-col justify-center gap-4 sm:flex-row">
-            <Link 
-              href="/contact?service=organizations" 
+            <Link
+              href="/contact?service=organizations"
               className="text-sage-400 inline-flex items-center space-x-2 rounded-lg bg-white px-8 py-4 font-medium transition-colors duration-200 hover:bg-gray-100"
             >
               <span>Start Partnership Discussion</span>
               <Handshake size={20} />
             </Link>
-            <Link 
-              href="/our-network" 
+            <Link
+              href="/our-network"
               className="hover:text-sage-400 inline-flex items-center space-x-2 rounded-lg border-2 border-white px-8 py-4 font-medium text-white transition-all duration-200 hover:bg-white"
             >
               <span>View Our Network</span>

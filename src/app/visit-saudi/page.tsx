@@ -61,16 +61,18 @@ export default function VisitSaudiPage() {
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="section-padding bg-gradient-to-br from-sage-50 to-white">
-        <div className="container mx-auto">
+        <div className="container-custom mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="heading-xl mb-6">
-                Discover Saudi Arabia's <span className="text-sage-400">Medical Excellence</span>
+                Discover Saudi Arabia's{' '}
+                <span className="text-sage-400">Medical Excellence</span>
               </h1>
               <p className="text-body mb-8">
-                Experience world-class healthcare in the heart of the Middle East. 
-                Saudi Arabia combines cutting-edge medical technology with warm hospitality, 
-                creating an exceptional environment for your healing journey.
+                Experience world-class healthcare in the heart of the Middle
+                East. Saudi Arabia combines cutting-edge medical technology with
+                warm hospitality, creating an exceptional environment for your
+                healing journey.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link href="/contact" className="btn-primary">
@@ -85,7 +87,9 @@ export default function VisitSaudiPage() {
               <div className="text-center text-gray-400">
                 <MapPin size={48} className="mx-auto mb-4" />
                 <p>Saudi Arabia Healthcare</p>
-                <p className="text-sm">Modern facilities & cultural landmarks</p>
+                <p className="text-sm">
+                  Modern facilities & cultural landmarks
+                </p>
               </div>
             </div>
           </div>
@@ -94,15 +98,18 @@ export default function VisitSaudiPage() {
 
       {/* Why Choose Saudi Arabia */}
       <section className="section-padding bg-white">
-        <div className="container mx-auto">
+        <div className="container-custom mx-auto">
           <div className="text-center mb-16">
-            <h2 className="heading-lg mb-6">Why Choose Saudi Arabia for Healthcare?</h2>
+            <h2 className="heading-lg mb-6">
+              Why Choose Saudi Arabia for Healthcare?
+            </h2>
             <p className="text-body max-w-3xl mx-auto">
-              Saudi Arabia has emerged as a leading destination for medical tourism, 
-              offering world-class facilities, expert physicians, and unparalleled patient care.
+              Saudi Arabia has emerged as a leading destination for medical
+              tourism, offering world-class facilities, expert physicians, and
+              unparalleled patient care.
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {highlights.map((highlight, index) => {
               const Icon = highlight.icon
@@ -114,9 +121,7 @@ export default function VisitSaudiPage() {
                   <h3 className="text-xl font-bold text-gray-900 mb-4">
                     {highlight.title}
                   </h3>
-                  <p className="text-gray-600">
-                    {highlight.description}
-                  </p>
+                  <p className="text-gray-600">{highlight.description}</p>
                 </div>
               )
             })}
@@ -126,15 +131,15 @@ export default function VisitSaudiPage() {
 
       {/* Featured Medical Facilities */}
       <section className="section-padding bg-gray-50">
-        <div className="container mx-auto">
+        <div className="container-custom mx-auto">
           <div className="text-center mb-16">
             <h2 className="heading-lg mb-6">Premier Medical Facilities</h2>
             <p className="text-body max-w-3xl mx-auto">
-              Our partner hospitals represent the pinnacle of medical excellence, 
-              combining advanced technology with compassionate care.
+              Our partner hospitals represent the pinnacle of medical
+              excellence, combining advanced technology with compassionate care.
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {facilities.map((facility, index) => (
               <div key={index} className="card">
@@ -144,7 +149,7 @@ export default function VisitSaudiPage() {
                     <p className="text-sm">Hospital Image</p>
                   </div>
                 </div>
-                
+
                 <h3 className="text-xl font-bold text-gray-900 mb-2">
                   {facility.name}
                 </h3>
@@ -152,12 +157,14 @@ export default function VisitSaudiPage() {
                   <MapPin size={16} className="inline mr-1" />
                   {facility.location}
                 </p>
-                
+
                 <div className="mb-4">
-                  <h4 className="font-semibold text-gray-900 mb-2">Specialties:</h4>
+                  <h4 className="font-semibold text-gray-900 mb-2">
+                    Specialties:
+                  </h4>
                   <div className="flex flex-wrap gap-2">
                     {facility.specialties.map((specialty, specIndex) => (
-                      <span 
+                      <span
                         key={specIndex}
                         className="px-3 py-1 bg-sage-100 text-sage-700 rounded-full text-sm"
                       >
@@ -166,7 +173,7 @@ export default function VisitSaudiPage() {
                     ))}
                   </div>
                 </div>
-                
+
                 <div className="flex items-center space-x-2 text-sm text-gray-600">
                   <Star size={16} className="text-healthcare-gold" />
                   <span>{facility.accreditation}</span>
@@ -179,17 +186,18 @@ export default function VisitSaudiPage() {
 
       {/* Comprehensive Support Services */}
       <section className="section-padding bg-white">
-        <div className="container mx-auto">
+        <div className="container-custom mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="heading-lg mb-6">
                 Complete Support for Your Medical Journey
               </h2>
               <p className="text-body mb-8">
-                From the moment you decide to visit Saudi Arabia until your complete recovery, 
-                our comprehensive support services ensure a seamless and comfortable experience.
+                From the moment you decide to visit Saudi Arabia until your
+                complete recovery, our comprehensive support services ensure a
+                seamless and comfortable experience.
               </p>
-              
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {services.map((service, index) => (
                   <div key={index} className="flex items-start space-x-3">
@@ -199,7 +207,7 @@ export default function VisitSaudiPage() {
                 ))}
               </div>
             </div>
-            
+
             <div className="bg-gray-200 rounded-2xl h-96 flex items-center justify-center">
               <div className="text-center text-gray-400">
                 <Heart size={48} className="mx-auto mb-4" />
@@ -213,35 +221,42 @@ export default function VisitSaudiPage() {
 
       {/* Cultural Experience */}
       <section className="section-padding bg-sage-400 text-white">
-        <div className="container mx-auto text-center">
+        <div className="container-custom mx-auto text-center">
           <h2 className="text-3xl font-bold mb-6">
             More Than Medical Care - A Cultural Experience
           </h2>
           <p className="text-xl mb-8 opacity-90 max-w-3xl mx-auto">
-            While focusing on your health, discover Saudi Arabia's rich heritage, 
-            from ancient archaeological sites to modern architectural marvels.
+            While focusing on your health, discover Saudi Arabia's rich
+            heritage, from ancient archaeological sites to modern architectural
+            marvels.
           </p>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
             <div className="text-center">
               <Globe size={48} className="mx-auto mb-4 opacity-90" />
               <h3 className="text-xl font-semibold mb-2">Historical Sites</h3>
-              <p className="opacity-75">Explore UNESCO World Heritage sites and ancient kingdoms</p>
+              <p className="opacity-75">
+                Explore UNESCO World Heritage sites and ancient kingdoms
+              </p>
             </div>
             <div className="text-center">
               <Star size={48} className="mx-auto mb-4 opacity-90" />
               <h3 className="text-xl font-semibold mb-2">Modern Cities</h3>
-              <p className="opacity-75">Experience the vibrant energy of Riyadh and Jeddah</p>
+              <p className="opacity-75">
+                Experience the vibrant energy of Riyadh and Jeddah
+              </p>
             </div>
             <div className="text-center">
               <Heart size={48} className="mx-auto mb-4 opacity-90" />
               <h3 className="text-xl font-semibold mb-2">Warm Hospitality</h3>
-              <p className="opacity-75">Feel welcomed by the legendary Saudi Arabian hospitality</p>
+              <p className="opacity-75">
+                Feel welcomed by the legendary Saudi Arabian hospitality
+              </p>
             </div>
           </div>
-          
-          <Link 
-            href="/contact" 
+
+          <Link
+            href="/contact"
             className="inline-flex items-center space-x-2 bg-white text-sage-400 px-8 py-4 rounded-lg font-medium hover:bg-gray-100 transition-colors duration-200"
           >
             <span>Start Planning Your Visit</span>

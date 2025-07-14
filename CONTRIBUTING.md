@@ -145,7 +145,7 @@ export default function ServiceCard({ title, description, icon: Icon }: ServiceC
 
 ```tsx
 // Good - using Tailwind utilities
-<div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-200">
+<div className="bg-white rounded-4xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-200">
 
 // Avoid - inline styles
 <div style={{ backgroundColor: 'white', borderRadius: '12px' }}>

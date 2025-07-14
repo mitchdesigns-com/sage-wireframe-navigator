@@ -79,7 +79,7 @@ export default function ClientExperiences() {
 
   return (
     <section className="section-padding bg-gray-50">
-      <div className="container mx-auto">
+      <div className="container-custom mx-auto">
         <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
           {/* Left Content */}
           <div>
