@@ -56,11 +56,6 @@
     scroll-behavior: smooth;
   }
   
-  /* Focus styles for accessibility */
-  *:focus {
-    outline: none;
-    box-shadow: 0 0 0 2px var(--color-sage-400);
-  }
 }
 
 @layer components {
@@ -227,6 +222,8 @@
   .text-sage-700 { color: var(--color-sage-700); }
   .text-sage-800 { color: var(--color-sage-800); }
   .text-sage-900 { color: var(--color-sage-900); }
+
+  .text-black { color: var(--color-Neutral-Darkest); }
   
   .bg-sage-50 { background-color: var(--color-sage-50); }
   .bg-sage-100 { background-color: var(--color-sage-100); }
