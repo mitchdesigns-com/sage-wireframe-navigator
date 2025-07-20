@@ -134,7 +134,7 @@ export default function Footer() {
               <div className="w-[253px] h-[55px] relative">
                 <Image
                   fill
-                  src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=253&h=55&q=80"
+                  src="/images/"
                   alt="Sage Logo"
                   className="object-contain"
                 />
@@ -142,7 +142,7 @@ export default function Footer() {
 
               {/* Footer Links */}
               <div className="grid grid-cols-5 gap-16 flex-1 max-w-4xl">
-                {/* Quick Links */}
+                {/* Quick Links */}``
                 <div className="space-y-4">
                   <h3 className="text-white font-bold text-base">
                     Quick Links
@@ -166,7 +166,6 @@ export default function Footer() {
                     ))}
                   </div>
                 </div>
-
                 {/* Services */}
                 <div className="space-y-4">
                   <h3 className="text-white font-bold text-base">Services</h3>
@@ -187,7 +186,6 @@ export default function Footer() {
                     ))}
                   </div>
                 </div>
-
                 {/* Resources */}
                 <div className="space-y-4">
                   <h3 className="text-white font-bold text-base">Resources</h3>
@@ -210,7 +208,6 @@ export default function Footer() {
                     ))}
                   </div>
                 </div>
-
                 {/* Explore More */}
                 <div className="space-y-4">
                   <h3 className="text-white font-bold text-base">
@@ -235,7 +232,6 @@ export default function Footer() {
                     ))}
                   </div>
                 </div>
-
                 {/* Legal Links */}
                 <div className="space-y-4">
                   <h3 className="text-white font-bold text-base">

@@ -145,10 +145,10 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ data }) => {
     subtitle,
     description,
     services,
-    layout = 'grid',
+    // layout = 'grid',
     columns = '3',
-    theme = 'light'
-  } = data;
+    theme = 'light',
+  } = data
 
   const getThemeClasses = () => {
     switch (theme) {

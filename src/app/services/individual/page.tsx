@@ -2,23 +2,21 @@
 
 import Button from '@/components/ui/Button'
 import {
-  ChevronRight,
-  ChevronDown,
-  ChevronLeft,
-  Plus,
-  User,
-  MessageCircle,
   ArrowRight,
-  Plane,
-  Heart,
-  FileText,
-  UserCheck,
   BarChart,
+  ChevronLeft,
+  ChevronRight,
+  FileText,
+  Heart,
+  MessageCircle,
+  Plane,
+  Plus,
   Shield,
+  UserCheck,
 } from 'lucide-react'
-import { JoinNetwork } from '../../../components/sections'
 import Image from 'next/image'
 import { useState } from 'react'
+import { JoinNetwork } from '../../../components/sections'
 
 // Services data
 const healthcareFeatures = [
