@@ -117,9 +117,19 @@ function Button(
           />
         </svg>
       )}
-      {!loading && leftIcon && <span>{leftIcon}</span>}
-      <span>{children}</span>
-      {!loading && rightIcon && <span>{rightIcon}</span>}
+      {!loading && leftIcon && (
+        <span className="flex items-center justify-between gap-2">
+          {leftIcon}
+        </span>
+      )}
+      <span className="flex items-center justify-between gap-2">
+        {children}
+      </span>
+      {!loading && rightIcon && (
+        <span className="flex items-center justify-between gap-2">
+          {rightIcon}
+        </span>
+      )}
     </>
   )
 
@@ -238,9 +248,19 @@ const MotionButton = forwardRef<HTMLButtonElement, MotionButtonProps>(
             />
           </svg>
         )}
-        {!loading && leftIcon && <span>{leftIcon}</span>}
-        <span>{children}</span>
-        {!loading && rightIcon && <span>{rightIcon}</span>}
+        {!loading && leftIcon && (
+          <span className="flex items-center justify-between gap-2">
+            {leftIcon}
+          </span>
+        )}
+        <span className="flex items-center justify-between gap-2">
+          {children}
+        </span>
+        {!loading && rightIcon && (
+          <span className="flex items-center justify-between gap-2">
+            {rightIcon}
+          </span>
+        )}
       </>
     )
 

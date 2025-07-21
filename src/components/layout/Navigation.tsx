@@ -3,21 +3,7 @@
 
 import { useState, useRef, useEffect, useCallback } from 'react'
 import Link from 'next/link'
-import { 
-  ChevronDown, 
-  Search, 
-  FileText, 
-  Monitor, 
-  Users, 
-  HelpCircle, 
-  Shield, 
-  BookOpen, 
-  Newspaper,
-  Heart,
-  MessageCircle,
-  Building,
-  UserCheck
-} from 'lucide-react'
+import { ChevronDown } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { cn } from '@/lib/utils'
 import FullWidthDropdown from '@/components/ui/FullWidthDropdown'
@@ -39,9 +25,9 @@ interface NavigationProps {
 
 // Navigation Data
 const NAVIGATION_ITEMS: NavigationItem[] = [
-  { 
-    label: 'Home', 
-    href: '/' 
+  {
+    label: 'Home',
+    href: '/',
   },
   {
     label: 'Services',
@@ -53,13 +39,12 @@ const NAVIGATION_ITEMS: NavigationItem[] = [
             label: 'Healthcare For Your Needs',
             href: '/services/individual/healthcare',
             description: 'Discover tailored treatments in top Saudi hospitals.',
-            icon: <Heart size={20} />,
           },
           {
             label: 'Concierge Services',
             href: '/services/individual/concierge',
-            description: 'We handle everything from airport transfers to dietary needs.',
-            icon: <FileText size={20} />,
+            description:
+              'We handle everything from airport transfers to dietary needs.',
           },
         ],
       },
@@ -68,21 +53,21 @@ const NAVIGATION_ITEMS: NavigationItem[] = [
         children: [
           {
             label: 'Healthcare for Your Team',
-            href: '/services/business/team-healthcare',
-            description: 'We offer customized corporate healthcare and VIP medical access for your employees.',
-            icon: <Users size={20} />,
+            href: '/services/businesses/healthcare',
+            description:
+              'We offer customized corporate healthcare and VIP medical access for your employee.',
           },
           {
             label: 'Concierge Services',
-            href: '/services/business/concierge',
-            description: 'We offer concierge services for executives, featuring corporate rates.',
-            icon: <HelpCircle size={20} />,
+            href: '/services/businesses/concierge',
+            description:
+              'We offer concierge services for executives, featuring corporate rates.',
           },
           {
             label: 'Consultation & Training',
-            href: '/services/business/consultation',
-            description: 'We offer guidance in wellness, medical travel, and healthcare team training.',
-            icon: <MessageCircle size={20} />,
+            href: '/services/businesses/consultation',
+            description:
+              'We offer guidance in wellness, medical travel, and healthcare team training.',
           },
         ],
       },
@@ -91,29 +76,29 @@ const NAVIGATION_ITEMS: NavigationItem[] = [
         children: [
           {
             label: 'Healthcare Services',
-            href: '/services/organization/healthcare',
-            description: 'We streamline cross-border care with institutional-level coordination.',
-            icon: <Shield size={20} />,
+            href: '/services/organizations/healthcare',
+            description:
+              'We streamline cross-border care with institutional-level coordination.',
           },
           {
             label: 'Concierge Services',
-            href: '/services/organization/concierge',
-            description: 'We manage group concierge services with compliance and care.',
-            icon: <Building size={20} />,
+            href: '/services/organizations/concierge',
+            description:
+              'We manage group concierge services with compliance and care.',
           },
           {
             label: 'Consultation & Training',
-            href: '/services/organization/consultation',
-            description: 'We consult on public health programs, medical tourism, and system optimization.',
-            icon: <HelpCircle size={20} />,
+            href: '/services/organizations/consultation',
+            description:
+              'We consult on public health programs, medical tourism, and system optimization.',
           },
         ],
       },
     ],
   },
-  { 
-    label: 'About Us', 
-    href: '/about' 
+  {
+    label: 'About Us',
+    href: '/about',
   },
   {
     label: 'Resources',
@@ -122,67 +107,73 @@ const NAVIGATION_ITEMS: NavigationItem[] = [
         label: 'Guides',
         href: '/resources/guides',
         description: 'Comprehensive healthcare resources and insights',
-        icon: <Search size={20} />,
       },
       {
         label: 'Case Studies',
         href: '/resources/case-studies',
         description: 'Real-life success stories from our clients',
-        icon: <FileText size={20} />,
       },
       {
         label: 'Webinars',
         href: '/resources/webinars',
         description: 'Interactive sessions with industry experts',
-        icon: <Monitor size={20} />,
       },
       {
         label: 'Blog',
         href: '/resources/blog',
         description: 'Latest trends and tips in healthcare',
-        icon: <UserCheck size={20} />,
       },
       {
         label: 'FAQs',
         href: '/resources/faqs',
         description: 'Frequently asked questions about our services',
-        icon: <HelpCircle size={20} />,
       },
       {
         label: 'CSR Initiatives',
         href: '/resources/csr',
         description: 'Support our community-focused projects',
-        icon: <Shield size={20} />,
       },
       {
         label: 'Certifications',
         href: '/resources/certifications',
         description: 'Verified Trust and Compliance',
-        icon: <BookOpen size={20} />,
       },
       {
         label: 'News & Events',
         href: '/resources/news',
         description: 'Stay Informed with Sage',
-        icon: <Newspaper size={20} />,
+      },
+      {
+        label: 'Careers',
+        href: '/careers',
+        description: 'Join our dedicated team of professionals',
+      },
+      {
+        label: 'Contact Us',
+        href: '/contact',
+        description: 'Reach out for personalized assistance',
       },
     ],
   },
-  { 
-    label: 'Our Network', 
-    href: '/our-network' 
+  {
+    label: 'Our Network',
+    href: '/our-network',
   },
-  { 
-    label: 'Visit Saudi', 
-    href: '/visit-saudi' 
+  {
+    label: 'Visit Saudi',
+    href: '/visit-saudi',
   },
 ]
 
 // Main Navigation Component
-export default function Navigation({ className, isMobile, onItemClick }: NavigationProps) {
+export default function Navigation({
+  className,
+  isMobile,
+  onItemClick,
+}: NavigationProps) {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
   const containerRef = useRef<HTMLDivElement>(null)
-  const timeoutRef = useRef<number | null>(null) // Fixed: Use number for browser setTimeout
+  const timeoutRef = useRef<number | null>(null)
 
   // Clear any pending timeout
   const clearTimeout = useCallback(() => {
@@ -193,17 +184,20 @@ export default function Navigation({ className, isMobile, onItemClick }: Navigat
   }, [])
 
   // Handle dropdown open
-  const openDropdown = useCallback((label: string) => {
-    clearTimeout()
-    setActiveDropdown(label)
-  }, [clearTimeout])
+  const openDropdown = useCallback(
+    (label: string) => {
+      clearTimeout()
+      setActiveDropdown(label)
+    },
+    [clearTimeout]
+  )
 
   // Handle dropdown close with delay
   const closeDropdown = useCallback(() => {
     clearTimeout()
     timeoutRef.current = window.setTimeout(() => {
       setActiveDropdown(null)
-    }, 300)
+    }, 150)
   }, [clearTimeout])
 
   // Handle immediate close (for clicks)
@@ -216,7 +210,10 @@ export default function Navigation({ className, isMobile, onItemClick }: Navigat
   // Click outside handler
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target as Node)
+      ) {
         setActiveDropdown(null)
       }
     }
@@ -239,7 +236,7 @@ export default function Navigation({ className, isMobile, onItemClick }: Navigat
   // Render mobile navigation
   if (isMobile) {
     return (
-      <MobileNavigation 
+      <MobileNavigation
         items={NAVIGATION_ITEMS}
         onItemClick={closeDropdownImmediate}
         className={className}
@@ -249,7 +246,7 @@ export default function Navigation({ className, isMobile, onItemClick }: Navigat
 
   // Render desktop navigation
   return (
-    <div ref={containerRef} className="relative">
+    <div ref={containerRef}>
       <nav className={cn('flex items-center space-x-8', className)}>
         {NAVIGATION_ITEMS.map((item) => (
           <NavigationItem
@@ -289,12 +286,12 @@ interface NavigationItemProps {
   onClick: () => void
 }
 
-function NavigationItem({ 
-  item, 
-  isActive, 
-  onMouseEnter, 
-  onMouseLeave, 
-  onClick 
+function NavigationItem({
+  item,
+  isActive,
+  onMouseEnter,
+  onMouseLeave,
+  onClick,
 }: NavigationItemProps) {
   if (item.children) {
     return (
@@ -303,16 +300,17 @@ function NavigationItem({
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
       >
-        <button 
-          className="flex items-center space-x-1 text-gray-700 hover:text-sage-600 font-medium py-2 transition-colors duration-200"
+        <button
+          className="flex items-center gap-2.5 text-[#000404] font-normal text-base leading-[1.5] py-2 transition-colors duration-200 hover:text-gray-600"
           type="button"
         >
           <span>{item.label}</span>
           <motion.div
             animate={{ rotate: isActive ? 180 : 0 }}
             transition={{ duration: 0.2, ease: 'easeInOut' }}
+            className="size-6"
           >
-            <ChevronDown size={16} />
+            <ChevronDown size={24} />
           </motion.div>
         </button>
       </div>
@@ -322,7 +320,7 @@ function NavigationItem({
   return (
     <Link
       href={item.href!}
-      className="text-gray-700 hover:text-sage-600 font-medium py-2 transition-colors duration-200"
+      className="text-[#000404] font-normal text-base leading-[1.5] py-2 transition-colors duration-200 hover:text-gray-600"
       onClick={onClick}
     >
       {item.label}
@@ -344,11 +342,11 @@ function DropdownContainer({
   items,
   onMouseEnter,
   onMouseLeave,
-  onItemClick
+  onItemClick,
 }: DropdownContainerProps) {
   // Find the active item
-  const activeItem = items.find(item => item.label === activeDropdown)
-  
+  const activeItem = items.find((item) => item.label === activeDropdown)
+
   // Don't render if no active dropdown or no children
   if (!activeDropdown || !activeItem?.children) {
     return null
@@ -363,11 +361,12 @@ function DropdownContainer({
     <AnimatePresence mode="wait">
       <motion.div
         key={activeDropdown}
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -10 }}
-        transition={{ duration: 0.2, ease: 'easeOut' }}
-        className="fixed left-0 right-0 top-16 w-screen z-50"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.15, ease: 'easeOut' }}
+        className="absolute left-0 top-full w-screen z-50"
+        style={{ marginLeft: `calc(-50vw + 50%)` }}
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
       >
@@ -435,7 +434,7 @@ function MobileNavigationItem({
       <div>
         <button
           onClick={onToggle}
-          className="flex items-center justify-between w-full text-gray-700 hover:text-sage-600 font-medium py-3 transition-colors duration-200"
+          className="flex items-center justify-between w-full text-gray-700 hover:text-gray-900 font-medium py-3 transition-colors duration-200"
           type="button"
         >
           <span>{item.label}</span>
@@ -446,7 +445,7 @@ function MobileNavigationItem({
             <ChevronDown size={16} />
           </motion.div>
         </button>
-        
+
         <AnimatePresence>
           {isOpen && (
             <motion.div
@@ -477,13 +476,11 @@ function MobileNavigationItem({
   return (
     <Link
       href={item.href!}
-      className="flex items-center space-x-3 text-gray-600 hover:text-sage-600 py-2 transition-colors duration-200"
+      className="flex items-center space-x-3 text-gray-600 hover:text-gray-900 py-2 transition-colors duration-200"
       onClick={onItemClick}
     >
       {item.icon && (
-        <span className="text-gray-400 flex-shrink-0">
-          {item.icon}
-        </span>
+        <span className="text-gray-400 flex-shrink-0">{item.icon}</span>
       )}
       <span>{item.label}</span>
     </Link>

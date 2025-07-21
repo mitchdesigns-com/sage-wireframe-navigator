@@ -1,9 +1,22 @@
 // src/components/ui/FullWidthDropdown.tsx
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
+import {
+  Search,
+  FileText,
+  Monitor,
+  UserCheck,
+  HelpCircle,
+  Shield,
+  BookOpen,
+  Newspaper,
+  Heart,
+  MessageCircle,
+  Building,
+  Users,
+  ChevronRight,
+} from 'lucide-react'
 import Button from './Button'
 
 interface DropdownItem {
@@ -34,110 +47,191 @@ export default function FullWidthDropdown({
 
 // Services Full Width Dropdown
 function ServicesFullWidthDropdown({
-  items,
   onItemClick,
 }: {
   items: DropdownItem[]
   onItemClick: () => void
 }) {
   return (
-    <div className="bg-white border-t border-gray-100 shadow-2xl">
-      <div className="container-custom mx-auto px-4 py-12 sm:px-6 lg:px-8">
-        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 lg:grid-cols-3">
-          {items.map((category, index) => (
-            <motion.div
-              key={category.label}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1, duration: 0.3 }}
-              className="space-y-6"
-            >
-              <div className="text-center lg:text-left">
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  {category.label}
-                </h3>
-                <div className="w-12 h-px bg-sage-600 mx-auto lg:mx-0"></div>
-              </div>
-
-              <div className="space-y-6">
-                {category.children?.map((service, serviceIndex) => (
-                  <motion.div
-                    key={service.href}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{
-                      delay: index * 0.1 + serviceIndex * 0.05,
-                      duration: 0.3,
-                    }}
-                  >
-                    <Link
-                      href={service.href!}
-                      onClick={onItemClick}
-                      className="group block p-4 rounded-4xl hover:bg-gray-50 transition-all duration-300"
-                    >
-                      <div className="flex items-start space-x-4">
-                        <div className="flex-shrink-0 p-2 bg-sage-50 rounded-lg group-hover:bg-sage-100 transition-colors duration-300">
-                          <div className="text-sage-600 group-hover:text-sage-700 transition-colors duration-300">
-                            {service.icon}
-                          </div>
+    <div className="bg-white">
+      <div className="container-custom mx-auto">
+        <div className="flex justify-center overflow-hidden">
+          <div className="w-full">
+            <div className="flex justify-end">
+              <div className="flex gap-8 items-start justify-end pl-16 pr-8 py-8 w-full">
+                {/* For Individuals */}
+                <div className="flex-1 flex flex-col gap-4 h-[296px] items-start justify-start min-h-px min-w-px">
+                  <div className="font-bold text-[#000404] text-sm leading-[1.5] text-left">
+                    For Individuals
+                  </div>
+                  <div className="flex flex-col gap-[22px] items-start justify-start">
+                    <div className="flex gap-3 h-[61px] items-start justify-start py-2 w-80">
+                      <div className="size-6 shrink-0">
+                        <Heart size={24} className="text-[#000404]" />
+                      </div>
+                      <div className="flex-1 flex flex-col grow items-start justify-start text-[#000404] text-left min-h-px min-w-px">
+                        <div className="font-bold text-base leading-[1.5] w-full">
+                          <p>Healthcare For Your Needs</p>
                         </div>
-                        <div className="flex-1 min-w-0">
-                          <h4 className="font-semibold text-gray-900 group-hover:text-sage-600 transition-colors duration-300 mb-2">
-                            {service.label}
-                          </h4>
-                          <p className="text-sm text-gray-600 leading-relaxed">
-                            {service.description}
+                        <div className="font-normal text-sm leading-[1.5] w-full">
+                          <p>
+                            Discover tailored treatments in top Saudi hospitals.
                           </p>
                         </div>
-                        <div className="flex-shrink-0 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300">
-                          <ArrowRight size={18} className="text-sage-600" />
+                      </div>
+                    </div>
+                    <div className="flex gap-3 h-[61px] items-start justify-start py-2 w-80">
+                      <div className="size-6 shrink-0">
+                        <FileText size={24} className="text-[#000404]" />
+                      </div>
+                      <div className="flex-1 flex flex-col grow items-start justify-start text-[#000404] text-left min-h-px min-w-px">
+                        <div className="font-bold text-base leading-[1.5] w-full">
+                          <p>Concierge Services</p>
+                        </div>
+                        <div className="font-normal text-sm leading-[1.5] w-full">
+                          <p>
+                            We handle everything from airport transfers to
+                            dietary needs.
+                          </p>
                         </div>
                       </div>
-                    </Link>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-          ))}
-        </div>
+                    </div>
+                  </div>
+                </div>
 
-        {/* Call to Action Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 0.4 }}
-          className="mt-16 pt-8 border-t border-gray-100"
-        >
-          <div className="text-center">
-            <div className="max-w-2xl mx-auto mb-6">
-              <h3 className="text-2xl font-bold text-gray-900 mb-3">
-                Ready to Transform Your Healthcare Experience?
-              </h3>
-              <p className="text-gray-600 text-lg">
-                Discover our comprehensive healthcare solutions tailored for
-                your specific needs
-              </p>
-            </div>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Button
-                href="/services"
-                size="lg"
-                rightIcon={<ArrowRight size={18} />}
-                onClick={onItemClick}
-              >
-                Explore All Services
-              </Button>
-              <Button
-                href="/contact"
-                variant="secondary"
-                size="lg"
-                onClick={onItemClick}
-              >
-                Schedule Consultation
-              </Button>
+                {/* For Businesses */}
+                <div className="flex-1 flex flex-col gap-4 h-[296px] items-start justify-start min-h-px min-w-px">
+                  <div className="font-bold text-[#000404] text-sm leading-[1.5] text-left">
+                    For Businesses
+                  </div>
+                  <div className="flex flex-col gap-[22px] items-start justify-start">
+                    <div className="flex gap-3 h-[61px] items-start justify-start py-2 w-80">
+                      <div className="size-6 shrink-0">
+                        <Users size={24} className="text-[#000404]" />
+                      </div>
+                      <div className="flex-1 flex flex-col grow items-start justify-start text-[#000404] text-left min-h-px min-w-px">
+                        <div className="font-bold text-base leading-[1.5] w-full">
+                          <p>Healthcare for Your Team</p>
+                        </div>
+                        <div className="font-normal text-sm leading-[1.5] w-full">
+                          <p>
+                            We offer customized corporate healthcare and VIP
+                            medical access for your employee.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex gap-3 h-[61px] items-start justify-start py-2 w-80">
+                      <div className="size-6 shrink-0">
+                        <Building size={24} className="text-[#000404]" />
+                      </div>
+                      <div className="flex-1 flex flex-col grow items-start justify-start text-[#000404] text-left min-h-px min-w-px">
+                        <div className="font-bold text-base leading-[1.5] w-full">
+                          <p>Concierge Services</p>
+                        </div>
+                        <div className="font-normal text-sm leading-[1.5] w-full">
+                          <p>
+                            We offer concierge services for executives,
+                            featuring corporate rates.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex gap-3 h-[61px] items-start justify-start py-2 w-80">
+                      <div className="size-6 shrink-0">
+                        <MessageCircle size={24} className="text-[#000404]" />
+                      </div>
+                      <div className="flex-1 flex flex-col grow items-start justify-start text-[#000404] text-left min-h-px min-w-px">
+                        <div className="font-bold text-base leading-[1.5] w-full">
+                          <p>Consultation & Training</p>
+                        </div>
+                        <div className="font-normal text-sm leading-[1.5] w-full">
+                          <p>
+                            We offer guidance in wellness, medical travel, and
+                            healthcare team training.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* For Organizations */}
+                <div className="flex-1 flex flex-col gap-4 h-[296px] items-start justify-start min-h-px min-w-px">
+                  <div className="font-bold text-[#000404] text-sm leading-[1.5] text-left">
+                    For Organizations
+                  </div>
+                  <div className="flex flex-col gap-[22px] items-start justify-start">
+                    <div className="flex gap-3 h-[61px] items-start justify-start py-2 w-80">
+                      <div className="size-6 shrink-0">
+                        <Shield size={24} className="text-[#000404]" />
+                      </div>
+                      <div className="flex-1 flex flex-col grow items-start justify-start text-[#000404] text-left min-h-px min-w-px">
+                        <div className="font-bold text-base leading-[1.5] w-full">
+                          <p>Healthcare Services</p>
+                        </div>
+                        <div className="font-normal text-sm leading-[1.5] w-full">
+                          <p>
+                            We streamline cross-border care with
+                            institutional-level coordination.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex gap-3 h-[61px] items-start justify-start py-2 w-80">
+                      <div className="size-6 shrink-0">
+                        <UserCheck size={24} className="text-[#000404]" />
+                      </div>
+                      <div className="flex-1 flex flex-col grow items-start justify-start text-[#000404] text-left min-h-px min-w-px">
+                        <div className="font-bold text-base leading-[1.5] w-full">
+                          <p>Concierge Services</p>
+                        </div>
+                        <div className="font-normal text-sm leading-[1.5] w-full">
+                          <p>
+                            We manage group concierge services with compliance
+                            and care.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex gap-3 h-[61px] items-start justify-start py-2 w-80">
+                      <div className="size-6 shrink-0">
+                        <HelpCircle size={24} className="text-[#000404]" />
+                      </div>
+                      <div className="flex-1 flex flex-col grow items-start justify-start text-[#000404] text-left min-h-px min-w-px">
+                        <div className="font-bold text-base leading-[1.5] w-full">
+                          <p>Consultation & Training</p>
+                        </div>
+                        <div className="font-normal text-sm leading-[1.5] w-full">
+                          <p>
+                            We consult on public health programs, medical
+                            tourism, and system optimization.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </motion.div>
+        </div>
+
+        {/* CTA Section */}
+        <div className="flex flex-col gap-2.5 items-center justify-center py-[30px] w-full">
+          <div className="flex gap-4 items-start justify-start">
+            <Button
+              href="/services"
+              variant="outline"
+              size="lg"
+              className="bg-[rgba(0,4,4,0.05)] border-none hover:bg-gray-100 flex items-center gap-3"
+              onClick={onItemClick}
+            >
+              Explore All Services
+              <ChevronRight size={24} />
+            </Button>
+          </div>
+        </div>
       </div>
     </div>
   )
@@ -145,145 +239,165 @@ function ServicesFullWidthDropdown({
 
 // Resources Full Width Dropdown
 function ResourcesFullWidthDropdown({
-  items,
   onItemClick,
 }: {
   items: DropdownItem[]
   onItemClick: () => void
 }) {
-  // Group items into categories for better organization
-  const knowledgeItems = items.slice(0, 3) // Guides, Case Studies, Webinars
-  const engagementItems = items.slice(3, 6) // Blog, FAQs, CSR
-  const complianceItems = items.slice(6) // Certifications, News & Events
-
-  const categories = [
-    { title: 'Knowledge Hub', items: knowledgeItems },
-    { title: 'Community & Support', items: engagementItems },
-    { title: 'Trust & Updates', items: complianceItems },
+  // Resource items as shown in the Figma design
+  const resourceColumns = [
+    // Column 1
+    [
+      {
+        icon: <Search size={24} className="text-[#000404]" />,
+        title: 'Guides',
+        description: 'Comprehensive healthcare resources and insights',
+        href: '/resources/guides',
+      },
+      {
+        icon: <FileText size={24} className="text-[#000404]" />,
+        title: 'Case Studies',
+        description: 'Real-life success stories from our clients',
+        href: '/resources/case-studies',
+      },
+      {
+        icon: <Monitor size={24} className="text-[#000404]" />,
+        title: 'Webinars',
+        description: 'Interactive sessions with industry experts',
+        href: '/resources/webinars',
+      },
+      {
+        icon: <UserCheck size={24} className="text-[#000404]" />,
+        title: 'Blog',
+        description: 'Latest trends and tips in healthcare',
+        href: '/resources/blog',
+      },
+    ],
+    // Column 2
+    [
+      {
+        icon: <HelpCircle size={24} className="text-[#000404]" />,
+        title: 'FAQs',
+        description: 'Frequently asked questions about our services',
+        href: '/resources/faqs',
+      },
+      {
+        icon: <Shield size={24} className="text-[#000404]" />,
+        title: 'CSR Initiatives',
+        description: 'Support our community-focused projects',
+        href: '/resources/csr',
+      },
+      {
+        icon: <BookOpen size={24} className="text-[#000404]" />,
+        title: 'Certifications',
+        description: 'Verified Trust and Compliance',
+        href: '/resources/certifications',
+      },
+      {
+        icon: <Newspaper size={24} className="text-[#000404]" />,
+        title: 'News & Events',
+        description: 'Stay Informed with Sage',
+        href: '/resources/news',
+      },
+    ],
+    // Column 3
+    [
+      {
+        icon: <Users size={24} className="text-[#000404]" />,
+        title: 'Careers',
+        description: 'Join our dedicated team of professionals',
+        href: '/careers',
+      },
+      {
+        icon: <MessageCircle size={24} className="text-[#000404]" />,
+        title: 'Contact Us',
+        description: 'Reach out for personalized assistance',
+        href: '/contact',
+      },
+    ],
   ]
 
   return (
-    <div className="bg-white border-t border-gray-100 shadow-2xl">
-      <div className="container-custom mx-auto px-4 py-12 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          {/* Header */}
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3 }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Healthcare Resources
-            </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Access comprehensive resources, insights, and tools to support
-              your healthcare journey
-            </p>
-          </motion.div>
-
-          {/* Resource Categories */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-12">
-            {categories.map((category, categoryIndex) => (
-              <motion.div
-                key={category.title}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: categoryIndex * 0.15, duration: 0.4 }}
-                className="space-y-6"
-              >
-                <div className="text-center lg:text-left">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                    {category.title}
-                  </h3>
-                  <div className="w-16 h-px bg-sage-600 mx-auto lg:mx-0"></div>
-                </div>
-
-                <div className="space-y-4">
-                  {category.items.map((item, itemIndex) => (
-                    <motion.div
-                      key={item.href}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{
-                        delay: categoryIndex * 0.15 + itemIndex * 0.05,
-                        duration: 0.3,
-                      }}
-                    >
+    <div className="bg-white relative">
+      <div className="container-custom mx-auto">
+        <div className="flex justify-center overflow-hidden">
+          <div className="flex-1">
+            <div className="flex justify-end">
+              <div className="flex gap-8 items-start justify-end pl-16 pr-8 py-8 w-full">
+                {/* Column 1 */}
+                <div className="flex-1 flex flex-col gap-4 h-[358px] items-start justify-start min-h-px min-w-px">
+                  <div className="flex flex-col gap-[22px] items-start justify-start">
+                    {resourceColumns[0].map((item, index) => (
                       <Link
-                        href={item.href!}
+                        key={index}
+                        href={item.href}
                         onClick={onItemClick}
-                        className="group block p-4 rounded-4xl hover:bg-gray-50 transition-all duration-300"
+                        className="flex gap-3 h-[61px] items-start justify-start py-2 w-80 hover:bg-gray-50 transition-colors duration-200 rounded-lg"
                       >
-                        <div className="flex items-start space-x-4">
-                          <div className="flex-shrink-0 p-2 bg-gray-50 rounded-lg group-hover:bg-sage-50 transition-colors duration-300">
-                            <div className="text-gray-500 group-hover:text-sage-600 transition-colors duration-300">
-                              {item.icon}
-                            </div>
+                        <div className="size-6 shrink-0">{item.icon}</div>
+                        <div className="flex-1 flex flex-col grow items-start justify-start text-[#000404] text-left min-h-px min-w-px">
+                          <div className="font-['Aeonik'] font-bold text-base leading-[1.5] w-full">
+                            <p>{item.title}</p>
                           </div>
-                          <div className="flex-1 min-w-0">
-                            <h4 className="font-semibold text-gray-900 group-hover:text-sage-600 transition-colors duration-300 mb-1">
-                              {item.label}
-                            </h4>
-                            <p className="text-sm text-gray-600 leading-relaxed">
-                              {item.description}
-                            </p>
-                          </div>
-                          <div className="flex-shrink-0 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300">
-                            <ArrowRight size={16} className="text-sage-600" />
+                          <div className="font-['Aeonik'] font-normal text-sm leading-[1.5] w-full">
+                            <p>{item.description}</p>
                           </div>
                         </div>
                       </Link>
-                    </motion.div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
-              </motion.div>
-            ))}
-          </div>
 
-          {/* Featured Resources Section */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.4 }}
-            className="bg-gradient-to-r from-sage-50 to-blue-50 rounded-2xl p-8"
-          >
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-              <div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-3">
-                  Latest Healthcare Insights
-                </h3>
-                <p className="text-gray-600 mb-6">
-                  Stay updated with the latest trends, research, and best
-                  practices in healthcare and medical tourism.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <Button
-                    href="/resources/blog"
-                    rightIcon={<ArrowRight size={16} />}
-                    onClick={onItemClick}
-                  >
-                    Read Our Blog
-                  </Button>
-                  <Button
-                    href="/resources/newsletter"
-                    variant="secondary"
-                    onClick={onItemClick}
-                  >
-                    Subscribe to Newsletter
-                  </Button>
+                {/* Column 2 */}
+                <div className="flex-1 flex flex-col gap-4 h-[358px] items-start justify-start min-h-px min-w-px">
+                  <div className="flex flex-col gap-[22px] items-start justify-start">
+                    {resourceColumns[1].map((item, index) => (
+                      <Link
+                        key={index}
+                        href={item.href}
+                        onClick={onItemClick}
+                        className="flex gap-3 h-[61px] items-start justify-start py-2 w-80 hover:bg-gray-50 transition-colors duration-200 rounded-lg"
+                      >
+                        <div className="size-6 shrink-0">{item.icon}</div>
+                        <div className="flex-1 flex flex-col grow items-start justify-start text-[#000404] text-left min-h-px min-w-px">
+                          <div className="font-['Aeonik'] font-bold text-base leading-[1.5] w-full">
+                            <p>{item.title}</p>
+                          </div>
+                          <div className="font-['Aeonik'] font-normal text-sm leading-[1.5] w-full">
+                            <p>{item.description}</p>
+                          </div>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
                 </div>
-              </div>
-              <div className="hidden lg:block">
-                <div className="w-full h-32 bg-gradient-to-br from-sage-100 to-sage-200 rounded-4xl flex items-center justify-center">
-                  <div className="text-sage-600 text-center">
-                    <div className="text-4xl mb-2">📚</div>
-                    <div className="font-medium">Resource Center</div>
+
+                {/* Column 3 */}
+                <div className="flex-1 flex flex-col gap-4 h-[358px] items-start justify-start min-h-px min-w-px">
+                  <div className="flex flex-col gap-[22px] items-start justify-start">
+                    {resourceColumns[2].map((item, index) => (
+                      <Link
+                        key={index}
+                        href={item.href}
+                        onClick={onItemClick}
+                        className="flex gap-3 h-[61px] items-start justify-start py-2 w-80 hover:bg-gray-50 transition-colors duration-200 rounded-lg"
+                      >
+                        <div className="size-6 shrink-0">{item.icon}</div>
+                        <div className="flex-1 flex flex-col grow items-start justify-start text-[#000404] text-left min-h-px min-w-px">
+                          <div className="font-['Aeonik'] font-bold text-base leading-[1.5] w-full">
+                            <p>{item.title}</p>
+                          </div>
+                          <div className="font-['Aeonik'] font-normal text-sm leading-[1.5] w-full">
+                            <p>{item.description}</p>
+                          </div>
+                        </div>
+                      </Link>
+                    ))}
                   </div>
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </div>

@@ -1,318 +1,572 @@
-import Link from 'next/link'
-import { Building, Users, TrendingUp, Shield, Award } from 'lucide-react'
+'use client'
 
-const businessServices = [
+import Button from '@/components/ui/Button'
+import {
+  ChevronRight,
+  Building2,
+  CheckCircle2,
+  HeartHandshake,
+  Plane,
+  Utensils,
+  ShieldCheck,
+  GraduationCap,
+  Briefcase,
+  Users,
+  Award,
+  TrendingUp,
+  Shield,
+  Clock,
+  CheckCircle,
+  ArrowLeft,
+  ArrowRight
+} from 'lucide-react'
+import Image from 'next/image'
+import { useState } from 'react'
+
+// Icons for services
+const LocalHospitalIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M2 2H14V14H2V2Z" stroke="currentColor" strokeWidth="1.5"/>
+    <path d="M7 5V11M5 7H11" stroke="currentColor" strokeWidth="1.5"/>
+  </svg>
+)
+
+const VerifiedIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M8 1L10.163 2.506L12.899 2.101L13.304 4.837L14.81 7L13.304 9.163L12.899 11.899L10.163 11.494L8 13L5.837 11.494L3.101 11.899L2.696 9.163L1.19 7L2.696 4.837L3.101 2.101L5.837 2.506L8 1Z" stroke="currentColor" strokeWidth="1.5"/>
+    <path d="M5.5 8L7 9.5L10.5 6" stroke="currentColor" strokeWidth="1.5"/>
+  </svg>
+)
+
+const ChronicIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M8 2V8L11 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+    <circle cx="8" cy="8" r="6" stroke="currentColor" strokeWidth="1.5"/>
+  </svg>
+)
+
+const TravelIcon = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M21 16V8C21 7.45 20.55 7 20 7H16C16 5.9 15.1 5 14 5H10C8.9 5 8 5.9 8 7H4C3.45 7 3 7.45 3 8V16C3 16.55 3.45 17 4 17H20C20.55 17 21 16.55 21 16ZM10 7H14V9H10V7Z" fill="currentColor"/>
+  </svg>
+)
+
+const NutritionIcon = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M11 9H9V2H7V9H5V2H3V9C3 11.12 4.66 12.84 6.75 12.97V22H9.25V12.97C11.34 12.84 13 11.12 13 9V2H11V9ZM16 6V14H18.5V22H21V2C18.24 2 16 4.24 16 6Z" fill="currentColor"/>
+  </svg>
+)
+
+const HealthSafetyIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M8 1L3 3V7.5C3 10.5 5.25 13.34 8 14C10.75 13.34 13 10.5 13 7.5V3L8 1Z" stroke="currentColor" strokeWidth="1.5"/>
+    <path d="M6 8L7.5 9.5L10 7" stroke="currentColor" strokeWidth="1.5"/>
+  </svg>
+)
+
+const MedicalServicesIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M11 4V2C11 1.45 10.55 1 10 1H6C5.45 1 5 1.45 5 2V4H2V14C2 14.55 2.45 15 3 15H13C13.55 15 14 14.55 14 13V4H11ZM6 2H10V4H6V2Z" stroke="currentColor" strokeWidth="1.5"/>
+    <path d="M7 7V11M5 9H11" stroke="currentColor" strokeWidth="1.5"/>
+  </svg>
+)
+
+const MedicalInfoIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="8" cy="8" r="6" stroke="currentColor" strokeWidth="1.5"/>
+    <path d="M8 7V11M8 5V5.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+  </svg>
+)
+
+// Service features data
+const healthcareFeatures = [
+  {
+    icon: LocalHospitalIcon,
+    title: 'Expert appointments at leading Saudi hospitals.'
+  },
+  {
+    icon: VerifiedIcon,
+    title: 'Second opinions from renowned specialists.'
+  },
+  {
+    icon: ChronicIcon,
+    title: 'Comprehensive chronic illness management and post-operative care.'
+  }
+]
+
+const conciergeFeatures = [
+  {
+    icon: TravelIcon,
+    title: 'Travel coordination for stress-free medical journeys.'
+  },
+  {
+    icon: TravelIcon,
+    title: 'Visa assistance to ensure smooth international travel.'
+  },
+  {
+    icon: NutritionIcon,
+    title: 'Personalized dietary accommodations for optimal health.'
+  }
+]
+
+const consultationFeatures = [
+  {
+    icon: HealthSafetyIcon,
+    title: 'Compliance-focused training for a healthier workplace.'
+  },
+  {
+    icon: MedicalServicesIcon,
+    title: 'Expert consultation to streamline healthcare processes.'
+  },
+  {
+    icon: MedicalInfoIcon,
+    title: 'Empower your team with essential medical knowledge.'
+  }
+]
+
+const whyChooseFeatures = [
   {
     icon: Users,
-    title: 'Employee Wellness Programs',
-    description: 'Comprehensive health programs designed to improve employee wellbeing and productivity.',
-    features: [
-      'Annual health screenings and assessments',
-      'Preventive care program development',
-      'Chronic disease management support',
-      'Mental health and wellness initiatives'
-    ]
+    title: 'Dedicated Case Management',
+    description: 'Personalized support for every step of your healthcare journey.'
   },
   {
     icon: Award,
-    title: 'Executive Health Packages',
-    description: 'Premium healthcare services tailored for executives and senior leadership teams.',
-    features: [
-      'Comprehensive executive medical exams',
-      'Priority scheduling and concierge services',
-      'Specialized health risk assessments',
-      'Confidential medical consultations'
-    ]
+    title: 'Access to Leading Experts',
+    description: 'Connect with top specialists and renowned medical professionals.'
   },
   {
     icon: TrendingUp,
-    title: 'Corporate Health Analytics',
-    description: 'Data-driven insights to optimize your company\'s health program investments.',
-    features: [
-      'Health program ROI analysis',
-      'Employee health trend reporting',
-      'Benchmarking against industry standards',
-      'Custom health dashboard development'
-    ]
+    title: 'Streamlined Coordination',
+    description: 'Seamless integration of all medical and travel arrangements.'
   },
   {
     icon: Shield,
-    title: 'Occupational Health Services',
-    description: 'Workplace safety and health compliance programs for various industries.',
-    features: [
-      'Workplace health and safety assessments',
-      'Occupational injury treatment',
-      'Return-to-work program management',
-      'Regulatory compliance support'
-    ]
+    title: 'Comprehensive Aftercare',
+    description: 'Ongoing support and follow-up care for optimal recovery.'
+  },
+  {
+    icon: Clock,
+    title: 'Time-Efficient Solutions',
+    description: 'Fast-track appointments and priority healthcare access.'
+  },
+  {
+    icon: CheckCircle,
+    title: 'Quality Assurance',
+    description: 'Rigorous standards ensuring the highest quality of care.'
   }
 ]
 
-const benefits = [
+// Testimonials data
+const testimonials = [
   {
-    title: 'Improved Employee Satisfaction',
-    description: 'Comprehensive health benefits lead to higher employee retention and satisfaction rates.',
-    metric: '85% satisfaction increase'
-  },
-  {
-    title: 'Reduced Healthcare Costs',
-    description: 'Preventive care programs significantly reduce long-term healthcare expenses.',
-    metric: '30% cost reduction'
-  },
-  {
-    title: 'Enhanced Productivity',
-    description: 'Healthier employees demonstrate improved performance and reduced sick days.',
-    metric: '25% productivity boost'
-  },
-  {
-    title: 'Better Talent Attraction',
-    description: 'Superior health benefits help attract and retain top-tier talent.',
-    metric: '40% better retention'
-  }
-]
-
-const implementationSteps = [
-  {
-    step: '1',
-    title: 'Health Needs Assessment',
-    description: 'Comprehensive analysis of your workforce health needs and current program gaps.'
-  },
-  {
-    step: '2',
-    title: 'Program Design & Planning',
-    description: 'Custom health program development aligned with your company culture and budget.'
-  },
-  {
-    step: '3',
-    title: 'Implementation & Launch',
-    description: 'Seamless program rollout with employee communication and training support.'
-  },
-  {
-    step: '4',
-    title: 'Monitoring & Optimization',
-    description: 'Ongoing program evaluation and optimization based on participation and outcomes.'
+    logo: 'https://via.placeholder.com/120x48/e5e7eb/9ca3af?text=Logo',
+    quote: '"Sage has streamlined our medical travel process significantly."',
+    author: 'John Doe',
+    role: 'HR Director, XYZ Corp'
   }
 ]
 
 export default function BusinessesPage() {
+  const [currentTestimonial, setCurrentTestimonial] = useState(0)
+
   return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="section-padding bg-gradient-to-br from-sage-50 to-white">
-        <div className="container-custom mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h1 className="heading-xl mb-6">
-                Corporate Health{' '}
-                <span className="text-sage-400">Solutions</span>
-              </h1>
-              <p className="text-body mb-8">
-                Transform your workplace with comprehensive health programs that
-                boost employee satisfaction, reduce healthcare costs, and
-                enhance productivity. Our corporate solutions are designed for
-                businesses of all sizes seeking to invest in their most valuable
-                asset - their people.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Link
-                  href="/contact?service=businesses"
-                  className="btn-primary"
-                >
-                  Request Consultation
-                </Link>
-                <Link href="#services" className="btn-outline">
-                  Explore Programs
-                </Link>
-              </div>
-            </div>
-            <div className="bg-gray-200 rounded-2xl h-96 flex items-center justify-center">
-              <div className="text-center text-gray-400">
-                <Building size={48} className="mx-auto mb-4" />
-                <p>Corporate Wellness</p>
-                <p className="text-sm">Employee health programs</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Business Benefits */}
-      <section className="section-padding bg-white">
-        <div className="container-custom mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="heading-lg mb-6">Why Invest in Employee Health?</h2>
-            <p className="text-body max-w-3xl mx-auto">
-              Companies that prioritize employee health see measurable returns
-              in productivity, retention, and overall business performance.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {benefits.map((benefit, index) => (
-              <div key={index} className="text-center">
-                <div className="text-3xl font-bold text-sage-400 mb-3">
-                  {benefit.metric}
+    <div className="min-h-screen bg-white">
+      {/* Header Section */}
+      <section className="py-28">
+        <div className="px-16">
+          <div className="max-w-[1280px] mx-auto">
+            <div className="flex gap-20">
+              <div className="w-[600px]">
+                <div className="text-[#000404] font-medium text-base leading-[1.5] mb-2">
+                  For Businesses
                 </div>
-                <h3 className="text-lg font-bold text-gray-900 mb-3">
-                  {benefit.title}
-                </h3>
-                <p className="text-gray-600 text-sm">{benefit.description}</p>
+                <h1 className="text-[#000404] font-bold text-[56px] leading-[1.2] tracking-[-0.56px]">
+                  Optimizing Workforce Wellbeing
+                </h1>
               </div>
-            ))}
+              <div className="flex-1">
+                <p className="text-[#000404] text-[18px] leading-[1.5]">
+                  At Sage, we are your strategic partner in enhancing employee wellness and optimizing productivity through tailored healthcare solutions. Discover how our comprehensive medical travel and concierge services can elevate your organization's health management.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Services Grid */}
-      <section id="services" className="section-padding bg-gray-50">
-        <div className="container-custom mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="heading-lg mb-6">Our Corporate Health Services</h2>
-            <p className="text-body max-w-3xl mx-auto">
-              Comprehensive health solutions designed to meet the unique needs
-              of your business and workforce, from startups to large
-              enterprises.
-            </p>
-          </div>
+      {/* Healthcare Section */}
+      <section className="py-28">
+        <div className="px-16">
+          <div className="max-w-[1280px] mx-auto">
+            <div className="flex gap-20 items-center">
+              <div className="flex-1 space-y-8">
+                <div>
+                  <div className="text-[#000404] font-medium text-base leading-[1.5] mb-4">
+                    For Business
+                  </div>
+                  <div className="space-y-6">
+                    <h2 className="text-[#000404] font-bold text-[48px] leading-[1.2] tracking-[-0.48px] w-[509px]">
+                      Healthcare
+                    </h2>
+                    <p className="text-[#000404] text-[18px] leading-[1.5]">
+                      Sage connects your employees with top-tier healthcare in Saudi Arabia. Our dedicated case managers ensure seamless communication and personalized care throughout the medical journey.
+                    </p>
+                  </div>
+                </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {businessServices.map((service, index) => {
-              const Icon = service.icon
-              return (
-                <div key={index} className="card group">
-                  <div className="flex items-start space-x-4">
-                    <div className="flex-shrink-0 w-14 h-14 bg-sage-100 rounded-lg flex items-center justify-center group-hover:bg-sage-400 group-hover:text-white transition-colors duration-200">
-                      <Icon size={28} />
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-xl font-bold text-gray-900 mb-3">
-                        {service.title}
-                      </h3>
-                      <p className="text-gray-600 mb-4">
-                        {service.description}
+                <div className="space-y-4 py-2">
+                  {healthcareFeatures.map((feature, index) => (
+                    <div key={index} className="flex gap-4 items-center">
+                      <feature.icon />
+                      <p className="text-[#000404] text-base leading-[1.5]">
+                        {feature.title}
                       </p>
-                      <ul className="space-y-2">
-                        {service.features.map((feature, featureIndex) => (
-                          <li
-                            key={featureIndex}
-                            className="flex items-start space-x-2 text-sm text-gray-600"
-                          >
-                            <div className="w-1.5 h-1.5 bg-sage-400 rounded-full mt-2 flex-shrink-0"></div>
-                            <span>{feature}</span>
-                          </li>
-                        ))}
-                      </ul>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="flex gap-6 items-center">
+                  <button className="bg-[rgba(0,4,4,0.05)] px-6 py-2.5 rounded-[100px] flex items-center gap-3 text-[#000404] font-medium text-base leading-[1.5] hover:bg-[rgba(0,4,4,0.1)] transition-colors">
+                    Request Free Consultation
+                    <ChevronRight size={24} />
+                  </button>
+                  <button className="flex items-center gap-2 text-[#000404] font-medium text-base leading-[1.5] hover:text-gray-600 transition-colors">
+                    Learn More
+                    <ChevronRight size={24} />
+                  </button>
+                </div>
+              </div>
+
+              <div className="w-[600px] h-[640px] bg-gray-200 rounded-[40px] relative">
+                <Image
+                  fill
+                  src="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=600&h=640&fit=crop"
+                  alt="Healthcare Services"
+                  className="rounded-[40px] object-cover"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Healthcare Concierge Section */}
+      <section className="py-28">
+        <div className="px-16">
+          <div className="max-w-[1280px] mx-auto">
+            <div className="flex gap-20 items-center">
+              <div className="w-[600px] h-[640px] bg-gray-200 rounded-[40px] relative">
+                <Image
+                  fill
+                  src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&h=640&fit=crop"
+                  alt="Healthcare Concierge"
+                  className="rounded-[40px] object-cover"
+                />
+              </div>
+
+              <div className="flex-1 space-y-8">
+                <div>
+                  <div className="text-[#000404] font-medium text-base leading-[1.5] mb-4">
+                    For Businesses
+                  </div>
+                  <div className="space-y-6">
+                    <h2 className="text-[#000404] font-bold text-[48px] leading-[1.2] tracking-[-0.48px]">
+                      Healthcare Concierge
+                    </h2>
+                    <p className="text-[#000404] text-[18px] leading-[1.5]">
+                      Our concierge services simplify medical travel for your employees, ensuring a seamless experience from start to finish. We handle everything from visa assistance to wellness recovery, allowing your team to focus on what matters most.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  {conciergeFeatures.map((feature, index) => (
+                    <div key={index} className="flex gap-4 items-center">
+                      <feature.icon />
+                      <p className="text-[#000404] text-base leading-[1.5]">
+                        {feature.title}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="flex gap-6 items-center">
+                  <button className="bg-[rgba(0,4,4,0.05)] px-6 py-2.5 rounded-[100px] flex items-center gap-3 text-[#000404] font-medium text-base leading-[1.5] hover:bg-[rgba(0,4,4,0.1)] transition-colors">
+                    Request Free Consultation
+                    <ChevronRight size={24} />
+                  </button>
+                  <button className="flex items-center gap-2 text-[#000404] font-medium text-base leading-[1.5] hover:text-gray-600 transition-colors">
+                    Learn More
+                    <ChevronRight size={24} />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Consultation & Training Section */}
+      <section className="py-28">
+        <div className="px-16">
+          <div className="max-w-[1280px] mx-auto">
+            <div className="flex gap-20 items-center">
+              <div className="flex-1 space-y-8">
+                <div>
+                  <div className="text-[#000404] font-medium text-base leading-[1.5] mb-4">
+                    For Businesses
+                  </div>
+                  <div className="space-y-6">
+                    <h2 className="text-[#000404] font-bold text-[48px] leading-[1.2] tracking-[-0.48px]">
+                      Consultation & Training
+                    </h2>
+                    <p className="text-[#000404] text-[18px] leading-[1.5]">
+                      Our expert-led consultation and training programs equip your team with essential skills for managing healthcare efficiently. Tailored to meet compliance standards, we foster healthier workplaces that enhance productivity.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="space-y-4 py-2">
+                  {consultationFeatures.map((feature, index) => (
+                    <div key={index} className="flex gap-4 items-center">
+                      <feature.icon />
+                      <p className="text-[#000404] text-base leading-[1.5]">
+                        {feature.title}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="flex gap-6 items-center">
+                  <button className="bg-[rgba(0,4,4,0.05)] px-6 py-2.5 rounded-[100px] flex items-center gap-3 text-[#000404] font-medium text-base leading-[1.5] hover:bg-[rgba(0,4,4,0.1)] transition-colors">
+                    Request Free Consultation
+                    <ChevronRight size={24} />
+                  </button>
+                  <button className="flex items-center gap-2 text-[#000404] font-medium text-base leading-[1.5] hover:text-gray-600 transition-colors">
+                    Learn More
+                    <ChevronRight size={24} />
+                  </button>
+                </div>
+              </div>
+
+              <div className="w-[600px] h-[640px] bg-gray-200 rounded-[40px] relative">
+                <Image
+                  fill
+                  src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=600&h=640&fit=crop"
+                  alt="Consultation & Training"
+                  className="rounded-[40px] object-cover"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Client Experiences Section */}
+      <section className="py-28">
+        <div className="px-16">
+          <div className="max-w-[1280px] mx-auto">
+            <div className="flex gap-20">
+              <div className="flex-1 self-center">
+                <div className="pb-24">
+                  <h2 className="text-[#000404] font-bold text-[48px] leading-[1.2] tracking-[-0.48px] mb-4">
+                    Client Experiences
+                  </h2>
+                  <p className="text-[#000404] text-[18px] leading-[1.5]">
+                    Transforming corporate health management with Sage.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex-1 space-y-12">
+                <div className="p-8 rounded-[32px] border border-[rgba(0,4,4,0.02)]">
+                  <div className="space-y-12">
+                    <div className="h-12 w-[120px] bg-gray-200 rounded relative overflow-hidden">
+                      <Image
+                        fill
+                        src={testimonials[currentTestimonial].logo}
+                        alt="Company Logo"
+                        className="object-contain"
+                      />
+                    </div>
+                    <div className="space-y-6">
+                      <p className="text-[#000404] text-[18px] leading-[1.5]">
+                        {testimonials[currentTestimonial].quote}
+                      </p>
+                      <div className="flex gap-5 items-center">
+                        <div className="w-14 h-14 rounded-full bg-gray-200 relative overflow-hidden">
+                          <Image
+                            fill
+                            src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=56&h=56&fit=crop"
+                            alt={testimonials[currentTestimonial].author}
+                            className="object-cover"
+                          />
+                        </div>
+                        <div>
+                          <h4 className="text-[#000404] font-bold text-base leading-[1.5]">
+                            {testimonials[currentTestimonial].author}
+                          </h4>
+                          <p className="text-[#000404] text-base leading-[1.5]">
+                            {testimonials[currentTestimonial].role}
+                          </p>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              )
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Implementation Process */}
-      <section className="section-padding bg-white">
-        <div className="container-custom mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="heading-lg mb-6">Implementation Process</h2>
-            <p className="text-body max-w-3xl mx-auto">
-              Our proven 4-step process ensures smooth implementation and
-              maximum employee engagement with your new health programs.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {implementationSteps.map((step, index) => (
-              <div key={index} className="text-center">
-                <div className="w-16 h-16 bg-sage-400 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
-                  {step.step}
-                </div>
-                <h3 className="text-lg font-bold text-gray-900 mb-3">
-                  {step.title}
-                </h3>
-                <p className="text-gray-600">{step.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Case Study Section */}
-      <section className="section-padding bg-sage-400 text-white">
-        <div className="container-custom mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl font-bold mb-6">
-                Success Story: Regional Tech Company
-              </h2>
-              <p className="text-xl mb-6 opacity-90">
-                A 500-employee technology company saw remarkable improvements
-                after implementing our comprehensive wellness program.
-              </p>
-
-              <div className="grid grid-cols-2 gap-6 mb-8">
-                <div>
-                  <div className="text-3xl font-bold mb-2">42%</div>
-                  <div className="text-sm opacity-75">
-                    Reduction in sick days
+                  <div className="mt-8">
+                    <button className="flex items-center gap-2 text-[#000404] text-base leading-[1.5] hover:text-gray-600 transition-colors">
+                      Read case study
+                      <ChevronRight size={24} />
+                    </button>
                   </div>
                 </div>
-                <div>
-                  <div className="text-3xl font-bold mb-2">$2.3M</div>
-                  <div className="text-sm opacity-75">
-                    Annual healthcare savings
+
+                <div className="flex items-center justify-between">
+                  <div className="flex gap-2">
+                    {[0, 1, 2, 3, 4, 5].map((dot) => (
+                      <div
+                        key={dot}
+                        className={`w-2 h-2 rounded-full transition-colors ${
+                          dot === currentTestimonial
+                            ? 'bg-[#000404]'
+                            : 'bg-gray-300'
+                        }`}
+                      />
+                    ))}
                   </div>
-                </div>
-                <div>
-                  <div className="text-3xl font-bold mb-2">89%</div>
-                  <div className="text-sm opacity-75">
-                    Employee participation rate
-                  </div>
-                </div>
-                <div>
-                  <div className="text-3xl font-bold mb-2">4.8/5</div>
-                  <div className="text-sm opacity-75">
-                    Program satisfaction score
+                  <div className="flex gap-4">
+                    <button 
+                      className="bg-[#f2f2f2] p-3 rounded-full border border-white hover:bg-gray-300 transition-colors"
+                      onClick={() => setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length)}
+                    >
+                      <ArrowLeft size={24} className="text-[#000404]" />
+                    </button>
+                    <button 
+                      className="bg-[#f2f2f2] p-3 rounded-full border border-white hover:bg-gray-300 transition-colors"
+                      onClick={() => setCurrentTestimonial((prev) => (prev + 1) % testimonials.length)}
+                    >
+                      <ArrowRight size={24} className="text-[#000404]" />
+                    </button>
                   </div>
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
 
-            <div className="bg-white bg-opacity-10 rounded-2xl p-8">
-              <blockquote className="text-lg italic mb-4">
-                "Sage Healthcare's corporate wellness program transformed our
-                company culture. Our employees are healthier, happier, and more
-                productive than ever before."
-              </blockquote>
-              <div className="text-sm opacity-75">
-                - Sarah Al-Rashid, HR Director
-                <br />
-                Regional Technology Solutions
+      {/* Why Choose Sage Section */}
+      <section className="py-28">
+        <div className="px-16">
+          <div className="max-w-[1280px] mx-auto">
+            <div className="flex gap-20">
+              <div className="w-[380px] space-y-8">
+                <div>
+                  <div className="h-6" />
+                  <div className="space-y-6">
+                    <h2 className="text-[#000404] font-bold text-[48px] leading-[1.2] tracking-[-0.48px]">
+                      Why Choose Sage for Your Business Needs
+                    </h2>
+                    <p className="text-[#000404] text-[18px] leading-[1.5]">
+                      Partnering with Sage means prioritizing your employees' health while enhancing your organization's efficiency. Experience tailored solutions that drive productivity and satisfaction.
+                    </p>
+                  </div>
+                </div>
+                <button className="bg-[rgba(0,4,4,0.05)] px-6 py-2.5 rounded-[100px] flex items-center gap-3 text-[#000404] font-medium text-base leading-[1.5] hover:bg-[rgba(0,4,4,0.1)] transition-colors">
+                  Request Free Consultation
+                  <ChevronRight size={24} />
+                </button>
+              </div>
+
+              <div className="flex-1 space-y-16">
+                {/* First row */}
+                <div className="grid grid-cols-2 gap-12">
+                  {whyChooseFeatures.slice(0, 2).map((feature, index) => (
+                    <div key={index} className="space-y-6">
+                      <feature.icon size={48} className="text-[#000404]" />
+                      <h3 className="text-[#000404] font-bold text-[32px] leading-[1.3] tracking-[-0.32px]">
+                        {feature.title}
+                      </h3>
+                      <p className="text-[#000404] text-base leading-[1.5]">
+                        {feature.description}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+                {/* Second row */}
+                <div className="grid grid-cols-2 gap-12">
+                  {whyChooseFeatures.slice(2, 4).map((feature, index) => (
+                    <div key={index} className="space-y-6">
+                      <feature.icon size={48} className="text-[#000404]" />
+                      <h3 className="text-[#000404] font-bold text-[32px] leading-[1.3] tracking-[-0.32px]">
+                        {feature.title}
+                      </h3>
+                      <p className="text-[#000404] text-base leading-[1.5]">
+                        {feature.description}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+                {/* Third row */}
+                <div className="grid grid-cols-2 gap-12">
+                  {whyChooseFeatures.slice(4, 6).map((feature, index) => (
+                    <div key={index} className="space-y-6">
+                      <feature.icon size={48} className="text-[#000404]" />
+                      <h3 className="text-[#000404] font-bold text-[32px] leading-[1.3] tracking-[-0.32px]">
+                        {feature.title}
+                      </h3>
+                      <p className="text-[#000404] text-base leading-[1.5]">
+                        {feature.description}
+                      </p>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="section-padding bg-gray-50">
-        <div className="container-custom mx-auto text-center">
-          <h2 className="heading-md mb-6">
-            Ready to Transform Your Workplace Health?
-          </h2>
-          <p className="text-body mb-8 max-w-2xl mx-auto">
-            Let's discuss how our corporate health solutions can benefit your
-            organization. Our team will work with you to design a program that
-            fits your company's unique needs and culture.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/contact?service=businesses" className="btn-primary">
-              Schedule Business Consultation
-            </Link>
-            <Link href="/our-network" className="btn-outline">
-              View Our Healthcare Network
-            </Link>
+      {/* FAQs for Businesses Section */}
+      <section className="py-28">
+        <div className="px-16">
+          <div className="max-w-[768px] mx-auto text-center">
+            <h2 className="text-[#000404] font-bold text-[48px] leading-[1.2] tracking-[-0.48px] mb-6">
+              FAQs for Businesses
+            </h2>
+            <div className="h-[150px] bg-gray-200 rounded-[20px]" />
+          </div>
+        </div>
+      </section>
+
+      {/* Start Your Journey Section */}
+      <section className="py-28">
+        <div className="px-16">
+          <div className="max-w-[1280px] mx-auto">
+            <div className="flex gap-20 items-center">
+              <div className="flex-1 space-y-6">
+                <h2 className="text-[#000404] font-bold text-[48px] leading-[1.2] tracking-[-0.48px]">
+                  Start Your Journey Today
+                </h2>
+                <p className="text-[#000404] text-[18px] leading-[1.5]">
+                  Transform your organization's healthcare approach with Sage's comprehensive business solutions. Let us help you create a healthier, more productive workforce.
+                </p>
+                <button className="bg-[rgba(0,4,4,0.05)] px-6 py-2.5 rounded-[100px] flex items-center gap-3 text-[#000404] font-medium text-base leading-[1.5] hover:bg-[rgba(0,4,4,0.1)] transition-colors">
+                  Request Free Consultation
+                  <ChevronRight size={24} />
+                </button>
+              </div>
+
+              <div className="w-[600px] h-[400px] bg-gray-200 rounded-[40px] relative">
+                <Image
+                  fill
+                  src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=600&h=400&fit=crop"
+                  alt="Start Your Journey"
+                  className="rounded-[40px] object-cover"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>

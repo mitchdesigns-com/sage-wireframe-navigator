@@ -134,7 +134,7 @@ export default function Footer() {
               <div className="w-[253px] h-[55px] relative">
                 <Image
                   fill
-                  src="/images/"
+                  src="/images/company-logo.webp"
                   alt="Sage Logo"
                   className="object-contain"
                 />
@@ -142,7 +142,7 @@ export default function Footer() {
 
               {/* Footer Links */}
               <div className="grid grid-cols-5 gap-16 flex-1 max-w-4xl">
-                {/* Quick Links */}``
+                {/* Quick Links */}
                 <div className="space-y-4">
                   <h3 className="text-white font-bold text-base">
                     Quick Links
@@ -308,7 +308,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <footer className="bg-white">
+      <footer className="bg-white hidden">
         {/* Newsletter Section */}
         <section className="bg-Primary-Spring py-[60px] px-[60px]">
           <div className="container-custom mx-auto">

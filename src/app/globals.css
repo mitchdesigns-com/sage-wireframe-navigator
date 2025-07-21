@@ -1,5 +1,118 @@
 @import "tailwindcss";
 
+/* Aeonik Font Declarations */
+@font-face {
+  font-family: 'Aeonik';
+  src: url('/fonts/aeonik/Aeonik-Thin.otf') format('opentype');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Aeonik';
+  src: url('/fonts/aeonik/Aeonik-ThinItalic.otf') format('opentype');
+  font-weight: 100;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Aeonik';
+  src: url('/fonts/aeonik/Aeonik-Air.otf') format('opentype');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Aeonik';
+  src: url('/fonts/aeonik/Aeonik-AirItalic.otf') format('opentype');
+  font-weight: 200;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Aeonik';
+  src: url('/fonts/aeonik/Aeonik-Light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Aeonik';
+  src: url('/fonts/aeonik/Aeonik-LightItalic.otf') format('opentype');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Aeonik';
+  src: url('/fonts/aeonik/Aeonik-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Aeonik';
+  src: url('/fonts/aeonik/Aeonik-RegularItalic.otf') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Aeonik';
+  src: url('/fonts/aeonik/Aeonik-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Aeonik';
+  src: url('/fonts/aeonik/Aeonik-MediumItalic.otf') format('opentype');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Aeonik';
+  src: url('/fonts/aeonik/Aeonik-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Aeonik';
+  src: url('/fonts/aeonik/Aeonik-BoldItalic.otf') format('opentype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Aeonik';
+  src: url('/fonts/aeonik/Aeonik-Black.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Aeonik';
+  src: url('/fonts/aeonik/Aeonik-BlackItalic.otf') format('opentype');
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
+
 /* Tailwind v4 Theme Configuration */
 @theme {
   /* Color System */
@@ -23,8 +136,9 @@
   --color-healthcare-gold: #F59E0B;
 
   /* Font Families */
-  --font-family-sans: Inter, system-ui, sans-serif;
-  --font-family-arabic: "Noto Sans Arabic", system-ui, sans-serif;
+  --font-family-aeonik: 'Aeonik', system-ui, sans-serif;
+  --font-family-sans: 'Aeonik', Inter, system-ui, sans-serif;
+  --font-family-arabic: "Noto Sans Arabic", 'Aeonik', system-ui, sans-serif;
 
   /* Custom Spacing */
   --spacing-18: 4.5rem;
@@ -46,6 +160,11 @@
 /* Custom CSS for Sage Healthcare Platform */
 
 @layer base {
+  /* Default font family */
+  html, body {
+    font-family: var(--font-family-aeonik);
+  }
+  
   /* Arabic font support */
   html[dir="rtl"] {
     font-family: var(--font-family-arabic);
@@ -211,6 +330,20 @@
 }
 
 @layer utilities {
+  /* Font Family utilities */
+  .font-aeonik { font-family: var(--font-family-aeonik); }
+  .font-sans { font-family: var(--font-family-sans); }
+  .font-arabic { font-family: var(--font-family-arabic); }
+  
+  /* Aeonik Weight utilities (matching your design system) */
+  .font-aeonik-thin { font-family: var(--font-family-aeonik); font-weight: 100; }
+  .font-aeonik-air { font-family: var(--font-family-aeonik); font-weight: 200; }
+  .font-aeonik-light { font-family: var(--font-family-aeonik); font-weight: 300; }
+  .font-aeonik-regular { font-family: var(--font-family-aeonik); font-weight: 400; }
+  .font-aeonik-medium { font-family: var(--font-family-aeonik); font-weight: 500; }
+  .font-aeonik-bold { font-family: var(--font-family-aeonik); font-weight: 700; }
+  .font-aeonik-black { font-family: var(--font-family-aeonik); font-weight: 900; }
+  
   /* Color utilities for Sage theme */
   .text-sage-50 { color: var(--color-sage-50); }
   .text-sage-100 { color: var(--color-sage-100); }
