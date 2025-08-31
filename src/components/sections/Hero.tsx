@@ -1,5 +1,4 @@
 import Button from '../ui/Button'
-import { ChevronRight } from 'lucide-react'
 
 export default function Hero() {
   return (
@@ -19,12 +18,7 @@ export default function Hero() {
         </p>
 
         {/* CTA Button */}
-        <Button
-          href="/contact"
-          size="xl"
-          variant="primary"
-          rightIcon={<ChevronRight />}
-        >
+        <Button href="/contact" size="large" variant="primary">
           Speak With Our Team
         </Button>
 

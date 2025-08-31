@@ -162,8 +162,7 @@ export default function ContactPage() {
 
                   <Button
                     type="submit"
-                    variant="outline"
-                    size="lg"
+                    size="large"
                     className="bg-[rgba(0,4,4,0.05)] border-none hover:bg-gray-100"
                   >
                     Send
@@ -248,8 +247,8 @@ export default function ContactPage() {
                   </div>
 
                   <Button
-                    variant="outline"
-                    size="lg"
+                    //  variant="outline"
+                    size="large"
                     className="bg-[rgba(0,4,4,0.05)] border-none hover:bg-gray-100 w-full"
                   >
                     Book now

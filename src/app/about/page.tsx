@@ -467,8 +467,8 @@ export default function AboutPage() {
               <div>
                 <Button
                   href="/careers"
-                  variant="outline"
-                  size="lg"
+                  // variant="outline"
+                  // size="large"
                   className="bg-[rgba(0,4,4,0.05)] border-none hover:bg-gray-100"
                 >
                   Open Positions

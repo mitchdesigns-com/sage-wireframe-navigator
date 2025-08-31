@@ -1,5 +1,5 @@
 import Button from '@/components/ui/Button'
-import { ArrowRight, Image as ImageIcon } from 'lucide-react'
+import { Image as ImageIcon } from 'lucide-react'
 
 const networkImages = [
   { id: 1 },
@@ -28,11 +28,7 @@ export default function JoinNetwork() {
             {/* Action Buttons */}
             <div className="flex flex-col gap-4 sm:flex-row">
               <Button href="/join">Join</Button>
-              <Button
-                href="/our-network"
-                variant="ghost"
-                rightIcon={<ArrowRight size={16} />}
-              >
+              <Button href="/our-network" variant="ghost">
                 Explore Our Network
               </Button>
             </div>

@@ -1,5 +1,4 @@
 import Button from '@/components/ui/Button'
-import { ArrowRight } from 'lucide-react'
 
 const steps = [
   {
@@ -30,15 +29,15 @@ const steps = [
 
 export default function HowItWorks() {
   return (
-    <section className="section-padding bg-white">
+    <section className="section-padding bg-Secondary-Light-Scrub overflow-visible">
       <div className="container-custom mx-auto">
-        <div className="grid grid-cols-1 items-start gap-20 lg:grid-cols-2">
+        <div className="grid grid-cols-1 items-start gap-20 md:grid-cols-2">
           {/* Left Content */}
-          <div className="lg:sticky lg:top-24">
+          <div className="md:sticky md:top-24">
             <div className="mb-4 text-sm font-medium text-gray-600">
               How It Works
             </div>
-            <h2 className="mb-6 text-4xl font-bold leading-tight text-gray-900 lg:text-5xl">
+            <h2 className="mb-6 text-4xl font-bold leading-tight text-gray-900 md:text-5xl">
               Your Path to Exceptional Healthcare Awaits
             </h2>
             <p className="text-lg leading-relaxed text-gray-600">
@@ -74,10 +73,7 @@ export default function HowItWorks() {
 
                     {index === steps.length - 1 && (
                       <div className="mt-5">
-                        <Button
-                          href="/contact"
-                          rightIcon={<ArrowRight size={16} />}
-                        >
+                        <Button href="/contact">
                           Request Free Consultation
                         </Button>
                       </div>

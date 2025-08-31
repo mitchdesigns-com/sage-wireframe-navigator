@@ -115,7 +115,7 @@ export default function Footer() {
                     Join
                   </button>
                 </form>
-                <p className="text-[#1e1e1e] text-[12px] leading-[1.5]">
+                <p className="text-Primary-Black text-[12px] leading-[1.5]">
                   We respect your privacy. Read our{' '}
                   <span className="text-[#025850]">Privacy Policy.</span>
                 </p>
@@ -137,6 +137,7 @@ export default function Footer() {
                   src="/images/company-logo.webp"
                   alt="Sage Logo"
                   className="object-contain"
+                  unoptimized
                 />
               </div>
 
@@ -340,7 +341,7 @@ export default function Footer() {
                     Join
                   </button>
                 </form>
-                <p className="text-[#1e1e1e] text-[12px] leading-[1.5]">
+                <p className="text-Primary-Black text-[12px] leading-[1.5]">
                   We respect your privacy. Read our{' '}
                   <span className="text-[#025850]">Privacy Policy.</span>
                 </p>

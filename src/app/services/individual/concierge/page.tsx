@@ -115,7 +115,7 @@ export default function ConciergePage() {
                     assistance, we ensure every detail is taken care of for your
                     comfort.
                   </p>
-                  <Button size="lg">
+                  <Button size="large">
                     Request Free Consultation
                     <ChevronRight size={24} />
                   </Button>
@@ -237,7 +237,7 @@ export default function ConciergePage() {
                   ))}
                 </div>
 
-                <Button variant="outline" size="lg">
+                <Button size="large">
                   Request Free Consultation
                   <ChevronRight size={24} />
                 </Button>
@@ -345,9 +345,7 @@ export default function ConciergePage() {
                 </div>
 
                 <div className="flex gap-6 items-center">
-                  <Button variant="outline" size="lg">
-                    Request Free Consultation
-                  </Button>
+                  <Button size="large">Request Free Consultation</Button>
                 </div>
               </div>
 
@@ -413,7 +411,7 @@ export default function ConciergePage() {
                     tailored just for you.
                   </p>
                 </div>
-                <Button variant="outline" size="lg">
+                <Button size="large">
                   Request Free Consultation
                   <ChevronRight size={24} />
                 </Button>

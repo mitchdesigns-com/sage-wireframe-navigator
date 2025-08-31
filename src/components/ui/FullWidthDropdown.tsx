@@ -222,8 +222,7 @@ function ServicesFullWidthDropdown({
           <div className="flex gap-4 items-start justify-start">
             <Button
               href="/services"
-              variant="outline"
-              size="lg"
+              size="large"
               className="bg-[rgba(0,4,4,0.05)] border-none hover:bg-gray-100 flex items-center gap-3"
               onClick={onItemClick}
             >

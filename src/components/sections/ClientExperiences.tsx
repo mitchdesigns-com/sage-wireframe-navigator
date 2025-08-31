@@ -1,8 +1,8 @@
 'use client'
 
-import { useState } from 'react'
 import Button from '@/components/ui/Button'
-import { ArrowRight, ChevronLeft, ChevronRight, User } from 'lucide-react'
+import { ChevronLeft, ChevronRight, User } from 'lucide-react'
+import { useState } from 'react'
 
 const testimonials = [
   {
@@ -125,11 +125,7 @@ export default function ClientExperiences() {
               </div>
 
               {/* Case Study Link */}
-              <Button
-                href={currentTestimonial.caseStudyUrl}
-                variant="ghost"
-                rightIcon={<ArrowRight size={16} />}
-              >
+              <Button href={currentTestimonial.caseStudyUrl}>
                 Read case study
               </Button>
             </div>

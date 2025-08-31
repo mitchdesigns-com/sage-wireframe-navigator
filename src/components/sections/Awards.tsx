@@ -1,42 +1,67 @@
-import { Award } from 'lucide-react'
-
 const awards = [
-  { id: 1, name: 'Healthcare Excellence Award 2024' },
-  { id: 2, name: 'Best Medical Tourism Provider' },
-  { id: 3, name: 'Saudi Healthcare Innovation' },
-  { id: 4, name: 'International Quality Certification' },
-  { id: 5, name: 'Patient Satisfaction Excellence' },
-  { id: 6, name: 'Global Healthcare Recognition' },
+  {
+    name: 'image 10',
+    img: '/images/awards/01.png',
+    className: 'bg-size-[77.34%_35.57%,auto] bg-white',
+    style: {},
+    nodeId: '8381:108897',
+  },
+  {
+    name: 'image 11',
+    img: '/images/awards/02.png',
+    className: 'bg-center bg-cover bg-no-repeat',
+    style: {},
+    nodeId: '8381:108899',
+  },
+  {
+    name: 'image 7',
+    img: '/images/awards/03.png',
+    className: 'bg-[50%_49.44%] bg-no-repeat bg-size-[122.28%_111.03%]',
+    style: {},
+    nodeId: '8381:108901',
+  },
+  {
+    name: 'image 12',
+    img: '/images/awards/04.png',
+    className: 'bg-[50%_47.11%] bg-no-repeat bg-size-[110.49%_111.16%]',
+    style: {},
+    nodeId: '8381:108903',
+  },
+  {
+    name: 'image 13',
+    img: '/images/awards/05.png',
+    className: 'bg-center bg-cover bg-no-repeat',
+    style: {},
+    nodeId: '8381:108905',
+  },
+  {
+    name: 'image 14',
+    img: '/images/awards/06.png',
+    className:
+      'bg-white content-stretch flex flex-col gap-2.5 items-center justify-center relative',
+    style: {},
+    nodeId: '8493:5656',
+    inner: {
+      className: 'bg-[0%_44.12%] bg-no-repeat bg-size-[100%_121.78%]',
+      style: {},
+      nodeId: '8493:5657',
+    },
+  },
 ]
 
 export default function Awards() {
   return (
-    <section className="section-padding bg-white">
-      <div className="container-custom mx-auto">
-        {/* Section Header */}
-        <div className="text-center mb-12">
-          <h2 className="text-tagline font-medium">Awards & Recognition</h2>
-        </div>
-
-        {/* Awards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-          {awards.map((award) => (
-            <div
-              key={award.id}
-              className="bg-gray-200 rounded-2xl h-32 flex items-center justify-center p-6 hover:bg-gray-300 transition-colors duration-200"
-            >
-              <div className="text-center">
-                <div className="w-16 h-12 mx-auto mb-2 bg-gray-400 rounded-lg flex items-center justify-center">
-                  <Award className="w-8 h-8 text-gray-500" />
-                </div>
-                <p className="text-sm text-gray-600 font-medium">
-                  {award.name}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
+    <div className="bg-Primary-Black content-stretch flex flex-col gap-[60px] items-center justify-center md:py-40 py-10 relative size-full">
+      <h3 className="heading-3 text-white font-bold">{`Awards & Recognition`}</h3>
+      <div className="gap-4 items-center justify-center relative grid grid-cols-6 w-full container-custom">
+        {awards.map((award, idx) => (
+          <div
+            key={idx}
+            className={`bg-no-repeat aspect-[218/158] rounded-xl bg-white bg-center bg-contain`}
+            style={{ backgroundImage: `url('${award.img}')` }}
+          />
+        ))}
       </div>
-    </section>
+    </div>
   )
 }

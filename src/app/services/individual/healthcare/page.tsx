@@ -139,8 +139,8 @@ export default function HealthcareServicesPage() {
                     through every step of your medical journey in Saudi Arabia.
                   </p>
                   <Button
-                    variant="outline"
-                    size="lg"
+                    //  variant="outline"
+                    size="large"
                     className="bg-[rgba(0,4,4,0.05)] border-transparent hover:bg-gray-100 flex items-center gap-3 px-6 py-2.5 rounded-full"
                   >
                     <span className="text-black text-base font-medium">
@@ -266,8 +266,8 @@ export default function HealthcareServicesPage() {
                 </div>
 
                 <Button
-                  variant="outline"
-                  size="lg"
+                  //  variant="outline"
+                  size="large"
                   className="bg-[rgba(0,4,4,0.05)] border-transparent hover:bg-gray-100 flex items-center gap-3 px-6 py-2.5 rounded-full"
                 >
                   <span className="text-black text-base font-medium">
@@ -336,8 +336,8 @@ export default function HealthcareServicesPage() {
                 </div>
 
                 <Button
-                  variant="outline"
-                  size="lg"
+                  //  variant="outline"
+                  size="large"
                   className="bg-[rgba(0,4,4,0.05)] border-transparent hover:bg-gray-100 flex items-center gap-3 px-6 py-2.5 rounded-full"
                 >
                   <span className="text-black text-base font-medium">
@@ -373,8 +373,8 @@ export default function HealthcareServicesPage() {
                 </div>
 
                 <Button
-                  variant="outline"
-                  size="lg"
+                  //  variant="outline"
+                  size="large"
                   className="bg-[rgba(0,4,4,0.05)] border-transparent hover:bg-gray-100 flex items-center gap-3 px-6 py-2.5 rounded-full"
                 >
                   <span className="text-black text-base font-medium">

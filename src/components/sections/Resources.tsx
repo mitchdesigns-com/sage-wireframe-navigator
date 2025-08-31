@@ -1,5 +1,6 @@
 import Button from '@/components/ui/Button'
-import { ArrowRight, Image as ImageIcon } from 'lucide-react'
+import { Image as ImageIcon } from 'lucide-react'
+import SectionHeader from '../ui/SectionHeader'
 
 const resources = [
   {
@@ -31,22 +32,14 @@ const resources = [
 
 export default function Resources() {
   return (
-    <section className="section-padding bg-white">
+    <section className="section-padding bg-sage-gradient">
       <div className="container-custom mx-auto">
-        {/* Section Header */}
-        <div className="mb-16 text-center">
-          <div className="mb-4 text-sm font-medium text-gray-600">
-            Resources
-          </div>
-          <h2 className="mx-auto mb-6 max-w-5xl text-4xl font-bold leading-tight text-gray-900 lg:text-5xl">
-            Explore Our Featured Resources for You
-          </h2>
-          <p className="mx-auto max-w-3xl text-lg leading-relaxed text-gray-600">
-            Discover valuable insights and information tailored to your
-            healthcare journey. Our resources are designed to empower you with
-            knowledge and support.
-          </p>
-        </div>
+        <SectionHeader
+          heading={'Explore Our Featured Resources for You'}
+          color="light"
+          tagline="Resources"
+          description="Discover valuable insights and information tailored to your healthcare journey. Our resources are designed to empower you with knowledge and support."
+        />
 
         {/* Content Grid */}
         <div className="grid grid-cols-1 items-start gap-16 lg:grid-cols-2">
@@ -76,13 +69,7 @@ export default function Resources() {
                 <p className="mb-4 leading-relaxed text-gray-600">
                   {resource.description}
                 </p>
-                <Button
-                  href={resource.href}
-                  variant="ghost"
-                  rightIcon={<ArrowRight size={16} />}
-                >
-                  Learn More
-                </Button>
+                <Button href={resource.href}>Learn More</Button>
               </div>
             ))}
           </div>

@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 /* Aeonik Font Declarations */
 @font-face {
@@ -129,16 +129,27 @@
 
   --color-Neutral-Darkest: #000404;
 
-  --color-Primary-Spring: #CAF48E;
+  --color-Primary-Spring: #caf48e;
+  --color-Primary-Spring-Med: #DAF7AF;
   --color-Primary-Palm: #025850;
+  --color-Primary-Scrub: #6cbeb8;
+  --color-Secondary-Dark-Palm: #013530;
+  --color-Primary-Black: #1e1e1e;
+  --color-Primary-White: #ffffff;
+  --color-Secondary-Light-Scrub: #f0f8f8;
+  --color-Primary-Light-Sage: #9ebb80;
+  --color-Neutral-Darkest: #000404;
+  --color-Pure-Black: #000000;
+  --color-Pure-White: #ffffff;
+  --color-Transparent: rgba(255, 255, 255, 0);
 
-  --color-healthcare-blue: #1E3A8A;
-  --color-healthcare-gold: #F59E0B;
+  --color-healthcare-blue: #1e3a8a;
+  --color-healthcare-gold: #f59e0b;
 
   /* Font Families */
   --font-family-aeonik: 'Aeonik', system-ui, sans-serif;
   --font-family-sans: 'Aeonik', Inter, system-ui, sans-serif;
-  --font-family-arabic: "Noto Sans Arabic", 'Aeonik', system-ui, sans-serif;
+  --font-family-arabic: 'Noto Sans Arabic', 'Aeonik', system-ui, sans-serif;
 
   /* Custom Spacing */
   --spacing-18: 4.5rem;
@@ -148,7 +159,6 @@
   --animate-fade-in: fadeIn 0.5s ease-in-out;
   --animate-slide-up: slideUp 0.5s ease-out;
   --animate-slide-down: slideDown 0.5s ease-out;
-
 
   --container-sm: 640px;
   --container-md: 768px;
@@ -161,25 +171,23 @@
 
 @layer base {
   /* Default font family */
-  html, body {
+  html,
+  body {
     font-family: var(--font-family-aeonik);
   }
-  
+
   /* Arabic font support */
-  html[dir="rtl"] {
+  html[dir='rtl'] {
     font-family: var(--font-family-arabic);
   }
-  
+
   /* Smooth scrolling */
   html {
     scroll-behavior: smooth;
   }
-  
 }
 
 @layer components {
-
-
   .container-custom {
     margin-left: auto;
     margin-right: auto;
@@ -227,11 +235,11 @@
     font-weight: 500;
     transition: background-color 0.2s;
   }
-  
+
   .btn-primary:hover {
     background-color: var(--color-sage-500);
   }
-  
+
   .btn-secondary {
     background-color: var(--color-healthcare-blue);
     color: white;
@@ -240,11 +248,11 @@
     font-weight: 500;
     transition: background-color 0.2s;
   }
-  
+
   .btn-secondary:hover {
     background-color: #1e40af;
   }
-  
+
   .btn-outline {
     border: 2px solid var(--color-sage-400);
     color: var(--color-sage-400);
@@ -254,12 +262,12 @@
     font-weight: 500;
     transition: all 0.2s;
   }
-  
+
   .btn-outline:hover {
     background-color: var(--color-sage-400);
     color: white;
   }
-  
+
   /* Card styles */
   .card {
     background-color: white;
@@ -269,16 +277,16 @@
     padding: 1.5rem;
     transition: box-shadow 0.2s;
   }
-  
+
   .card:hover {
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
   }
-  
+
   /* Section padding */
   .section-padding {
     padding: 8rem 1rem;
   }
-  
+
   /* Text styles */
   .heading-xl {
     font-size: clamp(2.5rem, 5vw, 4rem);
@@ -286,14 +294,14 @@
     color: var(--color-Neutral-Darkest);
     line-height: 1.1;
   }
-  
+
   .heading-lg {
     font-size: clamp(2rem, 4vw, 3rem);
     font-weight: 700;
     color: var(--color-Neutral-Darkest);
     line-height: 1.2;
   }
-  
+
   .heading-md {
     font-size: clamp(1.5rem, 3vw, 2.25rem);
     font-weight: 700;
@@ -312,7 +320,7 @@
     line-height: 1.3;
   }
   .text-medium {
-    font-size: clamp(0.875rem, 2vw, 1.125rem); 
+    font-size: clamp(0.875rem, 2vw, 1.125rem);
     font-weight: 400;
     color: var(--color-Neutral-Darkest);
   }
@@ -321,7 +329,7 @@
     font-weight: 400;
     color: var(--color-Neutral-Darkest);
   }
-  
+
   .text-body {
     font-size: 1.125rem;
     color: var(--color-Neutral-Darkest);
@@ -331,106 +339,290 @@
 
 @layer utilities {
   /* Font Family utilities */
-  .font-aeonik { font-family: var(--font-family-aeonik); }
-  .font-sans { font-family: var(--font-family-sans); }
-  .font-arabic { font-family: var(--font-family-arabic); }
-  
-  /* Aeonik Weight utilities (matching your design system) */
-  .font-aeonik-thin { font-family: var(--font-family-aeonik); font-weight: 100; }
-  .font-aeonik-air { font-family: var(--font-family-aeonik); font-weight: 200; }
-  .font-aeonik-light { font-family: var(--font-family-aeonik); font-weight: 300; }
-  .font-aeonik-regular { font-family: var(--font-family-aeonik); font-weight: 400; }
-  .font-aeonik-medium { font-family: var(--font-family-aeonik); font-weight: 500; }
-  .font-aeonik-bold { font-family: var(--font-family-aeonik); font-weight: 700; }
-  .font-aeonik-black { font-family: var(--font-family-aeonik); font-weight: 900; }
-  
-  /* Color utilities for Sage theme */
-  .text-sage-50 { color: var(--color-sage-50); }
-  .text-sage-100 { color: var(--color-sage-100); }
-  .text-sage-200 { color: var(--color-sage-200); }
-  .text-sage-300 { color: var(--color-sage-300); }
-  .text-sage-400 { color: var(--color-sage-400); }
-  .text-sage-500 { color: var(--color-sage-500); }
-  .text-sage-600 { color: var(--color-sage-600); }
-  .text-sage-700 { color: var(--color-sage-700); }
-  .text-sage-800 { color: var(--color-sage-800); }
-  .text-sage-900 { color: var(--color-sage-900); }
+  .font-aeonik {
+    font-family: var(--font-family-aeonik);
+  }
+  .font-sans {
+    font-family: var(--font-family-sans);
+  }
+  .font-arabic {
+    font-family: var(--font-family-arabic);
+  }
 
-  .text-black { color: var(--color-Neutral-Darkest); }
-  
-  .bg-sage-50 { background-color: var(--color-sage-50); }
-  .bg-sage-100 { background-color: var(--color-sage-100); }
-  .bg-sage-200 { background-color: var(--color-sage-200); }
-  .bg-sage-300 { background-color: var(--color-sage-300); }
-  .bg-sage-400 { background-color: var(--color-sage-400); }
-  .bg-sage-500 { background-color: var(--color-sage-500); }
-  .bg-sage-600 { background-color: var(--color-sage-600); }
-  .bg-sage-700 { background-color: var(--color-sage-700); }
-  .bg-sage-800 { background-color: var(--color-sage-800); }
-  .bg-sage-900 { background-color: var(--color-sage-900); }
-  
-  .border-sage-50 { border-color: var(--color-sage-50); }
-  .border-sage-100 { border-color: var(--color-sage-100); }
-  .border-sage-200 { border-color: var(--color-sage-200); }
-  .border-sage-300 { border-color: var(--color-sage-300); }
-  .border-sage-400 { border-color: var(--color-sage-400); }
-  .border-sage-500 { border-color: var(--color-sage-500); }
-  .border-sage-600 { border-color: var(--color-sage-600); }
-  .border-sage-700 { border-color: var(--color-sage-700); }
-  .border-sage-800 { border-color: var(--color-sage-800); }
-  .border-sage-900 { border-color: var(--color-sage-900); }
-  
-  .text-healthcare-blue { color: var(--color-healthcare-blue); }
-  .text-healthcare-gold { color: var(--color-healthcare-gold); }
-  .bg-healthcare-blue { background-color: var(--color-healthcare-blue); }
-  .bg-healthcare-gold { background-color: var(--color-healthcare-gold); }
-  .border-healthcare-blue { border-color: var(--color-healthcare-blue); }
-  .border-healthcare-gold { border-color: var(--color-healthcare-gold); }
-  
+  /* Aeonik Weight utilities (matching your design system) */
+  .font-aeonik-thin {
+    font-family: var(--font-family-aeonik);
+    font-weight: 100;
+  }
+  .font-aeonik-air {
+    font-family: var(--font-family-aeonik);
+    font-weight: 200;
+  }
+  .font-aeonik-light {
+    font-family: var(--font-family-aeonik);
+    font-weight: 300;
+  }
+  .font-aeonik-regular {
+    font-family: var(--font-family-aeonik);
+    font-weight: 400;
+  }
+  .font-aeonik-medium {
+    font-family: var(--font-family-aeonik);
+    font-weight: 500;
+  }
+  .font-aeonik-bold {
+    font-family: var(--font-family-aeonik);
+    font-weight: 700;
+  }
+  .font-aeonik-black {
+    font-family: var(--font-family-aeonik);
+    font-weight: 900;
+  }
+
+  /* Color utilities for Sage theme */
+  .text-sage-50 {
+    color: var(--color-sage-50);
+  }
+  .text-sage-100 {
+    color: var(--color-sage-100);
+  }
+  .text-sage-200 {
+    color: var(--color-sage-200);
+  }
+  .text-sage-300 {
+    color: var(--color-sage-300);
+  }
+  .text-sage-400 {
+    color: var(--color-sage-400);
+  }
+  .text-sage-500 {
+    color: var(--color-sage-500);
+  }
+  .text-sage-600 {
+    color: var(--color-sage-600);
+  }
+  .text-sage-700 {
+    color: var(--color-sage-700);
+  }
+  .text-sage-800 {
+    color: var(--color-sage-800);
+  }
+  .text-sage-900 {
+    color: var(--color-sage-900);
+  }
+
+  .text-black {
+    color: var(--color-Neutral-Darkest);
+  }
+
+  .bg-sage-50 {
+    background-color: var(--color-sage-50);
+  }
+  .bg-sage-100 {
+    background-color: var(--color-sage-100);
+  }
+  .bg-sage-200 {
+    background-color: var(--color-sage-200);
+  }
+  .bg-sage-300 {
+    background-color: var(--color-sage-300);
+  }
+  .bg-sage-400 {
+    background-color: var(--color-sage-400);
+  }
+  .bg-sage-500 {
+    background-color: var(--color-sage-500);
+  }
+  .bg-sage-600 {
+    background-color: var(--color-sage-600);
+  }
+  .bg-sage-700 {
+    background-color: var(--color-sage-700);
+  }
+  .bg-sage-800 {
+    background-color: var(--color-sage-800);
+  }
+  .bg-sage-900 {
+    background-color: var(--color-sage-900);
+  }
+
+  .border-sage-50 {
+    border-color: var(--color-sage-50);
+  }
+  .border-sage-100 {
+    border-color: var(--color-sage-100);
+  }
+  .border-sage-200 {
+    border-color: var(--color-sage-200);
+  }
+  .border-sage-300 {
+    border-color: var(--color-sage-300);
+  }
+  .border-sage-400 {
+    border-color: var(--color-sage-400);
+  }
+  .border-sage-500 {
+    border-color: var(--color-sage-500);
+  }
+  .border-sage-600 {
+    border-color: var(--color-sage-600);
+  }
+  .border-sage-700 {
+    border-color: var(--color-sage-700);
+  }
+  .border-sage-800 {
+    border-color: var(--color-sage-800);
+  }
+  .border-sage-900 {
+    border-color: var(--color-sage-900);
+  }
+
+  .text-healthcare-blue {
+    color: var(--color-healthcare-blue);
+  }
+  .text-healthcare-gold {
+    color: var(--color-healthcare-gold);
+  }
+  .bg-healthcare-blue {
+    background-color: var(--color-healthcare-blue);
+  }
+  .bg-healthcare-gold {
+    background-color: var(--color-healthcare-gold);
+  }
+  .border-healthcare-blue {
+    border-color: var(--color-healthcare-blue);
+  }
+  .border-healthcare-gold {
+    border-color: var(--color-healthcare-gold);
+  }
+
+  /* Primary Brand Colors */
+  .text-primary-spring {
+    color: var(--color-Primary-Spring);
+  }
+  .text-primary-palm {
+    color: var(--color-Primary-Palm);
+  }
+  .text-primary-scrub {
+    color: var(--color-Primary-Scrub);
+  }
+  .text-primary-black {
+    color: var(--color-Primary-Black);
+  }
+  .text-primary-white {
+    color: var(--color-Primary-White);
+  }
+
+  .bg-primary-spring {
+    background-color: var(--color-Primary-Spring);
+  }
+  .bg-primary-palm {
+    background-color: var(--color-Primary-Palm);
+  }
+  .bg-primary-scrub {
+    background-color: var(--color-Primary-Scrub);
+  }
+  .bg-primary-black {
+    background-color: var(--color-Primary-Black);
+  }
+  .bg-primary-white {
+    background-color: var(--color-Primary-White);
+  }
+
+  /* Secondary Brand Colors */
+  .text-secondary-dark-palm {
+    color: var(--color-Secondary-Dark-Palm);
+  }
+  .text-secondary-light-scrub {
+    color: var(--color-Secondary-Light-Scrub);
+  }
+  .bg-secondary-dark-palm {
+    background-color: var(--color-Secondary-Dark-Palm);
+  }
+  .bg-secondary-light-scrub {
+    background-color: var(--color-Secondary-Light-Scrub);
+  }
+
+  /* Additional Brand Colors */
+  .text-primary-light-sage {
+    color: var(--color-Primary-Light-Sage);
+  }
+  .text-pure-black {
+    color: var(--color-Pure-Black);
+  }
+  .text-pure-white {
+    color: var(--color-Pure-White);
+  }
+  .bg-primary-light-sage {
+    background-color: var(--color-Primary-Light-Sage);
+  }
+  .bg-pure-black {
+    background-color: var(--color-Pure-Black);
+  }
+  .bg-pure-white {
+    background-color: var(--color-Pure-White);
+  }
+
   /* Animation utilities */
   .animate-fade-in {
     animation: var(--animate-fade-in);
   }
-  
+
   .animate-slide-up {
     animation: var(--animate-slide-up);
   }
-  
+
   /* Gradient backgrounds */
   .bg-sage-gradient {
-    background: linear-gradient(135deg, var(--color-sage-400) 0%, var(--color-sage-500) 100%);
+    background: linear-gradient(
+      135deg,
+      var(--color-sage-400) 0%,
+      var(--color-sage-500) 100%
+    );
   }
-  
+
+  .bg-sage-gradient {
+    background: linear-gradient(180deg, var(--color-Primary-Black) 0%, #014740 100%);
+  }
+
   .bg-healthcare-gradient {
-    background: linear-gradient(135deg, var(--color-healthcare-blue) 0%, #1e40af 100%);
+    background: linear-gradient(
+      135deg,
+      var(--color-healthcare-blue) 0%,
+      #1e40af 100%
+    );
   }
 }
 
 /* Keyframes */
 @keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 @keyframes slideUp {
-  0% { 
-    transform: translateY(20px); 
-    opacity: 0; 
+  0% {
+    transform: translateY(20px);
+    opacity: 0;
   }
-  100% { 
-    transform: translateY(0); 
-    opacity: 1; 
+  100% {
+    transform: translateY(0);
+    opacity: 1;
   }
 }
 
 @keyframes slideDown {
-  0% { 
-    transform: translateY(-20px); 
-    opacity: 0; 
+  0% {
+    transform: translateY(-20px);
+    opacity: 0;
   }
-  100% { 
-    transform: translateY(0); 
-    opacity: 1; 
+  100% {
+    transform: translateY(0);
+    opacity: 1;
   }
 }
 
@@ -477,11 +669,11 @@
   .section-padding {
     padding: 2rem 1rem;
   }
-  
+
   .heading-xl {
     font-size: 2.5rem;
   }
-  
+
   .heading-lg {
     font-size: 2rem;
   }

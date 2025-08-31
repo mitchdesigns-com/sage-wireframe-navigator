@@ -1,5 +1,5 @@
 import Button from '@/components/ui/Button'
-import { ArrowRight, Image as ImageIcon } from 'lucide-react'
+import { Image as ImageIcon } from 'lucide-react'
 
 export default function StartJourney() {
   return (
@@ -17,9 +17,7 @@ export default function StartJourney() {
             </p>
 
             {/* CTA Button */}
-            <Button href="/contact" rightIcon={<ArrowRight size={16} />}>
-              Request Free Consultation
-            </Button>
+            <Button href="/contact">Request Free Consultation</Button>
           </div>
 
           {/* Right Content - Large Image */}

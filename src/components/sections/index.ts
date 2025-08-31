@@ -10,7 +10,7 @@ export { default as NewsEvents } from './NewsEvents'
 export { default as Resources } from './Resources'
 export { default as Services } from './Services'
 export { default as StartJourney } from './StartJourney'
-export { default as VisitSaudi } from './VisitSaudi'
+export { default as VisitSaudi } from './ContentWithImage'
 
 // Export types
 export type { HeroTextProps } from './HeroText'

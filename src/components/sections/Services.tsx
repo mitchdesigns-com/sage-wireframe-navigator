@@ -1,102 +1,117 @@
-import { Building, ChevronRight, User, Users } from 'lucide-react'
-import Link from 'next/link'
-import Button from '../ui/Button'
+'use client'
 
-const services = [
+import Image from 'next/image'
+import Button from '../ui/Button'
+import SectionHeader from '../ui/SectionHeader'
+
+const SERVICES = [
   {
-    title: 'Individuals',
+    key: 'individual',
+    label: 'Individuals',
+    imageLabel: '/images/services/01.png',
+    href: '/services/individual',
     description:
-      'We assist patients in navigating their medical journeys abroad.',
-    icon: User,
-    href: '/services/individuals',
-    features: [
-      'Personal medical consultation',
-      'Treatment plan coordination',
-      'Cultural support services',
-      'Recovery assistance',
-    ],
+      'We provide personalized concierge services, wellness programs, and medical treatments for a seamless healthcare journey in Saudi Arabia.',
+    width: 350,
   },
   {
-    title: 'Businesses',
-    description:
-      'Our programs support corporate health initiatives and training.',
-    icon: Building,
+    key: 'businesses',
+    label: 'Businesses',
+    imageLabel: '/images/services/02.png',
     href: '/services/businesses',
-    features: [
-      'Employee wellness programs',
-      'Corporate health packages',
-      'Executive medical services',
-      'Health training programs',
-    ],
+    description:
+      'We offer comprehensive corporate health solutions, including concierge support and preventive care, to enhance employee well-being and productivity.',
+    width: undefined,
   },
   {
-    title: 'Organization',
-    description:
-      'We collaborate with NGOs, universities, and government bodies.',
-    icon: Users,
+    key: 'organizations',
+    label: 'Organization',
+    imageLabel: '/images/services/03.png',
     href: '/services/organizations',
-    features: [
-      'Partnership development',
-      'Resource sharing programs',
-      'Institutional collaborations',
-      'Government partnerships',
-    ],
+    description:
+      'We partner with organizations, governments, and hospitals to build medical tourism ecosystems, enhancing efficiency and global reach through consultancy and training.',
+    width: undefined,
   },
 ]
 
+function ServiceCard({
+  label,
+  imageLabel,
+  href,
+  description,
+  width,
+}: {
+  label: string
+  imageLabel: string
+  href: string
+  description: string
+  width?: number
+}) {
+  return (
+    <div className="flex-1 flex flex-col gap-3 items-center justify-start">
+      <div className="relative inline-grid place-items-start">
+        <Image src={imageLabel} alt="" width={212} height={222} unoptimized />
+      </div>
+
+      <div className="font-aeonik-bold text-primary-black text-center tracking-[-0.32px]">
+        <p className={label === 'Individuals' ? 'whitespace-pre' : undefined}>
+          <span className="font-aeonik-regular text-[20px] leading-[1.5]">
+            for{' '}
+          </span>
+          <span className="text-primary-palm text-[32px] leading-[1.3]">
+            {label}
+          </span>
+        </p>
+      </div>
+
+      {/* Description */}
+      <div
+        className={`font-aeonik-regular text-primary-black text-base leading-[1.5] text-center${
+          width ? ` w-[${width}px]` : ''
+        }`}
+      >
+        <p className="mb-0">{description}</p>
+      </div>
+
+      {/* Learn More Button */}
+      <Button variant="link" href={href} rightIcon={true}>
+        Learn More
+      </Button>
+    </div>
+  )
+}
+
 export default function Services() {
   return (
-    <section className="section-padding bg-white">
-      <div className="container-custom mx-auto">
-        {/* Section Header */}
-        <div className="mb-16 text-center max-w-3xl mx-auto">
-          <div className="text-sage-400 mb-4 text-sm font-medium">
-            Our Services
+    <section className="bg-secondary-dark-palm px-[60px] py-20">
+      <div className="bg-secondary-light-scrub rounded-[40px] p-[60px] max-w-[1392px] mx-auto">
+        <SectionHeader
+          heading="Tailored Services for Every Healthcare Need"
+          description={`At Sage, we serve a diverse clientele, providing the care everyone
+              deserves. Whether you're a patient seeking treatment or a business
+              enhancing employee wellness, we're here to help.`}
+          tagline="Our Services"
+        />
+
+        {/* Service Cards Grid */}
+        <div className="flex flex-col gap-16 items-start justify-start w-full mb-16">
+          <div className="flex gap-12 items-start justify-start w-full">
+            {SERVICES.map((service) => (
+              <ServiceCard
+                key={service.key}
+                label={service.label}
+                imageLabel={service.imageLabel}
+                href={service.href}
+                description={service.description}
+                width={service.width}
+              />
+            ))}
           </div>
-          <h2 className="heading-lg mb-6">
-            Tailored Services for Every Healthcare Need
-          </h2>
-          <p className="text-body mx-auto max-w-5xl">
-            At Sage, we cater to a diverse clientele, ensuring that every
-            individual receives the care they deserve. Whether you are a patient
-            seeking treatment or a business looking to enhance employee
-            wellness, we are here to support you.
-          </p>
         </div>
 
-        {/* Service Cards */}
-        <div className="mb-12 grid grid-cols-1 gap-8 md:grid-cols-3">
-          {services.map((service) => {
-            const Icon = service.icon
-            return (
-              <div key={service.title} className="group text-center">
-                {/* Icon */}
-                <div className="bg-sage-100 group-hover:bg-sage-400 mb-6 inline-flex h-16 w-16 items-center justify-center rounded-full transition-colors duration-200 group-hover:text-white">
-                  <Icon size={32} />
-                </div>
-
-                {/* Content */}
-                <h3 className="mb-4 heading-4">
-                  <span className="text-large">for</span> {service.title}
-                </h3>
-                <p className="mb-6 text-gray-600">{service.description}</p>
-
-                {/* Learn More Link */}
-                <Link
-                  href={service.href}
-                  className="hover:gap-3 group inline-flex items-center gap-2 font-medium transition-all"
-                >
-                  <span>Learn More</span>
-                  <ChevronRight />
-                </Link>
-              </div>
-            )
-          })}
-        </div>
-
-        {/* Explore Services CTA */}
-        <div className="text-center pt-10">
-          <Button href="/services" variant="primary">
+        {/* Explore Services CTA Button */}
+        <div className="flex justify-center">
+          <Button variant="primary" href="/services" rightIcon={true}>
             Explore Our Services
           </Button>
         </div>

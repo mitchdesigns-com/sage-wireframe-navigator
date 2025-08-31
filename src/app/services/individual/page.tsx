@@ -172,8 +172,8 @@ export default function IndividualsPage() {
 
                 <div className="flex gap-6 items-center">
                   <Button
-                    variant="outline"
-                    size="lg"
+                    //  variant="outline"
+                    size="large"
                     className="bg-[rgba(0,4,4,0.05)] border-none hover:bg-gray-100 flex items-center gap-3"
                   >
                     Request Free Consultation
@@ -244,8 +244,8 @@ export default function IndividualsPage() {
 
                 <div className="flex gap-6 items-center">
                   <Button
-                    variant="outline"
-                    size="lg"
+                    //  variant="outline"
+                    size="large"
                     className="bg-[rgba(0,4,4,0.05)] border-none hover:bg-gray-100 flex items-center gap-3"
                   >
                     Request Free Consultation
@@ -282,8 +282,8 @@ export default function IndividualsPage() {
                   </div>
                 </div>
                 <Button
-                  variant="outline"
-                  size="lg"
+                  //  variant="outline"
+                  size="large"
                   className="bg-[rgba(0,4,4,0.05)] border-none hover:bg-gray-100 flex items-center gap-3"
                 >
                   Request Free Consultation
@@ -470,8 +470,8 @@ export default function IndividualsPage() {
             </p>
             <Button
               href="/contact"
-              variant="outline"
-              size="lg"
+              //  variant="outline"
+              size="large"
               className="bg-[rgba(0,4,4,0.05)] border-none hover:bg-gray-100"
             >
               Contact us
@@ -496,8 +496,8 @@ export default function IndividualsPage() {
                 </p>
                 <Button
                   href="/contact"
-                  variant="outline"
-                  size="lg"
+                  //  variant="outline"
+                  size="large"
                   className="bg-[rgba(0,4,4,0.05)] border-none hover:bg-gray-100 flex items-center gap-3"
                 >
                   Request Free Consultation

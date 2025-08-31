@@ -19,15 +19,18 @@
   "dependencies": {
     "clsx": "^2.1.1",
     "framer-motion": "^11.0.0",
+    "locomotive-scroll": "^4.1.4",
     "lucide-react": "^0.518.0",
     "next": "15.3.2",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "swiper": "^11.2.10"
   },
   "devDependencies": {
     "@cloudflare/next-on-pages": "^1.13.5",
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4.1.7",
+    "@types/locomotive-scroll": "^4.1.4",
     "@types/node": "^20",
     "@types/react": "^19.1.5",
     "@types/react-dom": "^19",

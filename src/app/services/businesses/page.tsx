@@ -1,24 +1,15 @@
 'use client'
 
-import Button from '@/components/ui/Button'
 import {
-  ChevronRight,
-  Building2,
-  CheckCircle2,
-  HeartHandshake,
-  Plane,
-  Utensils,
-  ShieldCheck,
-  GraduationCap,
-  Briefcase,
-  Users,
-  Award,
-  TrendingUp,
-  Shield,
-  Clock,
-  CheckCircle,
   ArrowLeft,
-  ArrowRight
+  ArrowRight,
+  Award,
+  CheckCircle,
+  ChevronRight,
+  Clock,
+  Shield,
+  TrendingUp,
+  Users,
 } from 'lucide-react'
 import Image from 'next/image'
 import { useState } from 'react'
