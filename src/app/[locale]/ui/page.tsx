@@ -1,6 +1,6 @@
 import React from 'react'
-import Button from '../../components/ui/Button'
-import VerticalSlider from '../../components/ui/VerticalSlider'
+import Button from '@/components/ui/Button'
+import VerticalSlider from '@/components/ui/VerticalSlider'
 
 export default function page() {
   return (

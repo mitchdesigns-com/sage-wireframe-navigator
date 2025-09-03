@@ -9,7 +9,7 @@ import {
   Twitter,
   Play,
 } from 'lucide-react'
-import { HeroText, JoinNetwork } from '../../components/sections'
+import { HeroText, JoinNetwork } from '@/components/sections'
 import Image from 'next/image'
 import { useState } from 'react'
 

@@ -112,6 +112,62 @@
   font-style: italic;
   font-display: swap;
 }
+/* GE SS ARABIC Font Declarations */
+@font-face {
+  font-family: 'GE-SS';
+  src: url('/fonts/GE-SS/GE_SS_Two_Light.otf') format('opentype');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'GE-SS';
+  src: url('/fonts/GE-SS/GE_SS_Two_Light-1.otf') format('opentype');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'GE-SS';
+  src: url('/fonts/GE-SS/GE_SS_Two_Light-1-2.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'GE-SS';
+  src: url('/fonts/GE-SS/GE_SS_Two_Light(1).otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'GE-SS';
+  src: url('/fonts/GE-SS/GE_SS_Two_Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'GE-SS';
+  src: url('/fonts/GE-SS/GE_SS_Two_Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'GE-SS';
+  src: url('/fonts/GE-SS/GE_SS_Two_Bold.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
 
 /* Tailwind v4 Theme Configuration */
 @theme {
@@ -130,7 +186,7 @@
   --color-Neutral-Darkest: #000404;
 
   --color-Primary-Spring: #caf48e;
-  --color-Primary-Spring-Med: #DAF7AF;
+  --color-Primary-Spring-Med: #daf7af;
   --color-Primary-Palm: #025850;
   --color-Primary-Scrub: #6cbeb8;
   --color-Secondary-Dark-Palm: #013530;
@@ -149,7 +205,7 @@
   /* Font Families */
   --font-family-aeonik: 'Aeonik', system-ui, sans-serif;
   --font-family-sans: 'Aeonik', Inter, system-ui, sans-serif;
-  --font-family-arabic: 'Noto Sans Arabic', 'Aeonik', system-ui, sans-serif;
+  --font-family-arabic: 'GE-SS', system-ui, sans-serif;
 
   /* Custom Spacing */
   --spacing-18: 4.5rem;
@@ -582,7 +638,11 @@
   }
 
   .bg-sage-gradient {
-    background: linear-gradient(180deg, var(--color-Primary-Black) 0%, #014740 100%);
+    background: linear-gradient(
+      180deg,
+      var(--color-Primary-Black) 0%,
+      #014740 100%
+    );
   }
 
   .bg-healthcare-gradient {

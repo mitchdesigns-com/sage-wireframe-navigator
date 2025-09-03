@@ -1,4 +1,4 @@
-import type { Metadata, Viewport } from 'next'
+import type { Viewport } from 'next'
 import '../globals.css'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
@@ -7,6 +7,7 @@ import { hasLocale, Locale, NextIntlClientProvider } from 'next-intl'
 import { routing } from '../../i18n/routing'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
 import NotFound from './[...rest]/page'
+import clsx from 'clsx'
 type Props = {
   children: ReactNode
   params: Promise<{ locale: Locale }>
@@ -107,7 +108,13 @@ export default async function LocaleLayout({ children, params }: Props) {
         />
         <meta name="view-transition" content="same-origin" />
       </head>
-      <body className={`antialiased`}>
+      <body
+        className={clsx(
+          'flex h-full flex-col overflow-x-hidden antialiased',
+          locale === 'ar' ? 'font-GE-SS' : 'font-aeonik'
+        )}
+        suppressHydrationWarning
+      >
         <NextIntlClientProvider>
           {' '}
           <div className="flex flex-col">

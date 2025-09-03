@@ -16,7 +16,7 @@ import {
 } from 'lucide-react'
 import Image from 'next/image'
 import { useState } from 'react'
-import { JoinNetwork } from '../../../components/sections'
+import { JoinNetwork } from '@/components/sections'
 
 // Services data
 const healthcareFeatures = [

@@ -1,6 +1,7 @@
 'use client'
 
 import Button from '@/components/ui/Button'
+import Image from 'next/image'
 
 interface Benefit {
   icon: React.ReactNode
@@ -86,9 +87,13 @@ export default function ContentWithImage({
           {/* Image */}
           <div>
             {image?.src ? (
-              <img
-                src={image.src}
-                alt={image.alt || ''}
+              <Image
+                fill
+                src={
+                  // image?.src ||
+                  'https://images.pexels.com/photos/40568/medical-appointment-doctor-healthcare-40568.jpeg?_gl=1*1opxphv*_ga*MTMzMjIyNDcwLjE3NTA1NzkyODI.*_ga_8JE65Q40S6*czE3NTY5MTAxNTAkbzIkZzEkdDE3NTY5MTAxNTQkajU2JGwwJGgw'
+                }
+                alt={image?.alt || ''}
                 className="w-full h-auto rounded-2xl object-cover"
               />
             ) : (
