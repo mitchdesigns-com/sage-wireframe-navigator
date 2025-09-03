@@ -1,6 +1,7 @@
 import React from 'react'
 import Button from '@/components/ui/Button'
 import VerticalSlider from '@/components/ui/VerticalSlider'
+export const runtime = 'edge'
 
 export default function page() {
   return (

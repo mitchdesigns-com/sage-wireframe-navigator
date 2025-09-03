@@ -1,3 +1,5 @@
+export const runtime = 'edge'
+
 export default function BlogPage() {
   return (
     <div className="min-h-screen bg-white">
@@ -6,11 +8,14 @@ export default function BlogPage() {
         <p className="text-xl text-gray-600 mb-12">
           Latest trends and tips in healthcare, wellness, and medical tourism.
         </p>
-        
+
         <div className="bg-gray-50 p-8 rounded-lg">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-4">Coming Soon</h2>
+          <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+            Coming Soon
+          </h2>
           <p className="text-gray-600">
-            Our healthcare blog with expert insights and industry updates is launching soon.
+            Our healthcare blog with expert insights and industry updates is
+            launching soon.
           </p>
         </div>
       </div>

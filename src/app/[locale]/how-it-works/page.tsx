@@ -1,109 +1,133 @@
 import Link from 'next/link'
-import { MessageCircle, FileText, Heart, CheckCircle, Clock, User, Calendar, Phone } from 'lucide-react'
+import {
+  MessageCircle,
+  FileText,
+  Heart,
+  CheckCircle,
+  Clock,
+  User,
+  Calendar,
+  Phone,
+} from 'lucide-react'
+export const runtime = 'edge'
 
 const detailedSteps = [
   {
     number: '1',
     title: 'Initial Consultation',
     subtitle: 'Understanding Your Needs',
-    description: 'Connect with our team to discuss your healthcare needs and medical history. We provide personalized options tailored specifically to your situation.',
+    description:
+      'Connect with our team to discuss your healthcare needs and medical history. We provide personalized options tailored specifically to your situation.',
     icon: MessageCircle,
     duration: '1-2 days',
     details: [
       'Comprehensive health assessment review',
       'Discussion of treatment preferences and concerns',
       'Cultural and language support identification',
-      'Initial cost estimation and insurance verification'
+      'Initial cost estimation and insurance verification',
     ],
-    whatToExpect: 'A dedicated healthcare coordinator will contact you within 24 hours to schedule your consultation.'
+    whatToExpect:
+      'A dedicated healthcare coordinator will contact you within 24 hours to schedule your consultation.',
   },
   {
     number: '2',
     title: 'Treatment Planning',
     subtitle: 'Personalized Care Coordination',
-    description: 'Receive a detailed treatment plan outlining your options. Our team coordinates every detail for your comfort and peace of mind.',
+    description:
+      'Receive a detailed treatment plan outlining your options. Our team coordinates every detail for your comfort and peace of mind.',
     icon: FileText,
     duration: '3-5 days',
     details: [
       'Specialist physician recommendations and appointments',
       'Treatment timeline and procedure scheduling',
       'Accommodation and travel arrangements',
-      'Pre-treatment preparation guidelines'
+      'Pre-treatment preparation guidelines',
     ],
-    whatToExpect: 'You\'ll receive a comprehensive treatment plan with all logistics handled by our team.'
+    whatToExpect:
+      "You'll receive a comprehensive treatment plan with all logistics handled by our team.",
   },
   {
     number: '3',
     title: 'Undergoing Treatment',
     subtitle: 'World-Class Medical Care',
-    description: 'Experience world-class medical care in a supportive environment. Our team is available to assist you throughout your treatment journey.',
+    description:
+      'Experience world-class medical care in a supportive environment. Our team is available to assist you throughout your treatment journey.',
     icon: Heart,
     duration: 'Variable by treatment',
     details: [
       'Priority access to leading medical specialists',
       '24/7 patient support and coordination',
       'Real-time family communication and updates',
-      'Cultural liaison and translation services'
+      'Cultural liaison and translation services',
     ],
-    whatToExpected: 'Continuous support ensures you feel comfortable and informed throughout your treatment.'
+    whatToExpected:
+      'Continuous support ensures you feel comfortable and informed throughout your treatment.',
   },
   {
     number: '4',
     title: 'Post-Treatment Care',
     subtitle: 'Ongoing Support & Recovery',
-    description: 'Receive ongoing support and follow-up consultations. We ensure your recovery is as smooth as possible with comprehensive aftercare.',
+    description:
+      'Receive ongoing support and follow-up consultations. We ensure your recovery is as smooth as possible with comprehensive aftercare.',
     icon: CheckCircle,
     duration: 'Ongoing as needed',
     details: [
       'Regular follow-up appointments and monitoring',
       'Recovery progress tracking and reporting',
       'Coordination with home country physicians',
-      'Long-term health maintenance guidance'
+      'Long-term health maintenance guidance',
     ],
-    whatToExpected: 'Our relationship continues beyond treatment to ensure your long-term health and wellbeing.'
-  }
+    whatToExpected:
+      'Our relationship continues beyond treatment to ensure your long-term health and wellbeing.',
+  },
 ]
 
 const supportServices = [
   {
     icon: User,
     title: 'Dedicated Care Coordinator',
-    description: 'Your personal healthcare advocate throughout the entire journey'
+    description:
+      'Your personal healthcare advocate throughout the entire journey',
   },
   {
     icon: Calendar,
     title: 'Appointment Management',
-    description: 'Seamless scheduling and coordination of all medical appointments'
+    description:
+      'Seamless scheduling and coordination of all medical appointments',
   },
   {
     icon: Phone,
     title: '24/7 Support Hotline',
-    description: 'Round-the-clock assistance for any questions or emergencies'
+    description: 'Round-the-clock assistance for any questions or emergencies',
   },
   {
     icon: Heart,
     title: 'Family Support Services',
-    description: 'Assistance and accommodation for accompanying family members'
-  }
+    description: 'Assistance and accommodation for accompanying family members',
+  },
 ]
 
 const faqs = [
   {
     question: 'How long does the entire process typically take?',
-    answer: 'The timeline varies depending on your specific treatment needs. Simple procedures may require 1-2 weeks total, while complex treatments could take several weeks to months. Your care coordinator will provide a detailed timeline during the planning phase.'
+    answer:
+      'The timeline varies depending on your specific treatment needs. Simple procedures may require 1-2 weeks total, while complex treatments could take several weeks to months. Your care coordinator will provide a detailed timeline during the planning phase.',
   },
   {
     question: 'What if I need emergency care during my visit?',
-    answer: 'All our partner hospitals have world-class emergency departments. Your care coordinator will provide emergency contact information, and our 24/7 support hotline ensures immediate assistance when needed.'
+    answer:
+      'All our partner hospitals have world-class emergency departments. Your care coordinator will provide emergency contact information, and our 24/7 support hotline ensures immediate assistance when needed.',
   },
   {
     question: 'Can my family accompany me during treatment?',
-    answer: 'Absolutely. We encourage family support and provide assistance with visa arrangements, accommodation, and local support services for accompanying family members.'
+    answer:
+      'Absolutely. We encourage family support and provide assistance with visa arrangements, accommodation, and local support services for accompanying family members.',
   },
   {
     question: 'How do you handle language barriers?',
-    answer: 'Our team includes multilingual coordinators and we provide professional medical interpretation services. Many of our partner physicians also speak multiple languages.'
-  }
+    answer:
+      'Our team includes multilingual coordinators and we provide professional medical interpretation services. Many of our partner physicians also speak multiple languages.',
+  },
 ]
 
 export default function HowItWorksPage() {

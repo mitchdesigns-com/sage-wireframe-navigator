@@ -1,26 +1,31 @@
 import Link from 'next/link'
 import { MapPin, Plane, Globe, Star, Award, Heart } from 'lucide-react'
+export const runtime = 'edge'
 
 const highlights = [
   {
     icon: Award,
     title: 'World-Class Medical Facilities',
-    description: 'State-of-the-art hospitals equipped with the latest technology and internationally trained specialists.',
+    description:
+      'State-of-the-art hospitals equipped with the latest technology and internationally trained specialists.',
   },
   {
     icon: Plane,
     title: 'Seamless Travel Experience',
-    description: 'Easy visa processes, direct flights from major cities, and comprehensive travel support services.',
+    description:
+      'Easy visa processes, direct flights from major cities, and comprehensive travel support services.',
   },
   {
     icon: Globe,
     title: 'Rich Cultural Heritage',
-    description: 'Immerse yourself in Saudi Arabia\'s vibrant culture, history, and hospitality during your visit.',
+    description:
+      "Immerse yourself in Saudi Arabia's vibrant culture, history, and hospitality during your visit.",
   },
   {
     icon: Heart,
     title: 'Personalized Care',
-    description: 'Dedicated patient coordinators ensuring culturally sensitive and personalized healthcare experiences.',
+    description:
+      'Dedicated patient coordinators ensuring culturally sensitive and personalized healthcare experiences.',
   },
 ]
 
@@ -40,7 +45,7 @@ const facilities = [
   {
     name: 'Saudi German Hospital',
     location: 'Multiple Locations',
-    specialties: ['Orthopedics', 'Neurology', 'Women\'s Health'],
+    specialties: ['Orthopedics', 'Neurology', "Women's Health"],
     accreditation: 'International Standards',
   },
 ]

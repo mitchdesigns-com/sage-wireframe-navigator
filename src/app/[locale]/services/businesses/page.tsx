@@ -1,4 +1,5 @@
 'use client'
+export const runtime = 'edge'
 
 import {
   ArrowLeft,
@@ -16,56 +17,132 @@ import { useState } from 'react'
 
 // Icons for services
 const LocalHospitalIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M2 2H14V14H2V2Z" stroke="currentColor" strokeWidth="1.5"/>
-    <path d="M7 5V11M5 7H11" stroke="currentColor" strokeWidth="1.5"/>
+  <svg
+    width="16"
+    height="16"
+    viewBox="0 0 16 16"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path d="M2 2H14V14H2V2Z" stroke="currentColor" strokeWidth="1.5" />
+    <path d="M7 5V11M5 7H11" stroke="currentColor" strokeWidth="1.5" />
   </svg>
 )
 
 const VerifiedIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M8 1L10.163 2.506L12.899 2.101L13.304 4.837L14.81 7L13.304 9.163L12.899 11.899L10.163 11.494L8 13L5.837 11.494L3.101 11.899L2.696 9.163L1.19 7L2.696 4.837L3.101 2.101L5.837 2.506L8 1Z" stroke="currentColor" strokeWidth="1.5"/>
-    <path d="M5.5 8L7 9.5L10.5 6" stroke="currentColor" strokeWidth="1.5"/>
+  <svg
+    width="16"
+    height="16"
+    viewBox="0 0 16 16"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M8 1L10.163 2.506L12.899 2.101L13.304 4.837L14.81 7L13.304 9.163L12.899 11.899L10.163 11.494L8 13L5.837 11.494L3.101 11.899L2.696 9.163L1.19 7L2.696 4.837L3.101 2.101L5.837 2.506L8 1Z"
+      stroke="currentColor"
+      strokeWidth="1.5"
+    />
+    <path d="M5.5 8L7 9.5L10.5 6" stroke="currentColor" strokeWidth="1.5" />
   </svg>
 )
 
 const ChronicIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M8 2V8L11 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-    <circle cx="8" cy="8" r="6" stroke="currentColor" strokeWidth="1.5"/>
+  <svg
+    width="16"
+    height="16"
+    viewBox="0 0 16 16"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M8 2V8L11 11"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+    />
+    <circle cx="8" cy="8" r="6" stroke="currentColor" strokeWidth="1.5" />
   </svg>
 )
 
 const TravelIcon = () => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M21 16V8C21 7.45 20.55 7 20 7H16C16 5.9 15.1 5 14 5H10C8.9 5 8 5.9 8 7H4C3.45 7 3 7.45 3 8V16C3 16.55 3.45 17 4 17H20C20.55 17 21 16.55 21 16ZM10 7H14V9H10V7Z" fill="currentColor"/>
+  <svg
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M21 16V8C21 7.45 20.55 7 20 7H16C16 5.9 15.1 5 14 5H10C8.9 5 8 5.9 8 7H4C3.45 7 3 7.45 3 8V16C3 16.55 3.45 17 4 17H20C20.55 17 21 16.55 21 16ZM10 7H14V9H10V7Z"
+      fill="currentColor"
+    />
   </svg>
 )
 
 const NutritionIcon = () => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M11 9H9V2H7V9H5V2H3V9C3 11.12 4.66 12.84 6.75 12.97V22H9.25V12.97C11.34 12.84 13 11.12 13 9V2H11V9ZM16 6V14H18.5V22H21V2C18.24 2 16 4.24 16 6Z" fill="currentColor"/>
+  <svg
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M11 9H9V2H7V9H5V2H3V9C3 11.12 4.66 12.84 6.75 12.97V22H9.25V12.97C11.34 12.84 13 11.12 13 9V2H11V9ZM16 6V14H18.5V22H21V2C18.24 2 16 4.24 16 6Z"
+      fill="currentColor"
+    />
   </svg>
 )
 
 const HealthSafetyIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M8 1L3 3V7.5C3 10.5 5.25 13.34 8 14C10.75 13.34 13 10.5 13 7.5V3L8 1Z" stroke="currentColor" strokeWidth="1.5"/>
-    <path d="M6 8L7.5 9.5L10 7" stroke="currentColor" strokeWidth="1.5"/>
+  <svg
+    width="16"
+    height="16"
+    viewBox="0 0 16 16"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M8 1L3 3V7.5C3 10.5 5.25 13.34 8 14C10.75 13.34 13 10.5 13 7.5V3L8 1Z"
+      stroke="currentColor"
+      strokeWidth="1.5"
+    />
+    <path d="M6 8L7.5 9.5L10 7" stroke="currentColor" strokeWidth="1.5" />
   </svg>
 )
 
 const MedicalServicesIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M11 4V2C11 1.45 10.55 1 10 1H6C5.45 1 5 1.45 5 2V4H2V14C2 14.55 2.45 15 3 15H13C13.55 15 14 14.55 14 13V4H11ZM6 2H10V4H6V2Z" stroke="currentColor" strokeWidth="1.5"/>
-    <path d="M7 7V11M5 9H11" stroke="currentColor" strokeWidth="1.5"/>
+  <svg
+    width="16"
+    height="16"
+    viewBox="0 0 16 16"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M11 4V2C11 1.45 10.55 1 10 1H6C5.45 1 5 1.45 5 2V4H2V14C2 14.55 2.45 15 3 15H13C13.55 15 14 14.55 14 13V4H11ZM6 2H10V4H6V2Z"
+      stroke="currentColor"
+      strokeWidth="1.5"
+    />
+    <path d="M7 7V11M5 9H11" stroke="currentColor" strokeWidth="1.5" />
   </svg>
 )
 
 const MedicalInfoIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="8" cy="8" r="6" stroke="currentColor" strokeWidth="1.5"/>
-    <path d="M8 7V11M8 5V5.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+  <svg
+    width="16"
+    height="16"
+    viewBox="0 0 16 16"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <circle cx="8" cy="8" r="6" stroke="currentColor" strokeWidth="1.5" />
+    <path
+      d="M8 7V11M8 5V5.5"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+    />
   </svg>
 )
 
@@ -73,79 +150,81 @@ const MedicalInfoIcon = () => (
 const healthcareFeatures = [
   {
     icon: LocalHospitalIcon,
-    title: 'Expert appointments at leading Saudi hospitals.'
+    title: 'Expert appointments at leading Saudi hospitals.',
   },
   {
     icon: VerifiedIcon,
-    title: 'Second opinions from renowned specialists.'
+    title: 'Second opinions from renowned specialists.',
   },
   {
     icon: ChronicIcon,
-    title: 'Comprehensive chronic illness management and post-operative care.'
-  }
+    title: 'Comprehensive chronic illness management and post-operative care.',
+  },
 ]
 
 const conciergeFeatures = [
   {
     icon: TravelIcon,
-    title: 'Travel coordination for stress-free medical journeys.'
+    title: 'Travel coordination for stress-free medical journeys.',
   },
   {
     icon: TravelIcon,
-    title: 'Visa assistance to ensure smooth international travel.'
+    title: 'Visa assistance to ensure smooth international travel.',
   },
   {
     icon: NutritionIcon,
-    title: 'Personalized dietary accommodations for optimal health.'
-  }
+    title: 'Personalized dietary accommodations for optimal health.',
+  },
 ]
 
 const consultationFeatures = [
   {
     icon: HealthSafetyIcon,
-    title: 'Compliance-focused training for a healthier workplace.'
+    title: 'Compliance-focused training for a healthier workplace.',
   },
   {
     icon: MedicalServicesIcon,
-    title: 'Expert consultation to streamline healthcare processes.'
+    title: 'Expert consultation to streamline healthcare processes.',
   },
   {
     icon: MedicalInfoIcon,
-    title: 'Empower your team with essential medical knowledge.'
-  }
+    title: 'Empower your team with essential medical knowledge.',
+  },
 ]
 
 const whyChooseFeatures = [
   {
     icon: Users,
     title: 'Dedicated Case Management',
-    description: 'Personalized support for every step of your healthcare journey.'
+    description:
+      'Personalized support for every step of your healthcare journey.',
   },
   {
     icon: Award,
     title: 'Access to Leading Experts',
-    description: 'Connect with top specialists and renowned medical professionals.'
+    description:
+      'Connect with top specialists and renowned medical professionals.',
   },
   {
     icon: TrendingUp,
     title: 'Streamlined Coordination',
-    description: 'Seamless integration of all medical and travel arrangements.'
+    description: 'Seamless integration of all medical and travel arrangements.',
   },
   {
     icon: Shield,
     title: 'Comprehensive Aftercare',
-    description: 'Ongoing support and follow-up care for optimal recovery.'
+    description: 'Ongoing support and follow-up care for optimal recovery.',
   },
   {
     icon: Clock,
     title: 'Time-Efficient Solutions',
-    description: 'Fast-track appointments and priority healthcare access.'
+    description: 'Fast-track appointments and priority healthcare access.',
   },
   {
     icon: CheckCircle,
     title: 'Quality Assurance',
-    description: 'Rigorous standards ensuring the highest quality of care.'
-  }
+    description: 'Rigorous standards ensuring the highest quality of care.',
+  },
 ]
 
 // Testimonials data
@@ -154,8 +233,8 @@ const testimonials = [
     logo: 'https://via.placeholder.com/120x48/e5e7eb/9ca3af?text=Logo',
     quote: '"Sage has streamlined our medical travel process significantly."',
     author: 'John Doe',
-    role: 'HR Director, XYZ Corp'
-  }
+    role: 'HR Director, XYZ Corp',
+  },
 ]
 
 export default function BusinessesPage() {
@@ -178,7 +257,11 @@ export default function BusinessesPage() {
               </div>
               <div className="flex-1">
                 <p className="text-[#000404] text-[18px] leading-[1.5]">
-                  At Sage, we are your strategic partner in enhancing employee wellness and optimizing productivity through tailored healthcare solutions. Discover how our comprehensive medical travel and concierge services can elevate your organization's health management.
+                  At Sage, we are your strategic partner in enhancing employee
+                  wellness and optimizing productivity through tailored
+                  healthcare solutions. Discover how our comprehensive medical
+                  travel and concierge services can elevate your organization's
+                  health management.
                 </p>
               </div>
             </div>
@@ -201,7 +284,10 @@ export default function BusinessesPage() {
                       Healthcare
                     </h2>
                     <p className="text-[#000404] text-[18px] leading-[1.5]">
-                      Sage connects your employees with top-tier healthcare in Saudi Arabia. Our dedicated case managers ensure seamless communication and personalized care throughout the medical journey.
+                      Sage connects your employees with top-tier healthcare in
+                      Saudi Arabia. Our dedicated case managers ensure seamless
+                      communication and personalized care throughout the medical
+                      journey.
                     </p>
                   </div>
                 </div>
@@ -266,7 +352,11 @@ export default function BusinessesPage() {
                       Healthcare Concierge
                     </h2>
                     <p className="text-[#000404] text-[18px] leading-[1.5]">
-                      Our concierge services simplify medical travel for your employees, ensuring a seamless experience from start to finish. We handle everything from visa assistance to wellness recovery, allowing your team to focus on what matters most.
+                      Our concierge services simplify medical travel for your
+                      employees, ensuring a seamless experience from start to
+                      finish. We handle everything from visa assistance to
+                      wellness recovery, allowing your team to focus on what
+                      matters most.
                     </p>
                   </div>
                 </div>
@@ -313,7 +403,10 @@ export default function BusinessesPage() {
                       Consultation & Training
                     </h2>
                     <p className="text-[#000404] text-[18px] leading-[1.5]">
-                      Our expert-led consultation and training programs equip your team with essential skills for managing healthcare efficiently. Tailored to meet compliance standards, we foster healthier workplaces that enhance productivity.
+                      Our expert-led consultation and training programs equip
+                      your team with essential skills for managing healthcare
+                      efficiently. Tailored to meet compliance standards, we
+                      foster healthier workplaces that enhance productivity.
                     </p>
                   </div>
                 </div>
@@ -427,15 +520,25 @@ export default function BusinessesPage() {
                     ))}
                   </div>
                   <div className="flex gap-4">
-                    <button 
+                    <button
                       className="bg-[#f2f2f2] p-3 rounded-full border border-white hover:bg-gray-300 transition-colors"
-                      onClick={() => setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length)}
+                      onClick={() =>
+                        setCurrentTestimonial(
+                          (prev) =>
+                            (prev - 1 + testimonials.length) %
+                            testimonials.length
+                        )
+                      }
                     >
                       <ArrowLeft size={24} className="text-[#000404]" />
                     </button>
-                    <button 
+                    <button
                       className="bg-[#f2f2f2] p-3 rounded-full border border-white hover:bg-gray-300 transition-colors"
-                      onClick={() => setCurrentTestimonial((prev) => (prev + 1) % testimonials.length)}
+                      onClick={() =>
+                        setCurrentTestimonial(
+                          (prev) => (prev + 1) % testimonials.length
+                        )
+                      }
                     >
                       <ArrowRight size={24} className="text-[#000404]" />
                     </button>
@@ -460,7 +563,10 @@ export default function BusinessesPage() {
                       Why Choose Sage for Your Business Needs
                     </h2>
                     <p className="text-[#000404] text-[18px] leading-[1.5]">
-                      Partnering with Sage means prioritizing your employees' health while enhancing your organization's efficiency. Experience tailored solutions that drive productivity and satisfaction.
+                      Partnering with Sage means prioritizing your employees'
+                      health while enhancing your organization's efficiency.
+                      Experience tailored solutions that drive productivity and
+                      satisfaction.
                     </p>
                   </div>
                 </div>
@@ -541,7 +647,9 @@ export default function BusinessesPage() {
                   Start Your Journey Today
                 </h2>
                 <p className="text-[#000404] text-[18px] leading-[1.5]">
-                  Transform your organization's healthcare approach with Sage's comprehensive business solutions. Let us help you create a healthier, more productive workforce.
+                  Transform your organization's healthcare approach with Sage's
+                  comprehensive business solutions. Let us help you create a
+                  healthier, more productive workforce.
                 </p>
                 <button className="bg-[rgba(0,4,4,0.05)] px-6 py-2.5 rounded-[100px] flex items-center gap-3 text-[#000404] font-medium text-base leading-[1.5] hover:bg-[rgba(0,4,4,0.1)] transition-colors">
                   Request Free Consultation

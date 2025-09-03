@@ -1,11 +1,28 @@
 import Link from 'next/link'
 import { MapPin, Award, Users, Phone, Star } from 'lucide-react'
+export const runtime = 'edge'
 
 const networkStats = [
-  { number: '50+', label: 'Partner Hospitals', description: 'Accredited medical facilities' },
-  { number: '500+', label: 'Specialist Doctors', description: 'Board-certified physicians' },
-  { number: '25+', label: 'Medical Specialties', description: 'Comprehensive care options' },
-  { number: '15+', label: 'Cities Covered', description: 'Nationwide healthcare network' },
+  {
+    number: '50+',
+    label: 'Partner Hospitals',
+    description: 'Accredited medical facilities',
+  },
+  {
+    number: '500+',
+    label: 'Specialist Doctors',
+    description: 'Board-certified physicians',
+  },
+  {
+    number: '25+',
+    label: 'Medical Specialties',
+    description: 'Comprehensive care options',
+  },
+  {
+    number: '15+',
+    label: 'Cities Covered',
+    description: 'Nationwide healthcare network',
+  },
 ]
 
 const hospitals = [
@@ -13,7 +30,12 @@ const hospitals = [
     name: 'King Faisal Specialist Hospital & Research Centre',
     location: 'Riyadh',
     type: 'Tertiary Care',
-    specialties: ['Oncology', 'Organ Transplant', 'Genetics', 'Cardiac Surgery'],
+    specialties: [
+      'Oncology',
+      'Organ Transplant',
+      'Genetics',
+      'Cardiac Surgery',
+    ],
     accreditations: ['JCI', 'CBAHI', 'CAP'],
     established: '1975',
     beds: '1,095',
@@ -31,7 +53,7 @@ const hospitals = [
     name: 'Saudi German Hospital',
     location: 'Jeddah',
     type: 'Private Hospital',
-    specialties: ['Orthopedics', 'Neurology', 'Women\'s Health', 'Diabetes'],
+    specialties: ['Orthopedics', 'Neurology', "Women's Health", 'Diabetes'],
     accreditations: ['JCI', 'ISO 9001'],
     established: '1988',
     beds: '350',

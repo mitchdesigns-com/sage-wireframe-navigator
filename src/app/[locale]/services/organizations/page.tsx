@@ -9,127 +9,142 @@ import {
   TrendingUp,
   Target,
 } from 'lucide-react'
+export const runtime = 'edge'
 
 const organizationTypes = [
   {
     icon: GraduationCap,
     title: 'Academic Institutions',
-    description: 'Universities and research institutions seeking healthcare collaboration and medical education partnerships.',
+    description:
+      'Universities and research institutions seeking healthcare collaboration and medical education partnerships.',
     programs: [
       'Medical research collaboration programs',
       'Student exchange and training opportunities',
       'Faculty development initiatives',
-      'Joint degree and certification programs'
-    ]
+      'Joint degree and certification programs',
+    ],
   },
   {
     icon: Heart,
     title: 'Non-Governmental Organizations',
-    description: 'NGOs focused on healthcare access, public health initiatives, and humanitarian medical services.',
+    description:
+      'NGOs focused on healthcare access, public health initiatives, and humanitarian medical services.',
     programs: [
       'Public health program development',
       'Community healthcare initiatives',
       'Medical mission support',
-      'Healthcare capacity building'
-    ]
+      'Healthcare capacity building',
+    ],
   },
   {
     icon: Building2,
     title: 'Government Institutions',
-    description: 'Government healthcare agencies and ministries working to improve population health outcomes.',
+    description:
+      'Government healthcare agencies and ministries working to improve population health outcomes.',
     programs: [
       'Policy development and implementation',
       'Healthcare system strengthening',
       'Cross-border medical cooperation',
-      'Best practices knowledge sharing'
-    ]
+      'Best practices knowledge sharing',
+    ],
   },
   {
     icon: Globe,
     title: 'International Organizations',
-    description: 'Global health organizations and multilateral institutions advancing healthcare worldwide.',
+    description:
+      'Global health organizations and multilateral institutions advancing healthcare worldwide.',
     programs: [
       'Global health initiative partnerships',
       'Technical assistance programs',
       'Capacity building support',
-      'Healthcare innovation collaboration'
-    ]
-  }
+      'Healthcare innovation collaboration',
+    ],
+  },
 ]
 
 const partnershipBenefits = [
   {
     title: 'Knowledge Exchange',
-    description: 'Access to cutting-edge medical knowledge, research findings, and best practices from Saudi Arabia\'s leading healthcare institutions.',
-    icon: GraduationCap
+    description:
+      "Access to cutting-edge medical knowledge, research findings, and best practices from Saudi Arabia's leading healthcare institutions.",
+    icon: GraduationCap,
   },
   {
     title: 'Resource Sharing',
-    description: 'Collaborative use of medical facilities, equipment, and expertise to maximize impact and efficiency.',
-    icon: Handshake
+    description:
+      'Collaborative use of medical facilities, equipment, and expertise to maximize impact and efficiency.',
+    icon: Handshake,
   },
   {
     title: 'Capacity Building',
-    description: 'Professional development opportunities for healthcare workers and administrators through training programs.',
-    icon: TrendingUp
+    description:
+      'Professional development opportunities for healthcare workers and administrators through training programs.',
+    icon: TrendingUp,
   },
   {
     title: 'Innovation Collaboration',
-    description: 'Joint development of healthcare solutions, technologies, and treatment protocols.',
-    icon: Target
-  }
+    description:
+      'Joint development of healthcare solutions, technologies, and treatment protocols.',
+    icon: Target,
+  },
 ]
 
 const successStories = [
   {
     organization: 'Regional University Medical School',
     type: 'Academic Partnership',
-    impact: 'Established joint medical training program graduating 150+ physicians annually',
+    impact:
+      'Established joint medical training program graduating 150+ physicians annually',
     duration: '5 years',
-    participants: '750 students'
+    participants: '750 students',
   },
   {
     organization: 'International Health NGO',
     type: 'Public Health Initiative',
     impact: 'Implemented maternal health program reaching 50,000+ women',
     duration: '3 years',
-    participants: '50,000 beneficiaries'
+    participants: '50,000 beneficiaries',
   },
   {
     organization: 'Ministry of Health Partnership',
     type: 'Government Collaboration',
     impact: 'Developed telemedicine network serving remote communities',
     duration: '4 years',
-    participants: '25 healthcare facilities'
-  }
+    participants: '25 healthcare facilities',
+  },
 ]
 
 const collaborationProcess = [
   {
     step: '1',
     title: 'Initial Consultation',
-    description: 'Understanding your organization\'s goals, capabilities, and partnership objectives.'
+    description:
+      "Understanding your organization's goals, capabilities, and partnership objectives.",
   },
   {
     step: '2',
     title: 'Partnership Design',
-    description: 'Developing a customized collaboration framework aligned with both organizations\' missions.'
+    description:
+      "Developing a customized collaboration framework aligned with both organizations' missions.",
   },
   {
     step: '3',
     title: 'Implementation Planning',
-    description: 'Creating detailed project plans, timelines, and resource allocation strategies.'
+    description:
+      'Creating detailed project plans, timelines, and resource allocation strategies.',
   },
   {
     step: '4',
     title: 'Program Execution',
-    description: 'Launching collaborative initiatives with ongoing support and coordination.'
+    description:
+      'Launching collaborative initiatives with ongoing support and coordination.',
   },
   {
     step: '5',
     title: 'Impact Measurement',
-    description: 'Monitoring outcomes and continuously improving partnership effectiveness.'
-  }
+    description:
+      'Monitoring outcomes and continuously improving partnership effectiveness.',
+  },
 ]
 
 export default function OrganizationsPage() {

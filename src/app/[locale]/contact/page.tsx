@@ -13,6 +13,7 @@ import {
 } from 'lucide-react'
 import Image from 'next/image'
 import { useState } from 'react'
+export const runtime = 'edge'
 
 // Contact form state interface
 interface ContactForm {
