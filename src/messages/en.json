@@ -1,0 +1,119 @@
+{
+  "LocaleLayout": {
+    "title": "Sage Healthcare Platform - Your Trusted Gateway to Saudi Medical Care",
+    "description": "Experience the perfect blend of healthcare expertise, cultural hospitality, and personalized service with Sage. We are dedicated to guiding you through every step of your medical journey.",
+    "keywords": "healthcare, saudi arabia, medical tourism, treatment, hospitals, medical care"
+  },
+  "Navigation": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+  "Hero": {
+    "title": "BUILDING BLOCKS",
+    "subtitle": "TO EXCELLENCE",
+    "description": "At Sage, we've redefined the construction process, crafting exceptional building solutions that exceed expectations. Our innovative approach ensures every project is delivered with unmatched quality and precision.",
+    "cta": "Get Started",
+    "tagline": "Every structure tells a story. Let us craft yours with excellence."
+  },
+  "Testimonial": {
+    "quote": "Since its launch in 2021, Sage has transformed the construction industry with its innovative model of enhanced life projects and enhanced projects. Our outstanding leadership in construction is delivered right to the people.",
+    "author": "Construction Excellence Team"
+  },
+  "Projects": {
+    "title": "Selected Projects",
+    "viewAll": "View all projects",
+    "project1": {
+      "title": "BioLab Building Phase 1",
+      "category": "Commercial"
+    },
+    "project2": {
+      "title": "Masadary Core Hub",
+      "category": "Corporate"
+    },
+    "back": "Go Back",
+    "noProjects": "No related projects found.",
+    "PREVIOUS": "PREVIOUS",
+    "NEXT": "NEXT",
+    "Grid": "Grid",
+    "List": "List",
+    "all": "All"
+  },
+  "GeneralContracting": {
+    "title": "GENERAL CONTRACTING",
+    "description": "We provide comprehensive general contracting services, managing every aspect of your construction project from initial planning to final completion. Our experienced team ensures quality, safety, and timely delivery.",
+    "cta": "Learn More"
+  },
+  "News": {
+    "title": "News & Insights",
+    "viewAll": "View all articles",
+    "cta": "Read More",
+
+    "article1": {
+      "title": "Construction industry continues to leverage technology with virtual connectivity",
+      "category": "Technology"
+    },
+    "article2": {
+      "title": "Future forward facilities management in the wake of COVID-19",
+      "category": "Management"
+    },
+    "article3": {
+      "title": "From idea to reality: The construction process simplified",
+      "category": "Process"
+    }
+  },
+  "Partners": {
+    "title": "Our Success Partners"
+  },
+  "ArchitecturalWorks": {
+    "title": "Architectural Works",
+    "subtitle": "Excellence in Every Detail",
+    "description": "Our architectural division focuses on creating innovative designs that blend functionality with aesthetic appeal. Every project is crafted with meticulous attention to detail and sustainable practices.",
+    "cta": "Explore Works"
+  },
+  "Header": {
+    "getInTouch": "Get In Touch"
+  },
+  "Footer": {
+    "Subscribe": "Subscribe",
+
+    "quick": "Quick Links",
+    "contact": "Contact Data",
+    "directions": "Get directions",
+    "signUp": "Sign up for exclusive updates, new projects, events, and more.",
+    "newsletter": "Newsletter - Sign up.",
+    "company": {
+      "name": "Sage Engineering",
+      "description": "Building excellence through innovative construction solutions and unmatched expertise."
+    },
+
+    "links": {
+      "about": "About Us",
+      "services": "Services",
+      "projects": "Projects",
+      "careers": "Careers",
+      "contact": "Contact"
+    },
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "cookies": "Cookie Policy",
+
+    "social": {
+      "facebook": "Facebook",
+      "twitter": "Twitter",
+      "linkedin": "LinkedIn",
+      "instagram": "Instagram"
+    },
+    "copyright": "© 2025 Sage Engineering Firm. All rights reserved."
+  },
+  "Form": {
+    "email": "Enter your email",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "phone": "Phone Number",
+    "inquiry": "Inquiry type",
+    "message": "Your Message"
+  }
+}

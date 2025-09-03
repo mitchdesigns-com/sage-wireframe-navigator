@@ -9,8 +9,8 @@ import ClientExperiences from '@/components/sections/ClientExperiences'
 import NewsEvents from '@/components/sections/NewsEvents'
 import JoinNetwork from '@/components/sections/JoinNetwork'
 import StartJourney from '@/components/sections/StartJourney'
-import SageIcon from '../components/icons/SageIcon'
-import DirectionScrollSection from '../components/ui/DirectionScrollSection'
+import SageIcon from '../../components/icons/SageIcon'
+import DirectionScrollSection from '../../components/ui/DirectionScrollSection'
 
 export default function HomePage() {
   const benefits = [
