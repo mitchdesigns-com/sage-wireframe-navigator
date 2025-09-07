@@ -22,9 +22,6 @@
     "typescript": "typescript",
     "typescriptreact": "typescriptreact"
   },
-  "tailwindCSS.classAttributes": [
-    "class",
-    "className",
-    "ngClass"
-  ]
+  "tailwindCSS.classAttributes": ["class", "className", "ngClass"],
+  "cSpell.words": ["aeonik"]
 }

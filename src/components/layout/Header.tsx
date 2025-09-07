@@ -1,50 +1,15 @@
 'use client'
 
-/**
- * Header component matching Figma design
- * 
- * This component implements the exact design from Figma with:
- * - Dark teal theme (#025850)
- * - Top banner with "Empowering Wellness, Globally."
- * - Sage logo and navigation menu
- * - Arabic language toggle
- * - Custom "Schedule Call" button
- * - Full-width dropdown menus for Services and Resources
- */
-
 import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
-import { Menu, X, ChevronDown, Minus } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Button from '@/components/ui/Button'
 import ServicesMenu from './ServicesMenu'
 import ResourcesMenu from './ResourcesMenu'
-
-interface KeyboardArrowDownProps {
-  className?: string
-}
-
-function KeyboardArrowDown({ className }: KeyboardArrowDownProps) {
-  return (
-    <div className={`relative size-full ${className}`}>
-      <ChevronDown
-        size={16}
-        className="text-primary-spring absolute inset-[35.51%_25.93%_36.66%_25.88%]"
-      />
-    </div>
-  )
-}
-
-function MinusIcon({ className }: KeyboardArrowDownProps) {
-  return (
-    <div className={`relative size-full ${className}`}>
-      <Minus
-        size={16}
-        className="text-primary-spring absolute inset-[46.45%_24.35%_46.45%_24.38%]"
-      />
-    </div>
-  )
-}
+import KeyboardArrowDown from '../svg/KeyboardArrowDown'
+import MinusIcon from '../svg/MinusIcon'
+import Image from 'next/image'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -121,7 +86,7 @@ export default function Header() {
 
       {/* Main Header */}
       <motion.div
-        className="box-border content-stretch flex items-center justify-between overflow-clip px-4 sm:px-6 lg:px-[60px] py-[22px] relative shrink-0 w-full"
+        className="box-border max-w-[1392px] w-full mx-auto flex items-center justify-between overflow-clip py-[22px] relative shrink-0 "
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.3 }}
@@ -134,13 +99,16 @@ export default function Header() {
             className="flex items-center space-x-2 z-50"
             onClick={closeAllDropdowns}
           >
-            <motion.div
-              className="h-12 relative shrink-0 w-[110px]"
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.2 }}
-            >
+            <motion.div className="h-12 relative shrink-0 w-[110px]">
               <div className="text-primary-spring font-aeonik-regular text-[32px] leading-[1.2]">
-                sage.
+                <div className="w-[110px] h-[48px] relative">
+                  <Image
+                    fill
+                    src="/images/company-logo.webp"
+                    alt="Sage Logo"
+                    className="object-contain"
+                  />
+                </div>
               </div>
             </motion.div>
           </Link>
@@ -166,7 +134,11 @@ export default function Header() {
                   <p className="leading-[1.5] whitespace-pre">Services</p>
                 </div>
                 <div className="overflow-clip relative shrink-0 size-6">
-                  {servicesOpen ? <MinusIcon /> : <KeyboardArrowDown />}
+                  {servicesOpen ? (
+                    <MinusIcon />
+                  ) : (
+                    <KeyboardArrowDown className="rotate-360" />
+                  )}
                 </div>
               </button>
 
@@ -188,7 +160,11 @@ export default function Header() {
                   <p className="leading-[1.5] whitespace-pre">Resources</p>
                 </div>
                 <div className="overflow-clip relative shrink-0 size-6">
-                  {resourcesOpen ? <MinusIcon /> : <KeyboardArrowDown />}
+                  {resourcesOpen ? (
+                    <MinusIcon />
+                  ) : (
+                    <KeyboardArrowDown className="rotate-360" />
+                  )}
                 </div>
               </button>
 
