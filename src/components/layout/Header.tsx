@@ -201,7 +201,7 @@ export default function Header() {
           </div>
 
           {/* Schedule Call Button - Desktop */}
-          <div className="hidden lg:block">
+          <div className="hidden lg:block group cursor-pointer">
             <Button variant="light" rightIcon={true}>
               Schedule Call
             </Button>
@@ -324,7 +324,7 @@ export default function Header() {
               </div>
 
               {/* Mobile CTA Button */}
-              <div className="mt-4">
+              <div className="mt-4 group">
                 <Button
                   variant="light"
                   rightIcon={true}

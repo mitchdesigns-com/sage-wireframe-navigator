@@ -13,7 +13,7 @@
 
 import { cn } from '@/lib/utils'
 import { motion } from 'framer-motion'
-import { ArrowUpRight, Plus } from 'lucide-react'
+import { Plus } from 'lucide-react'
 import Link from 'next/link'
 import { forwardRef, JSX } from 'react'
 
@@ -29,11 +29,12 @@ import type {
   MotionButtonProps,
   SizeConfig,
 } from './types'
+import ButtonIcon from '../../svg/ButtonIcon'
 
 // Cube Icon matching Figma design exactly
 const CubeIcon = ({ size = 24 }: { size?: number }) => (
   <div
-    className="overflow-clip relative shrink-0"
+    className="overflow-clip relative shrink-0 group"
     style={{ width: size, height: size }}
   >
     <div className="absolute inset-[8.33%_12.5%]">
@@ -124,51 +125,6 @@ const LeftIcon = ({ size, variant }: IconProps) => {
   )
 }
 
-const RightIcon = ({ size, variant }: IconProps) => {
-  if (variant === 'link') {
-    return <CubeIcon size={20} />
-  }
-
-  if (isLinkVariant(variant)) {
-    const linkConfig =
-      DESIGN_CONFIG.linkSizes[size] || DESIGN_CONFIG.linkSizes.medium
-    const variantConfig =
-      DESIGN_CONFIG.variants[variant] || DESIGN_CONFIG.variants.primary
-
-    return (
-      <div
-        className={cn(
-          'flex items-center justify-center p-[6px] rounded-full',
-          linkConfig.iconContainer,
-          variantConfig.icon.background
-        )}
-      >
-        <div className="rotate-45">
-          <ArrowUpRight size={16} className="text-white" />
-        </div>
-      </div>
-    )
-  }
-
-  const sizeConfig = DESIGN_CONFIG.sizes[size] || DESIGN_CONFIG.sizes.medium
-  const variantConfig =
-    DESIGN_CONFIG.variants[variant] || DESIGN_CONFIG.variants.primary
-
-  return (
-    <div
-      className={cn(
-        'flex items-center justify-center p-[6px] rounded-full shrink-0',
-        sizeConfig.icon.container,
-        variantConfig.icon.background
-      )}
-    >
-      <div className="rotate-45">
-        <ArrowUpRight size={16} className="text-white" />
-      </div>
-    </div>
-  )
-}
-
 // Loading spinner component
 const LoadingSpinner = () => (
   <svg
@@ -217,7 +173,7 @@ const useButtonClasses = (props: BaseButtonProps) => {
   // For simple 'link' variant, match Figma design exactly
   if (safeVariant === 'link') {
     return cn(
-      'content-stretch flex gap-2 items-center justify-center relative rounded-[100px]',
+      'content-stretch flex gap-2 items-center justify-center relative rounded-[100px] group',
       'whitespace-nowrap transition-all duration-200',
       'focus:outline-none focus:ring-2 focus:ring-primary-palm focus:ring-offset-2',
       'disabled:opacity-50 disabled:cursor-not-allowed',
@@ -290,7 +246,7 @@ const useButtonContent = (props: BaseButtonProps) => {
       {/* Transparent border for consistent sizing */}
       <div
         aria-hidden="true"
-        className="absolute border border-transparent inset-[-1px] pointer-events-none rounded-[101px]"
+        className="absolute border border-transparent inset-[-1px] pointer-events-none rounded-[101px] cursor-pointer"
       />
 
       {loading && <LoadingSpinner />}
@@ -299,7 +255,9 @@ const useButtonContent = (props: BaseButtonProps) => {
       )}
       <span className="relative shrink-0">{children}</span>
       {!loading && rightIcon && (
-        <RightIcon size={safeSize} variant={safeVariant} />
+        <div className="flex-none group-hover:rotate-[45deg] text-Primary-Palm group-hover:ms-2 transition-all duration-300">
+          <ButtonIcon />
+        </div>
       )}
     </>
   )
