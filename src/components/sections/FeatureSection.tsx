@@ -114,7 +114,7 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
           {/* Image */}
           <div className="flex-1">
             <div
-              className="aspect-[600/640] rounded-[40px] bg-cover bg-center"
+              className="aspect-[606/646] rounded-[40px] bg-cover bg-center w-[606px]"
               style={{ backgroundImage: `url('${image}')` }}
             />
           </div>

@@ -262,7 +262,7 @@ export default function ServicesMenu({ isOpen, onClose }: ServicesMenuProps) {
                 <div className="relative shrink-0 size-6">
                   <div className="absolute flex h-[28.284px] items-center justify-center top-[-2.14px] left-[calc(50%+0.084px)] translate-x-[-50%] w-[28.284px]">
                     <div className="flex-none group-hover:rotate-[45deg] text-Primary-Palm group-hover:text-Secondary-Dark-Palm transition-all duration-300">
-                      <ButtonIcon />
+                      <ButtonIcon strokeColor="white" />
                     </div>
                   </div>
                 </div>

@@ -10,18 +10,17 @@ interface BreadcrumbProps {
   items: BreadcrumbItem[]
   separator?: React.ReactNode
   className?: string
+  heroPages?: boolean
 }
 
 const Breadcrumb: React.FC<BreadcrumbProps> = ({
   items,
   separator = <KeyboardArrowDown className="rotate-270" color="#ffffff" />,
   className = '',
+  heroPages,
 }) => {
   return (
-    <nav
-      aria-label="Breadcrumb"
-      className={`flex items-center ${className} py-16`}
-    >
+    <nav aria-label="Breadcrumb" className={`flex items-center ${className} `}>
       {items.map((item, index) => {
         const isLast = index === items.length - 1
 
@@ -35,7 +34,9 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({
                 {item.label}
               </Link>
             ) : (
-              <span className="text-sm font-regular text-[#626262]">
+              <span
+                className={`text-sm font-regular ${heroPages ? 'text-[#a5a5a5]' : 'text-[#626262]'}`}
+              >
                 {item.label}
               </span>
             )}

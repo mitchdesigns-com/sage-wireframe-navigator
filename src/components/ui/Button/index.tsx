@@ -255,8 +255,25 @@ const useButtonContent = (props: BaseButtonProps) => {
       )}
       <span className="relative shrink-0">{children}</span>
       {!loading && rightIcon && (
-        <div className="flex-none group-hover:rotate-[45deg] text-Primary-Palm group-hover:ms-2 transition-all duration-300">
-          <ButtonIcon />
+        <div
+          className={`flex-none group-hover:rotate-[45deg] ${variant === 'dark' ? 'text-Primary-Spring ' : variant === 'primary' ? 'text-Primary-Spring ' : 'text-Primary-Palm '} group-hover:ms-2 transition-all duration-300`}
+        >
+          <ButtonIcon
+            fillColor={
+              variant === 'dark'
+                ? 'black'
+                : variant === 'primary'
+                  ? '#025850'
+                  : 'white'
+            }
+            strokeColor={
+              variant === 'dark'
+                ? 'black'
+                : variant === 'primary'
+                  ? '#025850'
+                  : 'white'
+            }
+          />
         </div>
       )}
     </>
