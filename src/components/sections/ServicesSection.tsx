@@ -67,7 +67,10 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({
                     <div className="relative shrink-0 size-6">
                       <div className="absolute flex h-[28.284px] items-center justify-center top-[-2.14px] left-[calc(50%+0.084px)] translate-x-[-50%] w-[28.284px]">
                         <div className="flex-none group-hover:rotate-[45deg] text-Primary-Scrub group-hover:text-Primary-Light-Sage transition-all duration-300">
-                          <ButtonIcon />
+                          <ButtonIcon
+                            fillColor={'#ffffff'}
+                            strokeColor={'#ffffff'}
+                          />
                         </div>
                       </div>
                     </div>

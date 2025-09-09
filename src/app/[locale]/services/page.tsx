@@ -114,7 +114,7 @@ export default function ServicesPage() {
       {/* Sticky Filter Navigation */}
       <motion.section
         id="services-nav"
-        className={`sticky top-26 z-40 bg-Primary-Palm transition-all duration-300 py-10 `}
+        className={`sticky top-0 z-40 bg-Primary-Palm transition-all duration-300 py-10 `}
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}

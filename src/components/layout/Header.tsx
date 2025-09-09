@@ -17,7 +17,7 @@ export default function Header() {
   const [servicesOpen, setServicesOpen] = useState(false)
   const [resourcesOpen, setResourcesOpen] = useState(false)
   const headerRef = useRef<HTMLDivElement>(null)
-
+  console.log(isScrolled)
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10)
@@ -73,7 +73,7 @@ export default function Header() {
   return (
     <div
       ref={headerRef}
-      className={`bg-primary-palm content-stretch flex flex-col items-center justify-start w-full top-0 z-50 ${isScrolled ? 'sticky' : 'relative'}`}
+      className={`bg-primary-palm content-stretch flex flex-col items-center justify-start w-full top-0 z-50 relative`}
     >
       {/* Top Banner */}
       <div className="bg-secondary-dark-palm box-border content-stretch flex gap-2.5 items-center justify-center px-2.5 py-0.5 relative shrink-0 w-full">
