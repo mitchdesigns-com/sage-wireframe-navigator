@@ -2,6 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import Button from '../ui/Button'
+import Tagline from './Tagline'
 
 interface GetInTouchProps {
   tagline: string
@@ -20,23 +21,8 @@ const GetInTouch: React.FC<GetInTouchProps> = ({
     <section className="py-25 ">
       <div className="mx-auto max-w-[1392px] flex gap-35 bg-Primary-Palm py-16 px-15 rounded-[40px]">
         <div className="max-w-[757px] my-auto">
-          {tagline && (
-            <div className="flex flex-col items-start justify-start w-full">
-              <div className="flex items-center justify-center">
-                <div className="transform rotate-[-6deg]">
-                  <div
-                    className={`bg-Primary-Spring px-1.5 py-0 rounded-[6px] text-Primary-Black`}
-                  >
-                    <div
-                      className={`font-aeonik-medium text-Primary-Black text-base text-center leading-[1.5] text-nowrap`}
-                    >
-                      {tagline}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
+          <Tagline text={tagline} />
+
           <h2 className="text-[48px] font-bold leading-[1.2] tracking-[-0.48px] mb-6 text-white">
             {title}
           </h2>

@@ -4,13 +4,13 @@ export const runtime = 'edge'
 import { ChevronLeft, ChevronRight, Plus } from 'lucide-react'
 import Image from 'next/image'
 import { useState } from 'react'
-import HeroPages from '../../../../components/sections/HeroPages'
-import FeatureSection from '../../../../components/sections/FeatureSection'
-import VectorIcon from '../../../../components/svg/VectorIcon'
-import WhySection from '../../../../components/sections/WhySection'
-import GetInTouch from '../../../../components/sections/GetInTouch'
-import TravelIcon from '../../../../components/svg/TravelIcon'
-import StarShine from '../../../../components/svg/StarShine'
+import HeroPages from '@/components/sections/HeroPages'
+import FeatureSection from '@/components/sections/FeatureSection'
+import VectorIcon from '@/components/svg/VectorIcon'
+import WhySection from '@/components/sections/WhySection'
+import GetInTouch from '@/components/sections/GetInTouch'
+import TravelIcon from '@/components/svg/TravelIcon'
+import StarShine from '@/components/svg/StarShine'
 
 // FAQ data
 const faqData = [
@@ -103,6 +103,7 @@ const whySaudiFeatures = [
       'We connect you with top doctors and hospitals that specialize in your condition.',
     bgColor: 'bg-Primary-Palm',
     textColor: 'text-white',
+    descColor: 'text-Secondary-Light-Scrub',
   },
   {
     type: 'icon',
@@ -112,16 +113,17 @@ const whySaudiFeatures = [
       'From airport to hospital, enjoy seamless arrangements and 24/7 support.',
     bgColor: 'bg-Primary-Black',
     textColor: 'text-white',
+    descColor: 'text-Secondary-Light-Scrub',
   },
   {
     type: 'icon', // or "image"
     iconElement: <StarShine />, // JSX element
-
     title: 'Second Opinions Made Simple',
     description:
       'Gain clarity and confidence with fast, expert medical reviews.',
     bgColor: 'bg-white',
     textColor: 'text-black',
+    descColor: 'text-Secondary-Text',
   },
   {
     type: 'image',
@@ -131,6 +133,7 @@ const whySaudiFeatures = [
       'We connect you with top doctors and hospitals that specialize in your condition.',
     bgColor: 'bg-Dark-Scrub',
     textColor: 'text-white',
+    descColor: 'text-Secondary-Light-Scrub',
   },
 ]
 
@@ -181,7 +184,7 @@ export default function IndividualsPage() {
                   <h2 className="text-black font-bold text-[48px] leading-[1.2] tracking-[-0.48px]">
                     Client Experiences
                   </h2>
-                  <p className="text-black text-[18px] leading-[1.5]">
+                  <p className="text-black text-p">
                     Transforming corporate health management with Sage.
                   </p>
                 </div>
@@ -199,7 +202,7 @@ export default function IndividualsPage() {
                       />
                     </div>
                     <div className="space-y-6">
-                      <p className="text-black text-[18px] leading-[1.5]">
+                      <p className="text-black text-p">
                         "Sage has streamlined our medical travel process
                         significantly."
                       </p>
@@ -265,7 +268,7 @@ export default function IndividualsPage() {
                 <h2 className="text-black font-bold text-[48px] leading-[1.2] tracking-[-0.48px]">
                   FAQs for Individuals
                 </h2>
-                <p className="text-black text-[18px] leading-[1.5]">
+                <p className="text-black text-p">
                   Here are some common questions we receive from our
                   international patients.
                 </p>
@@ -281,7 +284,7 @@ export default function IndividualsPage() {
                       className="w-full py-5 flex items-center justify-between gap-6 text-left hover:bg-Secondary-Scrub transition-colors"
                       onClick={() => setOpenFaq(openFaq === index ? -1 : index)}
                     >
-                      <h3 className="text-black font-bold text-[18px] leading-[1.5] flex-1">
+                      <h3 className="text-black font-bold text-p flex-1">
                         {faq.question}
                       </h3>
                       <div

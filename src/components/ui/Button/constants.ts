@@ -1,10 +1,16 @@
-import type { ButtonVariant, ButtonSize, VariantConfig, SizeConfig, LinkSizeConfig } from './types'
+import type {
+  ButtonVariant,
+  ButtonSize,
+  VariantConfig,
+  SizeConfig,
+  LinkSizeConfig,
+} from './types'
 
 // Design system configuration
 export const DESIGN_CONFIG = {
   variants: {
     primary: {
-      base: 'bg-primary-palm text-primary-white',
+      base: 'bg-primary-palm text-primary-white cursor-pointer',
       hover: 'hover:bg-secondary-dark-palm',
       icon: {
         background: 'bg-primary-spring',
@@ -12,7 +18,7 @@ export const DESIGN_CONFIG = {
       },
     },
     dark: {
-      base: 'bg-primary-black text-primary-white',
+      base: 'bg-primary-black text-primary-white cursor-pointer',
       hover: 'hover:bg-pure-black',
       icon: {
         background: 'bg-primary-spring',
@@ -20,15 +26,15 @@ export const DESIGN_CONFIG = {
       },
     },
     light: {
-      base: 'bg-secondary-light-scrub text-primary-black',
-      hover: 'hover:bg-primary-white',
+      base: 'bg-white text-Primary-Palm cursor-pointer py-[10px]',
+      hover: 'hover:bg-black hover:text-white',
       icon: {
         background: 'bg-primary-palm',
         color: 'text-primary-white',
       },
     },
     'dark-link': {
-      base: 'bg-transparent text-primary-palm',
+      base: 'bg-transparent text-primary-palm cursor-pointer',
       hover: 'hover:text-secondary-dark-palm',
       icon: {
         background: 'bg-primary-palm hover:bg-secondary-dark-palm',
@@ -36,23 +42,23 @@ export const DESIGN_CONFIG = {
       },
     },
     'light-link': {
-      base: 'bg-transparent text-primary-scrub',
+      base: 'bg-transparent text-primary-scrub cursor-pointer',
       hover: 'hover:text-primary-light-sage',
       icon: {
         background: 'bg-primary-scrub hover:bg-primary-light-sage',
         color: 'text-primary-white',
       },
     },
-    'ghost': {
-      base: 'bg-transparent text-primary-scrub',
+    ghost: {
+      base: 'bg-transparent text-primary-scrub cursor-pointer',
       hover: 'hover:text-primary-light-sage',
       icon: {
         background: 'bg-primary-scrub hover:bg-primary-light-sage',
         color: 'text-primary-white',
       },
     },
-    'link': {
-      base: 'bg-transparent text-[#000404]',
+    link: {
+      base: 'bg-transparent text-[#000404] cursor-pointer',
       hover: 'hover:text-[#000404]/80 hover:opacity-80',
       icon: {
         background: 'bg-transparent',

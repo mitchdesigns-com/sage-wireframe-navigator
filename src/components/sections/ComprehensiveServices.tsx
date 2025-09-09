@@ -348,7 +348,7 @@ export default function ComprehensiveServices({
 
             {/* Title with decorative vector */}
             <div className="relative flex flex-wrap justify-center items-center gap-x-4 max-w-[768px]">
-              <h2 className="font-aeonik font-bold text-[40px] leading-[1.2] tracking-[-0.4px] text-[#1e1e1e] text-center">
+              <h2 className="font-aeonik heading-1 text-[#1e1e1e] text-center">
                 <span>Discover Our Comprehensive </span>
                 <span className="relative inline-block">
                   <span className="z-[2] relative">Solutions</span>

@@ -167,7 +167,7 @@ export default function AboutPage() {
                     <h2 className="text-black font-bold text-[48px] leading-[1.2] tracking-[-0.48px]">
                       Redefining Medical Tourism in Saudi Arabia
                     </h2>
-                    <p className="text-black text-[18px] leading-[1.5]">
+                    <p className="text-black text-p">
                       Sage is a pioneering healthcare concierge company
                       dedicated to transforming medical tourism in Saudi Arabia.
                       We build robust systems and partnerships that enhance the
@@ -219,7 +219,7 @@ export default function AboutPage() {
           <div className="max-w-[1280px] mx-auto space-y-20">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
               <div className="w-[468px]">
-                <h2 className="text-black font-bold text-[40px] leading-[1.2] tracking-[-0.4px]">
+                <h2 className="text-black heading-1">
                   Our Vision: Saudi Arabia as a Medical Hub
                 </h2>
               </div>
@@ -276,11 +276,11 @@ export default function AboutPage() {
         <div className="px-16">
           <div className="max-w-[1280px] mx-auto">
             <div className="max-w-[768px] mx-auto text-center space-y-6">
-              <h2 className="text-black font-bold text-[40px] leading-[1.2] tracking-[-0.4px] w-[890px] mx-auto">
+              <h2 className="text-black heading-1 w-[890px] mx-auto">
                 Our Mission: Simplifying Global Healthcare with Structured,
                 World-Class Concierge Services
               </h2>
-              <p className="text-black text-[18px] leading-[1.5]">
+              <p className="text-black text-p">
                 At Sage, we are dedicated to providing comprehensive concierge
                 services that streamline the international patient experience.
                 Our mission is to enhance the national healthcare economy while
@@ -306,7 +306,7 @@ export default function AboutPage() {
                 <h2 className="text-black font-bold text-[48px] leading-[1.2] tracking-[-0.48px]">
                   Our Core Values That Drive Us Forward
                 </h2>
-                <p className="text-black text-[18px] leading-[1.5]">
+                <p className="text-black text-p">
                   At Sage, our core values shape every interaction and service
                   we provide. They reflect our commitment to excellence and
                   patient-centered care.
@@ -326,9 +326,7 @@ export default function AboutPage() {
                     />
                   </div>
                   <div className="space-y-6">
-                    <h3 className="text-black font-bold text-[32px] leading-[1.3] tracking-[-0.32px]">
-                      {value.title}
-                    </h3>
+                    <h3 className="text-black heading-4">{value.title}</h3>
                     <p className="text-black text-base leading-[1.5]">
                       {value.description}
                     </p>
@@ -348,7 +346,7 @@ export default function AboutPage() {
               <h2 className="text-black font-bold text-[48px] leading-[1.2] tracking-[-0.48px]">
                 Our Team
               </h2>
-              <p className="text-black text-[18px] leading-[1.5]">
+              <p className="text-black text-p">
                 Meet our experienced and dedicated healthcare professionals.
               </p>
             </div>
@@ -381,9 +379,7 @@ export default function AboutPage() {
                           <h3 className="text-black font-bold text-[20px] leading-[1.5]">
                             {member.name}
                           </h3>
-                          <p className="text-black text-[18px] leading-[1.5]">
-                            {member.role}
-                          </p>
+                          <p className="text-black text-p">{member.role}</p>
                         </div>
                         <p className="text-black text-base leading-[1.5]">
                           {member.description}
@@ -458,10 +454,8 @@ export default function AboutPage() {
             {/* We're Hiring Section */}
             <div className="max-w-[768px] space-y-6">
               <div className="space-y-4">
-                <h3 className="text-black font-bold text-[32px] leading-[1.3] tracking-[-0.32px]">
-                  We're hiring!
-                </h3>
-                <p className="text-black text-[18px] leading-[1.5]">
+                <h3 className="text-black heading-4">We're hiring!</h3>
+                <p className="text-black text-p">
                   Join our team of dedicated healthcare professionals.
                 </p>
               </div>

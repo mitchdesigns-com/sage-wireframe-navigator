@@ -39,7 +39,7 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({
             <h2 className="text-[48px] font-bold leading-[1.2] tracking-[-0.48px] mb-6 text-Primary-Black">
               {title}
             </h2>
-            <p className="text-[18px] leading-[1.5] text-Secondary-Text max-w-[656px]">
+            <p className="text-p text-Secondary-Text max-w-[656px]">
               {description}
             </p>
           </div>

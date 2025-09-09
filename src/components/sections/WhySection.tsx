@@ -11,6 +11,7 @@ interface Feature {
   textColor: string
   type: string
   image?: string
+  descColor?: string
 }
 
 interface WhySectionProps {
@@ -34,12 +35,8 @@ const WhySection: React.FC<WhySectionProps> = ({
           <div className="flex flex-col">
             <div className="max-w-[730px] text-center mx-auto">
               <div className="space-y-6">
-                <h2 className="text-Primary-Black font-bold text-[40px] leading-[1.2] tracking-[-0.4px]">
-                  {title}
-                </h2>
-                <p className="text-Secondary-Text text-[18px] leading-[1.5]">
-                  {description}
-                </p>
+                <h2 className="text-Primary-Black heading-1">{title}</h2>
+                <p className="text-Secondary-Text text-p">{description}</p>
               </div>
             </div>
 
@@ -61,7 +58,9 @@ const WhySection: React.FC<WhySectionProps> = ({
                             <h3 className="font-bold text-[32px] leading-[1.3]">
                               {feature.title}
                             </h3>
-                            <p className="text-base leading-[1.5]">
+                            <p
+                              className={`text-base leading-[1.5] ${feature.descColor}`}
+                            >
                               {feature.description}
                             </p>
                           </div>

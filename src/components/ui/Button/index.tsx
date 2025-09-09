@@ -175,7 +175,7 @@ const useButtonClasses = (props: BaseButtonProps) => {
     return cn(
       'content-stretch flex gap-2 items-center justify-center relative rounded-[100px] group',
       'whitespace-nowrap transition-all duration-200',
-      'focus:outline-none focus:ring-2 focus:ring-primary-palm focus:ring-offset-2',
+      '',
       'disabled:opacity-50 disabled:cursor-not-allowed',
       'text-[16px] leading-[1.5] not-italic text-[#000404] text-nowrap',
       // Use Aeonik Medium font with fallback
@@ -246,7 +246,7 @@ const useButtonContent = (props: BaseButtonProps) => {
       {/* Transparent border for consistent sizing */}
       <div
         aria-hidden="true"
-        className="absolute border border-transparent inset-[-1px] pointer-events-none rounded-[101px] cursor-pointer"
+        className={`absolute border ${variant === 'light' ? 'border-Primary-Palm' : 'border-transparent'}  inset-[-1px] pointer-events-none rounded-[101px] cursor-pointer`}
       />
 
       {loading && <LoadingSpinner />}

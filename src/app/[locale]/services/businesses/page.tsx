@@ -256,7 +256,7 @@ export default function BusinessesPage() {
                 </h1>
               </div>
               <div className="flex-1">
-                <p className="text-[#000404] text-[18px] leading-[1.5]">
+                <p className="text-[#000404] text-p">
                   At Sage, we are your strategic partner in enhancing employee
                   wellness and optimizing productivity through tailored
                   healthcare solutions. Discover how our comprehensive medical
@@ -283,7 +283,7 @@ export default function BusinessesPage() {
                     <h2 className="text-[#000404] font-bold text-[48px] leading-[1.2] tracking-[-0.48px] w-[509px]">
                       Healthcare
                     </h2>
-                    <p className="text-[#000404] text-[18px] leading-[1.5]">
+                    <p className="text-[#000404] text-p">
                       Sage connects your employees with top-tier healthcare in
                       Saudi Arabia. Our dedicated case managers ensure seamless
                       communication and personalized care throughout the medical
@@ -351,7 +351,7 @@ export default function BusinessesPage() {
                     <h2 className="text-[#000404] font-bold text-[48px] leading-[1.2] tracking-[-0.48px]">
                       Healthcare Concierge
                     </h2>
-                    <p className="text-[#000404] text-[18px] leading-[1.5]">
+                    <p className="text-[#000404] text-p">
                       Our concierge services simplify medical travel for your
                       employees, ensuring a seamless experience from start to
                       finish. We handle everything from visa assistance to
@@ -402,7 +402,7 @@ export default function BusinessesPage() {
                     <h2 className="text-[#000404] font-bold text-[48px] leading-[1.2] tracking-[-0.48px]">
                       Consultation & Training
                     </h2>
-                    <p className="text-[#000404] text-[18px] leading-[1.5]">
+                    <p className="text-[#000404] text-p">
                       Our expert-led consultation and training programs equip
                       your team with essential skills for managing healthcare
                       efficiently. Tailored to meet compliance standards, we
@@ -457,7 +457,7 @@ export default function BusinessesPage() {
                   <h2 className="text-[#000404] font-bold text-[48px] leading-[1.2] tracking-[-0.48px] mb-4">
                     Client Experiences
                   </h2>
-                  <p className="text-[#000404] text-[18px] leading-[1.5]">
+                  <p className="text-[#000404] text-p">
                     Transforming corporate health management with Sage.
                   </p>
                 </div>
@@ -475,7 +475,7 @@ export default function BusinessesPage() {
                       />
                     </div>
                     <div className="space-y-6">
-                      <p className="text-[#000404] text-[18px] leading-[1.5]">
+                      <p className="text-[#000404] text-p">
                         {testimonials[currentTestimonial].quote}
                       </p>
                       <div className="flex gap-5 items-center">
@@ -562,7 +562,7 @@ export default function BusinessesPage() {
                     <h2 className="text-[#000404] font-bold text-[48px] leading-[1.2] tracking-[-0.48px]">
                       Why Choose Sage for Your Business Needs
                     </h2>
-                    <p className="text-[#000404] text-[18px] leading-[1.5]">
+                    <p className="text-[#000404] text-p">
                       Partnering with Sage means prioritizing your employees'
                       health while enhancing your organization's efficiency.
                       Experience tailored solutions that drive productivity and
@@ -582,7 +582,7 @@ export default function BusinessesPage() {
                   {whyChooseFeatures.slice(0, 2).map((feature, index) => (
                     <div key={index} className="space-y-6">
                       <feature.icon size={48} className="text-[#000404]" />
-                      <h3 className="text-[#000404] font-bold text-[32px] leading-[1.3] tracking-[-0.32px]">
+                      <h3 className="text-[#000404] heading-4">
                         {feature.title}
                       </h3>
                       <p className="text-[#000404] text-base leading-[1.5]">
@@ -596,7 +596,7 @@ export default function BusinessesPage() {
                   {whyChooseFeatures.slice(2, 4).map((feature, index) => (
                     <div key={index} className="space-y-6">
                       <feature.icon size={48} className="text-[#000404]" />
-                      <h3 className="text-[#000404] font-bold text-[32px] leading-[1.3] tracking-[-0.32px]">
+                      <h3 className="text-[#000404] heading-4">
                         {feature.title}
                       </h3>
                       <p className="text-[#000404] text-base leading-[1.5]">
@@ -610,7 +610,7 @@ export default function BusinessesPage() {
                   {whyChooseFeatures.slice(4, 6).map((feature, index) => (
                     <div key={index} className="space-y-6">
                       <feature.icon size={48} className="text-[#000404]" />
-                      <h3 className="text-[#000404] font-bold text-[32px] leading-[1.3] tracking-[-0.32px]">
+                      <h3 className="text-[#000404] heading-4">
                         {feature.title}
                       </h3>
                       <p className="text-[#000404] text-base leading-[1.5]">
@@ -646,7 +646,7 @@ export default function BusinessesPage() {
                 <h2 className="text-[#000404] font-bold text-[48px] leading-[1.2] tracking-[-0.48px]">
                   Start Your Journey Today
                 </h2>
-                <p className="text-[#000404] text-[18px] leading-[1.5]">
+                <p className="text-[#000404] text-p">
                   Transform your organization's healthcare approach with Sage's
                   comprehensive business solutions. Let us help you create a
                   healthier, more productive workforce.

@@ -93,7 +93,7 @@ export default function ContactPage() {
                     <h1 className="text-black font-bold text-[48px] leading-[1.2] tracking-[-0.48px]">
                       Send Message
                     </h1>
-                    <p className="text-black text-[18px] leading-[1.5]">
+                    <p className="text-black text-p">
                       We're here to assist you with any inquiries.
                     </p>
                   </div>
@@ -193,7 +193,7 @@ export default function ContactPage() {
               <h2 className="text-black font-bold text-[48px] leading-[1.2] tracking-[-0.48px]">
                 Schedule a Zoom Meeting
               </h2>
-              <p className="text-black text-[18px] leading-[1.5] w-[544px] mx-auto">
+              <p className="text-black text-p w-[544px] mx-auto">
                 Schedule your one-on-one meeting with our experts to explore
                 innovative solutions tailored to your needs.
               </p>
@@ -367,7 +367,7 @@ export default function ContactPage() {
               <h2 className="text-black font-bold text-[48px] leading-[1.2] tracking-[-0.48px] mb-4">
                 Contact Us
               </h2>
-              <p className="text-black text-[18px] leading-[1.5]">
+              <p className="text-black text-p">
                 We're here to assist you with any inquiries.
               </p>
             </div>

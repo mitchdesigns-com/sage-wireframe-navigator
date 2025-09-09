@@ -88,7 +88,7 @@ export default function Footer() {
           <div className="container-custom mx-auto">
             <div className="flex items-center justify-between">
               <div className="max-w-[560px] space-y-2">
-                <h2 className="text-black font-bold text-[18px] leading-[1.5]">
+                <h2 className="text-black font-bold text-p">
                   Subscribe to Updates
                 </h2>
                 <p className="text-black text-base leading-[1.5]">

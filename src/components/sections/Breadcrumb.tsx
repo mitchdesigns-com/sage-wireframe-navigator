@@ -11,16 +11,25 @@ interface BreadcrumbProps {
   separator?: React.ReactNode
   className?: string
   heroPages?: boolean
+  heroWithImage?: boolean
 }
 
 const Breadcrumb: React.FC<BreadcrumbProps> = ({
   items,
-  separator = <KeyboardArrowDown className="rotate-270" color="#ffffff" />,
+  separator,
   className = '',
   heroPages,
+  heroWithImage,
 }) => {
+  const defaultSeparator = (
+    <KeyboardArrowDown
+      className="rotate-270 w-4 h-4"
+      color={heroWithImage ? '#025850' : '#ffffff'}
+    />
+  )
+
   return (
-    <nav aria-label="Breadcrumb" className={`flex items-center ${className} `}>
+    <nav aria-label="Breadcrumb" className={`flex items-center ${className}`}>
       {items.map((item, index) => {
         const isLast = index === items.length - 1
 
@@ -29,19 +38,31 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({
             {item.href && !isLast ? (
               <Link
                 href={item.href}
-                className="text-sm font-regular text-white  transition"
+                className={`text-sm font-regular ${
+                  heroWithImage ? 'text-Primary-Palm' : 'text-white'
+                } transition`}
               >
                 {item.label}
               </Link>
             ) : (
               <span
-                className={`text-sm font-regular ${heroPages ? 'text-[#a5a5a5]' : 'text-[#626262]'}`}
+                className={`text-sm font-regular ${
+                  heroPages
+                    ? 'text-[#a5a5a5]'
+                    : heroWithImage
+                      ? 'text-[#9ABCB9]'
+                      : 'text-[#626262]'
+                }`}
               >
                 {item.label}
               </span>
             )}
 
-            {!isLast && <span className="mx-2">{separator}</span>}
+            {!isLast && (
+              <span className="flex items-center mx-2">
+                {separator ?? defaultSeparator}
+              </span>
+            )}
           </div>
         )
       })}

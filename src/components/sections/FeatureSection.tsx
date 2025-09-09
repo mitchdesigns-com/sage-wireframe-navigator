@@ -1,17 +1,24 @@
 import React, { ReactElement } from 'react'
 import Link from 'next/link'
 import Button from '../ui/Button'
+import Tagline from './Tagline'
 
 interface Feature {
   text: string
   icon: ReactElement
 }
-
-interface FeatureSectionProps {
-  tagline: string
+interface List {
   title: string
   description: string
-  features: Feature[]
+  icon: ReactElement
+  theme: string
+}
+interface FeatureSectionProps {
+  tagline?: string
+  title: string
+  description: string
+  features?: Feature[]
+  list?: List[]
   ctaText: string
   href: string
   image: string
@@ -25,6 +32,7 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
   title,
   description,
   features,
+  list,
   ctaText,
   href,
   image,
@@ -44,34 +52,18 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
           <div className="flex-1">
             <div className="mb-8">
               <div>
-                {tagline && (
-                  <div className="flex flex-col items-start justify-start pb-1 w-full">
-                    <div className="flex h-[34.788px] items-center justify-center w-[106.405px]">
-                      <div className="transform rotate-[-6deg]">
-                        <div
-                          className={`bg-Primary-Spring px-1.5 py-0 rounded-[6px] text-Primary-Black`}
-                        >
-                          <div
-                            className={`font-aeonik-medium text-Primary-Black text-base text-center leading-[1.5] text-nowrap`}
-                          >
-                            {tagline}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
+                <Tagline text={tagline} />
               </div>
               <div className="mb-8">
                 <h2
-                  className="text-[48px] font-bold leading-[1.2] tracking-[-0.48px] mb-6"
+                  className="text-[48px] font-bold leading-[1.2] tracking-[-0.48px] mb-6 whitespace-pre-line"
                   style={{ color: textColor }}
                 >
                   {title}
                 </h2>
                 <p
-                  className="text-[18px] leading-[1.5] text-Secondary-Light-Scrub"
-                  style={{ color: textColor }}
+                  className={`text-p ${textColor === '#1E1E1E' ? 'text-Secondary-Text' : 'text-Secondary-Light-Scrub'}`}
+                  // style={{ color: textColor }}
                 >
                   {description}
                 </p>
@@ -79,21 +71,48 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
             </div>
 
             {/* Features */}
-            <div className=" mb-8">
-              {features.map((feature, idx) => (
-                <div key={idx} className="flex items-center gap-4 mb-4">
-                  <div className="w-4 h-4 flex items-center justify-center">
-                    {feature.icon}
+            {features && (
+              <div className=" mb-8">
+                {features?.map((feature, idx) => (
+                  <div key={idx} className="flex items-center gap-4 mb-4">
+                    <div className="w-4 h-4 flex items-center justify-center">
+                      {feature.icon}
+                    </div>
+                    <span
+                      className="text-[16px] leading-[1.5] flex-1 text-Secondary-Light-Scrub"
+                      style={{ color: textColor }}
+                    >
+                      {feature.text}
+                    </span>
                   </div>
-                  <span
-                    className="text-[16px] leading-[1.5] flex-1 text-Secondary-Light-Scrub"
-                    style={{ color: textColor }}
+                ))}
+              </div>
+            )}
+            {/* List */}
+            {list && (
+              <div className="flex mb-8 gap-6 ">
+                {list?.map((li, idx) => (
+                  <div
+                    key={idx}
+                    className="flex items-start gap-2 flex-col max-w-[316px]"
                   >
-                    {feature.text}
-                  </span>
-                </div>
-              ))}
-            </div>
+                    <div className="flex items-center justify-center">
+                      {li.icon}
+                    </div>
+                    <h5
+                      className={`${li.theme === 'dark' ? 'text-Primary-Black' : 'text-white'}  text-[20px] font-bold`}
+                    >
+                      {li.title}
+                    </h5>
+                    <span
+                      className={`${li.theme === 'dark' ? 'text-Secondary-Text' : 'text-white'} text-[16px] leading-[1.5] flex-1 `}
+                    >
+                      {li.description}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            )}
 
             {/* CTA */}
             <Link
@@ -101,7 +120,13 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
               className="inline-block  bg-primary text-white rounded-lg font-medium group cursor-pointer"
             >
               <Button
-                variant="light"
+                variant={
+                  backgroundColor === '#DAF7AF'
+                    ? 'primary'
+                    : backgroundColor === '#F0F8F8'
+                      ? 'primary'
+                      : 'light'
+                }
                 rightIcon={true}
                 fullWidth
                 //   onClick={() => setIsMenuOpen(false)}
