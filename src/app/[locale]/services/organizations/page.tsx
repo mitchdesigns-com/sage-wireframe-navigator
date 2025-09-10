@@ -1,392 +1,294 @@
-import Link from 'next/link'
-import {
-  Users,
-  Building2,
-  GraduationCap,
-  Heart,
-  Globe,
-  Handshake,
-  TrendingUp,
-  Target,
-} from 'lucide-react'
+'use client'
 export const runtime = 'edge'
 
-const organizationTypes = [
+import { Plus } from 'lucide-react'
+
+import { useState } from 'react'
+import HeroPages from '@/components/sections/HeroPages'
+import FeatureSection from '@/components/sections/FeatureSection'
+import VectorIcon from '@/components/svg/VectorIcon'
+import WhySection from '@/components/sections/WhySection'
+import GetInTouch from '@/components/sections/GetInTouch'
+import ReduceCapacity from '@/components/svg/ReduceCapacity'
+import WavingHand from '@/components/svg/WavingHand'
+
+// FAQ data
+const faqData = [
   {
-    icon: GraduationCap,
-    title: 'Academic Institutions',
-    description:
-      'Universities and research institutions seeking healthcare collaboration and medical education partnerships.',
-    programs: [
-      'Medical research collaboration programs',
-      'Student exchange and training opportunities',
-      'Faculty development initiatives',
-      'Joint degree and certification programs',
-    ],
+    question: 'What are the costs?',
+    answer:
+      'Costs vary based on the type of treatment and hospital. We provide transparent pricing and can help you understand all potential expenses. Contact us for a personalized estimate.',
   },
   {
-    icon: Heart,
-    title: 'Non-Governmental Organizations',
-    description:
-      'NGOs focused on healthcare access, public health initiatives, and humanitarian medical services.',
-    programs: [
-      'Public health program development',
-      'Community healthcare initiatives',
-      'Medical mission support',
-      'Healthcare capacity building',
-    ],
+    question: 'How long will it take?',
+    answer:
+      'Treatment duration depends on your specific condition and chosen procedure. Most patients stay 1-4 weeks including recovery time. We provide detailed timelines during consultation.',
   },
   {
-    icon: Building2,
-    title: 'Government Institutions',
-    description:
-      'Government healthcare agencies and ministries working to improve population health outcomes.',
-    programs: [
-      'Policy development and implementation',
-      'Healthcare system strengthening',
-      'Cross-border medical cooperation',
-      'Best practices knowledge sharing',
-    ],
+    question: 'What about language barriers?',
+    answer:
+      'All our partner hospitals have English-speaking staff and translators. We also provide dedicated coordinators who speak your language to assist throughout your journey.',
   },
   {
-    icon: Globe,
-    title: 'International Organizations',
+    question: 'Is it safe to travel for medical care?',
+    answer:
+      'Saudi Arabia has world-class medical facilities with international accreditation. We work only with top-tier hospitals that meet the highest safety and quality standards.',
+  },
+  {
+    question: 'What support is available for family?',
+    answer:
+      'We provide comprehensive family support including accommodation arrangements, local transportation, cultural orientation, and 24/7 assistance during your stay.',
+  },
+]
+const featureSections = [
+  {
+    tagline: 'For Organizations',
+    title: 'Healthcare',
     description:
-      'Global health organizations and multilateral institutions advancing healthcare worldwide.',
-    programs: [
-      'Global health initiative partnerships',
-      'Technical assistance programs',
-      'Capacity building support',
-      'Healthcare innovation collaboration',
+      'From staff members to field beneficiaries, we coordinate quality medical care with clarity and efficiency. Our solutions are built for institutions that demand both compassion and compliance.',
+    features: [
+      {
+        text: 'Scheduled care at top-tier hospitals in Saudi Arabia',
+        icon: <VectorIcon />,
+      },
+      {
+        text: 'Transparent reporting for budgets and patient outcomes',
+        icon: <VectorIcon />,
+      },
+      {
+        text: 'Dedicated case managers for every patient',
+        icon: <VectorIcon />,
+      },
     ],
+    ctaText: 'Request Free Consultation',
+    href: '/contact',
+    image: '/images/generalImages/HealthcareOrganizationHeader.png',
+    backgroundColor: '#013530',
+    textColor: 'white',
+    reverse: false,
+  },
+  {
+    tagline: 'For Organizations',
+    title: 'Concierge ',
+    description:
+      'We manage the non-medical journey too — from visas to accommodation, ensuring every touchpoint reflects your organization’s care and credibility.',
+    features: [
+      {
+        text: 'Visa processing, airport reception, and transport',
+        icon: <VectorIcon color="#6CBEB8" />,
+      },
+      {
+        text: 'Cultural and religious sensitivity for patients and companions',
+        icon: <VectorIcon color="#6CBEB8" />,
+      },
+      {
+        text: '24/7 on-ground support for emergencies and logistics',
+        icon: <VectorIcon color="#6CBEB8" />,
+      },
+    ],
+    ctaText: 'Request Free Consultation',
+    href: '/contact',
+    image: '/images/generalImages/OrganizationConciergeHeader.png',
+    backgroundColor: '#F0F8F8',
+    textColor: '#1E1E1E',
+    reverse: true,
+  },
+  {
+    tagline: 'For Organizations',
+    title: 'Consultation & Training',
+    description:
+      'We partner with NGOs, embassies, and institutions to design better workflows and deliver training that prepares teams for real-world challenges.',
+    features: [
+      {
+        text: 'Audits and design of institutional healthcare protocols',
+        icon: <VectorIcon />,
+      },
+      {
+        text: 'Onsite and virtual training programs for public staff',
+        icon: <VectorIcon />,
+      },
+      {
+        text: 'Special focus on cultural awareness and escalation handling',
+        icon: <VectorIcon />,
+      },
+    ],
+    ctaText: 'Request Free Consultation',
+    href: '/contact',
+    image: '/images/generalImages/ConsultationHeader.png',
+    backgroundColor: '#013530',
+    textColor: 'white',
+    reverse: false,
+  },
+]
+const whySaudiFeatures = [
+  {
+    type: 'image',
+    image: '/images/generalImages/image7.png',
+    title: 'Mission-Aligned Support',
+    description:
+      'We tailor every service to your organization’s protocol and values.',
+    bgColor: 'bg-Primary-Palm',
+    textColor: 'text-white',
+    descColor: 'text-Secondary-Light-Scrub',
+  },
+  {
+    type: 'icon',
+    iconElement: <WavingHand />, // JSX element
+    title: 'Compliance with Confidence',
+    description:
+      'Ensure full documentation, transparency, and ethical coordination.',
+    bgColor: 'bg-Primary-Black',
+    textColor: 'text-white',
+    descColor: 'text-Secondary-Light-Scrub',
+  },
+  {
+    type: 'icon', // or "image"
+    iconElement: <ReduceCapacity />, // JSX element
+    title: 'Scalable Medical Coordination',
+    description:
+      'From individual cases to group care, we handle all logistics seamlessly.',
+    bgColor: 'bg-white',
+    textColor: 'text-black',
+    descColor: 'text-Secondary-Text',
+  },
+  {
+    type: 'image',
+    image: '/images/generalImages/image8.png',
+    title: '24/7 Field Team Support',
+    description: 'We’re on call to help your staff, wherever they’re deployed.',
+    bgColor: 'bg-Dark-Scrub',
+    textColor: 'text-white',
+    descColor: 'text-Secondary-Light-Scrub',
   },
 ]
 
-const partnershipBenefits = [
-  {
-    title: 'Knowledge Exchange',
-    description:
-      "Access to cutting-edge medical knowledge, research findings, and best practices from Saudi Arabia's leading healthcare institutions.",
-    icon: GraduationCap,
-  },
-  {
-    title: 'Resource Sharing',
-    description:
-      'Collaborative use of medical facilities, equipment, and expertise to maximize impact and efficiency.',
-    icon: Handshake,
-  },
-  {
-    title: 'Capacity Building',
-    description:
-      'Professional development opportunities for healthcare workers and administrators through training programs.',
-    icon: TrendingUp,
-  },
-  {
-    title: 'Innovation Collaboration',
-    description:
-      'Joint development of healthcare solutions, technologies, and treatment protocols.',
-    icon: Target,
-  },
-]
+const globalStandards = {
+  title: 'Tailored Solutions for Your Organization’s Unique Healthcare Needs',
+  description:
+    'At Sage, we understand that every organization has distinct procurement rules and reporting requirements. Our processes are designed to seamlessly adapt to your standards, ensuring compliance and accountability.',
 
-const successStories = [
-  {
-    organization: 'Regional University Medical School',
-    type: 'Academic Partnership',
-    impact:
-      'Established joint medical training program graduating 150+ physicians annually',
-    duration: '5 years',
-    participants: '750 students',
-  },
-  {
-    organization: 'International Health NGO',
-    type: 'Public Health Initiative',
-    impact: 'Implemented maternal health program reaching 50,000+ women',
-    duration: '3 years',
-    participants: '50,000 beneficiaries',
-  },
-  {
-    organization: 'Ministry of Health Partnership',
-    type: 'Government Collaboration',
-    impact: 'Developed telemedicine network serving remote communities',
-    duration: '4 years',
-    participants: '25 healthcare facilities',
-  },
-]
-
-const collaborationProcess = [
-  {
-    step: '1',
-    title: 'Initial Consultation',
-    description:
-      "Understanding your organization's goals, capabilities, and partnership objectives.",
-  },
-  {
-    step: '2',
-    title: 'Partnership Design',
-    description:
-      "Developing a customized collaboration framework aligned with both organizations' missions.",
-  },
-  {
-    step: '3',
-    title: 'Implementation Planning',
-    description:
-      'Creating detailed project plans, timelines, and resource allocation strategies.',
-  },
-  {
-    step: '4',
-    title: 'Program Execution',
-    description:
-      'Launching collaborative initiatives with ongoing support and coordination.',
-  },
-  {
-    step: '5',
-    title: 'Impact Measurement',
-    description:
-      'Monitoring outcomes and continuously improving partnership effectiveness.',
-  },
-]
-
+  features: [
+    {
+      text: 'Customized reporting formats for your organization',
+      icon: <VectorIcon />,
+    },
+    {
+      text: 'Adherence to strict procurement guidelines',
+      icon: <VectorIcon />,
+    },
+    {
+      text: 'Commitment to transparency and accountability',
+      icon: <VectorIcon />,
+    },
+  ],
+  image: '/images/generalImages/TailoredSolutions.png',
+  backgroundColor: '#013530',
+  textColor: 'white',
+  reverse: false,
+}
 export default function OrganizationsPage() {
+  const [openFaq, setOpenFaq] = useState(0)
+
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="section-padding from-sage-50 bg-gradient-to-br to-white">
-        <div className="container-custom mx-auto">
-          <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
-            <div>
-              <h1 className="heading-xl mb-6">
-                Strategic Healthcare{' '}
-                <span className="text-sage-400">Partnerships</span>
-              </h1>
-              <p className="text-body mb-8">
-                Forge meaningful collaborations with Saudi Arabia's healthcare
-                ecosystem. Whether you're an academic institution, NGO,
-                government agency, or international organization, we facilitate
-                partnerships that advance healthcare and improve lives.
-              </p>
-              <div className="flex flex-col gap-4 sm:flex-row">
-                <Link
-                  href="/contact?service=organizations"
-                  className="btn-primary"
-                >
-                  Explore Partnership
-                </Link>
-                <Link href="#programs" className="btn-outline">
-                  View Programs
-                </Link>
+      {/* Header Section */}
+      <HeroPages
+        tagline="For Organizations"
+        title="Your Trusted Partner for Medical Travel"
+        description="Sage is dedicated to facilitating compliant and compassionate medical travel for ministries, embassies, and NGOs. Our structured processes ensure that every patient receives the highest level of care while adhering to all necessary regulations."
+        breadcrumbItems={[
+          { label: 'Home', href: '/' },
+          { label: 'Organizations Services', href: '/services/organizations' },
+        ]}
+      />
+      {featureSections.map((section, index) => (
+        <FeatureSection
+          key={index}
+          tagline={section.tagline}
+          title={section.title}
+          description={section.description}
+          features={section.features}
+          ctaText={section.ctaText}
+          href={section.href}
+          image={section.image}
+          backgroundColor={section.backgroundColor}
+          textColor={section.textColor}
+          reverse={section.reverse}
+        />
+      ))}
+
+      {/* Why Saudi Arabia Section */}
+      <WhySection
+        title="Why Saudi Arabia Works for Institutional Health Missions"
+        description="Sage delivers compliant, efficient, and mission-aligned medical coordination for NGOs, embassies, and public entities. We handle the complexities—so you can focus on impact."
+        features={whySaudiFeatures}
+        buttonText="Request Free Consultation"
+        onButtonClick={() => console.log('Button clicked')}
+      />
+      <FeatureSection
+        title={globalStandards.title}
+        description={globalStandards.description}
+        image={globalStandards.image}
+        backgroundColor={globalStandards.backgroundColor}
+        textColor={globalStandards.textColor}
+        reverse={globalStandards.reverse}
+        features={globalStandards.features}
+      />
+      {/* FAQ Section */}
+      <section className="py-25 bg-Secondary-Scrub">
+        <div className="px-16">
+          <div className="max-w-[1392px] mx-auto">
+            <div className="max-w-[768px] mx-auto space-y-20">
+              <div className="text-center space-y-6">
+                <h2 className="text-black font-bold text-[48px] leading-[1.2] tracking-[-0.48px]">
+                  FAQs for Organizations
+                </h2>
+                <p className="text-black text-p">
+                  Here are some common questions we receive from our
+                  international patients.
+                </p>
               </div>
-            </div>
-            <div className="flex h-96 items-center justify-center rounded-2xl bg-gray-200">
-              <div className="text-center text-gray-400">
-                <Users size={48} className="mx-auto mb-4" />
-                <p>Strategic Partnerships</p>
-                <p className="text-sm">Global healthcare collaboration</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Organization Types */}
-      <section id="programs" className="section-padding bg-white">
-        <div className="container-custom mx-auto">
-          <div className="mb-16 text-center">
-            <h2 className="heading-lg mb-6">Partnership Opportunities</h2>
-            <p className="text-body mx-auto max-w-3xl">
-              We work with diverse organizations to create impactful healthcare
-              partnerships that benefit communities, advance knowledge, and
-              improve health outcomes globally.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
-            {organizationTypes.map((org, index) => {
-              const Icon = org.icon
-              return (
-                <div key={index} className="card group">
-                  <div className="flex items-start space-x-4">
-                    <div className="bg-sage-100 group-hover:bg-sage-400 flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-lg transition-colors duration-200 group-hover:text-white">
-                      <Icon size={28} />
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="mb-3 text-xl font-bold text-gray-900">
-                        {org.title}
-                      </h3>
-                      <p className="mb-4 text-gray-600">{org.description}</p>
-                      <div className="space-y-2">
-                        <h4 className="text-sm font-semibold text-gray-900">
-                          Partnership Programs:
-                        </h4>
-                        {org.programs.map((program, programIndex) => (
-                          <div
-                            key={programIndex}
-                            className="flex items-start space-x-2 text-sm text-gray-600"
-                          >
-                            <div className="bg-sage-400 mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full"></div>
-                            <span>{program}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Partnership Benefits */}
-      <section className="section-padding bg-gray-50">
-        <div className="container-custom mx-auto">
-          <div className="mb-16 text-center">
-            <h2 className="heading-lg mb-6">Partnership Benefits</h2>
-            <p className="text-body mx-auto max-w-3xl">
-              Our collaborative approach ensures mutual benefit and sustainable
-              impact for all participating organizations and the communities
-              they serve.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-            {partnershipBenefits.map((benefit, index) => {
-              const Icon = benefit.icon
-              return (
-                <div key={index} className="flex items-start space-x-4">
-                  <div className="bg-sage-100 flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg">
-                    <Icon size={24} className="text-sage-400" />
-                  </div>
-                  <div>
-                    <h3 className="mb-2 text-lg font-bold text-gray-900">
-                      {benefit.title}
-                    </h3>
-                    <p className="text-gray-600">{benefit.description}</p>
-                  </div>
-                </div>
-              )
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Success Stories */}
-      <section className="section-padding bg-white">
-        <div className="container-custom mx-auto">
-          <div className="mb-16 text-center">
-            <h2 className="heading-lg mb-6">Partnership Success Stories</h2>
-            <p className="text-body mx-auto max-w-3xl">
-              See how our strategic partnerships have created lasting impact and
-              advanced healthcare capabilities across different sectors.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-            {successStories.map((story, index) => (
-              <div key={index} className="card">
-                <div className="mb-4">
-                  <h3 className="mb-2 text-lg font-bold text-gray-900">
-                    {story.organization}
-                  </h3>
-                  <div className="bg-sage-100 text-sage-700 inline-block rounded-full px-3 py-1 text-sm font-medium">
-                    {story.type}
-                  </div>
-                </div>
-
-                <p className="mb-4 text-gray-600">{story.impact}</p>
-
-                <div className="grid grid-cols-2 gap-4 text-sm text-gray-500">
-                  <div>
-                    <div className="font-semibold text-gray-900">Duration</div>
-                    <div>{story.duration}</div>
-                  </div>
-                  <div>
-                    <div className="font-semibold text-gray-900">Reach</div>
-                    <div>{story.participants}</div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Collaboration Process */}
-      <section className="section-padding bg-gray-50">
-        <div className="container-custom mx-auto">
-          <div className="mb-16 text-center">
-            <h2 className="heading-lg mb-6">Collaboration Process</h2>
-            <p className="text-body mx-auto max-w-3xl">
-              Our structured approach ensures successful partnerships from
-              initial consultation through long-term collaboration and impact
-              measurement.
-            </p>
-          </div>
-
-          <div className="relative">
-            {/* Process Timeline */}
-            <div className="bg-sage-300 absolute left-1/2 hidden h-full w-1 -translate-x-1/2 transform lg:block"></div>
-
-            <div className="space-y-12">
-              {collaborationProcess.map((step, index) => (
-                <div
-                  key={index}
-                  className={`flex items-center ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'}`}
-                >
+              <div className="border-0 border-b border-[rgba(0,4,4,0.02)]">
+                {faqData.map((faq, index) => (
                   <div
-                    className={`flex-1 ${index % 2 === 0 ? 'lg:pr-12' : 'lg:pl-12'}`}
+                    key={index}
+                    className="border-t border-[rgba(0,4,4,0.02)]"
                   >
-                    <div className="card mx-auto max-w-md lg:mx-0">
-                      <div className="mb-4 flex items-center space-x-4">
-                        <div className="bg-sage-400 flex h-12 w-12 items-center justify-center rounded-full font-bold text-white">
-                          {step.step}
-                        </div>
-                        <h3 className="text-xl font-bold text-gray-900">
-                          {step.title}
-                        </h3>
+                    <button
+                      className="w-full py-5 flex items-center justify-between gap-6 text-left hover:bg-Secondary-Scrub transition-colors"
+                      onClick={() => setOpenFaq(openFaq === index ? -1 : index)}
+                    >
+                      <h3 className="text-black font-bold text-p flex-1">
+                        {faq.question}
+                      </h3>
+                      <div
+                        className={`w-8 h-8 transition-transform ${openFaq === index ? 'rotate-45' : ''}`}
+                      >
+                        <Plus size={32} className="text-black" />
                       </div>
-                      <p className="text-gray-600">{step.description}</p>
-                    </div>
+                    </button>
+                    {openFaq === index && (
+                      <div className="pb-6">
+                        <p className="text-black text-base leading-[1.5]">
+                          {faq.answer}
+                        </p>
+                      </div>
+                    )}
                   </div>
-
-                  {/* Timeline dot */}
-                  <div className="bg-sage-400 relative z-10 hidden h-6 w-6 rounded-full border-4 border-white lg:block"></div>
-
-                  <div className="flex-1"></div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </section>
-
-      {/* CTA Section */}
-      <section className="section-padding bg-sage-400 text-white">
-        <div className="container-custom mx-auto text-center">
-          <h2 className="mb-6 text-3xl font-bold">
-            Ready to Build a Strategic Partnership?
-          </h2>
-          <p className="mx-auto mb-8 max-w-3xl text-xl opacity-90">
-            Let's explore how we can work together to advance healthcare, share
-            knowledge, and create lasting impact in the communities we serve.
-          </p>
-          <div className="flex flex-col justify-center gap-4 sm:flex-row">
-            <Link
-              href="/contact?service=organizations"
-              className="text-sage-400 inline-flex items-center space-x-2 rounded-lg bg-white px-8 py-4 font-medium transition-colors duration-200 hover:bg-gray-100"
-            >
-              <span>Start Partnership Discussion</span>
-              <Handshake size={20} />
-            </Link>
-            <Link
-              href="/our-network"
-              className="hover:text-sage-400 inline-flex items-center space-x-2 rounded-lg border-2 border-white px-8 py-4 font-medium text-white transition-all duration-200 hover:bg-white"
-            >
-              <span>View Our Network</span>
-              <Globe size={20} />
-            </Link>
-          </div>
-        </div>
+      <section className="bg-Secondary-Scrub">
+        <GetInTouch
+          tagline="Let’s Talks"
+          title="Begin Your Healthcare Journey"
+          description="Contact Sage to explore tailored solutions for your healthcare needs and seamless travel experience."
+          image="/images/generalImages/Vector.png"
+        />
       </section>
     </div>
   )

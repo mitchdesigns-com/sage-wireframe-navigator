@@ -9,7 +9,7 @@ interface Feature {
 }
 interface List {
   title: string
-  description: string
+  description?: string
   icon: ReactElement
   theme: string
 }
@@ -19,8 +19,8 @@ interface FeatureSectionProps {
   description: string
   features?: Feature[]
   list?: List[]
-  ctaText: string
-  href: string
+  ctaText?: string
+  href?: string
   image: string
   backgroundColor?: string
   textColor?: string
@@ -52,11 +52,17 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
           <div className="flex-1">
             <div className="mb-8">
               <div>
-                <Tagline text={tagline} />
+                {backgroundColor === '#DAF7AF' ? (
+                  <span className="text-Primary-Palm text-base font-medium pb-4">
+                    {tagline}
+                  </span>
+                ) : (
+                  <Tagline text={tagline} />
+                )}
               </div>
               <div className="mb-8">
                 <h2
-                  className="text-[48px] font-bold leading-[1.2] tracking-[-0.48px] mb-6 whitespace-pre-line"
+                  className="text-[48px] font-bold leading-[1.2] tracking-[-1px] mb-6 whitespace-pre-line"
                   style={{ color: textColor }}
                 >
                   {title}
@@ -105,7 +111,7 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
                       {li.title}
                     </h5>
                     <span
-                      className={`${li.theme === 'dark' ? 'text-Secondary-Text' : 'text-white'} text-[16px] leading-[1.5] flex-1 `}
+                      className={`${li.theme === 'dark' ? 'text-Secondary-Text' : 'text-Secondary-Light-Scrub'} text-[16px] leading-[1.5] flex-1 `}
                     >
                       {li.description}
                     </span>
@@ -115,25 +121,27 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
             )}
 
             {/* CTA */}
-            <Link
-              href={href}
-              className="inline-block  bg-primary text-white rounded-lg font-medium group cursor-pointer"
-            >
-              <Button
-                variant={
-                  backgroundColor === '#DAF7AF'
-                    ? 'primary'
-                    : backgroundColor === '#F0F8F8'
-                      ? 'primary'
-                      : 'light'
-                }
-                rightIcon={true}
-                fullWidth
-                //   onClick={() => setIsMenuOpen(false)}
+            {ctaText && (
+              <Link
+                href={href || '/contact'}
+                className="inline-block  bg-primary text-white rounded-lg font-medium group cursor-pointer"
               >
-                {ctaText}
-              </Button>
-            </Link>
+                <Button
+                  variant={
+                    backgroundColor === '#DAF7AF'
+                      ? 'primary'
+                      : backgroundColor === '#F0F8F8'
+                        ? 'primary'
+                        : 'light'
+                  }
+                  rightIcon={true}
+                  fullWidth
+                  //   onClick={() => setIsMenuOpen(false)}
+                >
+                  {ctaText}
+                </Button>
+              </Link>
+            )}
           </div>
 
           {/* Image */}

@@ -148,6 +148,10 @@ export default function IndividualsPage() {
         tagline="For Individuals"
         title="Personalized Care, Every Step"
         description="We understand that embarking on a medical journey can be daunting. Rest assured, Sage is here to support you every step of the way, ensuring your comfort and care from diagnosis to recovery."
+        breadcrumbItems={[
+          { label: 'Home', href: '/' },
+          { label: 'Individuals Services', href: '/services/individual' },
+        ]}
       />
       {featureSections.map((section, index) => (
         <FeatureSection

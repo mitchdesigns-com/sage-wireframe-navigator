@@ -2,6 +2,7 @@ import React, { ReactNode } from 'react'
 import Button from '../ui/Button'
 import Link from 'next/link'
 import Image from 'next/image'
+import { usePathname } from '../../i18n/navigation'
 
 interface Feature {
   iconElement?: ReactNode
@@ -28,6 +29,7 @@ const WhySection: React.FC<WhySectionProps> = ({
   features,
   buttonText,
 }) => {
+  const pathname = usePathname()
   return (
     <section className="py-28 bg-Primary-Spring-Med">
       <div className="px-16">
@@ -67,12 +69,17 @@ const WhySection: React.FC<WhySectionProps> = ({
 
                           {feature.type === 'image' && feature.image && (
                             <div
-                              className={`${colIndex === 0 && index === 0 ? 'mt-15' : ''}`}
+                              className={`${colIndex === 0 && index === 0 ? 'mt-15' : ''} `}
                             >
                               <Image
                                 src={feature.image}
                                 alt={feature.title}
-                                width={300}
+                                width={
+                                  pathname === '/services/businesses' &&
+                                  colIndex !== 0
+                                    ? 455
+                                    : 300
+                                }
                                 height={200}
                                 className={`rounded-lg absolute bottom-0 ${colIndex === 0 && index === 0 ? 'left-1' : 'right-0'}`}
                               />

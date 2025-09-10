@@ -26,7 +26,7 @@ export const DESIGN_CONFIG = {
       },
     },
     light: {
-      base: 'bg-white text-Primary-Palm cursor-pointer py-[10px]',
+      base: 'bg-white text-Primary-Black cursor-pointer py-[10px]',
       hover: 'hover:bg-black hover:text-white',
       icon: {
         background: 'bg-primary-palm',

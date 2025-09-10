@@ -1,7 +1,6 @@
 'use client'
 export const runtime = 'edge'
 
-import Image from 'next/image'
 import HeroWithImage from '@/components/sections/HeroWithImage'
 import WhyChooseSection from '@/components/sections/WhyChooseSection'
 import FeatureSection from '@/components/sections/FeatureSection'
@@ -10,13 +9,11 @@ import ListCheck from '@/components/svg/ListCheck'
 import Concierge from '@/components/svg/Concierge'
 import LocationHome from '@/components/svg/LocationHome'
 import Groups from '@/components/svg/Groups'
-
-import Link from 'next/link'
-import Button from '@/components/ui/Button'
 import { ReactElement } from 'react'
 import SettingsHeart from '../../../../../components/svg/SettingsHeart'
 import Diagnosis from '../../../../../components/svg/Diagnosis'
 import ContactSupportIcon from '../../../../../components/svg/ContactSupportIcon'
+import ServiceSection from '../../../../../components/sections/ServiceSection'
 
 const paragraphs = [
   'At Sage, our concierge services go far beyond hotel bookings or logistics—they are a strategic layer of support that enhances employee care, reduces HR workload, and ensures peace of mind for business leaders. Whether you are coordinating VIP medical travel or managing treatment for an overseas employee, we provide seamless, culturally sensitive support at every step.',
@@ -202,48 +199,14 @@ export default function BusinessConciergePage() {
         </div>
       </section>
       {/* Culturally Sensitive Care Section */}
-      <section className="py-28 bg-Primary-Palm">
-        <div className="max-w-[1392px] mx-auto space-y-20">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
-            <div>
-              <h2 className="text-white text-[40px] font-bold leading-[2.75rem] tracking-[-1px]">
-                Reliable Service Level Agreements for Corporate Healthcare
-                Concierge
-              </h2>
-            </div>
-            <div>
-              <p className="text-white text-p">
-                At Sage, we prioritize your business needs by offering Service
-                Level Agreements (SLAs) that ensure timely response and
-                meticulous case handling. Our commitment to documentation
-                accuracy guarantees a seamless experience for your employees.
-              </p>
-              <Link
-                href={'/contact'}
-                className="inline-block  bg-primary text-white rounded-lg font-medium group cursor-pointer pt-8"
-              >
-                <Button
-                  variant={'light'}
-                  rightIcon={true}
-                  fullWidth
-                  //   onClick={() => setIsMenuOpen(false)}
-                >
-                  Request Free Consultation
-                </Button>
-              </Link>
-            </div>
-          </div>
-
-          <div className="aspect-[1384/540] bg-center bg-cover bg-no-repeat rounded-[40px] relative">
-            <Image
-              fill
-              src="/images/generalImages/businessConcierge.png"
-              alt="Culturally Sensitive Care"
-              className="rounded-[40px] object-cover"
-            />
-          </div>
-        </div>
-      </section>
+      <ServiceSection
+        title="Reliable Service Level Agreements for Corporate Healthcare Concierge"
+        description="At Sage, we prioritize your business needs by offering Service Level Agreements (SLAs) that ensure timely response and meticulous case handling. Our commitment to documentation accuracy guarantees a seamless experience for your employees."
+        buttonText="Request Free Consultation"
+        buttonHref="/contact"
+        imageSrc="/images/generalImages/businessConcierge.png"
+        imageAlt="Culturally Sensitive Care"
+      />
       <section className="bg-Secondary-Scrub">
         <GetInTouch
           tagline="Let’s Talks"

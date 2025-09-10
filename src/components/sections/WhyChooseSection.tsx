@@ -8,7 +8,7 @@ interface Reason {
 interface WhyChooseSectionProps {
   title: string
   paragraphs: string[]
-  reasons: Reason[]
+  reasons?: Reason[]
 }
 
 const WhyChooseSection: React.FC<WhyChooseSectionProps> = ({
@@ -34,22 +34,23 @@ const WhyChooseSection: React.FC<WhyChooseSectionProps> = ({
               </p>
             ))}
           </div>
-
-          <div className="border-0 bg-Secondary-Light-Scrub p-6 rounded-3xl mt-8">
-            {reasons.map((reason, index) => (
-              <div
-                key={index}
-                className="flex items-center justify-between py-5 border-b border-[#D2D2D2] last:border-b-0"
-              >
-                <h3 className="text-Primary-Black font-bold text-[20px] leading-[1.4] tracking-[-0.2px]">
-                  {reason.title}
-                </h3>
-                <span className="text-Dark-Scrub font-medium text-base leading-[1.5]">
-                  {reason.value}
-                </span>
-              </div>
-            ))}
-          </div>
+          {reasons && (
+            <div className="border-0 bg-Secondary-Light-Scrub p-6 rounded-3xl mt-8">
+              {reasons.map((reason, index) => (
+                <div
+                  key={index}
+                  className="flex items-center justify-between py-5 border-b border-[#D2D2D2] last:border-b-0"
+                >
+                  <h3 className="text-Primary-Black font-bold text-[20px] leading-[1.4] tracking-[-0.2px]">
+                    {reason.title}
+                  </h3>
+                  <span className="text-Dark-Scrub font-medium text-base leading-[1.5]">
+                    {reason.value}
+                  </span>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </section>
