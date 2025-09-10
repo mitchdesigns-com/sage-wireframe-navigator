@@ -10,10 +10,10 @@ interface List {
 interface CentersSectionProps {
   tagline?: string
   title: string
-  description: string
+  description?: string
   list?: List[]
-  ctaText: string
-  href: string
+  ctaText?: string
+  href?: string
   backgroundColor?: string
   textColor?: string
   reverse?: boolean // if true => List first
@@ -42,7 +42,10 @@ const CentersSection: React.FC<CentersSectionProps> = ({
           <div className="flex-1">
             <div className="mb-8">
               <div>
-                <Tagline text={tagline} />
+                <Tagline
+                  text={tagline}
+                  taglineColor={backgroundColor === '#DAF7AF' ? '#DAF7AF' : ''}
+                />
               </div>
               <div className="mb-8">
                 <h2
@@ -60,24 +63,26 @@ const CentersSection: React.FC<CentersSectionProps> = ({
             </div>
 
             {/* CTA */}
-            <Link
-              href={href}
-              className="inline-block  bg-primary text-white rounded-lg font-medium group cursor-pointer"
-            >
-              <Button
-                variant={
-                  backgroundColor === '#DAF7AF'
-                    ? 'primary'
-                    : backgroundColor === '#F0F8F8'
-                      ? 'primary'
-                      : 'light'
-                }
-                rightIcon={true}
-                fullWidth
+            {ctaText && (
+              <Link
+                href={href || '/contact'}
+                className="inline-block  bg-primary text-white rounded-lg font-medium group cursor-pointer"
               >
-                {ctaText}
-              </Button>
-            </Link>
+                <Button
+                  variant={
+                    backgroundColor === '#DAF7AF'
+                      ? 'primary'
+                      : backgroundColor === '#F0F8F8'
+                        ? 'primary'
+                        : 'light'
+                  }
+                  rightIcon={true}
+                  fullWidth
+                >
+                  {ctaText}
+                </Button>
+              </Link>
+            )}
           </div>
 
           {/* Image */}

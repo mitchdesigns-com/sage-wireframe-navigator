@@ -10,7 +10,7 @@ interface Feature {
 interface List {
   title: string
   description?: string
-  icon: ReactElement
+  icon?: ReactElement
   theme: string
 }
 interface FeatureSectionProps {
@@ -106,7 +106,7 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
                       {li.icon}
                     </div>
                     <h5
-                      className={`${li.theme === 'dark' ? 'text-Primary-Black' : 'text-white'}  text-[20px] font-bold`}
+                      className={`${li.theme === 'dark' ? 'text-Primary-Black' : !li.icon ? 'text-[#CAF48E]' : 'text-white'}  text-[20px] font-bold`}
                     >
                       {li.title}
                     </h5>

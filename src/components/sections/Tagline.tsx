@@ -3,9 +3,10 @@ import React from 'react'
 interface TaglineProps {
   text?: string
   className?: string
+  taglineColor?: string
 }
 
-const Tagline: React.FC<TaglineProps> = ({ text, className }) => {
+const Tagline: React.FC<TaglineProps> = ({ text, className, taglineColor }) => {
   if (!text) return null
 
   return (
@@ -14,8 +15,12 @@ const Tagline: React.FC<TaglineProps> = ({ text, className }) => {
     >
       <div className="flex h-[34.788px] items-center justify-center">
         <div className="transform rotate-[-6deg]">
-          <div className="bg-Primary-Spring px-1.5 py-0 rounded-[6px] text-Primary-Black">
-            <div className="font-aeonik-medium text-Primary-Black text-base text-center leading-[1.5] text-nowrap">
+          <div
+            className={`${taglineColor === '#DAF7AF' ? 'bg-Primary-Scrub text-white' : 'bg-Primary-Spring text-Primary-Black'}  px-1.5 py-0 rounded-[6px] `}
+          >
+            <div
+              className={`${taglineColor === '#DAF7AF' ? 'text-white' : 'text-Primary-Black'} font-aeonik-medium  text-base text-center leading-[1.5] text-nowrap`}
+            >
               {text}
             </div>
           </div>
