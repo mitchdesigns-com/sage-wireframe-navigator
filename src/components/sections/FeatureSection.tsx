@@ -8,7 +8,7 @@ interface Feature {
   icon: ReactElement
 }
 interface List {
-  title: string
+  title?: string
   description?: string
   icon?: ReactElement
   theme: string

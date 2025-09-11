@@ -42,8 +42,8 @@ export const DESIGN_CONFIG = {
       },
     },
     'light-link': {
-      base: 'bg-transparent text-primary-scrub cursor-pointer',
-      hover: 'hover:text-primary-light-sage',
+      base: 'bg-transparent text-Primary-Palm cursor-pointer',
+      hover: 'hover:text-Primary-Black hover:ps-2',
       icon: {
         background: 'bg-primary-scrub hover:bg-primary-light-sage',
         color: 'text-primary-white',
