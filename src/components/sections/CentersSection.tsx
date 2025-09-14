@@ -74,7 +74,9 @@ const CentersSection: React.FC<CentersSectionProps> = ({
                       ? 'primary'
                       : backgroundColor === '#F0F8F8'
                         ? 'primary'
-                        : 'light'
+                        : backgroundColor === '#E2F2F1'
+                          ? 'primary'
+                          : 'light'
                   }
                   rightIcon={true}
                   fullWidth

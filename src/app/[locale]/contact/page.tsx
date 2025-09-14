@@ -1,23 +1,23 @@
 'use client'
 
-import Button from '@/components/ui/Button'
-import {
-  Calendar,
-  ChevronLeft,
-  ChevronRight,
-  Clock,
-  Mail,
-  MapPin,
-  Phone,
-  User,
-} from 'lucide-react'
+import { Calendar, ChevronLeft, ChevronRight, Clock, User } from 'lucide-react'
 import Image from 'next/image'
 import { useState } from 'react'
+import Tagline from '../../../components/sections/Tagline'
+import Link from 'next/link'
+import Button from '../../../components/ui/Button'
+import PhoneInput from 'react-phone-number-input'
+import 'react-phone-number-input/style.css'
+import ToggleButton from '../../../components/sections/ToggleButton'
+import ButtonIcon from '../../../components/svg/ButtonIcon'
+
 export const runtime = 'edge'
 
 // Contact form state interface
 interface ContactForm {
-  fullName: string
+  firstName: string
+  lastName: string
+  phone: string
   email: string
   message: string
   acceptTerms: boolean
@@ -29,10 +29,53 @@ interface CalendarState {
   selectedTime: string | null
   currentMonth: string
 }
+const list = [
+  {
+    image: '/images/generalImages/email.png',
+    title: 'Email',
+    titleColor: '#CAF48E', // custom title color
+    description: 'info@healthconcierge.sa',
+    descriptionColor: '#E2F2F1', // custom description color
+    bgColor: '#025850',
+    taglineColor: '#CAF48E',
+  },
+  {
+    image: '/images/generalImages/phone.png',
+    title: 'Phone',
+    titleColor: '#025850',
+    description: '+966 12 345 6789',
+    descriptionColor: '#626262',
+    bgColor: '#CAF48E',
+    taglineColor: '#1E1E1E',
+  },
+  {
+    image: '/images/generalImages/location.png',
+    title: 'Office',
+    titleColor: '#CAF48E', // custom title color
+    description: '456 Health Ave, Riyadh 12345, KSA',
+    descriptionColor: '#E2F2F1', // custom description color
+    bgColor: '#025850',
+    taglineColor: '#CAF48E',
+  },
+]
+type TabType = 'general' | 'business' | 'patient'
 
+interface ToggleOption {
+  id: string
+  label: string
+  value: TabType
+}
+
+const options: ToggleOption[] = [
+  { id: 'general', label: 'General Inquiry', value: 'general' },
+  { id: 'business', label: 'Business Inquiry', value: 'business' },
+  { id: 'patient', label: 'Patient Inquiry', value: 'patient' },
+]
 export default function ContactPage() {
   const [formData, setFormData] = useState<ContactForm>({
-    fullName: '',
+    firstName: '',
+    lastName: '',
+    phone: '',
     email: '',
     message: '',
     acceptTerms: false,
@@ -64,7 +107,19 @@ export default function ContactPage() {
   const handleDateSelect = (date: number) => {
     setCalendar((prev) => ({ ...prev, selectedDate: date }))
   }
-
+  const handlePhoneInputChange = (
+    eOrName: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | string,
+    value?: string
+  ) => {
+    if (typeof eOrName === 'string') {
+      setFormData((prev) => ({ ...prev, [eOrName]: value || '' }))
+      // setErrors((prev) => ({ ...prev, [eOrName]: "" }));
+    } else {
+      const { name, value } = eOrName.target
+      setFormData((prev) => ({ ...prev, [name]: value }))
+      // setErrors((prev) => ({ ...prev, [name]: "" }));
+    }
+  }
   const availableTimes = [
     '09:00 AM',
     '10:00 AM',
@@ -73,109 +128,308 @@ export default function ContactPage() {
     '03:00 PM',
     '04:00 PM',
   ]
+  const [currentTab, setCurrentTab] = useState<TabType>('general')
 
   return (
     <div className="min-h-screen">
       {/* Send Message Section */}
-      <section className="py-28 bg-white">
-        <div className="px-16">
+      <section className="py-16 bg-gradient-to-t from-[#013530] to-[#025850]">
+        <div>
           <div className="max-w-[1280px] mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-17">
               {/* Form Section */}
-              <div className="space-y-8">
-                <div className="space-y-4">
-                  <div>
-                    <p className="text-black font-medium text-base leading-[1.5]">
-                      Let's Get In Touch
-                    </p>
-                  </div>
-                  <div className="space-y-6">
-                    <h1 className="text-black font-bold text-[48px] leading-[1.2] tracking-[-0.48px]">
-                      Send Message
-                    </h1>
-                    <p className="text-black text-p">
-                      We're here to assist you with any inquiries.
-                    </p>
-                  </div>
+
+              <div className="space-y-6 bg-white rounded-3xl p-8 relative">
+                <div className="absolute -top-5">
+                  {' '}
+                  <Tagline text="Let’s Talk" />
+                </div>
+                <div>
+                  <h1 className="text-Primary-Black font-bold text-[48px] leading-[1.2] tracking-[-0.48px] pb-1">
+                    Send Message
+                  </h1>
+                  <p className="text-Secondary-Text text-p">
+                    We're here to assist you with any inquiries.
+                  </p>
                 </div>
 
-                <form onSubmit={handleFormSubmit} className="space-y-6">
-                  <div className="space-y-2">
-                    <label className="text-black text-base leading-[1.5] block">
-                      Full Name
-                    </label>
-                    <input
-                      type="text"
-                      name="fullName"
-                      value={formData.fullName}
-                      onChange={handleInputChange}
-                      className="w-full h-12 px-3 py-2 bg-white border border-[#f0f0ee] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#025850] focus:border-transparent"
-                      required
-                    />
-                  </div>
+                <ToggleButton
+                  options={options}
+                  selectedValue={currentTab}
+                  onChange={(val) => setCurrentTab(val as TabType)}
+                />
+                {currentTab === 'general' ? (
+                  <form onSubmit={handleFormSubmit} className="space-y-4">
+                    <div className="flex  gap-4">
+                      <div className="space-y-2 col w-full">
+                        <label className="text-Primary-Black text-lg font-medium  leading-[1.5] block">
+                          First name*
+                        </label>
+                        <input
+                          type="text"
+                          name="firstName"
+                          value={formData.firstName}
+                          onChange={handleInputChange}
+                          className="w-full h-12 px-3 py-2 bg-white border border-[#D2D2D2] rounded-[6px] focus:outline-none focus:ring-2 focus:ring-[#025850] focus:border-transparent"
+                          required
+                        />
+                      </div>
+                      <div className="space-y-2 col w-full">
+                        <label className="text-Primary-Black text-lg font-medium  leading-[1.5] block">
+                          Last name*
+                        </label>
+                        <input
+                          type="text"
+                          name="lastName"
+                          value={formData.lastName}
+                          onChange={handleInputChange}
+                          className="w-full h-12 px-3 py-2 bg-white border border-[#D2D2D2] rounded-[6px] focus:outline-none focus:ring-2 focus:ring-[#025850] focus:border-transparent"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-Primary-Black text-lg font-medium  leading-[1.5] block">
+                        Email*
+                      </label>
+                      <input
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        className="w-full h-12 px-3 py-2 bg-white border border-[#D2D2D2] rounded-[6px] focus:outline-none focus:ring-2 focus:ring-[#025850] focus:border-transparent"
+                        required
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label
+                        htmlFor="phone"
+                        className="text-Primary-Black text-lg font-medium leading-[1.5] block"
+                      >
+                        Phone number
+                      </label>
+                      <PhoneInput
+                        id="phone"
+                        international
+                        defaultCountry="EG"
+                        value={formData.phone}
+                        onChange={(value) =>
+                          handlePhoneInputChange('phone', value || '')
+                        }
+                        placeholder=""
+                        className="w-full h-12 px-3 py-2 bg-white border border-[#D2D2D2] rounded-[6px] focus:outline-none focus:ring-2 focus:ring-[#025850] focus:border-transparent"
+                      />
+                    </div>
 
-                  <div className="space-y-2">
-                    <label className="text-black text-base leading-[1.5] block">
-                      Email
-                    </label>
-                    <input
-                      type="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      className="w-full h-12 px-3 py-2 bg-white border border-[#f0f0ee] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#025850] focus:border-transparent"
-                      required
-                    />
-                  </div>
+                    <div className="space-y-2">
+                      <label className="text-Primary-Black text-lg font-medium leading-[1.5] block">
+                        Message
+                      </label>
+                      <textarea
+                        name="message"
+                        value={formData.message}
+                        onChange={handleInputChange}
+                        rows={3}
+                        className="w-full px-3 py-2 bg-white border border-[#D2D2D2] rounded-[6px] focus:outline-none focus:ring-2 focus:ring-[#025850] focus:border-transparent resize-none text-[#626262] text-base leading-[1.5]"
+                        required
+                      />
+                    </div>
 
-                  <div className="space-y-2">
-                    <label className="text-black text-base leading-[1.5] block">
-                      Message
-                    </label>
-                    <textarea
-                      name="message"
-                      value={formData.message}
-                      onChange={handleInputChange}
-                      placeholder="Type your message..."
-                      rows={8}
-                      className="w-full px-3 py-2 bg-white border border-[#f0f0ee] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#025850] focus:border-transparent resize-none text-[#626262] text-base leading-[1.5]"
-                      required
-                    />
-                  </div>
+                    <div className="flex items-center gap-2 pb-4">
+                      <input
+                        type="checkbox"
+                        id="acceptTerms"
+                        name="acceptTerms"
+                        checked={formData.acceptTerms}
+                        onChange={handleInputChange}
+                        className="peer appearance-none w-[18px] h-[18px] border border-Secondary-Scrub rounded bg-white checked:bg-Primary-Spring checked:border-Primary-Spring 
+               relative before:content-[''] before:absolute before:top-[2px] before:left-[5px] before:w-[5px] before:h-[10px] before:border-r-[2px] before:border-b-[2px] before:border-[#025850] before:rotate-45 before:opacity-0 checked:before:opacity-100"
+                        required
+                      />
+                      <label
+                        htmlFor="acceptTerms"
+                        className="text-black text-[14px] leading-[1.5]"
+                      >
+                        I accept the Terms
+                      </label>
+                    </div>
 
-                  <div className="flex items-center gap-2 pb-4">
-                    <input
-                      type="checkbox"
-                      id="acceptTerms"
-                      name="acceptTerms"
-                      checked={formData.acceptTerms}
-                      onChange={handleInputChange}
-                      className="w-[18px] h-[18px] border border-[#caf48e] rounded"
-                      required
-                    />
-                    <label
-                      htmlFor="acceptTerms"
-                      className="text-black text-[14px] leading-[1.5]"
-                    >
-                      I accept the Terms
-                    </label>
-                  </div>
+                    <Link href={''} className="inline-block group w-full">
+                      <Button variant={'primary'} rightIcon={true} fullWidth>
+                        Submit Request
+                      </Button>
+                    </Link>
+                  </form>
+                ) : currentTab === 'business' ? (
+                  <form onSubmit={handleFormSubmit} className="space-y-4">
+                    <div className="flex  gap-4">
+                      <div className="space-y-2 col w-full">
+                        <label className="text-Primary-Black text-lg font-medium  leading-[1.5] block">
+                          First name*
+                        </label>
+                        <input
+                          type="text"
+                          name="firstName"
+                          value={formData.firstName}
+                          onChange={handleInputChange}
+                          className="w-full h-12 px-3 py-2 bg-white border border-[#D2D2D2] rounded-[6px] focus:outline-none focus:ring-2 focus:ring-[#025850] focus:border-transparent"
+                          required
+                        />
+                      </div>
+                      <div className="space-y-2 col w-full">
+                        <label className="text-Primary-Black text-lg font-medium  leading-[1.5] block">
+                          Last name*
+                        </label>
+                        <input
+                          type="text"
+                          name="lastName"
+                          value={formData.lastName}
+                          onChange={handleInputChange}
+                          className="w-full h-12 px-3 py-2 bg-white border border-[#D2D2D2] rounded-[6px] focus:outline-none focus:ring-2 focus:ring-[#025850] focus:border-transparent"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div className="flex  gap-4">
+                      <div className="space-y-2 col w-full">
+                        <label className="text-Primary-Black text-lg font-medium  leading-[1.5] block">
+                          Company Name
+                        </label>
+                        <input
+                          type="text"
+                          name="firstName"
+                          value={formData.firstName}
+                          onChange={handleInputChange}
+                          className="w-full h-12 px-3 py-2 bg-white border border-[#D2D2D2] rounded-[6px] focus:outline-none focus:ring-2 focus:ring-[#025850] focus:border-transparent"
+                          required
+                        />
+                      </div>
+                      <div className="space-y-2 col w-full">
+                        <label className="text-Primary-Black text-lg font-medium  leading-[1.5] block">
+                          Position
+                        </label>
+                        <input
+                          type="text"
+                          name="lastName"
+                          value={formData.lastName}
+                          onChange={handleInputChange}
+                          className="w-full h-12 px-3 py-2 bg-white border border-[#D2D2D2] rounded-[6px] focus:outline-none focus:ring-2 focus:ring-[#025850] focus:border-transparent"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-Primary-Black text-lg font-medium  leading-[1.5] block">
+                        Email*
+                      </label>
+                      <input
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        className="w-full h-12 px-3 py-2 bg-white border border-[#D2D2D2] rounded-[6px] focus:outline-none focus:ring-2 focus:ring-[#025850] focus:border-transparent"
+                        required
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label
+                        htmlFor="phone"
+                        className="text-Primary-Black text-lg font-medium leading-[1.5] block"
+                      >
+                        Phone number
+                      </label>
+                      <PhoneInput
+                        id="phone"
+                        international
+                        defaultCountry="EG"
+                        value={formData.phone}
+                        onChange={(value) =>
+                          handlePhoneInputChange('phone', value || '')
+                        }
+                        placeholder=""
+                        className="w-full h-12 px-3 py-2 bg-white border border-[#D2D2D2] rounded-[6px] focus:outline-none focus:ring-2 focus:ring-[#025850] focus:border-transparent"
+                      />
+                    </div>
 
-                  <Button
-                    type="submit"
-                    size="large"
-                    className="bg-[rgba(0,4,4,0.05)] border-none hover:bg-gray-100"
-                  >
-                    Send
-                  </Button>
-                </form>
+                    <div className="space-y-2">
+                      <label className="text-Primary-Black text-lg font-medium leading-[1.5] block">
+                        What kind of partnership
+                      </label>
+                      <textarea
+                        name="message"
+                        value={formData.message}
+                        onChange={handleInputChange}
+                        rows={3}
+                        className="w-full px-3 py-2 bg-white border border-[#D2D2D2] rounded-[6px] focus:outline-none focus:ring-2 focus:ring-[#025850] focus:border-transparent resize-none text-[#626262] text-base leading-[1.5]"
+                        required
+                      />
+                    </div>
+
+                    <div className="flex items-center gap-2 pb-4">
+                      <input
+                        type="checkbox"
+                        id="acceptTerms"
+                        name="acceptTerms"
+                        checked={formData.acceptTerms}
+                        onChange={handleInputChange}
+                        className="peer appearance-none w-[18px] h-[18px] border border-Secondary-Scrub rounded bg-white checked:bg-Primary-Spring checked:border-Primary-Spring 
+               relative before:content-[''] before:absolute before:top-[2px] before:left-[5px] before:w-[5px] before:h-[10px] before:border-r-[2px] before:border-b-[2px] before:border-[#025850] before:rotate-45 before:opacity-0 checked:before:opacity-100"
+                        required
+                      />
+                      <label
+                        htmlFor="acceptTerms"
+                        className="text-black text-[14px] leading-[1.5]"
+                      >
+                        I accept the Terms
+                      </label>
+                    </div>
+
+                    <Link href={''} className="inline-block group w-full">
+                      <Button variant={'primary'} rightIcon={true} fullWidth>
+                        Submit Request
+                      </Button>
+                    </Link>
+                  </form>
+                ) : (
+                  <div className="flex h-3/4 items-center">
+                    {' '}
+                    <div className=" flex justify-center items-center bg-Secondary-Light-Scrub w-full flex-col rounded-3xl py-15 px-10 text-center ">
+                      <h6 className="text-Secondary-Text font-bold text-[20px] pb-4">
+                        Thank you for your interest in connecting with us.
+                      </h6>
+                      <p className="text-p text-Secondary-Text">
+                        For patient applications, please submit your request
+                        directly through our platform to ensure smooth
+                        processing and faster support.
+                      </p>
+                      <Link href={'/'}>
+                        {' '}
+                        <div className="group flex gap-1.5 items-center justify-start rounded-[100px] pt-8 cursor-pointer">
+                          {' '}
+                          <div className="font-aeonik-bold text-Primary-Palm group-hover:text-Secondary-Dark-Palm text-lg leading-[1.5]">
+                            Apply Now
+                          </div>
+                          <div className="bg-Primary-Palm rounded-full p-[6px] size-7 flex items-center justify-center">
+                            <div className="relative shrink-0 size-6">
+                              <div className="absolute flex h-[28.284px] items-center justify-center top-[-2.14px] left-[calc(50%+0.084px)] translate-x-[-50%] w-[28.284px]">
+                                <div className="flex-none group-hover:rotate-[45deg] text-Primary-Palm group-hover:text-Secondary-Dark-Palm transition-all duration-300">
+                                  <ButtonIcon strokeColor="white" />
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>{' '}
+                      </Link>{' '}
+                    </div>
+                  </div>
+                )}
               </div>
 
               {/* Image Section */}
-              <div className="h-[734px] bg-center bg-cover bg-no-repeat rounded-[40px] bg-gray-200 relative">
+              <div className="h-[780px]  rounded-[40px]  relative">
                 <Image
                   fill
-                  src="https://placehold.co/600x734/d1d5db/9ca3af?text=Contact+Image"
+                  src="/images/generalImages/contactUs.png"
                   alt="Contact Us"
                   className="rounded-[40px] object-cover"
                 />
@@ -186,10 +440,10 @@ export default function ContactPage() {
       </section>
 
       {/* Schedule Zoom Meeting Section */}
-      <section className="py-28 bg-white">
+      <section className="py-28 bg-Primary-Spring-Med">
         <div className="px-16">
           <div className="max-w-[800px] mx-auto space-y-[46px]">
-            <div className="text-center space-y-6">
+            <div className="text-center space-y-1">
               <h2 className="text-black font-bold text-[48px] leading-[1.2] tracking-[-0.48px]">
                 Schedule a Zoom Meeting
               </h2>
@@ -357,89 +611,48 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Us Section */}
-      <section className="py-28 bg-white">
-        <div className="px-16">
-          <div className="max-w-[1280px] mx-auto">
-            <div className="text-center mb-12">
-              <p className="text-black font-medium text-base leading-[1.5] mb-2">
-                Contact
-              </p>
-              <h2 className="text-black font-bold text-[48px] leading-[1.2] tracking-[-0.48px] mb-4">
-                Contact Us
-              </h2>
-              <p className="text-black text-p">
-                We're here to assist you with any inquiries.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
-              {/* Contact Information */}
-              <div className="space-y-8">
-                <div className="space-y-6">
-                  <div className="flex items-start gap-4">
-                    <div className="w-6 h-6 flex items-center justify-center mt-1">
-                      <Mail size={24} className="text-black" />
-                    </div>
-                    <div>
-                      <h3 className="text-black font-bold text-[20px] leading-[1.4] mb-1">
-                        Email
-                      </h3>
-                      <p className="text-black text-base leading-[1.5] mb-1">
-                        Info@sage.com
-                      </p>
-                      <p className="text-[#626262] text-[14px] leading-[1.5]">
-                        Send us an email anytime!
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-4">
-                    <div className="w-6 h-6 flex items-center justify-center mt-1">
-                      <Phone size={24} className="text-black" />
-                    </div>
-                    <div>
-                      <h3 className="text-black font-bold text-[20px] leading-[1.4] mb-1">
-                        Phone
-                      </h3>
-                      <p className="text-black text-base leading-[1.5] mb-1">
-                        +966 55 123 4567
-                      </p>
-                      <p className="text-[#626262] text-[14px] leading-[1.5]">
-                        Mon-Fri from 8am to 5pm.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-4">
-                    <div className="w-6 h-6 flex items-center justify-center mt-1">
-                      <MapPin size={24} className="text-black" />
-                    </div>
-                    <div>
-                      <h3 className="text-black font-bold text-[20px] leading-[1.4] mb-1">
-                        Office
-                      </h3>
-                      <p className="text-black text-base leading-[1.5] mb-1">
-                        100 Health Ave, Riyadh 1234, USA
-                      </p>
-                      <p className="text-[#626262] text-[14px] leading-[1.5]">
-                        Get directions
-                      </p>
-                    </div>
-                  </div>
+      <section className="py-28 bg-Secondary-Light-Scrub">
+        <div className=" mx-auto  text-center">
+          <div className="space-y-4">
+            <h2 className="text-Primary-Black text-[48px] font-bold">
+              Contacts
+            </h2>
+            <p className="text-p">
+              We’re here to assist you with any inquiries.
+            </p>
+          </div>
+        </div>
+        <div className="max-w-[1392px] mx-auto w-full pt-15">
+          <div className="flex w-full gap-12 justify-center items-start text-start">
+            {list?.map((li, idx) => (
+              <div
+                key={idx}
+                style={{ backgroundColor: li.bgColor }}
+                className="flex items-start  flex-col w-full p-10 rounded-3xl relative"
+              >
+                <div className="flex justify-end w-full">
+                  <Image
+                    src={li.image}
+                    alt={li.title}
+                    width={181}
+                    height={181}
+                    className={` `}
+                  />
                 </div>
+                <h5
+                  className={` text-[32px] font-bold`}
+                  style={{ color: li.titleColor }}
+                >
+                  {li.title}
+                </h5>
+                <span
+                  className={`text-[16px] leading-[1.5] flex-1 `}
+                  style={{ color: li.descriptionColor }}
+                >
+                  {li.description}
+                </span>
               </div>
-
-              {/* Map */}
-              <div className="h-[400px] bg-gray-200 rounded-[40px] relative flex items-center justify-center">
-                <MapPin size={48} className="text-gray-400" />
-                <Image
-                  fill
-                  src="https://placehold.co/600x400/d1d5db/9ca3af?text=Map+Location"
-                  alt="Office Location"
-                  className="rounded-[40px] object-cover"
-                />
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>

@@ -1,6 +1,9 @@
 import React from 'react'
 import Breadcrumb from './Breadcrumb'
 import Tagline from './Tagline'
+import Link from 'next/link'
+import Button from '../ui/Button'
+import Image from 'next/image'
 
 interface BreadcrumbItem {
   label: string
@@ -12,6 +15,9 @@ interface HeroProps {
   title: string
   description: string
   breadcrumbItems: BreadcrumbItem[]
+  button?: string
+  href?: string
+  bgImage?: string
 }
 
 const HeroPages: React.FC<HeroProps> = ({
@@ -19,6 +25,9 @@ const HeroPages: React.FC<HeroProps> = ({
   title,
   description,
   breadcrumbItems,
+  button,
+  href,
+  bgImage,
 }) => {
   return (
     <section
@@ -40,8 +49,24 @@ const HeroPages: React.FC<HeroProps> = ({
             {/* Right side */}
             <div className="space-y-6 my-auto">
               <p className="text-white text-p">{description}</p>
+              {/* CTA */}
+              {button && (
+                <Link
+                  href={href || '/contact'}
+                  className="inline-block  bg-primary text-white rounded-lg font-medium group cursor-pointer"
+                >
+                  <Button variant={'light'} rightIcon={true} fullWidth>
+                    {button}
+                  </Button>
+                </Link>
+              )}
             </div>
           </div>
+          {bgImage && (
+            <div className="pt-16">
+              <Image src={bgImage} alt="scr header" height={520} width={1390} />
+            </div>
+          )}
         </div>
       </div>
     </section>

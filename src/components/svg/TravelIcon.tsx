@@ -1,8 +1,11 @@
-export default function TravelIcon() {
+export default function TravelIcon({
+  className = 'w-6 h-6',
+}: {
+  className?: string
+}) {
   return (
     <svg
-      width="24"
-      height="25"
+      className={className}
       viewBox="0 0 24 25"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
