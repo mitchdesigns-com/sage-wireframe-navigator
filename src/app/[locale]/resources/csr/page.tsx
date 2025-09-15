@@ -2,6 +2,7 @@ import HeroPages from '@/components/sections/HeroPages'
 import FeatureSection from '@/components/sections/FeatureSection'
 import TravelIcon from '@/components/svg/TravelIcon'
 import WheelChairPickUp from '@/components/svg/WheelChairPickUp'
+import CSRForm from '../../../../components/sections/CSRForm'
 
 export const runtime = 'edge'
 const featureSections = [
@@ -99,7 +100,7 @@ export default function CSRPage() {
       <section className="bg-Secondary-Scrub">
         <div className="py-28">
           <div className="max-w-[1392px] mx-auto ">
-            <div className="text-Neutral-Darkest text-center max-w-[970px] mx-auto">
+            <div className="text-Neutral-Darkest text-center max-w-[970px] mx-auto pb-15">
               <span className="text-base font-medium pb-4">
                 CSR Registration
               </span>
@@ -111,6 +112,7 @@ export default function CSRPage() {
                 on the potential to create a life-changing impact.
               </p>
             </div>
+            <CSRForm />
           </div>
         </div>
       </section>

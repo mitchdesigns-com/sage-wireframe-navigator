@@ -37,8 +37,10 @@ const HeroPages: React.FC<HeroProps> = ({
         <div className="max-w-[1392px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
             {/* Left side */}
-            <div className="space-y-6">
-              <Breadcrumb items={breadcrumbItems} heroPages />
+            <div className="">
+              <div className="pb-16">
+                <Breadcrumb items={breadcrumbItems} heroPages />
+              </div>
               <Tagline text={tagline} />
 
               <h1 className="text-white font-bold text-[56px] leading-[1.2] tracking-[-0.56px] ">

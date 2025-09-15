@@ -184,12 +184,14 @@ export default function ServicesPage() {
                   title: 'Healthcare',
                   description:
                     'Experience customized treatment journeys in Saudi Arabia’s leading hospitals.',
+                  href: '/services/individual/healthcare',
                 },
                 {
                   icon: <Building2 className="w-8 h-8" />,
                   title: 'Concierge',
                   description:
                     'We handle everything from airport transfers to dietary needs.',
+                  href: '/services/individual/concierge',
                 },
               ]}
               backgroundColor="#F0F8F8"
@@ -235,18 +237,21 @@ export default function ServicesPage() {
                   title: 'Healthcare',
                   description:
                     'We offer corporate healthcare facilitation, VIP medical access, and coordinated care plans tailored to your employees needs.',
+                  href: '/services/businesses/healthcare',
                 },
                 {
                   icon: <Building2 className="w-8 h-8" />,
                   title: 'Concierge',
                   description:
                     'Our concierge services provide logistics for executives, including corporate rates and tailored support for seamless travel.',
+                  href: '/services/businesses/concierge',
                 },
                 {
                   icon: <Building2 className="w-8 h-8" />,
                   title: 'Consultation & Training',
                   description:
                     'We offer advisory services for corporate wellness programs, medical travel planning, and internal healthcare team development.',
+                  href: '/services/businesses/consultation',
                 },
               ]}
               backgroundColor="#F0F8F8"
@@ -291,18 +296,21 @@ export default function ServicesPage() {
                   title: 'Healthcare',
                   description:
                     'We specialize in institutional-grade coordination with hospitals and managing cross-border patient workflows.',
+                  href: '/services/organizations/healthcare',
                 },
                 {
                   icon: <Building2 className="w-8 h-8" />,
                   title: 'Concierge',
                   description:
                     'Our concierge services streamline coordination for groups, patients, and delegations, emphasizing compliance and customization.',
+                  href: '/services/organizations/concierge',
                 },
                 {
                   icon: <Building2 className="w-8 h-8" />,
                   title: 'Consultation & Training',
                   description:
                     'We offer consulting services for public sector health initiatives, medical tourism readiness, and operational improvement.',
+                  href: '/services/organizations/consultation',
                 },
               ]}
               backgroundColor="#F0F8F8"

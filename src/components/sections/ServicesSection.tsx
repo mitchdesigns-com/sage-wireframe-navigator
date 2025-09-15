@@ -1,10 +1,12 @@
 import React, { ReactElement } from 'react'
 import ButtonIcon from '../svg/ButtonIcon'
+import Link from 'next/link'
 
 interface Service {
   icon: ReactElement
   title: string
   description: string
+  href?: string
 }
 
 interface ServicesSectionProps {
@@ -58,7 +60,10 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({
                 <p className="text-[16px] leading-[1.5] text-white">
                   {service.description}
                 </p>
-                <div className="group flex gap-1.5 items-center justify-start rounded-[100px] pt-20 cursor-pointer">
+                <Link
+                  href={service.href || '/'}
+                  className="group flex gap-1.5 items-center justify-start rounded-[100px] pt-20 cursor-pointer"
+                >
                   {' '}
                   <div className="font-aeonik-bold text-Primary-Scrub group-hover:text-Primary-Light-Sage text-lg leading-[1.5]">
                     Explore
@@ -75,7 +80,7 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({
                       </div>
                     </div>
                   </div>
-                </div>{' '}
+                </Link>{' '}
               </div>
             ))}
           </div>
