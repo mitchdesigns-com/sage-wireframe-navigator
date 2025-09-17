@@ -48,7 +48,29 @@
   },
   "News": {
     "title": "News & Insights",
-    "viewAll": "View all articles",
+    "viewAll": "View all",
+    "moreNews": "More News",
+
+    "cta": "Read More",
+
+    "article1": {
+      "title": "Construction industry continues to leverage technology with virtual connectivity",
+      "category": "Technology"
+    },
+    "article2": {
+      "title": "Future forward facilities management in the wake of COVID-19",
+      "category": "Management"
+    },
+    "article3": {
+      "title": "From idea to reality: The construction process simplified",
+      "category": "Process"
+    }
+  },
+  "Blog": {
+    "title": "News & Insights",
+    "viewAll": "View all",
+    "moreNews": "Read Also",
+
     "cta": "Read More",
 
     "article1": {

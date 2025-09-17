@@ -6,7 +6,6 @@ const blogs = [
   {
     id: '1',
     title: 'Sage Partners with Local Clinics',
-    category: 'News',
     image: '/images/generalImages/blog1.png',
     author: 'John Doe',
     date: '15 Mar 2023',
@@ -15,7 +14,6 @@ const blogs = [
   {
     id: '2',
     title: 'Sage Wins Healthcare Innovation Global Award',
-    category: 'News',
     image: '/images/generalImages/blog2.png',
     author: 'John Doe',
     date: '15 Mar 2023',
@@ -24,7 +22,6 @@ const blogs = [
   {
     id: '3',
     title: 'Sage Attends Global Health Conference at UAE',
-    category: 'News',
     image: '/images/generalImages/blog3.png',
     author: 'John Doe',
     date: '15 Mar 2023',
@@ -33,7 +30,6 @@ const blogs = [
   {
     id: '4',
     title: 'Sage Partners with Local Clinics',
-    category: 'News',
     image: '/images/generalImages/blog1.png',
     author: 'John Doe',
     date: '15 Mar 2023',
@@ -42,7 +38,6 @@ const blogs = [
   {
     id: '5',
     title: 'Sage Wins Healthcare Innovation Global Award',
-    category: 'News',
     image: '/images/generalImages/blog2.png',
     author: 'John Doe',
     date: '15 Mar 2023',
@@ -51,7 +46,6 @@ const blogs = [
   {
     id: '6',
     title: 'Sage Attends Global Health Conference at UAE',
-    category: 'News',
     image: '/images/generalImages/blog3.png',
     author: 'John Doe',
     date: '15 Mar 2023',
@@ -60,7 +54,6 @@ const blogs = [
   {
     id: '7',
     title: 'Sage Partners with Local Clinics',
-    category: 'News',
     image: '/images/generalImages/blog1.png',
     author: 'John Doe',
     date: '15 Mar 2023',
@@ -69,7 +62,6 @@ const blogs = [
   {
     id: '8',
     title: 'Sage Wins Healthcare Innovation Global Award',
-    category: 'News',
     image: '/images/generalImages/blog2.png',
     author: 'John Doe',
     date: '15 Mar 2023',
@@ -78,7 +70,6 @@ const blogs = [
   {
     id: '9',
     title: 'Sage Attends Global Health Conference at UAE',
-    category: 'News',
     image: '/images/generalImages/blog3.png',
     author: 'John Doe',
     date: '15 Mar 2023',
@@ -100,7 +91,11 @@ export default function BlogPage() {
       <div className="py-15 max-w-[1392px] mx-auto">
         <div className="grid md:grid-cols-3 gap-x-12 gap-y-16">
           {blogs.map((blog) => (
-            <BlogCard key={blog.id} blog={blog} />
+            <BlogCard
+              key={blog.id}
+              blog={blog}
+              href={`/resources/blog/${blog.id}`}
+            />
           ))}
         </div>
       </div>

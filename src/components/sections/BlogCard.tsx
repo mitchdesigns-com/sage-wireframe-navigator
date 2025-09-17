@@ -2,11 +2,12 @@
 
 import Image from 'next/image'
 import { ArrowUpRight } from 'lucide-react'
+import Link from 'next/link'
 
 export interface Blog {
   id: string
   title: string
-  category: string
+  category?: string
   image: string
   author: string
   date: string
@@ -15,11 +16,12 @@ export interface Blog {
 
 interface BlogCardProps {
   blog: Blog
+  href: string
 }
 
-export default function BlogCard({ blog }: BlogCardProps) {
+export default function BlogCard({ blog, href }: BlogCardProps) {
   return (
-    <div key={blog.id} className="flex flex-col">
+    <Link href={href} key={blog.id} className="flex flex-col">
       <div className="h-[270px] w-full relative rounded-2xl overflow-hidden mb-4">
         <Image
           src={blog.image}
@@ -28,9 +30,11 @@ export default function BlogCard({ blog }: BlogCardProps) {
           className="object-cover"
         />
       </div>
-      <span className="text-sm text-Primary-Light-Sage font-medium">
-        {blog.category}
-      </span>
+      {blog.category && (
+        <span className="text-sm text-Primary-Light-Sage font-medium">
+          {blog.category}
+        </span>
+      )}
       <h3 className="text-2xl font-bold text-Neutral-Darkest leading-snug mb-2">
         {blog.title}
       </h3>
@@ -53,6 +57,6 @@ export default function BlogCard({ blog }: BlogCardProps) {
         </div>
         <ArrowUpRight size={38} className="text-Primary-Palm" />
       </div>
-    </div>
+    </Link>
   )
 }

@@ -209,7 +209,11 @@ export default function NewsPage() {
         <div className="max-w-[1392px] mx-auto py-20">
           <div className="grid md:grid-cols-3 gap-8">
             {filteredBlogs.map((blog) => (
-              <BlogCard key={blog.id} blog={blog} />
+              <BlogCard
+                key={blog.id}
+                blog={blog}
+                href={`/resources/news/${blog.id}`}
+              />
             ))}
           </div>
         </div>

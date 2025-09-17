@@ -61,7 +61,11 @@ export default function BlogSection({
 
       <div className="grid md:grid-cols-3 gap-8">
         {blogs.map((blog) => (
-          <BlogCard key={blog.id} blog={blog} />
+          <BlogCard
+            key={blog.id}
+            blog={blog}
+            href={`/resources/blog/${blog.id}`}
+          />
         ))}
       </div>
     </section>

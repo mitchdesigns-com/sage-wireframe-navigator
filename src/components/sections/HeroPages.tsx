@@ -13,7 +13,7 @@ interface BreadcrumbItem {
 interface HeroProps {
   tagline?: string
   title: string
-  description: string
+  description?: string
   breadcrumbItems: BreadcrumbItem[]
   button?: string
   href?: string

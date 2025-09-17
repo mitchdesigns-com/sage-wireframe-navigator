@@ -6,6 +6,7 @@ import ButtonIcon from '../svg/ButtonIcon'
 
 const jobData = [
   {
+    slug: 1,
     category: 'Healthcare Admin',
     title: 'Patient Coordinator',
     tags: ['Riyadh', 'Full-time', 'Hybrid'],
@@ -13,6 +14,7 @@ const jobData = [
       'As a Patient Coordinator, you will facilitate patient journeys, ensuring seamless access to our services. Your role is crucial in enhancing patient satisfaction and experience. Join us in making a difference in healthcare delivery.',
   },
   {
+    slug: 2,
     category: 'Customer Service',
     title: 'Patient Coordinator',
     tags: ['Riyadh', 'Full-time', 'Hybrid'],
@@ -20,6 +22,7 @@ const jobData = [
       'As a Patient Coordinator, you will facilitate patient journeys, ensuring seamless access to our services. Your role is crucial in enhancing patient satisfaction and experience. Join us in making a difference in healthcare delivery.',
   },
   {
+    slug: 3,
     category: 'Administrative Support',
     title: 'Patient Coordinator',
     tags: ['Riyadh', 'Full-time', 'Hybrid'],
@@ -54,7 +57,7 @@ export default function AccordionJobs() {
                 <div className="flex justify-between">
                   {' '}
                   <h3 className="text-2xl font-bold">{job.title}</h3>
-                  <Link href={'/'}>
+                  <Link href={`/careers/${job.slug}`}>
                     {' '}
                     <div className="group flex gap-1.5 items-center justify-start rounded-[100px] cursor-pointer">
                       {' '}
