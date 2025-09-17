@@ -5,6 +5,7 @@ import HeroSinglePages from '@/components/sections/HeroSinglePages'
 import BlogCard from '@/components/sections/BlogCard'
 import { useTranslations } from 'next-intl'
 import ButtonIcon from '@/components/svg/ButtonIcon'
+export const runtime = 'edge'
 
 const blogs = [
   {

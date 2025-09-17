@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { ChevronLeft } from 'lucide-react'
 import Button from '@/components/ui/Button'
+export const runtime = 'edge'
 
 const jobData = [
   {

@@ -6,6 +6,7 @@ import { ChevronRight } from 'lucide-react'
 import HeroSinglePages from '@/components/sections/HeroSinglePages'
 import BlogCard from '@/components/sections/BlogCard'
 import { useTranslations } from 'next-intl'
+export const runtime = 'edge'
 
 const blogs = [
   {
