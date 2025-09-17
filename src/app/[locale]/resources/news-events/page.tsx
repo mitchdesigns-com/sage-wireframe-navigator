@@ -11,7 +11,7 @@ import WebinarList from '../../../../components/sections/WebinarList'
 export const runtime = 'edge'
 const blogs = [
   {
-    id: '1',
+    slug: '1',
     title: 'Sage Partners with Local Clinics',
     category: 'news',
     image: '/images/generalImages/blog1.png',
@@ -20,7 +20,7 @@ const blogs = [
     readTime: '3 min read',
   },
   {
-    id: '2',
+    slug: '2',
     title: 'Sage Wins Healthcare Innovation Global Award',
     category: 'news',
     image: '/images/generalImages/blog2.png',
@@ -29,7 +29,7 @@ const blogs = [
     readTime: '3 min read',
   },
   {
-    id: '3',
+    slug: '3',
     title: 'Sage Attends Global Health Conference at UAE',
     category: 'news',
     image: '/images/generalImages/blog3.png',
@@ -38,27 +38,27 @@ const blogs = [
     readTime: '3 min read',
   },
   {
-    id: '4',
+    slug: '4',
     title: 'Sage Partners with Local Clinics',
-    category: 'events',
+    category: 'news',
     image: '/images/generalImages/blog1.png',
     author: 'John Doe',
     date: '15 Mar 2023',
     readTime: '3 min read',
   },
   {
-    id: '5',
+    slug: '5',
     title: 'Sage Wins Healthcare Innovation Global Award',
-    category: 'events',
+    category: 'news',
     image: '/images/generalImages/blog2.png',
     author: 'John Doe',
     date: '15 Mar 2023',
     readTime: '3 min read',
   },
   {
-    id: '6',
+    slug: '6',
     title: 'Sage Attends Global Health Conference at UAE',
-    category: 'events',
+    category: 'news',
     image: '/images/generalImages/blog3.png',
     author: 'John Doe',
     date: '15 Mar 2023',
@@ -67,6 +67,7 @@ const blogs = [
 ]
 const webinars = [
   {
+    slug: 'event1',
     title: 'Wellness Beyond Borders',
     description:
       'Explore global healthcare innovations and how Sage is making them accessible to individuals and organizations across the region.',
@@ -75,6 +76,7 @@ const webinars = [
     year: 'Feb 2026',
   },
   {
+    slug: 'event2',
     title: 'Navigating Patient-Centered Care',
     description:
       'A live panel discussion featuring experts in personalized healthcare solutions and how technology is shaping patient journeys.',
@@ -83,6 +85,7 @@ const webinars = [
     year: 'Feb 2026',
   },
   {
+    slug: 'event3',
     title: 'Transparent Healthcare Talks',
     description:
       'An educational session on building trust through clear communication, fair pricing, and concierge-style support.',
@@ -119,7 +122,7 @@ export default function NewsPage() {
         description="Stay informed with the latest updates from Sage—featuring industry insights, expert talks, upcoming healthcare events, and milestones that shape our journey in medical excellence."
         breadcrumbItems={[
           { label: 'Home', href: '/' },
-          { label: 'News & Events', href: '/resources/news' },
+          { label: 'News & Events', href: '/resources/news-events' },
         ]}
       />
       <section className="bg-Secondary-Dark-Palm">
@@ -210,9 +213,9 @@ export default function NewsPage() {
           <div className="grid md:grid-cols-3 gap-8">
             {filteredBlogs.map((blog) => (
               <BlogCard
-                key={blog.id}
+                key={blog.slug}
                 blog={blog}
-                href={`/resources/news/${blog.id}`}
+                href={`/resources/news-events/news/${blog.slug}`}
               />
             ))}
           </div>

@@ -8,7 +8,7 @@ import CaseStudyCard from '../../../../components/sections/CaseStudyCard'
 export const runtime = 'edge'
 const caseStudyData = [
   {
-    id: '1',
+    slug: '1',
     title: 'Oncology Case',
     description:
       'Urgent care for a patient from Jordan, resolved in record time.',
@@ -17,7 +17,7 @@ const caseStudyData = [
     category: 'individuals',
   },
   {
-    id: '2',
+    slug: '2',
     title: 'Corporate Wellness',
     description: 'Enhanced employee health programs for a leading corporation.',
 
@@ -25,7 +25,7 @@ const caseStudyData = [
     category: 'businesses',
   },
   {
-    id: '3',
+    slug: '3',
     title: 'Sage Attends Global Health Conference at UAE',
     description:
       'A comprehensive guide for seamless medical travel arrangements.',
@@ -34,7 +34,7 @@ const caseStudyData = [
     category: 'organizations',
   },
   {
-    id: '4',
+    slug: '4',
     title: 'Sage Partners with Local Clinics',
     description:
       'A comprehensive guide for seamless medical travel arrangements.',
@@ -43,7 +43,7 @@ const caseStudyData = [
     category: 'organizations',
   },
   {
-    id: '5',
+    slug: '5',
     title: 'Sage Wins Healthcare Innovation Global Award',
     description:
       'A comprehensive guide for seamless medical travel arrangements.',
@@ -52,7 +52,7 @@ const caseStudyData = [
     category: 'businesses',
   },
   {
-    id: '6',
+    slug: '6',
     title: 'Sage Attends Global Health Conference at UAE',
     description:
       'A comprehensive guide for seamless medical travel arrangements.',
@@ -106,7 +106,7 @@ export default function CaseStudiesPage() {
           </div>
           <div className="grid md:grid-cols-2 gap-x-12 gap-y-20">
             {filteredCaseStudy.map((caseStudy) => (
-              <CaseStudyCard key={caseStudy.id} caseStudy={caseStudy} />
+              <CaseStudyCard key={caseStudy.slug} caseStudy={caseStudy} />
             ))}
           </div>
         </div>

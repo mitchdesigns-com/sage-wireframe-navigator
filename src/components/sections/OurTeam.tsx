@@ -8,6 +8,7 @@ import '../../app/team.css'
 import Link from 'next/link'
 import ButtonIcon from '../svg/ButtonIcon'
 import Tagline from './Tagline'
+import Image from 'next/image'
 
 interface TeamMember {
   id: number
@@ -92,7 +93,9 @@ export default function OurTeam() {
                     key={member.id}
                     className="relative rounded-xl overflow-hidden"
                   >
-                    <img
+                    <Image
+                      width={265}
+                      height={300}
                       src={member.image}
                       alt={member.name}
                       className="w-full h-75 object-cover"

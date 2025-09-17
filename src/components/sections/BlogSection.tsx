@@ -6,7 +6,7 @@ import ButtonIcon from '../svg/ButtonIcon'
 import BlogCard from './BlogCard'
 
 interface Blog {
-  id: string
+  slug: string
   title: string
   category: string
   image: string
@@ -62,9 +62,9 @@ export default function BlogSection({
       <div className="grid md:grid-cols-3 gap-8">
         {blogs.map((blog) => (
           <BlogCard
-            key={blog.id}
+            key={blog.slug}
             blog={blog}
-            href={`/resources/blog/${blog.id}`}
+            href={`/resources/blog/${blog.slug}`}
           />
         ))}
       </div>

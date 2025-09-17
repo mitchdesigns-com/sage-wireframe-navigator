@@ -140,7 +140,7 @@ const NAVIGATION_ITEMS: NavigationItem[] = [
       },
       {
         label: 'News & Events',
-        href: '/resources/news',
+        href: '/resources/news-events',
         description: 'Stay Informed with Sage',
       },
       {
@@ -387,7 +387,11 @@ interface MobileNavigationProps {
   className?: string
 }
 
-function MobileNavigation({ items, onItemClick, className }: MobileNavigationProps) {
+function MobileNavigation({
+  items,
+  onItemClick,
+  className,
+}: MobileNavigationProps) {
   const [openSections, setOpenSections] = useState<Set<string>>(new Set())
 
   const toggleSection = (label: string) => {
@@ -423,11 +427,11 @@ interface MobileNavigationItemProps {
   onItemClick: () => void
 }
 
-function MobileNavigationItem({ 
-  item, 
-  isOpen, 
-  onToggle, 
-  onItemClick 
+function MobileNavigationItem({
+  item,
+  isOpen,
+  onToggle,
+  onItemClick,
 }: MobileNavigationItemProps) {
   if (item.children) {
     return (

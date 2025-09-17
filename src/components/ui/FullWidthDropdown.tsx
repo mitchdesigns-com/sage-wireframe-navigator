@@ -296,7 +296,7 @@ function ResourcesFullWidthDropdown({
         icon: <Newspaper size={24} className="text-[#000404]" />,
         title: 'News & Events',
         description: 'Stay Informed with Sage',
-        href: '/resources/news',
+        href: '/resources/news-events',
       },
     ],
     // Column 3

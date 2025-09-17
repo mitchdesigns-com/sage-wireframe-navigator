@@ -85,7 +85,7 @@ export default function ResourcesPage() {
           </Link>
 
           <Link
-            href="/resources/news"
+            href="/resources/news-events"
             className="bg-gray-50 p-6 rounded-lg hover:shadow-md transition-shadow"
           >
             <h3 className="text-xl font-semibold text-gray-900 mb-2">

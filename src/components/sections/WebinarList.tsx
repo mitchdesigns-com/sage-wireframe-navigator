@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import Button from '../ui/Button'
 import Link from 'next/link'
 import ToggleButton from './ToggleButton'
+import { Bookmark } from 'lucide-react'
 
 interface Webinar {
   title: string
@@ -11,6 +12,7 @@ interface Webinar {
   day: string
   dayNumbers: string
   year: string
+  slug?: string
 }
 
 interface WebinarListProps {
@@ -59,7 +61,8 @@ const WebinarList: React.FC<WebinarListProps> = ({ webinars, news }) => {
         </div>
         <div className="flex  overflow-x-auto flex-col">
           {webinars.map((webinar, index) => (
-            <div
+            <Link
+              href={`/resources/news-events/events/${webinar.slug}`}
               key={index}
               className="flex flex-row items-center p-8 w-full gap-8 border-b border-[#00040426]"
             >
@@ -83,21 +86,29 @@ const WebinarList: React.FC<WebinarListProps> = ({ webinars, news }) => {
                 <div>
                   {' '}
                   <Link
-                    href={'/contact'}
+                    href={`/resources/news-events/events/${webinar.slug}`}
                     className="inline-block  bg-primary text-Primary-Black rounded-lg font-medium group cursor-pointer"
                   >
                     <Button
-                      variant="light"
-                      rightIcon={true}
+                      variant={'light'}
+                      rightIcon={news ? false : true}
                       fullWidth
-                      //   onClick={() => setIsMenuOpen(false)}
                     >
-                      Watch Webinar
+                      {news ? (
+                        <div className="flex">
+                          <Bookmark className="text-Primary-Palm w-6 h-6" />
+                          <span className="ps-3">Save my spot</span>
+                        </div>
+                      ) : (
+                        <>
+                          <span>Watch Webinar</span>
+                        </>
+                      )}
                     </Button>
                   </Link>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

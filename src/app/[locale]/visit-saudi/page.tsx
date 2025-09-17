@@ -148,7 +148,7 @@ const list = [
 ]
 const blogs = [
   {
-    id: '1',
+    slug: '1',
     title: 'Sage Partners with Local Clinics',
     category: 'News',
     image: '/images/generalImages/blog1.png',
@@ -157,7 +157,7 @@ const blogs = [
     readTime: '3 min read',
   },
   {
-    id: '2',
+    slug: '2',
     title: 'Sage Wins Healthcare Innovation Global Award',
     category: 'News',
     image: '/images/generalImages/blog2.png',
@@ -166,7 +166,7 @@ const blogs = [
     readTime: '3 min read',
   },
   {
-    id: '3',
+    slug: '3',
     title: 'Sage Attends Global Health Conference at UAE',
     category: 'News',
     image: '/images/generalImages/blog3.png',

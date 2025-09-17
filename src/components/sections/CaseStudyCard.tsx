@@ -6,7 +6,7 @@ import Link from 'next/link'
 import ButtonIcon from '../svg/ButtonIcon'
 
 export interface CaseStudy {
-  id: string
+  slug: string
   title: string
   category: string
   image: string
@@ -19,7 +19,11 @@ interface CaseStudyCardProps {
 
 export default function CaseStudyCard({ caseStudy }: CaseStudyCardProps) {
   return (
-    <div key={caseStudy.id} className="flex flex-col rounded-4xl relative">
+    <Link
+      href={`/resources/case-studies/${caseStudy.slug}`}
+      key={caseStudy.slug}
+      className="flex flex-col rounded-4xl relative"
+    >
       <div className="h-[520px] w-full relative rounded-4xl overflow-hidden">
         {/* Image */}
         <Image
@@ -42,7 +46,7 @@ export default function CaseStudyCard({ caseStudy }: CaseStudyCardProps) {
 
           <p className="text-white text-base pb-6">{caseStudy.description}</p>
 
-          <Link href={'/'}>
+          <Link href={`/resources/case-studies/${caseStudy.slug}`}>
             {' '}
             <div className="group flex gap-1.5 items-center justify-start rounded-[100px]  cursor-pointer">
               {' '}
@@ -62,6 +66,6 @@ export default function CaseStudyCard({ caseStudy }: CaseStudyCardProps) {
           </Link>
         </div>
       </div>
-    </div>
+    </Link>
   )
 }

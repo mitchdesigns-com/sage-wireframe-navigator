@@ -5,13 +5,13 @@ import { ArrowUpRight } from 'lucide-react'
 import Link from 'next/link'
 
 export interface Blog {
-  id: string
+  slug: string
   title: string
   category?: string
   image: string
   author: string
   date: string
-  readTime: string
+  readTime?: string
 }
 
 interface BlogCardProps {
@@ -21,7 +21,7 @@ interface BlogCardProps {
 
 export default function BlogCard({ blog, href }: BlogCardProps) {
   return (
-    <Link href={href} key={blog.id} className="flex flex-col">
+    <Link href={href} key={blog.slug} className="flex flex-col">
       <div className="h-[270px] w-full relative rounded-2xl overflow-hidden mb-4">
         <Image
           src={blog.image}

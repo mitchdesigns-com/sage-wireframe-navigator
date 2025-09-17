@@ -72,7 +72,7 @@ export default function ResourcesMenu({ isOpen, onClose }: ResourcesMenuProps) {
         icon: <BreakingNewsIcon />,
         title: 'News & Events',
         description: 'Stay Informed with Sage',
-        href: '/resources/news',
+        href: '/resources/news-events',
       },
     ],
     column3: [

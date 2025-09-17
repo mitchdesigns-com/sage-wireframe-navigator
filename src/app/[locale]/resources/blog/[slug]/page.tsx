@@ -5,11 +5,12 @@ import HeroSinglePages from '@/components/sections/HeroSinglePages'
 import BlogCard from '@/components/sections/BlogCard'
 import { useTranslations } from 'next-intl'
 import ButtonIcon from '@/components/svg/ButtonIcon'
+import NotFound from '../../../[...rest]/page'
 export const runtime = 'edge'
 
 const blogs = [
   {
-    id: '1',
+    slug: '1',
     title: 'Sage Partners with Local Clinics',
     image: '/images/generalImages/blog1.png',
     author: 'John Doe',
@@ -17,15 +18,14 @@ const blogs = [
     readTime: '3 min read',
   },
   {
-    id: '2',
+    slug: '2',
     title: 'Sage Wins Healthcare Innovation Global Award',
     image: '/images/generalImages/blog2.png',
     author: 'John Doe',
     date: '15 Mar 2023',
-    readTime: '3 min read',
   },
   {
-    id: '3',
+    slug: '3',
     title: 'Sage Attends Global Health Conference at UAE',
     image: '/images/generalImages/blog3.png',
     author: 'John Doe',
@@ -33,7 +33,7 @@ const blogs = [
     readTime: '3 min read',
   },
   {
-    id: '4',
+    slug: '4',
     title: 'Sage Partners with Local Clinics',
     image: '/images/generalImages/blog1.png',
     author: 'John Doe',
@@ -41,7 +41,7 @@ const blogs = [
     readTime: '3 min read',
   },
   {
-    id: '5',
+    slug: '5',
     title: 'Sage Wins Healthcare Innovation Global Award',
     image: '/images/generalImages/blog2.png',
     author: 'John Doe',
@@ -49,7 +49,7 @@ const blogs = [
     readTime: '3 min read',
   },
   {
-    id: '6',
+    slug: '6',
     title: 'Sage Attends Global Health Conference at UAE',
     image: '/images/generalImages/blog3.png',
     author: 'John Doe',
@@ -57,7 +57,7 @@ const blogs = [
     readTime: '3 min read',
   },
   {
-    id: '7',
+    slug: '7',
     title: 'Sage Partners with Local Clinics',
     image: '/images/generalImages/blog1.png',
     author: 'John Doe',
@@ -65,7 +65,7 @@ const blogs = [
     readTime: '3 min read',
   },
   {
-    id: '8',
+    slug: '8',
     title: 'Sage Wins Healthcare Innovation Global Award',
     image: '/images/generalImages/blog2.png',
     author: 'John Doe',
@@ -73,7 +73,7 @@ const blogs = [
     readTime: '3 min read',
   },
   {
-    id: '9',
+    slug: '9',
     title: 'Sage Attends Global Health Conference at UAE',
     image: '/images/generalImages/blog3.png',
     author: 'John Doe',
@@ -81,17 +81,35 @@ const blogs = [
     readTime: '3 min read',
   },
 ]
+function calculateReadTime(text: string) {
+  const words = text.trim().split(/\s+/).length
+  const minutes = Math.ceil(words / 200)
+  return `${minutes} min read`
+}
 
 export default function SingleBlogsPage() {
   const params = useParams()
-  const blogId = params.id
-  const blog = blogs.find((j) => j.id === blogId)
+  const blogId = params.slug
+  const blog = blogs.find((j) => j.slug === blogId)
   const t = useTranslations()
 
   if (!blog) {
-    return <div className="p-8">New not found.</div>
+    return <NotFound />
   }
+  const articleContent = `
+    For many organizations, medical travel is reactive. Emergency
+    referrals, last-minute paperwork, miscommunication with
+    hospitals—all of these contribute to stress for both the patient and
+    the sponsoring team. Beyond the human cost, there’s a reputational
+    risk. Patients judge their experience holistically, not just by the
+    treatment received but by how they were cared for along the way.
+    Healthcare is more than a service—it’s a statement of how much an
+    organization values its people. With the right logistics partner,
+    your institution can deliver world-class care that’s not just
+    effective, but unforgettable.
+  `
 
+  const readTime = blog.readTime || calculateReadTime(articleContent)
   return (
     <>
       <section>
@@ -102,13 +120,13 @@ export default function SingleBlogsPage() {
             { label: 'Blog', href: '/resources/blog' },
             {
               label: blog.title,
-              href: `/resources/blog/${blog.id}`,
+              href: `/resources/blog/${blog.slug}`,
             },
           ]}
           bgImage={blog.image}
           author={blog.author}
           date={blog.date}
-          readTime={blog.readTime}
+          readTime={blog.readTime ? blog.readTime : readTime}
           button={'All Blog Posts'}
           href={'/resources/blog'}
         />
@@ -169,9 +187,9 @@ export default function SingleBlogsPage() {
           <div className="grid md:grid-cols-3 gap-8 pt-15">
             {blogs.slice(0, 3).map((blog) => (
               <BlogCard
-                key={blog.id}
+                key={blog.slug}
                 blog={blog}
-                href={`/resources/blog/${blog.id}`}
+                href={`/resources/blog/${blog.slug}`}
               />
             ))}
           </div>

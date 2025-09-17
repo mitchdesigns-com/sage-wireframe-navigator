@@ -10,7 +10,7 @@ export const runtime = 'edge'
 
 const blogs = [
   {
-    id: '1',
+    slug: '1',
     title: 'Sage Partners with Local Clinics',
     category: 'news',
     image: '/images/generalImages/blog1.png',
@@ -19,7 +19,7 @@ const blogs = [
     readTime: '3 min read',
   },
   {
-    id: '2',
+    slug: '2',
     title: 'Sage Wins Healthcare Innovation Global Award',
     category: 'news',
     image: '/images/generalImages/blog2.png',
@@ -28,7 +28,7 @@ const blogs = [
     readTime: '3 min read',
   },
   {
-    id: '3',
+    slug: '3',
     title: 'Sage Attends Global Health Conference at UAE',
     category: 'news',
     image: '/images/generalImages/blog3.png',
@@ -37,7 +37,7 @@ const blogs = [
     readTime: '3 min read',
   },
   {
-    id: '4',
+    slug: '4',
     title: 'Sage Partners with Local Clinics',
     category: 'events',
     image: '/images/generalImages/blog1.png',
@@ -46,7 +46,7 @@ const blogs = [
     readTime: '3 min read',
   },
   {
-    id: '5',
+    slug: '5',
     title: 'Sage Wins Healthcare Innovation Global Award',
     category: 'events',
     image: '/images/generalImages/blog2.png',
@@ -55,7 +55,7 @@ const blogs = [
     readTime: '3 min read',
   },
   {
-    id: '6',
+    slug: '6',
     title: 'Sage Attends Global Health Conference at UAE',
     category: 'events',
     image: '/images/generalImages/blog3.png',
@@ -67,8 +67,8 @@ const blogs = [
 
 export default function SingleNewsPage() {
   const params = useParams()
-  const newsId = params.id
-  const news = blogs.find((j) => j.id === newsId)
+  const newsId = params.slug
+  const news = blogs.find((j) => j.slug === newsId)
   const t = useTranslations()
 
   if (!news) {
@@ -82,10 +82,10 @@ export default function SingleNewsPage() {
           title={news.title}
           breadcrumbItems={[
             { label: 'Home', href: '/' },
-            { label: 'News & Events', href: '/resources/news' },
+            { label: 'News & Events', href: '/resources/news-events' },
             {
               label: news.title,
-              href: `/resources/news/${news.id}`,
+              href: `/resources/news-events/${news.slug}`,
             },
           ]}
           bgImage={news.image}
@@ -93,7 +93,7 @@ export default function SingleNewsPage() {
           date={news.date}
           readTime={news.readTime}
           button={'All News'}
-          href={'/resources/news'}
+          href={'/resources/news-events'}
         />
 
         <div className="max-w-[930px] mx-auto py-28">
@@ -139,7 +139,7 @@ export default function SingleNewsPage() {
             <div className="flex ">
               {' '}
               <Link
-                href="/resources/news"
+                href="/resources/news-events"
                 className="text-[#000404] font-medium text-base pe-2"
               >
                 {t('News.viewAll')}
@@ -150,9 +150,9 @@ export default function SingleNewsPage() {
           <div className="grid md:grid-cols-3 gap-8 pt-20">
             {blogs.slice(0, 3).map((blog) => (
               <BlogCard
-                key={blog.id}
+                key={blog.slug}
                 blog={blog}
-                href={`/resources/news/${blog.id}`}
+                href={`/resources/news-events/${blog.slug}`}
               />
             ))}
           </div>
