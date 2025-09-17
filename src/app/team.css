@@ -1,0 +1,29 @@
+.team-swiper .swiper-pagination {
+  position: relative;
+  margin-top: 3rem; /* space below slides */
+  margin-bottom: 60px; /* space below slides */
+
+  text-align: center; /* center the dots */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.team-swiper .swiper-pagination-bullet {
+  background-color: rgba(86, 152, 146, 0.2);
+  opacity: 1;
+  width: 10px;
+  height: 10px;
+  margin: 0 6px !important;
+  border-radius: 9999px;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: row;
+}
+
+.team-swiper .swiper-pagination-bullet-active {
+  background-color: #6cbeb8; /* your brand color */
+  width: 10px;
+  height: 10px; /* stretch the active one */
+  border-radius: 9999px; /* pill shape */
+}

@@ -1,3 +1,7 @@
+export interface BreadcrumbItem {
+  label: string
+  href?: string
+}
 export interface HeroSectionProps {
   data: {
     title: string
@@ -28,5 +32,7 @@ export interface HeroSectionProps {
     height: 'small' | 'medium' | 'large' | 'full'
     overlay?: boolean
     overlay_opacity?: number
+    breadcrumbItems: BreadcrumbItem[]
+    tagline?: string
   }
 }

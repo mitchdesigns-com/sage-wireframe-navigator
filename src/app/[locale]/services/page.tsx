@@ -108,6 +108,10 @@ export default function ServicesPage() {
           height: 'large',
           overlay: true,
           overlay_opacity: 40,
+          breadcrumbItems: [
+            { label: 'Home', href: '/' },
+            { label: 'About Us', href: '/about' },
+          ],
         }}
       />
 

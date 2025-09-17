@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import Breadcrumb from '../sections/Breadcrumb'
 import { HeroSectionProps } from '../../types/hero'
+import Tagline from '../sections/Tagline'
 
 const HeroSection: React.FC<HeroSectionProps> = ({ data }) => {
   const {
@@ -19,6 +20,8 @@ const HeroSection: React.FC<HeroSectionProps> = ({ data }) => {
     height = 'large',
     overlay = false,
     overlay_opacity = 50,
+    breadcrumbItems,
+    tagline,
   } = data
 
   const getHeightClass = () => {
@@ -115,12 +118,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ data }) => {
             transition={{ duration: 0.6 }}
             className="max-w-4xl"
           >
-            <Breadcrumb
-              items={[
-                { label: 'Home', href: '/' },
-                { label: 'Services', href: '/services' },
-              ]}
-            />
+            <Breadcrumb items={breadcrumbItems} />
             {/* Subtitle */}
             {subtitle && (
               <motion.p
@@ -132,7 +130,12 @@ const HeroSection: React.FC<HeroSectionProps> = ({ data }) => {
                 {subtitle}
               </motion.p>
             )}
-
+            {tagline && (
+              <div className="pt-16">
+                {' '}
+                <Tagline text={tagline} />
+              </div>
+            )}
             {/* Title */}
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
