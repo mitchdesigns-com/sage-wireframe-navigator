@@ -1,5 +1,6 @@
 'use client'
 import { useParams } from 'next/navigation'
+import { useState } from 'react'
 
 import { useTranslations } from 'next-intl'
 import HeroCarousel from '@/components/sections/HeroCarousel'
@@ -8,6 +9,10 @@ import GetInTouch from '@/components/sections/GetInTouch'
 import Link from 'next/link'
 import ButtonIcon from '@/components/svg/ButtonIcon'
 import CaseStudyCard from '@/components/sections/CaseStudyCard'
+import Image from 'next/image'
+import GalleryPopup, {
+  singleImage,
+} from '../../../../../components/sections/GalleryPopup'
 export const runtime = 'edge'
 
 const caseStudyData = [
@@ -92,6 +97,16 @@ const featureSections = [
     reverse: false,
   },
 ]
+const images = [
+  '/images/generalImages/Aligning.png',
+  '/images/generalImages/Guidance.png',
+  '/images/generalImages/Responsible.png',
+  '/images/generalImages/service.png',
+  '/images/generalImages/Travel.png',
+  '/images/generalImages/Timeline.png',
+  '/images/generalImages/Timeline3.png',
+  // ... more images
+]
 export default function SingleCaseStudyPage() {
   const params = useParams()
   const newsId = params.slug
@@ -101,6 +116,22 @@ export default function SingleCaseStudyPage() {
   if (!events) {
     return <div className="p-8">Event not found.</div>
   }
+  const [isOpen, setIsOpen] = useState(false)
+  const [photoIndex, setPhotoIndex] = useState(0)
+
+  const openLightbox = (index: number) => {
+    setPhotoIndex(index)
+    setIsOpen(true)
+  }
+
+  // Convert plain strings → singleImage[]
+  const galleryImages: singleImage[] = images.map((url, index) => ({
+    id: index,
+    attributes: {
+      alternativeText: `Gallery image ${index + 1}`,
+      url, // already relative to public folder
+    },
+  }))
 
   return (
     <>
@@ -232,6 +263,63 @@ export default function SingleCaseStudyPage() {
           </div>
         </div>
       </section>
+      <div className="bg-Secondary-Dark-Palm text-white">
+        <div className="py-25 max-w-[1392px] mx-auto ">
+          <div className="text-center pb-20">
+            <h3 className=" font-bold text-[48px] leading-[1.2] tracking-[-0.48px] pb-4">
+              Image Gallery
+            </h3>
+            <p className="text-p">
+              Visuals showcasing the journey and services provided.
+            </p>
+          </div>
+          <div className="grid grid-cols-2 gap-8">
+            <div className="col-span-1 row-span-2">
+              <div className="relative w-full aspect-square">
+                <Image
+                  src={images[0]}
+                  fill
+                  alt="Gallery"
+                  className="object-cover cursor-pointer rounded-4xl"
+                  onClick={() => openLightbox(0)}
+                />
+              </div>
+            </div>
+
+            <div className="grid grid-rows-2 grid-cols-2 gap-8">
+              {images.slice(1, 5).map((img, i) => (
+                <div
+                  className="relative w-full aspect-square"
+                  key={i}
+                  onClick={() => openLightbox(i + 1)}
+                >
+                  <Image
+                    fill
+                    src={img}
+                    alt="Gallery"
+                    className="w-full h-full object-cover cursor-pointer rounded-4xl"
+                  />
+
+                  {i === images.slice(1, 5).length - 1 && (
+                    <div className="absolute inset-0 bg-black/80 flex items-center justify-center text-white text-xl font-medium rounded-4xl flex-col cursor-pointer">
+                      <span className="font-bold text-[32px]">
+                        +{images.length - 5}
+                      </span>{' '}
+                      <p>more</p>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+            {isOpen && (
+              <GalleryPopup
+                onClickHandle={() => setIsOpen(false)}
+                Images={galleryImages}
+              />
+            )}
+          </div>
+        </div>
+      </div>
       <section className="bg-Secondary-Light-Scrub">
         <div className="py-20 max-w-[1390px] mx-auto w-full">
           <div className="flex justify-between items-end w-full">
