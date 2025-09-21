@@ -32,8 +32,6 @@ export default function GalleryPopup({
     mainNextRef,
     thumbPrevRef,
     thumbNextRef,
-    goToPrevImage,
-    goToNextImage,
   } = useGallerySwiper(Images.length)
   return (
     <motion.div

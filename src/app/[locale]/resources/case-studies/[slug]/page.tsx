@@ -108,17 +108,9 @@ const images = [
   // ... more images
 ]
 export default function SingleCaseStudyPage() {
-  const params = useParams()
-  const newsId = params.slug
-  const events = caseStudyData.find((j) => j.slug === newsId)
-  const t = useTranslations()
-
-  if (!events) {
-    return <div className="p-8">Event not found.</div>
-  }
   const [isOpen, setIsOpen] = useState(false)
   const [photoIndex, setPhotoIndex] = useState(0)
-
+  console.log(photoIndex)
   const openLightbox = (index: number) => {
     setPhotoIndex(index)
     setIsOpen(true)
@@ -132,6 +124,15 @@ export default function SingleCaseStudyPage() {
       url, // already relative to public folder
     },
   }))
+
+  const params = useParams()
+  const newsId = params.slug
+  const events = caseStudyData.find((j) => j.slug === newsId)
+  const t = useTranslations()
+
+  if (!events) {
+    return <div className="p-8">Event not found.</div>
+  }
 
   return (
     <>
