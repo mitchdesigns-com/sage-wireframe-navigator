@@ -53,10 +53,11 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
             <div className="mb-8">
               <div>
                 {backgroundColor === '#DAF7AF' ? (
-                  <span className="text-Primary-Palm text-base font-medium pb-4">
-                    {tagline}
-                  </span>
+                  <Tagline text={tagline} taglineColor={'#025850'} />
                 ) : (
+                  // <span className="text-Primary-Palm text-base font-medium pb-4">
+                  //  {tagline}
+                  // </span>
                   <Tagline text={tagline} />
                 )}
               </div>

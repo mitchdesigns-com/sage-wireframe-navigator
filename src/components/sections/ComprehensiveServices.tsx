@@ -75,7 +75,7 @@ const defaultSections: ServiceSection[] = [
     ],
     backgroundColor: 'bg-[#013530]',
     textColor: 'text-white',
-    imageUrl: '/api/placeholder/344/395',
+    imageUrl: '/images/generalImages/Training.png',
   },
 ]
 
@@ -190,7 +190,7 @@ const ServiceButton: React.FC<{
   <Link
     href={link.href}
     className={`
-      group flex items-center justify-between w-full py-3 px-0 
+      group flex items-center justify-between w-full py-4 px-0 
       transition-all duration-300 hover:translate-x-1
       ${textColor} hover:text-[#caf48e]
     `}
@@ -214,10 +214,12 @@ const ServiceSection: React.FC<{
     >
       {/* Content Card */}
       <div
-        className={`relative ${section.backgroundColor} rounded-[24px] p-10  ${hasImage ? 'flex-1' : 'w-full'} overflow-hidden`}
+        className={`relative ${section.backgroundColor} rounded-[24px] p-10  ${hasImage ? 'flex-1' : 'w-full'} overflow-hidden min-h-[368px]`}
       >
         {/* Content */}
-        <div className="relative z-10 flex flex-col gap-20">
+        <div
+          className={`relative z-10 flex flex-col gap-[30px] ${section.imageUrl && isReversed && 'items-end'}`}
+        >
           {/* Header */}
           <div className="flex flex-col gap-2">
             <h3 className="font-aeonik font-bold text-2xl leading-[1.4] tracking-[-0.24px] text-[#caf48e]">
@@ -231,29 +233,39 @@ const ServiceSection: React.FC<{
           </div>
 
           {/* Links */}
-          <div className="flex flex-col w-[452px] max-w-full">
-            {section.links.map((link, index) => (
-              <div key={index}>
-                <ServiceButton
-                  link={link}
-                  textColor={section.textColor || 'text-white'}
-                />
-                {index < section.links.length - 1 && (
-                  <div className="w-full h-px bg-gray-400/20 my-4" />
-                )}
-              </div>
-            ))}
+          <div className="flex gap-25">
+            <div className="flex flex-col w-[452px] max-w-full justify-end">
+              {section.links.map((link, index) => (
+                <div key={index}>
+                  <ServiceButton
+                    link={link}
+                    textColor={section.textColor || 'text-white'}
+                  />
+                  {index < section.links.length - 1 && (
+                    <div className="w-full h-px bg-gray-400/20 " />
+                  )}
+                </div>
+              ))}{' '}
+            </div>
+            {hasImage && (
+              <div
+                className="w-[190px] h-[225px] bg-cover bg-center bg-no-repeat "
+                style={{
+                  backgroundImage: `url('/images/generalImages/Vector.png')`,
+                }}
+              />
+            )}
           </div>
         </div>
 
         {/* Background Image for third section */}
         {section.imageUrl && isReversed && (
           <div
-            className="absolute left-0 top-[-8px] w-[344px] h-[395px] bg-cover bg-center bg-no-repeat rounded-[24px]"
+            className="absolute left-0 top-0 w-[344px] h-[395px] bg-cover bg-center bg-no-repeat rounded-[24px]"
             style={{
               backgroundImage: `url('${section.imageUrl}')`,
-              backgroundPosition: '99.04% 26.47%',
-              backgroundSize: '115.56% 151.11%',
+              // backgroundPosition: '99.04% 26.47%',
+              // backgroundSize: '115.56% 151.11%',
             }}
           />
         )}
@@ -263,7 +275,9 @@ const ServiceSection: React.FC<{
       {hasImage && section.imageUrl && !isReversed && (
         <div
           className="w-[532px] h-[386px] rounded-[32px] bg-cover bg-center bg-no-repeat shrink-0"
-          style={{ backgroundImage: `url('${section.imageUrl}')` }}
+          style={{
+            backgroundImage: `url('/images/generalImages/Solutions.png')`,
+          }}
         />
       )}
     </div>
@@ -341,14 +355,14 @@ export default function ComprehensiveServices({
       `}</style>
 
       <section className={`relative section-padding ${className}`}>
-        <div className="container-custom mx-auto">
+        <div className="max-w-[1392px] mx-auto">
           {/* Header */}
           <div className="flex flex-col items-center gap-20">
             {/* Decorative top vector can go here if needed */}
 
             {/* Title with decorative vector */}
             <div className="relative flex flex-wrap justify-center items-center gap-x-4 max-w-[768px]">
-              <h2 className="font-aeonik heading-1 text-[#1e1e1e] text-center">
+              <h2 className="font-aeonik text-[40px] font-bold text-[#1e1e1e] text-center">
                 <span>Discover Our Comprehensive </span>
                 <span className="relative inline-block">
                   <span className="z-[2] relative">Solutions</span>
@@ -369,7 +383,7 @@ export default function ComprehensiveServices({
               {/* Second Row - Concierge + Consultation */}
               <div className="flex gap-4">
                 <div className="w-[532px]">
-                  <ServiceSection section={sections[1]} />
+                  <ServiceSection section={sections[1]} hasImage={false} />
                 </div>
                 <div className="flex-1">
                   <ServiceSection section={sections[2]} isReversed={true} />

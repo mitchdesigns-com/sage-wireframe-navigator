@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import Button from '../ui/Button'
 import SectionHeader from '../ui/SectionHeader'
+import { ChevronRight } from 'lucide-react'
 
 const SERVICES = [
   {
@@ -74,9 +75,13 @@ function ServiceCard({
       </div>
 
       {/* Learn More Button */}
-      <Button variant="link" href={href} rightIcon={true}>
-        Learn More
-      </Button>
+      <div className="flex flex-row gap-2 text-Primary-Palm">
+        {' '}
+        <Button variant="link" href={href} rightIcon={false}>
+          <span>Learn More</span>
+        </Button>
+        <ChevronRight />
+      </div>
     </div>
   )
 }

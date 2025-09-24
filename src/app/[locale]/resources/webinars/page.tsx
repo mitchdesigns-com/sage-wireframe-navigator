@@ -69,6 +69,7 @@ const webinarHighlights = [
 ]
 const webinars = [
   {
+    slug: 'event1',
     title: 'Optimizing Medical Travel',
     description:
       'Learn how to streamline patient journeys across borders with smart coordination tools and proven logistical frameworks.',
@@ -77,6 +78,7 @@ const webinars = [
     year: 'Feb 2026',
   },
   {
+    slug: 'event2',
     title: 'The Future of Corporate Wellness in a Globalized World',
     description:
       'Discover emerging trends and strategies for building scalable, employee-first wellness programs in multinational settings.',
@@ -85,6 +87,7 @@ const webinars = [
     year: 'Feb 2026',
   },
   {
+    slug: 'event3',
     title: 'Cross-Border Care: Legal, Logistical & Ethical Considerations',
     description:
       'Explore the complexities of international healthcare delivery, including compliance, patient rights, and operational challenges.',
@@ -121,7 +124,7 @@ export default function WebinarsPage() {
         />
       ))}
       <WebinarHighlights highlights={webinarHighlights} />
-      <WebinarList webinars={webinars} news />
+      <WebinarList webinars={webinars} news={false} />
     </div>
   )
 }

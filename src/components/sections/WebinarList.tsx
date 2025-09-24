@@ -40,7 +40,7 @@ const WebinarList: React.FC<WebinarListProps> = ({ webinars, news }) => {
       <div className=" mx-auto max-w-[1280px] py-28">
         {news && (
           <div className="pb-15">
-            <span className="text-Secondary-Dark-Palm text-base font-medium">
+            <span className="text-Primary-Palm text-base font-medium">
               Where Healthcare Meets Insight and Impact
             </span>
             <h6 className="heading-lg">Sage Events</h6>

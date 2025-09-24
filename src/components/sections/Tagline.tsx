@@ -28,7 +28,9 @@ const Tagline: React.FC<TaglineProps> = ({
         ? 'bg-[#569893] text-white'
         : taglineColor === '#1E1E1E'
           ? 'bg-Primary-Black text-[#CAF48E]'
-          : 'bg-Primary-Spring text-Primary-Black'
+          : taglineColor === '#025850'
+            ? 'bg-Primary-Palm text-Primary-Spring'
+            : 'bg-Primary-Spring text-Primary-Black'
 
   const finalClasses = taglineColor ? taglineClasses : categoryClasses
   return (
