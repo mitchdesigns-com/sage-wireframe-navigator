@@ -1,8 +1,4 @@
-export default function ArrowOutWard({
-  className = '',
-}: {
-  className?: string
-}) {
+export default function ArrowOutWard() {
   return (
     <svg
       width="38"

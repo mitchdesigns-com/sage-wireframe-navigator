@@ -15,10 +15,6 @@ import HeroWithVideo from '../../components/sections/HeroWithVideo'
 import FeatureSection from '../../components/sections/FeatureSection'
 import VectorIcon from '../../components/svg/VectorIcon'
 import GetInTouch from '../../components/sections/GetInTouch'
-import { useTranslations } from 'next-intl'
-import Link from 'next/link'
-import { ChevronRight } from 'lucide-react'
-import BlogCard from '../../components/sections/BlogCard'
 import BlogSection from '../../components/sections/BlogSection'
 import CentersSection from '../../components/sections/CentersSection'
 
@@ -126,7 +122,6 @@ export default function HomePage() {
       reverse: false,
     },
   ]
-  const t = useTranslations()
 
   return (
     <div className="min-h-screen">
