@@ -1,35 +1,35 @@
-import Hero from '@/components/sections/Hero'
+// import Hero from '@/components/sections/Hero'
 import HowItWorks from '@/components/sections/HowItWorks'
 import Services from '@/components/sections/Services'
 import ComprehensiveServices from '@/components/sections/ComprehensiveServices'
-import ContentWithImage from '@/components/sections/ContentWithImage'
-import Awards from '@/components/sections/Awards'
-import Resources from '@/components/sections/Resources'
-import ClientExperiences from '@/components/sections/ClientExperiences'
-import NewsEvents from '@/components/sections/NewsEvents'
-import JoinNetwork from '@/components/sections/JoinNetwork'
-import StartJourney from '@/components/sections/StartJourney'
-import SageIcon from '../../components/icons/SageIcon'
+// import ContentWithImage from '@/components/sections/ContentWithImage'
+// import Awards from '@/components/sections/Awards'
+// import Resources from '@/components/sections/Resources'
+// import ClientExperiences from '@/components/sections/ClientExperiences'
+// import NewsEvents from '@/components/sections/NewsEvents'
+// import JoinNetwork from '@/components/sections/JoinNetwork'
+// import StartJourney from '@/components/sections/StartJourney'
+// import SageIcon from '../../components/icons/SageIcon'
 import DirectionScrollSection from '../../components/ui/DirectionScrollSection'
 import HeroWithVideo from '../../components/sections/HeroWithVideo'
 import FeatureSection from '../../components/sections/FeatureSection'
 import VectorIcon from '../../components/svg/VectorIcon'
 
 export default function HomePage() {
-  const benefits = [
-    {
-      icon: <SageIcon />,
-      text: 'World-class hospitals and healthcare professionals await you.',
-    },
-    {
-      icon: <SageIcon />,
-      text: 'Easy access to major airports and transport links.',
-    },
-    {
-      icon: <SageIcon />,
-      text: "Immerse yourself in Saudi Arabia's vibrant culture.",
-    },
-  ]
+  // const benefits = [
+  //   {
+  //     icon: <SageIcon />,
+  //     text: 'World-class hospitals and healthcare professionals await you.',
+  //   },
+  //   {
+  //     icon: <SageIcon />,
+  //     text: 'Easy access to major airports and transport links.',
+  //   },
+  //   {
+  //     icon: <SageIcon />,
+  //     text: "Immerse yourself in Saudi Arabia's vibrant culture.",
+  //   },
+  // ]
   const featureSections = [
     {
       tagline: 'Visit Saudi',
