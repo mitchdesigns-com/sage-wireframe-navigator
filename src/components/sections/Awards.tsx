@@ -51,9 +51,9 @@ const awards = [
 
 export default function Awards() {
   return (
-    <div className="bg-Primary-Black content-stretch flex flex-col gap-[60px] items-center justify-center md:py-40 py-10 relative size-full">
-      <h3 className="heading-3 text-white font-bold">{`Awards & Recognition`}</h3>
-      <div className="gap-4 items-center justify-center relative grid grid-cols-6 w-full container-custom">
+    <div className="bg-Primary-Black content-stretch flex flex-col gap-[60px] items-center justify-center md:py-42 py-10 relative size-full">
+      <h3 className="text-[40px] text-white font-bold">{`Awards & Recognition`}</h3>
+      <div className="gap-4 items-center justify-center relative grid grid-cols-6 w-full container-custom max-w-[1392px]">
         {awards.map((award, idx) => (
           <div
             key={idx}

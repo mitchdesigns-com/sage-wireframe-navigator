@@ -1,6 +1,5 @@
-import Button from '@/components/ui/Button'
-import { Image as ImageIcon } from 'lucide-react'
 import SectionHeader from '../ui/SectionHeader'
+import ArrowOutWard from '../svg/ArrowOutWard'
 
 const resources = [
   {
@@ -32,28 +31,26 @@ const resources = [
 
 export default function Resources() {
   return (
-    <section className="section-padding bg-sage-gradient">
-      <div className="container-custom mx-auto">
+    <section className="py-25 bg-sage-gradient">
+      <div className="max-w-[1392px] px-4 mx-auto">
         <SectionHeader
           heading={'Explore Our Featured Resources for You'}
           color="light"
           tagline="Resources"
           description="Discover valuable insights and information tailored to your healthcare journey. Our resources are designed to empower you with knowledge and support."
+          home
         />
 
         {/* Content Grid */}
-        <div className="grid grid-cols-1 items-start gap-16 lg:grid-cols-2">
+        <div className="grid grid-cols-1 items-center gap-20 lg:grid-cols-2">
           {/* Left Content - Large Image */}
           <div className="order-2 lg:order-1">
-            <div className="flex aspect-[4/5] items-center justify-center rounded-3xl bg-gray-200">
-              <div className="text-center text-gray-400">
-                <div className="mx-auto mb-4 flex h-16 w-24 items-center justify-center rounded-lg bg-gray-400">
-                  <ImageIcon className="h-12 w-12 text-gray-500" />
-                </div>
-                <p className="text-sm font-medium">Featured Resources</p>
-                <p className="mt-1 text-xs">Healthcare guidance & insights</p>
-              </div>
-            </div>
+            <div
+              className="aspect-[600/650] rounded-[40px] bg-cover bg-center w-full"
+              style={{
+                backgroundImage: `url('/images/generalImages/Resources.png')`,
+              }}
+            />
           </div>
 
           {/* Right Content - Resources List */}
@@ -61,15 +58,19 @@ export default function Resources() {
             {resources.map((resource, index) => (
               <div
                 key={index}
-                className="border-b border-gray-100 pb-8 last:border-b-0"
+                className="border-b border-[#4B4B4B] pb-8 last:border-b-0"
               >
-                <h3 className="mb-2 text-xl font-bold text-gray-900">
-                  {resource.title}
-                </h3>
-                <p className="mb-4 leading-relaxed text-gray-600">
-                  {resource.description}
-                </p>
-                <Button href={resource.href}>Learn More</Button>
+                <div className="flex justify-between items-center">
+                  <div>
+                    <h3 className="mb-2 text-xl font-bold text-white">
+                      {resource.title}
+                    </h3>
+                    <p className=" leading-relaxed text-white">
+                      {resource.description}
+                    </p>
+                  </div>
+                  <ArrowOutWard />
+                </div>
               </div>
             ))}
           </div>

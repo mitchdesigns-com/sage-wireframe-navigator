@@ -30,8 +30,8 @@ const steps = [
 
 export default function HowItWorks() {
   return (
-    <section className="p-25 bg-Secondary-Light-Scrub overflow-visible">
-      <div className="container-custom mx-auto">
+    <section className="py-25 bg-Secondary-Light-Scrub overflow-visible">
+      <div className="max-w-[1392px] mx-auto px-4">
         <div className="grid grid-cols-1 items-start gap-20 md:grid-cols-2">
           {/* Left Content */}
           <div className="md:sticky md:top-24 bg-Primary-Palm rounded-3xl">

@@ -6,6 +6,7 @@ type SectionHeaderProps = {
   heading: string
   description?: string
   color?: 'light' | 'dark'
+  home?: boolean
 }
 
 export default function SectionHeader({
@@ -13,6 +14,7 @@ export default function SectionHeader({
   heading,
   description,
   color = 'dark',
+  home,
 }: SectionHeaderProps) {
   const isLight = color === 'light'
   const headingText = isLight ? 'text-white' : 'text-Primary-Black'
@@ -23,13 +25,13 @@ export default function SectionHeader({
       <div className="flex flex-col items-center justify-center w-full">
         <Tagline text={tagline} className="justify-center" />
         <h2
-          className={`font-aeonik-bold ${headingText} text-[48px] leading-[1.2] tracking-[-0.48px] text-center mb-6 text-pretty max-w-[768px]`}
+          className={`font-aeonik-bold ${headingText} text-[48px] leading-[1.2] tracking-[-0.48px] text-center mb-6 text-pretty ${home ? 'max-w-[880px]' : 'max-w-[768px]'} `}
         >
           {heading}
         </h2>
         {description && (
           <p
-            className={`font-aeonik-regular ${descText} text-lg leading-[1.5] text-center w-full max-w-[768px]`}
+            className={`font-aeonik-regular ${descText} text-lg leading-[1.5] text-center w-full ${home ? 'max-w-[696px]' : 'max-w-[768px]'}`}
           >
             {description}
           </p>
