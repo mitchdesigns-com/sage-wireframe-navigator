@@ -85,7 +85,7 @@ export default async function LocaleLayout({ children, params }: Props) {
   }
 
   setRequestLocale(locale)
-  console.log(locale)
+
   return (
     <html
       className="h-full"

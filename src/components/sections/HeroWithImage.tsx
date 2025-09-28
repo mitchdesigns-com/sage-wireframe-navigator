@@ -43,7 +43,12 @@ const HeroWithImage: React.FC<HeroWithImageProps> = ({
   return (
     <section>
       <div className="h-[680px] relative">
-        <Image src={image} fill alt={imageAlt} className="object-cover" />
+        <Image
+          src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${image}`}
+          fill
+          alt={imageAlt}
+          className="object-cover"
+        />
       </div>
 
       <div className="mx-auto max-w-[1392px] w-full pt-8 pb-20">

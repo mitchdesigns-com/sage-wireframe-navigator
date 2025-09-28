@@ -5,7 +5,7 @@ import ComprehensiveServices from '@/components/sections/ComprehensiveServices'
 // import ContentWithImage from '@/components/sections/ContentWithImage'
 import Awards from '@/components/sections/Awards'
 import Resources from '@/components/sections/Resources'
-// import ClientExperiences from '@/components/sections/ClientExperiences'
+import ClientExperiences from '@/components/sections/ClientExperiences'
 // import NewsEvents from '@/components/sections/NewsEvents'
 // import JoinNetwork from '@/components/sections/JoinNetwork'
 // import StartJourney from '@/components/sections/StartJourney'
@@ -175,7 +175,7 @@ export default function HomePage() {
       <Resources />
 
       {/* Client Experiences */}
-      {/* <ClientExperiences /> */}
+      <ClientExperiences />
 
       {/* Join Our Network */}
       {/* <JoinNetwork /> */}

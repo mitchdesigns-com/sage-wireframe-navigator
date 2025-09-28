@@ -1,14 +1,15 @@
 export async function fetchServer(pageURL: string, lang: string) {
-  const token = process.env.NEXT_PUBLIC_API_TOKEN
+  // const token = process.env.NEXT_PUBLIC_API_TOKEN
   const separator = pageURL.includes('?') ? '&' : '?'
 
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/${pageURL}${separator}locale=${lang}`,
     {
       headers: {
-        Authorization: `Bearer ${token}`,
+        // Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json',
       },
+      cache: 'no-store', // helpful in Next.js to avoid caching issues
     }
   )
 

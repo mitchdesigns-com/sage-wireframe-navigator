@@ -72,7 +72,7 @@ const WhySection: React.FC<WhySectionProps> = ({
                               className={`${colIndex === 0 && index === 0 ? 'mt-15' : ''} `}
                             >
                               <Image
-                                src={feature.image}
+                                src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${feature.image}`}
                                 alt={feature.title}
                                 width={
                                   pathname === '/services/businesses' &&

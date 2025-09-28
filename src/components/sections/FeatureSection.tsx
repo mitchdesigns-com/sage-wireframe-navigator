@@ -1,16 +1,23 @@
-import React, { ReactElement } from 'react'
+import React from 'react'
 import Link from 'next/link'
 import Button from '../ui/Button'
 import Tagline from './Tagline'
+import Image from 'next/image'
 
 interface Feature {
   text: string
-  icon: ReactElement
+  icon: {
+    url: string
+    alternativeText: string
+  }
 }
 interface List {
   title?: string
   description?: string
-  icon?: ReactElement
+  icon?: {
+    url: string
+    alternativeText: string
+  }
   theme: string
 }
 interface FeatureSectionProps {
@@ -82,8 +89,14 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
               <div className=" mb-8">
                 {features?.map((feature, idx) => (
                   <div key={idx} className="flex items-center gap-4 mb-4">
-                    <div className="w-4 h-4 flex items-center justify-center">
-                      {feature.icon}
+                    <div className="w-6 h-6 flex items-center justify-center relative">
+                      <Image
+                        src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${feature.icon?.url}`}
+                        alt={feature.icon?.alternativeText || title}
+                        className="object-cover"
+                        priority
+                        fill
+                      />
                     </div>
                     <span
                       className="text-[16px] leading-[1.5] flex-1 text-Secondary-Light-Scrub"
@@ -103,8 +116,14 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
                     key={idx}
                     className="flex items-start gap-2 flex-col max-w-[316px]"
                   >
-                    <div className="flex items-center justify-center">
-                      {li.icon}
+                    <div className="flex items-center justify-center w-12 h-12 relative">
+                      <Image
+                        src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${li.icon?.url}`}
+                        alt={li.icon?.alternativeText || title}
+                        className="object-cover"
+                        priority
+                        fill
+                      />
                     </div>
                     <h5
                       className={`${li.theme === 'dark' ? 'text-Primary-Black' : !li.icon ? 'text-[#CAF48E]' : 'text-white'}  text-[20px] font-bold`}
@@ -149,7 +168,9 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
           <div className="flex-1">
             <div
               className="aspect-[606/646] rounded-[40px] bg-cover bg-center w-[606px]"
-              style={{ backgroundImage: `url('${image}')` }}
+              style={{
+                backgroundImage: `url('${process.env.NEXT_PUBLIC_API_BASE_URL}${image}')`,
+              }}
             />
           </div>
         </div>

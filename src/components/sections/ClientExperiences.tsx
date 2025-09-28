@@ -80,7 +80,7 @@ export default function ClientExperiences() {
   return (
     <section className="section-padding bg-gray-50">
       <div className="container-custom mx-auto">
-        <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
+        <div className="flex flex-col justify-center items-center">
           {/* Left Content */}
           <div>
             <h2 className="mb-6 text-4xl font-bold leading-tight text-gray-900 lg:text-5xl">

@@ -44,7 +44,12 @@ const GetInTouch: React.FC<GetInTouchProps> = ({
           </Link>
         </div>
         <div className="relative aspect-[373/370] w-[373px]">
-          <Image src={image} fill alt="image" className="object-contain" />
+          <Image
+            src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${image}`}
+            fill
+            alt="image"
+            className="object-contain"
+          />
         </div>
       </div>
     </section>

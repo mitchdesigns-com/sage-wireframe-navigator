@@ -91,7 +91,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ data }) => {
       {background_image?.data && (
         <div className="absolute inset-0 z-0">
           <Image
-            src={background_image.data.attributes.url}
+            src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${background_image.data.attributes.url}`}
             alt={background_image.data.attributes.alternativeText || title}
             fill
             className="object-cover"
@@ -167,7 +167,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ data }) => {
               >
                 {cta_primary && (
                   <Link
-                    href={cta_primary.url}
+                    href={cta_primary.url || '/'}
                     target={cta_primary.target}
                     className={getButtonClasses(cta_primary.style)}
                   >
@@ -176,7 +176,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ data }) => {
                 )}
                 {cta_secondary && (
                   <Link
-                    href={cta_secondary.url}
+                    href={cta_secondary.url || '/'}
                     target={cta_secondary.target}
                     className={getButtonClasses(cta_secondary.style)}
                   >

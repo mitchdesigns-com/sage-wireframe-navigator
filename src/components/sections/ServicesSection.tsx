@@ -88,7 +88,9 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({
         <div className={`${detailedServices.length > 2 ? 'w-0' : 'w-1/3'}`}>
           <div
             className="aspect-[444/572] rounded-[40px] bg-cover bg-center"
-            style={{ backgroundImage: `url('${image}')` }}
+            style={{
+              backgroundImage: `url('${process.env.NEXT_PUBLIC_API_BASE_URL}${image}')`,
+            }}
           />
         </div>
       </div>
