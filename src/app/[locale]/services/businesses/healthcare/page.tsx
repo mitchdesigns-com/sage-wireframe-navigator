@@ -174,7 +174,7 @@ export default function BusinessHealthcarePage() {
         reverse={centersSectionMock.reverse}
       />
       <ServiceSection
-        title="Clear Outcomes, Trusted Reporting."
+        title="Clear Outcomes,<br/> Trusted Reporting."
         description="Sage ensures full visibility through detailed reports, cost breakdowns, and timely updates—supporting better decisions, accountability, and lasting partnerships."
         buttonText="Request Free Consultation"
         buttonHref="/contact"

@@ -309,6 +309,11 @@ export default function MultiStepForm() {
                       name={field.name}
                       value={formData[field.name as keyof FormData] as string}
                       onChange={handleChange}
+                      max={
+                        field.type === 'date'
+                          ? new Date().toISOString().split('T')[0]
+                          : undefined
+                      }
                       className="w-full h-12 px-3 py-2 bg-white border border-[#D2D2D2] rounded-[6px] focus:outline-none focus:ring-2 focus:ring-[#025850] focus:border-transparent"
                     />
                   )}
@@ -401,17 +406,23 @@ export default function MultiStepForm() {
             </p>
             <div className="flex gap-4">
               {['Yes', 'No'].map((val) => (
-                <label key={val} className="flex items-center gap-2 text-white">
+                <label
+                  key={val}
+                  className="flex items-center gap-2 text-white radio"
+                >
                   <input
                     type="radio"
                     name="medicalReports"
                     value={val}
                     checked={formData.medicalReports === val}
                     onChange={handleChange}
-                    className="peer appearance-none w-[18px] h-[18px] border border-Secondary-Scrub rounded bg-white checked:bg-Primary-Spring checked:border-Primary-Spring 
-               relative before:content-[''] before:absolute before:top-[2px] before:left-[5px] before:w-[5px] before:h-[10px] before:border-r-[2px] before:border-b-[2px] before:border-[#025850] before:rotate-45 before:opacity-0 checked:before:opacity-100"
+                    //       className="peer appearance-none w-[18px] h-[18px] border border-Secondary-Scrub
+                    //       rounded bg-white checked:bg-Primary-Spring checked:border-Primary-Spring
+                    //  relative before:content-[''] before:absolute before:top-[2px] before:left-[5px]
+                    //   before:w-[5px] before:h-[10px] before:border-r-[2px] before:border-b-[2px]
+                    //    before:border-[#025850] before:rotate-45 before:opacity-0 checked:before:opacity-100"
                   />
-                  {val}
+                  <span className="radio-label"> {val}</span>
                 </label>
               ))}
             </div>
@@ -433,7 +444,7 @@ export default function MultiStepForm() {
               {['Arabic', 'English', 'French'].map((lang) => (
                 <label
                   key={lang}
-                  className="flex items-center gap-2 cursor-pointer"
+                  className="flex items-center gap-2 cursor-pointer radio"
                 >
                   <input
                     type="radio"
@@ -441,10 +452,10 @@ export default function MultiStepForm() {
                     value={lang}
                     checked={formData.preferredLanguage === lang}
                     onChange={handleChange}
-                    className="peer appearance-none w-[18px] h-[18px] border border-Secondary-Scrub rounded-full bg-white checked:bg-Primary-Spring checked:border-Primary-Spring 
-        relative before:content-[''] before:absolute before:top-[2px] before:left-[5px] before:w-[5px] before:h-[10px] before:border-r-[2px] before:border-b-[2px] before:border-[#025850] before:rotate-45 before:opacity-0 checked:before:opacity-100"
+                    //             className="peer appearance-none w-[18px] h-[18px] border border-Secondary-Scrub rounded-full bg-white checked:bg-Primary-Spring checked:border-Primary-Spring
+                    // relative before:content-[''] before:absolute before:top-[2px] before:left-[5px] before:w-[5px] before:h-[10px] before:border-r-[2px] before:border-b-[2px] before:border-[#025850] before:rotate-45 before:opacity-0 checked:before:opacity-100"
                   />
-                  <span className="text-white">{lang}</span>
+                  <span className="text-white radio-label">{lang}</span>
                 </label>
               ))}
             </div>
@@ -478,12 +489,17 @@ export default function MultiStepForm() {
             )}
           </div>
 
-          <label className="flex items-center gap-2 text-white text-sm">
+          <label className="flex items-start gap-2 text-white text-sm">
             <input
               type="checkbox"
               name="confirmation"
               checked={formData.confirmation}
               onChange={handleChange}
+              className="peer appearance-none w-[28px] h-[18px] border border-Secondary-Scrub
+                         rounded bg-white checked:bg-Primary-Spring checked:border-Primary-Spring
+                    relative before:content-[''] before:absolute before:top-[2px] before:left-[5px]
+                     before:w-[5px] before:h-[10px] before:border-r-[2px] before:border-b-[2px]
+                      before:border-[#025850] before:rotate-45 before:opacity-0 checked:before:opacity-100"
             />
             By submitting this form, I confirm that the information provided is
             accurate to the best of my knowledge and I understand that this

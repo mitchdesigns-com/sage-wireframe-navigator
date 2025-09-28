@@ -190,6 +190,7 @@ export default function HomePage() {
           reverse={section.reverse}
           ctaText={section.ctaText}
           href={section.href}
+          secondaryButton={true}
         />
       ))}
       {/* News & Events */}

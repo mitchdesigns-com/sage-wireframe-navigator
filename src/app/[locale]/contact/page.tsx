@@ -71,6 +71,10 @@ const options: ToggleOption[] = [
   { id: 'business', label: 'Business Inquiry', value: 'business' },
   { id: 'patient', label: 'Patient Inquiry', value: 'patient' },
 ]
+const options2: ToggleOption[] = [
+  { id: 'general', label: 'Patient Support & Inquiries', value: 'general' },
+  { id: 'business', label: 'B2B Partnership Inquiries', value: 'business' },
+]
 export default function ContactPage() {
   const [formData, setFormData] = useState<ContactForm>({
     firstName: '',
@@ -620,6 +624,14 @@ export default function ContactPage() {
             <p className="text-p">
               We’re here to assist you with any inquiries.
             </p>
+          </div>
+          <div className="max-w-[486px] mx-auto pt-8">
+            {' '}
+            <ToggleButton
+              options={options2}
+              selectedValue={currentTab}
+              onChange={(val) => setCurrentTab(val as TabType)}
+            />
           </div>
         </div>
         <div className="max-w-[1392px] mx-auto w-full pt-15">

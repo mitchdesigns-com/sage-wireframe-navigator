@@ -87,7 +87,9 @@ export default function AccordionJobs() {
                   ))}
                 </div>
 
-                <p className="text-Secondary-Text">{job.description}</p>
+                <p className="text-Secondary-Text max-w-[768px]">
+                  {job.description}
+                </p>
               </div>
             </div>
           )}

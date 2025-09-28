@@ -27,7 +27,12 @@ const ServiceSection: React.FC<ServiceSectionProps> = ({
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
           <div>
             <h2 className="text-white text-[40px] font-bold leading-[2.75rem] tracking-[-1px]">
-              {title}
+              {title.split('<br/>').map((line, i) => (
+                <span key={i}>
+                  {line}
+                  {i < title.split('<br/>').length - 1 && <br />}
+                </span>
+              ))}
             </h2>
           </div>
           <div>

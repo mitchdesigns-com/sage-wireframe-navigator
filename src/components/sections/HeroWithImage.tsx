@@ -50,7 +50,7 @@ const HeroWithImage: React.FC<HeroWithImageProps> = ({
         <Breadcrumb items={breadcrumbItems} heroWithImage />
 
         <div className="flex gap-20 justify-center items-end pt-16">
-          <div className="space-y-2 ">
+          <div className="space-y-2 min-w-[656px]">
             {tagline && <Tagline text={tagline} />}
             <h1 className="text-Primary-Black text-[56px] leading-[1.2] tracking-[-0.56px]">
               {title}

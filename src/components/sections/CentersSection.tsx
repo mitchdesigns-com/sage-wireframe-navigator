@@ -17,6 +17,7 @@ interface CentersSectionProps {
   backgroundColor?: string
   textColor?: string
   reverse?: boolean // if true => List first
+  secondaryButton?: boolean
 }
 
 const CentersSection: React.FC<CentersSectionProps> = ({
@@ -29,6 +30,7 @@ const CentersSection: React.FC<CentersSectionProps> = ({
   backgroundColor = 'white',
   textColor = 'black',
   reverse = false,
+  secondaryButton,
 }) => {
   return (
     <section style={{ backgroundColor }}>
@@ -66,7 +68,7 @@ const CentersSection: React.FC<CentersSectionProps> = ({
             {ctaText && (
               <Link
                 href={href || '/contact'}
-                className="inline-block  bg-primary text-white rounded-lg font-medium group cursor-pointer"
+                className={`inline-block  bg-primary text-white rounded-lg font-medium group cursor-pointer ${secondaryButton ? ' w-[148px]' : ''}`}
               >
                 <Button
                   variant={
@@ -78,12 +80,17 @@ const CentersSection: React.FC<CentersSectionProps> = ({
                           ? 'primary'
                           : 'light'
                   }
-                  rightIcon={true}
+                  rightIcon={secondaryButton ? false : true}
                   fullWidth
                 >
                   {ctaText}
                 </Button>
               </Link>
+            )}
+            {secondaryButton && (
+              <Button href="/our-network" variant="light-link" rightIcon={true}>
+                Explore Our Network
+              </Button>
             )}
           </div>
 
