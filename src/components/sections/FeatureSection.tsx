@@ -28,7 +28,10 @@ interface FeatureSectionProps {
   list?: List[]
   ctaText?: string
   href?: string
-  image: string
+  image: {
+    url: string
+    alternativeText: string
+  }
   backgroundColor?: string
   textColor?: string
   reverse?: boolean // if true => image first
@@ -169,7 +172,7 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
             <div
               className="aspect-[606/646] rounded-[40px] bg-cover bg-center w-[606px]"
               style={{
-                backgroundImage: `url('${process.env.NEXT_PUBLIC_API_BASE_URL}${image}')`,
+                backgroundImage: `url('${process.env.NEXT_PUBLIC_API_BASE_URL}${image.url}')`,
               }}
             />
           </div>

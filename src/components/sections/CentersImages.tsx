@@ -2,7 +2,8 @@ import React from 'react'
 import Image from 'next/image'
 
 interface List {
-  image: string
+  url: string
+  alternativeText: string
 }
 interface CentersImagesProps {
   list?: List[]
@@ -24,7 +25,7 @@ const CentersImages: React.FC<CentersImagesProps> = ({ list }) => {
                   >
                     <Image
                       fill
-                      src={li.image}
+                      src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${li.url}`}
                       alt="center"
                       className="object-contain p-5"
                     />

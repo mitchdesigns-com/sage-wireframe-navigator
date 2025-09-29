@@ -10,7 +10,10 @@ interface BreadcrumbItem {
 }
 
 interface HeroWithImageProps {
-  image: string
+  image: {
+    url: string
+    alternativeText: string
+  }
   imageAlt?: string
   breadcrumbItems: BreadcrumbItem[]
   tagline?: string
@@ -44,7 +47,7 @@ const HeroWithImage: React.FC<HeroWithImageProps> = ({
     <section>
       <div className="h-[680px] relative">
         <Image
-          src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${image}`}
+          src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${image.url}`}
           fill
           alt={imageAlt}
           className="object-cover"

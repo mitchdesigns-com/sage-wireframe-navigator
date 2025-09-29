@@ -95,7 +95,7 @@ export default function ServicesPage({ data }: { data: any }) {
             }))}
             ctaText={block.ctaText}
             href={block.href}
-            image={block.image?.url}
+            image={block.image}
             backgroundColor={block.backgroundColor}
             textColor={block.textColor}
             reverse={block.reverse}
@@ -127,7 +127,7 @@ export default function ServicesPage({ data }: { data: any }) {
             tagline={block.tagline}
             title={block.title}
             description={block.description}
-            image={block.image?.url}
+            image={block.image}
           />
         )
 

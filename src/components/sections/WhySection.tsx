@@ -5,13 +5,19 @@ import Image from 'next/image'
 import { usePathname } from '../../i18n/navigation'
 
 interface Feature {
-  iconElement?: ReactNode
+  iconElement?: {
+    url: string
+    alternativeText: string
+  }
   title: string
   description: string
   bgColor: string
   textColor: string
   type: string
-  image?: string
+  image?: {
+    url: string
+    alternativeText: string
+  }
   descColor?: string
 }
 
@@ -53,9 +59,20 @@ const WhySection: React.FC<WhySectionProps> = ({
                           className={`h-full relative rounded-4xl ${feature.bgColor} ${feature.textColor}`}
                         >
                           <div className="space-y-4 p-10">
-                            {feature.type === 'icon' &&
-                              feature.iconElement &&
-                              feature?.iconElement}
+                            {feature.type === 'icon' && feature.iconElement && (
+                              <div className="flex items-center justify-center w-12 h-12 relative">
+                                <Image
+                                  src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${feature.iconElement?.url}`}
+                                  alt={
+                                    feature.iconElement?.alternativeText ||
+                                    title
+                                  }
+                                  className="object-cover"
+                                  priority
+                                  fill
+                                />
+                              </div>
+                            )}
 
                             <h3 className="font-bold text-[32px] leading-[1.3]">
                               {feature.title}
@@ -72,7 +89,7 @@ const WhySection: React.FC<WhySectionProps> = ({
                               className={`${colIndex === 0 && index === 0 ? 'mt-15' : ''} `}
                             >
                               <Image
-                                src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${feature.image}`}
+                                src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${feature.image?.url}`}
                                 alt={feature.title}
                                 width={
                                   pathname === '/services/businesses' &&

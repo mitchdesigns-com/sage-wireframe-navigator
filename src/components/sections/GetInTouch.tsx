@@ -8,7 +8,10 @@ interface GetInTouchProps {
   tagline: string
   title: string
   description: string
-  image: string
+  image: {
+    url: string
+    alternativeText: string
+  }
 }
 
 const GetInTouch: React.FC<GetInTouchProps> = ({
@@ -18,7 +21,7 @@ const GetInTouch: React.FC<GetInTouchProps> = ({
   image,
 }) => {
   return (
-    <section className="py-25 ">
+    <section className="py-25 bg-[#E2F2F1]">
       <div className="mx-auto max-w-[1392px] flex gap-35 bg-Primary-Palm py-16 px-15 rounded-[40px]">
         <div className="max-w-[757px] my-auto">
           <Tagline text={tagline} />
@@ -45,7 +48,7 @@ const GetInTouch: React.FC<GetInTouchProps> = ({
         </div>
         <div className="relative aspect-[373/370] w-[373px]">
           <Image
-            src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${image}`}
+            src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${image.url}`}
             fill
             alt="image"
             className="object-contain"

@@ -5,7 +5,7 @@ import Tagline from './Tagline'
 import Image from 'next/image'
 
 interface List {
-  image: string
+  list: { url: string; alternativeText: string }[]
 }
 interface CentersSectionProps {
   tagline?: string
@@ -98,14 +98,14 @@ const CentersSection: React.FC<CentersSectionProps> = ({
           <div className="flex-1">
             {list && (
               <div className="grid grid-cols-2 gap-4 ">
-                {list.map((li, idx) => (
+                {list[0]?.list.map((li, idx) => (
                   <div
                     key={idx}
                     className="flex items-start  flex-col bg-white w-full h-[120px] rounded-[8px] relative overflow-hidden"
                   >
                     <Image
                       fill
-                      src={li.image}
+                      src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${li.url}`}
                       alt="center"
                       className="object-contain p-5"
                     />

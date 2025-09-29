@@ -7,7 +7,10 @@ interface ServiceSectionProps {
   description: string
   buttonText: string
   buttonHref: string
-  imageSrc: string
+  image: {
+    url: string
+    alternativeText: string
+  }
   imageAlt: string
   bgColor?: string
 }
@@ -17,7 +20,7 @@ const ServiceSection: React.FC<ServiceSectionProps> = ({
   description,
   buttonText,
   buttonHref,
-  imageSrc,
+  image,
   imageAlt,
   bgColor = 'bg-Primary-Palm',
 }) => {
@@ -51,8 +54,8 @@ const ServiceSection: React.FC<ServiceSectionProps> = ({
         <div className="aspect-[1384/540] bg-center bg-cover bg-no-repeat rounded-[40px] relative">
           <Image
             fill
-            src={imageSrc}
-            alt={imageAlt}
+            src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${image.url}`}
+            alt={image.alternativeText}
             className="rounded-[40px] object-cover"
           />
         </div>

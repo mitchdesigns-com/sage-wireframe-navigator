@@ -34,7 +34,7 @@ const WhyChooseSection: React.FC<WhyChooseSectionProps> = ({
               </p>
             ))}
           </div>
-          {reasons && (
+          {reasons && reasons.length > 0 && (
             <div className="border-0 bg-Secondary-Light-Scrub p-6 rounded-3xl mt-8">
               {reasons.map((reason, index) => (
                 <div
