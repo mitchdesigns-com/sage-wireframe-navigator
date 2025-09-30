@@ -125,7 +125,8 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
                         alt={li.icon?.alternativeText || title}
                         className="object-cover"
                         priority
-                        fill
+                        width={48}
+                        height={48}
                       />
                     </div>
                     <h5
