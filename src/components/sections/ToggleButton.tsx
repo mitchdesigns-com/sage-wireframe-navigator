@@ -5,8 +5,8 @@ import clsx from 'clsx'
 import { motion } from 'framer-motion'
 
 export interface ToggleOption {
-  id: string
-  label: string
+  id: number | string
+  title: string
   value: string
 }
 
@@ -59,7 +59,7 @@ const ToggleButton: React.FC<ToggleButtonProps> = ({
             )}
             data-name="Button"
           >
-            {option.label}
+            {option.title}
           </button>
         )
       })}

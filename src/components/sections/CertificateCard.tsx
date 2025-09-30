@@ -5,7 +5,10 @@ import Image from 'next/image'
 export interface Certificate {
   id: string
   title: string
-  image: string
+  image: {
+    url: string
+    alternativeText: string
+  }
   description: string
 }
 
@@ -18,8 +21,8 @@ export default function CertificateCard({ certificate }: CertificateCardProps) {
     <div key={certificate.id} className="flex flex-col rounded-3xl">
       <div className="h-[240px] w-full relative rounded-3xl overflow-hidden ">
         <Image
-          src={certificate.image}
-          alt={certificate.title}
+          src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${certificate.image.url}`}
+          alt={certificate.image.alternativeText || certificate.title}
           fill
           className="object-cover"
         />

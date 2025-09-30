@@ -8,7 +8,10 @@ export interface Guide {
   id: string
   title: string
   category: string
-  image: string
+  image: {
+    url: string
+    alternativeText: string
+  }
   author: string
   date: string
   readTime: string
@@ -24,8 +27,8 @@ export default function GuidesCard({ guide }: GuidesCardProps) {
     <div key={guide.id} className="flex flex-col bg-white rounded-4xl">
       <div className="h-[293px] w-full relative rounded-t-4xl overflow-hidden ">
         <Image
-          src={guide.image}
-          alt={guide.title}
+          src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${guide.image.url}`}
+          alt={guide.image.alternativeText || guide.title}
           fill
           className="object-cover"
         />

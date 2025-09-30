@@ -119,16 +119,18 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
                     key={idx}
                     className="flex items-start gap-2 flex-col max-w-[316px]"
                   >
-                    <div className="flex items-center justify-center w-12 h-12 relative">
-                      <Image
-                        src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${li.icon?.url}`}
-                        alt={li.icon?.alternativeText || title}
-                        className="object-cover"
-                        priority
-                        width={48}
-                        height={48}
-                      />
-                    </div>
+                    {li.icon && (
+                      <div className="flex items-center justify-center w-12 h-12 relative">
+                        <Image
+                          src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${li.icon?.url}`}
+                          alt={li.icon?.alternativeText || title}
+                          className="object-cover"
+                          priority
+                          width={48}
+                          height={48}
+                        />
+                      </div>
+                    )}
                     <h5
                       className={`${li.theme === 'dark' ? 'text-Primary-Black' : !li.icon ? 'text-[#CAF48E]' : 'text-white'}  text-[20px] font-bold`}
                     >
