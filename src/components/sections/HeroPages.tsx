@@ -17,7 +17,10 @@ interface HeroProps {
   breadcrumbItems: BreadcrumbItem[]
   button?: string
   href?: string
-  bgImage?: string
+  bgImage?: {
+    url: string
+    alternativeText: string
+  }
 }
 
 const HeroPages: React.FC<HeroProps> = ({
@@ -66,7 +69,12 @@ const HeroPages: React.FC<HeroProps> = ({
           </div>
           {bgImage && (
             <div className="pt-16">
-              <Image src={bgImage} alt="scr header" height={520} width={1390} />
+              <Image
+                src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${bgImage.url}`}
+                alt="scr header"
+                height={520}
+                width={1390}
+              />
             </div>
           )}
         </div>

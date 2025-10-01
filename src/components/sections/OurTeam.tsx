@@ -10,41 +10,59 @@ import ButtonIcon from '../svg/ButtonIcon'
 import Tagline from './Tagline'
 import Image from 'next/image'
 
+interface TeamImage {
+  id: number
+  documentId: string
+  alternativeText: string | null
+  url: string
+}
+
 interface TeamMember {
   id: number
   name: string
   title: string
-  image: string
+  image: TeamImage
 }
 
-const mockTeam: TeamMember[] = Array.from({ length: 30 }).map((_, i) => ({
-  id: i + 1,
-  name: `Member ${i + 1}`,
-  title: `Job Title ${i + 1}`,
-  image: `/images/generalImages/team1.png`,
-}))
+interface HiringSection {
+  id: number
+  tagline: string
+  title: string
+  description: string
+  cta: string
+  href: string
+}
 
-export default function OurTeam() {
+interface OurTeamProps {
+  data: {
+    id: number
+    title: string
+    description: string
+    TeamMember: TeamMember[]
+    hiringSection: HiringSection
+  }
+}
+
+export default function OurTeam({ data }: OurTeamProps) {
   const swiperRef = useRef<SwiperType | null>(null)
   const [activeIndex, setActiveIndex] = useState(0)
 
   // Group members into chunks of 10 (2 rows × 5)
-  const grouped = []
-  for (let i = 0; i < mockTeam.length; i += 10) {
-    grouped.push(mockTeam.slice(i, i + 10))
+  const grouped: TeamMember[][] = []
+  for (let i = 0; i < data.TeamMember.length; i += 10) {
+    grouped.push(data.TeamMember.slice(i, i + 10))
   }
 
   return (
     <section className="py-25 bg-Secondary-Light-Scrub">
       <div className="container mx-auto px-4">
+        {/* Heading */}
         <div className="flex pb-15 justify-between items-end">
           <div>
             <h6 className="text-[#000404] font-bold text-[48px] leading-[1.2] tracking-[-0.48px] pb-4">
-              Our Team
+              {data.title}
             </h6>
-            <p className="text-[#000404] text-p">
-              Meet our experienced and dedicated healthcare professionals.
-            </p>
+            <p className="text-[#000404] text-p">{data.description}</p>
           </div>
           <div className="flex gap-4">
             <button
@@ -76,6 +94,7 @@ export default function OurTeam() {
           </div>
         </div>
 
+        {/* Swiper */}
         <Swiper
           onSwiper={(swiper) => (swiperRef.current = swiper)}
           onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
@@ -96,8 +115,8 @@ export default function OurTeam() {
                     <Image
                       width={265}
                       height={300}
-                      src={member.image}
-                      alt={member.name}
+                      src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${member.image.url}`}
+                      alt={member.image.alternativeText || member.name}
                       className="w-full h-75 object-cover"
                     />
                     <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/70 to-transparent text-white px-2 py-3">
@@ -112,26 +131,26 @@ export default function OurTeam() {
             </SwiperSlide>
           ))}
         </Swiper>
+
+        {/* Hiring Section */}
         <div className="bg-white rounded-2xl p-8 max-w-[1072px] mx-auto relative ">
           <Tagline
-            text={'Join Our Team'}
+            text={data.hiringSection.tagline}
             className="absolute -top-5 left-8 items-start"
           />
           <div className="flex justify-between items-center ">
             <div>
               <h6 className="text-Primary-Black font-bold text-[32px] leading-[1.2] tracking-[-0.48px] pb-4">
-                We're hiring!
+                {data.hiringSection.title}
               </h6>
               <p className="text-Secondary-Text text-p">
-                Join our team of dedicated healthcare professionals.{' '}
+                {data.hiringSection.description}
               </p>
             </div>
-            <Link href={'/careers'}>
-              {' '}
+            <Link href={data.hiringSection.href}>
               <div className="group flex gap-1.5 items-center justify-start rounded-[100px]  cursor-pointer">
-                {' '}
                 <div className="font-aeonik-bold text-primary-palm group-hover:text-Secondary-Dark-Palm text-lg leading-[1.5]">
-                  View Open Positions
+                  {data.hiringSection.cta}
                 </div>
                 <div className="bg-primary-palm rounded-full p-[6px] size-7 flex items-center justify-center">
                   <div className="relative shrink-0 size-6">
@@ -142,7 +161,7 @@ export default function OurTeam() {
                     </div>
                   </div>
                 </div>
-              </div>{' '}
+              </div>
             </Link>
           </div>
         </div>

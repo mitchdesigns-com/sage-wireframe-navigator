@@ -1,53 +1,10 @@
-import Image from 'next/image'
+import BlogSection from '@/components/sections/BlogSection'
 import FeatureSection from '@/components/sections/FeatureSection'
 import GetInTouch from '@/components/sections/GetInTouch'
-import HealthAndSafety from '@/components/svg/HealthAndSafety'
-import Percentage from '@/components/svg/Percentage'
-import PersonPinIcon from '@/components/svg/PersonPinIcon'
-import VectorIcon from '@/components/svg/VectorIcon'
-import Tagline from '@/components/sections/Tagline'
-import BlogSection from '@/components/sections/BlogSection'
 import HeroWithVideo from '@/components/sections/HeroWithVideo'
+import Tagline from '@/components/sections/Tagline'
+import Image from 'next/image'
 
-export const runtime = 'edge'
-
-const list = [
-  {
-    tagline: 'Riyadh',
-    image: '/images/generalImages/MedicalExcellence.png',
-    title: 'Saudi Arabia Medical Excellence',
-    titleColor: '#CAF48E', // custom title color
-    description:
-      'Riyadh boasts state-of-the-art hospitals and a thriving healthcare ecosystem.',
-    descriptionColor: '#E2F2F1', // custom description color
-    bgColor: '#025850',
-    taglineColor: '#CAF48E',
-  },
-  {
-    tagline: 'Jeddah',
-
-    image: '/images/generalImages/MedicalExcellence.png',
-    title: 'A Coastal Gem with Excellent Healthcare',
-    titleColor: '#025850',
-    description:
-      'Jeddah offers a unique blend of advanced medical care and beautiful seaside relaxation.',
-    descriptionColor: '#626262',
-    bgColor: '#CAF48E',
-    taglineColor: '#1E1E1E',
-  },
-  {
-    tagline: 'Riyadh',
-
-    image: '/images/generalImages/MedicalExcellence.png',
-    title: 'Your Center for Health and Wellness',
-    titleColor: '#013530',
-    description:
-      'The Eastern Province is known for its exceptional healthcare facilities and local culture.',
-    descriptionColor: '#1E1E1E',
-    bgColor: '#6CBEB8',
-    taglineColor: '#CAF48E',
-  },
-]
 const blogs = [
   {
     slug: '1',
@@ -82,12 +39,10 @@ export default function VisitSaudiPage({ data }: { data: any }) {
   return (
     <div className="min-h-screen">
       <HeroWithVideo
-        title="Discover World-Class Healthcare in Saudi Arabia"
-        description="Welcome to Saudi Arabia, a premier destination for international patients seeking exceptional medical care and wellness experiences. Our high-end healthcare concierge service ensures a seamless journey tailored to your needs."
-        breadcrumbItems={[
-          { label: 'Home', href: '/' },
-          { label: 'Visit Saudi', href: '/visit-saudi' },
-        ]}
+        title={data.HeroWithVideo.title}
+        description={data.HeroWithVideo.description}
+        breadcrumbItems={data.HeroWithVideo.breadcrumbItems}
+        video={data.HeroWithVideo.video}
       />
       {data.FeatureSection.map((section: any, index: any) => (
         <FeatureSection key={index} {...section} />
@@ -97,15 +52,14 @@ export default function VisitSaudiPage({ data }: { data: any }) {
           <div className=" mx-auto  text-center">
             <div className="space-y-4">
               <h2 className="text-Primary-Black text-[40px] font-bold">
-                Explore Premier Healthcare Destinations in Saudi Arabia for Your
-                Medical Needs{' '}
+                {data.ChangingColorsCards.title}
               </h2>
             </div>
           </div>
         </div>
         <div className="max-w-[1392px] mx-auto w-full pt-15">
           <div className="flex  gap-15 justify-center items-start text-start">
-            {list?.map((li, idx) => (
+            {data.ChangingColorsCards.CardsList?.map((li: any, idx: any) => (
               <div
                 key={idx}
                 style={{ backgroundColor: li.bgColor }}
@@ -116,8 +70,8 @@ export default function VisitSaudiPage({ data }: { data: any }) {
                   <Tagline text={li.tagline} taglineColor={li.taglineColor} />
                 </div>
                 <Image
-                  src={li.image}
-                  alt={li.title}
+                  src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${li.image.url}`}
+                  alt={li.image.alternativeText || li.title}
                   width={181}
                   height={188}
                   className={`rounded-lg `}

@@ -7,9 +7,15 @@ import ButtonIcon from '../svg/ButtonIcon'
 
 export interface CaseStudy {
   slug: string
-  title: string
-  category: string
-  image: string
+  HeroCarousel: { title: string; description: string }
+  case_study_type: { title: string }
+  GallerySection: {
+    images: {
+      url: string
+      alternativeText: string
+    }[]
+  }
+
   description: string
 }
 
@@ -27,8 +33,8 @@ export default function CaseStudyCard({ caseStudy }: CaseStudyCardProps) {
       <div className="h-[520px] w-full relative rounded-4xl overflow-hidden">
         {/* Image */}
         <Image
-          src={caseStudy.image}
-          alt={caseStudy.title}
+          src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${caseStudy.GallerySection?.images[0].url}`}
+          alt={caseStudy.HeroCarousel.title}
           fill
           className="object-cover"
         />
@@ -38,13 +44,18 @@ export default function CaseStudyCard({ caseStudy }: CaseStudyCardProps) {
 
         {/* Content */}
         <div className="absolute bottom-0 p-8 w-full z-20">
-          <Tagline text={caseStudy.category} category={caseStudy.category} />
+          <Tagline
+            text={caseStudy.case_study_type.title}
+            category={caseStudy.case_study_type.title}
+          />
 
           <h3 className="text-2xl font-bold text-white leading-snug mb-1">
-            {caseStudy.title}
+            {caseStudy.HeroCarousel.title}
           </h3>
 
-          <p className="text-white text-base pb-6">{caseStudy.description}</p>
+          <p className="text-white text-base pb-6">
+            {caseStudy.HeroCarousel.description}
+          </p>
 
           <Link href={`/resources/case-studies/${caseStudy.slug}`}>
             {' '}

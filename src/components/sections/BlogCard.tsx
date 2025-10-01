@@ -8,7 +8,10 @@ export interface Blog {
   slug: string
   title: string
   category?: string
-  image: string
+  bgImage: {
+    url: string
+    alternativeText: string
+  }
   author: string
   date: string
   readTime?: string
@@ -24,7 +27,7 @@ export default function BlogCard({ blog, href }: BlogCardProps) {
     <Link href={href} key={blog.slug} className="flex flex-col">
       <div className="h-[270px] w-full relative rounded-2xl overflow-hidden mb-4">
         <Image
-          src={blog.image}
+          src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${blog.bgImage.url}`}
           alt={blog.title}
           fill
           className="object-cover"

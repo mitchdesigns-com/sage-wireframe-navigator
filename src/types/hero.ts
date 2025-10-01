@@ -8,12 +8,8 @@ export interface HeroSectionProps {
     subtitle?: string
     description?: string
     background_image?: {
-      data: {
-        attributes: {
-          url: string
-          alternativeText: string
-        }
-      }
+      url: string
+      alternativeText: string
     }
     cta_primary?: {
       label: string

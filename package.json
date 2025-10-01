@@ -26,6 +26,7 @@
     "next-intl": "^4.3.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-markdown": "^10.1.0",
     "react-phone-number-input": "^3.4.12",
     "swiper": "^11.2.10"
   },

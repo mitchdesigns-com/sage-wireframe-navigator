@@ -12,7 +12,10 @@ interface BreadcrumbItem {
 interface HeroProps {
   title: string
   breadcrumbItems: BreadcrumbItem[]
-  bgImage?: string
+  bgImage?: {
+    url: string
+    alternativeText: string
+  }
   author?: string
   date?: string
   readTime?: string
@@ -57,8 +60,8 @@ const HeroSinglePages: React.FC<HeroProps> = ({
           {bgImage && (
             <div className="rounded-3xl aspect-[1390/600] relative w-full">
               <Image
-                src={bgImage}
-                alt="scr header"
+                src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${bgImage.url}`}
+                alt={bgImage.alternativeText}
                 fill
                 className="object-cover rounded-3xl"
               />

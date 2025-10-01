@@ -88,11 +88,11 @@ const HeroSection: React.FC<HeroSectionProps> = ({ data }) => {
   return (
     <section className={`relative ${getHeightClass()} ${getThemeClasses()}`}>
       {/* Background Image */}
-      {background_image?.data && (
+      {background_image && (
         <div className="absolute inset-0 z-0">
           <Image
-            src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${background_image.data.attributes.url}`}
-            alt={background_image.data.attributes.alternativeText || title}
+            src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${background_image.url}`}
+            alt={background_image.alternativeText || title}
             fill
             className="object-cover"
             priority

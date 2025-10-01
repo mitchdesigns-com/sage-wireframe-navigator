@@ -15,6 +15,10 @@ interface HeroProps {
   breadcrumbItems?: BreadcrumbItem[]
   ctaText?: string
   href?: string
+  video: {
+    url: string
+    alternativeText: string
+  }
 }
 
 const HeroWithVideo: React.FC<HeroProps> = ({
@@ -23,6 +27,7 @@ const HeroWithVideo: React.FC<HeroProps> = ({
   breadcrumbItems,
   ctaText,
   href,
+  video,
 }) => {
   return (
     <section className={`pb-20   bg-gradient-to-t from-[#013530] to-[#025850]`}>
@@ -65,7 +70,7 @@ const HeroWithVideo: React.FC<HeroProps> = ({
             <div className="relative">
               {' '}
               <video
-                src="/images/generalImages/video.mp4"
+                src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${video.url}`}
                 className="w-full rounded-[40px] "
                 autoPlay
                 muted
