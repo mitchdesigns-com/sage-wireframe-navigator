@@ -12,26 +12,40 @@ export interface Blog {
     url: string
     alternativeText: string
   }
+  image: {
+    url: string
+    alternativeText: string
+  }
   author: string
   date: string
   readTime?: string
 }
 
 interface BlogCardProps {
-  blog: Blog
+  blog: any
   href: string
+  news?: boolean
 }
 
-export default function BlogCard({ blog, href }: BlogCardProps) {
+export default function BlogCard({ blog, href, news }: BlogCardProps) {
   return (
     <Link href={href} key={blog.slug} className="flex flex-col">
       <div className="h-[270px] w-full relative rounded-2xl overflow-hidden mb-4">
-        <Image
-          src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${blog.bgImage.url}`}
-          alt={blog.title}
-          fill
-          className="object-cover"
-        />
+        {news ? (
+          <Image
+            src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${blog.image.url}`}
+            alt={blog.title}
+            fill
+            className="object-cover"
+          />
+        ) : (
+          <Image
+            src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${blog.bgImage?.url || blog.image.url || '/images/generalImages/fallback.jpg'}`}
+            alt={blog.title}
+            fill
+            className="object-cover"
+          />
+        )}
       </div>
       {blog.category && (
         <span className="text-sm text-Primary-Light-Sage font-medium">
@@ -39,7 +53,7 @@ export default function BlogCard({ blog, href }: BlogCardProps) {
         </span>
       )}
       <h3 className="text-2xl font-bold text-Neutral-Darkest leading-snug mb-2">
-        {blog.title}
+        {news ? blog.HeroSinglePages.title : blog.title}
       </h3>
       <div className="flex items-center justify-between mt-auto">
         <div className="flex items-center gap-2">
@@ -52,9 +66,10 @@ export default function BlogCard({ blog, href }: BlogCardProps) {
             />
           </div>
           <div className="text-sm text-Secondary-Text">
-            <p>{blog.author}</p>
+            <p>{news ? blog.HeroSinglePages.author : blog.author}</p>
             <p>
-              {blog.date} • {blog.readTime}
+              {news ? blog.HeroSinglePages.date : blog.date} •{' '}
+              {news ? blog.HeroSinglePages.readTime : blog.readTime}
             </p>
           </div>
         </div>

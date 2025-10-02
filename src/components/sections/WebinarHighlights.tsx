@@ -3,6 +3,7 @@
 import React from 'react'
 
 interface HighlightItem {
+  id: number
   title: string
   description: string
   bgColor: string
@@ -11,22 +12,22 @@ interface HighlightItem {
 }
 
 interface WebinarHighlightsProps {
+  title: string
   highlights: HighlightItem[]
 }
 
 export default function WebinarHighlights({
+  title,
   highlights,
 }: WebinarHighlightsProps) {
   return (
     <div className="bg-Secondary-Scrub">
-      <div className=" mx-auto max-w-[1392px] py-28">
-        <h2 className="text-[40px] font-bold text-center pb-20">
-          Webinar Highlights
-        </h2>
+      <div className="mx-auto max-w-[1392px] py-28">
+        <h2 className="text-[40px] font-bold text-center pb-20">{title}</h2>
         <div className="flex gap-4">
-          {highlights.map((item, idx) => (
+          {highlights.map((item) => (
             <div
-              key={idx}
+              key={item.id}
               className={`flex flex-col pt-10 px-5 rounded-4xl w-1/4 h-[380px] ${item.bgColor}`}
             >
               <h3

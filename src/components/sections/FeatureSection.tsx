@@ -79,7 +79,7 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
                   {title}
                 </h2>
                 <p
-                  className={`text-p ${textColor === '#1E1E1E' ? 'text-Secondary-Text' : 'text-Secondary-Light-Scrub'}`}
+                  className={`text-p whitespace-pre-line ${textColor === '#1E1E1E' ? 'text-Secondary-Text' : 'text-Secondary-Light-Scrub'}`}
                   // style={{ color: textColor }}
                 >
                   {description}
