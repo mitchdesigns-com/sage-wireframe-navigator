@@ -84,7 +84,7 @@ export default function GalleryPopup({
             {Images?.map((image) => (
               <SwiperSlide key={image.id} className="relative aspect-[464/300]">
                 <Image
-                  src={`${image.attributes.url}`}
+                  src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${image.attributes.url}`}
                   alt={image.attributes.alternativeText || 'Gallery Image'}
                   fill
                   className="object-cover"
@@ -144,7 +144,7 @@ export default function GalleryPopup({
                 className="relative !w-[107px] !h-20 border-[4px] transition-all duration-500 border-transparent hover:border-Gold"
               >
                 <Image
-                  src={`${image.attributes.url}`}
+                  src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${image.attributes.url}`}
                   alt={image.attributes.alternativeText || 'Thumbnail'}
                   fill
                   className="w-full h-auto object-cover cursor-pointer"
