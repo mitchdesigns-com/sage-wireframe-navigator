@@ -1,19 +1,20 @@
 import BlogCard from '@/components/sections/BlogCard'
 import HeroPages from '@/components/sections/HeroPages'
+import { BlogPageData, BlogPost } from '../../types/blog'
 
-export default function BlogPage({
-  data,
-  singles,
-}: {
-  data: any
-  singles: any
-}) {
+interface BlogPageProps {
+  data: BlogPageData
+  singles: BlogPost[]
+}
+
+export default function BlogPage({ data, singles }: BlogPageProps) {
   return (
-    <div className="min-h-screen ">
+    <div className="min-h-screen">
       <HeroPages {...data.HeroPages} />
+
       <div className="py-15 max-w-[1392px] mx-auto">
         <div className="grid md:grid-cols-3 gap-x-12 gap-y-16">
-          {singles.map((blog: any) => (
+          {singles.map((blog) => (
             <BlogCard
               key={blog.slug}
               blog={blog.HeroSinglePages}

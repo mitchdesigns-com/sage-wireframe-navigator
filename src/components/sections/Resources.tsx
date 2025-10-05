@@ -1,77 +1,81 @@
+'use client'
+
 import SectionHeader from '../ui/SectionHeader'
 import ArrowOutWard from '../svg/ArrowOutWard'
 
-const resources = [
-  {
-    title: 'Explore Our Case Studies',
-    description: 'Proven outcomes from real stories.',
-    href: '/resources/case-studies',
-  },
-  {
-    title: 'Informative Blog Posts',
-    description: 'Expert views, updates, and tips.',
-    href: '/resources/blog',
-  },
-  {
-    title: 'Guide Library',
-    description: 'Step-by-step help and direction.',
-    href: '/resources/guides',
-  },
-  {
-    title: 'Our Certification Highlights',
-    description: 'Trusted standards and achievements.',
-    href: '/resources/certifications',
-  },
-  {
-    title: 'Upcoming Webinars & Replays',
-    description: 'Learn live or on demand.',
-    href: '/resources/webinars',
-  },
-]
+interface ResourceItem {
+  id: number
+  title: string
+  description: string
+  href: string
+}
 
-export default function Resources() {
+interface SectionHeaderResources {
+  id: number
+  heading: string
+  color: string
+  tagline: string
+  description: string
+  home: boolean
+}
+
+interface ImageData {
+  id: number
+  documentId: string
+  alternativeText: string | null
+  url: string
+}
+
+interface ResourcesData {
+  id: number
+  SectionHeaderResources: SectionHeaderResources
+  image: ImageData
+  resourcesSection: ResourceItem[]
+}
+
+export default function Resources({ Resources }: { Resources: ResourcesData }) {
+  const { SectionHeaderResources, image, resourcesSection } = Resources
+
   return (
     <section className="py-25 bg-sage-gradient">
       <div className="max-w-[1392px] px-4 mx-auto">
         <SectionHeader
-          heading={'Explore Our Featured Resources for You'}
+          heading={SectionHeaderResources.heading}
           color="light"
-          tagline="Resources"
-          description="Discover valuable insights and information tailored to your healthcare journey. Our resources are designed to empower you with knowledge and support."
-          home
+          tagline={SectionHeaderResources.tagline}
+          description={SectionHeaderResources.description}
+          home={SectionHeaderResources.home}
         />
 
-        {/* Content Grid */}
         <div className="grid grid-cols-1 items-center gap-20 lg:grid-cols-2">
-          {/* Left Content - Large Image */}
           <div className="order-2 lg:order-1">
             <div
               className="aspect-[600/650] rounded-[40px] bg-cover bg-center w-full"
               style={{
-                backgroundImage: `url('/images/generalImages/Resources.png')`,
+                backgroundImage: `url(${process.env.NEXT_PUBLIC_API_BASE_URL}${image.url})`,
               }}
             />
           </div>
 
-          {/* Right Content - Resources List */}
           <div className="order-1 space-y-8 lg:order-2">
-            {resources.map((resource, index) => (
-              <div
-                key={index}
-                className="border-b border-[#4B4B4B] pb-8 last:border-b-0"
+            {resourcesSection.map((resource) => (
+              <a
+                href={resource.href}
+                key={resource.id}
+                className="block border-b border-[#4B4B4B] pb-8 last:border-b-0 hover:opacity-80 transition-all"
               >
                 <div className="flex justify-between items-center">
                   <div>
                     <h3 className="mb-2 text-xl font-bold text-white">
                       {resource.title}
                     </h3>
-                    <p className=" leading-relaxed text-white">
+                    <p className="leading-relaxed text-white">
                       {resource.description}
                     </p>
                   </div>
                   <ArrowOutWard />
                 </div>
-              </div>
+              </a>
             ))}
           </div>
         </div>

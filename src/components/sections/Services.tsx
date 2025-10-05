@@ -5,35 +5,41 @@ import Button from '../ui/Button'
 import SectionHeader from '../ui/SectionHeader'
 import { ChevronRight } from 'lucide-react'
 
-const SERVICES = [
-  {
-    key: 'individual',
-    label: 'Individuals',
-    imageLabel: '/images/services/01.png',
-    href: '/services/individual',
-    description:
-      'We provide personalized concierge services, wellness programs, and medical treatments for a seamless healthcare journey in Saudi Arabia.',
-    width: 350,
-  },
-  {
-    key: 'businesses',
-    label: 'Businesses',
-    imageLabel: '/images/services/02.png',
-    href: '/services/businesses',
-    description:
-      'We offer comprehensive corporate health solutions, including concierge support and preventive care, to enhance employee well-being and productivity.',
-    width: undefined,
-  },
-  {
-    key: 'organizations',
-    label: 'Organization',
-    imageLabel: '/images/services/03.png',
-    href: '/services/organizations',
-    description:
-      'We partner with organizations, governments, and hospitals to build medical tourism ecosystems, enhancing efficiency and global reach through consultancy and training.',
-    width: undefined,
-  },
-]
+interface ImageLabel {
+  id: number
+  documentId: string
+  alternativeText?: string | null
+  url: string
+}
+
+interface Service {
+  id: number
+  key: string
+  label: string
+  href: string
+  description: string
+  width?: number
+  imageLabel: ImageLabel
+}
+
+interface SectionHeaderData {
+  id: number
+  heading: string
+  description: string
+  tagline: string
+  cta: string
+  href: string
+  SERVICES: Service[]
+}
+
+interface ServicesProps {
+  heading: string
+  description: string
+  tagline: string
+  cta: string
+  href: string
+  SERVICES: Service[]
+}
 
 function ServiceCard({
   label,
@@ -43,15 +49,23 @@ function ServiceCard({
   width,
 }: {
   label: string
-  imageLabel: string
+  imageLabel: ImageLabel
   href: string
   description: string
   width?: number
 }) {
+  const imageSrc = `${process.env.NEXT_PUBLIC_API_BASE_URL}${imageLabel?.url}`
+
   return (
     <div className="flex-1 flex flex-col gap-3 items-center justify-start">
       <div className="relative inline-grid place-items-start">
-        <Image src={imageLabel} alt="" width={212} height={222} unoptimized />
+        <Image
+          src={imageSrc}
+          alt={imageLabel?.alternativeText || label}
+          width={212}
+          height={222}
+          unoptimized
+        />
       </div>
 
       <div className="font-aeonik-bold text-primary-black text-center tracking-[-0.32px]">
@@ -65,7 +79,6 @@ function ServiceCard({
         </p>
       </div>
 
-      {/* Description */}
       <div
         className={`font-aeonik-regular text-primary-black text-base leading-[1.5] text-center${
           width ? ` w-[${width}px]` : ''
@@ -74,9 +87,7 @@ function ServiceCard({
         <p className="mb-0">{description}</p>
       </div>
 
-      {/* Learn More Button */}
       <div className="flex flex-row gap-2 text-Primary-Palm">
-        {' '}
         <Button variant="link" href={href} rightIcon={false}>
           <span>Learn More</span>
         </Button>
@@ -86,24 +97,28 @@ function ServiceCard({
   )
 }
 
-export default function Services() {
+export default function Services({
+  heading,
+  description,
+  tagline,
+  cta,
+  href,
+  SERVICES,
+}: ServicesProps) {
   return (
     <section className="bg-secondary-dark-palm px-[60px] py-20">
       <div className="bg-secondary-light-scrub rounded-[40px] p-[60px] max-w-[1392px] mx-auto">
         <SectionHeader
-          heading="Tailored Services for Every Healthcare Need"
-          description={`At Sage, we serve a diverse clientele, providing the care everyone
-              deserves. Whether you're a patient seeking treatment or a business
-              enhancing employee wellness, we're here to help.`}
-          tagline="Our Services"
+          heading={heading}
+          description={description}
+          tagline={tagline}
         />
 
-        {/* Service Cards Grid */}
         <div className="flex flex-col gap-16 items-start justify-start w-full mb-16">
           <div className="flex gap-12 items-start justify-start w-full">
-            {SERVICES.map((service) => (
+            {SERVICES?.map((service) => (
               <ServiceCard
-                key={service.key}
+                key={service.id}
                 label={service.label}
                 imageLabel={service.imageLabel}
                 href={service.href}
@@ -114,10 +129,9 @@ export default function Services() {
           </div>
         </div>
 
-        {/* Explore Services CTA Button */}
         <div className="flex justify-center">
-          <Button variant="primary" href="/services" rightIcon={true}>
-            Explore Our Services
+          <Button variant="primary" href={href} rightIcon={true}>
+            {cta}
           </Button>
         </div>
       </div>

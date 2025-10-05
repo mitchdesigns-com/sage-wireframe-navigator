@@ -70,7 +70,7 @@ const HeroWithVideo: React.FC<HeroProps> = ({
             <div className="relative">
               {' '}
               <video
-                src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${video.url}`}
+                src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${video?.url}`}
                 className="w-full rounded-[40px] "
                 autoPlay
                 muted

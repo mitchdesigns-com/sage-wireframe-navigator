@@ -5,8 +5,9 @@ import OurTeam from '@/components/sections/OurTeam'
 import Tagline from '@/components/sections/Tagline'
 import HeroSection from '@/components/strapi/HeroSection'
 import Image from 'next/image'
+import { AboutPageData } from '../../types/about'
 
-export default function AboutPage({ data }: { data: any }) {
+export default function AboutPage({ data }: { data: AboutPageData }) {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -48,7 +49,7 @@ export default function AboutPage({ data }: { data: any }) {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 py-2">
                   <div className="space-y-4">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 py-2">
-                      {data.OverviewSection.aboutData?.map((item: any) => (
+                      {data.OverviewSection.aboutData?.map((item) => (
                         <div key={item.id} className="space-y-4">
                           <h3 className="text-Primary-Palm font-bold text-[20px] leading-[1.4] tracking-[-0.2px]">
                             {item.title}
@@ -160,7 +161,7 @@ export default function AboutPage({ data }: { data: any }) {
         </div>
         <div className="max-w-[1392px] mx-auto w-full pt-15">
           <div className="flex  gap-15 justify-center items-start text-start">
-            {data.ValuesSection.CardsList?.map((li: any, idx: any) => (
+            {data.ValuesSection.CardsList?.map((li, idx) => (
               <div
                 key={idx}
                 style={{ backgroundColor: li.bgColor }}

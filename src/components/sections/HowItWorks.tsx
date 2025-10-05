@@ -1,34 +1,27 @@
+'use client'
 import Button from '@/components/ui/Button'
 import Tagline from './Tagline'
 
-const steps = [
-  {
-    number: '01.',
-    title: 'Initial Consultation',
-    description:
-      "Connect with our team to discuss your healthcare needs. We'll provide personalized options tailored to you.",
-  },
-  {
-    number: '02.',
-    title: 'Treatment Planning',
-    description:
-      'Receive a detailed treatment plan outlining your options. Our team coordinates every detail for your comfort.',
-  },
-  {
-    number: '03.',
-    title: 'Undergoing Treatment',
-    description:
-      'Experience world-class medical care in a supportive environment. Our team is available to assist you throughout your treatment.',
-  },
-  {
-    number: '04.',
-    title: 'Post-Treatment Care',
-    description:
-      'Receive ongoing support and follow-up consultations. We ensure your recovery is as smooth as possible.',
-  },
-]
+interface HowItWorksStep {
+  id: number
+  number: string
+  title: string
+  description: string
+}
 
-export default function HowItWorks() {
+export default function HowItWorks({
+  id,
+  tagline,
+  title,
+  description,
+  steps,
+}: {
+  id: number
+  tagline: string
+  title: string
+  description: string
+  steps: HowItWorksStep[]
+}) {
   return (
     <section className="py-25 bg-Secondary-Light-Scrub overflow-visible">
       <div className="max-w-[1392px] mx-auto px-4">
@@ -36,17 +29,13 @@ export default function HowItWorks() {
           {/* Left Content */}
           <div className="md:sticky md:top-24 bg-Primary-Palm rounded-3xl">
             <div className="p-10">
-              <Tagline text="How It Works" />
-              {/* <div className="mb-4 text-sm font-medium text-gray-600">
-              
-            </div> */}
+              <Tagline text={tagline} />
+
               <h2 className="mb-6 text-4xl font-bold leading-tight text-Primary-Spring md:text-[40px]">
-                Your Path to Exceptional Healthcare Awaits
+                {title}
               </h2>
               <p className="text-lg leading-relaxed text-white">
-                Experience a seamless journey from your first inquiry to
-                post-treatment care. Our dedicated team is here to guide you
-                every step of the way.
+                {description}
               </p>
             </div>
           </div>
@@ -62,7 +51,6 @@ export default function HowItWorks() {
                   key={step.number + index}
                   className="relative flex items-start space-x-4"
                 >
-                  {/* Timeline Dot */}
                   <div className="lg:col-span-1 flex justify-center">
                     <div className="flex flex-col items-center h-full min-h-[200px]">
                       <div className="bg-Primary-Palm h-6 w-[3px]" />
@@ -70,7 +58,6 @@ export default function HowItWorks() {
                       <div className="bg-Primary-Palm flex-1 w-[3px]" />
                     </div>
                   </div>
-                  {/* Step Content */}
                   <div className="ml-8 pb-0">
                     <div className="mb-4">
                       <h4 className="text-[#9ABCB9] heading-1">
