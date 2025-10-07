@@ -5,6 +5,10 @@ import Button from '../ui/Button'
 import Link from 'next/link'
 import ToggleButton from './ToggleButton'
 import { Bookmark } from 'lucide-react'
+import type {
+  EventData,
+  WebinarList as WebinarListType,
+} from '../../types/newsEvents' // <-- fix here
 export type TabType = 'comingSoon' | 'previous'
 
 export interface ToggleOption {
@@ -18,18 +22,9 @@ export interface ToggleButtonData {
   options: ToggleOption[]
 }
 
-export interface WebinarListData {
-  id: number
-  news: boolean
-  subTitle: string | null
-  title: string | null
-  description: string | null
-  ToggleButton: ToggleButtonData
-}
-
 export interface WebinarListProps {
-  webinars: WebinarListData
-  events: any
+  webinars: WebinarListType
+  events: EventData[]
 }
 
 const WebinarList: React.FC<WebinarListProps> = ({ webinars, events }) => {
@@ -60,7 +55,7 @@ const WebinarList: React.FC<WebinarListProps> = ({ webinars, events }) => {
           />
         </div>
         <div className="flex  overflow-x-auto flex-col">
-          {events.map((webinar: any, index: any) => (
+          {events.map((webinar, index) => (
             <Link
               href={`/resources/news-events/events/${webinar.slug}`}
               key={index}

@@ -10,17 +10,22 @@ import parse, { domToReact } from 'html-react-parser'
 import Link from 'next/link'
 import Button from '../ui/Button'
 import DownloadIcon from '../svg/DownloadIcon'
+import { IndividualHealthcarePageResponse } from '../../types/individualHealthcareServices'
 
-const BLOCKS: Record<string, React.ComponentType<any>> = {
-  'blocks.hero-with-image': (props: any) => (
+const BLOCKS: Record<
+  string,
+  React.ComponentType<IndividualHealthcarePageResponse>
+> = {
+  'blocks.hero-with-image': (props) => (
     <HeroWithImage
       {...props}
-      title={parse(props.title, {
-        replace: (domNode: any) => {
-          if (domNode.name === 'span') {
+      title={parse(props.title || '', {
+        replace: (domNode: DOMNode) => {
+          if (domNode instanceof Element && domNode.name === 'span') {
+            // Cast children to DOMNode[]
             return (
               <span className="font-bold text-Primary-Scrub text-nowrap">
-                {domToReact(domNode.children)}
+                {domToReact(domNode.children as DOMNode[])}
               </span>
             )
           }
@@ -29,16 +34,16 @@ const BLOCKS: Record<string, React.ComponentType<any>> = {
     />
   ),
 
-  'blocks.why-choose-section': (props: any) => (
+  'blocks.why-choose-section': (props) => (
     <WhyChooseSection
       {...props}
-      paragraphs={props.paragraphs?.map((p: any) => p.paragraph)}
+      paragraphs={props.paragraphs?.map((p) => p.paragraph)}
     />
   ),
 
   'blocks.feature-section': FeatureSection,
 
-  'blocks.how-it-works': (props: any) => (
+  'blocks.how-it-works': (props) => (
     <section className="py-28 bg-Secondary-Light-Scrub">
       <div className="px-16 max-w-[1280px] mx-auto">
         <div className="text-center">
@@ -48,7 +53,7 @@ const BLOCKS: Record<string, React.ComponentType<any>> = {
         </div>
 
         <div className="mt-20">
-          {props.timelineSteps?.map((step: any, index: number) => (
+          {props.timelineSteps?.map((step, index: number) => (
             <div
               key={step.id}
               className="grid grid-cols-1 lg:grid-cols-11 items-start gap-3 mt-20"
@@ -137,13 +142,13 @@ const BLOCKS: Record<string, React.ComponentType<any>> = {
     </section>
   ),
 
-  'blocks.cards': (props: any) => (
+  'blocks.cards': (props) => (
     <section className="bg-Secondary-Scrub py-25 max-w-[1392px] mx-auto w-full">
       <h2 className="text-Primary-Black heading-lg pb-20 text-center">
         {props.title}
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-4">
-        {props.cards?.map((card: any) => (
+        {props.cards?.map((card) => (
           <div
             key={card.id}
             className="bg-white rounded-3xl p-5 flex flex-col relative"
@@ -178,7 +183,7 @@ const BLOCKS: Record<string, React.ComponentType<any>> = {
             <div className="border-t border-[#D2D2D2] text-Dark-Scrub text-xs font-medium flex justify-between pt-4 pb-5">
               <p>{card.provider}</p>
               <div className="flex gap-2">
-                {card.details?.map((detail: any, i: number) => (
+                {card.details?.map((detail, i: number) => (
                   <div
                     key={detail.id}
                     className="flex flex-row items-center gap-2"
@@ -211,7 +216,7 @@ const BLOCKS: Record<string, React.ComponentType<any>> = {
   'blocks.get-in-touch': GetInTouch,
 }
 
-export default function HealthcareServicesPage({ data }: { data: any }) {
+export default function HealthcareServicesPage({ data }: { data }) {
   const page = data[0]
   const blocks = page.blocks
 
@@ -221,7 +226,7 @@ export default function HealthcareServicesPage({ data }: { data: any }) {
 
   return (
     <div className="min-h-screen bg-[#E2F2F1]">
-      {blocks.map((block: any, index: number) => {
+      {blocks.map((block, index: number) => {
         const Component = BLOCKS[block.__component]
 
         if (!Component) {

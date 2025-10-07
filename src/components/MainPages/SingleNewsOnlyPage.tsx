@@ -1,78 +1,20 @@
 'use client'
-import { useParams } from 'next/navigation'
-import Link from 'next/link'
-import Image from 'next/image'
-import { ChevronRight } from 'lucide-react'
-import HeroSinglePages from '@/components/sections/HeroSinglePages'
 import BlogCard from '@/components/sections/BlogCard'
+import HeroSinglePages from '@/components/sections/HeroSinglePages'
+import { ChevronRight } from 'lucide-react'
 import { useTranslations } from 'next-intl'
-
-const blogs = [
-  {
-    slug: '1',
-    title: 'Sage Partners with Local Clinics',
-    category: 'news',
-    image: '/images/generalImages/blog1.png',
-    author: 'John Doe',
-    date: '15 Mar 2023',
-    readTime: '3 min read',
-  },
-  {
-    slug: '2',
-    title: 'Sage Wins Healthcare Innovation Global Award',
-    category: 'news',
-    image: '/images/generalImages/blog2.png',
-    author: 'John Doe',
-    date: '15 Mar 2023',
-    readTime: '3 min read',
-  },
-  {
-    slug: '3',
-    title: 'Sage Attends Global Health Conference at UAE',
-    category: 'news',
-    image: '/images/generalImages/blog3.png',
-    author: 'John Doe',
-    date: '15 Mar 2023',
-    readTime: '3 min read',
-  },
-  {
-    slug: '4',
-    title: 'Sage Partners with Local Clinics',
-    category: 'events',
-    image: '/images/generalImages/blog1.png',
-    author: 'John Doe',
-    date: '15 Mar 2023',
-    readTime: '3 min read',
-  },
-  {
-    slug: '5',
-    title: 'Sage Wins Healthcare Innovation Global Award',
-    category: 'events',
-    image: '/images/generalImages/blog2.png',
-    author: 'John Doe',
-    date: '15 Mar 2023',
-    readTime: '3 min read',
-  },
-  {
-    slug: '6',
-    title: 'Sage Attends Global Health Conference at UAE',
-    category: 'events',
-    image: '/images/generalImages/blog3.png',
-    author: 'John Doe',
-    date: '15 Mar 2023',
-    readTime: '3 min read',
-  },
-]
+import Image from 'next/image'
+import Link from 'next/link'
+import { NewsArticle } from '../../types/newsEvents'
 
 export default function SingleNewsOnlyPage({
   data,
   allBlogs,
 }: {
-  data: any
-  allBlogs: any
+  data: NewsArticle[]
+  allBlogs: NewsArticle[]
 }) {
   const t = useTranslations()
-  console.log('data in single news only page', data)
   //   if (!news) {
   //     return <div className="p-8">New not found.</div>
   //   }
@@ -86,7 +28,7 @@ export default function SingleNewsOnlyPage({
           {' '}
           {data.firstContent && (
             <div className="mx-auto max-w-[1448px] py-10 md:py-20 md:px-4 px-4 space-y-6">
-              {data.firstContent.map((block: any, index: number) => {
+              {data.firstContent.map((block, index: number) => {
                 switch (block.type) {
                   case 'heading':
                     if (block.level === 4) {
@@ -95,7 +37,7 @@ export default function SingleNewsOnlyPage({
                           key={index}
                           className="text-[32px] font-bold text-[#000404] py-6"
                         >
-                          {block.children.map((c: any) => c.text).join('')}
+                          {block.children.map((c) => c.text).join('')}
                         </h4>
                       )
                     }
@@ -105,7 +47,7 @@ export default function SingleNewsOnlyPage({
                           key={index}
                           className="mt-4 text-[#000404] text-p leading-relaxed"
                         >
-                          {block.children.map((c: any) => c.text).join('')}
+                          {block.children.map((c) => c.text).join('')}
                         </h6>
                       )
                     }
@@ -119,7 +61,7 @@ export default function SingleNewsOnlyPage({
                         key={index}
                         className="text-[#000404] text-base leading-relaxed pb-4"
                       >
-                        {block.children.map((c: any) => c.text).join('')}
+                        {block.children.map((c) => c.text).join('')}
                       </p>
                     )
 
@@ -139,7 +81,7 @@ export default function SingleNewsOnlyPage({
           </div>
           {data.secondContent && (
             <div className="mx-auto max-w-[1448px] py-10 md:py-20 md:px-4 px-4 space-y-6">
-              {data.secondContent.map((block: any, index: number) => {
+              {data.secondContent.map((block, index: number) => {
                 switch (block.type) {
                   case 'heading':
                     if (block.level === 4) {
@@ -148,7 +90,7 @@ export default function SingleNewsOnlyPage({
                           key={index}
                           className="text-[32px] font-bold text-[#000404] py-6"
                         >
-                          {block.children.map((c: any) => c.text).join('')}
+                          {block.children.map((c) => c.text).join('')}
                         </h4>
                       )
                     }
@@ -158,7 +100,7 @@ export default function SingleNewsOnlyPage({
                           key={index}
                           className="mt-4 text-[#000404] text-p leading-relaxed"
                         >
-                          {block.children.map((c: any) => c.text).join('')}
+                          {block.children.map((c) => c.text).join('')}
                         </h6>
                       )
                     }
@@ -172,16 +114,16 @@ export default function SingleNewsOnlyPage({
                         key={index}
                         className="text-[#000404] text-base leading-relaxed pb-4"
                       >
-                        {block.children.map((c: any) => c.text).join('')}
+                        {block.children.map((c) => c.text).join('')}
                       </p>
                     )
 
                   case 'list':
                     return (
                       <ul key={index} className="list-disc pl-6 space-y-2">
-                        {block.children.map((li: any, liIndex: number) => (
+                        {block.children.map((li, liIndex: number) => (
                           <li key={liIndex} className="text-[#000404] text-p">
-                            {li.children.map((c: any) => c.text).join('')}
+                            {li.children.map((c) => c.text).join('')}
                           </li>
                         ))}
                       </ul>
@@ -215,7 +157,7 @@ export default function SingleNewsOnlyPage({
             </div>
           </div>
           <div className="grid md:grid-cols-3 gap-8 pt-20">
-            {allBlogs.slice(0, 3).map((blog: any) => (
+            {allBlogs.slice(0, 3).map((blog) => (
               <BlogCard
                 key={blog.slug}
                 blog={blog}

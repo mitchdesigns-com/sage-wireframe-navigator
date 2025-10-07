@@ -22,16 +22,6 @@ interface Service {
   imageLabel: ImageLabel
 }
 
-interface SectionHeaderData {
-  id: number
-  heading: string
-  description: string
-  tagline: string
-  cta: string
-  href: string
-  SERVICES: Service[]
-}
-
 interface ServicesProps {
   heading: string
   description: string

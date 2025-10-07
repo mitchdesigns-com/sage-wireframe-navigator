@@ -1,17 +1,17 @@
 'use client'
 
-import { Calendar, ChevronLeft, ChevronRight, Clock, User } from 'lucide-react'
-import Image from 'next/image'
-import { useState } from 'react'
 import Tagline from '@/components/sections/Tagline'
-import Link from 'next/link'
-import Button from '@/components/ui/Button'
-import PhoneInput from 'react-phone-number-input'
-import 'react-phone-number-input/style.css'
 import ToggleButton from '@/components/sections/ToggleButton'
 import ButtonIcon from '@/components/svg/ButtonIcon'
+import Button from '@/components/ui/Button'
+import { Calendar, ChevronLeft, ChevronRight, Clock, User } from 'lucide-react'
+import Image from 'next/image'
+import Link from 'next/link'
+import { useState } from 'react'
+import PhoneInput from 'react-phone-number-input'
+import 'react-phone-number-input/style.css'
+import { ContactPageData } from '../../types/contactPageData'
 
-// Contact form state interface
 interface ContactForm {
   firstName: string
   lastName: string
@@ -21,59 +21,15 @@ interface ContactForm {
   acceptTerms: boolean
 }
 
-// Calendar state interface
 interface CalendarState {
   selectedDate: number | null
   selectedTime: string | null
   currentMonth: string
 }
-const list = [
-  {
-    image: '/images/generalImages/email.png',
-    title: 'Email',
-    titleColor: '#CAF48E', // custom title color
-    description: 'info@healthconcierge.sa',
-    descriptionColor: '#E2F2F1', // custom description color
-    bgColor: '#025850',
-    taglineColor: '#CAF48E',
-  },
-  {
-    image: '/images/generalImages/phone.png',
-    title: 'Phone',
-    titleColor: '#025850',
-    description: '+966 12 345 6789',
-    descriptionColor: '#626262',
-    bgColor: '#CAF48E',
-    taglineColor: '#1E1E1E',
-  },
-  {
-    image: '/images/generalImages/location.png',
-    title: 'Office',
-    titleColor: '#CAF48E', // custom title color
-    description: '456 Health Ave, Riyadh 12345, KSA',
-    descriptionColor: '#E2F2F1', // custom description color
-    bgColor: '#025850',
-    taglineColor: '#CAF48E',
-  },
-]
+
 type TabType = 'general' | 'business' | 'patient'
 
-interface ToggleOption {
-  id: string
-  label: string
-  value: TabType
-}
-
-const options: ToggleOption[] = [
-  { id: 'general', label: 'General Inquiry', value: 'general' },
-  { id: 'business', label: 'Business Inquiry', value: 'business' },
-  { id: 'patient', label: 'Patient Inquiry', value: 'patient' },
-]
-const options2: ToggleOption[] = [
-  { id: 'general', label: 'Patient Support & Inquiries', value: 'general' },
-  { id: 'business', label: 'B2B Partnership Inquiries', value: 'business' },
-]
-export default function ContactPage({ data }: { data: any }) {
+export default function ContactPage({ data }: { data: ContactPageData }) {
   const [formData, setFormData] = useState<ContactForm>({
     firstName: '',
     lastName: '',
@@ -632,7 +588,7 @@ export default function ContactPage({ data }: { data: any }) {
         </div>
         <div className="max-w-[1392px] mx-auto w-full pt-15">
           <div className="flex w-full gap-12 justify-center items-start text-start">
-            {data.ContactData.CardsList?.map((li: any, idx: any) => (
+            {data.ContactData.CardsList?.map((li, idx) => (
               <div
                 key={idx}
                 style={{ backgroundColor: li.bgColor }}

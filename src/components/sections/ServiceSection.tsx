@@ -11,7 +11,6 @@ interface ServiceSectionProps {
     url: string
     alternativeText: string
   }
-  imageAlt: string
   bgColor?: string
 }
 
@@ -21,7 +20,6 @@ const ServiceSection: React.FC<ServiceSectionProps> = ({
   buttonText,
   buttonHref,
   image,
-  imageAlt,
   bgColor = 'bg-Primary-Palm',
 }) => {
   return (

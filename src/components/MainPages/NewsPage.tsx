@@ -1,127 +1,23 @@
 'use client'
-import Image from 'next/image'
+import BlogCard from '@/components/sections/BlogCard'
 import HeroPages from '@/components/sections/HeroPages'
 import Tagline from '@/components/sections/Tagline'
-import Link from 'next/link'
-import ButtonIcon from '@/components/svg/ButtonIcon'
-import BlogCard from '@/components/sections/BlogCard'
-import ToggleButton from '@/components/sections/ToggleButton'
-import React, { useState } from 'react'
 import WebinarList from '@/components/sections/WebinarList'
-const blogs = [
-  {
-    slug: '1',
-    title: 'Sage Partners with Local Clinics',
-    category: 'news',
-    image: '/images/generalImages/blog1.png',
-    author: 'John Doe',
-    date: '15 Mar 2023',
-    readTime: '3 min read',
-  },
-  {
-    slug: '2',
-    title: 'Sage Wins Healthcare Innovation Global Award',
-    category: 'news',
-    image: '/images/generalImages/blog2.png',
-    author: 'John Doe',
-    date: '15 Mar 2023',
-    readTime: '3 min read',
-  },
-  {
-    slug: '3',
-    title: 'Sage Attends Global Health Conference at UAE',
-    category: 'news',
-    image: '/images/generalImages/blog3.png',
-    author: 'John Doe',
-    date: '15 Mar 2023',
-    readTime: '3 min read',
-  },
-  {
-    slug: '4',
-    title: 'Sage Partners with Local Clinics',
-    category: 'news',
-    image: '/images/generalImages/blog1.png',
-    author: 'John Doe',
-    date: '15 Mar 2023',
-    readTime: '3 min read',
-  },
-  {
-    slug: '5',
-    title: 'Sage Wins Healthcare Innovation Global Award',
-    category: 'news',
-    image: '/images/generalImages/blog2.png',
-    author: 'John Doe',
-    date: '15 Mar 2023',
-    readTime: '3 min read',
-  },
-  {
-    slug: '6',
-    title: 'Sage Attends Global Health Conference at UAE',
-    category: 'news',
-    image: '/images/generalImages/blog3.png',
-    author: 'John Doe',
-    date: '15 Mar 2023',
-    readTime: '3 min read',
-  },
-]
-const webinars = [
-  {
-    slug: 'event1',
-    title: 'Wellness Beyond Borders',
-    description:
-      'Explore global healthcare innovations and how Sage is making them accessible to individuals and organizations across the region.',
-    day: 'Fri',
-    dayNumbers: '09',
-    year: 'Feb 2026',
-  },
-  {
-    slug: 'event2',
-    title: 'Navigating Patient-Centered Care',
-    description:
-      'A live panel discussion featuring experts in personalized healthcare solutions and how technology is shaping patient journeys.',
-    day: 'Fri',
-    dayNumbers: '09',
-    year: 'Feb 2026',
-  },
-  {
-    slug: 'event3',
-    title: 'Transparent Healthcare Talks',
-    description:
-      'An educational session on building trust through clear communication, fair pricing, and concierge-style support.',
-    day: 'Fri',
-    dayNumbers: '09',
-    year: 'Feb 2026',
-  },
-]
-type TabType = 'all' | 'news' | 'events'
-
-interface ToggleOption {
-  id: string
-  label: string
-  value: TabType
-}
-
-const options: ToggleOption[] = [
-  { id: 'all', label: 'View All', value: 'all' },
-  { id: 'news', label: 'News', value: 'news' },
-  { id: 'events', label: 'Events', value: 'events' },
-]
+import ButtonIcon from '@/components/svg/ButtonIcon'
+import Image from 'next/image'
+import Link from 'next/link'
+import { EventData, NewsArticle, NewsEventsData } from '../../types/newsEvents'
 
 interface NewsPageProps {
   data: {
-    newsEvents: any
-    news: any
-    events: any
+    newsEvents: NewsEventsData
+    news: NewsArticle[]
+    events: EventData[]
   }
 }
 
 export default function NewsPage({ data }: NewsPageProps) {
   const { newsEvents, news, events } = data
-  const [currentTab, setCurrentTab] = useState<TabType>('all')
-  const filteredBlogs =
-    currentTab === 'all'
-      ? blogs
-      : blogs.filter((blog) => blog.category === currentTab)
 
   return (
     <div className="min-h-screen bg-white">
@@ -210,7 +106,7 @@ export default function NewsPage({ data }: NewsPageProps) {
         </div>
         <div className="max-w-[1392px] mx-auto py-20">
           <div className="grid md:grid-cols-3 gap-8">
-            {news.map((blog: any) => (
+            {news.map((blog) => (
               <BlogCard
                 key={blog.slug}
                 blog={blog}

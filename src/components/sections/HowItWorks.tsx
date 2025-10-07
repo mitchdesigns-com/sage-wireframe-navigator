@@ -10,13 +10,11 @@ interface HowItWorksStep {
 }
 
 export default function HowItWorks({
-  id,
   tagline,
   title,
   description,
   steps,
 }: {
-  id: number
   tagline: string
   title: string
   description: string

@@ -5,8 +5,12 @@ import FeatureSection from '@/components/sections/FeatureSection'
 import WhySection from '@/components/sections/WhySection'
 import GetInTouch from '@/components/sections/GetInTouch'
 import FaqSection from '@/components/sections/FaqSection'
+import {
+  ServicePage,
+  ServicePageResponse,
+} from '../../types/servicesIndividual'
 
-const BLOCKS: Record<string, React.ComponentType<any>> = {
+const BLOCKS: Record<string, React.ComponentType<ServicePageResponse>> = {
   'blocks.hero-pages': HeroPages,
   'blocks.feature-section': FeatureSection,
   'blocks.why-section': WhySection,
@@ -14,7 +18,7 @@ const BLOCKS: Record<string, React.ComponentType<any>> = {
   'blocks.get-in-touch': GetInTouch,
 }
 
-export default function IndividualsPage({ data }: { data: any }) {
+export default function IndividualsPage({ data }: { data: ServicePage[] }) {
   const page = data?.[0]
   const blocks = page?.blocks
   if (!blocks || blocks.length === 0) {
@@ -23,7 +27,7 @@ export default function IndividualsPage({ data }: { data: any }) {
 
   return (
     <div className="min-h-screen ">
-      {blocks.map((block: any, index: number) => {
+      {blocks.map((block, index: number) => {
         const Component = BLOCKS[block.__component]
         if (!Component) {
           console.warn(`Unknown block component: ${block.__component}`)

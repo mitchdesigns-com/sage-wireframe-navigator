@@ -1,0 +1,110 @@
+export interface BreadcrumbItem {
+  id: number
+  label: string
+  href: string
+}
+
+export interface ImageData {
+  id: number
+  documentId: string
+  alternativeText: string
+  url: string
+}
+
+export interface HeroPagesBlock {
+  __component: 'blocks.hero-pages'
+  id: number
+  tagline: string
+  title: string
+  description: string
+  button: string
+  href: string
+  breadcrumbItems: BreadcrumbItem[]
+  bgImage: ImageData
+}
+
+export interface FeatureItem {
+  id: number
+  text?: string
+  title?: string
+  description?: string
+  bgColor?: string
+  textColor?: string
+  type?: 'image' | 'icon'
+  descColor?: string
+  iconElement?: ImageData
+  image?: ImageData
+}
+export interface FeatureListItem {
+  id: number
+  title: string
+  description: string
+  theme: 'light' | 'dark'
+  icon: ImageData
+}
+export interface FeatureSectionBlock {
+  __component: 'blocks.feature-section'
+  id: number
+  tagline: string
+  title: string
+  description: string
+  ctaText: string
+  href: string
+  backgroundColor: string
+  textColor: string
+  reverse: boolean
+  features: FeatureItem[]
+  list: FeatureListItem[]
+  image: ImageData
+}
+
+export interface WhySectionBlock {
+  __component: 'blocks.why-section'
+  id: number
+  title: string
+  description: string
+  buttonText: string
+  features: FeatureItem[]
+}
+
+export interface FAQItem {
+  id: number
+  question: string
+  answer: string
+}
+
+export interface FAQSectionBlock {
+  __component: 'blocks.faq-section'
+  id: number
+  title: string
+  description: string
+  faqData: FAQItem[]
+}
+
+export interface GetInTouchBlock {
+  __component: 'blocks.get-in-touch'
+  id: number
+  tagline: string
+  title: string
+  description: string
+  image: ImageData
+}
+
+export type PageBlock =
+  | HeroPagesBlock
+  | FeatureSectionBlock
+  | WhySectionBlock
+  | FAQSectionBlock
+  | GetInTouchBlock
+
+export interface ServicePage {
+  id: number
+  documentId: string
+  Name: string
+  slug: string
+  blocks: PageBlock[]
+}
+
+export interface ServicePageResponse {
+  data: ServicePage[]
+}

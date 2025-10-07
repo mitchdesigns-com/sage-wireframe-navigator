@@ -10,13 +10,15 @@ import FeatureSection from '../../components/sections/FeatureSection'
 import GetInTouch from '../../components/sections/GetInTouch'
 import BlogSection from '../../components/sections/BlogSection'
 import CentersSection from '../../components/sections/CentersSection'
+import { ServicesPageData } from '../../types/homePage'
+import { BlogItem } from '../../types/blogs'
 
 export default function HomePage({
   data,
   singles,
 }: {
-  data: any
-  singles: any
+  data: ServicesPageData[]
+  singles: BlogItem[]
 }) {
   return (
     <div className="min-h-screen">
@@ -24,7 +26,7 @@ export default function HomePage({
       <Services {...data.SectionHeader} />
 
       <div className="overflow-hidden ">
-        {data.featureSection.map((section: any, index: any) => (
+        {data.featureSection.map((section, index) => (
           <FeatureSection key={index} {...section} />
         ))}
         <DirectionScrollSection />
@@ -40,13 +42,13 @@ export default function HomePage({
       {/* Client Experiences */}
       <ClientExperiences />
 
-      {data.CentersSection.map((section: any, index: any) => (
+      {data.CentersSection.map((section, index) => (
         <CentersSection key={index} {...section} secondaryButton={true} />
       ))}
       <BlogSection
         heading={data.BlogSection.heading}
         subheading={data.BlogSection.subheading}
-        blogs={singles.map((blog: any) => ({
+        blogs={singles.map((blog) => ({
           slug: blog.slug,
           title: blog.HeroSinglePages.title,
           category: blog.HeroSinglePages.category,

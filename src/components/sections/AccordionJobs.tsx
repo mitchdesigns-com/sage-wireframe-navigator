@@ -3,22 +3,9 @@ import { useState } from 'react'
 import { MinusIcon, ChevronDown } from 'lucide-react'
 import Link from 'next/link'
 import ButtonIcon from '../svg/ButtonIcon'
+import { CareerItem } from '../../types/careersPageData'
 
-interface Job {
-  id: number
-  documentId: string
-  slug: string
-  title: string
-  tags: string
-  content: { type: string; children: { text: string }[] }[]
-  career_type: {
-    id: number
-    documentId: string
-    title: string
-  }
-}
-
-export default function AccordionJobs({ data }: { data: Job[] }) {
+export default function AccordionJobs({ data }: { data: CareerItem[] }) {
   const [openIndex, setOpenIndex] = useState<number>(-1)
 
   return (

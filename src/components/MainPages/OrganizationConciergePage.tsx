@@ -6,17 +6,22 @@ import HeroWithImage from '@/components/sections/HeroWithImage'
 import ServiceSection from '@/components/sections/ServiceSection'
 import WhyChooseSection from '@/components/sections/WhyChooseSection'
 import parse, { domToReact } from 'html-react-parser'
+import { ServicesOrganizationsConciergeResponse } from '../../types/servicesOrganizationsConcierge'
 
-const BLOCKS: Record<string, React.ComponentType<any>> = {
-  'blocks.hero-with-image': (props: any) => (
+const BLOCKS: Record<
+  string,
+  React.ComponentType<ServicesOrganizationsConciergeResponse>
+> = {
+  'blocks.hero-with-image': (props) => (
     <HeroWithImage
       {...props}
-      title={parse(props.title, {
-        replace: (domNode: any) => {
-          if (domNode.name === 'span') {
+      title={parse(props.title || '', {
+        replace: (domNode: DOMNode) => {
+          if (domNode instanceof Element && domNode.name === 'span') {
+            // Cast children to DOMNode[]
             return (
               <span className="font-bold text-Primary-Scrub text-nowrap">
-                {domToReact(domNode.children)}
+                {domToReact(domNode.children as DOMNode[])}
               </span>
             )
           }
@@ -24,10 +29,10 @@ const BLOCKS: Record<string, React.ComponentType<any>> = {
       })}
     />
   ),
-  'blocks.why-choose-section': (props: any) => (
+  'blocks.why-choose-section': (props) => (
     <WhyChooseSection
       {...props}
-      paragraphs={props.paragraphs?.map((p: any) => p.paragraph)}
+      paragraphs={props.paragraphs?.map((p) => p.paragraph)}
     />
   ),
   'blocks.feature-section': FeatureSection,
@@ -36,7 +41,7 @@ const BLOCKS: Record<string, React.ComponentType<any>> = {
   'blocks.get-in-touch': GetInTouch,
 }
 
-export default function OrganizationConciergePage({ data }: { data: any }) {
+export default function OrganizationConciergePage({ data }: { data }) {
   const page = data[0]
   const blocks = page.blocks
 
@@ -46,7 +51,7 @@ export default function OrganizationConciergePage({ data }: { data: any }) {
 
   return (
     <div className="min-h-screen bg-[#E2F2F1]">
-      {blocks.map((block: any, index: number) => {
+      {blocks.map((block, index: number) => {
         const Component = BLOCKS[block.__component]
         if (!Component) {
           console.warn(`Unknown block component: ${block.__component}`)

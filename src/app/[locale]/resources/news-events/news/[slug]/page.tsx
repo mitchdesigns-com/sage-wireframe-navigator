@@ -2,12 +2,10 @@ import { fetchServer } from '@/app/api/general'
 import { notFound } from 'next/navigation'
 import SingleNewsOnlyPage from '@/components/MainPages/SingleNewsOnlyPage'
 export const runtime = 'edge'
-
-export default async function Page({
-  params,
-}: {
-  params: { slug: string; locale: string }
-}) {
+type Locale = 'en' | 'ar'
+export default async function Page(props: unknown) {
+  // Cast props to expected shape
+  const { params } = props as { params: { slug: string; locale: Locale } }
   const { slug, locale } = params
 
   const [{ data: singleCareer }, { data: allBlogs }] = await Promise.all([

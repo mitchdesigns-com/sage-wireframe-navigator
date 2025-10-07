@@ -7,17 +7,22 @@ import ServiceSection from '@/components/sections/ServiceSection'
 import WhyChooseSection from '@/components/sections/WhyChooseSection'
 import parse, { domToReact } from 'html-react-parser'
 import Image from 'next/image'
+import { ServicesOrganizationsConsultationResponse } from '../../types/organizationConsultationPage'
 
-const BLOCKS: Record<string, React.ComponentType<any>> = {
-  'blocks.hero-with-image': (props: any) => (
+const BLOCKS: Record<
+  string,
+  React.ComponentType<ServicesOrganizationsConsultationResponse>
+> = {
+  'blocks.hero-with-image': (props) => (
     <HeroWithImage
       {...props}
-      title={parse(props.title, {
-        replace: (domNode: any) => {
-          if (domNode.name === 'span') {
+      title={parse(props.title || '', {
+        replace: (domNode: DOMNode) => {
+          if (domNode instanceof Element && domNode.name === 'span') {
+            // Cast children to DOMNode[]
             return (
               <span className="font-bold text-Primary-Scrub text-nowrap">
-                {domToReact(domNode.children)}
+                {domToReact(domNode.children as DOMNode[])}
               </span>
             )
           }
@@ -25,14 +30,14 @@ const BLOCKS: Record<string, React.ComponentType<any>> = {
       })}
     />
   ),
-  'blocks.why-choose-section': (props: any) => (
+  'blocks.why-choose-section': (props) => (
     <WhyChooseSection
       {...props}
-      paragraphs={props.paragraphs?.map((p: any) => p.paragraph)}
+      paragraphs={props.paragraphs?.map((p) => p.paragraph)}
     />
   ),
   'blocks.feature-section': FeatureSection,
-  'blocks.concierge-help': (props: any) => (
+  'blocks.concierge-help': (props) => (
     <section className="py-25 bg-Secondary-Light-Scrub">
       <div className="max-w-[764px] mx-auto">
         <div className=" mx-auto  text-center">
@@ -46,7 +51,7 @@ const BLOCKS: Record<string, React.ComponentType<any>> = {
       </div>
       <div className="max-w-[1392px] mx-auto w-full pt-20">
         <div className="flex mb-8 gap-12 justify-center items-center text-center">
-          {props.list?.map((li: any, idx: number) => (
+          {props.list?.map((li, idx: number) => (
             <div
               key={idx}
               className="flex items-center gap-2 flex-col max-w-[432px]"
@@ -78,7 +83,7 @@ const BLOCKS: Record<string, React.ComponentType<any>> = {
   'blocks.details-section': ServiceSection,
   'blocks.get-in-touch': GetInTouch,
 }
-export default function OrganizationConsultationPage({ data }: { data: any }) {
+export default function OrganizationConsultationPage({ data }: { data }) {
   const page = data[0]
   const blocks = page.blocks
 
@@ -88,7 +93,7 @@ export default function OrganizationConsultationPage({ data }: { data: any }) {
 
   return (
     <div className="min-h-screen bg-[#E2F2F1]">
-      {blocks.map((block: any, index: number) => {
+      {blocks.map((block, index: number) => {
         const Component = BLOCKS[block.__component]
         if (!Component) {
           console.warn(`Unknown block component: ${block.__component}`)

@@ -1,8 +1,8 @@
-import React, { ReactNode } from 'react'
-import Button from '../ui/Button'
-import Link from 'next/link'
 import Image from 'next/image'
+import Link from 'next/link'
+import React from 'react'
 import { usePathname } from '../../i18n/navigation'
+import Button from '../ui/Button'
 
 interface Feature {
   iconElement?: {

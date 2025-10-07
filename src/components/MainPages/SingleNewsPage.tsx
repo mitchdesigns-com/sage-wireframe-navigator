@@ -2,6 +2,7 @@
 import { useParams } from 'next/navigation'
 import HeroCarousel from '@/components/sections/HeroCarousel'
 import FeatureSection from '@/components/sections/FeatureSection'
+import { EventData } from '../../types/newsEvents'
 
 const webinars = [
   {
@@ -35,10 +36,10 @@ const webinars = [
 
 export default function SingleNewsPage({
   data,
-  allBlogs,
+  // allBlogs,
 }: {
-  data: any
-  allBlogs: any
+  data: EventData[]
+  allBlogs: EventData[]
 }) {
   const params = useParams()
   const newsId = params.slug
@@ -52,7 +53,6 @@ export default function SingleNewsPage({
     <>
       <section>
         <HeroCarousel {...data.HeroCarousel} />
-
         <FeatureSection {...data.FeatureSection} />
       </section>{' '}
     </>

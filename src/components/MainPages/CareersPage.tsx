@@ -1,18 +1,19 @@
 import AccordionJobs from '@/components/sections/AccordionJobs'
 import FeatureSection from '@/components/sections/FeatureSection'
 import HeroPages from '@/components/sections/HeroPages'
+import { CareerItem, CareersPageData } from '../../types/careersPageData'
 
 export default function CareersPage({
   data,
   singles,
 }: {
-  data: any
-  singles: any
+  data: CareersPageData
+  singles: CareerItem[]
 }) {
   return (
     <div className="min-h-screen">
       <HeroPages {...data.HeroPages} />
-      {data.FeatureSection.map((section: any, index: any) => (
+      {data.FeatureSection.map((section, index) => (
         <FeatureSection key={index} {...section} />
       ))}
       <section className="bg-Secondary-Light-Scrub">

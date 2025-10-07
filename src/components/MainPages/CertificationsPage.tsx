@@ -5,13 +5,31 @@ import HeroPages from '@/components/sections/HeroPages'
 import CentersSection from '@/components/sections/CentersSection'
 import CertificateCard from '@/components/sections/CertificateCard'
 
-const BLOCKS: Record<string, React.ComponentType<any>> = {
-  'blocks.hero-pages': HeroPages,
-  'blocks.centers-section-data': CentersSection,
-  'blocks.get-in-touch': GetInTouch,
+import {
+  ResourceItem,
+  ResourceBlocks,
+  HeroPagesBlock,
+  CentersSectionBlock,
+  GetInTouchBlock,
+  CertificateCardBlock,
+} from '../../types/resourcesPages'
+
+const BLOCKS: {
+  [K in ResourceBlocks['__component']]: React.ComponentType<
+    Extract<ResourceBlocks, { __component: K }>
+  >
+} = {
+  'blocks.hero-pages': HeroPages as React.ComponentType<HeroPagesBlock>,
+  'blocks.centers-section-data':
+    CentersSection as React.ComponentType<CentersSectionBlock>,
+  'blocks.get-in-touch': GetInTouch as React.ComponentType<GetInTouchBlock>,
 }
 
-export default function CertificationsPage({ data }: { data: any }) {
+interface CertificationsPageProps {
+  data: ResourceItem[]
+}
+
+export default function CertificationsPage({ data }: CertificationsPageProps) {
   const page = data?.[0]
   const blocks = page?.blocks || []
   const certificates = page?.BlocksResources || []
@@ -20,20 +38,23 @@ export default function CertificationsPage({ data }: { data: any }) {
 
   return (
     <div className="min-h-screen">
-      {blocks.map((block: any, index: number) => {
+      {blocks.map((block: ResourceBlocks, index: number) => {
         const Component = BLOCKS[block.__component]
 
         // render HeroPages and then immediately the certificate cards
         if (block.__component === 'blocks.hero-pages') {
           return (
             <div key={`${block.__component}-${block.id || index}`}>
-              <Component {...block} />
+              <Component
+                {...block}
+                key={`${block.__component}-${block.id || index}`}
+              />
 
               {certificates.length > 0 && (
                 <section className="py-20 bg-Secondary-Light-Scrub">
                   <div className="max-w-[1392px] mx-auto space-y-20">
                     <div className="grid md:grid-cols-3 gap-x-12 gap-y-20">
-                      {certificates.map((certificate: any) => (
+                      {certificates.map((certificate: CertificateCardBlock) => (
                         <CertificateCard
                           key={certificate.id}
                           certificate={certificate}

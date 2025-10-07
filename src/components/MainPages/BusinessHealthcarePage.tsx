@@ -6,18 +6,25 @@ import GetInTouch from '@/components/sections/GetInTouch'
 import HeroWithImage from '@/components/sections/HeroWithImage'
 import ServiceSection from '@/components/sections/ServiceSection'
 import WhyChooseSection from '@/components/sections/WhyChooseSection'
-import parse, { domToReact } from 'html-react-parser'
+import {
+  BusinessConciergeBlock,
+  BusinessConciergePageData,
+  HeroWithImageBlock,
+  WhyChooseSectionBlock,
+} from '../../types/businessesConcierge'
+import parse, { domToReact, DOMNode, Element } from 'html-react-parser'
 
-const BLOCKS: Record<string, React.ComponentType<any>> = {
-  'blocks.hero-with-image': (props: any) => (
+const BLOCKS = {
+  'blocks.hero-with-image': (props: HeroWithImageBlock) => (
     <HeroWithImage
       {...props}
-      title={parse(props.title, {
-        replace: (domNode: any) => {
-          if (domNode.name === 'span') {
+      title={parse(props.title || '', {
+        replace: (domNode: DOMNode) => {
+          if (domNode instanceof Element && domNode.name === 'span') {
+            // Cast children to DOMNode[]
             return (
               <span className="font-bold text-Primary-Scrub text-nowrap">
-                {domToReact(domNode.children)}
+                {domToReact(domNode.children as DOMNode[])}
               </span>
             )
           }
@@ -25,10 +32,10 @@ const BLOCKS: Record<string, React.ComponentType<any>> = {
       })}
     />
   ),
-  'blocks.why-choose-section': (props: any) => (
+  'blocks.why-choose-section': (props: WhyChooseSectionBlock) => (
     <WhyChooseSection
       {...props}
-      paragraphs={props.paragraphs?.map((p: any) => p.paragraph)}
+      paragraphs={props.paragraphs.map((p) => p.paragraph)}
     />
   ),
   'blocks.feature-section': FeatureSection,
@@ -37,27 +44,25 @@ const BLOCKS: Record<string, React.ComponentType<any>> = {
   'blocks.get-in-touch': GetInTouch,
 }
 
-export default function BusinessHealthcarePage({ data }: { data: any }) {
-  const page = data?.[0]
-  const blocks = page?.blocks
-  if (!blocks || blocks.length === 0) {
-    return null
-  }
+export default function BusinessHealthcarePage({
+  data,
+}: {
+  data: BusinessConciergePageData[]
+}) {
+  const page = data[0]
+  const blocks: BusinessConciergeBlock[] = page.blocks
+
+  if (!blocks || blocks.length === 0) return null
 
   return (
     <div className="min-h-screen ">
-      {blocks.map((block: any, index: number) => {
+      {blocks.map((block) => {
         const Component = BLOCKS[block.__component]
         if (!Component) {
           console.warn(`Unknown block component: ${block.__component}`)
           return null
         }
-        return (
-          <Component
-            key={`${block.__component}-${block.id || index}`}
-            {...block}
-          />
-        )
+        return <Component key={`${block.__component}-${block.id}`} {...block} />
       })}
     </div>
   )

@@ -4,6 +4,7 @@ import HeroSinglePages from '@/components/sections/HeroSinglePages'
 import BlogCard from '@/components/sections/BlogCard'
 import { useTranslations } from 'next-intl'
 import ButtonIcon from '@/components/svg/ButtonIcon'
+import { BlogPost } from '../../types/blog'
 
 // function calculateReadTime(text: string) {
 //   const words = text.trim().split(/\s+/).length
@@ -15,8 +16,8 @@ export default function SingleBlogsPage({
   data,
   allBlogs,
 }: {
-  data: any
-  allBlogs: any
+  data: BlogPost
+  allBlogs: BlogPost[]
 }) {
   const t = useTranslations()
 
@@ -29,7 +30,7 @@ export default function SingleBlogsPage({
           {' '}
           {data.content && (
             <div className="mx-auto max-w-[1448px] py-10 md:py-20 md:px-4 px-4 space-y-6">
-              {data.content.map((block: any, index: number) => {
+              {data.content.map((block, index: number) => {
                 switch (block.type) {
                   case 'heading':
                     if (block.level === 4) {
@@ -38,7 +39,7 @@ export default function SingleBlogsPage({
                           key={index}
                           className="text-[32px] font-bold text-[#000404]"
                         >
-                          {block.children.map((c: any) => c.text).join('')}
+                          {block.children.map((c) => c.text).join('')}
                         </h4>
                       )
                     }
@@ -48,7 +49,7 @@ export default function SingleBlogsPage({
                           key={index}
                           className="mt-4 text-[#000404] text-p leading-relaxed"
                         >
-                          {block.children.map((c: any) => c.text).join('')}
+                          {block.children.map((c) => c.text).join('')}
                         </h6>
                       )
                     }
@@ -62,16 +63,16 @@ export default function SingleBlogsPage({
                         key={index}
                         className="text-[#000404] text-p leading-relaxed"
                       >
-                        {block.children.map((c: any) => c.text).join('')}
+                        {block.children.map((c) => c.text).join('')}
                       </p>
                     )
 
                   case 'list':
                     return (
                       <ul key={index} className="list-disc pl-6 space-y-2">
-                        {block.children.map((li: any, liIndex: number) => (
+                        {block.children.map((li, liIndex: number) => (
                           <li key={liIndex} className="text-[#000404] text-p">
-                            {li.children.map((c: any) => c.text).join('')}
+                            {li.children.map((c) => c.text).join('')}
                           </li>
                         ))}
                       </ul>
@@ -117,7 +118,7 @@ export default function SingleBlogsPage({
             <div className="grid md:grid-cols-3 gap-8 pt-15">
               {allBlogs
                 ?.slice(0, 3)
-                .map((blog: any) => (
+                .map((blog) => (
                   <BlogCard
                     key={blog.slug}
                     blog={blog.HeroSinglePages}

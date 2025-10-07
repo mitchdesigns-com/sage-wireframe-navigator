@@ -6,8 +6,9 @@ import Tagline from '@/components/sections/Tagline'
 import Image from 'next/image'
 import Link from 'next/link'
 import Button from '@/components/ui/Button'
+import { NetworkData } from '../../types/ourNetworkPage'
 
-export default function OurNetworkPage({ data }: { data: any }) {
+export default function OurNetworkPage({ data }: { data: NetworkData }) {
   return (
     <div className="min-h-screen">
       <HeroPages {...data.HeroPages} />
@@ -52,7 +53,7 @@ export default function OurNetworkPage({ data }: { data: any }) {
           </div>
         </div>
       </section>
-      {data.CentersSection.map((section: any, index: any) => (
+      {data.CentersSection.map((section, index) => (
         <CentersSection key={index} {...section} />
       ))}
       <section className="bg-Primary-Scrub">

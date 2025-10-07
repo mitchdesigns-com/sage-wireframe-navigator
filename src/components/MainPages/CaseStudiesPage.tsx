@@ -1,39 +1,39 @@
 'use client'
+import CaseStudyCard from '@/components/sections/CaseStudyCard'
 import GetInTouch from '@/components/sections/GetInTouch'
 import HeroPages from '@/components/sections/HeroPages'
-import { useState } from 'react'
 import ToggleButton from '@/components/sections/ToggleButton'
-import CaseStudyCard from '@/components/sections/CaseStudyCard'
+import { useState } from 'react'
+import { CaseStudy, CaseStudyPageData } from '../../types/caseStudyPageData'
 
 type TabType = 'all' | 'individuals' | 'businesses' | 'organizations'
 
-interface ToggleOption {
-  id: string
-  label: string
-  value: TabType
-}
+// interface ToggleOption {
+//   id: string
+//   label: string
+//   value: TabType
+// }
 
 export default function CaseStudiesPage({
   data,
   singles,
 }: {
-  data: any
-  singles: any
+  data: CaseStudyPageData
+  singles: CaseStudy[]
 }) {
   const [currentTab, setCurrentTab] = useState<TabType>('all')
 
-  const options: ToggleOption[] = [
-    { id: 'all', label: 'View All', value: 'all' },
-    { id: 'individuals', label: 'Individuals', value: 'individuals' },
-    { id: 'businesses', label: 'Businesses', value: 'businesses' },
-    { id: 'organizations', label: 'Organizations', value: 'organizations' },
-  ]
+  // const options: ToggleOption[] = [
+  //   { id: 'all', label: 'View All', value: 'all' },
+  //   { id: 'individuals', label: 'Individuals', value: 'individuals' },
+  //   { id: 'businesses', label: 'Businesses', value: 'businesses' },
+  //   { id: 'organizations', label: 'Organizations', value: 'organizations' },
+  // ]
 
-  // Filter based on tab
   const filteredCaseStudy =
     currentTab === 'all'
       ? singles
-      : singles.filter((faq: any) => faq.category === currentTab)
+      : singles.filter((faq) => faq.category === currentTab)
 
   return (
     <div className="min-h-screen ">
@@ -48,7 +48,7 @@ export default function CaseStudiesPage({
             />
           </div>
           <div className="grid md:grid-cols-2 gap-x-12 gap-y-20">
-            {filteredCaseStudy.map((caseStudy: any) => (
+            {filteredCaseStudy.map((caseStudy) => (
               <CaseStudyCard key={caseStudy.slug} caseStudy={caseStudy} />
             ))}
           </div>

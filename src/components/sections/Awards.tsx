@@ -2,13 +2,11 @@ interface images {
   url: string
   alternativeText: string
 }
-;[]
+
 export default function Awards({
-  id,
   title,
   images,
 }: {
-  id: number
   title: string
   images: images[]
 }) {

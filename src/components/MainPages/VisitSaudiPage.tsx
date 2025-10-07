@@ -4,6 +4,7 @@ import GetInTouch from '@/components/sections/GetInTouch'
 import HeroWithVideo from '@/components/sections/HeroWithVideo'
 import Tagline from '@/components/sections/Tagline'
 import Image from 'next/image'
+import { VisitSaudiData } from '../../types/visitSaudiData'
 
 const blogs = [
   {
@@ -35,7 +36,7 @@ const blogs = [
   },
 ]
 
-export default function VisitSaudiPage({ data }: { data: any }) {
+export default function VisitSaudiPage({ data }: { data: VisitSaudiData }) {
   return (
     <div className="min-h-screen">
       <HeroWithVideo
@@ -44,7 +45,7 @@ export default function VisitSaudiPage({ data }: { data: any }) {
         breadcrumbItems={data.HeroWithVideo.breadcrumbItems}
         video={data.HeroWithVideo.video}
       />
-      {data.FeatureSection.map((section: any, index: any) => (
+      {data.FeatureSection.map((section, index) => (
         <FeatureSection key={index} {...section} />
       ))}
       <section className="py-28 bg-Secondary-Light-Scrub">
@@ -59,7 +60,7 @@ export default function VisitSaudiPage({ data }: { data: any }) {
         </div>
         <div className="max-w-[1392px] mx-auto w-full pt-15">
           <div className="flex  gap-15 justify-center items-start text-start">
-            {data.ChangingColorsCards.CardsList?.map((li: any, idx: any) => (
+            {data.ChangingColorsCards.CardsList?.map((li, idx) => (
               <div
                 key={idx}
                 style={{ backgroundColor: li.bgColor }}
@@ -93,7 +94,7 @@ export default function VisitSaudiPage({ data }: { data: any }) {
           </div>
         </div>
       </section>
-      {data.FeatureSectionLast.map((section: any, index: any) => (
+      {data.FeatureSectionLast.map((section, index) => (
         <FeatureSection key={index} {...section} />
       ))}
       <BlogSection blogs={blogs} />

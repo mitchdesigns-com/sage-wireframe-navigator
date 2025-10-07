@@ -117,7 +117,7 @@ export interface OurTeam {
   hiringSection: HiringSection
 }
 
-export interface CenterImage extends ImageData {}
+export type CenterImage = ImageData
 
 export interface CenterImageList {
   id: number

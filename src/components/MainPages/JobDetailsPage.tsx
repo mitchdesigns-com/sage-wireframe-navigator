@@ -3,13 +3,14 @@ import Button from '@/components/ui/Button'
 import { ChevronLeft } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { CareerItem } from '../../types/jobDetailsPage'
 
-export default function JobDetailsPage({ data }: { data: any }) {
+export default function JobDetailsPage({ data }: { data: CareerItem }) {
   const tagsArray = data.tags
     ? data.tags
         .replace(/'/g, '')
         .split(',')
-        .map((tag: any) => tag.trim())
+        .map((tag) => tag.trim())
     : []
   return (
     <section>
@@ -34,7 +35,7 @@ export default function JobDetailsPage({ data }: { data: any }) {
           </div>
           <h1 className="heading-1 font-bold mt-6 text-white">{data.title}</h1>
           <div className="flex gap-4 mt-6 text-[#F2F2F2] font-medium text-base ">
-            {tagsArray.map((tag: any, i: any) => (
+            {tagsArray.map((tag, i) => (
               <span key={i} className="flex items-center gap-4 ">
                 {tag}
                 {i < data.tags.length - 1 && <span>•</span>}
@@ -47,7 +48,7 @@ export default function JobDetailsPage({ data }: { data: any }) {
         {' '}
         {data.content && (
           <div className="mx-auto max-w-[1448px] py-10 md:py-20 md:px-4 px-4 space-y-6">
-            {data.content.map((block: any, index: number) => {
+            {data.content.map((block, index: number) => {
               switch (block.type) {
                 case 'heading':
                   if (block.level === 4) {
@@ -56,7 +57,7 @@ export default function JobDetailsPage({ data }: { data: any }) {
                         key={index}
                         className="text-[32px] font-bold text-[#000404]"
                       >
-                        {block.children.map((c: any) => c.text).join('')}
+                        {block.children.map((c) => c.text).join('')}
                       </h4>
                     )
                   }
@@ -66,7 +67,7 @@ export default function JobDetailsPage({ data }: { data: any }) {
                         key={index}
                         className="mt-4 text-[#000404] text-p leading-relaxed"
                       >
-                        {block.children.map((c: any) => c.text).join('')}
+                        {block.children.map((c) => c.text).join('')}
                       </h6>
                     )
                   }
@@ -80,16 +81,16 @@ export default function JobDetailsPage({ data }: { data: any }) {
                       key={index}
                       className="text-[#000404] text-p leading-relaxed"
                     >
-                      {block.children.map((c: any) => c.text).join('')}
+                      {block.children.map((c) => c.text).join('')}
                     </p>
                   )
 
                 case 'list':
                   return (
                     <ul key={index} className="list-disc pl-6 space-y-2">
-                      {block.children.map((li: any, liIndex: number) => (
+                      {block.children.map((li, liIndex: number) => (
                         <li key={liIndex} className="text-[#000404] text-p">
-                          {li.children.map((c: any) => c.text).join('')}
+                          {li.children.map((c) => c.text).join('')}
                         </li>
                       ))}
                     </ul>

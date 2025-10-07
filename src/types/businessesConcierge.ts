@@ -19,9 +19,6 @@ export interface Button {
   rightIcon: boolean
 }
 
-// ─────────────────────────────────────────────
-// BLOCK: Hero With Image
-// ─────────────────────────────────────────────
 export interface HeroWithImageBlock {
   __component: 'blocks.hero-with-image'
   id: number
@@ -44,9 +41,6 @@ export interface HeroWithImageBlock {
   }
 }
 
-// ─────────────────────────────────────────────
-// BLOCK: Why Choose Section
-// ─────────────────────────────────────────────
 export interface WhyChooseParagraph {
   id: number
   paragraph: string
@@ -66,9 +60,6 @@ export interface WhyChooseSectionBlock {
   reasons: WhyChooseReason[]
 }
 
-// ─────────────────────────────────────────────
-// BLOCK: Feature Section
-// ─────────────────────────────────────────────
 export interface FeatureItem {
   id: number
   title: string
@@ -76,7 +67,11 @@ export interface FeatureItem {
   theme: string
   icon: ImageData
 }
-
+export interface FeatureIcon {
+  id: number
+  text: string
+  icon: ImageData
+}
 export interface FeatureSectionBlock {
   __component: 'blocks.feature-section'
   id: number
@@ -88,14 +83,11 @@ export interface FeatureSectionBlock {
   backgroundColor: string
   textColor: string
   reverse: boolean
-  features: any[] // If the backend may expand this later
+  features: FeatureIcon[]
   list: FeatureItem[]
   image: ImageData
 }
 
-// ─────────────────────────────────────────────
-// BLOCK: Concierge Help
-// ─────────────────────────────────────────────
 export interface ConciergeHelpItem {
   id: number
   title: string
@@ -112,9 +104,6 @@ export interface ConciergeHelpBlock {
   list: ConciergeHelpItem[]
 }
 
-// ─────────────────────────────────────────────
-// BLOCK: Details Section
-// ─────────────────────────────────────────────
 export interface DetailsSectionBlock {
   __component: 'blocks.details-section'
   id: number
@@ -125,9 +114,6 @@ export interface DetailsSectionBlock {
   image: ImageData
 }
 
-// ─────────────────────────────────────────────
-// BLOCK: Get In Touch
-// ─────────────────────────────────────────────
 export interface GetInTouchBlock {
   __component: 'blocks.get-in-touch'
   id: number
@@ -137,9 +123,6 @@ export interface GetInTouchBlock {
   image: ImageData
 }
 
-// ─────────────────────────────────────────────
-// Union of all block types
-// ─────────────────────────────────────────────
 export type BusinessConciergeBlock =
   | HeroWithImageBlock
   | WhyChooseSectionBlock
@@ -148,9 +131,6 @@ export type BusinessConciergeBlock =
   | DetailsSectionBlock
   | GetInTouchBlock
 
-// ─────────────────────────────────────────────
-// Main page type
-// ─────────────────────────────────────────────
 export interface BusinessConciergePageData {
   id: number
   documentId: string
@@ -159,7 +139,58 @@ export interface BusinessConciergePageData {
   blocks: BusinessConciergeBlock[]
 }
 
-// The full API response shape
 export interface BusinessConciergeResponse {
   data: BusinessConciergePageData[]
+}
+
+export interface ImageData {
+  id: number
+  url: string
+  alternativeText: string
+}
+
+export interface HeroWithImageBlock {
+  __component: 'blocks.hero-with-image'
+  id: number
+  title: string
+}
+
+export interface WhyChooseSectionBlock {
+  __component: 'blocks.why-choose-section'
+  id: number
+  paragraphs: { id: number; paragraph: string }[]
+  // Add other props for WhyChooseSectionBlock as needed
+}
+
+export interface FeatureSectionBlock {
+  __component: 'blocks.feature-section'
+  id: number
+}
+
+export interface ConciergeHelpItem {
+  id: number
+  title: string
+  description: string
+  icon: ImageData
+}
+
+export interface ConciergeHelpBlock {
+  __component: 'blocks.concierge-help'
+  id: number
+  title: string
+  description: string
+  list: ConciergeHelpItem[]
+}
+
+type BusinessConsultationBlock =
+  | HeroWithImageBlock
+  | WhyChooseSectionBlock
+  | FeatureSectionBlock
+  | ConciergeHelpBlock
+  | DetailsSectionBlock
+  | GetInTouchBlock
+
+export interface BusinessConsultationPageData {
+  id: number
+  blocks: BusinessConsultationBlock[]
 }

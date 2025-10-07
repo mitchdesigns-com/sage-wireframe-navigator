@@ -2,11 +2,13 @@ import FeatureSection from '@/components/sections/FeatureSection'
 import HeroPages from '@/components/sections/HeroPages'
 import WebinarHighlights from '@/components/sections/WebinarHighlights'
 import WebinarList from '@/components/sections/WebinarList'
+import { EventData } from '../../types/newsEvents'
+import { WebinarsPageData } from '../../types/webinarsPage'
 
 interface WebinarsPageProps {
   data: {
-    webinar: any
-    events: any
+    webinar: WebinarsPageData
+    events: EventData[]
   }
 }
 export default function WebinarsPage({ data }: WebinarsPageProps) {
@@ -14,7 +16,7 @@ export default function WebinarsPage({ data }: WebinarsPageProps) {
   return (
     <div className="min-h-screen ">
       <HeroPages {...webinar.HeroPages} />
-      {webinar.FeatureSection.map((section: any, index: any) => (
+      {webinar.FeatureSection.map((section, index) => (
         <FeatureSection key={index} {...section} />
       ))}
       <WebinarHighlights

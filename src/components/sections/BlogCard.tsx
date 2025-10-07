@@ -3,7 +3,29 @@
 import Image from 'next/image'
 import { ArrowUpRight } from 'lucide-react'
 import Link from 'next/link'
+export interface BreadcrumbItem {
+  id: number
+  label: string
+  href: string
+}
+export interface ImageData {
+  id: number
+  documentId: string
+  alternativeText: string
+  url: string
+}
 
+export interface HeroSinglePage {
+  id: number
+  title: string
+  author: string
+  date: string
+  readTime: string
+  button: string
+  href: string
+  breadcrumbItems: BreadcrumbItem[]
+  bgImage: ImageData
+}
 export interface Blog {
   slug: string
   title: string
@@ -19,10 +41,11 @@ export interface Blog {
   author: string
   date: string
   readTime?: string
+  HeroSinglePages: HeroSinglePage
 }
 
 interface BlogCardProps {
-  blog: any
+  blog: Blog
   href: string
   news?: boolean
 }

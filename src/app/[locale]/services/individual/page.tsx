@@ -3,8 +3,10 @@ export const runtime = 'edge'
 import { notFound } from 'next/navigation'
 import { fetchServer } from '../../../api/general'
 import IndividualsPage from '@/components/MainPages/IndividualsPage'
+type Locale = 'en' | 'ar'
 
-export default async function page({ params }: { params: { locale: string } }) {
+export default async function Page(props: unknown) {
+  const { params } = props as { params: { locale: Locale } }
   const { locale } = params
 
   const { data: individualServices } = await fetchServer(

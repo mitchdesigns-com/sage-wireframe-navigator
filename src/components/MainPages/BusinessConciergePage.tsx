@@ -14,14 +14,24 @@ import {
   ConciergeHelpBlock,
   WhyChooseSectionBlock,
   ConciergeHelpItem,
-  FeatureSectionBlock, // Assuming FeatureSection has this prop type
-  DetailsSectionBlock, // Assuming ServiceSection has this prop type
-  GetInTouchBlock, // Assuming GetInTouch has this prop type
+  FeatureSectionBlock,
+  DetailsSectionBlock,
+  GetInTouchBlock,
 } from '../../types/businessesConcierge'
+type BusinessConciergeBlockPage =
+  | (HeroWithImageBlock & { __component: 'blocks.hero-with-image' })
+  | (WhyChooseSectionBlock & { __component: 'blocks.why-choose-section' })
+  | (FeatureSectionBlock & { __component: 'blocks.feature-section' })
+  | (ConciergeHelpBlock & { __component: 'blocks.concierge-help' })
+  | (DetailsSectionBlock & { __component: 'blocks.details-section' })
+  | (GetInTouchBlock & { __component: 'blocks.get-in-touch' })
 
-// Define the map with specific component types
-const BLOCKS = {
-  'blocks.hero-with-image': (props: HeroWithImageBlock) => (
+const BLOCKS: {
+  [K in BusinessConciergeBlockPage['__component']]: React.ComponentType<
+    Extract<BusinessConciergeBlock, { __component: K }>
+  >
+} = {
+  'blocks.hero-with-image': (props) => (
     <HeroWithImage
       {...props}
       title={parse(props.title || '', {
@@ -29,7 +39,7 @@ const BLOCKS = {
           if (domNode instanceof Element && domNode.name === 'span') {
             return (
               <span className="font-bold text-Primary-Scrub text-nowrap">
-                {domToReact(domNode.children)}
+                {domToReact(domNode.children as DOMNode[])}
               </span>
             )
           }
@@ -37,7 +47,7 @@ const BLOCKS = {
       })}
     />
   ),
-  'blocks.why-choose-section': (props: WhyChooseSectionBlock) => (
+  'blocks.why-choose-section': (props) => (
     <WhyChooseSection
       {...props}
       paragraphs={props.paragraphs.map((p) => p.paragraph)}
@@ -45,7 +55,7 @@ const BLOCKS = {
   ),
   'blocks.feature-section':
     FeatureSection as React.ComponentType<FeatureSectionBlock>,
-  'blocks.concierge-help': (props: ConciergeHelpBlock) => (
+  'blocks.concierge-help': (props) => (
     <section className="py-25 bg-Secondary-Light-Scrub">
       <div className="max-w-[764px] mx-auto text-center space-y-4">
         <h2 className="text-Primary-Black heading-lg text-nowrap">
@@ -84,15 +94,15 @@ const BLOCKS = {
   'blocks.details-section':
     ServiceSection as React.ComponentType<DetailsSectionBlock>,
   'blocks.get-in-touch': GetInTouch as React.ComponentType<GetInTouchBlock>,
-} as const // Use 'as const' to make keys and types readonly
-
+}
 export default function BusinessConciergePage({
   data,
 }: {
   data: BusinessConciergePageData[]
 }) {
   const page = data[0]
-  const blocks: BusinessConciergeBlock[] = page.blocks
+  const blocks: BusinessConciergeBlockPage[] =
+    page.blocks as BusinessConciergeBlockPage[]
 
   if (!blocks || blocks.length === 0) return null
 
@@ -100,10 +110,6 @@ export default function BusinessConciergePage({
     <div className="min-h-screen bg-[#E2F2F1]">
       {blocks.map((block) => {
         const Component = BLOCKS[block.__component]
-        if (!Component) {
-          console.warn(`Unknown block component: ${block.__component}`)
-          return null
-        }
         return <Component key={`${block.__component}-${block.id}`} {...block} />
       })}
     </div>

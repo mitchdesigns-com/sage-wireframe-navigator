@@ -6,6 +6,7 @@ import FeatureSection from '@/components/sections/FeatureSection'
 import ServicesSection from '@/components/sections/ServicesSection'
 import GetInTouch from '@/components/sections/GetInTouch'
 import { useEffect, useState } from 'react'
+import { ServicesPageData } from '../../types/servicesPage'
 
 const SECTION_IDS = ['individuals', 'businesses', 'organizations'] as const
 const filterOptions = SECTION_IDS.map((id) => ({
@@ -13,12 +14,12 @@ const filterOptions = SECTION_IDS.map((id) => ({
   label: id.charAt(0).toUpperCase() + id.slice(1),
 }))
 
-export default function ServicesPage({ data }: { data: any }) {
+export default function ServicesPage({ data }: { data: ServicesPageData }) {
   const [activeFilter, setActiveFilter] = useState<
     'individuals' | 'businesses' | 'organizations'
   >('individuals')
   const [isScrolled, setIsScrolled] = useState(false)
-
+  console.log(isScrolled)
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 100)
     window.addEventListener('scroll', handleScroll)
@@ -57,7 +58,7 @@ export default function ServicesPage({ data }: { data: any }) {
     if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
 
-  const renderBlock = (block: any) => {
+  const renderBlock = (block) => {
     switch (block.__component) {
       case 'blocks.hero-section':
         return (
@@ -89,7 +90,7 @@ export default function ServicesPage({ data }: { data: any }) {
             tagline={block.tagline}
             title={block.title}
             description={block.description}
-            features={block.features.map((f: any) => ({
+            features={block.features.map((f) => ({
               text: f.text,
               icon: f.icon,
             }))}
@@ -109,7 +110,7 @@ export default function ServicesPage({ data }: { data: any }) {
             tagline={block.tagline}
             title={block.title}
             description={block.description}
-            detailedServices={block.detailedServices.map((s: any) => ({
+            detailedServices={block.detailedServices.map((s) => ({
               title: s.title,
               description: s.description,
               href: s.href,
@@ -144,7 +145,7 @@ export default function ServicesPage({ data }: { data: any }) {
         exit={{ opacity: 0, y: -20 }}
         transition={{ duration: 0.5 }}
       >
-        {data[0]?.blocks?.map((block: any, index: number) => {
+        {data[0]?.blocks?.map((block) => {
           // check if block is hero
           if (block.__component === 'blocks.hero-section') {
             return (

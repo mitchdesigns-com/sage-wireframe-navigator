@@ -90,6 +90,9 @@ export interface HeroSinglePages {
   href: string
   breadcrumbItems: BreadcrumbItem[]
   bgImage: ImageData
+  slug: string
+  image: ImageData
+  HeroSinglePages: HeroSinglePages
 }
 
 // ---------- Blog Post ----------

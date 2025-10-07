@@ -10,13 +10,14 @@ import ButtonIcon from '@/components/svg/ButtonIcon'
 import CaseStudyCard from '@/components/sections/CaseStudyCard'
 import Image from 'next/image'
 import GalleryPopup, { singleImage } from '@/components/sections/GalleryPopup'
+import { CaseStudy } from '../../types/caseStudyPageData'
 
 export default function SingleCaseStudyPage({
   data,
   allBlogs,
 }: {
-  data: any
-  allBlogs: any
+  data: CaseStudy[]
+  allBlogs: CaseStudy[]
 }) {
   const [isOpen, setIsOpen] = useState(false)
   const [photoIndex, setPhotoIndex] = useState(0)
@@ -27,7 +28,7 @@ export default function SingleCaseStudyPage({
   }
 
   const galleryImages: singleImage[] = data.GallerySection.images.map(
-    (url: any, index: any) => ({
+    (url, index) => ({
       id: index,
       attributes: {
         alternativeText: `Gallery image ${index + 1}`,
@@ -48,7 +49,7 @@ export default function SingleCaseStudyPage({
           category={data.HeroCarousel.category}
         />
 
-        {data.FeatureSection.map((section: any, index: any) => (
+        {data.FeatureSection.map((section, index) => (
           <FeatureSection key={index} {...section} />
         ))}
       </section>{' '}
@@ -62,7 +63,7 @@ export default function SingleCaseStudyPage({
               {data.ChallengeSection.ChallengeData[0]?.description}
             </h1>
           </div>
-          {data.ChallengeSection.ChallengeData.slice(1).map((item: any) => (
+          {data.ChallengeSection.ChallengeData.slice(1).map((item) => (
             <div key={item.id}>
               <h4 className="text-[20px] font-bold text-Primary-Palm">
                 {item.title}
@@ -81,74 +82,61 @@ export default function SingleCaseStudyPage({
             <div className="px-10 ">
               {data.ChallengeSection.content && (
                 <div className="mx-auto max-w-[1448px] py-10 md:py-20 md:px-4 px-4 space-y-6">
-                  {data.ChallengeSection.content.map(
-                    (block: any, index: number) => {
-                      switch (block.type) {
-                        case 'heading':
-                          if (block.level === 4) {
-                            return (
-                              <h4
-                                key={index}
-                                className="text-[32px] font-bold text-[#000404] mb-4"
-                              >
-                                {block.children
-                                  .map((c: any) => c.text)
-                                  .join('')}
-                              </h4>
-                            )
-                          }
-                          if (block.level === 6) {
-                            return (
-                              <h6
-                                key={index}
-                                className="mt-4 text-[#000404] text-p leading-relaxed"
-                              >
-                                {block.children
-                                  .map((c: any) => c.text)
-                                  .join('')}
-                              </h6>
-                            )
-                          }
-                          return null
-
-                        case 'paragraph':
-                          // skip empty paragraphs
-                          if (!block.children?.[0]?.text?.trim()) return null
+                  {data.ChallengeSection.content.map((block, index: number) => {
+                    switch (block.type) {
+                      case 'heading':
+                        if (block.level === 4) {
                           return (
-                            <p
+                            <h4
                               key={index}
-                              className="text-p text-[#000404] leading-relaxed"
+                              className="text-[32px] font-bold text-[#000404] mb-4"
                             >
-                              {block.children.map((c: any) => c.text).join('')}
-                            </p>
+                              {block.children.map((c) => c.text).join('')}
+                            </h4>
                           )
-
-                        case 'list':
+                        }
+                        if (block.level === 6) {
                           return (
-                            <ul
+                            <h6
                               key={index}
-                              className="list-disc pl-6 space-y-2"
+                              className="mt-4 text-[#000404] text-p leading-relaxed"
                             >
-                              {block.children.map(
-                                (li: any, liIndex: number) => (
-                                  <li
-                                    key={liIndex}
-                                    className="text-[#000404] text-p"
-                                  >
-                                    {li.children
-                                      .map((c: any) => c.text)
-                                      .join('')}
-                                  </li>
-                                )
-                              )}
-                            </ul>
+                              {block.children.map((c) => c.text).join('')}
+                            </h6>
                           )
+                        }
+                        return null
 
-                        default:
-                          return null
-                      }
+                      case 'paragraph':
+                        // skip empty paragraphs
+                        if (!block.children?.[0]?.text?.trim()) return null
+                        return (
+                          <p
+                            key={index}
+                            className="text-p text-[#000404] leading-relaxed"
+                          >
+                            {block.children.map((c) => c.text).join('')}
+                          </p>
+                        )
+
+                      case 'list':
+                        return (
+                          <ul key={index} className="list-disc pl-6 space-y-2">
+                            {block.children.map((li, liIndex: number) => (
+                              <li
+                                key={liIndex}
+                                className="text-[#000404] text-p"
+                              >
+                                {li.children.map((c) => c.text).join('')}
+                              </li>
+                            ))}
+                          </ul>
+                        )
+
+                      default:
+                        return null
                     }
-                  )}
+                  })}
                 </div>
               )}
             </div>
@@ -177,32 +165,29 @@ export default function SingleCaseStudyPage({
             </div>
 
             <div className="grid grid-rows-2 grid-cols-2 gap-8">
-              {data.GallerySection.images
-                .slice(1, 5)
-                .map((img: any, i: any) => (
-                  <div
-                    className="relative w-full aspect-square"
-                    key={i}
-                    onClick={() => openLightbox(i + 1)}
-                  >
-                    <Image
-                      fill
-                      src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${img.url}`}
-                      alt="Gallery"
-                      className="w-full h-full object-cover cursor-pointer rounded-4xl"
-                    />
+              {data.GallerySection.images.slice(1, 5).map((img, i) => (
+                <div
+                  className="relative w-full aspect-square"
+                  key={i}
+                  onClick={() => openLightbox(i + 1)}
+                >
+                  <Image
+                    fill
+                    src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${img.url}`}
+                    alt="Gallery"
+                    className="w-full h-full object-cover cursor-pointer rounded-4xl"
+                  />
 
-                    {i ===
-                      data.GallerySection.images.slice(1, 5).length - 1 && (
-                      <div className="absolute inset-0 bg-black/80 flex items-center justify-center text-white text-xl font-medium rounded-4xl flex-col cursor-pointer">
-                        <span className="font-bold text-[32px]">
-                          +{data.GallerySection.images.length - 5}
-                        </span>{' '}
-                        <p>more</p>
-                      </div>
-                    )}
-                  </div>
-                ))}
+                  {i === data.GallerySection.images.slice(1, 5).length - 1 && (
+                    <div className="absolute inset-0 bg-black/80 flex items-center justify-center text-white text-xl font-medium rounded-4xl flex-col cursor-pointer">
+                      <span className="font-bold text-[32px]">
+                        +{data.GallerySection.images.length - 5}
+                      </span>{' '}
+                      <p>more</p>
+                    </div>
+                  )}
+                </div>
+              ))}
             </div>
             {isOpen && (
               <GalleryPopup
@@ -242,7 +227,7 @@ export default function SingleCaseStudyPage({
             </div>
           </div>
           <div className="grid md:grid-cols-2 gap-12 pt-15">
-            {allBlogs.slice(0, 2).map((caseStudy: any) => (
+            {allBlogs.slice(0, 2).map((caseStudy) => (
               <CaseStudyCard key={caseStudy.slug} caseStudy={caseStudy} />
             ))}
           </div>
