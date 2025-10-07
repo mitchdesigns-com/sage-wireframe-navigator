@@ -27,8 +27,18 @@ export interface HeroWithImageBlock {
   description: string
   image: ImageData
   breadcrumbItems: BreadcrumbItem[]
-  primaryButton: ButtonData
-  secondaryButton: ButtonData
+  primaryButton: {
+    label: string
+    href: string
+    variant?: 'primary' | 'light'
+    rightIcon?: boolean
+  }
+  secondary: {
+    label: string
+    href: string
+    variant?: 'primary' | 'light'
+    rightIcon?: boolean
+  }
 }
 
 export interface Paragraph {
@@ -104,6 +114,7 @@ export interface CardDetail {
 
 export interface Card {
   id: number
+  Tagline?: string // Added as optional based on your component code
   type: string
   title: string
   description: string
@@ -129,6 +140,8 @@ export interface GetInTouchBlock {
   image: ImageData
 }
 
+// FIX: This is the correct discriminated union of all possible blocks.
+// This is the type we should use for the 'blocks' array and for typing the BLOCKS map.
 export type IndividualHealthcareBlock =
   | HeroWithImageBlock
   | WhyChooseSectionBlock
@@ -142,9 +155,10 @@ export interface IndividualHealthcarePage {
   documentId: string
   Name: string
   slug: string
-  blocks: IndividualHealthcareBlock[]
+  blocks: IndividualHealthcareBlock[] // This already correctly uses the union type.
 }
 
+// This is the shape of the full API response. It is NOT the block union itself.
 export interface IndividualHealthcarePageResponse {
   data: IndividualHealthcarePage[]
 }

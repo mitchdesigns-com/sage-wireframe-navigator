@@ -5,7 +5,7 @@ import DownloadIcon from '../svg/DownloadIcon'
 import Button from '../ui/Button'
 
 export interface Guide {
-  id: string
+  id: number
   title: string
   category: string
   image: {

@@ -27,8 +27,18 @@ export interface HeroWithImageBlock {
   description: string
   image: ImageData
   breadcrumbItems: BreadcrumbItem[]
-  primaryButton: ButtonData
-  secondaryButton: ButtonData
+  primaryButton: {
+    label: string
+    href: string
+    variant?: 'primary' | 'light'
+    rightIcon?: boolean
+  }
+  secondary: {
+    label: string
+    href: string
+    variant?: 'primary' | 'light'
+    rightIcon?: boolean
+  }
 }
 
 export interface WhyChooseParagraph {

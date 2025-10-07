@@ -14,12 +14,12 @@ export interface VideoData {
 
 export interface BreadcrumbItem {
   id: number
-  label?: string
+  label: string
   href: string
 }
 
 export interface HeroWithVideo {
-  id: number
+  id: string
   title: string
   description: string
   breadcrumbItems: BreadcrumbItem[]

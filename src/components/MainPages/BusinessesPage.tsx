@@ -8,7 +8,7 @@ import HeroPages from '@/components/sections/HeroPages'
 import WhySection from '@/components/sections/WhySection'
 import type {
   BusinessServiceData,
-  PageBlock,
+  PageBlock, // Make sure this is the discriminated union type
   HeroPagesBlock,
   FeatureSectionBlock,
   WhySectionBlock,
@@ -36,9 +36,20 @@ interface BusinessesPageProps {
   data: BusinessServiceData[]
 }
 
+function Block({ block }: { block: PageBlock }) {
+  const Component = BLOCKS[block.__component]
+
+  if (!Component) {
+    return null
+  }
+
+  const TypedComponent = Component as React.ComponentType<typeof block>
+  return <TypedComponent {...block} />
+}
+
 export default function BusinessesPage({ data }: BusinessesPageProps) {
   const page = data?.[0]
-  const blocks = page?.blocks
+  const blocks: PageBlock[] | undefined = page?.blocks
 
   if (!blocks || blocks.length === 0) {
     return null
@@ -46,23 +57,9 @@ export default function BusinessesPage({ data }: BusinessesPageProps) {
 
   return (
     <div className="min-h-screen">
-      {blocks.map((block, index) => {
-        const Component = BLOCKS[block.__component]
-        if (!Component) {
-          console.warn(`Unknown block component: ${block.__component}`)
-          return null
-        }
-
-        return (
-          <Component
-            key={`${block.__component}-${block.id || index}`}
-            {...(block as Extract<
-              PageBlock,
-              { __component: typeof block.__component }
-            >)}
-          />
-        )
-      })}
+      {blocks.map((block) => (
+        <Block key={`${block.__component}-${block.id}`} block={block} />
+      ))}
     </div>
   )
 }

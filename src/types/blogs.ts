@@ -39,15 +39,24 @@ export interface HeroSinglePage {
   href: string
   breadcrumbItems: BreadcrumbItem[]
   bgImage: ImageData
+  category: string
 }
 
 export interface BlogItem {
   id: number
+
   documentId: string
   content: ContentBlock[]
   slug: string
   blog_type: string
   HeroSinglePages: HeroSinglePage
+  title: string
+  category: string
+  image: ImageData
+  date: string
+  readTime: string
+  bgImage: ImageData
+  author: string
 }
 
 export interface BlogDataResponse {

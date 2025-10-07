@@ -4,14 +4,14 @@ import HeroPages from '@/components/sections/HeroPages'
 import ToggleButton from '@/components/sections/ToggleButton'
 import GuidesCard from '@/components/sections/GuidesCard'
 import GetInTouch from '@/components/sections/GetInTouch'
-import { GuidesPage } from '../../types/guidesPage'
+import type { GuidesPage } from '../../types/guidesPage'
 
 type TabType = 'all' | 'individuals' | 'businesses' | 'organizations'
 
 interface ToggleOption {
-  id: string | number
+  id: number
   title: string
-  value: TabType
+  value: string
 }
 
 export default function GuidesPage({ data }: { data: GuidesPage[] }) {

@@ -102,8 +102,15 @@ export interface BlogPost {
   documentId: string
   content: BlogContent[]
   slug: string
-  blog_type: string | null
+  blog_type: string
   HeroSinglePages: HeroSinglePages
+  title: string
+  category: string
+  image: ImageData
+  date: string
+  readTime: string
+  bgImage: ImageData
+  author: string
 }
 
 // ---------- API Response ----------

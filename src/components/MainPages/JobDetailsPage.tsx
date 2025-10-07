@@ -3,8 +3,20 @@ import Button from '@/components/ui/Button'
 import { ChevronLeft } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { CareerItem } from '../../types/jobDetailsPage'
-
+import {
+  CareerItem,
+  RichTextChild,
+  RichTextElement,
+} from '../../types/jobDetailsPage'
+function extractText(node: RichTextChild | RichTextElement): string {
+  if ('text' in node) {
+    return node.text
+  }
+  if ('children' in node) {
+    return node.children.map(extractText).join('')
+  }
+  return ''
+}
 export default function JobDetailsPage({ data }: { data: CareerItem }) {
   const tagsArray = data.tags
     ? data.tags
@@ -12,6 +24,7 @@ export default function JobDetailsPage({ data }: { data: CareerItem }) {
         .split(',')
         .map((tag) => tag.trim())
     : []
+
   return (
     <section>
       <div className="h-[387px] relative">
@@ -46,62 +59,62 @@ export default function JobDetailsPage({ data }: { data: CareerItem }) {
       </div>{' '}
       <div className="max-w-[768px] mx-auto py-15">
         {' '}
-        {data.content && (
-          <div className="mx-auto max-w-[1448px] py-10 md:py-20 md:px-4 px-4 space-y-6">
-            {data.content.map((block, index: number) => {
-              switch (block.type) {
-                case 'heading':
-                  if (block.level === 4) {
-                    return (
-                      <h4
-                        key={index}
-                        className="text-[32px] font-bold text-[#000404]"
-                      >
-                        {block.children.map((c) => c.text).join('')}
-                      </h4>
-                    )
-                  }
-                  if (block.level === 6) {
-                    return (
-                      <h6
-                        key={index}
-                        className="mt-4 text-[#000404] text-p leading-relaxed"
-                      >
-                        {block.children.map((c) => c.text).join('')}
-                      </h6>
-                    )
-                  }
-                  return null
-
-                case 'paragraph':
-                  // skip empty paragraphs
-                  if (!block.children?.[0]?.text?.trim()) return null
-                  return (
-                    <p
-                      key={index}
-                      className="text-[#000404] text-p leading-relaxed"
-                    >
-                      {block.children.map((c) => c.text).join('')}
-                    </p>
-                  )
-
-                case 'list':
-                  return (
-                    <ul key={index} className="list-disc pl-6 space-y-2">
-                      {block.children.map((li, liIndex: number) => (
-                        <li key={liIndex} className="text-[#000404] text-p">
-                          {li.children.map((c) => c.text).join('')}
-                        </li>
-                      ))}
-                    </ul>
-                  )
-
-                default:
-                  return null
+        {data.content.map((block, index) => {
+          switch (block.type) {
+            case 'heading':
+              if (block.level === 4) {
+                return (
+                  <h4
+                    key={index}
+                    className="text-[32px] font-bold text-[#000404]"
+                  >
+                    {block.children.map(extractText).join('')}
+                  </h4>
+                )
               }
-            })}
-          </div>
-        )}
+              if (block.level === 6) {
+                return (
+                  <h6
+                    key={index}
+                    className="mt-4 text-[#000404] text-p leading-relaxed"
+                  >
+                    {block.children.map(extractText).join('')}
+                  </h6>
+                )
+              }
+              return null
+
+            case 'paragraph':
+              if (
+                !block.children.some(
+                  (c) => 'text' in c && c.text?.trim()?.length > 0
+                )
+              )
+                return null
+              return (
+                <p
+                  key={index}
+                  className="text-[#000404] text-p leading-relaxed"
+                >
+                  {block.children.map(extractText).join('')}
+                </p>
+              )
+
+            case 'list':
+              return (
+                <ul key={index} className="list-disc pl-6 space-y-2">
+                  {block.children.map((li, liIndex) => (
+                    <li key={liIndex} className="text-[#000404] text-p">
+                      {li.children.map(extractText).join('')}
+                    </li>
+                  ))}
+                </ul>
+              )
+
+            default:
+              return null
+          }
+        })}
         <Link
           href={'/contact'}
           className="inline-block bg-primary text-white rounded-lg font-medium group cursor-pointer pt-6"

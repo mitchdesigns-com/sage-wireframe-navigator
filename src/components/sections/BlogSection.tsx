@@ -1,29 +1,20 @@
 'use client'
 
-import Tagline from './Tagline'
 import Link from 'next/link'
+import { BlogItem } from '../../types/blogs'
 import ButtonIcon from '../svg/ButtonIcon'
 import BlogCard from './BlogCard'
-
-interface Blog {
-  slug: string
-  title: string
-  category: string
-  image: string
-  author: string
-  date: string
-  readTime: string
-}
+import Tagline from './Tagline'
 
 interface BlogSectionProps {
   heading?: string
   subheading?: string
-  blogs: Blog[]
+  blogs: BlogItem[]
 }
 
 export default function BlogSection({
-  heading = 'Tips from the Experts',
-  subheading = 'Find curated travel advice from those who know Saudi best—insider tips, updates, and more.',
+  heading,
+  subheading,
   blogs,
 }: BlogSectionProps) {
   return (

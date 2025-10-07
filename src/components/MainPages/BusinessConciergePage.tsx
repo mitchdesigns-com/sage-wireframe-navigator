@@ -9,7 +9,6 @@ import ServiceSection from '@/components/sections/ServiceSection'
 import GetInTouch from '@/components/sections/GetInTouch'
 import {
   BusinessConciergePageData,
-  BusinessConciergeBlock,
   HeroWithImageBlock,
   ConciergeHelpBlock,
   WhyChooseSectionBlock,
@@ -18,6 +17,7 @@ import {
   DetailsSectionBlock,
   GetInTouchBlock,
 } from '../../types/businessesConcierge'
+
 type BusinessConciergeBlockPage =
   | (HeroWithImageBlock & { __component: 'blocks.hero-with-image' })
   | (WhyChooseSectionBlock & { __component: 'blocks.why-choose-section' })
@@ -28,7 +28,7 @@ type BusinessConciergeBlockPage =
 
 const BLOCKS: {
   [K in BusinessConciergeBlockPage['__component']]: React.ComponentType<
-    Extract<BusinessConciergeBlock, { __component: K }>
+    Extract<BusinessConciergeBlockPage, { __component: K }>
   >
 } = {
   'blocks.hero-with-image': (props) => (
@@ -50,11 +50,12 @@ const BLOCKS: {
   'blocks.why-choose-section': (props) => (
     <WhyChooseSection
       {...props}
-      paragraphs={props.paragraphs.map((p) => p.paragraph)}
+      paragraphs={props.paragraphs.map(
+        (p: { id: number; paragraph: string }) => p.paragraph
+      )}
     />
   ),
-  'blocks.feature-section':
-    FeatureSection as React.ComponentType<FeatureSectionBlock>,
+  'blocks.feature-section': FeatureSection,
   'blocks.concierge-help': (props) => (
     <section className="py-25 bg-Secondary-Light-Scrub">
       <div className="max-w-[764px] mx-auto text-center space-y-4">
@@ -91,10 +92,20 @@ const BLOCKS: {
       </div>
     </section>
   ),
-  'blocks.details-section':
-    ServiceSection as React.ComponentType<DetailsSectionBlock>,
-  'blocks.get-in-touch': GetInTouch as React.ComponentType<GetInTouchBlock>,
+  'blocks.details-section': ServiceSection,
+  'blocks.get-in-touch': GetInTouch,
 }
+
+function Block({ block }: { block: BusinessConciergeBlockPage }) {
+  const Component = BLOCKS[block.__component]
+  if (!Component) {
+    return null
+  }
+
+  const TypedComponent = Component as React.ComponentType<typeof block>
+  return <TypedComponent {...block} />
+}
+
 export default function BusinessConciergePage({
   data,
 }: {
@@ -109,8 +120,7 @@ export default function BusinessConciergePage({
   return (
     <div className="min-h-screen bg-[#E2F2F1]">
       {blocks.map((block) => {
-        const Component = BLOCKS[block.__component]
-        return <Component key={`${block.__component}-${block.id}`} {...block} />
+        return <Block key={`${block.__component}-${block.id}`} block={block} />
       })}
     </div>
   )

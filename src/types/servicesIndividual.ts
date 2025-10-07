@@ -42,6 +42,11 @@ export interface FeatureListItem {
   theme: 'light' | 'dark'
   icon: ImageData
 }
+export interface FeatureIcon {
+  id: number
+  text: string
+  icon: ImageData
+}
 export interface FeatureSectionBlock {
   __component: 'blocks.feature-section'
   id: number
@@ -53,7 +58,7 @@ export interface FeatureSectionBlock {
   backgroundColor: string
   textColor: string
   reverse: boolean
-  features: FeatureItem[]
+  features: FeatureIcon[]
   list: FeatureListItem[]
   image: ImageData
 }

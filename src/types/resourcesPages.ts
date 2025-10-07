@@ -52,7 +52,7 @@ export interface GetInTouchBlock {
 
 export interface CertificateCardBlock {
   __component: 'resources.certificate-card'
-  id: number
+  id: string
   title: string
   description: string
   image: ImageData

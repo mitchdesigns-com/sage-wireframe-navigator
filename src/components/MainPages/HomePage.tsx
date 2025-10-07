@@ -17,7 +17,7 @@ export default function HomePage({
   data,
   singles,
 }: {
-  data: ServicesPageData[]
+  data: ServicesPageData
   singles: BlogItem[]
 }) {
   return (
@@ -48,14 +48,7 @@ export default function HomePage({
       <BlogSection
         heading={data.BlogSection.heading}
         subheading={data.BlogSection.subheading}
-        blogs={singles.map((blog) => ({
-          slug: blog.slug,
-          title: blog.HeroSinglePages.title,
-          category: blog.HeroSinglePages.category,
-          image: blog.HeroSinglePages.bgImage,
-          date: blog.HeroSinglePages.date,
-          readTime: blog.HeroSinglePages.readTime,
-        }))}
+        blogs={singles.map((blog) => ({ ...blog }))}
       />
 
       <GetInTouch {...data.GetInTouch} />

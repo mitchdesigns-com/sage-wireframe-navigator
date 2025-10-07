@@ -1,41 +1,41 @@
 // components/strapi/ServicesSection.tsx
-import React from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { motion } from 'framer-motion';
+import React from 'react'
+import Image from 'next/image'
+import Link from 'next/link'
+import { motion } from 'framer-motion'
 
 interface ServiceCardProps {
-  title: string;
-  description: string;
-  icon?: string;
+  title: string
+  description: string
+  icon?: string
   image?: {
     data: {
       attributes: {
-        url: string;
-        alternativeText: string;
-      };
-    };
-  };
+        url: string
+        alternativeText: string
+      }
+    }
+  }
   link?: {
-    label: string;
-    url: string;
-    target: string;
-    style: string;
-  };
-  target_audience: 'individuals' | 'businesses' | 'organizations';
-  popular?: boolean;
+    label: string
+    url: string
+    target: string
+    style: string
+  }
+  target_audience: 'individuals' | 'businesses' | 'organizations'
+  popular?: boolean
 }
 
 interface ServicesSectionProps {
   data: {
-    title?: string;
-    subtitle?: string;
-    description?: string;
-    services: ServiceCardProps[];
-    layout: 'grid' | 'carousel' | 'list';
-    columns: '2' | '3' | '4';
-    theme: 'light' | 'dark' | 'sage';
-  };
+    title?: string
+    subtitle?: string
+    description?: string
+    services: ServiceCardProps[]
+    layout: 'grid' | 'carousel' | 'list'
+    columns: '2' | '3' | '4'
+    theme: 'light' | 'dark' | 'sage' | 'blue'
+  }
 }
 
 const ServiceCard: React.FC<ServiceCardProps & { index: number }> = ({
@@ -46,25 +46,33 @@ const ServiceCard: React.FC<ServiceCardProps & { index: number }> = ({
   link,
   target_audience,
   popular,
-  index
+  index,
 }) => {
   const getAudienceColor = () => {
     switch (target_audience) {
-      case 'individuals': return 'bg-blue-100 text-blue-800';
-      case 'businesses': return 'bg-green-100 text-green-800';
-      case 'organizations': return 'bg-purple-100 text-purple-800';
-      default: return 'bg-gray-100 text-gray-800';
+      case 'individuals':
+        return 'bg-blue-100 text-blue-800'
+      case 'businesses':
+        return 'bg-green-100 text-green-800'
+      case 'organizations':
+        return 'bg-purple-100 text-purple-800'
+      default:
+        return 'bg-gray-100 text-gray-800'
     }
-  };
+  }
 
   const getAudienceLabel = () => {
     switch (target_audience) {
-      case 'individuals': return 'For Individuals';
-      case 'businesses': return 'For Businesses';
-      case 'organizations': return 'For Organizations';
-      default: return 'General';
+      case 'individuals':
+        return 'For Individuals'
+      case 'businesses':
+        return 'For Businesses'
+      case 'organizations':
+        return 'For Organizations'
+      default:
+        return 'General'
     }
-  };
+  }
 
   return (
     <motion.div
@@ -107,7 +115,9 @@ const ServiceCard: React.FC<ServiceCardProps & { index: number }> = ({
 
         {/* Audience Badge */}
         <div className="mb-3">
-          <span className={`inline-block px-2 py-1 rounded-full text-xs font-medium ${getAudienceColor()}`}>
+          <span
+            className={`inline-block px-2 py-1 rounded-full text-xs font-medium ${getAudienceColor()}`}
+          >
             {getAudienceLabel()}
           </span>
         </div>
@@ -129,15 +139,25 @@ const ServiceCard: React.FC<ServiceCardProps & { index: number }> = ({
             className="inline-flex items-center text-sage-600 hover:text-sage-700 font-medium"
           >
             {link.label}
-            <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            <svg
+              className="w-4 h-4 ml-1"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 5l7 7-7 7"
+              />
             </svg>
           </Link>
         )}
       </div>
     </motion.div>
-  );
-};
+  )
+}
 
 const ServicesSection: React.FC<ServicesSectionProps> = ({ data }) => {
   const {
@@ -152,21 +172,29 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ data }) => {
 
   const getThemeClasses = () => {
     switch (theme) {
-      case 'light': return 'bg-white text-gray-900';
-      case 'dark': return 'bg-gray-900 text-white';
-      case 'sage': return 'bg-sage-50 text-sage-900';
-      default: return 'bg-white text-gray-900';
+      case 'light':
+        return 'bg-white text-gray-900'
+      case 'dark':
+        return 'bg-gray-900 text-white'
+      case 'sage':
+        return 'bg-sage-50 text-sage-900'
+      default:
+        return 'bg-white text-gray-900'
     }
-  };
+  }
 
   const getGridClasses = () => {
     switch (columns) {
-      case '2': return 'grid-cols-1 md:grid-cols-2';
-      case '3': return 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3';
-      case '4': return 'grid-cols-1 md:grid-cols-2 lg:grid-cols-4';
-      default: return 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3';
+      case '2':
+        return 'grid-cols-1 md:grid-cols-2'
+      case '3':
+        return 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
+      case '4':
+        return 'grid-cols-1 md:grid-cols-2 lg:grid-cols-4'
+      default:
+        return 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
     }
-  };
+  }
 
   return (
     <section className={`py-16 ${getThemeClasses()}`}>
@@ -183,7 +211,7 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ data }) => {
               {subtitle}
             </motion.p>
           )}
-          
+
           {title && (
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
@@ -194,7 +222,7 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ data }) => {
               {title}
             </motion.h2>
           )}
-          
+
           {description && (
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -209,11 +237,7 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ data }) => {
         {/* Services Grid */}
         <div className={`grid ${getGridClasses()} gap-8`}>
           {services.map((service, index) => (
-            <ServiceCard
-              key={`service-${index}`}
-              {...service}
-              index={index}
-            />
+            <ServiceCard key={`service-${index}`} {...service} index={index} />
           ))}
         </div>
 
@@ -229,14 +253,24 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ data }) => {
             className="inline-flex items-center px-6 py-3 bg-sage-600 text-white rounded-lg hover:bg-sage-700 transition-colors duration-200"
           >
             View All Services
-            <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            <svg
+              className="w-4 h-4 ml-2"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 5l7 7-7 7"
+              />
             </svg>
           </Link>
         </motion.div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default ServicesSection;
+export default ServicesSection

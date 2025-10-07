@@ -87,7 +87,30 @@ export interface FeatureSectionBlock {
   list: FeatureItem[]
   image: ImageData
 }
+export interface CentersSectionBlock {
+  __component: 'blocks.centers-section-data'
+  id: number
+  title: string
+  description: string
+  ctaText: string
+  href: string
+  backgroundColor: string
+  textColor: string
+  reverse: boolean
+  list: CenterListWrapper[]
+}
 
+export interface CenterListWrapper {
+  id: number
+  list: CenterImage[]
+}
+
+export interface CenterImage {
+  id: number
+  documentId: string
+  alternativeText: string
+  url: string
+}
 export interface ConciergeHelpItem {
   id: number
   title: string
@@ -130,7 +153,15 @@ export type BusinessConciergeBlock =
   | ConciergeHelpBlock
   | DetailsSectionBlock
   | GetInTouchBlock
+  | CentersSectionBlock
 
+export interface BusinessConsultationPageData {
+  id: number
+  documentId: string
+  Name: string
+  slug: string
+  blocks: BusinessConciergeBlock[]
+}
 export interface BusinessConciergePageData {
   id: number
   documentId: string
@@ -138,7 +169,6 @@ export interface BusinessConciergePageData {
   slug: string
   blocks: BusinessConciergeBlock[]
 }
-
 export interface BusinessConciergeResponse {
   data: BusinessConciergePageData[]
 }
@@ -166,7 +196,10 @@ export interface FeatureSectionBlock {
   __component: 'blocks.feature-section'
   id: number
 }
-
+export interface CentersSectionBlock {
+  __component: 'blocks.centers-section-data'
+  id: number
+}
 export interface ConciergeHelpItem {
   id: number
   title: string
@@ -189,6 +222,7 @@ type BusinessConsultationBlock =
   | ConciergeHelpBlock
   | DetailsSectionBlock
   | GetInTouchBlock
+  | CentersSectionBlock
 
 export interface BusinessConsultationPageData {
   id: number
