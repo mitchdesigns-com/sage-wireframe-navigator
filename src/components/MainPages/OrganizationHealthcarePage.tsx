@@ -6,15 +6,15 @@ import GetInTouch from '@/components/sections/GetInTouch'
 import HeroWithImage from '@/components/sections/HeroWithImage'
 import ServiceSection from '@/components/sections/ServiceSection'
 import WhyChooseSection from '@/components/sections/WhyChooseSection'
-import parse, { domToReact, DOMNode, Element } from 'html-react-parser'
+import parse, { DOMNode, domToReact, Element } from 'html-react-parser'
 import {
-  ServicesOrganizationsHealthcareResponse,
-  HeroWithImageBlock,
-  WhyChooseSectionBlock,
-  FeatureSectionBlock,
   CentersSectionDataBlock,
   DetailsSectionBlock,
+  FeatureSectionBlock,
   GetInTouchBlock,
+  HeroWithImageBlock,
+  ServicesOrganizationsHealthcare,
+  WhyChooseSectionBlock,
 } from '../../types/organizationHealthcarePage'
 type OrgHealthcareBlock =
   | (HeroWithImageBlock & { __component: 'blocks.hero-with-image' })
@@ -75,9 +75,9 @@ function Block({ block }: { block: OrgHealthcareBlock }) {
 export default function OrganizationHealthcarePage({
   data,
 }: {
-  data: ServicesOrganizationsHealthcareResponse
+  data: ServicesOrganizationsHealthcare[]
 }) {
-  const page = data.data[0]
+  const page = data[0]
   const blocks: OrgHealthcareBlock[] = page.blocks
 
   if (!blocks || blocks.length === 0) {

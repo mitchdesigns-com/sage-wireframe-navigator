@@ -53,7 +53,7 @@ const ServiceSection: React.FC<ServiceSectionProps> = ({
           <Image
             fill
             src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${image.url}`}
-            alt={image.alternativeText}
+            alt={image.alternativeText || 'service image'}
             className="rounded-[40px] object-cover"
           />
         </div>
