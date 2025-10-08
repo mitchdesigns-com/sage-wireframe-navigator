@@ -11,7 +11,8 @@ import Link from 'next/link'
 import Button from '../ui/Button'
 import DownloadIcon from '../svg/DownloadIcon'
 import {
-  IndividualHealthcareBlock,
+  // IndividualHealthcareBlock,
+  IndividualHealthcarePage,
   IndividualHealthcarePageResponse,
   HeroWithImageBlock,
   WhyChooseSectionBlock,
@@ -20,6 +21,14 @@ import {
   CardsBlock,
   GetInTouchBlock,
 } from '../../types/individualHealthcareServices'
+
+type IndividualHealthcareBlock =
+  | (HeroWithImageBlock & { __component: 'blocks.hero-with-image' })
+  | (WhyChooseSectionBlock & { __component: 'blocks.why-choose-section' })
+  | (FeatureSectionBlock & { __component: 'blocks.feature-section' })
+  | (HowItWorksBlock & { __component: 'blocks.how-it-works' })
+  | (CardsBlock & { __component: 'blocks.cards' })
+  | (GetInTouchBlock & { __component: 'blocks.get-in-touch' })
 
 const BLOCKS: {
   [K in IndividualHealthcareBlock['__component']]: React.ComponentType<
@@ -218,11 +227,11 @@ function Block({ block }: { block: IndividualHealthcareBlock }) {
 export default function HealthcareServicesPage({
   data,
 }: {
-  data: IndividualHealthcarePageResponse
+  data: IndividualHealthcarePage[]
 }) {
-  const page = data.data[0]
-  const blocks: IndividualHealthcareBlock[] = page.blocks
-
+  const page = data[0]
+  const blocks: IndividualHealthcareBlock[] =
+    page.blocks as IndividualHealthcareBlock[]
   if (!blocks || blocks.length === 0) {
     return null
   }
