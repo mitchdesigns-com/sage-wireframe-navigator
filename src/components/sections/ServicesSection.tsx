@@ -1,9 +1,8 @@
-import React, { ReactElement } from 'react'
-import ButtonIcon from '../svg/ButtonIcon'
 import Link from 'next/link'
+import React from 'react'
+import ButtonIcon from '../svg/ButtonIcon'
 
 interface Service {
-  icon: ReactElement
   title: string
   description: string
   href?: string

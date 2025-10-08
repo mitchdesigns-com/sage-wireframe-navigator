@@ -35,7 +35,7 @@ export interface FeatureSection {
 export interface FeatureItem {
   id: number
   text: string
-  icon?: Media
+  icon: Media
 }
 
 export interface FeatureListItem {

@@ -4,14 +4,22 @@ import HeroSinglePages from '@/components/sections/HeroSinglePages'
 import BlogCard from '@/components/sections/BlogCard'
 import { useTranslations } from 'next-intl'
 import ButtonIcon from '@/components/svg/ButtonIcon'
-import { BlogPost } from '../../types/blog'
+import { BlogPost, ListItem, TextChild } from '../../types/blog'
 
 // function calculateReadTime(text: string) {
 //   const words = text.trim().split(/\s+/).length
 //   const minutes = Math.ceil(words / 200)
 //   return `${minutes} min read`
 // }
-
+function extractText(node: TextChild | ListItem): string {
+  if ('text' in node) {
+    return node.text
+  }
+  if ('children' in node) {
+    return node.children.map(extractText).join('')
+  }
+  return ''
+}
 export default function SingleBlogsPage({
   data,
   allBlogs,
@@ -39,7 +47,7 @@ export default function SingleBlogsPage({
                           key={index}
                           className="text-[32px] font-bold text-[#000404]"
                         >
-                          {block.children.map((c) => c.text).join('')}
+                          {block.children.map(extractText).join('')}
                         </h4>
                       )
                     }
@@ -49,32 +57,44 @@ export default function SingleBlogsPage({
                           key={index}
                           className="mt-4 text-[#000404] text-p leading-relaxed"
                         >
-                          {block.children.map((c) => c.text).join('')}
+                          {block.children.map(extractText).join('')}
                         </h6>
                       )
                     }
                     return null
 
                   case 'paragraph':
-                    // skip empty paragraphs
-                    if (!block.children?.[0]?.text?.trim()) return null
+                    if (
+                      !block.children.some(
+                        (c) => 'text' in c && c.text?.trim()?.length > 0
+                      )
+                    )
+                      return null
                     return (
                       <p
                         key={index}
                         className="text-[#000404] text-p leading-relaxed"
                       >
-                        {block.children.map((c) => c.text).join('')}
+                        {block.children.map(extractText).join('')}
                       </p>
                     )
 
                   case 'list':
                     return (
                       <ul key={index} className="list-disc pl-6 space-y-2">
-                        {block.children.map((li, liIndex: number) => (
-                          <li key={liIndex} className="text-[#000404] text-p">
-                            {li.children.map((c) => c.text).join('')}
-                          </li>
-                        ))}
+                        {block.children.map((li, liIndex) => {
+                          if ('children' in li) {
+                            return (
+                              <li
+                                key={liIndex}
+                                className="text-[#000404] text-p"
+                              >
+                                {li.children.map(extractText).join('')}
+                              </li>
+                            )
+                          }
+                          return null
+                        })}
                       </ul>
                     )
 

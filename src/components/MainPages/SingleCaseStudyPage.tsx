@@ -10,8 +10,20 @@ import ButtonIcon from '@/components/svg/ButtonIcon'
 import CaseStudyCard from '@/components/sections/CaseStudyCard'
 import Image from 'next/image'
 import GalleryPopup, { singleImage } from '@/components/sections/GalleryPopup'
-import { CaseStudy } from '../../types/caseStudyPageData'
-
+import {
+  CaseStudy,
+  ChallengeContentItem,
+  ChallengeTextNode,
+} from '../../types/caseStudyPageData'
+function extractText(node: ChallengeContentItem | ChallengeTextNode): string {
+  if ('text' in node) {
+    return node.text
+  }
+  if ('children' in node) {
+    return node.children.map(extractText).join('')
+  }
+  return ''
+}
 export default function SingleCaseStudyPage({
   data,
   allBlogs,
@@ -27,7 +39,7 @@ export default function SingleCaseStudyPage({
     setIsOpen(true)
   }
 
-  const galleryImages: singleImage[] = data.GallerySection.images.map(
+  const galleryImages: singleImage[] = data[0].GallerySection.images.map(
     (url, index) => ({
       id: index,
       attributes: {
@@ -43,13 +55,13 @@ export default function SingleCaseStudyPage({
     <>
       <section>
         <HeroCarousel
-          title={data.HeroCarousel.title}
-          description={data.HeroCarousel.description}
-          breadcrumbItems={data.HeroCarousel.breadcrumbItems}
-          category={data.HeroCarousel.category}
+          title={data[0].HeroCarousel.title}
+          description={data[0].HeroCarousel.description}
+          breadcrumbItems={data[0].HeroCarousel.breadcrumbItems}
+          category={data[0].HeroCarousel.category}
         />
 
-        {data.FeatureSection.map((section, index) => (
+        {data[0].FeatureSection.map((section, index) => (
           <FeatureSection key={index} {...section} />
         ))}
       </section>{' '}
@@ -57,13 +69,13 @@ export default function SingleCaseStudyPage({
         <div className="max-w-[1280px] mx-auto w-full gap-20 flex items-center">
           <div>
             <p className="text-base text-Primary-Palm font-medium mb-1">
-              {data.ChallengeSection.ChallengeData[0]?.title}
+              {data[0].ChallengeSection.ChallengeData[0]?.title}
             </p>
             <h1 className="text-[46px] font-bold text-Primary-Black leading-[1.2] tracking-[-0.48px]">
-              {data.ChallengeSection.ChallengeData[0]?.description}
+              {data[0].ChallengeSection.ChallengeData[0]?.description}
             </h1>
           </div>
-          {data.ChallengeSection.ChallengeData.slice(1).map((item) => (
+          {data[0].ChallengeSection.ChallengeData.slice(1).map((item) => (
             <div key={item.id}>
               <h4 className="text-[20px] font-bold text-Primary-Palm">
                 {item.title}
@@ -80,63 +92,76 @@ export default function SingleCaseStudyPage({
             <div className="absolute -top-1 left-0 right-0 mx-auto h-1 bg-Primary-Palm" />
 
             <div className="px-10 ">
-              {data.ChallengeSection.content && (
+              {data[0].ChallengeSection.content && (
                 <div className="mx-auto max-w-[1448px] py-10 md:py-20 md:px-4 px-4 space-y-6">
-                  {data.ChallengeSection.content.map((block, index: number) => {
-                    switch (block.type) {
-                      case 'heading':
-                        if (block.level === 4) {
-                          return (
-                            <h4
-                              key={index}
-                              className="text-[32px] font-bold text-[#000404] mb-4"
-                            >
-                              {block.children.map((c) => c.text).join('')}
-                            </h4>
-                          )
-                        }
-                        if (block.level === 6) {
-                          return (
-                            <h6
-                              key={index}
-                              className="mt-4 text-[#000404] text-p leading-relaxed"
-                            >
-                              {block.children.map((c) => c.text).join('')}
-                            </h6>
-                          )
-                        }
-                        return null
-
-                      case 'paragraph':
-                        // skip empty paragraphs
-                        if (!block.children?.[0]?.text?.trim()) return null
-                        return (
-                          <p
-                            key={index}
-                            className="text-p text-[#000404] leading-relaxed"
-                          >
-                            {block.children.map((c) => c.text).join('')}
-                          </p>
-                        )
-
-                      case 'list':
-                        return (
-                          <ul key={index} className="list-disc pl-6 space-y-2">
-                            {block.children.map((li, liIndex: number) => (
-                              <li
-                                key={liIndex}
-                                className="text-[#000404] text-p"
+                  {data[0].ChallengeSection.content.map(
+                    (block, index: number) => {
+                      switch (block.type) {
+                        case 'heading':
+                          if (block.level === 4) {
+                            return (
+                              <h4
+                                key={index}
+                                className="text-[32px] font-bold text-[#000404] mb-4"
                               >
-                                {li.children.map((c) => c.text).join('')}
-                              </li>
-                            ))}
-                          </ul>
-                        )
+                                {block.children.map(extractText).join('')}
+                              </h4>
+                            )
+                          }
+                          if (block.level === 6) {
+                            return (
+                              <h6
+                                key={index}
+                                className="mt-4 text-[#000404] text-p leading-relaxed"
+                              >
+                                {block.children.map(extractText).join('')}
+                              </h6>
+                            )
+                          }
+                          return null
+                        case 'paragraph':
+                          if (
+                            !block.children.some(
+                              (c) => 'text' in c && c.text?.trim()?.length > 0
+                            )
+                          )
+                            return null
+                          return (
+                            <p
+                              key={index}
+                              className="text-[#000404] text-p leading-relaxed"
+                            >
+                              {block.children.map(extractText).join('')}
+                            </p>
+                          )
 
-                      default:
-                        return null
+                        case 'list':
+                          return (
+                            <ul
+                              key={index}
+                              className="list-disc pl-6 space-y-2"
+                            >
+                              {block.children.map((li, liIndex) => {
+                                if ('children' in li) {
+                                  return (
+                                    <li
+                                      key={liIndex}
+                                      className="text-[#000404] text-p"
+                                    >
+                                      {li.children.map(extractText).join('')}
+                                    </li>
+                                  )
+                                }
+                                return null
+                              })}
+                            </ul>
+                          )
+
+                        default:
+                          return null
+                      }
                     }
-                  })}
+                  )}
                 </div>
               )}
             </div>
@@ -147,15 +172,15 @@ export default function SingleCaseStudyPage({
         <div className="py-25 max-w-[1392px] mx-auto ">
           <div className="text-center pb-20">
             <h3 className=" font-bold text-[48px] leading-[1.2] tracking-[-0.48px] pb-4">
-              {data.GallerySection.title}
+              {data[0].GallerySection.title}
             </h3>
-            <p className="text-p">{data.GallerySection.description}</p>
+            <p className="text-p">{data[0].GallerySection.description}</p>
           </div>
           <div className="grid grid-cols-2 gap-8">
             <div className="col-span-1 row-span-2">
               <div className="relative w-full aspect-square">
                 <Image
-                  src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${data.GallerySection.images[0].url}`}
+                  src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${data[0].GallerySection.images[0].url}`}
                   fill
                   alt="Gallery"
                   className="object-cover cursor-pointer rounded-4xl"
@@ -165,7 +190,7 @@ export default function SingleCaseStudyPage({
             </div>
 
             <div className="grid grid-rows-2 grid-cols-2 gap-8">
-              {data.GallerySection.images.slice(1, 5).map((img, i) => (
+              {data[0].GallerySection.images.slice(1, 5).map((img, i) => (
                 <div
                   className="relative w-full aspect-square"
                   key={i}
@@ -178,10 +203,11 @@ export default function SingleCaseStudyPage({
                     className="w-full h-full object-cover cursor-pointer rounded-4xl"
                   />
 
-                  {i === data.GallerySection.images.slice(1, 5).length - 1 && (
+                  {i ===
+                    data[0].GallerySection.images.slice(1, 5).length - 1 && (
                     <div className="absolute inset-0 bg-black/80 flex items-center justify-center text-white text-xl font-medium rounded-4xl flex-col cursor-pointer">
                       <span className="font-bold text-[32px]">
-                        +{data.GallerySection.images.length - 5}
+                        +{data[0].GallerySection.images.length - 5}
                       </span>{' '}
                       <p>more</p>
                     </div>
@@ -234,7 +260,7 @@ export default function SingleCaseStudyPage({
         </div>
       </section>
       <section className="bg-Secondary-Scrub">
-        <GetInTouch {...data.GetInTouch} />
+        <GetInTouch {...data[0].GetInTouch} />
       </section>
     </>
   )

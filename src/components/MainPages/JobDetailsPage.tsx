@@ -103,11 +103,17 @@ export default function JobDetailsPage({ data }: { data: CareerItem }) {
             case 'list':
               return (
                 <ul key={index} className="list-disc pl-6 space-y-2">
-                  {block.children.map((li, liIndex) => (
-                    <li key={liIndex} className="text-[#000404] text-p">
-                      {li.children.map(extractText).join('')}
-                    </li>
-                  ))}
+                  {block.children.map((li, liIndex) => {
+                    // Type guard to ensure 'li' has a 'children' property
+                    if ('children' in li) {
+                      return (
+                        <li key={liIndex} className="text-[#000404] text-p">
+                          {li.children.map(extractText).join('')}
+                        </li>
+                      )
+                    }
+                    return null // Or handle RichTextChild directly if needed
+                  })}
                 </ul>
               )
 

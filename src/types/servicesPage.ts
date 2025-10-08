@@ -18,9 +18,9 @@ export interface HeroSectionBlock {
   title: string
   subtitle: string
   description: string
-  alignment: string
-  theme: string
-  height: string
+  alignment: 'center' | 'left' | 'right'
+  theme: 'light' | 'dark' | 'blue' | 'sage'
+  height: 'small' | 'medium' | 'large' | 'full'
   overlay: boolean
   overlay_opacity: number
   tagline: string

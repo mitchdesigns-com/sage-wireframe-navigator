@@ -6,7 +6,12 @@ import FeatureSection from '@/components/sections/FeatureSection'
 import ServicesSection from '@/components/sections/ServicesSection'
 import GetInTouch from '@/components/sections/GetInTouch'
 import { useEffect, useState } from 'react'
-import { ServicesPageData } from '../../types/servicesPage'
+import {
+  Block,
+  DetailedService,
+  Feature,
+  ServicesPageData,
+} from '../../types/servicesPage'
 
 const SECTION_IDS = ['individuals', 'businesses', 'organizations'] as const
 const filterOptions = SECTION_IDS.map((id) => ({
@@ -58,7 +63,7 @@ export default function ServicesPage({ data }: { data: ServicesPageData }) {
     if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
 
-  const renderBlock = (block) => {
+  const renderBlock = (block: Block) => {
     switch (block.__component) {
       case 'blocks.hero-section':
         return (
@@ -68,9 +73,7 @@ export default function ServicesPage({ data }: { data: ServicesPageData }) {
               title: block.title,
               subtitle: block.subtitle,
               description: block.description?.replace(/\n/g, '<br/>'),
-              background_image: {
-                data: { attributes: block.background_image },
-              },
+              background_image: block.background_image,
               cta_primary: block.cta_primary,
               cta_secondary: block.cta_secondary,
               alignment: block.alignment,
@@ -90,7 +93,7 @@ export default function ServicesPage({ data }: { data: ServicesPageData }) {
             tagline={block.tagline}
             title={block.title}
             description={block.description}
-            features={block.features.map((f) => ({
+            features={block.features.map((f: Feature) => ({
               text: f.text,
               icon: f.icon,
             }))}
@@ -110,11 +113,13 @@ export default function ServicesPage({ data }: { data: ServicesPageData }) {
             tagline={block.tagline}
             title={block.title}
             description={block.description}
-            detailedServices={block.detailedServices.map((s) => ({
-              title: s.title,
-              description: s.description,
-              href: s.href,
-            }))}
+            detailedServices={block.detailedServices.map(
+              (s: DetailedService) => ({
+                title: s.title,
+                description: s.description,
+                href: s.href,
+              })
+            )}
             backgroundColor={block.backgroundColor}
             textColor={block.textColor}
             image={block.image?.url}
@@ -145,7 +150,7 @@ export default function ServicesPage({ data }: { data: ServicesPageData }) {
         exit={{ opacity: 0, y: -20 }}
         transition={{ duration: 0.5 }}
       >
-        {data[0]?.blocks?.map((block) => {
+        {data?.blocks?.map((block) => {
           // check if block is hero
           if (block.__component === 'blocks.hero-section') {
             return (

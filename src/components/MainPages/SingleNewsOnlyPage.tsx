@@ -5,8 +5,20 @@ import { ChevronRight } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import Link from 'next/link'
-import { NewsArticle } from '../../types/newsEvents'
-
+import {
+  NewsArticle,
+  RichTextChild,
+  RichTextElement,
+} from '../../types/newsEvents'
+function extractText(node: RichTextChild | RichTextElement): string {
+  if ('text' in node) {
+    return node.text
+  }
+  if ('children' in node) {
+    return node.children.map(extractText).join('')
+  }
+  return ''
+}
 export default function SingleNewsOnlyPage({
   data,
   allBlogs,
@@ -22,13 +34,13 @@ export default function SingleNewsOnlyPage({
   return (
     <>
       <section>
-        <HeroSinglePages {...data.HeroSinglePages} />
+        <HeroSinglePages {...data[0].HeroSinglePages} />
 
         <div className="max-w-[930px] mx-auto ">
           {' '}
-          {data.firstContent && (
+          {data[0].firstContent && (
             <div className="mx-auto max-w-[1448px] py-10 md:py-20 md:px-4 px-4 space-y-6">
-              {data.firstContent.map((block, index: number) => {
+              {data[0].firstContent.map((block, index: number) => {
                 switch (block.type) {
                   case 'heading':
                     if (block.level === 4) {
@@ -37,7 +49,7 @@ export default function SingleNewsOnlyPage({
                           key={index}
                           className="text-[32px] font-bold text-[#000404] py-6"
                         >
-                          {block.children.map((c) => c.text).join('')}
+                          {block.children.map(extractText).join('')}
                         </h4>
                       )
                     }
@@ -47,21 +59,25 @@ export default function SingleNewsOnlyPage({
                           key={index}
                           className="mt-4 text-[#000404] text-p leading-relaxed"
                         >
-                          {block.children.map((c) => c.text).join('')}
+                          {block.children.map(extractText).join('')}
                         </h6>
                       )
                     }
                     return null
 
                   case 'paragraph':
-                    // skip empty paragraphs
-                    if (!block.children?.[0]?.text?.trim()) return null
+                    if (
+                      !block.children.some(
+                        (c) => 'text' in c && c.text?.trim()?.length > 0
+                      )
+                    )
+                      return null
                     return (
                       <p
                         key={index}
-                        className="text-[#000404] text-base leading-relaxed pb-4"
+                        className="text-[#000404] text-p leading-relaxed"
                       >
-                        {block.children.map((c) => c.text).join('')}
+                        {block.children.map(extractText).join('')}
                       </p>
                     )
 
@@ -73,15 +89,15 @@ export default function SingleNewsOnlyPage({
           )}
           <div className="rounded-[40px] aspect-[930/505] relative w-full my-12">
             <Image
-              src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${data.image.url}`}
+              src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${data[0].image.url}`}
               alt="scr header"
               fill
               className="object-cover rounded-[40px]"
             />
           </div>
-          {data.secondContent && (
+          {data[0].secondContent && (
             <div className="mx-auto max-w-[1448px] py-10 md:py-20 md:px-4 px-4 space-y-6">
-              {data.secondContent.map((block, index: number) => {
+              {data[0].secondContent.map((block, index: number) => {
                 switch (block.type) {
                   case 'heading':
                     if (block.level === 4) {
@@ -90,7 +106,7 @@ export default function SingleNewsOnlyPage({
                           key={index}
                           className="text-[32px] font-bold text-[#000404] py-6"
                         >
-                          {block.children.map((c) => c.text).join('')}
+                          {block.children.map(extractText).join('')}
                         </h4>
                       )
                     }
@@ -100,32 +116,45 @@ export default function SingleNewsOnlyPage({
                           key={index}
                           className="mt-4 text-[#000404] text-p leading-relaxed"
                         >
-                          {block.children.map((c) => c.text).join('')}
+                          {block.children.map(extractText).join('')}
                         </h6>
                       )
                     }
                     return null
 
                   case 'paragraph':
-                    // skip empty paragraphs
-                    if (!block.children?.[0]?.text?.trim()) return null
+                    if (
+                      !block.children.some(
+                        (c) => 'text' in c && c.text?.trim()?.length > 0
+                      )
+                    )
+                      return null
                     return (
                       <p
                         key={index}
-                        className="text-[#000404] text-base leading-relaxed pb-4"
+                        className="text-[#000404] text-p leading-relaxed"
                       >
-                        {block.children.map((c) => c.text).join('')}
+                        {block.children.map(extractText).join('')}
                       </p>
                     )
 
                   case 'list':
                     return (
                       <ul key={index} className="list-disc pl-6 space-y-2">
-                        {block.children.map((li, liIndex: number) => (
-                          <li key={liIndex} className="text-[#000404] text-p">
-                            {li.children.map((c) => c.text).join('')}
-                          </li>
-                        ))}
+                        {block.children.map((li, liIndex) => {
+                          // Type guard to ensure 'li' has a 'children' property
+                          if ('children' in li) {
+                            return (
+                              <li
+                                key={liIndex}
+                                className="text-[#000404] text-p"
+                              >
+                                {li.children.map(extractText).join('')}
+                              </li>
+                            )
+                          }
+                          return null // Or handle RichTextChild directly if needed
+                        })}
                       </ul>
                     )
 

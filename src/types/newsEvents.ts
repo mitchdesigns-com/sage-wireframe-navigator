@@ -86,14 +86,19 @@ export interface BreadcrumbItem {
 
 export interface RichTextChild {
   text: string
-  type: string
+  type: 'text'
 }
-
-export interface RichTextBlock {
-  type: string
-  level?: number
-  children: RichTextChild[]
+export interface RichTextElement {
+  type: 'heading' | 'paragraph' | 'list'
+  level?: number // for headings
+  format?: 'unordered' | 'ordered' // for lists
+  children: RichTextChild[] | RichTextElement[] // list items or heading/paragraph children
 }
+// export interface RichTextBlock {
+//   type: string
+//   level?: number
+//   children: RichTextChild[]
+// }
 
 export interface HeroSinglePage {
   id: number
@@ -110,12 +115,16 @@ export interface HeroSinglePage {
 export interface NewsArticle {
   id: number
   documentId: string
-  firstContent: RichTextBlock[]
-  secondContent: RichTextBlock[]
+  firstContent: RichTextElement[]
+  secondContent: RichTextElement[]
   slug: string
   news_type: string
   HeroSinglePages: HeroSinglePage
   image: ImageData
+  title: string
+  bgImage: ImageData
+  author: string
+  date: string
 }
 
 export interface NewsArticlesResponse {

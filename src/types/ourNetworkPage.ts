@@ -35,7 +35,7 @@ export interface Image {
 export interface FeatureIcon {
   id: number
   text: string
-  icon: ImageData
+  icon: Image
 }
 export interface FeatureSectionItem {
   id: number

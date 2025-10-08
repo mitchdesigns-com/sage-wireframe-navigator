@@ -1,40 +1,9 @@
-import BlogSection from '@/components/sections/BlogSection'
 import FeatureSection from '@/components/sections/FeatureSection'
 import GetInTouch from '@/components/sections/GetInTouch'
 import HeroWithVideo from '@/components/sections/HeroWithVideo'
 import Tagline from '@/components/sections/Tagline'
 import Image from 'next/image'
 import { VisitSaudiData } from '../../types/visitSaudiData'
-
-const blogs = [
-  {
-    slug: '1',
-    title: 'Sage Partners with Local Clinics',
-    category: 'News',
-    image: '/images/generalImages/blog1.png',
-    author: 'John Doe',
-    date: '15 Mar 2023',
-    readTime: '3 min read',
-  },
-  {
-    slug: '2',
-    title: 'Sage Wins Healthcare Innovation Global Award',
-    category: 'News',
-    image: '/images/generalImages/blog2.png',
-    author: 'John Doe',
-    date: '15 Mar 2023',
-    readTime: '3 min read',
-  },
-  {
-    slug: '3',
-    title: 'Sage Attends Global Health Conference at UAE',
-    category: 'News',
-    image: '/images/generalImages/blog3.png',
-    author: 'John Doe',
-    date: '15 Mar 2023',
-    readTime: '3 min read',
-  },
-]
 
 export default function VisitSaudiPage({ data }: { data: VisitSaudiData }) {
   return (
@@ -97,7 +66,7 @@ export default function VisitSaudiPage({ data }: { data: VisitSaudiData }) {
       {data.FeatureSectionLast.map((section, index) => (
         <FeatureSection key={index} {...section} />
       ))}
-      <BlogSection blogs={blogs} />
+      {/* <BlogSection blogs={blogs} /> */}
       <section className="bg-Secondary-Scrub">
         <GetInTouch {...data.GetInTouch} />
       </section>

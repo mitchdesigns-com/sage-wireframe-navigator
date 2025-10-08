@@ -52,8 +52,8 @@ export default function SingleNewsPage({
   return (
     <>
       <section>
-        <HeroCarousel {...data.HeroCarousel} />
-        <FeatureSection {...data.FeatureSection} />
+        <HeroCarousel {...data[0].HeroCarousel} />
+        <FeatureSection {...data[0].FeatureSection} />
       </section>{' '}
     </>
   )

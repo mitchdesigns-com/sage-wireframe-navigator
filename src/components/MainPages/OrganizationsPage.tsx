@@ -7,18 +7,42 @@ import HeroPages from '@/components/sections/HeroPages'
 import WhySection from '@/components/sections/WhySection'
 import {
   ServicesOrganizations,
-  ServicesOrganizationsResponse,
+  HeroPagesBlock,
+  FeatureSectionBlock,
+  WhySectionBlock,
+  FAQSectionBlock,
+  GetInTouchBlock,
 } from '../../types/organizationsPage'
+type OrganizationsPageBlock =
+  | (HeroPagesBlock & { __component: 'blocks.hero-pages' })
+  | (FeatureSectionBlock & { __component: 'blocks.feature-section' })
+  | (WhySectionBlock & { __component: 'blocks.why-section' })
+  | (FAQSectionBlock & { __component: 'blocks.faq-section' })
+  | (GetInTouchBlock & { __component: 'blocks.get-in-touch' })
 
-const BLOCKS: Record<
-  string,
-  React.ComponentType<ServicesOrganizationsResponse>
-> = {
-  'blocks.hero-pages': HeroPages,
-  'blocks.feature-section': FeatureSection,
-  'blocks.why-section': WhySection,
-  'blocks.faq-section': FaqSection,
-  'blocks.get-in-touch': GetInTouch,
+const BLOCKS: {
+  [K in OrganizationsPageBlock['__component']]: React.ComponentType<
+    Extract<OrganizationsPageBlock, { __component: K }>
+  >
+} = {
+  'blocks.hero-pages': HeroPages as React.ComponentType<HeroPagesBlock>,
+  'blocks.feature-section':
+    FeatureSection as React.ComponentType<FeatureSectionBlock>,
+  'blocks.why-section': WhySection as React.ComponentType<WhySectionBlock>,
+  'blocks.faq-section': FaqSection as React.ComponentType<FAQSectionBlock>,
+  'blocks.get-in-touch': GetInTouch as React.ComponentType<GetInTouchBlock>,
+}
+
+function Block({ block }: { block: OrganizationsPageBlock }) {
+  const Component = BLOCKS[block.__component]
+
+  if (!Component) {
+    console.warn(`Unknown block component: ${block.__component}`)
+    return null
+  }
+
+  const TypedComponent = Component as React.ComponentType<typeof block>
+  return <TypedComponent {...block} />
 }
 
 export default function OrganizationsPage({
@@ -27,26 +51,17 @@ export default function OrganizationsPage({
   data: ServicesOrganizations[]
 }) {
   const page = data?.[0]
-  const blocks = page?.blocks
-  if (!blocks || blocks.length === 0) {
+  const blocks: OrganizationsPageBlock[] = page?.blocks || []
+
+  if (!blocks.length) {
     return null
   }
 
   return (
     <div className="min-h-screen ">
-      {blocks.map((block, index: number) => {
-        const Component = BLOCKS[block.__component]
-        if (!Component) {
-          console.warn(`Unknown block component: ${block.__component}`)
-          return null
-        }
-        return (
-          <Component
-            key={`${block.__component}-${block.id || index}`}
-            {...block}
-          />
-        )
-      })}
+      {blocks.map((block) => (
+        <Block key={`${block.__component}-${block.id}`} block={block} />
+      ))}
     </div>
   )
 }

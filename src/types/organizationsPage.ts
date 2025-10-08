@@ -36,7 +36,7 @@ export interface HeroPagesBlock {
   tagline: string
   title: string
   description: string
-  button: Button
+  button: string
   href: string
   breadcrumbItems: BreadcrumbItem[]
   bgImage: ImageData
