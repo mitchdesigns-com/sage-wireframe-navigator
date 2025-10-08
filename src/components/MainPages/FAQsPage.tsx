@@ -2,87 +2,110 @@
 
 import GetInTouch from '@/components/sections/GetInTouch'
 import HeroPages from '@/components/sections/HeroPages'
-import { Plus } from 'lucide-react'
-import { useState } from 'react'
 import ToggleButton from '@/components/sections/ToggleButton'
+import { Plus } from 'lucide-react'
+import React, { useState } from 'react'
 
-// --- TYPE DEFINITIONS ---
-// Define interfaces for your data structures to replace 'any'
+type FaqCategory = string
 
-interface Block {
+interface BreadcrumbItem {
   id: number
-  __component: string
-  // Add other common block properties if any
+  href: string
+  label: string
 }
 
 interface FaqItem {
   id: number
   question: string
   answer: string
-  category: string
+  category: FaqCategory
 }
-
-interface FaqSectionBlock extends Block {
-  __component: 'blocks.faq-section'
-  faqData: FaqItem[]
-}
-
-type TabType = string
-// | 'all'
-// | 'general'
-// | 'individuals'
-// | 'businesses'
-// | 'organizations'
 
 interface ToggleOption {
-  id: string | number
+  id: number
   title: string
-  value: TabType
+  value: FaqCategory
 }
 
-interface BlocksResources {
+export interface ImageData {
+  id: number
+  documentId: string
+  alternativeText: string
+  url: string
+}
+interface HeroPagesBlock {
+  __component: 'blocks.hero-pages'
+  id: number
+  tagline: string
+  title: string
+  description: string
+  button: string
+  href: string
+  breadcrumbItems: BreadcrumbItem[]
+  bgImage: ImageData
+  image: ImageData
+}
+
+interface FaqSectionBlock {
+  __component: 'blocks.faq-section'
+  id: number
+  title: string
+  description: string
+  faqData: FaqItem[]
+  breadcrumbItems: BreadcrumbItem[]
+  tagline: string
+  image: ImageData
+}
+
+interface GetInTouchBlock {
+  __component: 'blocks.get-in-touch'
+  id: number
+  tagline: string
+  title: string
+  description: string
+  image: {
+    url: string
+    alternativeText: string
+  }
+  breadcrumbItems: BreadcrumbItem[]
+}
+
+interface ToggleButtonResource {
   __component: 'resources.toggle-button'
   id: number
   options: ToggleOption[]
 }
 
+type Block = HeroPagesBlock | FaqSectionBlock | GetInTouchBlock
+
 interface PageData {
   id: number
+  documentId: string
   Name: string
   slug: string
   blocks: Block[]
-  BlocksResources: BlocksResources[]
+  BlocksResources: ToggleButtonResource[]
 }
 
-// --- COMPONENT ---
-
-const BLOCKS: Record<string, React.ComponentType<any>> = {
+const BLOCKS: Record<string, React.ComponentType<Block>> = {
   'blocks.hero-pages': HeroPages,
   'blocks.get-in-touch': GetInTouch,
 }
 
 export default function FAQsPage({ data }: { data: PageData[] }) {
-  // Hooks are moved to the top, before any conditional returns.
   const [openFaq, setOpenFaq] = useState<number>(-1)
-  const [currentTab, setCurrentTab] = useState<string>('all')
+  const [currentTab, setCurrentTab] = useState<FaqCategory>('all')
 
   const page = data?.[0]
   const blocks = page?.blocks
   const resources = page?.BlocksResources?.[0]
 
-  // Conditional return now happens after hooks are called.
-  if (!blocks || blocks.length === 0) {
+  if (!page || !blocks || blocks.length === 0) {
     return null
   }
 
-  const options: ToggleOption[] =
-    resources?.options?.map((opt) => ({
-      id: opt.id,
-      title: opt.title,
-      value: opt.value,
-    })) || []
+  const options = resources?.options || []
 
-  // Type assertion to inform TypeScript about the specific block type.
   const faqBlock = blocks.find(
     (b): b is FaqSectionBlock => b.__component === 'blocks.faq-section'
   )
@@ -98,9 +121,11 @@ export default function FAQsPage({ data }: { data: PageData[] }) {
       {blocks.map((block) => {
         const Component = BLOCKS[block.__component]
         if (Component) {
+          // The 'block' prop is now fully typed.
           return <Component key={block.id} {...block} />
         }
 
+        // Check for the specific block type to render it.
         if (block.__component === 'blocks.faq-section') {
           return (
             <section key={block.id} className="py-20 bg-Secondary-Light-Scrub">
@@ -109,10 +134,9 @@ export default function FAQsPage({ data }: { data: PageData[] }) {
                   <ToggleButton
                     options={options}
                     selectedValue={currentTab}
-                    onChange={(value: TabType) => setCurrentTab(value)}
+                    onChange={(val: FaqCategory) => setCurrentTab(val)}
                   />
-
-                  <div className="border-0 ">
+                  <div className="border-0">
                     {filteredFaqs.map((faq, index) => (
                       <div key={faq.id} className="border-b border-[#D2D2D2]">
                         <button

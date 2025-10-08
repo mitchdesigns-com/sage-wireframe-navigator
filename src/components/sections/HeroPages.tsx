@@ -6,6 +6,7 @@ import Button from '../ui/Button'
 import Image from 'next/image'
 
 interface BreadcrumbItem {
+  id: number
   label: string
   href?: string
 }
