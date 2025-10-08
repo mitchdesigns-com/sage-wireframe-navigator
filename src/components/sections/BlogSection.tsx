@@ -5,17 +5,20 @@ import { BlogItem } from '../../types/blogs'
 import ButtonIcon from '../svg/ButtonIcon'
 import BlogCard from './BlogCard'
 import Tagline from './Tagline'
+import BlogCardHomepage from './BlogCardHomePage'
 
 interface BlogSectionProps {
   heading?: string
   subheading?: string
   blogs: BlogItem[]
+  homePage?: boolean
 }
 
 export default function BlogSection({
   heading,
   subheading,
   blogs,
+  homePage,
 }: BlogSectionProps) {
   return (
     <section className="max-w-[1392px] mx-auto px-6 py-25">
@@ -51,13 +54,21 @@ export default function BlogSection({
       </div>
 
       <div className="grid md:grid-cols-3 gap-8">
-        {blogs.map((blog) => (
-          <BlogCard
-            key={blog.slug}
-            blog={blog}
-            href={`/resources/blog/${blog.slug}`}
-          />
-        ))}
+        {homePage
+          ? blogs.map((blog) => (
+              <BlogCardHomepage
+                key={blog.slug}
+                blog={blog}
+                href={`/resources/blog/${blog.slug}`}
+              />
+            ))
+          : blogs.map((blog) => (
+              <BlogCard
+                key={blog.slug}
+                blog={blog}
+                href={`/resources/blog/${blog.slug}`}
+              />
+            ))}
       </div>
     </section>
   )

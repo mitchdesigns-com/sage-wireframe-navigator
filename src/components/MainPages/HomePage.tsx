@@ -48,7 +48,8 @@ export default function HomePage({
       <BlogSection
         heading={data.BlogSection.heading}
         subheading={data.BlogSection.subheading}
-        blogs={singles.map((blog) => ({ ...blog }))}
+        blogs={singles}
+        homePage
       />
 
       <GetInTouch {...data.GetInTouch} />
