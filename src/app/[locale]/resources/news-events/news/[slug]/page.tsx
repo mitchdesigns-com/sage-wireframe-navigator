@@ -17,5 +17,5 @@ export default async function Page(props: unknown) {
     return notFound()
   }
 
-  return <SingleNewsOnlyPage data={singleCareer[0]} allBlogs={allBlogs} />
+  return <SingleNewsOnlyPage data={singleCareer} allBlogs={allBlogs} />
 }
