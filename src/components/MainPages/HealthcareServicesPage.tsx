@@ -1,26 +1,25 @@
 'use client'
 
-import Image from 'next/image'
-import HeroWithImage from '@/components/sections/HeroWithImage'
-import WhyChooseSection from '@/components/sections/WhyChooseSection'
 import FeatureSection from '@/components/sections/FeatureSection'
-import Tagline from '@/components/sections/Tagline'
 import GetInTouch from '@/components/sections/GetInTouch'
-import parse, { domToReact, DOMNode, Element } from 'html-react-parser'
+import HeroWithImage from '@/components/sections/HeroWithImage'
+import Tagline from '@/components/sections/Tagline'
+import WhyChooseSection from '@/components/sections/WhyChooseSection'
+import parse, { DOMNode, domToReact, Element } from 'html-react-parser'
+import Image from 'next/image'
 import Link from 'next/link'
-import Button from '../ui/Button'
-import DownloadIcon from '../svg/DownloadIcon'
 import {
+  CardsBlock,
+  FeatureSectionBlock,
+  GetInTouchBlock,
+  HeroWithImageBlock,
+  HowItWorksBlock,
   // IndividualHealthcareBlock,
   IndividualHealthcarePage,
-  IndividualHealthcarePageResponse,
-  HeroWithImageBlock,
   WhyChooseSectionBlock,
-  FeatureSectionBlock,
-  HowItWorksBlock,
-  CardsBlock,
-  GetInTouchBlock,
 } from '../../types/individualHealthcareServices'
+import DownloadIcon from '../svg/DownloadIcon'
+import Button from '../ui/Button'
 
 type IndividualHealthcareBlock =
   | (HeroWithImageBlock & { __component: 'blocks.hero-with-image' })
