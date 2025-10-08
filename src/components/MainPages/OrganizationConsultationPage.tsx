@@ -5,16 +5,16 @@ import GetInTouch from '@/components/sections/GetInTouch'
 import HeroWithImage from '@/components/sections/HeroWithImage'
 import ServiceSection from '@/components/sections/ServiceSection'
 import WhyChooseSection from '@/components/sections/WhyChooseSection'
-import parse, { domToReact, DOMNode, Element } from 'html-react-parser'
+import parse, { DOMNode, domToReact, Element } from 'html-react-parser'
 import Image from 'next/image'
 import {
-  ServicesOrganizationsConsultationResponse,
-  HeroWithImageBlock,
-  WhyChooseSectionBlock,
-  FeatureSectionBlock,
   ConciergeHelpBlock,
   DetailsSectionBlock,
+  FeatureSectionBlock,
   GetInTouchBlock,
+  HeroWithImageBlock,
+  ServicesOrganizationsConsultation,
+  WhyChooseSectionBlock,
 } from '../../types/organizationConsultationPage'
 type OrgConsultationBlock =
   | (HeroWithImageBlock & { __component: 'blocks.hero-with-image' })
@@ -111,9 +111,9 @@ function Block({ block }: { block: OrgConsultationBlock }) {
 export default function OrganizationConsultationPage({
   data,
 }: {
-  data: ServicesOrganizationsConsultationResponse
+  data: ServicesOrganizationsConsultation[]
 }) {
-  const page = data.data[0]
+  const page = data[0]
   const blocks: OrgConsultationBlock[] = page.blocks
 
   if (!blocks || blocks.length === 0) {

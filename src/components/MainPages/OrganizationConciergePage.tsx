@@ -5,14 +5,14 @@ import GetInTouch from '@/components/sections/GetInTouch'
 import HeroWithImage from '@/components/sections/HeroWithImage'
 import ServiceSection from '@/components/sections/ServiceSection'
 import WhyChooseSection from '@/components/sections/WhyChooseSection'
-import parse, { domToReact, DOMNode, Element } from 'html-react-parser' // Corrected import
+import parse, { DOMNode, domToReact, Element } from 'html-react-parser' // Corrected import
 import {
-  ServicesOrganizationsConciergeResponse,
-  HeroWithImageBlock,
-  WhyChooseSectionBlock,
-  FeatureSectionBlock,
   DetailsSectionBlock,
+  FeatureSectionBlock,
   GetInTouchBlock,
+  HeroWithImageBlock,
+  ServicesOrganizationsConcierge,
+  WhyChooseSectionBlock,
 } from '../../types/servicesOrganizationsConcierge'
 type OrgConciergeBlock =
   | (HeroWithImageBlock & { __component: 'blocks.hero-with-image' })
@@ -70,9 +70,9 @@ function Block({ block }: { block: OrgConciergeBlock }) {
 export default function OrganizationConciergePage({
   data,
 }: {
-  data: ServicesOrganizationsConciergeResponse
+  data: ServicesOrganizationsConcierge[]
 }) {
-  const page = data.data[0]
+  const page = data[0]
   const blocks: OrgConciergeBlock[] = page.blocks
 
   if (!blocks || blocks.length === 0) {
