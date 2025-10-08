@@ -94,7 +94,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ data }) => {
             src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${background_image.url}`}
             alt={background_image.alternativeText || title}
             fill
-            className="object-cover"
+            className="object-cover object-top"
             priority
           />
           {overlay && (

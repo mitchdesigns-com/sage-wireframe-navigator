@@ -1,6 +1,7 @@
 'use client'
 import React, { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 
 // Types for props
 interface ServiceLink {
@@ -233,8 +234,8 @@ const ServiceSection: React.FC<{
           </div>
 
           {/* Links */}
-          <div className="flex gap-25">
-            <div className="flex flex-col w-[452px] max-w-full justify-end">
+          <div className="flex gap-22 justify-between">
+            <div className="flex flex-col min-w-[452px] max-w-full justify-end">
               {section.links.map((link, index) => (
                 <div key={index}>
                   <ServiceButton
@@ -248,12 +249,21 @@ const ServiceSection: React.FC<{
               ))}{' '}
             </div>
             {hasImage && (
-              <div
-                className="w-[190px] h-[225px] bg-cover bg-center bg-no-repeat "
-                style={{
-                  backgroundImage: `url('/images/generalImages/Vector.png')`,
-                }}
-              />
+              <div className="relative h-[190px] w-[225px]">
+                <Image
+                  src="/images/generalImages/VectorHome.png"
+                  alt="vector"
+                  fill
+                  className="object-cover object-bottom"
+                />
+
+                {/* <div
+                  className="w-full h-full bg-cover bg-center bg-no-repeat "
+                  style={{
+                    backgroundImage: `url('/images/generalImages/VectorHome.png')`,
+                  }}
+                /> */}
+              </div>
             )}
           </div>
         </div>

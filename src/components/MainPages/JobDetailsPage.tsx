@@ -8,6 +8,7 @@ import {
   RichTextChild,
   RichTextElement,
 } from '../../types/jobDetailsPage'
+import Dot from '../svg/Dot'
 function extractText(node: RichTextChild | RichTextElement): string {
   if ('text' in node) {
     return node.text
@@ -47,11 +48,11 @@ export default function JobDetailsPage({ data }: { data: CareerItem }) {
             </Link>
           </div>
           <h1 className="heading-1 font-bold mt-6 text-white">{data.title}</h1>
-          <div className="flex gap-4 mt-6 text-[#F2F2F2] font-medium text-base ">
+          <div className="flex gap-4 mt-6 text-[#F2F2F2] font-medium text-base">
             {tagsArray.map((tag, i) => (
-              <span key={i} className="flex items-center gap-4 ">
+              <span key={i} className="flex items-center gap-4">
                 {tag}
-                {i < data.tags.length - 1 && <span>•</span>}
+                {i < tagsArray.length - 1 && <Dot color="#ffffff" />}
               </span>
             ))}
           </div>

@@ -4,6 +4,7 @@ import { MinusIcon, ChevronDown } from 'lucide-react'
 import Link from 'next/link'
 import ButtonIcon from '../svg/ButtonIcon'
 import { CareerItem } from '../../types/careersPageData'
+import Dot from '../svg/Dot'
 
 export default function AccordionJobs({ data }: { data: CareerItem[] }) {
   const [openIndex, setOpenIndex] = useState<number>(-1)
@@ -67,9 +68,7 @@ export default function AccordionJobs({ data }: { data: CareerItem[] }) {
                     {tagsArray.map((tag, i) => (
                       <span key={i} className="flex items-center gap-4">
                         {tag}
-                        {i < tagsArray.length - 1 && (
-                          <span className="mx-1">•</span>
-                        )}
+                        {i < tagsArray.length - 1 && <Dot />}
                       </span>
                     ))}
                   </div>

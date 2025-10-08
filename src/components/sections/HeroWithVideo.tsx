@@ -1,8 +1,8 @@
-import React from 'react'
-import Breadcrumb from './Breadcrumb'
-import Image from 'next/image'
 import Link from 'next/link'
+import React from 'react'
 import Button from '../ui/Button'
+import Breadcrumb from './Breadcrumb'
+import VideoPlayer from './VideoPlayer'
 
 interface BreadcrumbItem {
   label: string
@@ -69,26 +69,11 @@ const HeroWithVideo: React.FC<HeroProps> = ({
           <div className=" pt-16">
             <div className="relative">
               {' '}
-              <video
-                src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${video?.url}`}
-                className="w-full rounded-[40px] "
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="auto"
-              />{' '}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="cursor-pointer">
-                  <Image
-                    src="/images/generalImages/VideoButton.png"
-                    alt="VideoButton"
-                    width={180}
-                    height={180}
-                    className="object-cover"
-                  />
-                </div>
-              </div>
+              {video?.url && (
+                <VideoPlayer
+                  video={`${process.env.NEXT_PUBLIC_API_BASE_URL}${video?.url}`}
+                />
+              )}
             </div>
           </div>
         </div>

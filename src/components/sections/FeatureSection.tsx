@@ -92,7 +92,7 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
               <div className=" mb-8">
                 {features?.map((feature, idx) => (
                   <div key={idx} className="flex items-center gap-4 mb-4">
-                    <div className="w-6 h-6 flex items-center justify-center relative">
+                    <div className="w-6 h-[21px] flex items-center justify-center relative">
                       <Image
                         src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${feature.icon?.url}`}
                         alt={feature.icon?.alternativeText || title}

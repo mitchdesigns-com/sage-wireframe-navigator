@@ -4,9 +4,9 @@ import Tagline from '@/components/sections/Tagline'
 import ToggleButton from '@/components/sections/ToggleButton'
 import ButtonIcon from '@/components/svg/ButtonIcon'
 import Button from '@/components/ui/Button'
-import { Calendar, ChevronLeft, ChevronRight, Clock, User } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
+import Script from 'next/script'
 import { useState } from 'react'
 import PhoneInput from 'react-phone-number-input'
 import 'react-phone-number-input/style.css'
@@ -21,13 +21,8 @@ interface ContactForm {
   acceptTerms: boolean
 }
 
-interface CalendarState {
-  selectedDate: number | null
-  selectedTime: string | null
-  currentMonth: string
-}
-
 type TabType = 'general' | 'business' | 'patient'
+type TabType2 = 'patientSupport' | 'partnership'
 
 export default function ContactPage({ data }: { data: ContactPageData }) {
   const [formData, setFormData] = useState<ContactForm>({
@@ -37,12 +32,6 @@ export default function ContactPage({ data }: { data: ContactPageData }) {
     email: '',
     message: '',
     acceptTerms: false,
-  })
-
-  const [calendar, setCalendar] = useState<CalendarState>({
-    selectedDate: 29,
-    selectedTime: null,
-    currentMonth: 'April 2024',
   })
 
   const handleFormSubmit = (e: React.FormEvent) => {
@@ -62,9 +51,6 @@ export default function ContactPage({ data }: { data: ContactPageData }) {
     }))
   }
 
-  const handleDateSelect = (date: number) => {
-    setCalendar((prev) => ({ ...prev, selectedDate: date }))
-  }
   const handlePhoneInputChange = (
     eOrName: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | string,
     value?: string
@@ -78,15 +64,9 @@ export default function ContactPage({ data }: { data: ContactPageData }) {
       // setErrors((prev) => ({ ...prev, [name]: "" }));
     }
   }
-  const availableTimes = [
-    '09:00 AM',
-    '10:00 AM',
-    '11:00 AM',
-    '02:00 PM',
-    '03:00 PM',
-    '04:00 PM',
-  ]
+
   const [currentTab, setCurrentTab] = useState<TabType>('general')
+  const [currentTab2, setCurrentTab2] = useState<TabType2>('patientSupport')
 
   return (
     <div className="min-h-screen">
@@ -115,6 +95,7 @@ export default function ContactPage({ data }: { data: ContactPageData }) {
                   options={data.ToggleButton.options}
                   selectedValue={currentTab}
                   onChange={(val) => setCurrentTab(val as TabType)}
+                  contact
                 />
                 {currentTab === 'general' ? (
                   <form onSubmit={handleFormSubmit} className="space-y-4">
@@ -348,7 +329,7 @@ export default function ContactPage({ data }: { data: ContactPageData }) {
                       </Button>
                     </Link>
                   </form>
-                ) : (
+                ) : currentTab === 'patient' ? (
                   <div className="flex h-3/4 items-center">
                     {' '}
                     <div className=" flex justify-center items-center bg-Secondary-Light-Scrub w-full flex-col rounded-3xl py-15 px-10 text-center ">
@@ -380,6 +361,8 @@ export default function ContactPage({ data }: { data: ContactPageData }) {
                       </Link>{' '}
                     </div>
                   </div>
+                ) : (
+                  ''
                 )}
               </div>
 
@@ -400,8 +383,8 @@ export default function ContactPage({ data }: { data: ContactPageData }) {
       {/* Schedule Zoom Meeting Section */}
       <section className="py-28 bg-Primary-Spring-Med">
         <div className="px-16">
-          <div className="max-w-[800px] mx-auto space-y-[46px]">
-            <div className="text-center space-y-1">
+          <div className=" mx-auto ">
+            <div className="text-center ">
               <h2 className="text-black font-bold text-[48px] leading-[1.2] tracking-[-0.48px]">
                 Schedule a Zoom Meeting
               </h2>
@@ -410,160 +393,20 @@ export default function ContactPage({ data }: { data: ContactPageData }) {
                 innovative solutions tailored to your needs.
               </p>
             </div>
-
-            {/* Calendar Widget */}
-            <div className="bg-white h-[604px] rounded-lg border border-gray-200 overflow-hidden">
-              <div className="grid grid-cols-1 lg:grid-cols-2 h-full">
-                {/* Left Side - Meeting Info */}
-                <div className="p-9 space-y-8 bg-gray-50">
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center">
-                      <User size={24} className="text-gray-600" />
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-base">Sage Team</h3>
-                      <p className="text-sm text-gray-600">
-                        30 minute consultation
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="space-y-4">
-                    <h4 className="font-bold text-base">
-                      Schedule Free Consultation Online Meeting
-                    </h4>
-                    <div className="space-y-2 text-sm text-gray-600">
-                      <div className="flex items-center gap-2">
-                        <Clock size={16} />
-                        <span>30 min</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Calendar size={16} />
-                        <span>Online event by video conference</span>
-                      </div>
-                    </div>
-
-                    <div className="space-y-2">
-                      <p className="text-sm font-medium">
-                        During our consultation, we will discuss:
-                      </p>
-                      <ul className="text-sm text-gray-600 space-y-1">
-                        <li>• Customer needs and current work setup.</li>
-                        <li>• Current administrative workload.</li>
-                        <li>• Workflow, new strategies, best resources.</li>
-                        <li>• Use-case demo • Q&A • Next steps.</li>
-                        <li>
-                          • Any questions you prepared • Support portal access.
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-
-                  <Button
-                    //  variant="outline"
-                    size="large"
-                    className="bg-[rgba(0,4,4,0.05)] border-none hover:bg-gray-100 w-full"
-                  >
-                    Book now
-                  </Button>
-                </div>
-
-                {/* Right Side - Calendar */}
-                <div className="p-9 space-y-6">
-                  <h4 className="font-bold text-base">Select a Date & Time</h4>
-
-                  {/* Calendar Header */}
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between">
-                      <button className="p-2 hover:bg-gray-100 rounded">
-                        <ChevronLeft size={20} />
-                      </button>
-                      <span className="text-sm font-medium">
-                        {calendar.currentMonth}
-                      </span>
-                      <button className="p-2 hover:bg-gray-100 rounded">
-                        <ChevronRight size={20} />
-                      </button>
-                    </div>
-
-                    {/* Calendar Grid */}
-                    <div className="grid grid-cols-7 gap-2">
-                      {/* Day Headers */}
-                      {['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'].map(
-                        (day) => (
-                          <div
-                            key={day}
-                            className="text-center text-xs font-medium text-gray-500 py-2"
-                          >
-                            {day}
-                          </div>
-                        )
-                      )}
-
-                      {/* Calendar Days */}
-                      {Array.from({ length: 35 }, (_, i) => {
-                        const date = i - 6 // Adjust for April 2024 starting on Monday
-                        const isValidDate = date > 0 && date <= 30
-                        const isSelected = date === calendar.selectedDate
-                        const isAvailable = [23, 24, 25, 26, 29, 30].includes(
-                          date
-                        )
-
-                        if (!isValidDate) {
-                          return <div key={i} className="h-11" />
-                        }
-
-                        return (
-                          <button
-                            key={i}
-                            onClick={() =>
-                              isAvailable && handleDateSelect(date)
-                            }
-                            className={`h-11 w-11 rounded-full text-sm flex items-center justify-center transition-colors ${
-                              isSelected
-                                ? 'bg-[rgba(0,4,4,0.1)] text-black font-bold'
-                                : isAvailable
-                                  ? 'hover:bg-gray-100 text-gray-900'
-                                  : 'text-gray-400 cursor-not-allowed'
-                            }`}
-                            disabled={!isAvailable}
-                          >
-                            {date}
-                          </button>
-                        )
-                      })}
-                    </div>
-                  </div>
-
-                  {/* Time Slots */}
-                  {calendar.selectedDate && (
-                    <div className="space-y-3">
-                      <h5 className="font-medium text-sm">Available Times</h5>
-                      <div className="grid grid-cols-2 gap-2">
-                        {availableTimes.map((time) => (
-                          <button
-                            key={time}
-                            onClick={() =>
-                              setCalendar((prev) => ({
-                                ...prev,
-                                selectedTime: time,
-                              }))
-                            }
-                            className={`p-2 text-sm rounded border transition-colors ${
-                              calendar.selectedTime === time
-                                ? 'bg-[#025850] text-white border-[#025850]'
-                                : 'border-gray-300 hover:border-[#025850] hover:text-[#025850]'
-                            }`}
-                          >
-                            {time}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </div>
+            <div className="relative">
+              <div
+                className="calendly-inline-widget min-[320px] h-[700px]"
+                data-url="https://calendly.com/sage-marketing-dvvt/60min"
+                // style={{ minWidth: '800px', height: '700px' }}
+              ></div>
             </div>
+            <Script
+              type="text/javascript"
+              src="https://assets.calendly.com/assets/external/widget.js"
+              async
+              // onLoad={() => setIsLoading(false)}
+            />
+            {/* Calendar Widget */}
           </div>
         </div>
       </section>
@@ -581,8 +424,9 @@ export default function ContactPage({ data }: { data: ContactPageData }) {
             {' '}
             <ToggleButton
               options={data.ContactData.ToggleButton.options}
-              selectedValue={currentTab}
-              onChange={(val) => setCurrentTab(val as TabType)}
+              selectedValue={currentTab2}
+              onChange={(val) => setCurrentTab2(val as TabType2)}
+              contact
             />
           </div>
         </div>

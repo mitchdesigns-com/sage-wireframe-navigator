@@ -15,12 +15,14 @@ export interface ToggleButtonProps {
   selectedValue: string
   onChange: (value: string) => void
   className?: string
+  contact?: boolean
 }
 
 const ToggleButton: React.FC<ToggleButtonProps> = ({
   options,
   selectedValue,
   onChange,
+  contact,
 }) => {
   return (
     <div
@@ -34,7 +36,7 @@ const ToggleButton: React.FC<ToggleButtonProps> = ({
             <motion.div
               key={option.id}
               layoutId="active-pill"
-              className="bg-Primary-Palm rounded-full"
+              className={`${contact ? 'bg-Secondary-Scrub text-Primary-Palm' : 'bg-Primary-Palm'} rounded-full`}
               transition={{ type: 'spring', stiffness: 300, damping: 30 }}
               style={{ flex: 1 }}
             />
@@ -54,8 +56,8 @@ const ToggleButton: React.FC<ToggleButtonProps> = ({
             className={clsx(
               'relative flex-1 px-4 md:px-[16px] py-2 md:py-[10px] font-medium text-base whitespace-nowrap transition-colors cursor-pointer',
               isSelected
-                ? 'text-white'
-                : 'text-Primary-Black hover:text-Primary-Palm hover:transition-colors'
+                ? `${contact ? 'text-Primary-Palm' : 'text-white'}`
+                : `${contact ? 'text-Secondary-Text' : 'text-Primary-Black'}  hover:text-Primary-Palm hover:transition-colors`
             )}
             data-name="Button"
           >
