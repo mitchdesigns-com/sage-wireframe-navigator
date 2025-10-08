@@ -57,14 +57,14 @@ export default function BlogCard({ blog, href, news }: BlogCardProps) {
         {news ? (
           <Image
             src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${blog.image.url}`}
-            alt={blog.title}
+            alt={blog.title || 'blog image'}
             fill
             className="object-cover"
           />
         ) : (
           <Image
-            src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${blog.bgImage?.url || blog.image.url || '/images/generalImages/fallback.jpg'}`}
-            alt={blog.title}
+            src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${blog?.bgImage?.url || blog?.image?.url || '/images/generalImages/fallback.jpg'}`}
+            alt={blog.title || 'blog image'}
             fill
             className="object-cover"
           />
