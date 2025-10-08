@@ -6,17 +6,33 @@ import { Plus } from 'lucide-react'
 import { useState } from 'react'
 import ToggleButton from '@/components/sections/ToggleButton'
 
-const BLOCKS: Record<string, React.ComponentType<any>> = {
-  'blocks.hero-pages': HeroPages,
-  'blocks.get-in-touch': GetInTouch,
+// --- TYPE DEFINITIONS ---
+// Define interfaces for your data structures to replace 'any'
+
+interface Block {
+  id: number
+  __component: string
+  // Add other common block properties if any
 }
 
-type TabType =
-  | 'all'
-  | 'general'
-  | 'individuals'
-  | 'businesses'
-  | 'organizations'
+interface FaqItem {
+  id: number
+  question: string
+  answer: string
+  category: string
+}
+
+interface FaqSectionBlock extends Block {
+  __component: 'blocks.faq-section'
+  faqData: FaqItem[]
+}
+
+type TabType = string
+// | 'all'
+// | 'general'
+// | 'individuals'
+// | 'businesses'
+// | 'organizations'
 
 interface ToggleOption {
   id: string | number
@@ -24,38 +40,62 @@ interface ToggleOption {
   value: TabType
 }
 
-export default function FAQsPage({ data }: { data: any }) {
+interface BlocksResources {
+  __component: 'resources.toggle-button'
+  id: number
+  options: ToggleOption[]
+}
+
+interface PageData {
+  id: number
+  Name: string
+  slug: string
+  blocks: Block[]
+  BlocksResources: BlocksResources[]
+}
+
+// --- COMPONENT ---
+
+const BLOCKS: Record<string, React.ComponentType<any>> = {
+  'blocks.hero-pages': HeroPages,
+  'blocks.get-in-touch': GetInTouch,
+}
+
+export default function FAQsPage({ data }: { data: PageData[] }) {
+  // Hooks are moved to the top, before any conditional returns.
+  const [openFaq, setOpenFaq] = useState<number>(-1)
+  const [currentTab, setCurrentTab] = useState<string>('all')
+
   const page = data?.[0]
   const blocks = page?.blocks
   const resources = page?.BlocksResources?.[0]
 
+  // Conditional return now happens after hooks are called.
   if (!blocks || blocks.length === 0) {
     return null
   }
 
-  const [openFaq, setOpenFaq] = useState(-1)
-  const [currentTab, setCurrentTab] = useState<TabType>('all')
-
   const options: ToggleOption[] =
-    resources?.options?.map((opt: any) => ({
+    resources?.options?.map((opt) => ({
       id: opt.id,
       title: opt.title,
       value: opt.value,
     })) || []
 
+  // Type assertion to inform TypeScript about the specific block type.
   const faqBlock = blocks.find(
-    (b: any) => b.__component === 'blocks.faq-section'
+    (b): b is FaqSectionBlock => b.__component === 'blocks.faq-section'
   )
   const faqData = faqBlock?.faqData || []
 
   const filteredFaqs =
     currentTab === 'all'
       ? faqData
-      : faqData.filter((faq: any) => faq.category === currentTab)
+      : faqData.filter((faq) => faq.category === currentTab)
 
   return (
     <div className="min-h-screen bg-white">
-      {blocks.map((block: any) => {
+      {blocks.map((block) => {
         const Component = BLOCKS[block.__component]
         if (Component) {
           return <Component key={block.id} {...block} />
@@ -69,11 +109,11 @@ export default function FAQsPage({ data }: { data: any }) {
                   <ToggleButton
                     options={options}
                     selectedValue={currentTab}
-                    onChange={(val: any) => setCurrentTab(val as TabType)}
+                    onChange={(value: TabType) => setCurrentTab(value)}
                   />
 
                   <div className="border-0 ">
-                    {filteredFaqs.map((faq: any, index: number) => (
+                    {filteredFaqs.map((faq, index) => (
                       <div key={faq.id} className="border-b border-[#D2D2D2]">
                         <button
                           className="w-full py-5 flex items-center justify-between gap-6 text-left transition-colors cursor-pointer"
