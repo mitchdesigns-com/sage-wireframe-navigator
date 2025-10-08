@@ -1,10 +1,10 @@
 'use client'
 
-import { AnimatePresence, motion } from 'framer-motion'
-import HeroSection from '@/components/strapi/HeroSection'
 import FeatureSection from '@/components/sections/FeatureSection'
-import ServicesSection from '@/components/sections/ServicesSection'
 import GetInTouch from '@/components/sections/GetInTouch'
+import ServicesSection from '@/components/sections/ServicesSection'
+import HeroSection from '@/components/strapi/HeroSection'
+import { AnimatePresence, motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import {
   Block,
@@ -19,19 +19,17 @@ const filterOptions = SECTION_IDS.map((id) => ({
   label: id.charAt(0).toUpperCase() + id.slice(1),
 }))
 
-export default function ServicesPage({ data }: { data: ServicesPageData }) {
+export default function ServicesPage({ data }: { data: ServicesPageData[] }) {
   const [activeFilter, setActiveFilter] = useState<
     'individuals' | 'businesses' | 'organizations'
   >('individuals')
-  const [isScrolled, setIsScrolled] = useState(false)
-  console.log(isScrolled)
-  useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 100)
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
 
-  // Scroll spy for sections
+  // useEffect(() => {
+  //   const handleScroll = () => setIsScrolled(window.scrollY > 100)
+  //   window.addEventListener('scroll', handleScroll)
+  //   return () => window.removeEventListener('scroll', handleScroll)
+  // }, [])
+
   useEffect(() => {
     const navEl = document.getElementById('services-nav')
     const offset = (navEl?.offsetHeight ?? 0) + 8
@@ -40,8 +38,9 @@ export default function ServicesPage({ data }: { data: ServicesPageData }) {
         const visible = entries
           .filter((e) => e.isIntersecting)
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0]
-        if (visible?.target?.id)
+        if (visible?.target?.id) {
           setActiveFilter(visible.target.id as typeof activeFilter)
+        }
       },
       {
         root: null,
@@ -60,9 +59,20 @@ export default function ServicesPage({ data }: { data: ServicesPageData }) {
   const handleNavClick = (id: (typeof SECTION_IDS)[number]) => {
     setActiveFilter(id)
     const el = document.getElementById(id)
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
-  }
+    if (el) {
+      const navEl = document.getElementById('services-nav')
+      const offset = (navEl?.offsetHeight ?? 0) + 24
+      const bodyRect = document.body.getBoundingClientRect().top
+      const elementRect = el.getBoundingClientRect().top
+      const elementPosition = elementRect - bodyRect
+      const offsetPosition = elementPosition - offset
 
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth',
+      })
+    }
+  }
   const renderBlock = (block: Block) => {
     switch (block.__component) {
       case 'blocks.hero-section':
@@ -72,7 +82,7 @@ export default function ServicesPage({ data }: { data: ServicesPageData }) {
             data={{
               title: block.title,
               subtitle: block.subtitle,
-              description: block.description?.replace(/\n/g, '<br/>'),
+              description: block.description?.replace(/\n/g, '  '),
               background_image: block.background_image,
               cta_primary: block.cta_primary,
               cta_secondary: block.cta_secondary,
@@ -85,60 +95,90 @@ export default function ServicesPage({ data }: { data: ServicesPageData }) {
             }}
           />
         )
-
       case 'blocks.feature-section':
         return (
           <FeatureSection
             key={block.id}
-            tagline={block.tagline}
-            title={block.title}
-            description={block.description}
-            features={block.features.map((f: Feature) => ({
-              text: f.text,
-              icon: f.icon,
-            }))}
-            ctaText={block.ctaText}
-            href={block.href}
-            image={block.image}
-            backgroundColor={block.backgroundColor}
-            textColor={block.textColor}
-            reverse={block.reverse}
+            {...{
+              tagline: block.tagline,
+              title: block.title,
+              description: block.description,
+              features: block.features.map((f: Feature) => ({
+                text: f.text,
+                icon: f.icon,
+              })),
+              ctaText: block.ctaText,
+              href: block.href,
+              image: block.image,
+              backgroundColor: block.backgroundColor,
+              textColor: block.textColor,
+              reverse: block.reverse,
+            }}
           />
         )
-
       case 'blocks.services-section':
         return (
           <ServicesSection
             key={block.id}
-            tagline={block.tagline}
-            title={block.title}
-            description={block.description}
-            detailedServices={block.detailedServices.map(
-              (s: DetailedService) => ({
-                title: s.title,
-                description: s.description,
-                href: s.href,
-              })
-            )}
-            backgroundColor={block.backgroundColor}
-            textColor={block.textColor}
-            image={block.image?.url}
+            {...{
+              tagline: block.tagline,
+              title: block.title,
+              description: block.description,
+              detailedServices: block.detailedServices.map(
+                (s: DetailedService) => ({
+                  title: s.title,
+                  description: s.description,
+                  href: s.href,
+                })
+              ),
+              backgroundColor: block.backgroundColor,
+              textColor: block.textColor,
+              image: block.image?.url,
+            }}
           />
         )
-
       case 'blocks.get-in-touch':
         return (
           <GetInTouch
             key={block.id}
-            tagline={block.tagline}
-            title={block.title}
-            description={block.description}
-            image={block.image}
+            {...{
+              tagline: block.tagline,
+              title: block.title,
+              description: block.description,
+              image: block.image,
+            }}
           />
         )
-
       default:
         return null
+    }
+  }
+  // --- END OF CORRECTION ---
+
+  const groupedSections: { [key: string]: Block[] } = {
+    individuals: [],
+    businesses: [],
+    organizations: [],
+  }
+  const otherBlocks: Block[] = []
+  let heroBlock: Block | null = null
+
+  if (data[0] && data[0].blocks) {
+    for (const block of data[0].blocks) {
+      if (block.__component === 'blocks.hero-section') {
+        heroBlock = block
+        continue
+      }
+      const tagline = block.tagline?.toLowerCase() || ''
+      if (tagline.includes('individual')) {
+        groupedSections.individuals.push(block)
+      } else if (tagline.includes('business')) {
+        groupedSections.businesses.push(block)
+      } else if (tagline.includes('organization')) {
+        groupedSections.organizations.push(block)
+      } else {
+        otherBlocks.push(block)
+      }
     }
   }
 
@@ -150,64 +190,46 @@ export default function ServicesPage({ data }: { data: ServicesPageData }) {
         exit={{ opacity: 0, y: -20 }}
         transition={{ duration: 0.5 }}
       >
-        {data?.blocks?.map((block) => {
-          // check if block is hero
-          if (block.__component === 'blocks.hero-section') {
-            return (
-              <div key={block.id}>
-                {renderBlock(block)}
-
-                {/* Sticky Filter Navigation goes right after hero */}
-                <motion.section
-                  id="services-nav"
-                  className="sticky top-0 z-40 bg-Primary-Palm transition-all duration-300 py-10"
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5 }}
-                >
-                  <div className="container-custom mx-auto flex justify-center">
-                    <div className="flex items-center text-[#E2F2F1] bg-Primary-Palm rounded-full p-1">
-                      {filterOptions.map((option) => (
-                        <button
-                          key={option.id}
-                          onClick={() => handleNavClick(option.id)}
-                          className={`px-4 py-2.5 rounded-full text-base font-medium transition-all duration-200 cursor-pointer ${
-                            activeFilter === option.id
-                              ? 'bg-white text-Primary-Palm shadow-sm'
-                              : 'text-[#E2F2F1] bg-Primary-Palm hover:shadow-sm'
-                          }`}
-                        >
-                          {option.label}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                </motion.section>
-              </div>
-            )
-          }
-
-          // handle the rest of sections normally
-          const sectionId = block.tagline?.toLowerCase().includes('individual')
-            ? 'individuals'
-            : block.tagline?.toLowerCase().includes('business')
-              ? 'businesses'
-              : block.tagline?.toLowerCase().includes('organization')
-                ? 'organizations'
-                : undefined
-
-          return sectionId ? (
-            <section
-              key={block.id}
-              id={sectionId}
-              className="scroll-mt-[120px]"
+        {heroBlock && (
+          <div>
+            {renderBlock(heroBlock)}
+            <motion.section
+              id="services-nav"
+              className="sticky top-0 z-40 bg-Primary-Palm py-10 transition-all duration-300"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
             >
-              {renderBlock(block)}
+              <div className="container-custom mx-auto flex justify-center">
+                <div className="flex items-center rounded-full bg-Primary-Palm p-1 text-[#E2F2F1]">
+                  {filterOptions.map((option) => (
+                    <button
+                      key={option.id}
+                      onClick={() => handleNavClick(option.id)}
+                      className={`cursor-pointer rounded-full px-4 py-2.5 text-base font-medium transition-all duration-200 ${
+                        activeFilter === option.id
+                          ? 'bg-white text-Primary-Palm shadow-sm'
+                          : 'bg-Primary-Palm text-[#E2F2F1] hover:shadow-sm'
+                      }`}
+                    >
+                      {option.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </motion.section>
+          </div>
+        )}
+
+        {Object.entries(groupedSections).map(([sectionId, blocks]) =>
+          blocks.length > 0 ? (
+            <section key={sectionId} id={sectionId}>
+              {blocks.map((block) => renderBlock(block))}
             </section>
-          ) : (
-            renderBlock(block)
-          )
-        })}
+          ) : null
+        )}
+
+        {otherBlocks.map((block) => renderBlock(block))}
       </motion.div>
     </AnimatePresence>
   )

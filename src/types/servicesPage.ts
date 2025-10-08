@@ -25,8 +25,18 @@ export interface HeroSectionBlock {
   overlay_opacity: number
   tagline: string
   background_image: Image
-  cta_primary: CTA
-  cta_secondary: CTA
+  cta_primary?: {
+    label: string
+    url: string
+    target: string
+    style: string
+  }
+  cta_secondary?: {
+    label: string
+    url: string
+    target: string
+    style: string
+  }
   breadcrumbItems: BreadcrumbItem[]
 }
 export interface FeatureListItem {
