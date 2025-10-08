@@ -83,7 +83,7 @@ export default function BlogCard({ blog, href, news }: BlogCardProps) {
           <div className="w-6 h-6 rounded-full overflow-hidden">
             <Image
               src="/images/generalImages/avatar1.png"
-              alt={blog.author}
+              alt={blog.author || 'blog author image'}
               width={24}
               height={24}
             />

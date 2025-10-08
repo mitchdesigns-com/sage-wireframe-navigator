@@ -57,7 +57,7 @@ export default function CaseStudyCard({ caseStudy }: CaseStudyCardProps) {
             {caseStudy.HeroCarousel.description}
           </p>
 
-          <Link href={`/resources/case-studies/${caseStudy.slug}`}>
+          <div>
             {' '}
             <div className="group flex gap-1.5 items-center justify-start rounded-[100px]  cursor-pointer">
               {' '}
@@ -74,7 +74,7 @@ export default function CaseStudyCard({ caseStudy }: CaseStudyCardProps) {
                 </div>
               </div>
             </div>{' '}
-          </Link>
+          </div>
         </div>
       </div>
     </Link>

@@ -1,15 +1,15 @@
 'use client'
 import { useState } from 'react'
 
-import { useTranslations } from 'next-intl'
-import HeroCarousel from '@/components/sections/HeroCarousel'
-import FeatureSection from '@/components/sections/FeatureSection'
-import GetInTouch from '@/components/sections/GetInTouch'
-import Link from 'next/link'
-import ButtonIcon from '@/components/svg/ButtonIcon'
 import CaseStudyCard from '@/components/sections/CaseStudyCard'
-import Image from 'next/image'
+import FeatureSection from '@/components/sections/FeatureSection'
 import GalleryPopup, { singleImage } from '@/components/sections/GalleryPopup'
+import GetInTouch from '@/components/sections/GetInTouch'
+import HeroCarousel from '@/components/sections/HeroCarousel'
+import ButtonIcon from '@/components/svg/ButtonIcon'
+import { useTranslations } from 'next-intl'
+import Image from 'next/image'
+import Link from 'next/link'
 import {
   CaseStudy,
   ChallengeContentItem,
@@ -39,7 +39,7 @@ export default function SingleCaseStudyPage({
     setIsOpen(true)
   }
 
-  const galleryImages: singleImage[] = data[0].GallerySection.images.map(
+  const galleryImages: singleImage[] = data[0]?.GallerySection.images.map(
     (url, index) => ({
       id: index,
       attributes: {
