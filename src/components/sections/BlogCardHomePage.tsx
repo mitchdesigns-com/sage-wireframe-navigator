@@ -1,7 +1,7 @@
 'use client'
 
-import Image from 'next/image'
 import { ArrowUpRight } from 'lucide-react'
+import Image from 'next/image'
 import Link from 'next/link'
 export interface BreadcrumbItem {
   id: number
@@ -50,8 +50,7 @@ interface BlogCardProps {
   news?: boolean
 }
 
-export default function BlogCardHomepage({ blog, href, news }: BlogCardProps) {
-  console.log(blog)
+export default function BlogCardHomepage({ blog, href }: BlogCardProps) {
   return (
     <Link href={href} key={blog.slug} className="flex flex-col">
       <div className="h-[270px] w-full relative rounded-2xl overflow-hidden mb-4">
