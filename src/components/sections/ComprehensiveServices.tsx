@@ -211,18 +211,18 @@ const ServiceSection: React.FC<{
 }> = ({ section, isReversed = false, hasImage = false }) => {
   return (
     <div
-      className={`flex gap-4 items-start ${isReversed ? 'flex-row-reverse' : ''}`}
+      className={`flex gap-4 items-start flex-col md:flex-row ${isReversed ? 'flex-row-reverse' : ''}`}
     >
       {/* Content Card */}
       <div
-        className={`relative ${section.backgroundColor} rounded-[24px] p-10  ${hasImage ? 'flex-1' : 'w-full'} overflow-hidden min-h-[368px]`}
+        className={`relative ${section.backgroundColor} rounded-[24px] p-10  ${hasImage ? 'flex-1' : 'w-full'} max-w-full md:overflow-hidden md:min-h-[368px]`}
       >
         {/* Content */}
         <div
-          className={`relative z-10 flex flex-col gap-[30px] ${section.imageUrl && isReversed && 'items-end'}`}
+          className={`relative z-10 flex flex-col gap-[30px] min-w-full ${section.imageUrl && isReversed && 'items-end'}`}
         >
           {/* Header */}
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-2 ">
             <h3 className="font-aeonik font-bold text-2xl leading-[1.4] tracking-[-0.24px] text-[#caf48e]">
               {section.title}
             </h3>
@@ -365,14 +365,14 @@ export default function ComprehensiveServices({
       `}</style>
 
       <section className={`relative section-padding ${className}`}>
-        <div className="max-w-[1392px] mx-auto">
+        <div className="max-w-[1392px] mx-auto pt-8">
           {/* Header */}
-          <div className="flex flex-col items-center gap-20">
+          <div className="flex flex-col items-center gap-[18px] md:gap-20">
             {/* Decorative top vector can go here if needed */}
 
             {/* Title with decorative vector */}
             <div className="relative flex flex-wrap justify-center items-center gap-x-4 max-w-[768px]">
-              <h2 className="font-aeonik text-[40px] font-bold text-[#1e1e1e] text-center">
+              <h2 className="font-aeonik text-[28px] md:text-[40px] font-bold text-[#1e1e1e] text-center">
                 <span>Discover Our Comprehensive </span>
                 <span className="relative inline-block">
                   <span className="z-[2] relative">Solutions</span>

@@ -35,7 +35,7 @@ const Tagline: React.FC<TaglineProps> = ({
   const finalClasses = taglineColor ? taglineClasses : categoryClasses
   return (
     <div
-      className={`flex flex-col  justify-start pb-1 w-full ${className || 'items-start'}`}
+      className={`flex flex-col justify-center md:justify-start pb-1 w-full ${className || 'items-start'}`}
     >
       <div className="flex h-[34.788px] items-center justify-center">
         <div className="transform rotate-[-6deg]">

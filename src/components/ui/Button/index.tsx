@@ -233,7 +233,7 @@ const useButtonContent = (props: BaseButtonProps) => {
         {!loading && leftIcon && (
           <LeftIcon size={safeSize} variant={safeVariant} />
         )}
-        <div className="font-['Aeonik:Medium',_sans-serif] leading-[0] not-italic relative shrink-0 text-[#000404] text-[16px] text-nowrap">
+        <div className="font-['Aeonik:Medium',_sans-serif] leading-[0] not-italic relative shrink-0 text-[#000404] text-sm md:text-base text-nowrap">
           <p className="leading-[1.5] whitespace-pre">{children}</p>
         </div>
         {!loading && rightIcon && <CubeIcon size={24} />}

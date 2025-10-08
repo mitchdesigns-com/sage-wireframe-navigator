@@ -1,5 +1,5 @@
 'use client'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 
 export default function VideoPlayer({ video }: { video: string }) {
@@ -12,12 +12,22 @@ export default function VideoPlayer({ video }: { video: string }) {
       setIsPlaying(true)
     }
   }
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    handleResize()
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
   return (
     <div className="relative">
       <video
         ref={videoRef}
         src={`${video}`}
-        className="w-full rounded-[40px]"
+        className="w-full rounded-xl md:rounded-[40px]"
         muted
         loop
         playsInline
@@ -30,13 +40,23 @@ export default function VideoPlayer({ video }: { video: string }) {
             className="cursor-pointer transition-transform hover:scale-105"
             onClick={handlePlay}
           >
-            <Image
-              src="/images/generalImages/VideoButton.png"
-              alt="VideoButton"
-              width={180}
-              height={180}
-              className="object-cover"
-            />
+            {isMobile ? (
+              <Image
+                src="/images/generalImages/VideoButton2.png"
+                alt="VideoButton"
+                width={56}
+                height={56}
+                className="object-cover"
+              />
+            ) : (
+              <Image
+                src="/images/generalImages/VideoButton.png"
+                alt="VideoButton"
+                width={180}
+                height={180}
+                className="object-cover"
+              />
+            )}
           </div>
         </div>
       )}

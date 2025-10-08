@@ -60,10 +60,10 @@ function ServiceCard({
 
       <div className="font-aeonik-bold text-primary-black text-center tracking-[-0.32px]">
         <p className={label === 'Individuals' ? 'whitespace-pre' : undefined}>
-          <span className="font-aeonik-regular text-[20px] leading-[1.5]">
+          <span className="font-aeonik-regular text-lg md:text-[20px] leading-[1.5]">
             for{' '}
           </span>
-          <span className="text-primary-palm text-[32px] leading-[1.3]">
+          <span className="text-primary-palm text-2xl md:text-[32px] leading-[1.3]">
             {label}
           </span>
         </p>
@@ -79,7 +79,9 @@ function ServiceCard({
 
       <div className="flex flex-row gap-2 text-Primary-Palm">
         <Button variant="link" href={href} rightIcon={false}>
-          <span>Learn More</span>
+          <span className="text-sm md:text-base font-medium text-Primary-Palm">
+            Learn More
+          </span>
         </Button>
         <ChevronRight />
       </div>
@@ -96,8 +98,8 @@ export default function Services({
   SERVICES,
 }: ServicesProps) {
   return (
-    <section className="bg-secondary-dark-palm px-[60px] py-20">
-      <div className="bg-secondary-light-scrub rounded-[40px] p-[60px] max-w-[1392px] mx-auto">
+    <section className="bg-secondary-dark-palm px-4 md:px-[60px] py-[36px] md:py-20">
+      <div className="bg-secondary-light-scrub rounded-[40px] px-5 py-15 md:p-[60px] max-w-[1392px] mx-auto">
         <SectionHeader
           heading={heading}
           description={description}
@@ -105,7 +107,7 @@ export default function Services({
         />
 
         <div className="flex flex-col gap-16 items-start justify-start w-full mb-16">
-          <div className="flex gap-12 items-start justify-start w-full">
+          <div className="flex gap-12 items-start justify-start w-full flex-col md:flex-row">
             {SERVICES?.map((service) => (
               <ServiceCard
                 key={service.id}
@@ -119,8 +121,8 @@ export default function Services({
           </div>
         </div>
 
-        <div className="flex justify-center">
-          <Button variant="primary" href={href} rightIcon={true}>
+        <div className="flex justify-center w-full">
+          <Button variant="primary" href={href} rightIcon={true} size="large">
             {cta}
           </Button>
         </div>

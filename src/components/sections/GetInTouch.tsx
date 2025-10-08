@@ -21,20 +21,20 @@ const GetInTouch: React.FC<GetInTouchProps> = ({
   image,
 }) => {
   return (
-    <section className="py-25 bg-[#E2F2F1]">
-      <div className="mx-auto max-w-[1392px] flex gap-35 bg-Primary-Palm py-16 px-15 rounded-[40px]">
+    <section className="py-11 md:py-25  px-4">
+      <div className="mx-auto max-w-[1392px] flex gap-8 md:gap-35 bg-Primary-Palm py-8 md:py-16 px-4 md:px-15 rounded-3xl md:rounded-[40px] flex-col md:flex-row ">
         <div className="max-w-[757px] my-auto">
           <Tagline text={tagline} />
 
-          <h2 className="text-[48px] font-bold leading-[1.2] tracking-[-0.48px] mb-6 text-white">
+          <h2 className="text-[28px] md:text-[48px] font-bold leading-[1.2] tracking-[-0.48px] mb-6 text-white">
             {title}
           </h2>
-          <p className="text-[32px] font-light leading-[1.5] text-white pb-8">
+          <p className="text-2xl md:text-[32px] font-light leading-[1.5] text-white pb-8">
             {description}
           </p>
           <Link
             href={'/contact'}
-            className="inline-block  bg-primary text-white rounded-lg font-medium group cursor-pointer"
+            className="inline-block w-full md:w-fit bg-primary text-white rounded-lg font-medium group cursor-pointer"
           >
             <Button
               variant="dark"
@@ -46,7 +46,7 @@ const GetInTouch: React.FC<GetInTouchProps> = ({
             </Button>
           </Link>
         </div>
-        <div className="relative aspect-[373/370] w-[373px]">
+        <div className="relative aspect-[373/370] w-full md:w-[373px]">
           <Image
             src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${image.url}`}
             fill

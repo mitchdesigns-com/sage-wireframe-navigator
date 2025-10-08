@@ -52,9 +52,9 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
 }) => {
   return (
     <section style={{ backgroundColor }}>
-      <div className="container-custom mx-auto max-w-[1392px] py-28">
+      <div className="container-custom mx-auto max-w-[1392px] py-20 md:py-28">
         <div
-          className={`flex items-center gap-18 ${
+          className={`flex items-center gap-20 md:gap-18 flex-col md:flex-row ${
             reverse ? 'flex-row-reverse' : ''
           }`}
         >
@@ -71,15 +71,15 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
                   <Tagline text={tagline} />
                 )}
               </div>
-              <div className="mb-8">
+              <div className="mb-8 text-center md:text-start">
                 <h2
-                  className="text-[48px] font-bold leading-[1.2] tracking-[-1px] mb-6 whitespace-pre-line"
+                  className="text-[28px] md:text-[48px] font-bold leading-[1.2] tracking-[-1px] mb-6 whitespace-pre-line"
                   style={{ color: textColor }}
                 >
                   {title}
                 </h2>
                 <p
-                  className={`text-p whitespace-pre-line ${textColor === '#1E1E1E' ? 'text-Secondary-Text' : 'text-Secondary-Light-Scrub'}`}
+                  className={`text-base md:text-p md:whitespace-pre-line ${textColor === '#1E1E1E' ? 'text-Secondary-Text' : 'text-Secondary-Light-Scrub'}`}
                   // style={{ color: textColor }}
                 >
                   {description}
@@ -102,7 +102,7 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
                       />
                     </div>
                     <span
-                      className="text-[16px] leading-[1.5] flex-1 text-Secondary-Light-Scrub"
+                      className="text-xs md:text-[16px] leading-[1.5] flex-1 text-Secondary-Light-Scrub"
                       style={{ color: textColor }}
                     >
                       {feature.text}
@@ -150,7 +150,7 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
             {ctaText && (
               <Link
                 href={href || '/contact'}
-                className="inline-block  bg-primary text-white rounded-lg font-medium group cursor-pointer"
+                className="flex justify-center w-full md:inline-block  bg-primary text-white rounded-lg font-medium group cursor-pointer "
               >
                 <Button
                   variant={
@@ -161,7 +161,7 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
                         : 'light'
                   }
                   rightIcon={true}
-                  fullWidth
+
                   //   onClick={() => setIsMenuOpen(false)}
                 >
                   {ctaText}
@@ -173,7 +173,7 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
           {/* Image */}
           <div className="flex-1">
             <div
-              className="aspect-[606/646] rounded-[40px] bg-cover bg-center w-[606px]"
+              className="aspect[396/351] md:aspect-[606/646] rounded-[40px] bg-cover bg-center w-[396px] h-[351px] md:w-[606px]"
               style={{
                 backgroundImage: `url('${process.env.NEXT_PUBLIC_API_BASE_URL}${image.url}')`,
               }}
