@@ -21,7 +21,7 @@ const GetInTouch: React.FC<GetInTouchProps> = ({
   image,
 }) => {
   return (
-    <section className="py-11 md:py-25  px-4">
+    <section className="py-8 md:py-25  px-4">
       <div className="mx-auto max-w-[1392px] flex gap-8 md:gap-35 bg-Primary-Palm py-8 md:py-16 px-4 md:px-15 rounded-3xl md:rounded-[40px] flex-col md:flex-row ">
         <div className="max-w-[757px] my-auto">
           <Tagline text={tagline} />

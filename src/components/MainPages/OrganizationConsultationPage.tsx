@@ -54,16 +54,18 @@ const BLOCKS: {
   'blocks.feature-section':
     FeatureSection as React.ComponentType<FeatureSectionBlock>,
   'blocks.concierge-help': (props: ConciergeHelpBlock) => (
-    <section className="py-25 bg-Secondary-Light-Scrub">
-      <div className="max-w-[764px] mx-auto text-center">
+    <section className="py-8 md:py-25 bg-Secondary-Light-Scrub">
+      <div className="max-w-[764px] mx-auto text-center  px-4 md:px-0">
         <div className="space-y-4">
           <h2 className="text-Primary-Black heading-lg whitespace-pre-line">
             {props.title}
           </h2>
-          <p className="text-Secondary-Text text-base">{props.description}</p>
+          <p className="text-Secondary-Text text-sm md:text-base">
+            {props.description}
+          </p>
         </div>
       </div>
-      <div className="max-w-[1392px] mx-auto w-full pt-20">
+      <div className="max-w-[1392px] mx-auto w-full pt-8 md:pt-20 px-4 md:px-0">
         <div className="flex mb-8 gap-12 justify-center items-center text-center flex-wrap">
           {props.list?.map((li) => (
             <div
@@ -79,10 +81,10 @@ const BLOCKS: {
                   fill
                 />
               </div>
-              <h5 className="text-[#000404] text-[24px] font-bold">
+              <h5 className="text-[#000404] text-[20px] md:text-2xl font-bold">
                 {li.title}
               </h5>
-              <span className="text-Secondary-Text text-[16px] leading-[1.5] flex-1">
+              <span className="text-Secondary-Text text-sm md:text-base leading-[1.5] flex-1">
                 {li.description}
               </span>
             </div>

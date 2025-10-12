@@ -47,7 +47,7 @@ export default function Resources({ Resources }: { Resources: ResourcesData }) {
     return () => window.removeEventListener('resize', handleResize)
   }, [])
   return (
-    <section className="py-12 md:py-25 bg-sage-gradient">
+    <section className="py-8 md:py-25 bg-sage-gradient">
       <div className="max-w-[1392px] px-4 mx-auto">
         <SectionHeader
           heading={SectionHeaderResources.heading}

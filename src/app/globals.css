@@ -753,7 +753,8 @@
   }
 
   .heading-lg {
-    font-size: 2rem;
+    font-size: 24px;
+    font-weight: 700;
   }
 }
 

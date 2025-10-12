@@ -195,7 +195,7 @@ export default function ServicesPage({ data }: { data: ServicesPageData[] }) {
             {renderBlock(heroBlock)}
             <motion.section
               id="services-nav"
-              className="sticky top-0 z-40 bg-Primary-Palm py-10 transition-all duration-300"
+              className="sticky top-0 z-40 bg-Primary-Palm pt-15 md:py-10 transition-all duration-300"
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}

@@ -285,7 +285,7 @@ const ServiceSection: React.FC<{
       {/* Image */}
       {hasImage && section.imageUrl && !isReversed && (
         <div
-          className="w-[396px] md:w-[532px] h-[386px] rounded-[32px] bg-cover bg-center bg-no-repeat shrink-0"
+          className=" w-full md:w-[532px] h-[386px] rounded-[32px] bg-cover bg-center bg-no-repeat shrink-0"
           style={{
             backgroundImage: `url('/images/generalImages/Solutions.png')`,
           }}

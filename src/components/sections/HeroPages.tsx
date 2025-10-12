@@ -35,26 +35,28 @@ const HeroPages: React.FC<HeroProps> = ({
 }) => {
   return (
     <section
-      className={`pb-20 pt-10  bg-gradient-to-t from-[#013530] to-[#025850]`}
+      className={`md:pb-20 md:pt-10 py-8 bg-gradient-to-t from-[#013530] to-[#025850]`}
     >
-      <div className="px-16">
+      <div className="px-7 md:px-0">
         <div className="max-w-[1392px] mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-[10px] md:gap-20">
             {/* Left side */}
-            <div className="">
-              <div className="pb-16">
+            <div className="flex justify-center md:items-start items-center flex-col">
+              <div className="pb-8 md:pb-16">
                 <Breadcrumb items={breadcrumbItems} heroPages />
               </div>
-              <Tagline text={tagline} />
+              <Tagline text={tagline} className="items-center md:items-start" />
 
-              <h1 className="text-white font-bold text-[56px] leading-[1.2] tracking-[-0.56px] ">
+              <h1 className="text-white font-bold text-[32px] md:text-[56px] leading-[1.2] tracking-[-0.56px] text-center md:text-start">
                 {title}
               </h1>
             </div>
 
             {/* Right side */}
             <div className="space-y-6 my-auto">
-              <p className="text-white text-p">{description}</p>
+              <p className="text-white text-base md:text-p text-center md:text-start">
+                {description}
+              </p>
               {/* CTA */}
               {button && (
                 <Link

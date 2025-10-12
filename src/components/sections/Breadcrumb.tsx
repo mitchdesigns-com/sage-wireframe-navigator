@@ -38,7 +38,7 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({
             {item.href && !isLast ? (
               <Link
                 href={item.href}
-                className={`text-sm font-regular ${
+                className={`text-xs md:text-sm font-regular ${
                   heroWithImage ? 'text-Primary-Palm' : 'text-white'
                 } transition`}
               >
@@ -46,7 +46,7 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({
               </Link>
             ) : (
               <span
-                className={`text-sm font-regular ${
+                className={`text-xs md:text-sm font-regular ${
                   heroPages
                     ? 'text-[#a5a5a5]'
                     : heroWithImage

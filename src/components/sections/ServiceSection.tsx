@@ -23,11 +23,11 @@ const ServiceSection: React.FC<ServiceSectionProps> = ({
   bgColor = 'bg-Primary-Palm',
 }) => {
   return (
-    <section className={`py-28 ${bgColor}`}>
-      <div className="max-w-[1392px] mx-auto space-y-20">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
+    <section className={`py-8 md:py-28 ${bgColor}`}>
+      <div className="max-w-[1392px] mx-auto space-y-6 md:space-y-20 px-4 md:px-0">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-20">
           <div>
-            <h2 className="text-white text-[40px] font-bold leading-[2.75rem] tracking-[-1px]">
+            <h2 className="text-white text-[28px] md:text-[40px] font-bold leading-[2.75rem] tracking-[-1px]">
               {title.split('<br/>').map((line, i) => (
                 <span key={i}>
                   {line}
@@ -37,7 +37,7 @@ const ServiceSection: React.FC<ServiceSectionProps> = ({
             </h2>
           </div>
           <div>
-            <p className="text-white text-p">{description}</p>
+            <p className="text-white text-base md:text-p">{description}</p>
             <Link
               href={buttonHref}
               className="inline-block rounded-lg font-medium group cursor-pointer pt-8"
@@ -49,12 +49,12 @@ const ServiceSection: React.FC<ServiceSectionProps> = ({
           </div>
         </div>
 
-        <div className="aspect-[1384/540] bg-center bg-cover bg-no-repeat rounded-[40px] relative">
+        <div className="aspect-[1384/540] bg-center bg-cover bg-no-repeat rounded-3xl md:rounded-[40px] relative">
           <Image
             fill
             src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${image.url}`}
             alt={image.alternativeText || 'service image'}
-            className="rounded-[40px] object-cover"
+            className="rounded-3xl md:rounded-[40px] object-cover"
           />
         </div>
       </div>

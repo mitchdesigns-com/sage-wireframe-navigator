@@ -25,14 +25,16 @@ export default function FAQSection({
   const [openFaq, setOpenFaq] = useState<number | null>(null)
 
   return (
-    <section key={id} className="py-25 bg-Secondary-Scrub">
-      <div className="px-16">
+    <section key={id} className="py-15 md:py-25 bg-Secondary-Scrub">
+      <div className="px-4 md:px-0">
         <div className="max-w-[1392px] mx-auto">
-          <div className="max-w-[768px] mx-auto space-y-20">
+          <div className="max-w-[768px] mx-auto space-y-8 md:space-y-20">
             {/* Title + Description */}
             <div className="text-center space-y-6">
-              <h2 className="text-black font-bold text-[48px]">{title}</h2>
-              <p className="text-black text-p">{description}</p>
+              <h2 className="text-black font-bold text-4xl md:text-[48px]">
+                {title}
+              </h2>
+              <p className="text-black text-base md:text-p">{description}</p>
             </div>
 
             {/* FAQ List */}
@@ -46,7 +48,7 @@ export default function FAQSection({
                     className="w-full py-5 flex items-center justify-between gap-6 text-left hover:bg-Secondary-Scrub transition-colors"
                     onClick={() => setOpenFaq(openFaq === index ? null : index)}
                   >
-                    <h3 className="text-black font-bold text-p flex-1">
+                    <h3 className="text-black font-bold text-base md:text-p flex-1">
                       {faq.question}
                     </h3>
                     <div
@@ -60,7 +62,7 @@ export default function FAQSection({
 
                   {openFaq === index && (
                     <div className="pb-6">
-                      <p className="text-black text-base leading-[1.5]">
+                      <p className="text-black text-sm md:text-base leading-[1.5]">
                         {faq.answer}
                       </p>
                     </div>

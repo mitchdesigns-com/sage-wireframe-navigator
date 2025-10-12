@@ -21,7 +21,7 @@ export default function BlogSection({
   homePage,
 }: BlogSectionProps) {
   return (
-    <section className="max-w-[1392px] mx-auto px-6 py-11 md:py-25">
+    <section className="max-w-[1392px] mx-auto px-6 py-8 md:py-25">
       <div className="flex items-end justify-between mb-15 flex-col md:flex-row">
         <div className="text-center md:text-start">
           <Tagline text="Blogs" className="items-center md:items-start" />

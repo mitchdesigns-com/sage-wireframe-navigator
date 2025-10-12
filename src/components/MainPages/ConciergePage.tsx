@@ -53,24 +53,26 @@ const BLOCKS: {
   'blocks.feature-section':
     FeatureSection as React.ComponentType<FeatureSectionBlock>,
   'blocks.details-section': (props: DetailsSectionBlock) => (
-    <section className="py-28 bg-Primary-Palm">
-      <div className="max-w-[1392px] mx-auto space-y-20">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
+    <section className="py-8 md:py-28 bg-Primary-Palm">
+      <div className="max-w-[1392px] mx-auto space-y-6 md:space-y-20 px-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-20">
           <div>
-            <h2 className="text-white text-[40px] font-bold leading-[2.75rem]">
+            <h2 className="text-white text-[28px] md:text-[40px] font-bold leading-[2.75rem]">
               {props.title}
             </h2>
           </div>
           <div>
-            <p className="text-white text-p">{props.description}</p>
+            <p className="text-white text-base md:text-p">
+              {props.description}
+            </p>
           </div>
         </div>
-        <div className="aspect-[1384/540] bg-center bg-cover bg-no-repeat rounded-[40px] relative">
+        <div className="aspect-[1384/540] bg-center bg-cover bg-no-repeat rounded-3xl md:rounded-[40px] relative">
           <Image
             fill
             src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${props.image.url}`}
             alt={props.image.alternativeText || 'Culturally Sensitive Care'}
-            className="rounded-[40px] object-cover"
+            className="rounded-3xl md:rounded-[40px] object-cover"
           />
         </div>
       </div>

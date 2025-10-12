@@ -31,7 +31,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ data }) => {
       case 'medium':
         return 'h-80 md:h-96'
       case 'large':
-        return 'h-96 md:h-[30rem]'
+        return 'h-80 md:h-[30rem]'
       case 'full':
         return 'h-screen'
       default:
@@ -111,14 +111,14 @@ const HeroSection: React.FC<HeroSectionProps> = ({ data }) => {
       <div
         className={`relative z-10 h-full flex flex-col  ${getAlignmentClass()}`}
       >
-        <div className="max-w-[1392px] w-full mx-auto py-16">
+        <div className="max-w-[1392px] w-full mx-auto py-20 md:py-16 px-4 md:px-0">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="max-w-4xl"
           >
-            <Breadcrumb items={breadcrumbItems} />
+            <Breadcrumb items={breadcrumbItems} className="pb-8 md:pb-0" />
             {/* Subtitle */}
             {subtitle && (
               <motion.p
@@ -152,7 +152,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ data }) => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
-                className="text-sm md:text-[18px] text-current "
+                className="text-base md:text-[18px] text-current "
                 dangerouslySetInnerHTML={{ __html: description }}
               />
             )}

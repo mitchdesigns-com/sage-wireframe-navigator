@@ -46,7 +46,7 @@ const HeroWithVideo: React.FC<HeroProps> = ({
                 />
               </div>
             )}
-            <h1 className="text-white font-bold text-4xl md:text-[56px] leading-[1.2] tracking-[-1px] md:tracking-[-0.56px] pt-20 pb-8 md:pb-6">
+            <h1 className="text-white font-bold text-4xl md:text-[56px] leading-[1.2] tracking-[-1px] md:tracking-[-0.56px] pt-2 pb-8 md:pb-6">
               {title}
             </h1>
             <p className="text-white text-sm md:text-p leading-[1.5] px-5 md:px-0">
@@ -70,7 +70,7 @@ const HeroWithVideo: React.FC<HeroProps> = ({
               </div>
             )}
           </div>
-          <div className=" pt-16">
+          <div className="pt-8 md:pt-16">
             <div className="relative">
               {' '}
               {video?.url && (

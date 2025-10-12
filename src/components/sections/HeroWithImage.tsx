@@ -45,7 +45,7 @@ const HeroWithImage: React.FC<HeroWithImageProps> = ({
 }) => {
   return (
     <section>
-      <div className="h-[680px] relative">
+      <div className="h-[320px] md:h-[680px] relative">
         <Image
           src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${image.url}`}
           fill
@@ -54,22 +54,24 @@ const HeroWithImage: React.FC<HeroWithImageProps> = ({
         />
       </div>
 
-      <div className="mx-auto max-w-[1392px] w-full pt-8 pb-20">
+      <div className="mx-auto max-w-[1392px] w-full py-8 md:pt-8 md:pb-20 px-4 md:px-0">
         <Breadcrumb items={breadcrumbItems} heroWithImage />
 
-        <div className="flex gap-20 justify-center items-end pt-16">
-          <div className="space-y-2 min-w-[656px]">
+        <div className="flex gap-4 md:gap-20 justify-center items-end pt-8 md:pt-16 flex-col md:flex-row">
+          <div className="space-y-2 min-w-full md:min-w-[656px]">
             {tagline && <Tagline text={tagline} />}
-            <h1 className="text-Primary-Black text-[56px] leading-[1.2] tracking-[-0.56px]">
+            <h1 className="text-Primary-Black text-[34px] md:text-[56px] leading-[1.2] tracking-[-0.56px]">
               {title}
             </h1>
           </div>
 
-          <div>
+          <div className="w-full">
             {description && (
-              <p className="text-Secondary-Text text-p pb-8">{description}</p>
+              <p className="text-Secondary-Text text-base md:text-p pb-8">
+                {description}
+              </p>
             )}
-            <div className="gap-4 flex">
+            <div className="gap-4 flex overflow-x-auto scrollbar-hide md:overflow-visible">
               {primaryButton && (
                 <Link href={primaryButton.href} className="inline-block group">
                   <Button

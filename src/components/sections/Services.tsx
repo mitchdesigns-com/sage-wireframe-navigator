@@ -98,8 +98,8 @@ export default function Services({
   SERVICES,
 }: ServicesProps) {
   return (
-    <section className="bg-secondary-dark-palm px-4 md:px-[60px] py-[36px] md:py-20">
-      <div className="bg-secondary-light-scrub rounded-[40px] px-5 py-15 md:p-[60px] max-w-[1392px] mx-auto">
+    <section className="bg-secondary-dark-palm px-4 md:px-[60px] py-8 md:py-20">
+      <div className="bg-secondary-light-scrub rounded-[40px] px-5 py-8 md:py-15 md:p-[60px] max-w-[1392px] mx-auto">
         <SectionHeader
           heading={heading}
           description={description}
@@ -107,7 +107,7 @@ export default function Services({
         />
 
         <div className="flex flex-col gap-16 items-start justify-start w-full mb-16">
-          <div className="flex gap-12 items-start justify-start w-full flex-col md:flex-row">
+          <div className="flex gap-8 md:gap-12 items-start justify-start w-full flex-col md:flex-row">
             {SERVICES?.map((service) => (
               <ServiceCard
                 key={service.id}
