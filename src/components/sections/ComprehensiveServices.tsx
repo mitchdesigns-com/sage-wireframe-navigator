@@ -215,11 +215,11 @@ const ServiceSection: React.FC<{
     >
       {/* Content Card */}
       <div
-        className={`relative ${section.backgroundColor} rounded-[24px] p-10  ${hasImage ? 'flex-1' : 'w-full'} max-w-full md:overflow-hidden md:min-h-[368px]`}
+        className={`relative ${section.backgroundColor} rounded-[24px] px-4 py-10 md:p-10  ${hasImage ? 'flex-1' : 'w-full'} max-w-full min-h-full md:overflow-hidden md:min-h-[368px]`}
       >
         {/* Content */}
         <div
-          className={`relative z-10 flex flex-col gap-[30px] min-w-full ${section.imageUrl && isReversed && 'items-end'}`}
+          className={`relative z-10 flex flex-col gap-4 md:gap-[30px] min-w-full ${section.imageUrl && isReversed && 'items-end'}`}
         >
           {/* Header */}
           <div className="flex flex-col gap-2 ">
@@ -234,8 +234,8 @@ const ServiceSection: React.FC<{
           </div>
 
           {/* Links */}
-          <div className="flex gap-22 justify-between">
-            <div className="flex flex-col min-w-[452px] max-w-full justify-end">
+          <div className="flex gap-15 md:gap-22 justify-between flex-col md:flex-row w-full md:w-fit">
+            <div className="flex flex-col md:min-w-[452px] max-w-full justify-end">
               {section.links.map((link, index) => (
                 <div key={index}>
                   <ServiceButton
@@ -249,12 +249,13 @@ const ServiceSection: React.FC<{
               ))}{' '}
             </div>
             {hasImage && (
-              <div className="relative h-[190px] w-[225px]">
+              <div className="relative h-[190px] w-[225px] ">
                 <Image
                   src="/images/generalImages/VectorHome.png"
                   alt="vector"
                   fill
-                  className="object-cover object-bottom"
+                  className="object-cover md:object-bottom object-right-bottom "
+                  priority
                 />
 
                 {/* <div
@@ -271,7 +272,7 @@ const ServiceSection: React.FC<{
         {/* Background Image for third section */}
         {section.imageUrl && isReversed && (
           <div
-            className="absolute left-0 top-0 w-[344px] h-[395px] bg-cover bg-center bg-no-repeat rounded-[24px]"
+            className="relative md:absolute left-8 md:left-0 -bottom-10 md:top-0 w-[344px] h-[395px] bg-cover bg-center bg-no-repeat rounded-[24px]"
             style={{
               backgroundImage: `url('${section.imageUrl}')`,
               // backgroundPosition: '99.04% 26.47%',
@@ -284,7 +285,7 @@ const ServiceSection: React.FC<{
       {/* Image */}
       {hasImage && section.imageUrl && !isReversed && (
         <div
-          className="w-[532px] h-[386px] rounded-[32px] bg-cover bg-center bg-no-repeat shrink-0"
+          className="w-[396px] md:w-[532px] h-[386px] rounded-[32px] bg-cover bg-center bg-no-repeat shrink-0"
           style={{
             backgroundImage: `url('/images/generalImages/Solutions.png')`,
           }}
@@ -391,8 +392,8 @@ export default function ComprehensiveServices({
               <ServiceSection section={sections[0]} hasImage={true} />
 
               {/* Second Row - Concierge + Consultation */}
-              <div className="flex gap-4">
-                <div className="w-[532px]">
+              <div className="flex gap-4 flex-col md:flex-row">
+                <div className="w-fit md:w-[532px]">
                   <ServiceSection section={sections[1]} hasImage={false} />
                 </div>
                 <div className="flex-1">

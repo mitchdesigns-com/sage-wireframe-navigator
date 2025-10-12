@@ -1,4 +1,5 @@
-import React from 'react'
+'use client'
+import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Button from '../ui/Button'
 import Tagline from './Tagline'
@@ -32,32 +33,42 @@ const CentersSection: React.FC<CentersSectionProps> = ({
   reverse = false,
   secondaryButton,
 }) => {
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    handleResize()
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
   return (
     <section style={{ backgroundColor }}>
-      <div className="container-custom mx-auto max-w-[1392px] py-28">
+      <div className="px-4 md:px-0 mx-auto max-w-[1392px] py-11 md:py-28">
         <div
-          className={`flex items-center gap-18 ${
+          className={`flex items-center flex-col md:flex-row gap-8 md:gap-18 ${
             reverse ? 'flex-row-reverse' : ''
           }`}
         >
           {/* Content */}
           <div className="flex-1">
-            <div className="mb-8">
+            <div className="mb-0 md:mb-8">
               <div>
                 <Tagline
                   text={tagline}
                   taglineColor={backgroundColor === '#DAF7AF' ? '#DAF7AF' : ''}
                 />
               </div>
-              <div className="mb-8">
+              <div className="mb-0 md:mb-8">
                 <h2
-                  className="text-[48px] font-bold leading-[1.2] tracking-[-0.48px] mb-6 whitespace-pre-line"
+                  className="text-[28px] md:text-[48px] font-bold leading-[1.2] tracking-[-0.48px] mb-4 md:mb-6 whitespace-pre-line text-center md:text-start"
                   style={{ color: textColor }}
                 >
                   {title}
                 </h2>
                 <p
-                  className={`text-p ${textColor === '#1E1E1E' ? 'text-Secondary-Text' : 'text-Secondary-Light-Scrub'} whitespace-pre-line`}
+                  className={`text-sm md:text-p ${textColor === '#1E1E1E' ? 'text-Secondary-Text' : 'text-Secondary-Light-Scrub'} whitespace-pre-line text-center md:text-start`}
                 >
                   {description}
                 </p>
@@ -65,55 +76,98 @@ const CentersSection: React.FC<CentersSectionProps> = ({
             </div>
 
             {/* CTA */}
-            {ctaText && (
-              <Link
-                href={href || '/contact'}
-                className={`inline-block  bg-primary text-white rounded-lg font-medium group cursor-pointer ${secondaryButton ? ' w-[148px]' : ''}`}
-              >
-                <Button
-                  variant={
-                    backgroundColor === '#DAF7AF'
-                      ? 'primary'
-                      : backgroundColor === '#F0F8F8'
-                        ? 'primary'
-                        : backgroundColor === '#E2F2F1'
+            {!isMobile && (
+              <>
+                {ctaText && (
+                  <Link
+                    href={href || '/contact'}
+                    className={`inline-block  bg-primary text-white rounded-lg font-medium group cursor-pointer ${secondaryButton ? ' w-[148px]' : ''}`}
+                  >
+                    <Button
+                      variant={
+                        backgroundColor === '#DAF7AF'
                           ? 'primary'
-                          : 'light'
-                  }
-                  rightIcon={secondaryButton ? false : true}
-                  fullWidth
-                >
-                  {ctaText}
-                </Button>
-              </Link>
-            )}
-            {secondaryButton && (
-              <Button href="/our-network" variant="light-link" rightIcon={true}>
-                Explore Our Network
-              </Button>
+                          : backgroundColor === '#F0F8F8'
+                            ? 'primary'
+                            : backgroundColor === '#E2F2F1'
+                              ? 'primary'
+                              : 'light'
+                      }
+                      rightIcon={secondaryButton ? false : true}
+                      fullWidth
+                    >
+                      {ctaText}
+                    </Button>
+                  </Link>
+                )}
+                {secondaryButton && (
+                  <Button
+                    href="/our-network"
+                    variant="light-link"
+                    rightIcon={true}
+                  >
+                    Explore Our Network
+                  </Button>
+                )}
+              </>
             )}
           </div>
 
           {/* Image */}
-          <div className="flex-1">
+          <div className="flex-1 w-full px-[22px] md:px-0">
             {list && (
               <div className="grid grid-cols-2 gap-4 ">
                 {list[0]?.list.map((li, idx) => (
                   <div
                     key={idx}
-                    className="flex items-start  flex-col bg-white w-full h-[120px] rounded-[8px] relative overflow-hidden"
+                    className="flex items-start  flex-col bg-white w-full h-[68px] md:h-[120px] rounded-[8px] relative overflow-hidden"
                   >
                     <Image
                       fill
                       src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${li.url}`}
                       alt="center"
-                      className="object-contain p-5"
+                      className="object-contain px-5 md:p-5"
                     />
                   </div>
                 ))}
               </div>
             )}
           </div>
+          {isMobile && (
+            <>
+              {ctaText && (
+                <Link
+                  href={href || '/contact'}
+                  className={`inline-block  bg-primary text-white rounded-lg font-medium group cursor-pointer ${secondaryButton ? 'w-full  md:w-[148px]' : ''}`}
+                >
+                  <Button
+                    variant={
+                      backgroundColor === '#DAF7AF'
+                        ? 'primary'
+                        : backgroundColor === '#F0F8F8'
+                          ? 'primary'
+                          : backgroundColor === '#E2F2F1'
+                            ? 'primary'
+                            : 'light'
+                    }
+                    rightIcon={secondaryButton ? false : true}
+                    fullWidth
+                  >
+                    {ctaText}
+                  </Button>
+                </Link>
+              )}
+              {secondaryButton && (
+                <Button
+                  href="/our-network"
+                  variant="light-link"
+                  rightIcon={true}
+                >
+                  Explore Our Network
+                </Button>
+              )}
+            </>
+          )}
         </div>
       </div>
     </section>

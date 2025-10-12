@@ -2,6 +2,7 @@
 
 import SectionHeader from '../ui/SectionHeader'
 import ArrowOutWard from '../svg/ArrowOutWard'
+import { useEffect, useState } from 'react'
 
 interface ResourceItem {
   id: number
@@ -35,9 +36,18 @@ interface ResourcesData {
 
 export default function Resources({ Resources }: { Resources: ResourcesData }) {
   const { SectionHeaderResources, image, resourcesSection } = Resources
+  const [isMobile, setIsMobile] = useState(false)
 
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    handleResize()
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
   return (
-    <section className="py-25 bg-sage-gradient">
+    <section className="py-12 md:py-25 bg-sage-gradient">
       <div className="max-w-[1392px] px-4 mx-auto">
         <SectionHeader
           heading={SectionHeaderResources.heading}
@@ -45,24 +55,27 @@ export default function Resources({ Resources }: { Resources: ResourcesData }) {
           tagline={SectionHeaderResources.tagline}
           description={SectionHeaderResources.description}
           home={SectionHeaderResources.home}
+          image={image}
         />
 
-        <div className="grid grid-cols-1 items-center gap-20 lg:grid-cols-2">
+        <div className="grid grid-cols-1 items-center gap-0 md:gap-20 lg:grid-cols-2">
           <div className="order-2 lg:order-1">
-            <div
-              className="aspect-[600/650] rounded-[40px] bg-cover bg-center w-full"
-              style={{
-                backgroundImage: `url(${process.env.NEXT_PUBLIC_API_BASE_URL}${image.url})`,
-              }}
-            />
+            {!isMobile && (
+              <div
+                className="aspect-[600/650] rounded-[40px] bg-cover bg-center w-full"
+                style={{
+                  backgroundImage: `url(${process.env.NEXT_PUBLIC_API_BASE_URL}${image.url})`,
+                }}
+              />
+            )}
           </div>
 
-          <div className="order-1 space-y-8 lg:order-2">
+          <div className="order-1 space-y-9 md:space-y-8 lg:order-2">
             {resourcesSection.map((resource) => (
               <a
                 href={resource.href}
                 key={resource.id}
-                className="block border-b border-[#4B4B4B] pb-8 last:border-b-0 hover:opacity-80 transition-all"
+                className="block border-b border-[#4B4B4B] pb-9 md:pb-8 last:border-b-0 hover:opacity-80 transition-all"
               >
                 <div className="flex justify-between items-center">
                   <div>

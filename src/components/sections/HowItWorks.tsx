@@ -21,7 +21,7 @@ export default function HowItWorks({
   steps: HowItWorksStep[]
 }) {
   return (
-    <section className="py-25 bg-Secondary-Light-Scrub overflow-visible">
+    <section className="py-11 md:py-25 bg-Secondary-Light-Scrub overflow-visible">
       <div className="max-w-[1392px] mx-auto px-4">
         <div className="grid grid-cols-1 items-start gap-20 md:grid-cols-2">
           {/* Left Content */}
@@ -29,10 +29,10 @@ export default function HowItWorks({
             <div className="p-10">
               <Tagline text={tagline} />
 
-              <h2 className="mb-6 text-4xl font-bold leading-tight text-Primary-Spring md:text-[40px]">
+              <h2 className="mb-4 md:mb-6 text-[28px] font-bold leading-tight text-Primary-Spring md:text-[40px] tracking-[-0.48px]">
                 {title}
               </h2>
-              <p className="text-lg leading-relaxed text-white">
+              <p className="text-base md:text-lg leading-relaxed text-white">
                 {description}
               </p>
             </div>
@@ -58,12 +58,12 @@ export default function HowItWorks({
                   </div>
                   <div className="ml-8 pb-0">
                     <div className="mb-4">
-                      <h4 className="text-[#9ABCB9] heading-1">
+                      <h4 className="text-[#9ABCB9] text-[40px] font-bold md:heading-1">
                         {step.number}
                       </h4>
                     </div>
                     <h3 className="mb-2 heading-4">{step.title}</h3>
-                    <p className="max-w-md text-p text-Secondary-Text">
+                    <p className="max-w-md text-base md:text-p text-Secondary-Text">
                       {step.description}
                     </p>
 

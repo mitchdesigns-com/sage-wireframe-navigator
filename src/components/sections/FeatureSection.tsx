@@ -173,7 +173,7 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
           {/* Image */}
           <div className="flex-1">
             <div
-              className="aspect[396/351] md:aspect-[606/646] rounded-[40px] bg-cover bg-center w-[396px] h-[351px] md:w-[606px]"
+              className="aspect[396/351] md:aspect-[606/646] rounded-[40px] bg-cover bg-center w-[396px] md:h-[646px] h-[351px] md:w-[606px]"
               style={{
                 backgroundImage: `url('${process.env.NEXT_PUBLIC_API_BASE_URL}${image.url}')`,
               }}
