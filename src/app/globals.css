@@ -756,6 +756,12 @@
     font-size: 24px;
     font-weight: 700;
   }
+  .heading-1 {
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 120%;
+    letter-spacing: -0.01em;
+  }
 }
 
 .radio {

@@ -42,13 +42,13 @@ export default function JobDetailsPage({ data }: { data: CareerItem }) {
             <ChevronLeft className="text-white" />{' '}
             <Link
               href="/careers"
-              className="text-[#F2F2F2] font-medium text-base ps-2"
+              className="text-[#F2F2F2] font-medium text-sm md:text-base ps-2"
             >
               All Jobs
             </Link>
           </div>
           <h1 className="heading-1 font-bold mt-6 text-white">{data.title}</h1>
-          <div className="flex gap-4 mt-6 text-[#F2F2F2] font-medium text-base">
+          <div className="flex gap-4 mt-6 text-[#F2F2F2] font-medium text-sm md:text-base">
             {tagsArray.map((tag, i) => (
               <span key={i} className="flex items-center gap-4">
                 {tag}
@@ -58,7 +58,7 @@ export default function JobDetailsPage({ data }: { data: CareerItem }) {
           </div>
         </div>
       </div>{' '}
-      <div className="max-w-[768px] mx-auto py-15">
+      <div className="max-w-[768px] mx-auto py-8 md:py-15 px-4 md:px-0">
         {' '}
         {data.content.map((block, index) => {
           switch (block.type) {
@@ -67,7 +67,7 @@ export default function JobDetailsPage({ data }: { data: CareerItem }) {
                 return (
                   <h4
                     key={index}
-                    className="text-[32px] font-bold text-[#000404]"
+                    className="text-2xl md:text-[32px] font-bold text-[#000404] py-2"
                   >
                     {block.children.map(extractText).join('')}
                   </h4>
@@ -95,7 +95,7 @@ export default function JobDetailsPage({ data }: { data: CareerItem }) {
               return (
                 <p
                   key={index}
-                  className="text-[#000404] text-p leading-relaxed"
+                  className="text-[#000404] text-base md:text-p leading-relaxed pb-2"
                 >
                   {block.children.map(extractText).join('')}
                 </p>

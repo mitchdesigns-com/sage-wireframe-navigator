@@ -34,10 +34,10 @@ export default function SingleBlogsPage({
       <section>
         <HeroSinglePages {...data.HeroSinglePages} />
 
-        <div className="max-w-[930px] mx-auto py-15">
+        <div className="max-w-[930px] mx-auto py-8 md:py-15">
           {' '}
           {data.content && (
-            <div className="mx-auto max-w-[1448px] py-10 md:py-20 md:px-4 px-4 space-y-6">
+            <div className="mx-auto max-w-[1448px] py-0 md:py-20 md:px-4 px-4 space-y-4 md:space-y-6">
               {data.content.map((block, index: number) => {
                 switch (block.type) {
                   case 'heading':
@@ -45,7 +45,7 @@ export default function SingleBlogsPage({
                       return (
                         <h4
                           key={index}
-                          className="text-[32px] font-bold text-[#000404]"
+                          className="text-xl md:text-[32px] font-bold text-[#000404]"
                         >
                           {block.children.map(extractText).join('')}
                         </h4>
@@ -55,7 +55,7 @@ export default function SingleBlogsPage({
                       return (
                         <h6
                           key={index}
-                          className="mt-4 text-[#000404] text-p leading-relaxed"
+                          className="mt-4 text-[#000404] text-base md:text-p leading-relaxed"
                         >
                           {block.children.map(extractText).join('')}
                         </h6>
@@ -73,7 +73,7 @@ export default function SingleBlogsPage({
                     return (
                       <p
                         key={index}
-                        className="text-[#000404] text-p leading-relaxed"
+                        className="text-[#000404] text-base md:text-p leading-relaxed"
                       >
                         {block.children.map(extractText).join('')}
                       </p>
@@ -87,7 +87,7 @@ export default function SingleBlogsPage({
                             return (
                               <li
                                 key={liIndex}
-                                className="text-[#000404] text-p"
+                                className="text-[#000404] text-base md:text-p"
                               >
                                 {li.children.map(extractText).join('')}
                               </li>

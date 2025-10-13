@@ -35,15 +35,15 @@ const HeroSinglePages: React.FC<HeroProps> = ({
 }) => {
   return (
     <section
-      className={`pb-20 pt-10  bg-gradient-to-t from-[#013530] to-[#025850]`}
+      className={`md:pb-20 md:pt-10 py-8 bg-gradient-to-t from-[#013530] to-[#025850]`}
     >
-      <div className="px-16">
+      <div className="px-4 md:px-16">
         <div className="max-w-[1392px] mx-auto">
           <div className="grid grid-cols-1">
-            <div className="pb-16">
+            <div className="pb-6 md:pb-16">
               <Breadcrumb items={breadcrumbItems} heroPages />
             </div>
-            <div className="flex pb-12">
+            <div className="flex pb-6 md:pb-12">
               {' '}
               <ChevronLeft className="text-white" />{' '}
               <Link
@@ -53,7 +53,7 @@ const HeroSinglePages: React.FC<HeroProps> = ({
                 {button}
               </Link>
             </div>
-            <h1 className="text-white font-bold text-[48px] leading-[1.2] tracking-[-0.56px] pb-20">
+            <h1 className="text-white font-bold text-[26px] md:text-[48px] leading-[1.2] tracking-[-0.56px] pb-8 md:pb-20">
               {title}
             </h1>
           </div>
@@ -69,16 +69,24 @@ const HeroSinglePages: React.FC<HeroProps> = ({
           )}
           <div className="space-x-12 pt-8 flex">
             <div>
-              <h4 className="font-base text-white">Author</h4>
-              <p className="text-white font-medium ">{author}</p>
+              <h4 className="text-sm md:font-base text-white">Author</h4>
+              <p className="text-white font-medium text-xs md:font-base">
+                {author}
+              </p>
             </div>
             <div>
-              <h4 className="font-base text-white">Published on</h4>
-              <p className="text-white font-medium ">{date}</p>
+              <h4 className="text-sm md:font-base text-white">Published on</h4>
+              <p className="text-white font-medium text-xs md:font-base">
+                {date}
+              </p>
             </div>
             <div>
-              <h4 className="font-base text-white">Reading Duration</h4>
-              <p className="text-white font-medium ">{readTime}</p>
+              <h4 className="text-sm md:font-base text-white">
+                Reading Duration
+              </h4>
+              <p className="text-white font-medium text-xs md:font-base">
+                {readTime}
+              </p>
             </div>
           </div>
         </div>
