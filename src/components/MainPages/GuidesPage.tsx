@@ -52,8 +52,8 @@ export default function GuidesPage({ data }: { data: GuidesPage[] }) {
       )}
 
       {/* Toggle Button + Guides */}
-      <section className="py-20 bg-Secondary-Light-Scrub">
-        <div className="max-w-[1392px] mx-auto space-y-20">
+      <section className="py-8 md:py-20 bg-Secondary-Light-Scrub">
+        <div className="max-w-[1392px] mx-auto space-y-8 md:space-y-20">
           <div className="max-w-[768px] mx-auto">
             <ToggleButton
               options={options}
@@ -62,7 +62,7 @@ export default function GuidesPage({ data }: { data: GuidesPage[] }) {
             />
           </div>
 
-          <div className="grid md:grid-cols-3 gap-x-8 gap-y-20">
+          <div className="grid md:grid-cols-3 gap-x-8 gap-y-8 md:gap-y-20 px-4 md:px-0">
             {filteredGuids.map((guide) => (
               <GuidesCard key={guide.id} guide={guide} />
             ))}

@@ -32,7 +32,7 @@ const WebinarList: React.FC<WebinarListProps> = ({ webinars, events }) => {
 
   return (
     <div className="bg-Secondary-Light-Scrub">
-      <div className=" mx-auto max-w-[1280px] py-28">
+      <div className=" mx-auto max-w-[1280px] py-8 md:py-28">
         {webinars.news && (
           <div className="pb-15">
             <span className="text-Primary-Palm text-base font-medium">
@@ -59,7 +59,7 @@ const WebinarList: React.FC<WebinarListProps> = ({ webinars, events }) => {
             <Link
               href={`/resources/news-events/events/${webinar.slug}`}
               key={index}
-              className="flex flex-row items-center p-8 w-full gap-8 border-b border-[#00040426]"
+              className="flex flex-col md:flex-row items-start md:items-center p-8 w-full gap-8 border-b border-[#00040426]"
             >
               <div className="flex flex-col items-center justify-center bg-Primary-Spring-Med text-Primary-Palm rounded-3xl px-1 py-[11px] w-[112px]">
                 <span className="text-base">{webinar.HeroCarousel.day}</span>
@@ -69,12 +69,12 @@ const WebinarList: React.FC<WebinarListProps> = ({ webinars, events }) => {
                 <span className="text-base">{webinar.HeroCarousel.year}</span>
               </div>
 
-              <div className="flex-row flex justify-between w-full items-center">
+              <div className="md:flex-row flex-col flex justify-between w-full items-start md:items-center">
                 <div>
-                  <h3 className="text-[20px] font-bold mb-2 text-Primary-Black">
+                  <h3 className="text-lg md:text-[20px] font-bold mb-2 text-Primary-Black">
                     {webinar.HeroCarousel.title}
                   </h3>
-                  <p className="text-base text-Secondary-Text max-w-[565px]">
+                  <p className="text-sm md:text-base text-Secondary-Text max-w-[565px] pb-8 md:pb-0">
                     {webinar.HeroCarousel.description}
                   </p>
                 </div>

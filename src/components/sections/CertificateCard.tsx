@@ -28,10 +28,10 @@ export default function CertificateCard({ certificate }: CertificateCardProps) {
         />
       </div>
       <div>
-        <h3 className="text-2xl font-bold text-Primary-Black leading-snug mt-8 mb-4">
+        <h3 className="text-[20px] md:text-2xl font-bold text-Primary-Black leading-snug mt-8 mb-4">
           {certificate.title}
         </h3>
-        <p className="text-Secondary-Text text-base ">
+        <p className="text-Secondary-Text text-sm md:text-base ">
           {certificate.description}
         </p>
       </div>

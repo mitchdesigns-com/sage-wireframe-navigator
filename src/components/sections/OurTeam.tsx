@@ -54,17 +54,19 @@ export default function OurTeam({ data }: OurTeamProps) {
   }
 
   return (
-    <section className="py-25 bg-Secondary-Light-Scrub">
+    <section className="py-8 md:py-25 bg-Secondary-Light-Scrub">
       <div className="container mx-auto px-4">
         {/* Heading */}
-        <div className="flex pb-15 justify-between items-end">
+        <div className="flex pb-4 md:pb-15 justify-between items-end text-center md:text-start">
           <div>
-            <h6 className="text-[#000404] font-bold text-[48px] leading-[1.2] tracking-[-0.48px] pb-4">
+            <h6 className="text-[#000404] font-bold text-[28px] md:text-[48px] leading-[1.2] tracking-[-0.48px] pb-4">
               {data.title}
             </h6>
-            <p className="text-[#000404] text-p">{data.description}</p>
+            <p className="text-[#000404] text-base md:text-p">
+              {data.description}
+            </p>
           </div>
-          <div className="flex gap-4">
+          <div className="md:flex gap-4 hidden">
             <button
               onClick={() => swiperRef.current?.slidePrev()}
               disabled={activeIndex === 0}
@@ -138,17 +140,17 @@ export default function OurTeam({ data }: OurTeamProps) {
             text={data.hiringSection.tagline}
             className="absolute -top-5 left-8 items-start"
           />
-          <div className="flex justify-between items-center ">
-            <div>
-              <h6 className="text-Primary-Black font-bold text-[32px] leading-[1.2] tracking-[-0.48px] pb-4">
+          <div className="flex justify-between items-center flex-col md:flex-row">
+            <div className="pb-8 md:pb-0">
+              <h6 className="text-Primary-Black font-bold text-2xl md:text-[32px] leading-[1.2] tracking-[-0.48px] pb-4">
                 {data.hiringSection.title}
               </h6>
-              <p className="text-Secondary-Text text-p">
+              <p className="text-Secondary-Text text-base md:text-p">
                 {data.hiringSection.description}
               </p>
             </div>
             <Link href={data.hiringSection.href}>
-              <div className="group flex gap-1.5 items-center justify-start rounded-[100px]  cursor-pointer">
+              <div className="group flex gap-1.5 items-start md:items-center justify-start md:justify-start rounded-[100px]  cursor-pointer">
                 <div className="font-aeonik-bold text-primary-palm group-hover:text-Secondary-Dark-Palm text-lg leading-[1.5]">
                   {data.hiringSection.cta}
                 </div>

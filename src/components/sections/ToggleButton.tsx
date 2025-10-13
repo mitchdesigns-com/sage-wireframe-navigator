@@ -26,17 +26,26 @@ const ToggleButton: React.FC<ToggleButtonProps> = ({
 }) => {
   return (
     <div
-      className={'relative flex flex-row rounded-full'}
+      className={clsx(
+        'relative flex rounded-full overflow-hidden',
+        'w-full max-w-full justify-center items-center',
+        'bg-gray-100 md:bg-transparent'
+      )}
       data-name="Toggle Button"
     >
       {/* Animated highlight background */}
-      <div className="absolute inset-0 flex rounded-full">
+      <div className="absolute inset-0 flex rounded-full px-1 md:px-0">
         {options.map((option) =>
           option.value === selectedValue ? (
             <motion.div
               key={option.id}
               layoutId="active-pill"
-              className={`${contact ? 'bg-Secondary-Scrub text-Primary-Palm' : 'bg-Primary-Palm'} rounded-full`}
+              className={clsx(
+                contact
+                  ? 'bg-Secondary-Scrub text-Primary-Palm'
+                  : 'bg-Primary-Palm',
+                'rounded-full'
+              )}
               transition={{ type: 'spring', stiffness: 300, damping: 30 }}
               style={{ flex: 1 }}
             />
@@ -54,10 +63,16 @@ const ToggleButton: React.FC<ToggleButtonProps> = ({
             key={option.id}
             onClick={() => onChange(option.value)}
             className={clsx(
-              'relative flex-1 px-4 md:px-[16px] py-2 md:py-[10px] font-medium text-base whitespace-nowrap transition-colors cursor-pointer',
+              'relative flex-1 flex items-center justify-center text-center truncate',
+              'px-3 md:px-4 py-2 md:py-[10px] font-medium',
+              'text-xs sm:text-sm md:text-base whitespace-nowrap transition-colors cursor-pointer min-w-[90px]',
               isSelected
-                ? `${contact ? 'text-Primary-Palm' : 'text-white'}`
-                : `${contact ? 'text-Secondary-Text' : 'text-Primary-Black'}  hover:text-Primary-Palm hover:transition-colors`
+                ? contact
+                  ? 'text-Primary-Palm'
+                  : 'text-white'
+                : contact
+                  ? 'text-Secondary-Text hover:text-Primary-Palm'
+                  : 'text-Primary-Black hover:text-Primary-Palm'
             )}
             data-name="Button"
           >
@@ -68,4 +83,5 @@ const ToggleButton: React.FC<ToggleButtonProps> = ({
     </div>
   )
 }
+
 export default ToggleButton

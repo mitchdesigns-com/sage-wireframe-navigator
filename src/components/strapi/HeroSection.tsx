@@ -131,7 +131,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ data }) => {
               </motion.p>
             )}
             {tagline && (
-              <div className="pt-16">
+              <div className="pt-0 md:pt-16">
                 {' '}
                 <Tagline text={tagline} />
               </div>
@@ -152,7 +152,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ data }) => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
-                className="text-base md:text-[18px] text-current "
+                className="text-base md:text-[18px]  "
                 dangerouslySetInnerHTML={{ __html: description }}
               />
             )}

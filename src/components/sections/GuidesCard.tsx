@@ -37,25 +37,25 @@ export default function GuidesCard({ guide }: GuidesCardProps) {
         <div className="flex gap-4 items-center">
           {' '}
           <span
-            className={`text-sm px-2 py-1 rounded-[4px] ${guide.category === 'individuals' ? 'bg-Primary-Scrub text-Secondary-Light-Scrub' : guide.category === 'businesses' ? 'bg-Primary-Spring text-Secondary-Dark-Palm' : 'bg-Dark-Scrub text-white'} font-medium`}
+            className={`text-xs md:text-sm px-2 py-1 rounded-[4px] ${guide.category === 'individuals' ? 'bg-Primary-Scrub text-Secondary-Light-Scrub' : guide.category === 'businesses' ? 'bg-Primary-Spring text-Secondary-Dark-Palm' : 'bg-Dark-Scrub text-white'} font-medium`}
           >
             {guide.category}
           </span>{' '}
-          <p className="text-sm font-medium text-Secondary-Text">
+          <p className="text-xs md:text-sm font-medium text-Secondary-Text">
             {guide.readTime}
           </p>
         </div>
-        <h3 className="text-[20px] font-bold text-Primary-Black leading-snug mt-4 mb-2">
+        <h3 className="text-lg md:text-[20px] font-bold text-Primary-Black leading-snug mt-4 mb-2">
           {guide.title}
         </h3>
-        <p className="text-Secondary-Text text-base pb-6">
+        <p className="text-Secondary-Text text-sm md:text-base pb-6">
           {guide.description}
         </p>
         <div className="flex items-center justify-between mt-auto">
           <div className="w-fit">
             <Button
               variant="light-link"
-              className="p-0 text-Primary-Palm font-bold text-[18px] cursor-pointer"
+              className="p-0 text-Primary-Palm font-bold text-base md:text-lg cursor-pointer"
             >
               <div className="flex items-center gap-[2px]">
                 <DownloadIcon color="#025850" />

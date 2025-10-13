@@ -38,8 +38,8 @@ export default function CaseStudiesPage({
   return (
     <div className="min-h-screen ">
       <HeroPages {...data.HeroPages} />
-      <section className="py-20 bg-Secondary-Light-Scrub">
-        <div className="max-w-[1392px] mx-auto space-y-20">
+      <section className="py-8 md:py-20 bg-Secondary-Light-Scrub">
+        <div className="max-w-[1392px] mx-auto space-y-8 md:space-y-20 px-4 md:px-0">
           <div className="max-w-[768px] mx-auto ">
             <ToggleButton
               options={data.ToggleButton.options}
@@ -47,7 +47,7 @@ export default function CaseStudiesPage({
               onChange={(val) => setCurrentTab(val as TabType)}
             />
           </div>
-          <div className="grid md:grid-cols-2 gap-x-12 gap-y-20">
+          <div className="grid md:grid-cols-2 gap-x-12 gap-y-8 md:gap-y-20">
             {filteredCaseStudy.map((caseStudy) => (
               <CaseStudyCard key={caseStudy.slug} caseStudy={caseStudy} />
             ))}

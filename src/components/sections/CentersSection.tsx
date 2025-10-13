@@ -48,7 +48,7 @@ const CentersSection: React.FC<CentersSectionProps> = ({
       <div className="px-4 md:px-0 mx-auto max-w-[1392px] py-8 md:py-28">
         <div
           className={`flex items-center flex-col md:flex-row gap-8 md:gap-18 ${
-            reverse ? 'flex-row-reverse' : ''
+            reverse ? 'flex-col md:flex-row-reverse' : 'flex-col md:flex-row'
           }`}
         >
           {/* Content */}

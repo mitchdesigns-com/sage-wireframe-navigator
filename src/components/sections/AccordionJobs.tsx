@@ -33,10 +33,10 @@ export default function AccordionJobs({ data }: { data: CareerItem[] }) {
               onClick={() => setOpenIndex(openIndex === index ? -1 : index)}
               className="w-full flex justify-between items-center p-5 ps-0 cursor-pointer"
             >
-              <span className="text-[32px] font-bold">
+              <span className="text-2xl md:text-[32px] font-bold">
                 {job.career_type?.title || job.title}
               </span>
-              <span className="text-xl">
+              <span className="text-lg md:text-xl">
                 {openIndex === index ? <MinusIcon /> : <ChevronDown />}
               </span>
             </button>
@@ -44,8 +44,10 @@ export default function AccordionJobs({ data }: { data: CareerItem[] }) {
             {openIndex === index && (
               <div className="p-4 rounded-[40px] bg-white mb-8">
                 <div className="p-4">
-                  <div className="flex justify-between">
-                    <h3 className="text-2xl font-bold">{job.title}</h3>
+                  <div className="flex justify-between flex-col md:flex-row">
+                    <h3 className="text-xl md:text-2xl font-bold pb-1 md:pb-0">
+                      {job.title}
+                    </h3>
                     <Link href={`/careers/${job.slug}`}>
                       <div className="group flex gap-1.5 items-center justify-start rounded-[100px] cursor-pointer">
                         <div className="font-aeonik-bold text-primary-palm group-hover:text-Secondary-Dark-Palm text-lg leading-[1.5]">
@@ -64,7 +66,7 @@ export default function AccordionJobs({ data }: { data: CareerItem[] }) {
                     </Link>
                   </div>
 
-                  <div className="text-base font-medium text-Primary-Palm mb-6 flex gap-4">
+                  <div className="text-sm md:text-base font-medium text-Primary-Palm mt-3 md:mt-0 mb-3 md:mb-6 flex gap-4">
                     {tagsArray.map((tag, i) => (
                       <span key={i} className="flex items-center gap-4">
                         {tag}
@@ -73,7 +75,7 @@ export default function AccordionJobs({ data }: { data: CareerItem[] }) {
                     ))}
                   </div>
 
-                  <p className="text-Secondary-Text max-w-[768px]">
+                  <p className="text-Secondary-Text max-w-[768px] text-sm md:text-base">
                     {description}
                   </p>
                 </div>

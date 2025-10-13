@@ -15,9 +15,9 @@ export default function AboutPage({ data }: { data: AboutPageData }) {
 
       {/* Overview Section */}
       <section>
-        <div className="flex items-start ">
-          <div className="md:sticky md:top-0 min-w-[575px]">
-            <div className="min-h-screen w-full bg-center bg-cover bg-no-repeat relative">
+        <div className="flex items-start flex-col md:flex-row">
+          <div className="md:sticky md:top-0 w-full md:min-w-[575px]">
+            <div className="min-h-[320px] md:min-h-screen w-full bg-center bg-cover bg-no-repeat relative">
               <Image
                 fill
                 src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${data.OverviewSection.mainImage.url}`}
@@ -28,29 +28,29 @@ export default function AboutPage({ data }: { data: AboutPageData }) {
           </div>
 
           <div className="relative  min-h-screen w-full">
-            <div className="py-25 px-15 flex justify-between flex-col min-h-screen">
+            <div className="py-8 md:py-25 px-4 md:px-15 flex justify-between flex-col md:min-h-screen">
               <div className="max-w-[817px]">
                 <div>
-                  <p className="text-Primary-Palm font-medium text-base leading-[1.5]">
+                  <p className="text-Primary-Palm font-medium text-sm md:text-base leading-[1.5]">
                     {data.OverviewSection.mainSubtitle}
                   </p>
                 </div>
-                <div className="space-y-4">
-                  <h2 className="text-Primary-Black font-bold text-[48px] leading-[1.2] tracking-[-0.48px]">
+                <div className="space-y-2 md:space-y-4">
+                  <h2 className="text-Primary-Black font-bold text-[28px] md:text-[48px] leading-[1.2] tracking-[-0.48px]">
                     {data.OverviewSection.mainTitle}{' '}
                   </h2>
-                  <p className="text-Secondary-Text text-p">
+                  <p className="text-Secondary-Text text-base md:text-p">
                     {data.OverviewSection.mainDescription}
                   </p>
                 </div>
               </div>
 
-              <div className="space-y-4">
+              <div className="space-y-2 md:space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 py-2">
-                  <div className="space-y-4">
+                  <div className="space-y-2 md:space-y-4">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 py-2">
                       {data.OverviewSection.aboutData?.map((item) => (
-                        <div key={item.id} className="space-y-4">
+                        <div key={item.id} className="space-y-2 md:space-y-4">
                           <h3 className="text-Primary-Palm font-bold text-[20px] leading-[1.4] tracking-[-0.2px]">
                             {item.title}
                           </h3>
@@ -64,15 +64,15 @@ export default function AboutPage({ data }: { data: AboutPageData }) {
                 </div>
               </div>
             </div>
-            <div className="py-28 px-15 bg-Secondary-Dark-Palm  min-h-screen w-full flex justify-between flex-col">
+            <div className="py-8 md:py-28 px-4 md:px-15 bg-Secondary-Dark-Palm  min-h-screen w-full flex justify-between flex-col">
               <div>
                 <Tagline text={data.OverviewSection.tagline} />
-                <h2 className="text-white font-bold text-[48px] leading-[1.2] tracking-[-0.48px] pb-4">
+                <h2 className="text-white font-bold text-[28px] md:text-[48px] leading-[1.2] tracking-[-0.52px] md:tracking-[-0.48px] pb-4">
                   {data.OverviewSection.title}
                 </h2>
-                <div className="space-y-4 max-w-[786px]">
+                <div className="space-y-2 md:space-y-4 max-w-[786px]">
                   <div className="text-Secondary-Light-Scrub text-p leading-[1.5] space-y-4 tracking-[-0.48px]">
-                    <p className="whitespace-pre-line">
+                    <p className="whitespace-pre-line text-sm md:text-base">
                       {data.OverviewSection.description}
                     </p>
                   </div>
@@ -92,7 +92,7 @@ export default function AboutPage({ data }: { data: AboutPageData }) {
       </section>
       {/* Video Section */}
       <section className="bg-Primary-Palm">
-        <div className="max-w-[1392px] mx-auto w-full relative py-25">
+        <div className="max-w-[1392px] mx-auto w-full relative py-8 px-4 md:px-0 md:py-25">
           <video
             src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${data.videoSection.video.url}`}
             className="w-full rounded-[40px] "
@@ -117,16 +117,16 @@ export default function AboutPage({ data }: { data: AboutPageData }) {
       </section>
       {/* Mission Section */}
       <section className=" bg-Primary-Palm">
-        <div className="max-w-[1390px] mx-auto py-47">
-          <div className="min-w-[768px] mx-auto text-center  flex flex-col items-center justify-center">
-            <div className="max-w-[980px]">
+        <div className="max-w-[1390px] mx-auto py-8 md:py-47 px-4 md:px-0">
+          <div className="w-full md:min-w-[768px] mx-auto text-center  flex flex-col items-center justify-center">
+            <div className="w-full md:max-w-[980px]">
               {' '}
               <Tagline
                 text={data.MissionSection.tagline}
                 className="items-center"
               />
               <h2
-                className="text-white font-bold text-[48px] leading-[1.2] tracking-[-0.48px] mx-auto"
+                className="text-white font-bold text-[28px] md:text-[48px] leading-[1.2] tracking-[-0.48px] mx-auto"
                 dangerouslySetInnerHTML={{
                   __html: data.MissionSection.title.replace(
                     /<span>/g,
@@ -135,22 +135,22 @@ export default function AboutPage({ data }: { data: AboutPageData }) {
                 }}
               />
             </div>
-            <p className="text-Secondary-Light-Scrub text-p max-w-[758px] pt-4">
+            <p className="text-Secondary-Light-Scrub text-sm md:text-p w-full md:max-w-[758px] pt-4">
               {data.MissionSection.description}
             </p>
           </div>
         </div>
       </section>
       {/* Values Section */}
-      <section className="py-28 bg-Secondary-Light-Scrub">
-        <div className="max-w-[616px] mx-auto">
+      <section className="py-8 md:py-28 bg-Secondary-Light-Scrub">
+        <div className="w-full md:max-w-[616px] mx-auto px-4 md:px-0">
           <div className=" mx-auto  text-center">
             <Tagline
               text={data.ValuesSection.tagline}
               className="items-center"
             />
             <div className="space-y-4">
-              <h2 className="text-Primary-Black text-[48px] font-bold tracking-[-0.48px]">
+              <h2 className="text-Primary-Black text-[28px] md:text-[48px] font-bold tracking-[-0.48px]">
                 {data.ValuesSection.title}
               </h2>
               <p className="text-p text-Secondary-Text">
@@ -159,13 +159,13 @@ export default function AboutPage({ data }: { data: AboutPageData }) {
             </div>
           </div>
         </div>
-        <div className="max-w-[1392px] mx-auto w-full pt-15">
-          <div className="flex  gap-15 justify-center items-start text-start">
+        <div className="max-w-[1392px] mx-auto w-full pt-8 md:pt-15  px-4 md:px-0">
+          <div className="flex gap-8 md:gap-15 justify-center items-start text-start flex-col md:flex-row">
             {data.ValuesSection.CardsList?.map((li, idx) => (
               <div
                 key={idx}
                 style={{ backgroundColor: li.bgColor }}
-                className="flex items-start gap-2 flex-col max-w-[432px] p-10 rounded-3xl relative"
+                className="flex items-start gap-2 flex-col max-w-[432px] p-4 md:p-10 rounded-3xl relative"
               >
                 <Image
                   src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${li.image.url}`}
@@ -175,13 +175,13 @@ export default function AboutPage({ data }: { data: AboutPageData }) {
                   className={`rounded-lg `}
                 />
                 <h5
-                  className={` text-[32px] font-bold tracking-[-0.48px]`}
+                  className={`text-2xl md:text-[32px] font-bold tracking-[-0.48px]`}
                   style={{ color: li.titleColor }}
                 >
                   {li.title}
                 </h5>
                 <span
-                  className={`text-[16px] leading-[1.5] flex-1 `}
+                  className={`text-sm md:text-[16px] leading-[1.5] flex-1 `}
                   style={{ color: li.descriptionColor }}
                 >
                   {li.description}

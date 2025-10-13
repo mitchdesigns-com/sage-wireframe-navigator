@@ -75,7 +75,7 @@ export default function BlogCard({ blog, href, news }: BlogCardProps) {
           {blog.category}
         </span>
       )}
-      <h3 className="text-2xl font-bold text-Neutral-Darkest leading-snug mb-2">
+      <h3 className="text-[20px] md:text-2xl font-bold text-Neutral-Darkest leading-snug mb-2">
         {news ? blog.HeroSinglePages.title : blog.title}
       </h3>
       <div className="flex items-center justify-between mt-auto">
@@ -88,7 +88,7 @@ export default function BlogCard({ blog, href, news }: BlogCardProps) {
               height={24}
             />
           </div>
-          <div className="text-sm text-Secondary-Text">
+          <div className="text-xs md:text-sm text-Secondary-Text">
             <p>{news ? blog.HeroSinglePages.author : blog.author}</p>
             <p>
               {news ? blog.HeroSinglePages.date : blog.date} •{' '}

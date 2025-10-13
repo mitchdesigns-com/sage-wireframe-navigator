@@ -17,12 +17,12 @@ export default function CareersPage({
         <FeatureSection key={index} {...section} />
       ))}
       <section className="bg-Secondary-Light-Scrub">
-        <div className=" mx-auto max-w-[1392px] py-25">
-          <h3 className="heading-lg pb-6">{data.jobOpenings.title}</h3>
-          <p className="text-Secondary-Text text-lg max-w-[768px]">
+        <div className=" mx-auto max-w-[1392px] py-8 md:py-25 px-4 md:px-0">
+          <h3 className="heading-lg pb-3 md:pb-6">{data.jobOpenings.title}</h3>
+          <p className="text-Secondary-Text text-base md:text-lg max-w-[768px]">
             {data.jobOpenings.description}
           </p>
-          <div className="pt-15">
+          <div className="pt-8 md:pt-15">
             <AccordionJobs data={singles} />
           </div>
         </div>

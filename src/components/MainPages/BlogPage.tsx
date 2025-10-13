@@ -12,8 +12,8 @@ export default function BlogPage({ data, singles }: BlogPageProps) {
     <div className="min-h-screen">
       <HeroPages {...data.HeroPages} />
 
-      <div className="py-15 max-w-[1392px] mx-auto">
-        <div className="grid md:grid-cols-3 gap-x-12 gap-y-16">
+      <div className="py-8 md:py-15 max-w-[1392px] mx-auto px-4 md:px-0">
+        <div className="grid md:grid-cols-3 gap-x-12 gap-y-8 md:gap-y-16">
           {singles.map((blog) => (
             <BlogCard
               key={blog.slug}

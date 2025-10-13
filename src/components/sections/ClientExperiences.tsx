@@ -1,170 +1,173 @@
 'use client'
 
-import Button from '@/components/ui/Button'
-import { ChevronLeft, ChevronRight, User } from 'lucide-react'
-import { useState } from 'react'
-
+import { ArrowLeft, ArrowRight, User } from 'lucide-react'
+import { Navigation } from 'swiper/modules'
+import 'swiper/css'
+import 'swiper/css/navigation'
+import { useRef, useState } from 'react'
+import type { Swiper as SwiperType } from 'swiper'
+import { Swiper, SwiperSlide } from 'swiper/react'
+interface Testimonials {
+  id: number
+  quote: string
+  bg: string
+  name: string
+}
 const testimonials = [
   {
     id: 1,
-    company: 'Webflow',
-    companyLogo: '🌐',
-    quote: 'Sage has streamlined our medical travel process significantly.',
-    name: 'John Doe',
-    title: 'HR Director, XYZ Corp',
-    caseStudyUrl: '/case-studies/webflow',
+    quote:
+      'We partnered with Sage to provide wellness packages for our staff. The result? Happier employees and reduced sick days. Their concierge-level service truly makes a difference.',
+    name: 'Dina F., HR Manager, GulfTech Solutions',
+    bg: 'bg-Secondary-Dark-Palm',
   },
   {
     id: 2,
-    company: 'TechCorp',
-    companyLogo: '💻',
     quote:
-      "Outstanding healthcare coordination and support throughout our employees' medical journeys.",
-    name: 'Sarah Johnson',
-    title: 'Benefits Manager, TechCorp',
-    caseStudyUrl: '/case-studies/techcorp',
+      'Sage made my medical journey to Saudi Arabia incredibly smooth. From scheduling appointments to follow-up care, everything was handled with care and professionalism.',
+    name: 'Layla M., UAE',
+    bg: 'bg-Primary-Spring',
   },
   {
     id: 3,
-    company: 'GlobalHealth',
-    companyLogo: '🏥',
     quote:
-      'The level of care and attention to detail exceeded our expectations completely.',
-    name: 'Michael Chen',
-    title: 'Chief Medical Officer, GlobalHealth',
-    caseStudyUrl: '/case-studies/globalhealth',
+      'Sage’s coordination and cultural sensitivity were invaluable during the treatment of our nationals abroad. Their team goes above and beyond.',
+    name: 'Mr. Tariq S., Consular Services, Embassy of Jordan',
+    bg: 'bg-Secondary-Scrub',
   },
   {
     id: 4,
-    company: 'InnovateInc',
-    companyLogo: '🚀',
     quote:
-      'Sage transformed how we approach corporate healthcare benefits for our team.',
-    name: 'Emma Davis',
-    title: 'People Operations Lead, InnovateInc',
-    caseStudyUrl: '/case-studies/innovate',
+      'Sage made my medical journey to Saudi Arabia incredibly smooth. From scheduling appointments to follow-up care, everything was handled with care and professionalism.',
+    name: 'Layla M., UAE',
+    bg: 'bg-Secondary-Dark-Palm',
   },
   {
     id: 5,
-    company: 'FinanceFirst',
-    companyLogo: '💰',
     quote:
-      'Professional, reliable, and truly caring - everything we needed for our medical travel program.',
-    name: 'David Wilson',
-    title: 'VP Human Resources, FinanceFirst',
-    caseStudyUrl: '/case-studies/finance',
+      'I’ve referred multiple clients to Sage for complex treatments. They deliver consistently high-quality service, with excellent hospital partnerships and patient care.',
+    name: 'Ranya K., Founder, MedBridge Facilitators',
+    bg: 'bg-Primary-Spring',
+  },
+  {
+    id: 6,
+    quote:
+      'Their training sessions for our hospital teams were insightful, practical, and well-organized. Sage helped us implement real improvements in patient logistics.',
+    name: 'Dr. Nabil H., Ministry of Health',
+    bg: 'bg-Secondary-Scrub',
   },
 ]
 
 export default function ClientExperiences() {
-  const [currentIndex, setCurrentIndex] = useState(0)
-
-  const goToPrevious = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? testimonials.length - 1 : prevIndex - 1
-    )
+  const [activeIndex, setActiveIndex] = useState(0)
+  const swiperRef = useRef<SwiperType | null>(null)
+  const grouped: Testimonials[][] = []
+  for (let i = 0; i < testimonials.length; i += 6) {
+    grouped.push(testimonials.slice(i, i + 6))
   }
-
-  const goToNext = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === testimonials.length - 1 ? 0 : prevIndex + 1
-    )
-  }
-
-  const goToSlide = (index: number) => {
-    setCurrentIndex(index)
-  }
-
-  const currentTestimonial = testimonials[currentIndex]
-
   return (
-    <section className="section-padding bg-gray-50">
-      <div className="container-custom mx-auto">
-        <div className="flex flex-col justify-center items-center">
-          {/* Left Content */}
-          <div>
-            <h2 className="mb-6 text-4xl font-bold leading-tight text-gray-900 lg:text-5xl">
-              Client Experiences
-            </h2>
-            <p className="text-lg leading-relaxed text-gray-600">
-              Transforming corporate health management with Sage.
-            </p>
-          </div>
+    <section className="py-8 md:py-16 bg-gray-50">
+      <div>
+        <div className="max-w-[1392px] px-4 mx-auto text-center mb-8 md:mb-15">
+          <h2 className="text-[28px] md:text-5xl font-bold leading-tight text-[#000404]  mb-2">
+            Client Experiences
+          </h2>
+          <p className="text-base md:text-lg leading-relaxed text-[#000404]">
+            Transforming corporate health management with Sage.
+          </p>
+        </div>
 
-          {/* Right Content - Testimonial Card */}
-          <div className="relative">
-            <div className="rounded-2xl border border-gray-100 bg-white p-8 shadow-sm">
-              {/* Company Logo */}
-              <div className="mb-6 flex items-center">
-                <div className="mr-3 text-2xl">
-                  {currentTestimonial.companyLogo}
-                </div>
-                <span className="text-lg font-semibold text-gray-900">
-                  {currentTestimonial.company}
-                </span>
-              </div>
+        <Swiper
+          onSwiper={(swiper) => (swiperRef.current = swiper)}
+          onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
+          modules={[Navigation]}
+          loop={false}
+          centeredSlides
+          spaceBetween={48}
+          slidesPerView="auto"
+          breakpoints={{
+            0: {
+              centeredSlides: false,
+              slidesPerView: 1.2,
+              spaceBetween: 16,
+            },
+            768: {
+              centeredSlides: true,
+              slidesPerView: 'auto',
+              spaceBetween: 48,
+            },
+          }}
+          className="!px-8"
+        >
+          {testimonials.map((testimonial, index) => (
+            <SwiperSlide
+              key={testimonial.id}
+              className="!w-[324px] md:!w-[680px]"
+            >
+              <div
+                className={`rounded-4xl ${testimonial.bg} p-8 h-[360px] md:h-[420px] flex flex-col justify-between`}
+              >
+                <div
+                  className={`absolute inset-0 bg-white transition-opacity duration-300 rounded-4xl ${
+                    activeIndex === index ? 'opacity-0' : 'opacity-50'
+                  }`}
+                />
 
-              {/* Quote */}
-              <blockquote className="mb-8 text-lg leading-relaxed text-gray-700">
-                "{currentTestimonial.quote}"
-              </blockquote>
-
-              {/* Person Info */}
-              <div className="mb-6 flex items-center">
-                <div className="mr-4 flex h-12 w-12 items-center justify-center rounded-full bg-gray-200">
-                  <User className="h-6 w-6 text-gray-400" />
-                </div>
-                <div>
-                  <div className="font-semibold text-gray-900">
-                    {currentTestimonial.name}
-                  </div>
-                  <div className="text-sm text-gray-600">
-                    {currentTestimonial.title}
-                  </div>
-                </div>
-              </div>
-
-              {/* Case Study Link */}
-              <Button href={currentTestimonial.caseStudyUrl}>
-                Read case study
-              </Button>
-            </div>
-
-            {/* Navigation */}
-            <div className="mt-8 flex items-center justify-between">
-              {/* Dots */}
-              <div className="flex space-x-2">
-                {testimonials.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => goToSlide(index)}
-                    className={`w-2 h-2 rounded-full transition-colors duration-200 ${
-                      index === currentIndex ? 'bg-gray-900' : 'bg-gray-300'
-                    }`}
-                    aria-label={`Go to testimonial ${index + 1}`}
-                  />
-                ))}
-              </div>
-
-              {/* Navigation Arrows */}
-              <div className="flex space-x-2">
-                <button
-                  onClick={goToPrevious}
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-300 transition-colors duration-200 hover:bg-gray-50"
-                  aria-label="Previous testimonial"
+                <blockquote
+                  className={`text-base  md:text-[32px] ${
+                    testimonial.bg === 'bg-Secondary-Dark-Palm'
+                      ? 'text-white'
+                      : 'text-Primary-Black'
+                  } font-aeonik-light`}
                 >
-                  <ChevronLeft className="h-5 w-5 text-gray-600" />
-                </button>
-                <button
-                  onClick={goToNext}
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-300 transition-colors duration-200 hover:bg-gray-50"
-                  aria-label="Next testimonial"
-                >
-                  <ChevronRight className="h-5 w-5 text-gray-600" />
-                </button>
+                  “{testimonial.quote}”
+                </blockquote>
+
+                <div className="flex items-center mt-6">
+                  <div className="mr-4 flex h-12 w-12 items-center justify-center rounded-full bg-gray-200">
+                    <User className="h-6 w-6 text-gray-400" />
+                  </div>
+                  <div>
+                    <div
+                      className={`text-xs md:text-[20px] font-medium ${
+                        testimonial.bg === 'bg-Secondary-Dark-Palm'
+                          ? 'text-white'
+                          : 'text-Secondary-Text'
+                      }`}
+                    >
+                      {testimonial.name}
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+        <div className="flex gap-4 mt-8 md:mt-12 justify-center">
+          <button
+            onClick={() => swiperRef.current?.slidePrev()}
+            disabled={activeIndex === 0}
+            className={`w-12 h-12 rounded-full flex justify-center items-center transition cursor-pointer
+              ${
+                activeIndex === 0
+                  ? 'bg-Secondary-Dark-Palm/20 cursor-not-allowed opacity-50'
+                  : 'bg-Secondary-Dark-Palm hover:opacity-80'
+              }`}
+          >
+            <ArrowLeft color="#CAF48E" />
+          </button>
+          <button
+            onClick={() => swiperRef.current?.slideNext()}
+            disabled={activeIndex === testimonials.length - 1}
+            className={`w-12 h-12 rounded-full flex justify-center items-center transition cursor-pointer
+              ${
+                activeIndex === testimonials.length - 1
+                  ? 'bg-Secondary-Dark-Palm/20 cursor-not-allowed opacity-50'
+                  : 'bg-Secondary-Dark-Palm hover:opacity-80'
+              }`}
+          >
+            <ArrowRight color="#CAF48E" />
+          </button>
         </div>
       </div>
     </section>

@@ -31,7 +31,7 @@ const HeroWithVideo: React.FC<HeroProps> = ({
 }) => {
   return (
     <section
-      className={`pb-0 md:pb-20 bg-gradient-to-t from-[#013530] to-[#025850]`}
+      className={`pb-4 md:pb-20 bg-gradient-to-t from-[#013530] to-[#025850]`}
     >
       <div className="px-4 md:px-16">
         <div className="max-w-[1392px] mx-auto">

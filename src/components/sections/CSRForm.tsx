@@ -207,11 +207,13 @@ export default function MultiStepForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="mx-auto p-10 space-y-6 bg-Primary-Palm rounded-4xl max-w-[796px]"
+      className="mx-auto p-5 md:p-10 space-y-6 bg-Primary-Palm rounded-4xl max-w-[796px]"
     >
       <div className="border-b border-[#9ABCB9] text-white">
-        <h5 className="pb-2 text-[32px] font-bold">Submit a Case for Review</h5>
-        <p className="text-p pb-5">
+        <h5 className="pb-2 text-2xl md:text-[32px] font-bold">
+          Submit a Case for Review
+        </h5>
+        <p className="text-base md:text-p pb-5">
           Please provide the following information to help us understand your
           needs
         </p>
@@ -232,7 +234,7 @@ export default function MultiStepForm() {
               {number}
             </div>
             <span
-              className={`text-sm ${
+              className={`text-xs md:text-sm ${
                 number === step
                   ? 'text-Primary-Spring font-bold'
                   : number < step
@@ -273,7 +275,7 @@ export default function MultiStepForm() {
               { name: 'phoneNumber', label: 'Phone number' },
             ],
           ].map((row, rowIndex) => (
-            <div key={rowIndex} className="flex gap-4">
+            <div key={rowIndex} className="flex gap-4 flex-col md:flex-row">
               {row.map((field) => (
                 <div
                   key={field.name}
@@ -538,7 +540,7 @@ export default function MultiStepForm() {
             <button
               type="button"
               onClick={nextStep}
-              className="px-28 py-[17px] bg-Primary-Spring text-Primary-Palm rounded-full font-bold cursor-pointer flex items-center gap-3 hover:gap-4 hover:transition-all hover:duration-200 hover:bg-white"
+              className="px-8 md:px-28 py-3 md:py-[17px] bg-Primary-Spring text-Primary-Palm rounded-full font-bold cursor-pointer flex items-center gap-3 hover:gap-4 hover:transition-all hover:duration-200 hover:bg-white"
             >
               <ChevronRight /> Next
             </button>
@@ -549,7 +551,7 @@ export default function MultiStepForm() {
           <div className="flex items-center gap-4">
             <button
               type="submit"
-              className="px-28 py-[17px] bg-Primary-Spring text-Primary-Palm rounded-full font-bold cursor-pointer flex items-center gap-3 hover:gap-4 hover:transition-all hover:duration-200 hover:bg-white"
+              className="px-8 md:px-28 py-3 md:py-[17px] bg-Primary-Spring text-Primary-Palm rounded-full font-bold cursor-pointer flex items-center gap-3 hover:gap-4 hover:transition-all hover:duration-200 hover:bg-white"
             >
               <ChevronRight /> Submit
             </button>{' '}

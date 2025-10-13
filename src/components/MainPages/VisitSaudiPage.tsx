@@ -17,23 +17,23 @@ export default function VisitSaudiPage({ data }: { data: VisitSaudiData }) {
       {data.FeatureSection.map((section, index) => (
         <FeatureSection key={index} {...section} />
       ))}
-      <section className="py-28 bg-Secondary-Light-Scrub">
-        <div className="max-w-[764px] mx-auto">
+      <section className="py-8 md:py-28 bg-Secondary-Light-Scrub">
+        <div className="w-full md:max-w-[764px] mx-auto px-4 md:px-0">
           <div className=" mx-auto  text-center">
             <div className="space-y-4">
-              <h2 className="text-Primary-Black text-[40px] font-bold">
+              <h2 className="text-Primary-Black text-[26px] md:text-[40px] font-bold">
                 {data.ChangingColorsCards.title}
               </h2>
             </div>
           </div>
         </div>
-        <div className="max-w-[1392px] mx-auto w-full pt-15">
-          <div className="flex  gap-15 justify-center items-start text-start">
+        <div className="max-w-[1392px] mx-auto w-full pt-8 md:pt-15 px-4 md:px-0">
+          <div className="flex flex-col md:flex-row gap-8 md:gap-15 justify-center items-start text-start">
             {data.ChangingColorsCards.CardsList?.map((li, idx) => (
               <div
                 key={idx}
                 style={{ backgroundColor: li.bgColor }}
-                className="flex items-start gap-2 flex-col max-w-[432px] p-10 rounded-3xl relative"
+                className="flex items-start gap-2 flex-col w-full md:max-w-[432px] p-5 md:p-10 rounded-3xl relative"
               >
                 <div className="absolute -top-5 left-6 w-full">
                   {' '}
@@ -47,13 +47,13 @@ export default function VisitSaudiPage({ data }: { data: VisitSaudiData }) {
                   className={`rounded-lg `}
                 />
                 <h5
-                  className={` text-[32px] font-bold`}
+                  className={`text-2xl md:text-[32px] font-bold`}
                   style={{ color: li.titleColor }}
                 >
                   {li.title}
                 </h5>
                 <span
-                  className={`text-[16px] leading-[1.5] flex-1 `}
+                  className={`text-sm md:text-base leading-[1.5] flex-1 `}
                   style={{ color: li.descriptionColor }}
                 >
                   {li.description}

@@ -37,9 +37,9 @@ const HeroPages: React.FC<HeroProps> = ({
     <section
       className={`md:pb-20 md:pt-10 py-8 bg-gradient-to-t from-[#013530] to-[#025850]`}
     >
-      <div className="px-7 md:px-0">
-        <div className="max-w-[1392px] mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-[10px] md:gap-20">
+      <div className="px-4 md:px-0">
+        <div className="max-w-[1392px] mx-auto w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-[10px] md:gap-20 w-full">
             {/* Left side */}
             <div className="flex justify-center md:items-start items-center flex-col">
               <div className="pb-8 md:pb-16">
@@ -61,7 +61,7 @@ const HeroPages: React.FC<HeroProps> = ({
               {button && (
                 <Link
                   href={href || '/contact'}
-                  className="inline-block  bg-primary text-white rounded-lg font-medium group cursor-pointer"
+                  className="inline-block  bg-primary text-white rounded-lg font-medium group cursor-pointer w-full md:w-fit"
                 >
                   <Button variant={'light'} rightIcon={true} fullWidth>
                     {button}
@@ -71,7 +71,7 @@ const HeroPages: React.FC<HeroProps> = ({
             </div>
           </div>
           {bgImage && (
-            <div className="pt-16">
+            <div className="pt-8 md:pt-16">
               <Image
                 src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${bgImage.url}`}
                 alt="scr header"

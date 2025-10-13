@@ -128,9 +128,12 @@ export default function FAQsPage({ data }: { data: PageData[] }) {
         // Check for the specific block type to render it.
         if (block.__component === 'blocks.faq-section') {
           return (
-            <section key={block.id} className="py-20 bg-Secondary-Light-Scrub">
-              <div className="max-w-[1392px] mx-auto">
-                <div className="max-w-[768px] mx-auto space-y-20">
+            <section
+              key={block.id}
+              className="py-8 md:py-20 bg-Secondary-Light-Scrub"
+            >
+              <div className="max-w-[1392px] mx-auto px-4 md:px-0">
+                <div className="max-w-[768px] mx-auto space-y-8 md:space-y-20">
                   <ToggleButton
                     options={options}
                     selectedValue={currentTab}
@@ -145,7 +148,7 @@ export default function FAQsPage({ data }: { data: PageData[] }) {
                             setOpenFaq(openFaq === index ? -1 : index)
                           }
                         >
-                          <h3 className="text-black font-bold text-p flex-1">
+                          <h3 className="text-black font-bold text-base md:text-p flex-1">
                             {faq.question}
                           </h3>
                           <div
@@ -158,7 +161,7 @@ export default function FAQsPage({ data }: { data: PageData[] }) {
                         </button>
                         {openFaq === index && (
                           <div className="pb-6">
-                            <p className="text-black text-base leading-[1.5]">
+                            <p className="text-black text-sm md:text-base leading-[1.5]">
                               {faq.answer}
                             </p>
                           </div>
