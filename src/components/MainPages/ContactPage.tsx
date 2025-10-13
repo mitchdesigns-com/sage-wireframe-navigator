@@ -71,22 +71,22 @@ export default function ContactPage({ data }: { data: ContactPageData }) {
   return (
     <div className="min-h-screen">
       {/* Send Message Section */}
-      <section className="py-16 bg-gradient-to-t from-[#013530] to-[#025850]">
+      <section className="py-8 md:py-16 bg-gradient-to-t from-[#013530] to-[#025850]">
         <div>
-          <div className="max-w-[1280px] mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-17">
+          <div className="max-w-[1280px] mx-auto px-4 md:px-0">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-17">
               {/* Form Section */}
 
-              <div className="space-y-6 bg-white rounded-3xl p-8 relative">
+              <div className="space-y-3 md:space-y-6 bg-white rounded-3xl p-4 md:p-8 relative">
                 <div className="absolute -top-5">
                   {' '}
                   <Tagline text={data.tagline} />
                 </div>
                 <div>
-                  <h1 className="text-Primary-Black font-bold text-[48px] leading-[1.2] tracking-[-0.48px] pb-1">
+                  <h1 className="text-Primary-Black font-bold text-[28px] md:text-[48px] leading-[1.2] tracking-[-0.48px] pb-1">
                     {data.title}
                   </h1>
-                  <p className="text-Secondary-Text text-p">
+                  <p className="text-Secondary-Text text-base md:text-p">
                     {data.description}
                   </p>
                 </div>
@@ -101,7 +101,7 @@ export default function ContactPage({ data }: { data: ContactPageData }) {
                   <form onSubmit={handleFormSubmit} className="space-y-4">
                     <div className="flex  gap-4">
                       <div className="space-y-2 col w-full">
-                        <label className="text-Primary-Black text-lg font-medium  leading-[1.5] block">
+                        <label className="text-Primary-Black text-base md:text-lg font-medium  leading-[1.5] block">
                           First name*
                         </label>
                         <input
@@ -114,7 +114,7 @@ export default function ContactPage({ data }: { data: ContactPageData }) {
                         />
                       </div>
                       <div className="space-y-2 col w-full">
-                        <label className="text-Primary-Black text-lg font-medium  leading-[1.5] block">
+                        <label className="text-Primary-Black text-base md:text-lg font-medium  leading-[1.5] block">
                           Last name*
                         </label>
                         <input
@@ -128,7 +128,7 @@ export default function ContactPage({ data }: { data: ContactPageData }) {
                       </div>
                     </div>
                     <div className="space-y-2">
-                      <label className="text-Primary-Black text-lg font-medium  leading-[1.5] block">
+                      <label className="text-Primary-Black text-base md:text-lg font-medium  leading-[1.5] block">
                         Email*
                       </label>
                       <input
@@ -143,7 +143,7 @@ export default function ContactPage({ data }: { data: ContactPageData }) {
                     <div className="space-y-2">
                       <label
                         htmlFor="phone"
-                        className="text-Primary-Black text-lg font-medium leading-[1.5] block"
+                        className="text-Primary-Black text-base md:text-lg font-medium leading-[1.5] block"
                       >
                         Phone number
                       </label>
@@ -161,7 +161,7 @@ export default function ContactPage({ data }: { data: ContactPageData }) {
                     </div>
 
                     <div className="space-y-2">
-                      <label className="text-Primary-Black text-lg font-medium leading-[1.5] block">
+                      <label className="text-Primary-Black text-base md:text-lg font-medium leading-[1.5] block">
                         Message
                       </label>
                       <textarea
@@ -203,7 +203,7 @@ export default function ContactPage({ data }: { data: ContactPageData }) {
                   <form onSubmit={handleFormSubmit} className="space-y-4">
                     <div className="flex  gap-4">
                       <div className="space-y-2 col w-full">
-                        <label className="text-Primary-Black text-lg font-medium  leading-[1.5] block">
+                        <label className="text-Primary-Black text-base md:text-lg font-medium  leading-[1.5] block">
                           First name*
                         </label>
                         <input
@@ -216,7 +216,7 @@ export default function ContactPage({ data }: { data: ContactPageData }) {
                         />
                       </div>
                       <div className="space-y-2 col w-full">
-                        <label className="text-Primary-Black text-lg font-medium  leading-[1.5] block">
+                        <label className="text-Primary-Black text-base md:text-lg font-medium  leading-[1.5] block">
                           Last name*
                         </label>
                         <input
@@ -231,7 +231,7 @@ export default function ContactPage({ data }: { data: ContactPageData }) {
                     </div>
                     <div className="flex  gap-4">
                       <div className="space-y-2 col w-full">
-                        <label className="text-Primary-Black text-lg font-medium  leading-[1.5] block">
+                        <label className="text-Primary-Black text-base md:text-lg font-medium  leading-[1.5] block">
                           Company Name
                         </label>
                         <input
@@ -244,7 +244,7 @@ export default function ContactPage({ data }: { data: ContactPageData }) {
                         />
                       </div>
                       <div className="space-y-2 col w-full">
-                        <label className="text-Primary-Black text-lg font-medium  leading-[1.5] block">
+                        <label className="text-Primary-Black text-base md:text-lg font-medium  leading-[1.5] block">
                           Position
                         </label>
                         <input
@@ -258,7 +258,7 @@ export default function ContactPage({ data }: { data: ContactPageData }) {
                       </div>
                     </div>
                     <div className="space-y-2">
-                      <label className="text-Primary-Black text-lg font-medium  leading-[1.5] block">
+                      <label className="text-Primary-Black text-base md:text-lg font-medium  leading-[1.5] block">
                         Email*
                       </label>
                       <input
@@ -273,7 +273,7 @@ export default function ContactPage({ data }: { data: ContactPageData }) {
                     <div className="space-y-2">
                       <label
                         htmlFor="phone"
-                        className="text-Primary-Black text-lg font-medium leading-[1.5] block"
+                        className="text-Primary-Black text-base md:text-lg font-medium leading-[1.5] block"
                       >
                         Phone number
                       </label>
@@ -291,7 +291,7 @@ export default function ContactPage({ data }: { data: ContactPageData }) {
                     </div>
 
                     <div className="space-y-2">
-                      <label className="text-Primary-Black text-lg font-medium leading-[1.5] block">
+                      <label className="text-Primary-Black text-base md:text-lg font-medium leading-[1.5] block">
                         What kind of partnership
                       </label>
                       <textarea
@@ -332,20 +332,20 @@ export default function ContactPage({ data }: { data: ContactPageData }) {
                 ) : currentTab === 'patient' ? (
                   <div className="flex h-3/4 items-center">
                     {' '}
-                    <div className=" flex justify-center items-center bg-Secondary-Light-Scrub w-full flex-col rounded-3xl py-15 px-10 text-center ">
-                      <h6 className="text-Secondary-Text font-bold text-[20px] pb-4">
+                    <div className=" flex justify-center items-center bg-Secondary-Light-Scrub w-full flex-col rounded-3xl py-8 md:py-15 px-6 md:px-10 text-center ">
+                      <h6 className="text-Secondary-Text font-bold text-lg md:text-[20px] pb-4">
                         Thank you for your interest in connecting with us.
                       </h6>
-                      <p className="text-p text-Secondary-Text">
+                      <p className="text-base md:text-p text-Secondary-Text">
                         For patient applications, please submit your request
                         directly through our platform to ensure smooth
                         processing and faster support.
                       </p>
                       <Link href={'/'}>
                         {' '}
-                        <div className="group flex gap-1.5 items-center justify-start rounded-[100px] pt-8 cursor-pointer">
+                        <div className="group flex gap-1.5 items-center justify-start rounded-[100px] pt-4 md:pt-8 cursor-pointer">
                           {' '}
-                          <div className="font-aeonik-bold text-Primary-Palm group-hover:text-Secondary-Dark-Palm text-lg leading-[1.5]">
+                          <div className="font-aeonik-bold text-Primary-Palm group-hover:text-Secondary-Dark-Palm text-base md:text-lg leading-[1.5]">
                             Apply Now
                           </div>
                           <div className="bg-Primary-Palm rounded-full p-[6px] size-7 flex items-center justify-center">
@@ -367,7 +367,7 @@ export default function ContactPage({ data }: { data: ContactPageData }) {
               </div>
 
               {/* Image Section */}
-              <div className="h-[780px]  rounded-[40px]  relative">
+              <div className="h-[480px] md:h-[780px]  rounded-[40px]  relative">
                 <Image
                   fill
                   src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${data.image.url}`}
@@ -381,14 +381,14 @@ export default function ContactPage({ data }: { data: ContactPageData }) {
       </section>
 
       {/* Schedule Zoom Meeting Section */}
-      <section className="py-28 bg-Primary-Spring-Med">
-        <div className="px-16">
+      <section className="py-9 md:py-28 bg-Primary-Spring-Med">
+        <div className="px-4 md:px-16">
           <div className=" mx-auto ">
-            <div className="text-center ">
-              <h2 className="text-black font-bold text-[48px] leading-[1.2] tracking-[-0.48px]">
+            <div className="text-center pb-4 md:pb-0">
+              <h2 className="text-black font-bold text-[28px] md:text-[48px] leading-[1.2] tracking-[-0.48px]">
                 Schedule a Zoom Meeting
               </h2>
-              <p className="text-black text-p w-[544px] mx-auto">
+              <p className="text-black text-base md:text-p w-full md:w-[544px] mx-auto">
                 Schedule your one-on-one meeting with our experts to explore
                 innovative solutions tailored to your needs.
               </p>
@@ -412,15 +412,15 @@ export default function ContactPage({ data }: { data: ContactPageData }) {
       </section>
 
       {/* Contact Us Section */}
-      <section className="py-28 bg-Secondary-Light-Scrub">
-        <div className=" mx-auto  text-center">
+      <section className="py-8 md:py-28 bg-Secondary-Light-Scrub">
+        <div className=" mx-auto px-4 md:px-0 text-center">
           <div className="space-y-4">
-            <h2 className="text-Primary-Black text-[48px] font-bold">
+            <h2 className="text-Primary-Black text-[28px] md:text-[48px] font-bold">
               {data.ContactData.title}
             </h2>
-            <p className="text-p">{data.ContactData.description}</p>
+            <p className="text-sm md:text-p">{data.ContactData.description}</p>
           </div>
-          <div className="max-w-[486px] mx-auto pt-8">
+          <div className="max-w-[486px] mx-auto pt-4 md:pt-8">
             {' '}
             <ToggleButton
               options={data.ContactData.ToggleButton.options}
@@ -430,13 +430,13 @@ export default function ContactPage({ data }: { data: ContactPageData }) {
             />
           </div>
         </div>
-        <div className="max-w-[1392px] mx-auto w-full pt-15">
-          <div className="flex w-full gap-12 justify-center items-start text-start">
+        <div className="max-w-[1392px] mx-auto w-full pt-8 md:pt-15 px-4 md:px-0">
+          <div className="flex w-full gap-8 md:gap-12 justify-center items-start text-start flex-col md:flex-row">
             {data.ContactData.CardsList?.map((li, idx) => (
               <div
                 key={idx}
                 style={{ backgroundColor: li.bgColor }}
-                className="flex items-start  flex-col w-full p-10 rounded-3xl relative"
+                className="flex items-start  flex-col w-full p-4 md:p-10 rounded-3xl relative"
               >
                 <div className="flex justify-end w-full">
                   <Image
@@ -448,13 +448,13 @@ export default function ContactPage({ data }: { data: ContactPageData }) {
                   />
                 </div>
                 <h5
-                  className={` text-[32px] font-bold`}
+                  className={`text-2xl md:text-[32px] font-bold`}
                   style={{ color: li.titleColor }}
                 >
                   {li.title}
                 </h5>
                 <span
-                  className={`text-[16px] leading-[1.5] flex-1 `}
+                  className={`text-sm md:text-[16px] leading-[1.5] flex-1 `}
                   style={{ color: li.descriptionColor }}
                 >
                   {li.description}

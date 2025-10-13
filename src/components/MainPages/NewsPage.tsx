@@ -23,11 +23,13 @@ export default function NewsPage({ data }: NewsPageProps) {
     <div className="min-h-screen bg-white">
       <HeroPages {...newsEvents.HeroPages} />
       <section className="bg-Secondary-Dark-Palm">
-        <div className="container-custom mx-auto max-w-[1392px] py-28">
-          <div className={`flex items-center gap-15`}>
-            <div className="flex-1 content-end flex">
+        <div className="px-4 md:px-0 mx-auto max-w-[1392px] py-8 md:py-28">
+          <div
+            className={`flex items-center gap-8 md:gap-15 flex-col md:flex-row`}
+          >
+            <div className="flex-1 content-end flex w-full">
               <div
-                className="aspect-[576/332] rounded-[40px] bg-cover bg-center w-[606px]"
+                className="aspect-[576/332] rounded-[40px] bg-cover bg-center w-[400px] md:w-[606px]"
                 style={{
                   backgroundImage: `url('${process.env.NEXT_PUBLIC_API_BASE_URL}${newsEvents.featureWithTagline.image.url}')`,
                 }}
@@ -87,7 +89,7 @@ export default function NewsPage({ data }: NewsPageProps) {
         </div>
       </section>
       <section className=" bg-Secondary-Light-Scrub">
-        <div className="max-w-[300px] mx-auto py-10">
+        <div className="md:max-w-[300px] mx-auto pt-8 md:py-10">
           {' '}
           {/* <ToggleButton
             options={options}
@@ -95,7 +97,7 @@ export default function NewsPage({ data }: NewsPageProps) {
             onChange={(val) => setCurrentTab(val as TabType)}
           /> */}
         </div>
-        <div className="max-w-[1392px] mx-auto">
+        <div className="max-w-[1392px] mx-auto px-4 md:px-0">
           <span className="text-Secondary-Dark-Palm text-base font-medium">
             News
           </span>
@@ -104,7 +106,7 @@ export default function NewsPage({ data }: NewsPageProps) {
             Stay updated with Sage's latest achievements and announcements.
           </p>
         </div>
-        <div className="max-w-[1392px] mx-auto py-20">
+        <div className="max-w-[1392px] mx-auto py-8 md:py-20 px-4 md:px-0">
           <div className="grid md:grid-cols-3 gap-8">
             {news.map((blog) => (
               <BlogCard
