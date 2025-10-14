@@ -69,14 +69,23 @@ export default function Header() {
     setServicesOpen(false)
     setResourcesOpen(false)
   }
+  const [isMobile, setIsMobile] = useState(false)
 
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    handleResize()
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
   return (
     <div
       ref={headerRef}
       className={`bg-primary-palm content-stretch flex flex-col items-center justify-start w-full top-0 z-50 relative`}
     >
       {/* Top Banner */}
-      <div className="bg-secondary-dark-palm box-border content-stretch flex gap-2.5 items-center justify-center px-2.5 py-0.5 relative shrink-0 w-full">
+      <div className="bg-secondary-dark-palm box-border content-stretch flex gap-2.5 items-center justify-center px-2.5 py-0.5 relative shrink-0 w-full z-50">
         <div className="font-aeonik-medium leading-[0] not-italic relative shrink-0 text-primary-scrub text-[12px] text-nowrap">
           <p className="leading-[1.5] whitespace-pre">
             Empowering Wellness, Globally.
@@ -86,7 +95,7 @@ export default function Header() {
 
       {/* Main Header */}
       <motion.div
-        className="box-border max-w-[1392px] w-full mx-auto flex items-center justify-between overflow-clip py-[22px] relative shrink-0 "
+        className="box-border max-w-[1392px] w-full mx-auto flex items-center justify-between overflow-clip py-[14px] md:py-[22px] relative shrink-0 "
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.3 }}
@@ -96,18 +105,27 @@ export default function Header() {
           {/* Logo */}
           <Link
             href="/"
-            className="flex items-center space-x-2 z-50"
+            className="flex items-center space-x-2 z-50 ps-4 md:ps-0"
             onClick={closeAllDropdowns}
           >
             <motion.div className="h-12 relative shrink-0 w-[110px]">
               <div className="text-primary-spring font-aeonik-regular text-[32px] leading-[1.2]">
                 <div className="w-[110px] h-[48px] relative">
-                  <Image
-                    fill
-                    src="/images/company-logo.webp"
-                    alt="Sage Logo"
-                    className="object-contain"
-                  />
+                  {isMobile ? (
+                    <Image
+                      fill
+                      src="/favicon/favicon.png"
+                      alt="Sage Logo"
+                      className="object-contain"
+                    />
+                  ) : (
+                    <Image
+                      fill
+                      src="/images/company-logo.webp"
+                      alt="Sage Logo"
+                      className="object-contain"
+                    />
+                  )}
                 </div>
               </div>
             </motion.div>
@@ -244,7 +262,7 @@ export default function Header() {
       </AnimatePresence>
 
       {/* Mobile Navigation Overlay */}
-      <AnimatePresence>
+      {/* <AnimatePresence>
         {isMenuOpen && (
           <motion.div
             initial={{ opacity: 0 }}
@@ -255,7 +273,7 @@ export default function Header() {
             onClick={() => setIsMenuOpen(false)}
           />
         )}
-      </AnimatePresence>
+      </AnimatePresence> */}
 
       {/* Mobile Navigation Panel */}
       <AnimatePresence>
@@ -265,69 +283,45 @@ export default function Header() {
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className="lg:hidden fixed top-0 right-0 h-full w-80 bg-primary-palm shadow-2xl z-50 overflow-y-auto"
+            className="lg:hidden fixed top-0 left-0 h-full w-full bg-primary-palm shadow-2xl z-40 overflow-y-auto max-w-full"
           >
-            <div className="p-6 pt-20">
-              <nav className="flex flex-col space-y-4">
-                <Link
-                  href="/"
-                  className="text-primary-spring font-aeonik-regular text-lg py-2 hover:opacity-80 transition-all duration-200"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Home
-                </Link>
-                <Link
-                  href="/services"
-                  className="text-primary-spring font-aeonik-regular text-lg py-2 hover:opacity-80 transition-all duration-200"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Services
-                </Link>
-                <Link
-                  href="/about"
-                  className="text-primary-spring font-aeonik-regular text-lg py-2 hover:opacity-80 transition-all duration-200"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  About Us
-                </Link>
-                <Link
-                  href="/resources"
-                  className="text-primary-spring font-aeonik-regular text-lg py-2 hover:opacity-80 transition-all duration-200"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Resources
-                </Link>
-                <Link
-                  href="/our-network"
-                  className="text-primary-spring font-aeonik-regular text-lg py-2 hover:opacity-80 transition-all duration-200"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Our Network
-                </Link>
-                <Link
-                  href="/visit-saudi"
-                  className="text-primary-spring font-aeonik-regular text-lg py-2 hover:opacity-80 transition-all duration-200"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Visit Saudi
-                </Link>
+            <div className="px-4 sm:px-6 pt-22 sm:pt-20 pb-8 w-full">
+              {/* Navigation Links */}
+              <nav className="flex flex-col space-y-3 sm:space-y-4 w-full pt-8">
+                {[
+                  { href: '/', label: 'Home' },
+                  { href: '/services', label: 'Services' },
+                  { href: '/about', label: 'About Us' },
+                  { href: '/resources', label: 'Resources' },
+                  { href: '/our-network', label: 'Our Network' },
+                  { href: '/visit-saudi', label: 'Visit Saudi' },
+                ].map(({ href, label }) => (
+                  <Link
+                    key={href}
+                    href={href}
+                    className="text-primary-spring font-aeonik-regular text-lg font-medium sm:text-lg py-[9px] sm:py-[10px] hover:opacity-80 transition-all duration-200"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {label}
+                  </Link>
+                ))}
               </nav>
 
               {/* Mobile Language Toggle */}
-              <div className="mt-6 pt-4 border-t border-[#036e65]">
+              <div className="my-2 ">
                 <div
-                  className="font-['GE_SS_Two:Medium',_sans-serif] text-primary-spring text-sm mb-4"
-                  dir="auto"
+                  className="font-['GE_SS_Two:Medium',_sans-serif] text-primary-spring text-lg font-mediums mb-4"
+                  // dir="auto"
                 >
                   تصفح بالعربية
                 </div>
               </div>
 
               {/* Mobile CTA Button */}
-              <div className="mt-4 group">
+              <div className="mt-15  group">
                 <Button
                   variant="light"
-                  rightIcon={true}
+                  rightIcon
                   fullWidth
                   onClick={() => setIsMenuOpen(false)}
                 >

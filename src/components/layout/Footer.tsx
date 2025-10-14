@@ -424,7 +424,7 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        <div className="block md:hidden gap-4 items-center justify-center relative  w-full py-5 md:py-[44px] max-w-[1392px] mx-auto ">
+        {/* <div className="block md:hidden gap-4 items-center justify-center relative  w-full py-5 md:py-[44px] max-w-[1392px] mx-auto ">
           <Swiper
             spaceBetween={8}
             slidesPerView={3.5}
@@ -441,7 +441,7 @@ export default function Footer() {
               </SwiperSlide>
             ))}
           </Swiper>
-        </div>
+        </div> */}
         <div className="gap-4 items-center justify-center relative hidden md:grid grid-cols-3 md:grid-cols-6 w-full py-5 md:py-[44px] max-w-[1392px] mx-auto px-4 md:px-0">
           {awards.map((award, idx) => (
             <div
