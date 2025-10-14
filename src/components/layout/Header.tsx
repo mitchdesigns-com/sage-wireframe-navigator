@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
-import { Menu, X } from 'lucide-react'
+import { ChevronRight, Menu, X } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Button from '@/components/ui/Button'
 import ServicesMenu from './ServicesMenu'
@@ -17,6 +17,10 @@ export default function Header() {
   const [servicesOpen, setServicesOpen] = useState(false)
   const [resourcesOpen, setResourcesOpen] = useState(false)
   const headerRef = useRef<HTMLDivElement>(null)
+  const [activeSubMenu, setActiveSubMenu] = useState<
+    null | 'services' | 'resources'
+  >(null)
+
   console.log(isScrolled)
   useEffect(() => {
     const handleScroll = () => {
@@ -79,6 +83,15 @@ export default function Header() {
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
   }, [])
+  const handleMenuClick = (type: 'services' | 'resources') => {
+    if (type === 'services') {
+      setServicesOpen(true)
+      setIsMenuOpen(false)
+    } else if (type === 'resources') {
+      setResourcesOpen(true)
+      setIsMenuOpen(false)
+    }
+  }
   return (
     <div
       ref={headerRef}
@@ -261,75 +274,82 @@ export default function Header() {
         )}
       </AnimatePresence>
 
-      {/* Mobile Navigation Overlay */}
-      {/* <AnimatePresence>
-        {isMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="lg:hidden fixed inset-0 bg-black bg-opacity-50 z-40"
-            onClick={() => setIsMenuOpen(false)}
-          />
-        )}
-      </AnimatePresence> */}
-
       {/* Mobile Navigation Panel */}
-      <AnimatePresence>
-        {isMenuOpen && (
+      <AnimatePresence mode="wait">
+        {isMenuOpen && !activeSubMenu && (
           <motion.div
+            key="main-menu"
             initial={{ x: '100%' }}
             animate={{ x: 0 }}
-            exit={{ x: '100%' }}
+            exit={{ x: '-100%' }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className="lg:hidden fixed top-0 left-0 h-full w-full bg-primary-palm shadow-2xl z-40 overflow-y-auto max-w-full"
+            className="lg:hidden fixed top-0 left-0 h-full w-full bg-primary-palm shadow-2xl z-40 overflow-y-auto"
           >
             <div className="px-4 sm:px-6 pt-22 sm:pt-20 pb-8 w-full">
-              {/* Navigation Links */}
               <nav className="flex flex-col space-y-3 sm:space-y-4 w-full pt-8">
                 {[
                   { href: '/', label: 'Home' },
-                  { href: '/services', label: 'Services' },
+                  { href: '/services', label: 'Services', hasSubMenu: true },
                   { href: '/about', label: 'About Us' },
-                  { href: '/resources', label: 'Resources' },
+                  { href: '/resources', label: 'Resources', hasSubMenu: true },
                   { href: '/our-network', label: 'Our Network' },
                   { href: '/visit-saudi', label: 'Visit Saudi' },
-                ].map(({ href, label }) => (
-                  <Link
+                ].map(({ href, label, hasSubMenu }) => (
+                  <div
                     key={href}
-                    href={href}
-                    className="text-primary-spring font-aeonik-regular text-lg font-medium sm:text-lg py-[9px] sm:py-[10px] hover:opacity-80 transition-all duration-200"
-                    onClick={() => setIsMenuOpen(false)}
+                    className="flex items-center justify-between text-primary-spring font-aeonik-regular text-lg font-medium sm:text-lg py-[9px] sm:py-[10px] hover:opacity-80 transition-all duration-200"
                   >
-                    {label}
-                  </Link>
+                    {hasSubMenu ? (
+                      <button
+                        onClick={() =>
+                          setActiveSubMenu(
+                            label.toLowerCase() as 'services' | 'resources'
+                          )
+                        }
+                        className="flex items-center justify-between w-full text-left"
+                      >
+                        <span>{label}</span>
+                        <ChevronRight className="w-5 h-5" />
+                      </button>
+                    ) : (
+                      <Link href={href} onClick={() => setIsMenuOpen(false)}>
+                        {label}
+                      </Link>
+                    )}
+                  </div>
                 ))}
               </nav>
-
-              {/* Mobile Language Toggle */}
               <div className="my-2 ">
+                {' '}
                 <div
                   className="font-['GE_SS_Two:Medium',_sans-serif] text-primary-spring text-lg font-mediums mb-4"
                   // dir="auto"
                 >
-                  تصفح بالعربية
-                </div>
+                  {' '}
+                  تصفح بالعربية{' '}
+                </div>{' '}
               </div>
-
-              {/* Mobile CTA Button */}
-              <div className="mt-15  group">
+              <div className="mt-15 group">
+                {' '}
                 <Button
                   variant="light"
                   rightIcon
                   fullWidth
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  Schedule Call
-                </Button>
+                  {' '}
+                  Schedule Call{' '}
+                </Button>{' '}
               </div>
             </div>
           </motion.div>
+        )}
+
+        {isMenuOpen && activeSubMenu === 'resources' && (
+          <ResourcesMenu isOpen={true} onClose={() => setActiveSubMenu(null)} />
+        )}
+        {isMenuOpen && activeSubMenu === 'services' && (
+          <ServicesMenu isOpen={true} onClose={() => setActiveSubMenu(null)} />
         )}
       </AnimatePresence>
     </div>

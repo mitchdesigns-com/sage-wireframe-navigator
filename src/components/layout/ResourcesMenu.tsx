@@ -13,6 +13,7 @@ import BreakingNewsIcon from '../svg/BreakingNewsIcon'
 import ArticlePersonIcon from '../svg/ArticlePersonIcon'
 import PhoneInTalkIcon from '../svg/PhoneInTalkIcon'
 import Image from 'next/image'
+import { ChevronLeft } from 'lucide-react'
 
 interface ResourcesMenuProps {
   isOpen: boolean
@@ -100,26 +101,31 @@ export default function ResourcesMenu({ isOpen, onClose }: ResourcesMenuProps) {
       className="absolute top-full left-0 w-screen bg-white shadow-xl border-t border-gray-200 z-50"
     >
       {/* Menu content */}
-      <div className="bg-[#e6eeed] px-[60px] py-8">
+      <div className="bg-[#e6eeed] px-4 md:px-15  py-8">
         <div className="max-w-[1392px] w-full mx-auto">
-          <div className="flex gap-8 items-start justify-start">
+          <div className="flex gap-0 md:gap-8 items-start justify-start flex-col md:flex-row">
+            <p className="text-lg font-medium flex md:hidden" onClick={onClose}>
+              <div className="flex gap-2 justify-center items-center">
+                <ChevronLeft /> Resources
+              </div>
+            </p>
             {/* Column 1 */}
-            <div className="flex-1 flex flex-col gap-2 h-[358px]">
+            <div className="flex-1 flex flex-col gap-0 md:gap-2 md:h-[358px]">
               {resourceItems.column1.map((item, index) => (
                 <Link
                   key={index}
                   href={item.href}
                   onClick={onClose}
-                  className="group flex gap-2 items-start px-3 py-4 rounded-[10px] hover:bg-Secondary-Light-Scrub transition-colors duration-200 w-80"
+                  className="group flex gap-2 items-start px-[30px] md:px-3 py-4 rounded-[10px] hover:bg-Secondary-Light-Scrub transition-colors duration-200 w-80"
                 >
                   <div className="relative shrink-0 size-6 text-primary-light-sage group-hover:text-Primary-Scrub">
                     {item.icon}
                   </div>
                   <div className="flex flex-col items-start justify-start flex-1">
-                    <div className="font-aeonik-bold text-Neutral-Darkest text-base leading-[1.5]">
+                    <div className="font-aeonik-bold text-Neutral-Darkest text-sm md:text-base leading-[1.5]">
                       {item.title}
                     </div>
-                    <div className="font-aeonik-regular text-[#626262] text-sm leading-[1.5]">
+                    <div className="font-aeonik-regular text-[#626262] text-xs md:text-sm leading-[1.5]">
                       {item.description}
                     </div>
                   </div>
@@ -128,22 +134,22 @@ export default function ResourcesMenu({ isOpen, onClose }: ResourcesMenuProps) {
             </div>
 
             {/* Column 2 */}
-            <div className="flex-1 flex flex-col gap-2 h-[358px]">
+            <div className="flex-1 flex flex-col gap-0 md:gap-2 md:h-[358px]">
               {resourceItems.column2.map((item, index) => (
                 <Link
                   key={index}
                   href={item.href}
                   onClick={onClose}
-                  className="group flex gap-2 items-start px-3 py-4 rounded-[10px] hover:bg-Secondary-Light-Scrub transition-colors duration-200 w-80"
+                  className="group flex gap-2 items-start px-[30px] md:px-3 py-4 rounded-[10px] hover:bg-Secondary-Light-Scrub transition-colors duration-200 w-80"
                 >
                   <div className="relative shrink-0 size-6 text-primary-light-sage group-hover:text-Primary-Scrub">
                     {item.icon}
                   </div>
                   <div className="flex flex-col items-start justify-start flex-1">
-                    <div className="font-aeonik-bold text-Neutral-Darkest text-base leading-[1.5]">
+                    <div className="font-aeonik-bold text-Neutral-Darkest text-sm md:text-base leading-[1.5]">
                       {item.title}
                     </div>
-                    <div className="font-aeonik-regular text-[#626262] text-sm leading-[1.5]">
+                    <div className="font-aeonik-regular text-[#626262] text-xs md:text-sm leading-[1.5]">
                       {item.description}
                     </div>
                   </div>
@@ -152,22 +158,22 @@ export default function ResourcesMenu({ isOpen, onClose }: ResourcesMenuProps) {
             </div>
 
             {/* Column 3 */}
-            <div className="flex-1 flex flex-col gap-2 h-[358px]">
+            <div className="flex-1 flex flex-col gap-0 md:gap-2 md:h-[358px]">
               {resourceItems.column3.map((item, index) => (
                 <Link
                   key={index}
                   href={item.href}
                   onClick={onClose}
-                  className="group flex gap-2 items-start px-3 py-4 rounded-[10px] hover:bg-Secondary-Light-Scrub transition-colors duration-200 w-80"
+                  className="group flex gap-2 items-start px-[30px] md:px-3 py-4 rounded-[10px] hover:bg-Secondary-Light-Scrub transition-colors duration-200 w-80"
                 >
                   <div className="relative shrink-0 size-6 text-primary-light-sage group-hover:text-Primary-Scrub">
                     {item.icon}
                   </div>
                   <div className="flex flex-col items-start justify-start flex-1">
-                    <div className="font-aeonik-bold text-Neutral-Darkest text-base leading-[1.5]">
+                    <div className="font-aeonik-bold text-Neutral-Darkest text-sm md:text-base leading-[1.5]">
                       {item.title}
                     </div>
-                    <div className="font-aeonik-regular text-[#626262] text-sm leading-[1.5]">
+                    <div className="font-aeonik-regular text-[#626262] text-xs md:text-sm leading-[1.5]">
                       {item.description}
                     </div>
                   </div>
@@ -176,7 +182,7 @@ export default function ResourcesMenu({ isOpen, onClose }: ResourcesMenuProps) {
             </div>
 
             {/* Image placeholder */}
-            <div className="flex-shrink-0">
+            <div className="flex-shrink-0 hidden md:block">
               <div className="relative  w-[314px] h-[386px] ">
                 <Image
                   src="/images/generalImages/PlaceholderResources.png"

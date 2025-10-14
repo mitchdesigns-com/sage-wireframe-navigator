@@ -13,6 +13,7 @@ import FlightsAndHotelsIcon from '../svg/FlightsAndHotelsIcon'
 import EditDocumentIcon from '../svg/EditDocumentIcon'
 import Image from 'next/image'
 import ButtonIcon from '../svg/ButtonIcon'
+import { ChevronLeft } from 'lucide-react'
 
 interface ServicesMenuProps {
   isOpen: boolean
@@ -104,7 +105,7 @@ export default function ServicesMenu({ isOpen, onClose }: ServicesMenuProps) {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -10 }}
       transition={{ duration: 0.2 }}
-      className="absolute top-full left-0 w-screen bg-white shadow-xl border-t border-gray-200 z-50 "
+      className="absolute top-full left-0 w-screen bg-white shadow-xl border-t border-gray-200 z-50 max-h-[90vh] overflow-y-auto"
     >
       {/* Menu content */}
       <div className="bg-[#e6eeed] px-[60px] py-8 ">
@@ -112,14 +113,22 @@ export default function ServicesMenu({ isOpen, onClose }: ServicesMenuProps) {
           {' '}
           <div className="flex gap-8 items-start justify-end">
             <div className="flex-1 flex flex-col gap-8">
+              <p
+                className="text-lg font-medium flex md:hidden"
+                onClick={onClose}
+              >
+                <div className="flex gap-2 justify-center items-center">
+                  <ChevronLeft /> Services
+                </div>
+              </p>
               {/* Service Categories */}
-              <div className="flex gap-8 items-start justify-start w-full">
+              <div className="flex gap-0 md:gap-8 items-start justify-start w-full flex-col md:flex-row ">
                 {/* For Individuals */}
-                <div className="flex-1 flex flex-col gap-4 h-[296px]">
+                <div className=" flex-1 flex flex-col gap-4 h-[296px]">
                   <Link href={'/services/individual'} onClick={onClose}>
                     {' '}
-                    <div className="flex gap-1.5 items-center cursor-pointer">
-                      <div className="font-aeonik-bold text-primary-black text-sm leading-[1.5]">
+                    <div className="flex gap-1.5 items-center cursor-pointer ps-11">
+                      <div className="font-aeonik-bold text-primary-black text-xs md:text-sm leading-[1.5]">
                         {serviceCategories.individuals.title}
                       </div>
                       <div className="relative shrink-0 size-[17px] text-primary-black flex items-center justify-center">
@@ -130,22 +139,22 @@ export default function ServicesMenu({ isOpen, onClose }: ServicesMenuProps) {
                       </div>
                     </div>
                   </Link>
-                  <div className="flex flex-col gap-2">
+                  <div className="flex flex-col gap-0 md:gap-2 ">
                     {serviceCategories.individuals.items.map((item, index) => (
                       <Link
                         key={index}
                         href={item.href}
                         onClick={onClose}
-                        className="group flex gap-2 h-[116px] items-start px-3 py-4 rounded-[10px] hover:bg-Secondary-Light-Scrub transition-colors duration-200 w-80"
+                        className="group flex gap-2 md:h-[116px] items-start px-11 md:px-3 py-4 rounded-[10px] hover:bg-Secondary-Light-Scrub transition-colors duration-200 w-80"
                       >
                         <div className="relative shrink-0 size-6 text-primary-light-sage group-hover:text-Primary-Scrub">
                           {item.icon}
                         </div>
                         <div className="flex flex-col items-start justify-start flex-1">
-                          <div className="font-aeonik-bold text-Neutral-Darkest text-base leading-[1.5]">
+                          <div className="font-aeonik-bold text-Neutral-Darkest text-sm md:text-base leading-[1.5]">
                             {item.title}
                           </div>
-                          <div className="font-aeonik-regular text-[#626262] text-sm leading-[1.5] w-[236px]">
+                          <div className="font-aeonik-regular text-[#626262] text-xs md:text-sm leading-[1.5] w-[236px]">
                             {item.description}
                           </div>
                         </div>
@@ -157,8 +166,8 @@ export default function ServicesMenu({ isOpen, onClose }: ServicesMenuProps) {
                 {/* For Businesses */}
                 <div className="flex-1 flex flex-col gap-4 h-[296px]">
                   <Link href={'/services/businesses'} onClick={onClose}>
-                    <div className="flex gap-1.5 items-center cursor-pointer">
-                      <div className="font-aeonik-bold text-primary-black text-sm leading-[1.5]">
+                    <div className="flex gap-1.5 items-center cursor-pointer ps-11">
+                      <div className="font-aeonik-bold text-primary-black text-xs md:text-sm leading-[1.5]">
                         {serviceCategories.businesses.title}
                       </div>
                       <div className="relative shrink-0 size-[17px] text-primary-black flex items-center justify-center">
@@ -169,22 +178,22 @@ export default function ServicesMenu({ isOpen, onClose }: ServicesMenuProps) {
                       </div>
                     </div>
                   </Link>
-                  <div className="flex flex-col gap-2">
+                  <div className="flex flex-col gap-0 md:gap-2">
                     {serviceCategories.businesses.items.map((item, index) => (
                       <Link
                         key={index}
                         href={item.href}
                         onClick={onClose}
-                        className="group flex gap-2 h-[116px] items-start px-3 py-4 rounded-[10px] hover:bg-Secondary-Light-Scrub transition-colors duration-200 w-80"
+                        className="group flex gap-2 md:h-[116px] items-start px-11 md:px-3 py-4 rounded-[10px] hover:bg-Secondary-Light-Scrub transition-colors duration-200 w-80"
                       >
                         <div className="relative shrink-0 size-6 text-primary-light-sage group-hover:text-Primary-Scrub">
                           {item.icon}
                         </div>
                         <div className="flex flex-col items-start justify-start flex-1">
-                          <div className="font-aeonik-bold text-primary-black text-base leading-[1.5]">
+                          <div className="font-aeonik-bold text-primary-black text-sm md:text-base leading-[1.5]">
                             {item.title}
                           </div>
-                          <div className="font-aeonik-regular text-[#626262] text-sm leading-[1.5] w-[236px]">
+                          <div className="font-aeonik-regular text-[#626262] text-xs md:text-sm leading-[1.5] w-[236px]">
                             {item.description}
                           </div>
                         </div>
@@ -196,8 +205,8 @@ export default function ServicesMenu({ isOpen, onClose }: ServicesMenuProps) {
                 {/* For Organizations */}
                 <div className="flex-1 flex flex-col gap-4 h-[296px]">
                   <Link href={'/services/organizations'} onClick={onClose}>
-                    <div className="flex gap-1.5 items-center cursor-pointer">
-                      <div className="font-aeonik-bold text-primary-black text-sm leading-[1.5]">
+                    <div className="flex gap-1.5 items-center cursor-pointer  ps-11">
+                      <div className="font-aeonik-bold text-primary-black text-xs md:text-sm leading-[1.5]">
                         {serviceCategories.organizations.title}
                       </div>
                       <div className="relative shrink-0 size-[17px] text-primary-black flex items-center justify-center">
@@ -208,23 +217,23 @@ export default function ServicesMenu({ isOpen, onClose }: ServicesMenuProps) {
                       </div>
                     </div>
                   </Link>
-                  <div className="flex flex-col gap-2">
+                  <div className="flex flex-col  gap-0 md:gap-2 ">
                     {serviceCategories.organizations.items.map(
                       (item, index) => (
                         <Link
                           key={index}
                           href={item.href}
                           onClick={onClose}
-                          className="group flex gap-2 h-[116px] items-start px-3 py-4 rounded-[10px] hover:bg-Secondary-Light-Scrub transition-colors duration-200 w-80"
+                          className="group flex gap-2 md:h-[116px] items-start px-11 md:px-3 py-4 rounded-[10px] hover:bg-Secondary-Light-Scrub transition-colors duration-200 w-80"
                         >
                           <div className="relative shrink-0 size-6 text-primary-light-sage group-hover:text-Primary-Scrub">
                             {item.icon}
                           </div>
                           <div className="flex flex-col items-start justify-start flex-1">
-                            <div className="font-aeonik-bold text-primary-black text-base leading-[1.5]">
+                            <div className="font-aeonik-bold text-primary-black text-sm md:text-base leading-[1.5]">
                               {item.title}
                             </div>
-                            <div className="font-aeonik-regular text-[#626262] text-sm leading-[1.5] w-[236px]">
+                            <div className="font-aeonik-regular text-[#626262] text-xs md:text-sm leading-[1.5] w-[236px]">
                               {item.description}
                             </div>
                           </div>
@@ -239,7 +248,7 @@ export default function ServicesMenu({ isOpen, onClose }: ServicesMenuProps) {
             </div>
 
             {/* Image placeholder */}
-            <div className="flex-shrink-0">
+            <div className="flex-shrink-0 hidden md:block">
               <div className="relative  w-[314px] h-[386px] ">
                 <Image
                   src="/images/generalImages/Placeholder.png"
