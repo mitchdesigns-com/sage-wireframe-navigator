@@ -3,8 +3,9 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import Button from '@/components/ui/Button'
-import { Phone, Mail } from 'lucide-react'
+import { Phone, Mail, ChevronDown } from 'lucide-react'
 import Image from 'next/image'
+import { Swiper, SwiperSlide } from 'swiper/react'
 
 // Social media links
 const socialLinks = [
@@ -111,6 +112,7 @@ const awards = [
 export default function Footer() {
   const [email, setEmail] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [openIndex, setOpenIndex] = useState(0) // First accordion open by default
 
   const handleNewsletterSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -126,6 +128,40 @@ export default function Footer() {
     // You can add toast notification here
     alert('Successfully subscribed to updates!')
   }
+  const sections = [
+    {
+      title: 'Quick Links',
+      links: [
+        'About Us',
+        'Contact Us',
+        'Visit Saudi',
+        'News & Events',
+        'Careers',
+      ],
+    },
+    {
+      title: 'Services',
+      links: ['For Individuals', 'For Businesses', 'For Organizations'],
+    },
+    {
+      title: 'Resources',
+      links: ['Guides', 'Case Studies', 'Webinars', 'Certifications', 'FAQs'],
+    },
+    {
+      title: 'Explore More',
+      links: [
+        'CSR Initiatives',
+        'Access Referral',
+        'Blog',
+        'Careers',
+        'Our Network',
+      ],
+    },
+    {
+      title: 'Legal Links',
+      links: ['Privacy Policy', 'Terms and Conditions', 'Cookie Policy'],
+    },
+  ]
 
   return (
     <>
@@ -133,9 +169,9 @@ export default function Footer() {
 
       {/* Footer */}
       <footer className="bg-gradient-to-t from-[#013530] to-[#025850]">
-        <div className="flex justify-between pt-25 pb-11 max-w-[1392px] mx-auto">
+        <div className="flex justify-center md:justify-between items-center pb-5 pt-11 md:pt-25 md:pb-11 max-w-[1392px] mx-auto px-4 md:px-0 flex-col md:flex-row">
           {' '}
-          <div className="w-[373px] h-[178px] relative">
+          <div className="w-[269px] md:w-[373px] h-[128px] md:h-[178px] relative ">
             <Image
               fill
               src="/images/footer-logo.png"
@@ -144,11 +180,11 @@ export default function Footer() {
               unoptimized
             />
           </div>
-          <section className="bg-[#CAF48E] max-w-[707px] rounded-3xl">
-            <div className="px-8 py-[20px]">
+          <section className="bg-[#CAF48E] max-w-[707px] rounded-3xl mt-8 md:mt-0">
+            <div className="px-4 py-8 md:px-8 md:py-[20px]">
               <div className="">
                 <div>
-                  <h2 className="text-[#000404] font-bold text-p">
+                  <h2 className="text-[#000404] font-bold text-base md:text-p">
                     Subscribe to Updates
                   </h2>
                   <p className="text-[#000404] text-sm leading-[1.5]">
@@ -158,23 +194,23 @@ export default function Footer() {
                   <div className="space-y-3 pt-2">
                     <form
                       onSubmit={handleNewsletterSubmit}
-                      className="flex gap-4 items-center"
+                      className="flex gap-4 items-center flex-col md:flex-row"
                     >
                       <input
                         type="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="Enter Your Email"
-                        className="bg-white  rounded-[6px] px-3 py-2 h-12 w-[479px] text-base text-[#626262] "
+                        className="bg-white  rounded-[6px] px-3 py-2 h-12 w-full md:w-[479px] text-base text-[#626262] "
                       />
                       <button
                         type="submit"
-                        className="bg-[#025850] text-white px-15 py-3 h-12 rounded-full font-medium text-base hover:bg-[#024440] transition-colors cursor-pointer"
+                        className="bg-[#025850] text-white w-full md:w-fit px-15 py-3 h-12 rounded-full font-medium text-base hover:bg-[#024440] transition-colors cursor-pointer"
                       >
                         Join
                       </button>
                     </form>
-                    <p className="text-Primary-Black text-[12px] leading-[1.5]">
+                    <p className="text-Primary-Black text-xs leading-[1.5]">
                       We respect your privacy. Read our{' '}
                       <span className="text-[#025850] underline cursor-pointer">
                         Privacy Policy.
@@ -186,11 +222,11 @@ export default function Footer() {
             </div>
           </section>
         </div>
-        <div className="flex justify-between">
+        <div className="flex justify-between px-4 md:px-0">
           {/* Logo */}
 
           {/* Footer Links */}
-          <div className="grid grid-cols-6 gap-8 flex-1 max-w-[1392px] mx-auto bg-Secondary-Light-Scrub p-16 rounded-4xl">
+          <div className="hidden md:grid grid-cols-6 gap-8 flex-1 max-w-[1392px] mx-auto bg-Secondary-Light-Scrub py-8 px-4 md:p-16 rounded-4xl ">
             {/* Quick Links */}
             <div className="space-y-4">
               <h3 className="text-Primary-Black font-bold text-base">
@@ -319,20 +355,107 @@ export default function Footer() {
               </p>
             </div>
           </div>
-        </div>
+          <div className="md:hidden flex flex-col w-full bg-Secondary-Light-Scrub py-8 px-4 md:p-16 rounded-4xl ">
+            {sections.map((section, index) => {
+              const isOpen = openIndex === index
+              return (
+                <div key={section.title} className="py-3">
+                  <button
+                    onClick={() => setOpenIndex(isOpen ? -1 : index)}
+                    className="w-full flex justify-between items-center text-left"
+                  >
+                    <h3 className="text-Primary-Black font-bold text-sm">
+                      {section.title}
+                    </h3>
+                    <ChevronDown
+                      className={`w-5 h-5 text-Primary-Black transition-transform duration-300 ${
+                        isOpen ? 'rotate-180' : ''
+                      }`}
+                    />
+                  </button>
 
-        <div className="gap-4 items-center justify-center relative grid grid-cols-6 w-full py-[44px] max-w-[1392px] mx-auto">
+                  <div
+                    className={`overflow-hidden transition-all duration-300 ${
+                      isOpen ? 'max-h-96 mt-2' : 'max-h-0'
+                    }`}
+                  >
+                    <div className="space-y-2 ">
+                      {section.links.map((link) => (
+                        <div key={link} className="py-1">
+                          <a href="#" className="text-Primary-Black text-xs">
+                            {link}
+                          </a>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )
+            })}
+
+            {/* Contact Section */}
+            <div className="pt-4 space-y-3">
+              <div className="gap-2 flex text-xs items-center">
+                <Phone className="text-Primary-Palm" />
+                <a href="tel:+966551234567" className="text-Primary-Black">
+                  +966 55 123 4567
+                </a>
+              </div>
+              <div className="gap-2 flex text-xs items-center">
+                <Mail className="text-Primary-Palm" />
+                <a href="mailto:Info@sage.com" className="text-Primary-Black">
+                  Info@sage.com
+                </a>
+              </div>
+              <div className="flex gap-4">
+                {socialLinks.map((link) => (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-Primary-Black text-xs hover:text-Primary-Palm"
+                  >
+                    <Mail className="text-Primary-Palm" />
+                  </a>
+                ))}
+              </div>
+              <p className="text-Secondary-Text font-medium text-xs pt-1">
+                تصفح بالعربية
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className="block md:hidden gap-4 items-center justify-center relative  w-full py-5 md:py-[44px] max-w-[1392px] mx-auto ">
+          <Swiper
+            spaceBetween={8}
+            slidesPerView={3.5}
+            className="!overflow-visible px-4" // adds space before & after slides
+          >
+            {awards.map((award, idx) => (
+              <SwiperSlide key={idx}>
+                <div
+                  className={`bg-no-repeat aspect-[104/42] rounded-[4px] bg-white bg-center bg-contain ${
+                    idx === 0 ? 'ms-4' : idx === awards.length - 1 ? 'me-4' : ''
+                  }`}
+                  style={{ backgroundImage: `url('${award.img}')` }}
+                />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+        <div className="gap-4 items-center justify-center relative hidden md:grid grid-cols-3 md:grid-cols-6 w-full py-5 md:py-[44px] max-w-[1392px] mx-auto px-4 md:px-0">
           {awards.map((award, idx) => (
             <div
               key={idx}
-              className={`bg-no-repeat aspect-[218/88] rounded-xl bg-white bg-center bg-contain`}
+              className={`bg-no-repeat aspect-[104/42] md:aspect-[218/88] rounded-[4px] md:rounded-xl bg-white bg-center bg-contain`}
               style={{ backgroundImage: `url('${award.img}')` }}
             />
           ))}
         </div>
-        <div className=" px-[60px] pb-6">
-          <div className="max-w-[1392px] mx-auto px-15">
-            <div className="flex items-center justify-between">
+        <div className="px-4 md:px-[60px] pb-6">
+          <div className="max-w-[1392px] mx-auto px-0 md:px-15">
+            <div className="flex items-center justify-between flex-col md:flex-row">
               <div className="text-white text-sm">
                 © 2025 Sage. All rights reserved.
               </div>
@@ -352,257 +475,6 @@ export default function Footer() {
       </footer>
 
       {/* Bottom Footer */}
-
-      <footer className="bg-white hidden">
-        {/* Newsletter Section */}
-        <section className="bg-Primary-Spring py-[60px] px-[60px]">
-          <div className="container-custom mx-auto">
-            <div className="flex items-center justify-between">
-              <div className="max-w-[560px]">
-                <h3 className="text-black text-[18px] font-bold leading-[1.5] mb-2">
-                  Subscribe to Updates
-                </h3>
-                <p className="text-black text-[16px] leading-[1.5]">
-                  Stay informed about our services and healthcare insights.
-                </p>
-              </div>
-
-              <div className="flex flex-col gap-3">
-                <form
-                  onSubmit={handleNewsletterSubmit}
-                  className="flex gap-4 items-center"
-                >
-                  <div className="bg-white border border-[#f0f0ee] rounded-xl px-3 py-2 h-12 w-[352px] flex items-center">
-                    <input
-                      type="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      placeholder="Enter Your Email"
-                      className="bg-transparent text-[#626262] text-[16px] leading-[1.5] w-full outline-none"
-                    />
-                  </div>
-                  <button className="bg-[#025850] text-white px-6 py-2 h-12 rounded-[100px] text-[16px] font-medium hover:bg-[#013530] transition-colors duration-200 w-[116px]">
-                    Join
-                  </button>
-                </form>
-                <p className="text-Primary-Black text-[12px] leading-[1.5]">
-                  We respect your privacy. Read our{' '}
-                  <span className="text-[#025850]">Privacy Policy.</span>
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-        <div className="bg-Primary-Spring py-16 hidden">
-          <div className="container-custom mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="mx-auto flex flex-col items-center justify-between gap-8 lg:flex-row">
-              {/* Left Content */}
-              <div className="text-center lg:text-left">
-                <h2 className="mb-4 text-3xl font-bold text-gray-900">
-                  Subscribe to Updates
-                </h2>
-                <p className="max-w-md text-lg text-gray-700">
-                  Stay informed about our services and healthcare insights.
-                </p>
-              </div>
-
-              {/* Right Content - Newsletter Form */}
-              <div className="w-full lg:w-auto">
-                <form
-                  onSubmit={handleNewsletterSubmit}
-                  className="flex max-w-md flex-col gap-4 sm:flex-row lg:max-w-none"
-                >
-                  <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Enter Your Email"
-                    className="flex-1 rounded-full border border-gray-300 bg-white px-4 py-3 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-green-500"
-                    required
-                  />
-                  <Button type="submit" loading={isSubmitting}>
-                    Join
-                  </Button>
-                </form>
-                <p className="mt-3 text-center text-sm text-gray-600 lg:text-left">
-                  We respect your privacy. Read our{' '}
-                  <Link
-                    href="/privacy"
-                    className="font-medium text-Primary-Palm hover:underline"
-                  >
-                    Privacy Policy
-                  </Link>
-                  .
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Main Footer */}
-        <div className="bg-green-800 py-16 text-white">
-          <div className="container-custom mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-6">
-              {/* Logo Section */}
-              <div className="lg:col-span-1">
-                <div className="mb-6 flex items-center space-x-2">
-                  <div className="text-2xl font-bold">
-                    <div className="text-xs uppercase leading-tight tracking-wider text-green-200">
-                      HEALTHCARE CONCIERGE
-                    </div>
-                    <div className="mt-1 text-3xl font-bold text-white">
-                      sage.
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Quick Links */}
-              <div>
-                <h3 className="mb-6 font-semibold text-green-200">
-                  Quick Links
-                </h3>
-                <ul className="space-y-3">
-                  {footerLinks.quickLinks.map((link) => (
-                    <li key={link.href}>
-                      <Link
-                        href={link.href}
-                        className="text-white transition-colors duration-200 hover:text-green-200"
-                      >
-                        {link.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Services */}
-              <div>
-                <h3 className="mb-6 font-semibold text-green-200">Services</h3>
-                <ul className="space-y-3">
-                  {footerLinks.services.map((link) => (
-                    <li key={link.href}>
-                      <Link
-                        href={link.href}
-                        className="text-white transition-colors duration-200 hover:text-green-200"
-                      >
-                        {link.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Resources */}
-              <div>
-                <h3 className="mb-6 font-semibold text-green-200">Resources</h3>
-                <ul className="space-y-3">
-                  {footerLinks.resources.map((link) => (
-                    <li key={link.href}>
-                      <Link
-                        href={link.href}
-                        className="text-white transition-colors duration-200 hover:text-green-200"
-                      >
-                        {link.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Explore More */}
-              <div>
-                <h3 className="mb-6 font-semibold text-green-200">
-                  Explore More
-                </h3>
-                <ul className="space-y-3">
-                  {footerLinks.exploreMore.map((link) => (
-                    <li key={link.href}>
-                      <Link
-                        href={link.href}
-                        className="text-white transition-colors duration-200 hover:text-green-200"
-                      >
-                        {link.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Legal Links */}
-              <div>
-                <h3 className="mb-6 font-semibold text-green-200">
-                  Legal Links
-                </h3>
-                <ul className="space-y-3">
-                  {footerLinks.legalLinks.map((link) => (
-                    <li key={link.href}>
-                      <Link
-                        href={link.href}
-                        className="text-white transition-colors duration-200 hover:text-green-200"
-                      >
-                        {link.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Footer Bottom */}
-        <div className="bg-green-900 py-4 text-white">
-          <div className="container-custom mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
-              {/* Copyright */}
-              <div className="text-sm text-green-200">
-                © 2025 Sage. All rights reserved.
-              </div>
-
-              {/* Contact Info & Social Links */}
-              <div className="flex flex-col items-center gap-6 sm:flex-row">
-                {/* Contact Information */}
-                <div className="flex items-center gap-6 text-sm">
-                  <a
-                    href="tel:+966551234567"
-                    className="flex items-center gap-2 text-green-200 transition-colors duration-200 hover:text-white"
-                  >
-                    <Phone size={16} />
-                    +966 55 123 4567
-                  </a>
-                  <a
-                    href="mailto:info@sage.com"
-                    className="flex items-center gap-2 text-green-200 transition-colors duration-200 hover:text-white"
-                  >
-                    <Mail size={16} />
-                    info@sage.com
-                  </a>
-                </div>
-
-                {/* Social Media Links */}
-                <div className="flex items-center gap-3">
-                  {socialLinks.map((social) => {
-                    const Icon = social.icon
-                    return (
-                      <a
-                        key={social.label}
-                        href={social.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex h-8 w-8 items-center justify-center rounded-full bg-green-800 transition-colors duration-200 hover:bg-green-700"
-                        aria-label={social.label}
-                      >
-                        <Icon size={16} />
-                      </a>
-                    )
-                  })}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
     </>
   )
 }
