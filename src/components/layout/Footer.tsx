@@ -111,7 +111,7 @@ export default function Footer() {
   const [email, setEmail] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [openIndex, setOpenIndex] = useState(0) // First accordion open by default
-
+  console.log(isSubmitting)
   const handleNewsletterSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
