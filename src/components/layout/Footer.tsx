@@ -1,10 +1,8 @@
 'use client'
 
-import { useState } from 'react'
-import Link from 'next/link'
-import Button from '@/components/ui/Button'
-import { Phone, Mail, ChevronDown } from 'lucide-react'
+import { ChevronDown, Mail, Phone } from 'lucide-react'
 import Image from 'next/image'
+import { useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 // Social media links
@@ -20,39 +18,39 @@ const socialLinks = [
 ]
 
 // Footer navigation links
-const footerLinks = {
-  quickLinks: [
-    { label: 'About Us', href: '/about' },
-    { label: 'Contact Us', href: '/contact' },
-    { label: 'Visit Saudi', href: '/visit-saudi' },
-    { label: 'News & Events', href: '/news' },
-    { label: 'Careers', href: '/careers' },
-  ],
-  services: [
-    { label: 'For Individuals', href: '/services/individuals' },
-    { label: 'For Businesses', href: '/services/businesses' },
-    { label: 'For Organizations', href: '/services/organizations' },
-  ],
-  resources: [
-    { label: 'Guides', href: '/resources/guides' },
-    { label: 'Case Studies', href: '/resources/case-studies' },
-    { label: 'Webinars', href: '/resources/webinars' },
-    { label: 'Certifications', href: '/resources/certifications' },
-    { label: 'FAQs', href: '/resources/faqs' },
-  ],
-  exploreMore: [
-    { label: 'CSR Initiatives', href: '/csr' },
-    { label: 'Access Referral', href: '/referral' },
-    { label: 'Blog', href: '/blog' },
-    { label: 'Careers', href: '/careers' },
-    { label: 'Our Network', href: '/our-network' },
-  ],
-  legalLinks: [
-    { label: 'Privacy Policy', href: '/privacy' },
-    { label: 'Terms and Conditions', href: '/terms' },
-    { label: 'Cookie Policy', href: '/cookies' },
-  ],
-}
+// const footerLinks = {
+//   quickLinks: [
+//     { label: 'About Us', href: '/about' },
+//     { label: 'Contact Us', href: '/contact' },
+//     { label: 'Visit Saudi', href: '/visit-saudi' },
+//     { label: 'News & Events', href: '/news' },
+//     { label: 'Careers', href: '/careers' },
+//   ],
+//   services: [
+//     { label: 'For Individuals', href: '/services/individuals' },
+//     { label: 'For Businesses', href: '/services/businesses' },
+//     { label: 'For Organizations', href: '/services/organizations' },
+//   ],
+//   resources: [
+//     { label: 'Guides', href: '/resources/guides' },
+//     { label: 'Case Studies', href: '/resources/case-studies' },
+//     { label: 'Webinars', href: '/resources/webinars' },
+//     { label: 'Certifications', href: '/resources/certifications' },
+//     { label: 'FAQs', href: '/resources/faqs' },
+//   ],
+//   exploreMore: [
+//     { label: 'CSR Initiatives', href: '/csr' },
+//     { label: 'Access Referral', href: '/referral' },
+//     { label: 'Blog', href: '/blog' },
+//     { label: 'Careers', href: '/careers' },
+//     { label: 'Our Network', href: '/our-network' },
+//   ],
+//   legalLinks: [
+//     { label: 'Privacy Policy', href: '/privacy' },
+//     { label: 'Terms and Conditions', href: '/terms' },
+//     { label: 'Cookie Policy', href: '/cookies' },
+//   ],
+// }
 const awards = [
   {
     name: 'image 10',
