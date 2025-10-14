@@ -83,15 +83,15 @@ export default function Header() {
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
   }, [])
-  const handleMenuClick = (type: 'services' | 'resources') => {
-    if (type === 'services') {
-      setServicesOpen(true)
-      setIsMenuOpen(false)
-    } else if (type === 'resources') {
-      setResourcesOpen(true)
-      setIsMenuOpen(false)
-    }
-  }
+  // const handleMenuClick = (type: 'services' | 'resources') => {
+  //   if (type === 'services') {
+  //     setServicesOpen(true)
+  //     setIsMenuOpen(false)
+  //   } else if (type === 'resources') {
+  //     setResourcesOpen(true)
+  //     setIsMenuOpen(false)
+  //   }
+  // }
   return (
     <div
       ref={headerRef}
