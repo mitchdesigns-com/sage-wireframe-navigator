@@ -4,8 +4,18 @@ import HeroWithVideo from '@/components/sections/HeroWithVideo'
 import Tagline from '@/components/sections/Tagline'
 import Image from 'next/image'
 import { VisitSaudiData } from '../../types/visitSaudiData'
+import { BlogPost } from '../../types/blog'
+import BlogCard from '../sections/BlogCard'
+import Link from 'next/link'
+import ButtonIcon from '../svg/ButtonIcon'
 
-export default function VisitSaudiPage({ data }: { data: VisitSaudiData }) {
+export default function VisitSaudiPage({
+  data,
+  blogs,
+}: {
+  data: VisitSaudiData
+  blogs: BlogPost[]
+}) {
   return (
     <div className="min-h-screen">
       <HeroWithVideo
@@ -66,6 +76,50 @@ export default function VisitSaudiPage({ data }: { data: VisitSaudiData }) {
       {data.FeatureSectionLast.map((section, index) => (
         <FeatureSection key={index} {...section} />
       ))}
+      <section className="max-w-[1392px] mx-auto px-6 py-8 md:py-25">
+        <div className="flex items-end justify-between mb-15 flex-col md:flex-row">
+          <div className="text-center md:text-start">
+            <Tagline text="Blogs" className="items-center md:items-start" />
+
+            <h2 className="text-Primary-Black text-[28px] md:text-[48px] font-bold leading-tight pb-6">
+              Tips from the Experts
+            </h2>
+            <p className="text-Secondary-Text text-base md:text-[18px] max-w-[647px]">
+              Find curated travel advice from those who know Saudi best—insider
+              tips, updates, and more.
+            </p>
+          </div>
+          <Link href={'/resources/blog'}>
+            {' '}
+            <div className="group flex gap-1.5 items-center justify-start rounded-[100px] pt-8 cursor-pointer">
+              {' '}
+              <div className="font-aeonik-bold text-primary-palm group-hover:text-Secondary-Dark-Palm text-lg leading-[1.5]">
+                Explore All Blogs
+              </div>
+              <div className="bg-primary-palm rounded-full p-[6px] size-7 flex items-center justify-center">
+                <div className="relative shrink-0 size-6">
+                  <div className="absolute flex h-[28.284px] items-center justify-center top-[-2.14px] left-[calc(50%+0.084px)] translate-x-[-50%] w-[28.284px]">
+                    <div className="flex-none group-hover:rotate-[45deg] text-Primary-Palm group-hover:text-Secondary-Dark-Palm transition-all duration-300">
+                      <ButtonIcon strokeColor="white" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>{' '}
+          </Link>
+        </div>{' '}
+        <div className="py-8 md:py-15 max-w-[1392px] mx-auto px-4 md:px-0">
+          <div className="grid md:grid-cols-3 gap-x-12 gap-y-8 md:gap-y-16">
+            {blogs.map((blog) => (
+              <BlogCard
+                key={blog.slug}
+                blog={blog.HeroSinglePages}
+                href={`/resources/blog/${blog.slug}`}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
       {/* <BlogSection blogs={blogs} /> */}
       <section className="bg-Secondary-Scrub">
         <GetInTouch {...data.GetInTouch} />
