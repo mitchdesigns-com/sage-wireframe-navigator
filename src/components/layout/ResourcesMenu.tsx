@@ -98,7 +98,7 @@ export default function ResourcesMenu({ isOpen, onClose }: ResourcesMenuProps) {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -10 }}
       transition={{ duration: 0.2 }}
-      className="absolute top-full left-0 w-screen bg-white shadow-xl border-t border-gray-200 z-50"
+      className="absolute top-full left-0 w-screen bg-white shadow-xl border-t border-gray-200 z-50 max-h-[90vh] overflow-y-auto"
     >
       {/* Menu content */}
       <div className="bg-[#e6eeed] px-4 md:px-15  py-8">
