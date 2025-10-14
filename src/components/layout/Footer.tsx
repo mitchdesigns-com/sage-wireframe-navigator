@@ -3,7 +3,7 @@
 import { ChevronDown, Mail, Phone } from 'lucide-react'
 import Image from 'next/image'
 import { useState } from 'react'
-import { Swiper, SwiperSlide } from 'swiper/react'
+// import { Swiper, SwiperSlide } from 'swiper/react'
 
 // Social media links
 const socialLinks = [
