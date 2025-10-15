@@ -1,70 +1,21 @@
 'use client'
 
+import BusinessInquiryForm from '@/components/sections/Forms/BusinessInquiryForm'
+import GeneralInquiryForm from '@/components/sections/Forms/GeneralInquiryForm'
 import Tagline from '@/components/sections/Tagline'
 import ToggleButton from '@/components/sections/ToggleButton'
 import ButtonIcon from '@/components/svg/ButtonIcon'
-import Button from '@/components/ui/Button'
 import Image from 'next/image'
 import Link from 'next/link'
 import Script from 'next/script'
 import { useState } from 'react'
-import PhoneInput from 'react-phone-number-input'
 import 'react-phone-number-input/style.css'
 import { ContactPageData } from '../../types/contactPageData'
-
-interface ContactForm {
-  firstName: string
-  lastName: string
-  phone: string
-  email: string
-  message: string
-  acceptTerms: boolean
-}
 
 type TabType = 'general' | 'business' | 'patient'
 type TabType2 = 'patientSupport' | 'partnership'
 
 export default function ContactPage({ data }: { data: ContactPageData }) {
-  const [formData, setFormData] = useState<ContactForm>({
-    firstName: '',
-    lastName: '',
-    phone: '',
-    email: '',
-    message: '',
-    acceptTerms: false,
-  })
-
-  const handleFormSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    // Handle form submission
-    console.log('Form submitted:', formData)
-  }
-
-  const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value, type } = e.target
-    setFormData((prev) => ({
-      ...prev,
-      [name]:
-        type === 'checkbox' ? (e.target as HTMLInputElement).checked : value,
-    }))
-  }
-
-  const handlePhoneInputChange = (
-    eOrName: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | string,
-    value?: string
-  ) => {
-    if (typeof eOrName === 'string') {
-      setFormData((prev) => ({ ...prev, [eOrName]: value || '' }))
-      // setErrors((prev) => ({ ...prev, [eOrName]: "" }));
-    } else {
-      const { name, value } = eOrName.target
-      setFormData((prev) => ({ ...prev, [name]: value }))
-      // setErrors((prev) => ({ ...prev, [name]: "" }));
-    }
-  }
-
   const [currentTab, setCurrentTab] = useState<TabType>('general')
   const [currentTab2, setCurrentTab2] = useState<TabType2>('patientSupport')
 
@@ -98,237 +49,9 @@ export default function ContactPage({ data }: { data: ContactPageData }) {
                   contact
                 />
                 {currentTab === 'general' ? (
-                  <form onSubmit={handleFormSubmit} className="space-y-4">
-                    <div className="flex  gap-4">
-                      <div className="space-y-2 col w-full">
-                        <label className="text-Primary-Black text-base md:text-lg font-medium  leading-[1.5] block">
-                          First name*
-                        </label>
-                        <input
-                          type="text"
-                          name="firstName"
-                          value={formData.firstName}
-                          onChange={handleInputChange}
-                          className="w-full h-12 px-3 py-2 bg-white border border-[#D2D2D2] rounded-[6px] focus:outline-none focus:ring-2 focus:ring-[#025850] focus:border-transparent"
-                          required
-                        />
-                      </div>
-                      <div className="space-y-2 col w-full">
-                        <label className="text-Primary-Black text-base md:text-lg font-medium  leading-[1.5] block">
-                          Last name*
-                        </label>
-                        <input
-                          type="text"
-                          name="lastName"
-                          value={formData.lastName}
-                          onChange={handleInputChange}
-                          className="w-full h-12 px-3 py-2 bg-white border border-[#D2D2D2] rounded-[6px] focus:outline-none focus:ring-2 focus:ring-[#025850] focus:border-transparent"
-                          required
-                        />
-                      </div>
-                    </div>
-                    <div className="space-y-2">
-                      <label className="text-Primary-Black text-base md:text-lg font-medium  leading-[1.5] block">
-                        Email*
-                      </label>
-                      <input
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleInputChange}
-                        className="w-full h-12 px-3 py-2 bg-white border border-[#D2D2D2] rounded-[6px] focus:outline-none focus:ring-2 focus:ring-[#025850] focus:border-transparent"
-                        required
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <label
-                        htmlFor="phone"
-                        className="text-Primary-Black text-base md:text-lg font-medium leading-[1.5] block"
-                      >
-                        Phone number
-                      </label>
-                      <PhoneInput
-                        id="phone"
-                        international
-                        defaultCountry="EG"
-                        value={formData.phone}
-                        onChange={(value) =>
-                          handlePhoneInputChange('phone', value || '')
-                        }
-                        placeholder=""
-                        className="w-full h-12 px-3 py-2 bg-white border border-[#D2D2D2] rounded-[6px] focus:outline-none focus:ring-2 focus:ring-[#025850] focus:border-transparent"
-                      />
-                    </div>
-
-                    <div className="space-y-2">
-                      <label className="text-Primary-Black text-base md:text-lg font-medium leading-[1.5] block">
-                        Message
-                      </label>
-                      <textarea
-                        name="message"
-                        value={formData.message}
-                        onChange={handleInputChange}
-                        rows={3}
-                        className="w-full px-3 py-2 bg-white border border-[#D2D2D2] rounded-[6px] focus:outline-none focus:ring-2 focus:ring-[#025850] focus:border-transparent resize-none text-[#626262] text-base leading-[1.5]"
-                        required
-                      />
-                    </div>
-
-                    <div className="flex items-center gap-2 pb-4">
-                      <input
-                        type="checkbox"
-                        id="acceptTerms"
-                        name="acceptTerms"
-                        checked={formData.acceptTerms}
-                        onChange={handleInputChange}
-                        className="peer appearance-none w-[18px] h-[18px] border border-Secondary-Scrub rounded bg-white checked:bg-Primary-Spring checked:border-Primary-Spring 
-               relative before:content-[''] before:absolute before:top-[2px] before:left-[5px] before:w-[5px] before:h-[10px] before:border-r-[2px] before:border-b-[2px] before:border-[#025850] before:rotate-45 before:opacity-0 checked:before:opacity-100"
-                        required
-                      />
-                      <label
-                        htmlFor="acceptTerms"
-                        className="text-black text-[14px] leading-[1.5]"
-                      >
-                        I accept the Terms
-                      </label>
-                    </div>
-
-                    <Link href={''} className="inline-block group w-full">
-                      <Button variant={'primary'} rightIcon={true} fullWidth>
-                        Submit Request
-                      </Button>
-                    </Link>
-                  </form>
+                  <GeneralInquiryForm />
                 ) : currentTab === 'business' ? (
-                  <form onSubmit={handleFormSubmit} className="space-y-4">
-                    <div className="flex  gap-4">
-                      <div className="space-y-2 col w-full">
-                        <label className="text-Primary-Black text-base md:text-lg font-medium  leading-[1.5] block">
-                          First name*
-                        </label>
-                        <input
-                          type="text"
-                          name="firstName"
-                          value={formData.firstName}
-                          onChange={handleInputChange}
-                          className="w-full h-12 px-3 py-2 bg-white border border-[#D2D2D2] rounded-[6px] focus:outline-none focus:ring-2 focus:ring-[#025850] focus:border-transparent"
-                          required
-                        />
-                      </div>
-                      <div className="space-y-2 col w-full">
-                        <label className="text-Primary-Black text-base md:text-lg font-medium  leading-[1.5] block">
-                          Last name*
-                        </label>
-                        <input
-                          type="text"
-                          name="lastName"
-                          value={formData.lastName}
-                          onChange={handleInputChange}
-                          className="w-full h-12 px-3 py-2 bg-white border border-[#D2D2D2] rounded-[6px] focus:outline-none focus:ring-2 focus:ring-[#025850] focus:border-transparent"
-                          required
-                        />
-                      </div>
-                    </div>
-                    <div className="flex  gap-4">
-                      <div className="space-y-2 col w-full">
-                        <label className="text-Primary-Black text-base md:text-lg font-medium  leading-[1.5] block">
-                          Company Name
-                        </label>
-                        <input
-                          type="text"
-                          name="firstName"
-                          value={formData.firstName}
-                          onChange={handleInputChange}
-                          className="w-full h-12 px-3 py-2 bg-white border border-[#D2D2D2] rounded-[6px] focus:outline-none focus:ring-2 focus:ring-[#025850] focus:border-transparent"
-                          required
-                        />
-                      </div>
-                      <div className="space-y-2 col w-full">
-                        <label className="text-Primary-Black text-base md:text-lg font-medium  leading-[1.5] block">
-                          Position
-                        </label>
-                        <input
-                          type="text"
-                          name="lastName"
-                          value={formData.lastName}
-                          onChange={handleInputChange}
-                          className="w-full h-12 px-3 py-2 bg-white border border-[#D2D2D2] rounded-[6px] focus:outline-none focus:ring-2 focus:ring-[#025850] focus:border-transparent"
-                          required
-                        />
-                      </div>
-                    </div>
-                    <div className="space-y-2">
-                      <label className="text-Primary-Black text-base md:text-lg font-medium  leading-[1.5] block">
-                        Email*
-                      </label>
-                      <input
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleInputChange}
-                        className="w-full h-12 px-3 py-2 bg-white border border-[#D2D2D2] rounded-[6px] focus:outline-none focus:ring-2 focus:ring-[#025850] focus:border-transparent"
-                        required
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <label
-                        htmlFor="phone"
-                        className="text-Primary-Black text-base md:text-lg font-medium leading-[1.5] block"
-                      >
-                        Phone number
-                      </label>
-                      <PhoneInput
-                        id="phone"
-                        international
-                        defaultCountry="EG"
-                        value={formData.phone}
-                        onChange={(value) =>
-                          handlePhoneInputChange('phone', value || '')
-                        }
-                        placeholder=""
-                        className="w-full h-12 px-3 py-2 bg-white border border-[#D2D2D2] rounded-[6px] focus:outline-none focus:ring-2 focus:ring-[#025850] focus:border-transparent"
-                      />
-                    </div>
-
-                    <div className="space-y-2">
-                      <label className="text-Primary-Black text-base md:text-lg font-medium leading-[1.5] block">
-                        What kind of partnership
-                      </label>
-                      <textarea
-                        name="message"
-                        value={formData.message}
-                        onChange={handleInputChange}
-                        rows={3}
-                        className="w-full px-3 py-2 bg-white border border-[#D2D2D2] rounded-[6px] focus:outline-none focus:ring-2 focus:ring-[#025850] focus:border-transparent resize-none text-[#626262] text-base leading-[1.5]"
-                        required
-                      />
-                    </div>
-
-                    <div className="flex items-center gap-2 pb-4">
-                      <input
-                        type="checkbox"
-                        id="acceptTerms"
-                        name="acceptTerms"
-                        checked={formData.acceptTerms}
-                        onChange={handleInputChange}
-                        className="peer appearance-none w-[18px] h-[18px] border border-Secondary-Scrub rounded bg-white checked:bg-Primary-Spring checked:border-Primary-Spring 
-               relative before:content-[''] before:absolute before:top-[2px] before:left-[5px] before:w-[5px] before:h-[10px] before:border-r-[2px] before:border-b-[2px] before:border-[#025850] before:rotate-45 before:opacity-0 checked:before:opacity-100"
-                        required
-                      />
-                      <label
-                        htmlFor="acceptTerms"
-                        className="text-black text-[14px] leading-[1.5]"
-                      >
-                        I accept the Terms
-                      </label>
-                    </div>
-
-                    <Link href={''} className="inline-block group w-full">
-                      <Button variant={'primary'} rightIcon={true} fullWidth>
-                        Submit Request
-                      </Button>
-                    </Link>
-                  </form>
+                  <BusinessInquiryForm />
                 ) : currentTab === 'patient' ? (
                   <div className="flex h-3/4 items-center">
                     {' '}
