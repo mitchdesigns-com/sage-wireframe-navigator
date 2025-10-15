@@ -62,7 +62,19 @@ export interface WhyFeature {
   iconElement: ImageData
   image: ImageData
 }
-
+export interface Testimonials {
+  id: number
+  quote: string
+  name: string
+  bg: string
+}
+export interface ClientExperiencesBlock {
+  __component: 'blocks.client-experiences'
+  id: number
+  title: string
+  description: string
+  testimonials: Testimonials[]
+}
 export interface WhySectionBlock {
   __component: 'blocks.why-section'
   id: number
@@ -106,6 +118,7 @@ export type PageBlock =
   | FeatureSectionBlock
   | WhySectionBlock
   | CentersSectionBlock
+  | ClientExperiencesBlock
   | FAQSectionBlock
   | GetInTouchBlock
 

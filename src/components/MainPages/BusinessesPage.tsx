@@ -15,7 +15,9 @@ import type {
   CentersSectionBlock,
   FAQSectionBlock,
   GetInTouchBlock,
+  ClientExperiencesBlock,
 } from '../../types/businessServices'
+import ClientExperiences from '@/components/sections/ClientExperiences'
 
 const BLOCKS: {
   [K in PageBlock['__component']]: React.ComponentType<
@@ -28,6 +30,8 @@ const BLOCKS: {
   'blocks.why-section': WhySection as React.ComponentType<WhySectionBlock>,
   'blocks.centers-section':
     CentersImages as React.ComponentType<CentersSectionBlock>,
+  'blocks.client-experiences':
+    ClientExperiences as React.ComponentType<ClientExperiencesBlock>,
   'blocks.faq-section': FaqSection as React.ComponentType<FAQSectionBlock>,
   'blocks.get-in-touch': GetInTouch as React.ComponentType<GetInTouchBlock>,
 }

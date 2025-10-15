@@ -92,7 +92,19 @@ export interface WhySectionBlock {
   buttonText: string
   features: WhyFeature[]
 }
-
+export interface Testimonials {
+  id: number
+  quote: string
+  name: string
+  bg: string
+}
+export interface ClientExperiencesBlock {
+  __component: 'blocks.client-experiences'
+  id: number
+  title: string
+  description: string
+  testimonials: Testimonials[]
+}
 export interface FAQSectionBlock {
   __component: 'blocks.faq-section'
   id: number
@@ -114,6 +126,7 @@ export type Block =
   | HeroPagesBlock
   | FeatureSectionBlock
   | WhySectionBlock
+  | ClientExperiencesBlock
   | FAQSectionBlock
   | GetInTouchBlock
 

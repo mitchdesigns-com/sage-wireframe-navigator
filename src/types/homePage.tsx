@@ -131,7 +131,18 @@ export interface Resources {
   image: ImageData
   resourcesSection: ResourceItem[]
 }
-
+export interface Testimonials {
+  id: number
+  quote: string
+  name: string
+  bg: string
+}
+export interface ClientExperiences {
+  id: number
+  title: string
+  description: string
+  testimonials: Testimonials[]
+}
 export interface CenterImageItem {
   id: number
   documentId: string
@@ -181,6 +192,8 @@ export interface ServicesPageData {
   HowItWorks: HowItWorks
   Awards: Awards
   Resources: Resources
+  ClientExperiences: ClientExperiences
+
   CentersSection: CentersSectionItem[]
   BlogSection: BlogSection
   GetInTouch: GetInTouch

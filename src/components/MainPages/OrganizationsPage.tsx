@@ -12,11 +12,15 @@ import {
   WhySectionBlock,
   FAQSectionBlock,
   GetInTouchBlock,
+  ClientExperiencesBlock,
 } from '../../types/organizationsPage'
+import ClientExperiences from '@/components/sections/ClientExperiences'
+
 type OrganizationsPageBlock =
   | (HeroPagesBlock & { __component: 'blocks.hero-pages' })
   | (FeatureSectionBlock & { __component: 'blocks.feature-section' })
   | (WhySectionBlock & { __component: 'blocks.why-section' })
+  | (ClientExperiencesBlock & { __component: 'blocks.client-experiences' })
   | (FAQSectionBlock & { __component: 'blocks.faq-section' })
   | (GetInTouchBlock & { __component: 'blocks.get-in-touch' })
 
@@ -29,6 +33,8 @@ const BLOCKS: {
   'blocks.feature-section':
     FeatureSection as React.ComponentType<FeatureSectionBlock>,
   'blocks.why-section': WhySection as React.ComponentType<WhySectionBlock>,
+  'blocks.client-experiences':
+    ClientExperiences as React.ComponentType<ClientExperiencesBlock>,
   'blocks.faq-section': FaqSection as React.ComponentType<FAQSectionBlock>,
   'blocks.get-in-touch': GetInTouch as React.ComponentType<GetInTouchBlock>,
 }

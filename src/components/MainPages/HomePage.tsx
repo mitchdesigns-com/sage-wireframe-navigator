@@ -40,7 +40,7 @@ export default function HomePage({
       <Resources Resources={data.Resources} />
 
       {/* Client Experiences */}
-      <ClientExperiences />
+      <ClientExperiences {...data.ClientExperiences} />
 
       {data.CentersSection.map((section, index) => (
         <CentersSection key={index} {...section} secondaryButton={true} />

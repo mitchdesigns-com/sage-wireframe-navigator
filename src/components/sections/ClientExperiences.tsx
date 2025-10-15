@@ -1,64 +1,23 @@
 'use client'
 
 import { ArrowLeft, ArrowRight, User } from 'lucide-react'
-import { Navigation } from 'swiper/modules'
-import 'swiper/css'
-import 'swiper/css/navigation'
 import { useRef, useState } from 'react'
 import type { Swiper as SwiperType } from 'swiper'
+import 'swiper/css'
+import 'swiper/css/navigation'
+import { Navigation } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
-interface Testimonials {
-  id: number
-  quote: string
-  bg: string
-  name: string
-}
-const testimonials = [
-  {
-    id: 1,
-    quote:
-      'We partnered with Sage to provide wellness packages for our staff. The result? Happier employees and reduced sick days. Their concierge-level service truly makes a difference.',
-    name: 'Dina F., HR Manager, GulfTech Solutions',
-    bg: 'bg-Secondary-Dark-Palm',
-  },
-  {
-    id: 2,
-    quote:
-      'Sage made my medical journey to Saudi Arabia incredibly smooth. From scheduling appointments to follow-up care, everything was handled with care and professionalism.',
-    name: 'Layla M., UAE',
-    bg: 'bg-Primary-Spring',
-  },
-  {
-    id: 3,
-    quote:
-      'Sage’s coordination and cultural sensitivity were invaluable during the treatment of our nationals abroad. Their team goes above and beyond.',
-    name: 'Mr. Tariq S., Consular Services, Embassy of Jordan',
-    bg: 'bg-Secondary-Scrub',
-  },
-  {
-    id: 4,
-    quote:
-      'Sage made my medical journey to Saudi Arabia incredibly smooth. From scheduling appointments to follow-up care, everything was handled with care and professionalism.',
-    name: 'Layla M., UAE',
-    bg: 'bg-Secondary-Dark-Palm',
-  },
-  {
-    id: 5,
-    quote:
-      'I’ve referred multiple clients to Sage for complex treatments. They deliver consistently high-quality service, with excellent hospital partnerships and patient care.',
-    name: 'Ranya K., Founder, MedBridge Facilitators',
-    bg: 'bg-Primary-Spring',
-  },
-  {
-    id: 6,
-    quote:
-      'Their training sessions for our hospital teams were insightful, practical, and well-organized. Sage helped us implement real improvements in patient logistics.',
-    name: 'Dr. Nabil H., Ministry of Health',
-    bg: 'bg-Secondary-Scrub',
-  },
-]
+import { Testimonials } from '../../types/homePage'
 
-export default function ClientExperiences() {
+export default function ClientExperiences({
+  title,
+  description,
+  testimonials,
+}: {
+  title: string
+  description: string
+  testimonials: Testimonials[]
+}) {
   const [activeIndex, setActiveIndex] = useState(0)
   const swiperRef = useRef<SwiperType | null>(null)
   const grouped: Testimonials[][] = []
@@ -70,10 +29,10 @@ export default function ClientExperiences() {
       <div>
         <div className="max-w-[1392px] px-4 mx-auto text-center mb-8 md:mb-15">
           <h2 className="text-[28px] md:text-5xl font-bold leading-tight text-[#000404]  mb-2">
-            Client Experiences
+            {title}
           </h2>
           <p className="text-base md:text-lg leading-relaxed text-[#000404]">
-            Transforming corporate health management with Sage.
+            {description}{' '}
           </p>
         </div>
 
