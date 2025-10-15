@@ -47,7 +47,7 @@ export default function MultiStepForm() {
     { number: 3, label: 'Support' },
   ]
   const [isSubmitting, setIsSubmitting] = useState(false)
-
+  console.log(isSubmitting)
   const [submitStatus, setSubmitStatus] = useState<
     'idle' | 'success' | 'error'
   >('idle')

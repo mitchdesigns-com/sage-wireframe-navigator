@@ -52,21 +52,21 @@ interface BlogCardProps {
 
 export default function BlogCard({ blog, href, news }: BlogCardProps) {
   return (
-    <Link href={href} key={blog.slug} className="flex flex-col">
+    <Link href={href} key={blog.slug} className="flex flex-col group">
       <div className="h-[270px] w-full relative rounded-2xl overflow-hidden mb-4">
         {news ? (
           <Image
             src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${blog.image.url}`}
             alt={blog.title || 'blog image'}
             fill
-            className="object-cover"
+            className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-105"
           />
         ) : (
           <Image
             src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${blog?.bgImage?.url || blog?.image?.url || '/images/generalImages/fallback.jpg'}`}
             alt={blog.title || 'blog image'}
             fill
-            className="object-cover"
+            className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-105"
           />
         )}
       </div>

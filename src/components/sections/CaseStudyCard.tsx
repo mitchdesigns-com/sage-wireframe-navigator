@@ -28,7 +28,7 @@ export default function CaseStudyCard({ caseStudy }: CaseStudyCardProps) {
     <Link
       href={`/resources/case-studies/${caseStudy.slug}`}
       key={caseStudy.slug}
-      className="flex flex-col rounded-4xl relative"
+      className="group flex flex-col rounded-4xl relative"
     >
       <div className="h-[334px] md:h-[520px] w-full relative rounded-4xl overflow-hidden">
         {/* Image */}
@@ -36,7 +36,7 @@ export default function CaseStudyCard({ caseStudy }: CaseStudyCardProps) {
           src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${caseStudy.GallerySection?.images[0].url}`}
           alt={caseStudy.HeroCarousel.title}
           fill
-          className="object-cover"
+          className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-105"
         />
 
         {/* Gradient Overlay */}
