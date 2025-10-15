@@ -54,7 +54,7 @@ const ToggleButton: React.FC<ToggleButtonProps> = ({
       role="tablist"
       aria-label="Toggle Button Group"
     >
-      <div className="relative flex items-center md:justify-center overflow-x-auto scrollbar-hide rounded-full">
+      <div className="relative flex items-center md:justify-center overflow-x-auto scrollbar-hide rounded-full bg-Secondary-Light-Scrub text-Secondary-Light-Scrub">
         <motion.div
           className={clsx(
             'absolute top-0 h-full rounded-full',
