@@ -38,36 +38,36 @@ export default function GalleryPopup({
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="bg-[#222222] fixed inset-0 w-full z-40 py-[50px] space-y-[60px] h-full"
+      className="bg-Primary-Palm fixed inset-0 w-full z-40 py-[50px] space-y-16 md:space-y-6 h-full"
     >
-      <div className="relative w-full flex justify-end items-end">
+      <div className="relative w-full flex justify-end items-end max-w-[1384px] px-4 mx-auto">
         {' '}
         <button
           onClick={onClickHandle}
-          className="p-2 bg-white w-12 h-12 text-primary rounded-full float-end z-10 mr-10 flex hover:bg-primary hover:text-white transition-all duration-500  justify-center items-center"
+          className="p-2  text-Primary-Spring rounded-full float-end z-10 flex  transition-all duration-500  justify-center items-center"
         >
           <span className="w-6 h-6">
-            <XIcon color="#000000" />
+            <XIcon color="#CAF48E" />
           </span>
         </button>
       </div>
       {/* Main Swiper */}
-      <div className="max-w-[1448px] px-4 mx-auto h-[calc(87%-60px)] relative">
-        <div className="flex justify-between items-center absolute w-full inset-0 px-4 z-10">
+      <div className="max-w-[1384px] px-4 mx-auto h-[calc(70%-60px)] md:h-[calc(90%-60px)] relative">
+        <div className="hidden md:flex justify-end items-end absolute w-full inset-0 px-4 z-10 gap-4 pe-10 pb-5">
           <button
             ref={mainPrevRef}
-            className="hover:bg-primary hover:text-Gray05 rounded-full transition-all duration-500 text-primary flex bg-Gray05 p-3 cursor-pointer"
+            className=" rounded-full  text-primary  p-3 cursor-pointer bg-Primary-Spring flex justify-center items-center"
           >
-            <span className="w-5 h-5 rtl:rotate-180">
-              <ArrowLeft />
+            <span className="w-5 h-5 rtl:rotate-180 flex justify-center items-center">
+              <ArrowLeft color="#000404" />
             </span>
           </button>
           <button
             ref={mainNextRef}
-            className="text-primary flex bg-Gray05 p-3 hover:bg-primary hover:text-Gray05 rounded-full transition-all duration-500 cursor-pointer"
+            className=" rounded-full  text-primary  p-3 cursor-pointer bg-Primary-Spring flex justify-center items-center"
           >
-            <span className="w-5 h-5 ltr:rotate-180">
-              <ArrowLeft />
+            <span className="w-5 h-5 ltr:rotate-180 flex justify-center items-center">
+              <ArrowLeft color="#000404" />
             </span>
           </button>
         </div>
@@ -82,12 +82,12 @@ export default function GalleryPopup({
             slidesPerView={1}
           >
             {Images?.map((image) => (
-              <SwiperSlide key={image.id} className="relative aspect-[464/300]">
+              <SwiperSlide key={image.id} className="relative ">
                 <Image
                   src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${image.attributes.url}`}
                   alt={image.attributes.alternativeText || 'Gallery Image'}
                   fill
-                  className="object-cover"
+                  className="object-cover rounded-xl"
                 />
               </SwiperSlide>
             ))}
@@ -96,7 +96,7 @@ export default function GalleryPopup({
       </div>
 
       {/* Thumbs Swiper */}
-      <div className="max-w-[1448px] px-4 mx-auto relative w-fit">
+      <div className="max-w-[1384px] px-4 mx-auto relative w-full">
         <button
           ref={thumbPrevRef}
           onClick={() => {
@@ -141,13 +141,13 @@ export default function GalleryPopup({
             {Images?.map((image) => (
               <SwiperSlide
                 key={image.id}
-                className="relative !w-[107px] !h-20 border-[4px] transition-all duration-500 border-transparent hover:border-Gold"
+                className="relative !w-[166px] !h-20 border-[4px] transition-all duration-500 border-transparent hover:border-Gold"
               >
                 <Image
                   src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${image.attributes.url}`}
                   alt={image.attributes.alternativeText || 'Thumbnail'}
                   fill
-                  className="w-full h-auto object-cover cursor-pointer"
+                  className="w-full h-auto object-cover cursor-pointer rounded-xl"
                 />
               </SwiperSlide>
             ))}

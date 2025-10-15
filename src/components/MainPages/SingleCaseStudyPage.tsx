@@ -178,7 +178,7 @@ export default function SingleCaseStudyPage({
               {data[0].GallerySection.description}
             </p>
           </div>
-          <div className="grid grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="col-span-1 row-span-2">
               <div className="relative w-full aspect-square">
                 <Image
