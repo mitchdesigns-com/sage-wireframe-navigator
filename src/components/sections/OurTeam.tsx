@@ -1,14 +1,19 @@
-import { useRef, useState } from 'react'
+'use client'
+
+import { useEffect, useRef, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import 'swiper/css'
-import { ArrowLeft, ArrowRight } from 'lucide-react'
-import { Pagination } from 'swiper/modules'
+import { Pagination, Navigation } from 'swiper/modules'
 import type { Swiper as SwiperType } from 'swiper'
+import 'swiper/css'
+import 'swiper/css/pagination'
+import 'swiper/css/navigation'
 import '../../app/team.css'
+
+import { ArrowLeft, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
+import Image from 'next/image'
 import ButtonIcon from '../svg/ButtonIcon'
 import Tagline from './Tagline'
-import Image from 'next/image'
 
 interface TeamImage {
   id: number
@@ -52,11 +57,20 @@ export default function OurTeam({ data }: OurTeamProps) {
   for (let i = 0; i < data.TeamMember.length; i += 10) {
     grouped.push(data.TeamMember.slice(i, i + 10))
   }
+  const [isMobile, setIsMobile] = useState(false)
 
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    handleResize()
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
   return (
     <section className="py-8 md:py-25 bg-Secondary-Light-Scrub">
       <div className="container mx-auto px-4">
-        {/* Heading */}
+        {/* Header */}
         <div className="flex pb-4 md:pb-15 justify-between items-end text-center md:text-start">
           <div>
             <h6 className="text-[#000404] font-bold text-[28px] md:text-[48px] leading-[1.2] tracking-[-0.48px] pb-4">
@@ -66,17 +80,18 @@ export default function OurTeam({ data }: OurTeamProps) {
               {data.description}
             </p>
           </div>
+
+          {/* Navigation Buttons (Desktop only) */}
           <div className="md:flex gap-4 hidden">
             <button
               onClick={() => swiperRef.current?.slidePrev()}
               disabled={activeIndex === 0}
-              className={`w-12 h-12 rounded-full flex justify-center items-center transition  cursor-pointer
+              className={`w-12 h-12 rounded-full flex justify-center items-center transition cursor-pointer
                 ${
                   activeIndex === 0
                     ? 'bg-Secondary-Dark-Palm/20 cursor-not-allowed opacity-50'
                     : 'bg-Secondary-Dark-Palm hover:opacity-80'
-                }
-              `}
+                }`}
             >
               <ArrowLeft color="#CAF48E" />
             </button>
@@ -88,8 +103,7 @@ export default function OurTeam({ data }: OurTeamProps) {
                   activeIndex === grouped.length - 1
                     ? 'bg-Secondary-Dark-Palm/20 cursor-not-allowed opacity-50'
                     : 'bg-Secondary-Dark-Palm hover:opacity-80'
-                }
-              `}
+                }`}
             >
               <ArrowRight color="#CAF48E" />
             </button>
@@ -98,29 +112,38 @@ export default function OurTeam({ data }: OurTeamProps) {
 
         {/* Swiper */}
         <Swiper
+          modules={[Pagination, Navigation]}
           onSwiper={(swiper) => (swiperRef.current = swiper)}
           onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
-          spaceBetween={30}
-          slidesPerView={1}
           pagination={{ clickable: true }}
-          modules={[Pagination]}
+          spaceBetween={20}
+          slidesPerView={1}
+          breakpoints={{
+            0: {
+              slidesPerView: 1.2, // show a peek of next slide
+              spaceBetween: 15,
+            },
+            768: {
+              slidesPerView: 1,
+              spaceBetween: 30,
+            },
+          }}
           className="team-swiper"
         >
-          {grouped.map((group, index) => (
-            <SwiperSlide key={index}>
-              <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-                {group.map((member) => (
-                  <div
-                    key={member.id}
-                    className="relative rounded-xl overflow-hidden"
-                  >
-                    <Image
-                      width={265}
-                      height={300}
-                      src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${member.image.url}`}
-                      alt={member.image.alternativeText || member.name}
-                      className="w-full h-75 object-cover"
-                    />
+          {/* MOBILE: each member is a slide */}
+          {isMobile && (
+            <div className="md:hidden">
+              {data.TeamMember.map((member) => (
+                <SwiperSlide key={member.id}>
+                  <div className="relative rounded-xl overflow-hidden w-full">
+                    <div className="aspect-[265/300] w-full relative">
+                      <Image
+                        fill
+                        src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${member.image.url}`}
+                        alt={member.image.alternativeText || member.name}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
                     <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/70 to-transparent text-white px-2 py-3">
                       <div className="text-base font-medium">{member.name}</div>
                       <div className="text-sm text-[#D2D2D2]">
@@ -128,14 +151,50 @@ export default function OurTeam({ data }: OurTeamProps) {
                       </div>
                     </div>
                   </div>
-                ))}
-              </div>
-            </SwiperSlide>
-          ))}
+                </SwiperSlide>
+              ))}
+            </div>
+          )}
+          {/* DESKTOP: grouped slides */}
+          {!isMobile && (
+            <div className="hidden md:block">
+              {grouped.map((group, index) => (
+                <SwiperSlide key={index}>
+                  <div className="grid grid-cols-5 gap-4 w-full">
+                    {group.map((member) => (
+                      <div
+                        key={member.id}
+                        className="relative rounded-xl overflow-hidden"
+                      >
+                        <div className="aspect-[265/300] w-full relative">
+                          <Image
+                            fill
+                            src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${member.image.url}`}
+                            alt={member.image.alternativeText || member.name}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                        <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/70 to-transparent text-white px-2 py-3">
+                          <div className="text-base font-medium">
+                            {member.name}
+                          </div>
+                          <div className="text-sm text-[#D2D2D2]">
+                            {member.title}
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </SwiperSlide>
+              ))}
+            </div>
+          )}
+
+          <div className="swiper-pagination mt-8 md:hidden" />
         </Swiper>
 
         {/* Hiring Section */}
-        <div className="bg-white rounded-2xl p-8 max-w-[1072px] mx-auto relative ">
+        <div className="bg-white rounded-2xl p-8 max-w-[1072px] mx-auto relative mt-10">
           <Tagline
             text={data.hiringSection.tagline}
             className="absolute -top-5 left-8 items-start"
@@ -150,7 +209,7 @@ export default function OurTeam({ data }: OurTeamProps) {
               </p>
             </div>
             <Link href={data.hiringSection.href}>
-              <div className="group flex gap-1.5 items-start md:items-center justify-start md:justify-start rounded-[100px]  cursor-pointer">
+              <div className="group flex gap-1.5 items-start md:items-center justify-start rounded-[100px] cursor-pointer">
                 <div className="font-aeonik-bold text-primary-palm group-hover:text-Secondary-Dark-Palm text-lg leading-[1.5]">
                   {data.hiringSection.cta}
                 </div>

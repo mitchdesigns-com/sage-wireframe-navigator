@@ -27,3 +27,20 @@
   height: 10px; /* stretch the active one */
   border-radius: 9999px; /* pill shape */
 }
+@media (max-width: 640px) {
+  .team-swiper .swiper-pagination {
+    margin-top: 1.5rem; /* reduce space above pagination */
+    margin-bottom: 30px; /* less empty space below */
+  }
+
+  .team-swiper .swiper-pagination-bullet {
+    width: 8px; /* smaller dots */
+    height: 8px;
+    margin: 0 4px !important;
+  }
+
+  .team-swiper .swiper-pagination-bullet-active {
+    width: 8px;
+    height: 8px;
+  }
+}
