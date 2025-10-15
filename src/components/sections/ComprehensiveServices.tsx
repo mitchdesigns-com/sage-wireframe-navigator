@@ -234,8 +234,8 @@ const ServiceSection: React.FC<{
           </div>
 
           {/* Links */}
-          <div className="flex gap-15 md:gap-22 justify-between flex-col md:flex-row w-full md:w-fit">
-            <div className="flex flex-col md:min-w-[452px] max-w-full justify-end">
+          <div className="flex gap-15 md:gap-22 justify-between flex-col md:flex-row w-full md:w-fit items-end">
+            <div className="flex flex-col md:min-w-[452px] max-w-full justify-end w-full md:w-fit">
               {section.links.map((link, index) => (
                 <div key={index}>
                   <ServiceButton
@@ -249,7 +249,7 @@ const ServiceSection: React.FC<{
               ))}{' '}
             </div>
             {hasImage && (
-              <div className="relative h-[190px] w-[225px] ">
+              <div className="relative h-[190px] w-[225px] flex ">
                 <Image
                   src="/images/generalImages/VectorHome.png"
                   alt="vector"
@@ -365,7 +365,9 @@ export default function ComprehensiveServices({
         }
       `}</style>
 
-      <section className={`relative section-padding ${className}`}>
+      <section
+        className={`relative section-padding bg-Secondary-Light-Scrub ${className}`}
+      >
         <div className="max-w-[1392px] mx-auto pt-8">
           {/* Header */}
           <div className="flex flex-col items-center gap-[18px] md:gap-20">

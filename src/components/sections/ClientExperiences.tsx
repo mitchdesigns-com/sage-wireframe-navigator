@@ -28,7 +28,7 @@ export default function ClientExperiences({
     <section className="py-8 md:py-16 bg-gray-50">
       <div>
         <div className="max-w-[1392px] px-4 mx-auto text-center mb-8 md:mb-15">
-          <h2 className="text-[28px] md:text-5xl font-bold leading-tight text-[#000404]  mb-2">
+          <h2 className="text-[28px] md:text-5xl font-bold  text-[#000404] tracking-[-0.48px] mb-2">
             {title}
           </h2>
           <p className="text-base md:text-lg leading-relaxed text-[#000404]">
@@ -73,7 +73,7 @@ export default function ClientExperiences({
                 />
 
                 <blockquote
-                  className={`text-base  md:text-[32px] ${
+                  className={`text-base tracking-[-0.48px] md:text-[32px] ${
                     testimonial.bg === 'bg-Secondary-Dark-Palm'
                       ? 'text-white'
                       : 'text-Primary-Black'

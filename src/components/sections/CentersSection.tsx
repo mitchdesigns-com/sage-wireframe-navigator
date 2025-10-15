@@ -138,7 +138,7 @@ const CentersSection: React.FC<CentersSectionProps> = ({
               {ctaText && (
                 <Link
                   href={href || '/contact'}
-                  className={`inline-block  bg-primary text-white rounded-lg font-medium group cursor-pointer ${secondaryButton ? 'w-full  md:w-[148px]' : ''}`}
+                  className={`inline-block  bg-primary text-white rounded-lg font-medium group cursor-pointer text-center ${secondaryButton ? 'w-full  md:w-[148px]' : ''}`}
                 >
                   <Button
                     variant={

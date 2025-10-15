@@ -1,8 +1,10 @@
+'use client'
 import Link from 'next/link'
 import React from 'react'
 import Button from '../ui/Button'
 import Breadcrumb from './Breadcrumb'
 import VideoPlayer from './VideoPlayer'
+import parse, { domToReact, DOMNode, Element } from 'html-react-parser'
 
 interface BreadcrumbItem {
   label: string
@@ -13,7 +15,7 @@ interface HeroProps {
   title: string
   description: string
   breadcrumbItems?: BreadcrumbItem[]
-  ctaText?: string
+  btn?: string
   href?: string
   video: {
     url: string
@@ -25,10 +27,21 @@ const HeroWithVideo: React.FC<HeroProps> = ({
   title,
   description,
   breadcrumbItems,
-  ctaText,
+  btn,
   href,
   video,
 }) => {
+  const parsedTitle = parse(title || '', {
+    replace: (domNode: DOMNode) => {
+      if (domNode instanceof Element && domNode.name === 'span') {
+        return (
+          <span className="font-bold text-Primary-Spring ">
+            {domToReact(domNode.children as DOMNode[])}
+          </span>
+        )
+      }
+    },
+  })
   return (
     <section
       className={`pb-4 md:pb-20 bg-gradient-to-t from-[#013530] to-[#025850]`}
@@ -46,17 +59,17 @@ const HeroWithVideo: React.FC<HeroProps> = ({
                 />
               </div>
             )}
-            <h1 className="text-white font-bold text-4xl md:text-[56px] leading-[1.2] tracking-[-1px] md:tracking-[-0.56px] pt-2 pb-8 md:pb-6">
-              {title}
+            <h1 className="text-white  text-4xl md:text-[56px] leading-[1.2] tracking-[-1px] md:tracking-[-0.56px] pt-2 pb-8 md:pb-6 ">
+              {parsedTitle}
             </h1>
             <p className="text-white text-sm md:text-p leading-[1.5] px-5 md:px-0">
               {description}
             </p>
-            {ctaText && (
-              <div className="flex justify-center items-center w-full pt-8">
+            {btn && (
+              <div className="flex justify-between md:justify-center items-center w-full pt-8">
                 <Link
                   href={href || '/contact'}
-                  className="inline-block  bg-primary text-white rounded-lg font-medium group cursor-pointer w-fit"
+                  className="inline-block  bg-primary text-white rounded-lg font-medium group cursor-pointer w-full md:w-fit"
                 >
                   <Button
                     variant={'light'}
@@ -64,7 +77,7 @@ const HeroWithVideo: React.FC<HeroProps> = ({
                     fullWidth
                     //   onClick={() => setIsMenuOpen(false)}
                   >
-                    {ctaText}
+                    {btn}
                   </Button>
                 </Link>
               </div>

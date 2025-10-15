@@ -1,7 +1,15 @@
 import { TargetAndTransition } from 'framer-motion'
 
 // Core types
-export type ButtonVariant = 'primary' | 'dark' | 'light' | 'dark-link' | 'light-link' | 'link' | 'ghost'
+export type ButtonVariant =
+  | 'primary'
+  | 'dark'
+  | 'light'
+  | 'dark-link'
+  | 'light-link'
+  | 'link'
+  | 'ghost'
+  | 'home'
 export type ButtonSize = 'small' | 'medium' | 'large'
 
 // Configuration types

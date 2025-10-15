@@ -38,7 +38,7 @@ export default function SectionHeader({
     return () => window.removeEventListener('resize', handleResize)
   }, [])
   return (
-    <div className="flex flex-col gap-4 items-center justify-start mx-auto mb-16 md:mb-16 md:container-custom">
+    <div className="flex flex-col gap-4 items-center justify-start mx-auto mb-8 md:mb-8 md:container-custom">
       <div className="flex flex-col items-center justify-center w-full">
         <Tagline text={tagline} className="justify-center items-center " />
         <h2

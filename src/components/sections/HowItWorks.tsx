@@ -27,7 +27,7 @@ export default function HowItWorks({
           {/* Left Content */}
           <div className="md:sticky md:top-24 bg-Primary-Palm rounded-3xl">
             <div className="p-10">
-              <Tagline text={tagline} />
+              <Tagline text={tagline} category="individuals" />
 
               <h2 className="mb-4 md:mb-6 text-[28px] font-bold leading-tight text-Primary-Spring md:text-[40px] tracking-[-0.48px]">
                 {title}
@@ -68,8 +68,8 @@ export default function HowItWorks({
                     </p>
 
                     {index === steps.length - 1 && (
-                      <div className="mt-5">
-                        <Button href="/contact" rightIcon={true}>
+                      <div className="mt-5 w-full">
+                        <Button href="/contact" rightIcon={true} fullWidth>
                           Request Free Consultation
                         </Button>
                       </div>

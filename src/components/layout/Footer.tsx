@@ -451,7 +451,7 @@ export default function Footer() {
             />
           ))}
         </div>
-        <div className="px-4 md:px-[60px] pb-6">
+        <div className="px-4 md:px-[60px] pt-3 pb-6">
           <div className="max-w-[1392px] mx-auto px-0 md:px-15">
             <div className="flex items-center justify-between flex-col md:flex-row">
               <div className="text-white text-sm">

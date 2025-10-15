@@ -12,7 +12,7 @@ export default async function Page(props: unknown) {
   // const { data: network } = await fetchServer(`home-page`, locale)
   const [PageRes, singlesRes] = await Promise.all([
     fetchServer(`home-page`, locale),
-    fetchServer(`blogs`, locale),
+    fetchServer(`news`, locale),
   ])
 
   const Page = PageRes?.data
@@ -22,5 +22,5 @@ export default async function Page(props: unknown) {
     return notFound()
   }
 
-  return <HomePage data={Page} singles={blogPage} />
+  return <HomePage data={Page} news={blogPage} />
 }

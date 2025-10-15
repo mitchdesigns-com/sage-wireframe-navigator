@@ -106,7 +106,7 @@ export default function Services({
           tagline={tagline}
         />
 
-        <div className="flex flex-col gap-16 items-start justify-start w-full mb-16">
+        <div className="flex flex-col gap-16 items-start justify-start w-full mb-8">
           <div className="flex gap-8 md:gap-12 items-start justify-start w-full flex-col md:flex-row">
             {SERVICES?.map((service) => (
               <ServiceCard

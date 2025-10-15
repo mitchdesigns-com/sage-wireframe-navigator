@@ -57,6 +57,14 @@ export const DESIGN_CONFIG = {
         color: 'text-primary-white',
       },
     },
+    home: {
+      base: 'bg-transparent text-Primary-Palm cursor-pointer',
+      hover: 'hover:text-primary-light-sage',
+      icon: {
+        background: 'bg-Primary-Palm hover:bg-primary-light-sage',
+        color: 'text-Primary-Palm',
+      },
+    },
     link: {
       base: 'bg-transparent text-[#000404] cursor-pointer',
       hover: 'hover:text-[#000404]/80 hover:opacity-80',
@@ -142,7 +150,7 @@ export const DESIGN_CONFIG = {
 
 // Base styles
 export const BASE_BUTTON_STYLES = [
-  'inline-flex items-center justify-center',
+  `inline-flex items-center justify-between  md:justify-center text-center`,
   'whitespace-nowrap rounded-[100px] relative',
   'transition-all duration-200',
   'focus:outline-none focus:ring-2 focus:ring-primary-palm focus:ring-offset-2',

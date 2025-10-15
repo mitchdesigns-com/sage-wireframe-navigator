@@ -37,6 +37,7 @@ interface FeatureSectionProps {
   backgroundColor?: string
   textColor?: string
   reverse?: boolean // if true => image first
+  home?: boolean
 }
 
 const FeatureSection: React.FC<FeatureSectionProps> = ({
@@ -51,6 +52,7 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
   backgroundColor = 'white',
   textColor = 'black',
   reverse = false,
+  home,
 }) => {
   const pathname = usePathname()
 
@@ -184,15 +186,17 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
             {ctaText && (
               <Link
                 href={href || '/contact'}
-                className="flex justify-center w-full md:inline-block  bg-primary text-white rounded-lg font-medium group cursor-pointer "
+                className={`flex justify-center w-full md:inline-block  bg-primary text-white rounded-lg font-medium group cursor-pointer `}
               >
                 <Button
                   variant={
-                    backgroundColor === '#DAF7AF'
-                      ? 'primary'
-                      : backgroundColor === '#F0F8F8'
+                    home
+                      ? 'home'
+                      : backgroundColor === '#DAF7AF'
                         ? 'primary'
-                        : 'light'
+                        : backgroundColor === '#F0F8F8'
+                          ? 'primary'
+                          : 'light'
                   }
                   rightIcon={true}
                   fullWidth={isMobile ? true : false}

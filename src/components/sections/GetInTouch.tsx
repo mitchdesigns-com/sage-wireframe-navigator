@@ -22,14 +22,14 @@ const GetInTouch: React.FC<GetInTouchProps> = ({
 }) => {
   return (
     <section className="py-8 md:py-25  px-4">
-      <div className="mx-auto max-w-[1392px] flex gap-8 md:gap-35 bg-Primary-Palm py-8 md:py-16 px-4 md:px-15 rounded-3xl md:rounded-[40px] flex-col md:flex-row ">
+      <div className="mx-auto max-w-[1392px] flex gap-8 md:gap-35 bg-Primary-Palm py-4 md:py-16 px-4 md:px-15 rounded-3xl md:rounded-[40px] flex-col md:flex-row justify-between">
         <div className="max-w-[757px] my-auto">
           <Tagline text={tagline} />
 
-          <h2 className="text-[28px] md:text-[48px] font-bold leading-[1.2] tracking-[-0.48px] mb-6 text-white">
+          <h2 className="text-[28px] md:text-[48px] font-bold leading-[1.2] tracking-[-0.48px] mb-6 text-white max-w-[620px]">
             {title}
           </h2>
-          <p className="text-2xl md:text-[32px] font-light leading-[1.5] text-white pb-8">
+          <p className="text-2xl md:text-[32px] font-light leading-[1.5] text-white pb-8 max-w-[620px]">
             {description}
           </p>
           <Link

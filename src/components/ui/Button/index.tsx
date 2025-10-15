@@ -115,7 +115,7 @@ const LeftIcon = ({ size, variant }: IconProps) => {
   return (
     <div
       className={cn(
-        'flex items-center justify-center p-[6px] rounded-full',
+        'flex items-center justify-between md:justify-center p-[6px] rounded-full',
         sizeConfig.icon.container,
         variantConfig.icon.background
       )}
@@ -173,7 +173,7 @@ const useButtonClasses = (props: BaseButtonProps) => {
   // For simple 'link' variant, match Figma design exactly
   if (safeVariant === 'link') {
     return cn(
-      'content-stretch flex gap-2 items-center justify-center relative rounded-[100px] group',
+      'content-stretch flex gap-2 items-center justify-between md:justify-center relative rounded-[100px] group',
       'whitespace-nowrap transition-all duration-200',
       '',
       'disabled:opacity-50 disabled:cursor-not-allowed',
