@@ -31,7 +31,7 @@ export default function OurNetworkPage({ data }: { data: NetworkData }) {
                     {data.SingleCenter.category}
                   </span>
                   <p
-                    className={`text-base md:text-p text-Secondary-Text whitespace-pre-line`}
+                    className={`text-base md:text-lg text-Secondary-Text whitespace-pre-line`}
                   >
                     {data.SingleCenter.description}
                   </p>
@@ -72,7 +72,7 @@ export default function OurNetworkPage({ data }: { data: NetworkData }) {
                   {data.TrustedPartner.shortDescription}
                 </span>
                 <p
-                  className={`text-base md:text-p text-Secondary-Dark-Palm  md:whitespace-pre-line pt-4`}
+                  className={`text-base md:text-lg text-Secondary-Dark-Palm  md:whitespace-pre-line pt-4`}
                 >
                   {data.TrustedPartner.description}
                 </p>
@@ -108,7 +108,7 @@ export default function OurNetworkPage({ data }: { data: NetworkData }) {
 
             <div className="flex-1">
               <p
-                className={`text-base md:text-p text-Secondary-Text whitespace-pre-line pb-4 md:pb-8`}
+                className={`text-base md:text-lg text-Secondary-Text whitespace-pre-line pb-4 md:pb-8`}
               >
                 {data.LoginSection.description}
               </p>

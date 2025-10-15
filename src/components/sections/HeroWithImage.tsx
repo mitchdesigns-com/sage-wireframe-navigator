@@ -67,7 +67,7 @@ const HeroWithImage: React.FC<HeroWithImageProps> = ({
 
           <div className="w-full">
             {description && (
-              <p className="text-Secondary-Text text-base md:text-p pb-8">
+              <p className="text-Secondary-Text text-base md:text-lg pb-8">
                 {description}
               </p>
             )}

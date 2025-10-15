@@ -68,7 +68,7 @@ const CentersSection: React.FC<CentersSectionProps> = ({
                   {title}
                 </h2>
                 <p
-                  className={`text-sm md:text-p ${textColor === '#1E1E1E' ? 'text-Secondary-Text' : 'text-Secondary-Light-Scrub'} whitespace-pre-line text-center md:text-start`}
+                  className={`text-sm md:text-lg ${textColor === '#1E1E1E' ? 'text-Secondary-Text' : 'text-Secondary-Light-Scrub'} whitespace-pre-line text-center md:text-start`}
                 >
                   {description}
                 </p>

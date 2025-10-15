@@ -38,7 +38,7 @@ export default function CSRPage({ data }: { data: CSRPageData }) {
                 {data.CSRRegistration.subTitle}
               </span>
               <h6 className="heading-lg pb-4">{data.CSRRegistration.title}</h6>
-              <p className="text-base md:text-p">
+              <p className="text-base md:text-lg">
                 {data.CSRRegistration.description}
               </p>
             </div>

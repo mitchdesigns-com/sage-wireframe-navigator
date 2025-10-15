@@ -102,7 +102,7 @@ export default function NewsPage({ data }: NewsPageProps) {
             News
           </span>
           <h6 className="heading-lg">Latest News and Events</h6>
-          <p className="text-p">
+          <p className="text-lg">
             Stay updated with Sage's latest achievements and announcements.
           </p>
         </div>

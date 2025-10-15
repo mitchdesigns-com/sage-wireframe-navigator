@@ -112,10 +112,10 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
                   className="text-[28px] md:text-[48px] font-bold leading-[1.2] tracking-[-1px] mb-6 whitespace-pre-line"
                   style={{ color: textColor }}
                 >
-                  {title?.includes('\n') ? title.replace(/\n/g, '  ') : title}
+                  {title}
                 </h2>
                 <p
-                  className={`text-base md:text-p md:whitespace-pre-line ${textColor === '#1E1E1E' ? 'text-Secondary-Text' : 'text-Secondary-Light-Scrub'}`}
+                  className={`text-base md:text-lg md:whitespace-pre-line ${textColor === '#1E1E1E' ? 'text-Secondary-Text' : 'text-Secondary-Light-Scrub'}`}
                   // style={{ color: textColor }}
                 >
                   {description}

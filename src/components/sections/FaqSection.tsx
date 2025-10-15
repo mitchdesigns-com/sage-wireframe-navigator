@@ -34,7 +34,7 @@ export default function FAQSection({
               <h2 className="text-black font-bold text-4xl md:text-[48px]">
                 {title}
               </h2>
-              <p className="text-black text-base md:text-p">{description}</p>
+              <p className="text-black text-base md:text-lg">{description}</p>
             </div>
 
             {/* FAQ List */}
@@ -48,7 +48,7 @@ export default function FAQSection({
                     className="w-full py-5 flex items-center justify-between gap-6 text-left hover:bg-Secondary-Scrub transition-colors"
                     onClick={() => setOpenFaq(openFaq === index ? null : index)}
                   >
-                    <h3 className="text-black font-bold text-base md:text-p flex-1">
+                    <h3 className="text-black font-bold text-base md:text-lg flex-1">
                       {faq.question}
                     </h3>
                     <div

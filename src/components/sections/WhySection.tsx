@@ -46,7 +46,7 @@ const WhySection: React.FC<WhySectionProps> = ({
                 <h2 className="text-Primary-Black leading-9 text-[32px] font-bold md:heading-1">
                   {title}
                 </h2>
-                <p className="text-Secondary-Text text-base md:text-p">
+                <p className="text-Secondary-Text text-base md:text-lg">
                   {description}
                 </p>
               </div>

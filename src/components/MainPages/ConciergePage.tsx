@@ -62,7 +62,7 @@ const BLOCKS: {
             </h2>
           </div>
           <div>
-            <p className="text-white text-base md:text-p">
+            <p className="text-white text-base md:text-lg">
               {props.description}
             </p>
           </div>

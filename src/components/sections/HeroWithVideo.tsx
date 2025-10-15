@@ -62,7 +62,7 @@ const HeroWithVideo: React.FC<HeroProps> = ({
             <h1 className="text-white  text-4xl md:text-[56px] leading-[1.2] tracking-[-1px] md:tracking-[-0.56px] pt-2 pb-8 md:pb-6 ">
               {parsedTitle}
             </h1>
-            <p className="text-white text-sm md:text-p leading-[1.5] px-5 md:px-0">
+            <p className="text-white text-sm md:text-lg leading-[1.5] px-5 md:px-0">
               {description}
             </p>
             {btn && (

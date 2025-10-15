@@ -57,7 +57,7 @@ export default function SingleNewsOnlyPage({
                       return (
                         <h6
                           key={index}
-                          className="mt-2 md:mt-4 text-[#000404] text-base md:text-p leading-relaxed"
+                          className="mt-2 md:mt-4 text-[#000404] text-base md:text-lg leading-relaxed"
                         >
                           {block.children.map(extractText).join('')}
                         </h6>
@@ -75,7 +75,7 @@ export default function SingleNewsOnlyPage({
                     return (
                       <p
                         key={index}
-                        className="text-[#000404] text-base md:text-p leading-relaxed"
+                        className="text-[#000404] text-base md:text-lg leading-relaxed"
                       >
                         {block.children.map(extractText).join('')}
                       </p>
@@ -116,7 +116,7 @@ export default function SingleNewsOnlyPage({
                       return (
                         <h6
                           key={index}
-                          className="mt-2 md:mt-4 text-[#000404] text-base md:text-p leading-relaxed"
+                          className="mt-2 md:mt-4 text-[#000404] text-base md:text-lg leading-relaxed"
                         >
                           {block.children.map(extractText).join('')}
                         </h6>
@@ -134,7 +134,7 @@ export default function SingleNewsOnlyPage({
                     return (
                       <p
                         key={index}
-                        className="text-[#000404] text-base md:text-p leading-relaxed"
+                        className="text-[#000404] text-base md:text-lg leading-relaxed"
                       >
                         {block.children.map(extractText).join('')}
                       </p>
@@ -149,7 +149,7 @@ export default function SingleNewsOnlyPage({
                             return (
                               <li
                                 key={liIndex}
-                                className="text-[#000404] text-base md:text-p leading-relaxed"
+                                className="text-[#000404] text-base md:text-lg leading-relaxed"
                               >
                                 {li.children.map(extractText).join('')}
                               </li>

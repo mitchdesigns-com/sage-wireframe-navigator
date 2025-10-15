@@ -47,14 +47,14 @@ const HeroPages: React.FC<HeroProps> = ({
               </div>
               <Tagline text={tagline} className="items-center md:items-start" />
 
-              <h1 className="text-white font-bold text-[32px] md:text-[56px] leading-[1.2] tracking-[-0.56px] text-center md:text-start">
+              <h1 className="text-white font-bold text-[32px] md:text-[56px] leading-[1.2] tracking-[-0.56px] text-center md:text-start whitespace-pre-line">
                 {title}
               </h1>
             </div>
 
             {/* Right side */}
             <div className="space-y-6 my-auto">
-              <p className="text-white text-base md:text-p text-center md:text-start">
+              <p className="text-white text-base md:text-lg text-center md:text-start">
                 {description}
               </p>
               {/* CTA */}

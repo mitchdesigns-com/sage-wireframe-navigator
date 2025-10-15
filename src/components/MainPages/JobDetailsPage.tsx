@@ -77,7 +77,7 @@ export default function JobDetailsPage({ data }: { data: CareerItem }) {
                 return (
                   <h6
                     key={index}
-                    className="mt-4 text-[#000404] text-p leading-relaxed"
+                    className="mt-4 text-[#000404] text-lg leading-relaxed"
                   >
                     {block.children.map(extractText).join('')}
                   </h6>
@@ -95,7 +95,7 @@ export default function JobDetailsPage({ data }: { data: CareerItem }) {
               return (
                 <p
                   key={index}
-                  className="text-[#000404] text-base md:text-p leading-relaxed pb-2"
+                  className="text-[#000404] text-base md:text-lg leading-relaxed pb-2"
                 >
                   {block.children.map(extractText).join('')}
                 </p>
@@ -108,7 +108,7 @@ export default function JobDetailsPage({ data }: { data: CareerItem }) {
                     // Type guard to ensure 'li' has a 'children' property
                     if ('children' in li) {
                       return (
-                        <li key={liIndex} className="text-[#000404] text-p">
+                        <li key={liIndex} className="text-[#000404] text-lg">
                           {li.children.map(extractText).join('')}
                         </li>
                       )

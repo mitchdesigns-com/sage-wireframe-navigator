@@ -37,7 +37,7 @@ const ServiceSection: React.FC<ServiceSectionProps> = ({
             </h2>
           </div>
           <div>
-            <p className="text-white text-base md:text-p">{description}</p>
+            <p className="text-white text-base md:text-lg">{description}</p>
             <Link
               href={buttonHref}
               className="inline-block rounded-lg font-medium group cursor-pointer pt-8"

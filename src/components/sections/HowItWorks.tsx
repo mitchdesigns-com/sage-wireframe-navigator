@@ -63,7 +63,7 @@ export default function HowItWorks({
                       </h4>
                     </div>
                     <h3 className="mb-2 heading-4">{step.title}</h3>
-                    <p className="max-w-md text-base md:text-p text-Secondary-Text">
+                    <p className="max-w-md text-base md:text-lg text-Secondary-Text">
                       {step.description}
                     </p>
 

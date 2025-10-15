@@ -148,7 +148,7 @@ export default function FAQsPage({ data }: { data: PageData[] }) {
                             setOpenFaq(openFaq === index ? -1 : index)
                           }
                         >
-                          <h3 className="text-black font-bold text-base md:text-p flex-1">
+                          <h3 className="text-black font-bold text-base md:text-lg flex-1">
                             {faq.question}
                           </h3>
                           <div

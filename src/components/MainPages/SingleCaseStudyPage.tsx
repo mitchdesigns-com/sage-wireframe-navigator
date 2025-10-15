@@ -112,7 +112,7 @@ export default function SingleCaseStudyPage({
                             return (
                               <h6
                                 key={index}
-                                className="mt-4 text-[#000404] text-p leading-relaxed"
+                                className="mt-4 text-[#000404] text-lg leading-relaxed"
                               >
                                 {block.children.map(extractText).join('')}
                               </h6>
@@ -129,7 +129,7 @@ export default function SingleCaseStudyPage({
                           return (
                             <p
                               key={index}
-                              className="text-[#000404] text-base md:text-p leading-relaxed"
+                              className="text-[#000404] text-base md:text-lg leading-relaxed"
                             >
                               {block.children.map(extractText).join('')}
                             </p>
@@ -146,7 +146,7 @@ export default function SingleCaseStudyPage({
                                   return (
                                     <li
                                       key={liIndex}
-                                      className="text-[#000404] text-base md:text-p"
+                                      className="text-[#000404] text-base md:text-lg"
                                     >
                                       {li.children.map(extractText).join('')}
                                     </li>
@@ -174,7 +174,7 @@ export default function SingleCaseStudyPage({
             <h3 className=" font-bold text-[28px] md:text-[48px] leading-[1.2] tracking-[-0.48px] pb-4">
               {data[0].GallerySection.title}
             </h3>
-            <p className="text-base md:text-p">
+            <p className="text-base md:text-lg">
               {data[0].GallerySection.description}
             </p>
           </div>

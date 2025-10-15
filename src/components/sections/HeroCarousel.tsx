@@ -50,13 +50,13 @@ const HeroCarousel: React.FC<HeroProps> = ({
               {title}
             </h1>
             {dayNumbers && (
-              <p className="text-Primary-Spring text-base md:text-p pb-3 md:pb-6">
+              <p className="text-Primary-Spring text-base md:text-lg pb-3 md:pb-6">
                 {dayNumbers}
                 {year}
                 {' | Riyadh, Saudi Arabia'}
               </p>
             )}
-            <p className="text-base md:text-p pb-4 md:pb-15 text-white max-w-[768px] text-center">
+            <p className="text-base md:text-lg pb-4 md:pb-15 text-white max-w-[768px] text-center">
               {description}
             </p>
           </div>

@@ -253,7 +253,7 @@ export default function MultiStepForm() {
             <h5 className="pb-2 text-2xl md:text-[32px] font-bold">
               Submit a Case for Review
             </h5>
-            <p className="text-base md:text-p pb-5">
+            <p className="text-base md:text-lg pb-5">
               Please provide the following information to help us understand
               your needs
             </p>

@@ -37,7 +37,7 @@ export default function ContactPage({ data }: { data: ContactPageData }) {
                   <h1 className="text-Primary-Black font-bold text-[28px] md:text-[48px] leading-[1.2] tracking-[-0.48px] pb-1">
                     {data.title}
                   </h1>
-                  <p className="text-Secondary-Text text-base md:text-p">
+                  <p className="text-Secondary-Text text-base md:text-lg">
                     {data.description}
                   </p>
                 </div>
@@ -59,7 +59,7 @@ export default function ContactPage({ data }: { data: ContactPageData }) {
                       <h6 className="text-Secondary-Text font-bold text-lg md:text-[20px] pb-4">
                         Thank you for your interest in connecting with us.
                       </h6>
-                      <p className="text-base md:text-p text-Secondary-Text">
+                      <p className="text-base md:text-lg text-Secondary-Text">
                         For patient applications, please submit your request
                         directly through our platform to ensure smooth
                         processing and faster support.
@@ -111,7 +111,7 @@ export default function ContactPage({ data }: { data: ContactPageData }) {
               <h2 className="text-black font-bold text-[28px] md:text-[48px] leading-[1.2] tracking-[-0.48px]">
                 Schedule a Zoom Meeting
               </h2>
-              <p className="text-black text-base md:text-p w-full md:w-[544px] mx-auto">
+              <p className="text-black text-base md:text-lg w-full md:w-[544px] mx-auto">
                 Schedule your one-on-one meeting with our experts to explore
                 innovative solutions tailored to your needs.
               </p>
@@ -141,7 +141,7 @@ export default function ContactPage({ data }: { data: ContactPageData }) {
             <h2 className="text-Primary-Black text-[28px] md:text-[48px] font-bold">
               {data.ContactData.title}
             </h2>
-            <p className="text-sm md:text-p">{data.ContactData.description}</p>
+            <p className="text-sm md:text-lg">{data.ContactData.description}</p>
           </div>
           <div className="max-w-[486px] mx-auto pt-4 md:pt-8">
             {' '}

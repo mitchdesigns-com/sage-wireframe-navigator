@@ -26,7 +26,7 @@ const GetInTouch: React.FC<GetInTouchProps> = ({
         <div className="max-w-[757px] my-auto">
           <Tagline text={tagline} />
 
-          <h2 className="text-[28px] md:text-[48px] font-bold leading-[1.2] tracking-[-0.48px] mb-6 text-white max-w-[620px]">
+          <h2 className="text-[28px] md:text-[48px] font-bold leading-[1.2] tracking-[-0.48px] mb-6 text-white max-w-[707px]">
             {title}
           </h2>
           <p className="text-2xl md:text-[32px] font-light leading-[1.5] text-white pb-8 max-w-[620px]">

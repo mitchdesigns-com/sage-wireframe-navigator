@@ -55,7 +55,7 @@ export default function SingleBlogsPage({
                       return (
                         <h6
                           key={index}
-                          className="mt-4 text-[#000404] text-base md:text-p leading-relaxed"
+                          className="mt-4 text-[#000404] text-base md:text-lg leading-relaxed"
                         >
                           {block.children.map(extractText).join('')}
                         </h6>
@@ -73,7 +73,7 @@ export default function SingleBlogsPage({
                     return (
                       <p
                         key={index}
-                        className="text-[#000404] text-base md:text-p leading-relaxed"
+                        className="text-[#000404] text-base md:text-lg leading-relaxed"
                       >
                         {block.children.map(extractText).join('')}
                       </p>
@@ -87,7 +87,7 @@ export default function SingleBlogsPage({
                             return (
                               <li
                                 key={liIndex}
-                                className="text-[#000404] text-base md:text-p"
+                                className="text-[#000404] text-base md:text-lg"
                               >
                                 {li.children.map(extractText).join('')}
                               </li>

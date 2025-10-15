@@ -76,7 +76,7 @@ export default function OurTeam({ data }: OurTeamProps) {
             <h6 className="text-[#000404] font-bold text-[28px] md:text-[48px] leading-[1.2] tracking-[-0.48px] pb-4">
               {data.title}
             </h6>
-            <p className="text-[#000404] text-base md:text-p">
+            <p className="text-[#000404] text-base md:text-lg">
               {data.description}
             </p>
           </div>
@@ -204,7 +204,7 @@ export default function OurTeam({ data }: OurTeamProps) {
               <h6 className="text-Primary-Black font-bold text-2xl md:text-[32px] leading-[1.2] tracking-[-0.48px] pb-4">
                 {data.hiringSection.title}
               </h6>
-              <p className="text-Secondary-Text text-base md:text-p">
+              <p className="text-Secondary-Text text-base md:text-lg">
                 {data.hiringSection.description}
               </p>
             </div>

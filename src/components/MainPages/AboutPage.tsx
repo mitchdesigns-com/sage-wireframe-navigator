@@ -16,7 +16,7 @@ export default function AboutPage({ data }: { data: AboutPageData }) {
       {/* Overview Section */}
       <section>
         <div className="flex items-start flex-col md:flex-row">
-          <div className="md:sticky md:top-0 w-full md:min-w-[575px]">
+          <div className="md:sticky md:top-0 w-full max-w-[575px] md:min-w-[575px]">
             <div className="min-h-[320px] md:min-h-screen w-full bg-center bg-cover bg-no-repeat relative">
               <Image
                 fill
@@ -39,7 +39,7 @@ export default function AboutPage({ data }: { data: AboutPageData }) {
                   <h2 className="text-Primary-Black font-bold text-[28px] md:text-[48px] leading-[1.2] tracking-[-0.48px]">
                     {data.OverviewSection.mainTitle}{' '}
                   </h2>
-                  <p className="text-Secondary-Text text-base md:text-p">
+                  <p className="text-Secondary-Text text-base md:text-lg">
                     {data.OverviewSection.mainDescription}
                   </p>
                 </div>
@@ -71,7 +71,7 @@ export default function AboutPage({ data }: { data: AboutPageData }) {
                   {data.OverviewSection.title}
                 </h2>
                 <div className="space-y-2 md:space-y-4 max-w-[786px]">
-                  <div className="text-Secondary-Light-Scrub text-p leading-[1.5] space-y-4 tracking-[-0.48px]">
+                  <div className="text-Secondary-Light-Scrub text-lg leading-[1.5] space-y-4 tracking-[-0.48px]">
                     <p className="whitespace-pre-line text-sm md:text-base">
                       {data.OverviewSection.description}
                     </p>
@@ -135,7 +135,7 @@ export default function AboutPage({ data }: { data: AboutPageData }) {
                 }}
               />
             </div>
-            <p className="text-Secondary-Light-Scrub text-sm md:text-p w-full md:max-w-[758px] pt-4">
+            <p className="text-Secondary-Light-Scrub text-sm md:text-lg w-full md:max-w-[758px] pt-4">
               {data.MissionSection.description}
             </p>
           </div>
@@ -153,7 +153,7 @@ export default function AboutPage({ data }: { data: AboutPageData }) {
               <h2 className="text-Primary-Black text-[28px] md:text-[48px] font-bold tracking-[-0.48px]">
                 {data.ValuesSection.title}
               </h2>
-              <p className="text-p text-Secondary-Text">
+              <p className="text-lg text-Secondary-Text">
                 {data.ValuesSection.description}
               </p>
             </div>
@@ -192,7 +192,7 @@ export default function AboutPage({ data }: { data: AboutPageData }) {
         </div>
       </section>
       <OurTeam data={data.OurTeam} />
-      <CentersSection {...data.CentersSection[0]} />
+      <CentersSection {...data.CentersSection[0]} secondaryButton={true} />
     </div>
   )
 }

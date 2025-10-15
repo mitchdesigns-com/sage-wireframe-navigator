@@ -104,6 +104,7 @@ export default function Services({
           heading={heading}
           description={description}
           tagline={tagline}
+          home={true}
         />
 
         <div className="flex flex-col gap-16 items-start justify-start w-full mb-8">

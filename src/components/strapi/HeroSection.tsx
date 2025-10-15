@@ -125,7 +125,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ data }) => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
-                className="text-lg md:text-xl font-medium mb-4 text-current"
+                className="text-lg md:text-xl font-medium mb-4 text-current "
               >
                 {subtitle}
               </motion.p>
@@ -152,7 +152,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ data }) => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
-                className="text-base md:text-[18px]  "
+                className="text-base md:text-[18px] max-w-[396px] "
                 dangerouslySetInnerHTML={{ __html: description }}
               />
             )}

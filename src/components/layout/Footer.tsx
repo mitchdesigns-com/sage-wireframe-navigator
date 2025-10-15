@@ -182,7 +182,7 @@ export default function Footer() {
             <div className="px-4 py-8 md:px-8 md:py-[20px]">
               <div className="">
                 <div>
-                  <h2 className="text-[#000404] font-bold text-base md:text-p">
+                  <h2 className="text-[#000404] font-bold text-base md:text-lg">
                     Subscribe to Updates
                   </h2>
                   <p className="text-[#000404] text-sm leading-[1.5]">

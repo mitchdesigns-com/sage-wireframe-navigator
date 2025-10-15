@@ -48,11 +48,11 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({
               {tagline}
             </span>
           </div>
-          <div className="mb-8 md:mb-6 max-w-[656px]">
+          <div className="mb-8 md:mb-6 max-w-[700px]">
             <h2 className="text-[28px] md:text-[48px] font-bold leading-[1.2] tracking-[-0.48px] mb-6 text-Primary-Black">
               {title}
             </h2>
-            <p className="text-base md:text-p text-Secondary-Text max-w-[656px] tracking-[0.48px]">
+            <p className="text-base md:text-lg text-Secondary-Text max-w-[700px] tracking-[0.48px]">
               {description}
             </p>
           </div>

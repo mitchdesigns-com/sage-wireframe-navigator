@@ -39,7 +39,7 @@ const WebinarList: React.FC<WebinarListProps> = ({ webinars, events }) => {
               Where Healthcare Meets Insight and Impact
             </span>
             <h6 className="heading-lg">Sage Events</h6>
-            <p className="text-p max-w-[893px]">
+            <p className="text-lg max-w-[893px]">
               Join us as we bring together healthcare leaders, patients, and
               organizations to explore innovation, transparency, and
               personalized care. Our events are designed to inspire, inform, and

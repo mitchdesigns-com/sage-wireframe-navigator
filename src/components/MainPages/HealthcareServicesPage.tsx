@@ -64,7 +64,7 @@ const BLOCKS: {
         <div className="text-center">
           <Tagline text={props.tagline} className="items-center" />
           <h2 className="text-[#000404] heading-lg">{props.title}</h2>
-          <p className="text-[#000404] text-base md:text-p">
+          <p className="text-[#000404] text-base md:text-lg">
             {props.description}
           </p>
         </div>
@@ -98,7 +98,7 @@ const BLOCKS: {
                     <h4 className="text-Primary-Black heading-4">
                       {step.title}
                     </h4>
-                    <p className="text-Secondary-Text text-p">
+                    <p className="text-Secondary-Text text-lg">
                       {step.description}
                     </p>
                   </div>
@@ -110,7 +110,7 @@ const BLOCKS: {
                     <h4 className="text-Primary-Black heading-4">
                       {step.title}
                     </h4>
-                    <p className="text-Secondary-Text text-p">
+                    <p className="text-Secondary-Text text-lg">
                       {step.description}
                     </p>
                     {step.button && (
@@ -171,7 +171,7 @@ const BLOCKS: {
                   </h4>
                 </div>
                 <h3 className="mb-2 heading-4">{step.title}</h3>
-                <p className="max-w-md text-base md:text-p text-Secondary-Text">
+                <p className="max-w-md text-base md:text-lg text-Secondary-Text">
                   {step.description}
                 </p>
               </div>
