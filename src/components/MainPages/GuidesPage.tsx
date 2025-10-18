@@ -62,7 +62,7 @@ export default function GuidesPage({ data }: { data: GuidesPage[] }) {
             />
           </div>
 
-          <div className="grid md:grid-cols-3 gap-x-8 gap-y-8 md:gap-y-20 px-4 md:px-0">
+          <div className="grid md:grid-cols-3 gap-x-8 gap-y-8 md:gap-y-20 px-4 md:px-0 ">
             {filteredGuids.map((guide) => (
               <GuidesCard key={guide.id} guide={guide} />
             ))}

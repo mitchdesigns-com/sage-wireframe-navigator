@@ -1,4 +1,8 @@
 @import 'tailwindcss';
+html,
+body {
+  overflow-x: hidden !important;
+}
 
 /* Aeonik Font Declarations */
 @font-face {

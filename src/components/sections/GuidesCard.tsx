@@ -51,20 +51,24 @@ export default function GuidesCard({ guide }: GuidesCardProps) {
         <p className="text-Secondary-Text text-sm md:text-base pb-6">
           {guide.description}
         </p>
-        <div className="flex items-center justify-between mt-auto">
-          <div className="w-fit">
-            <Button
-              variant="light-link"
-              className="p-0 text-Primary-Palm font-bold text-base md:text-lg cursor-pointer"
-            >
-              <div className="flex items-center gap-[2px]">
-                <DownloadIcon color="#025850" />
-                <span className="hover:text-Primary-Black hover:ps-1 hover:transition-all duration-300 hover:duration-300">
-                  Download PDF
-                </span>
-              </div>
-            </Button>
-          </div>
+        <div className="overflow-x-hidden">
+          <div className="flex items-center justify-between mt-auto">
+            <div className="w-fit">
+              <Button
+                variant="light-link"
+                className="p-0 text-Primary-Palm font-bold text-base md:text-lg cursor-pointer"
+              >
+                <div className="flex items-center gap-[2px]">
+                  <DownloadIcon color="#025850" />
+                  <div className="overflow-hidden">
+                    <span className="inline-block hover:text-Primary-Black hover:translate-x-[2px] transition-all duration-300">
+                      Download PDF
+                    </span>
+                  </div>
+                </div>
+              </Button>
+            </div>
+          </div>{' '}
         </div>
       </div>
     </div>
