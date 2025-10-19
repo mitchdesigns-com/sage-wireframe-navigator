@@ -1,10 +1,12 @@
 export default function ButtonIcon({
   className = '',
   strokeColor = 'currentColor',
+  locale = 'en', // 👈 add locale prop
 }: {
   className?: string
   fillColor?: string
   strokeColor?: string
+  locale?: 'en' | 'ar'
 }) {
   return (
     <svg
@@ -13,7 +15,8 @@ export default function ButtonIcon({
       viewBox="0 0 30 30"
       fill="currentColor"
       xmlns="http://www.w3.org/2000/svg"
-      className={className}
+      className={`${className} ${locale === 'ar' ? '-rotate-90' : ''}`} // 👈 rotation for Arabic
+      style={{ transition: 'transform 0.3s ease' }}
     >
       <rect x="1" y="1" width="28" height="28" rx="14" fill="currentColor" />
       <path

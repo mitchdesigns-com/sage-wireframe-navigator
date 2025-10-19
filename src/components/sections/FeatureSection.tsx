@@ -38,6 +38,7 @@ interface FeatureSectionProps {
   textColor?: string
   reverse?: boolean // if true => image first
   home?: boolean
+  locale?: 'en' | 'ar'
 }
 
 const FeatureSection: React.FC<FeatureSectionProps> = ({
@@ -53,6 +54,7 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
   textColor = 'black',
   reverse = false,
   home,
+  locale,
 }) => {
   const pathname = usePathname()
 
@@ -200,6 +202,8 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
                   }
                   rightIcon={true}
                   fullWidth={isMobile ? true : false}
+                  locale={locale as 'en' | 'ar'}
+
                   //   onClick={() => setIsMenuOpen(false)}
                 >
                   {ctaText}

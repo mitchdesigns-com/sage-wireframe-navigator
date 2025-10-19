@@ -12,6 +12,7 @@ interface GetInTouchProps {
     url: string
     alternativeText: string
   }
+  locale?: 'en' | 'ar'
 }
 
 const GetInTouch: React.FC<GetInTouchProps> = ({
@@ -19,6 +20,7 @@ const GetInTouch: React.FC<GetInTouchProps> = ({
   title,
   description,
   image,
+  locale,
 }) => {
   return (
     <section className="py-8 md:py-25  px-4">
@@ -40,6 +42,7 @@ const GetInTouch: React.FC<GetInTouchProps> = ({
               variant="dark"
               rightIcon={true}
               fullWidth
+              locale={locale as 'en' | 'ar'}
               //   onClick={() => setIsMenuOpen(false)}
             >
               Request Free Consultation

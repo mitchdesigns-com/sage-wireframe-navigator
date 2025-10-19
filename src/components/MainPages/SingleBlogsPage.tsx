@@ -81,7 +81,7 @@ export default function SingleBlogsPage({
 
                   case 'list':
                     return (
-                      <ul key={index} className="list-disc pl-6 space-y-2">
+                      <ul key={index} className="list-disc ps-6 space-y-2">
                         {block.children.map((li, liIndex) => {
                           if ('children' in li) {
                             return (

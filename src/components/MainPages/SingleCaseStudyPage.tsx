@@ -139,7 +139,7 @@ export default function SingleCaseStudyPage({
                           return (
                             <ul
                               key={index}
-                              className="list-disc pl-6 space-y-2"
+                              className="list-disc ps-6 space-y-2"
                             >
                               {block.children.map((li, liIndex) => {
                                 if ('children' in li) {

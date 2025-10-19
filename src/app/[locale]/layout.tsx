@@ -1,7 +1,6 @@
 import type { Viewport } from 'next'
 import '../globals.css'
 import Header from '@/components/Header/page'
-// import Footer from '@/components/layout/Footer'
 import { ReactNode } from 'react'
 import { hasLocale, Locale, NextIntlClientProvider } from 'next-intl'
 import { routing } from '../../i18n/routing'
@@ -9,10 +8,10 @@ import { getTranslations, setRequestLocale } from 'next-intl/server'
 import NotFound from './[...rest]/page'
 import clsx from 'clsx'
 import Footer from '@/components/Footer/page'
-type Props = {
-  children: ReactNode
-  params: Promise<{ locale: Locale }>
-}
+// type Props = {
+//   children: ReactNode
+//   params: Promise<{ locale: Locale }>
+// }
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }))
@@ -78,14 +77,20 @@ export async function generateMetadata(props: Omit<Props, 'children'>) {
 //     'healthcare, saudi arabia, medical tourism, treatment, hospitals, medical care',
 // }
 
+type Props = {
+  children: ReactNode
+  params: { locale: Locale } // Correct type
+}
+
 export default async function LocaleLayout({ children, params }: Props) {
-  const { locale } = await params
+  const { locale } = params
 
   if (!hasLocale(routing.locales, locale)) {
     NotFound()
   }
 
   setRequestLocale(locale)
+  const messages = (await import(`../../messages/${locale}.json`)).default
 
   return (
     <html
@@ -116,14 +121,13 @@ export default async function LocaleLayout({ children, params }: Props) {
         )}
         suppressHydrationWarning
       >
-        <NextIntlClientProvider>
-          {' '}
+        <NextIntlClientProvider locale={locale} messages={messages}>
           <div className="flex flex-col">
-            <Header locale="en" />
+            <Header locale={locale} />
             <main className="flex-1">{children}</main>
-            <Footer locale="en" />
+            <Footer locale={locale} />
           </div>
-        </NextIntlClientProvider>{' '}
+        </NextIntlClientProvider>
       </body>
     </html>
   )

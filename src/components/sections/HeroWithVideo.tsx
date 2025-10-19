@@ -21,6 +21,7 @@ interface HeroProps {
     url: string
     alternativeText: string
   }
+  locale?: 'en' | 'ar'
 }
 
 const HeroWithVideo: React.FC<HeroProps> = ({
@@ -30,6 +31,7 @@ const HeroWithVideo: React.FC<HeroProps> = ({
   btn,
   href,
   video,
+  locale,
 }) => {
   const parsedTitle = parse(title || '', {
     replace: (domNode: DOMNode) => {
@@ -75,6 +77,7 @@ const HeroWithVideo: React.FC<HeroProps> = ({
                     variant={'light'}
                     rightIcon={true}
                     fullWidth
+                    locale={locale as 'en' | 'ar'}
                     //   onClick={() => setIsMenuOpen(false)}
                   >
                     {btn}

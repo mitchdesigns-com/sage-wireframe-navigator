@@ -19,6 +19,7 @@ interface CentersSectionProps {
   textColor?: string
   reverse?: boolean // if true => List first
   secondaryButton?: boolean
+  locale?: 'en' | 'ar'
 }
 
 const CentersSection: React.FC<CentersSectionProps> = ({
@@ -32,6 +33,7 @@ const CentersSection: React.FC<CentersSectionProps> = ({
   textColor = 'black',
   reverse = false,
   secondaryButton,
+  locale,
 }) => {
   const [isMobile, setIsMobile] = useState(false)
 
@@ -95,6 +97,7 @@ const CentersSection: React.FC<CentersSectionProps> = ({
                       }
                       rightIcon={secondaryButton ? false : true}
                       fullWidth
+                      locale={locale as 'en' | 'ar'}
                     >
                       {ctaText}
                     </Button>
@@ -105,6 +108,7 @@ const CentersSection: React.FC<CentersSectionProps> = ({
                     href="/our-network"
                     variant="light-link"
                     rightIcon={true}
+                    locale={locale as 'en' | 'ar'}
                   >
                     Explore Our Network
                   </Button>
@@ -152,6 +156,7 @@ const CentersSection: React.FC<CentersSectionProps> = ({
                     }
                     rightIcon={secondaryButton ? false : true}
                     fullWidth
+                    locale={locale as 'en' | 'ar'}
                   >
                     {ctaText}
                   </Button>
@@ -162,6 +167,7 @@ const CentersSection: React.FC<CentersSectionProps> = ({
                   href="/our-network"
                   variant="light-link"
                   rightIcon={true}
+                  locale={locale as 'en' | 'ar'}
                 >
                   Explore Our Network
                 </Button>

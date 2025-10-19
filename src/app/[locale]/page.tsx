@@ -22,5 +22,5 @@ export default async function Page(props: unknown) {
     return notFound()
   }
 
-  return <HomePage data={Page} news={blogPage} />
+  return <HomePage data={Page} news={blogPage} locale={locale} />
 }

@@ -34,7 +34,13 @@ interface ResourcesData {
   resourcesSection: ResourceItem[]
 }
 
-export default function Resources({ Resources }: { Resources: ResourcesData }) {
+export default function Resources({
+  Resources,
+  locale,
+}: {
+  Resources: ResourcesData
+  locale?: 'en' | 'ar'
+}) {
   const { SectionHeaderResources, image, resourcesSection } = Resources
   const [isMobile, setIsMobile] = useState(false)
 
@@ -86,7 +92,9 @@ export default function Resources({ Resources }: { Resources: ResourcesData }) {
                       {resource.description}
                     </p>
                   </div>
-                  <ArrowOutWard />
+                  <ArrowOutWard
+                    className={`${locale === 'ar' ? '-rotate-90' : ''}`}
+                  />
                 </div>
               </a>
             ))}

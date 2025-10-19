@@ -217,6 +217,7 @@ const useButtonContent = (props: BaseButtonProps) => {
     children,
     size = 'medium',
     variant = 'primary',
+    locale,
   } = props
 
   // Ensure we have valid variant and size with fallbacks
@@ -256,9 +257,10 @@ const useButtonContent = (props: BaseButtonProps) => {
       <span className="relative shrink-0">{children}</span>
       {!loading && rightIcon && (
         <div
-          className={`flex-none group-hover:rotate-[45deg] ${variant === 'dark' ? 'text-Primary-Spring ' : variant === 'primary' ? 'text-Primary-Spring ' : 'text-Primary-Palm '} group-hover:ms-2 transition-all duration-300`}
+          className={`flex-none ${locale === 'en' ? 'group-hover:rotate-[45deg]' : 'group-hover:-rotate-[45deg]'} ${variant === 'dark' ? 'text-Primary-Spring ' : variant === 'primary' ? 'text-Primary-Spring ' : 'text-Primary-Palm '} group-hover:ms-2 transition-all duration-300`}
         >
           <ButtonIcon
+            locale={locale}
             fillColor={
               variant === 'dark'
                 ? 'black'
@@ -289,7 +291,6 @@ function Button(
 ): JSX.Element {
   const buttonClassName = useButtonClasses(props)
   const buttonContent = useButtonContent(props)
-
   // Handle Link rendering
   if ('href' in props) {
     const { href, external, target, rel, onClick, ...linkRest } = props

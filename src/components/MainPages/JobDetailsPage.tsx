@@ -103,7 +103,7 @@ export default function JobDetailsPage({ data }: { data: CareerItem }) {
 
             case 'list':
               return (
-                <ul key={index} className="list-disc pl-6 space-y-2">
+                <ul key={index} className="list-disc ps-6 space-y-2">
                   {block.children.map((li, liIndex) => {
                     // Type guard to ensure 'li' has a 'children' property
                     if ('children' in li) {

@@ -14,11 +14,13 @@ export default function HowItWorks({
   title,
   description,
   steps,
+  locale,
 }: {
   tagline: string
   title: string
   description: string
   steps: HowItWorksStep[]
+  locale: 'en' | 'ar'
 }) {
   return (
     <section className="py-11 md:py-25 bg-Secondary-Light-Scrub overflow-visible">
@@ -69,7 +71,12 @@ export default function HowItWorks({
 
                     {index === steps.length - 1 && (
                       <div className="mt-5 w-full">
-                        <Button href="/contact" rightIcon={true} fullWidth>
+                        <Button
+                          href="/contact"
+                          rightIcon={true}
+                          fullWidth
+                          locale={locale as 'en' | 'ar'}
+                        >
                           Request Free Consultation
                         </Button>
                       </div>

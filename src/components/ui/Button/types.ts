@@ -56,6 +56,7 @@ export interface BaseButtonProps {
   rightIcon?: boolean
   children: React.ReactNode
   className?: string
+  locale?: 'en' | 'ar'
 }
 
 export type ButtonProps = BaseButtonProps &

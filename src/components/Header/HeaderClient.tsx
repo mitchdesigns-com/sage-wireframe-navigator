@@ -1,23 +1,27 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
-import Link from 'next/link'
-import { ChevronRight, Menu, X } from 'lucide-react'
-import { motion, AnimatePresence } from 'framer-motion'
 import Button from '@/components/ui/Button'
-
+import { usePathname, useRouter } from '@/i18n/navigation'
+import { AnimatePresence, motion } from 'framer-motion'
+import { ChevronRight, Menu, X } from 'lucide-react'
+import Link from 'next/link'
+import { useEffect, useRef, useState, useTransition } from 'react'
+import { Locale, useLocale } from 'next-intl'
+import Image from 'next/image'
+import { useParams } from 'next/navigation'
+import { ResourceData } from '../../types/header'
 import KeyboardArrowDown from '../svg/KeyboardArrowDown'
 import MinusIcon from '../svg/MinusIcon'
-import Image from 'next/image'
-import { ResourceData } from '../../types/header'
-import ServicesMenu from './ServicesMenu'
 import ResourcesMenu from './ResourcesMenu'
+import ServicesMenu from './ServicesMenu'
+
 interface HeaderClientProps {
   ResourceData: ResourceData
 }
 
 export default function HeaderClient({ ResourceData }: HeaderClientProps) {
-  console.log(ResourceData)
+  const locale = useLocale()
+
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [servicesOpen, setServicesOpen] = useState(false)
@@ -79,6 +83,10 @@ export default function HeaderClient({ ResourceData }: HeaderClientProps) {
     setServicesOpen(false)
     setResourcesOpen(false)
   }
+  const router = useRouter()
+  const pathname = usePathname()
+  const params = useParams()
+
   const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
@@ -98,6 +106,17 @@ export default function HeaderClient({ ResourceData }: HeaderClientProps) {
   //     setIsMenuOpen(false)
   //   }
   // }
+  const [isPending, startTransition] = useTransition()
+  console.log(isPending)
+  function handleLanguageSwitch(nextLocale: Locale) {
+    startTransition(() => {
+      router.replace(
+        // @ts-expect-error: we skip runtime checks because pathname and params match
+        { pathname, params },
+        { locale: nextLocale }
+      )
+    })
+  }
   return (
     <div
       ref={headerRef}
@@ -232,14 +251,22 @@ export default function HeaderClient({ ResourceData }: HeaderClientProps) {
         <div className="content-stretch flex gap-4 items-center justify-start relative shrink-0">
           {/* Arabic Language Toggle */}
           <div className="hidden lg:block font-['GE_SS_Two:Medium',_sans-serif] leading-[0] not-italic relative shrink-0 text-primary-spring text-[12px] text-nowrap hover:opacity-80 transition-all duration-200 cursor-pointer">
-            <p className="leading-[1.5] whitespace-pre" dir="auto">
+            <p
+              className="leading-[1.5] whitespace-pre"
+              dir="auto"
+              onClick={() => handleLanguageSwitch('ar')}
+            >
               تصفح بالعربية
             </p>
           </div>
 
           {/* Schedule Call Button - Desktop */}
           <div className="hidden lg:block group cursor-pointer">
-            <Button variant="light" rightIcon={true}>
+            <Button
+              variant="light"
+              rightIcon={true}
+              locale={locale as 'en' | 'ar'}
+            >
               Schedule Call
             </Button>
           </div>
@@ -344,6 +371,7 @@ export default function HeaderClient({ ResourceData }: HeaderClientProps) {
                   rightIcon
                   fullWidth
                   onClick={() => setIsMenuOpen(false)}
+                  locale={locale as 'en' | 'ar'}
                 >
                   {' '}
                   Schedule Call{' '}

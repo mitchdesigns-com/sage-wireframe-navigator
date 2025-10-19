@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import Button from '../ui/Button'
 import SectionHeader from '../ui/SectionHeader'
-import { ChevronRight } from 'lucide-react'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 interface ImageLabel {
   id: number
@@ -29,6 +29,7 @@ interface ServicesProps {
   cta: string
   href: string
   SERVICES: Service[]
+  locale: 'en' | 'ar'
 }
 
 function ServiceCard({
@@ -37,12 +38,14 @@ function ServiceCard({
   href,
   description,
   width,
+  locale,
 }: {
   label: string
   imageLabel: ImageLabel
   href: string
   description: string
   width?: number
+  locale: 'en' | 'ar'
 }) {
   const imageSrc = `${process.env.NEXT_PUBLIC_API_BASE_URL}${imageLabel?.url}`
 
@@ -78,12 +81,17 @@ function ServiceCard({
       </div>
 
       <div className="flex flex-row gap-2 text-Primary-Palm">
-        <Button variant="link" href={href} rightIcon={false}>
+        <Button
+          variant="link"
+          href={href}
+          rightIcon={false}
+          locale={locale as 'en' | 'ar'}
+        >
           <span className="text-sm md:text-base font-medium text-Primary-Palm">
             Learn More
           </span>
         </Button>
-        <ChevronRight />
+        {locale === 'ar' ? <ChevronLeft /> : <ChevronRight />}
       </div>
     </div>
   )
@@ -96,6 +104,7 @@ export default function Services({
   cta,
   href,
   SERVICES,
+  locale,
 }: ServicesProps) {
   return (
     <section className="bg-secondary-dark-palm px-4 md:px-[60px] py-8 md:py-20">
@@ -117,13 +126,20 @@ export default function Services({
                 href={service.href}
                 description={service.description}
                 width={service.width}
+                locale={locale}
               />
             ))}
           </div>
         </div>
 
         <div className="flex justify-center w-full">
-          <Button variant="primary" href={href} rightIcon={true} size="large">
+          <Button
+            variant="primary"
+            href={href}
+            rightIcon={true}
+            size="large"
+            locale={locale as 'en' | 'ar'}
+          >
             {cta}
           </Button>
         </div>

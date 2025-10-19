@@ -24,6 +24,7 @@ interface ComprehensiveServicesProps {
   subtitle?: string
   sections?: ServiceSection[]
   className?: string
+  locale?: 'en' | 'ar'
 }
 
 // Default data
@@ -187,7 +188,8 @@ const ChevronRight: React.FC<{ className?: string }> = ({ className }) => (
 const ServiceButton: React.FC<{
   link: ServiceLink
   textColor: string
-}> = ({ link, textColor }) => (
+  locale?: 'en' | 'ar'
+}> = ({ link, textColor, locale }) => (
   <Link
     href={link.href}
     className={`
@@ -199,7 +201,9 @@ const ServiceButton: React.FC<{
     <span className="font-aeonik font-normal text-base leading-6">
       {link.label}
     </span>
-    <ChevronRight className="w-6 h-6 transition-transform duration-300 group-hover:translate-x-1" />
+    <ChevronRight
+      className={`w-6 h-6 transition-transform duration-300 group-hover:translate-x-1 ${locale === 'ar' ? 'rotate-180' : ''}`}
+    />
   </Link>
 )
 
@@ -208,7 +212,8 @@ const ServiceSection: React.FC<{
   section: ServiceSection
   isReversed?: boolean
   hasImage?: boolean
-}> = ({ section, isReversed = false, hasImage = false }) => {
+  locale?: 'en' | 'ar'
+}> = ({ section, isReversed = false, hasImage = false, locale }) => {
   return (
     <div
       className={`flex gap-4 items-start flex-col md:flex-row ${isReversed ? 'flex-row-reverse' : ''}`}
@@ -241,6 +246,7 @@ const ServiceSection: React.FC<{
                   <ServiceButton
                     link={link}
                     textColor={section.textColor || 'text-white'}
+                    locale={locale}
                   />
                   {index < section.links.length - 1 && (
                     <div className="w-full h-px bg-gray-400/20 " />
@@ -300,6 +306,7 @@ export default function ComprehensiveServices({
   // title = 'Discover Our Comprehensive Solutions Tailored for Your Needs',
   sections = defaultSections,
   className = '',
+  locale,
 }: ComprehensiveServicesProps) {
   return (
     <>
@@ -391,15 +398,27 @@ export default function ComprehensiveServices({
             {/* Content Grid */}
             <div className="w-full flex flex-col gap-4 relative">
               {/* First Row - Healthcare Services + Image */}
-              <ServiceSection section={sections[0]} hasImage={true} />
+              <ServiceSection
+                section={sections[0]}
+                hasImage={true}
+                locale={locale}
+              />
 
               {/* Second Row - Concierge + Consultation */}
               <div className="flex gap-4 flex-col md:flex-row">
                 <div className="w-fit md:w-[532px]">
-                  <ServiceSection section={sections[1]} hasImage={false} />
+                  <ServiceSection
+                    section={sections[1]}
+                    hasImage={false}
+                    locale={locale}
+                  />
                 </div>
                 <div className="flex-1">
-                  <ServiceSection section={sections[2]} isReversed={true} />
+                  <ServiceSection
+                    section={sections[2]}
+                    isReversed={true}
+                    locale={locale}
+                  />
                 </div>
               </div>
             </div>

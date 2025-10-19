@@ -21,9 +21,11 @@ import ButtonIcon from '../svg/ButtonIcon'
 export default function HomePage({
   data,
   news,
+  locale,
 }: {
   data: ServicesPageData
   news: NewsArticle[]
+  locale: 'en' | 'ar'
 }) {
   const [isMobile, setIsMobile] = useState(false)
 
@@ -37,35 +39,35 @@ export default function HomePage({
   }, [])
   return (
     <div className="min-h-screen">
-      <HeroWithVideo {...data.HeroWithVideo[0]} />
-      <Services {...data.SectionHeader} />
+      <HeroWithVideo {...data.HeroWithVideo[0]} locale={locale} />
+      <Services {...data.SectionHeader} locale={locale} />
 
       <div className="overflow-hidden ">
         {data.featureSection.map((section, index) => (
-          <FeatureSection key={index} {...section} home />
+          <FeatureSection key={index} {...section} home locale={locale} />
         ))}
         <DirectionScrollSection />
-        <ComprehensiveServices />
+        <ComprehensiveServices locale={locale} />
       </div>
 
-      <HowItWorks {...data.HowItWorks} />
+      <HowItWorks {...data.HowItWorks} locale={locale} />
 
       <Awards {...data.Awards} />
 
-      <Resources Resources={data.Resources} />
+      <Resources Resources={data.Resources} locale={locale} />
 
       {/* Client Experiences */}
-      <ClientExperiences {...data.ClientExperiences} />
+      <ClientExperiences {...data.ClientExperiences} locale={locale} />
 
       {data.CentersSection.map((section, index) => (
-        <CentersSection key={index} {...section} secondaryButton={true} />
+        <CentersSection
+          key={index}
+          {...section}
+          secondaryButton={true}
+          locale={locale}
+        />
       ))}
-      {/* <BlogSection
-        heading={data.BlogSection.heading}
-        subheading={data.BlogSection.subheading}
-        blogs={singles}
-        homePage
-      /> */}
+
       <section className="max-w-[1392px] mx-auto px-4 py-8 md:py-25">
         <div className="flex items-end justify-between mb-15 flex-col md:flex-row">
           <div className="">
@@ -92,7 +94,7 @@ export default function HomePage({
                   <div className="relative shrink-0 size-6">
                     <div className="absolute flex h-[28.284px] items-center justify-center top-[-2.14px] left-[calc(50%+0.084px)] translate-x-[-50%] w-[28.284px]">
                       <div className="flex-none group-hover:rotate-[45deg] text-Primary-Palm group-hover:text-Secondary-Dark-Palm transition-all duration-300">
-                        <ButtonIcon strokeColor="white" />
+                        <ButtonIcon locale={locale} strokeColor="white" />
                       </div>
                     </div>
                   </div>
@@ -124,7 +126,7 @@ export default function HomePage({
                   <div className="relative shrink-0 size-6">
                     <div className="absolute flex h-[28.284px] items-center justify-center top-[-2.14px] left-[calc(50%+0.084px)] translate-x-[-50%] w-[28.284px]">
                       <div className="flex-none group-hover:rotate-[45deg] text-Primary-Palm group-hover:text-Secondary-Dark-Palm transition-all duration-300">
-                        <ButtonIcon strokeColor="white" />
+                        <ButtonIcon strokeColor="white" locale={locale} />
                       </div>
                     </div>
                   </div>
@@ -134,7 +136,7 @@ export default function HomePage({
           )}
         </div>
       </section>
-      <GetInTouch {...data.GetInTouch} />
+      <GetInTouch {...data.GetInTouch} locale={locale} />
     </div>
   )
 }

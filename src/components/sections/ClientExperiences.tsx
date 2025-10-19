@@ -13,10 +13,12 @@ export default function ClientExperiences({
   title,
   description,
   testimonials,
+  locale,
 }: {
   title: string
   description: string
   testimonials: Testimonials[]
+  locale?: 'en' | 'ar'
 }) {
   const [activeIndex, setActiveIndex] = useState(0)
   const swiperRef = useRef<SwiperType | null>(null)
@@ -113,7 +115,10 @@ export default function ClientExperiences({
                   : 'bg-Secondary-Dark-Palm hover:opacity-80'
               }`}
           >
-            <ArrowLeft color="#CAF48E" />
+            <ArrowLeft
+              color="#CAF48E"
+              className={`${locale === 'ar' ? 'rotate-180' : ''}`}
+            />
           </button>
           <button
             onClick={() => swiperRef.current?.slideNext()}
@@ -125,7 +130,10 @@ export default function ClientExperiences({
                   : 'bg-Secondary-Dark-Palm hover:opacity-80'
               }`}
           >
-            <ArrowRight color="#CAF48E" />
+            <ArrowRight
+              color="#CAF48E"
+              className={`${locale === 'ar' ? 'rotate-180' : ''}`}
+            />
           </button>
         </div>
       </div>
