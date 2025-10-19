@@ -14,6 +14,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import ButtonIcon from '../svg/ButtonIcon'
 import Tagline from './Tagline'
+import { useLocale } from 'next-intl'
 
 interface TeamImage {
   id: number
@@ -51,6 +52,7 @@ interface OurTeamProps {
 export default function OurTeam({ data }: OurTeamProps) {
   const swiperRef = useRef<SwiperType | null>(null)
   const [activeIndex, setActiveIndex] = useState(0)
+  const locale = useLocale()
 
   // Group members into chunks of 10 (2 rows × 5)
   const grouped: TeamMember[][] = []
@@ -93,7 +95,10 @@ export default function OurTeam({ data }: OurTeamProps) {
                     : 'bg-Secondary-Dark-Palm hover:opacity-80'
                 }`}
             >
-              <ArrowLeft color="#CAF48E" />
+              <ArrowLeft
+                color="#CAF48E"
+                className={`${locale === 'ar' ? 'rotate-180' : ''}`}
+              />
             </button>
             <button
               onClick={() => swiperRef.current?.slideNext()}
@@ -105,7 +110,10 @@ export default function OurTeam({ data }: OurTeamProps) {
                     : 'bg-Secondary-Dark-Palm hover:opacity-80'
                 }`}
             >
-              <ArrowRight color="#CAF48E" />
+              <ArrowRight
+                color="#CAF48E"
+                className={`${locale === 'ar' ? 'rotate-180' : ''}`}
+              />
             </button>
           </div>
         </div>
@@ -216,8 +224,10 @@ export default function OurTeam({ data }: OurTeamProps) {
                 <div className="bg-primary-palm rounded-full p-[6px] size-7 flex items-center justify-center">
                   <div className="relative shrink-0 size-6">
                     <div className="absolute flex h-[28.284px] items-center justify-center top-[-2.14px] left-[calc(50%+0.084px)] translate-x-[-50%] w-[28.284px]">
-                      <div className="flex-none group-hover:rotate-[45deg] text-Primary-Palm group-hover:text-Secondary-Dark-Palm transition-all duration-300">
-                        <ButtonIcon strokeColor="white" />
+                      <div
+                        className={`flex-none ${locale === 'ar' ? 'group-hover:-rotate-[45deg]' : 'group-hover:rotate-[45deg]'} text-Primary-Palm group-hover:text-Secondary-Dark-Palm transition-all duration-300`}
+                      >
+                        <ButtonIcon strokeColor="white" locale={locale} />
                       </div>
                     </div>
                   </div>

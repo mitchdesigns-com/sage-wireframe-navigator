@@ -191,7 +191,7 @@ export default function HeaderClient({ ResourceData }: HeaderClientProps) {
                 </div>
                 <div className="overflow-clip relative shrink-0 size-6">
                   {servicesOpen ? (
-                    <MinusIcon />
+                    <MinusIcon color="#CAF48E" />
                   ) : (
                     <KeyboardArrowDown className="rotate-360" />
                   )}

@@ -7,7 +7,7 @@ import GalleryPopup, { singleImage } from '@/components/sections/GalleryPopup'
 import GetInTouch from '@/components/sections/GetInTouch'
 import HeroCarousel from '@/components/sections/HeroCarousel'
 import ButtonIcon from '@/components/svg/ButtonIcon'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import Image from 'next/image'
 import Link from 'next/link'
 import {
@@ -50,6 +50,7 @@ export default function SingleCaseStudyPage({
   )
 
   const t = useTranslations()
+  const locale = useLocale()
 
   return (
     <>
@@ -244,8 +245,10 @@ export default function SingleCaseStudyPage({
                   <div className="bg-primary-palm rounded-full p-[6px] size-7 flex items-center justify-center">
                     <div className="relative shrink-0 size-6">
                       <div className="absolute flex h-[28.284px] items-center justify-center top-[-2.14px] left-[calc(50%+0.084px)] translate-x-[-50%] w-[28.284px]">
-                        <div className="flex-none group-hover:rotate-[45deg] text-Primary-Palm group-hover:text-Secondary-Dark-Palm transition-all duration-300">
-                          <ButtonIcon strokeColor="white" />
+                        <div
+                          className={`flex-none ${locale === 'ar' ? 'group-hover:-rotate-[45deg]' : 'group-hover:rotate-[45deg]'} text-Primary-Palm group-hover:text-Secondary-Dark-Palm transition-all duration-300`}
+                        >
+                          <ButtonIcon strokeColor="white" locale={locale} />
                         </div>
                       </div>
                     </div>

@@ -4,6 +4,7 @@ import Tagline from './Tagline'
 import Link from 'next/link'
 import Button from '../ui/Button'
 import Image from 'next/image'
+import { useLocale } from 'next-intl'
 
 interface BreadcrumbItem {
   id: number
@@ -33,6 +34,8 @@ const HeroPages: React.FC<HeroProps> = ({
   href,
   bgImage,
 }) => {
+  const locale = useLocale()
+
   return (
     <section
       className={`md:pb-20 md:pt-10 py-8 bg-gradient-to-t from-[#013530] to-[#025850]`}
@@ -63,7 +66,12 @@ const HeroPages: React.FC<HeroProps> = ({
                   href={href || '/contact'}
                   className="inline-block  bg-primary text-white rounded-lg font-medium group cursor-pointer w-full md:w-fit"
                 >
-                  <Button variant={'light'} rightIcon={true} fullWidth>
+                  <Button
+                    variant={'light'}
+                    rightIcon={true}
+                    fullWidth
+                    locale={locale as 'en' | 'ar'}
+                  >
                     {button}
                   </Button>
                 </Link>

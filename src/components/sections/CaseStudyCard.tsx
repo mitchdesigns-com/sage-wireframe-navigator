@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Tagline from './Tagline'
 import Link from 'next/link'
 import ButtonIcon from '../svg/ButtonIcon'
+import { useLocale } from 'next-intl'
 
 export interface CaseStudy {
   slug: string
@@ -24,6 +25,8 @@ interface CaseStudyCardProps {
 }
 
 export default function CaseStudyCard({ caseStudy }: CaseStudyCardProps) {
+  const locale = useLocale()
+
   return (
     <Link
       href={`/resources/case-studies/${caseStudy.slug}`}
@@ -67,8 +70,10 @@ export default function CaseStudyCard({ caseStudy }: CaseStudyCardProps) {
               <div className="bg-Primary-Spring rounded-full p-[6px] size-7 flex items-center justify-center">
                 <div className="relative shrink-0 size-6">
                   <div className="absolute flex h-[28.284px] items-center justify-center top-[-2.14px] left-[calc(50%+0.084px)] translate-x-[-50%] w-[28.284px]">
-                    <div className="flex-none group-hover:rotate-[45deg] text-Primary-Spring group-hover:text-Primary-Light-Sage transition-all duration-300">
-                      <ButtonIcon strokeColor="#1E1E1E" />
+                    <div
+                      className={`flex-none ${locale === 'ar' ? 'group-hover:-rotate-[45deg]' : 'group-hover:rotate-[45deg]'} text-Primary-Spring group-hover:text-Primary-Light-Sage transition-all duration-300`}
+                    >
+                      <ButtonIcon strokeColor="#1E1E1E" locale={locale} />
                     </div>
                   </div>
                 </div>

@@ -5,6 +5,7 @@ import Button from '../ui/Button'
 import Tagline from './Tagline'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
+import { useLocale } from 'next-intl'
 
 interface Feature {
   text: string
@@ -38,7 +39,6 @@ interface FeatureSectionProps {
   textColor?: string
   reverse?: boolean // if true => image first
   home?: boolean
-  locale?: 'en' | 'ar'
 }
 
 const FeatureSection: React.FC<FeatureSectionProps> = ({
@@ -54,9 +54,9 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
   textColor = 'black',
   reverse = false,
   home,
-  locale,
 }) => {
   const pathname = usePathname()
+  const locale = useLocale()
 
   const isNotHome = pathname !== '/'
   const [isMobile, setIsMobile] = useState(false)

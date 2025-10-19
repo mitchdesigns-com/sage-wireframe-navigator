@@ -44,7 +44,7 @@ export default function HomePage({
 
       <div className="overflow-hidden ">
         {data.featureSection.map((section, index) => (
-          <FeatureSection key={index} {...section} home locale={locale} />
+          <FeatureSection key={index} {...section} home />
         ))}
         <DirectionScrollSection />
         <ComprehensiveServices locale={locale} />
@@ -57,15 +57,10 @@ export default function HomePage({
       <Resources Resources={data.Resources} locale={locale} />
 
       {/* Client Experiences */}
-      <ClientExperiences {...data.ClientExperiences} locale={locale} />
+      <ClientExperiences {...data.ClientExperiences} />
 
       {data.CentersSection.map((section, index) => (
-        <CentersSection
-          key={index}
-          {...section}
-          secondaryButton={true}
-          locale={locale}
-        />
+        <CentersSection key={index} {...section} secondaryButton={true} />
       ))}
 
       <section className="max-w-[1392px] mx-auto px-4 py-8 md:py-25">
@@ -93,7 +88,9 @@ export default function HomePage({
                 <div className="bg-primary-palm rounded-full p-[6px] size-7 flex items-center justify-center">
                   <div className="relative shrink-0 size-6">
                     <div className="absolute flex h-[28.284px] items-center justify-center top-[-2.14px] left-[calc(50%+0.084px)] translate-x-[-50%] w-[28.284px]">
-                      <div className="flex-none group-hover:rotate-[45deg] text-Primary-Palm group-hover:text-Secondary-Dark-Palm transition-all duration-300">
+                      <div
+                        className={`flex-none ${locale === 'ar' ? 'group-hover:-rotate-[45deg]' : 'group-hover:rotate-[45deg]'} text-Primary-Palm group-hover:text-Secondary-Dark-Palm transition-all duration-300`}
+                      >
                         <ButtonIcon locale={locale} strokeColor="white" />
                       </div>
                     </div>
@@ -125,7 +122,9 @@ export default function HomePage({
                 <div className="bg-primary-palm rounded-full p-[6px] size-7 flex items-center justify-center">
                   <div className="relative shrink-0 size-6">
                     <div className="absolute flex h-[28.284px] items-center justify-center top-[-2.14px] left-[calc(50%+0.084px)] translate-x-[-50%] w-[28.284px]">
-                      <div className="flex-none group-hover:rotate-[45deg] text-Primary-Palm group-hover:text-Secondary-Dark-Palm transition-all duration-300">
+                      <div
+                        className={`flex-none ${locale === 'ar' ? 'group-hover:-rotate-[45deg]' : 'group-hover:rotate-[45deg]'} text-Primary-Palm group-hover:text-Secondary-Dark-Palm transition-all duration-300`}
+                      >
                         <ButtonIcon strokeColor="white" locale={locale} />
                       </div>
                     </div>
@@ -136,7 +135,7 @@ export default function HomePage({
           )}
         </div>
       </section>
-      <GetInTouch {...data.GetInTouch} locale={locale} />
+      <GetInTouch {...data.GetInTouch} />
     </div>
   )
 }

@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import KeyboardArrowDown from '../svg/KeyboardArrowDown'
+import { useLocale } from 'next-intl'
 
 interface BreadcrumbItem {
   label: string
@@ -21,9 +22,10 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({
   heroPages,
   heroWithImage,
 }) => {
+  const locale = useLocale()
   const defaultSeparator = (
     <KeyboardArrowDown
-      className="rotate-270 w-4 h-4"
+      className={` w-4 h-4 ${locale === 'ar' ? 'rotate-90' : 'rotate-270'}`}
       color={heroWithImage ? '#025850' : '#ffffff'}
     />
   )

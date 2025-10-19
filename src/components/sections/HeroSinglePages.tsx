@@ -3,6 +3,7 @@ import Breadcrumb from './Breadcrumb'
 import Link from 'next/link'
 import Image from 'next/image'
 import { ChevronLeft } from 'lucide-react'
+import { useLocale } from 'next-intl'
 
 interface BreadcrumbItem {
   label: string
@@ -33,6 +34,8 @@ const HeroSinglePages: React.FC<HeroProps> = ({
   button,
   href,
 }) => {
+  const locale = useLocale()
+
   return (
     <section
       className={`md:pb-20 md:pt-10 py-8 bg-gradient-to-t from-[#013530] to-[#025850]`}
@@ -45,7 +48,9 @@ const HeroSinglePages: React.FC<HeroProps> = ({
             </div>
             <div className="flex pb-6 md:pb-12">
               {' '}
-              <ChevronLeft className="text-white" />{' '}
+              <ChevronLeft
+                className={`text-white ${locale === 'ar' ? 'rotate-180' : ''}`}
+              />{' '}
               <Link
                 href={href}
                 className="text-[#F2F2F2] font-medium text-base ps-2"

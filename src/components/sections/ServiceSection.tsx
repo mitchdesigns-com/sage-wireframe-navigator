@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import Button from '../ui/Button'
+import { useLocale } from 'next-intl'
 
 interface ServiceSectionProps {
   title: string
@@ -22,6 +23,8 @@ const ServiceSection: React.FC<ServiceSectionProps> = ({
   image,
   bgColor = 'bg-Primary-Palm',
 }) => {
+  const locale = useLocale()
+
   return (
     <section className={`py-8 md:py-28 ${bgColor}`}>
       <div className="max-w-[1392px] mx-auto space-y-6 md:space-y-20 px-4 md:px-0">
@@ -42,7 +45,12 @@ const ServiceSection: React.FC<ServiceSectionProps> = ({
               href={buttonHref}
               className="inline-block rounded-lg font-medium group cursor-pointer pt-8"
             >
-              <Button variant="light" rightIcon fullWidth>
+              <Button
+                variant="light"
+                rightIcon
+                fullWidth
+                locale={locale as 'en' | 'ar'}
+              >
                 {buttonText}
               </Button>
             </Link>

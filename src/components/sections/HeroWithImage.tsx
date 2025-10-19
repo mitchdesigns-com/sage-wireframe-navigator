@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Breadcrumb from './Breadcrumb'
 import Tagline from './Tagline'
 import Button from '../ui/Button'
+import { useLocale } from 'next-intl'
 
 interface BreadcrumbItem {
   label: string
@@ -43,6 +44,8 @@ const HeroWithImage: React.FC<HeroWithImageProps> = ({
   primaryButton,
   secondaryButton,
 }) => {
+  const locale = useLocale()
+
   return (
     <section>
       <div className="h-[320px] md:h-[680px] relative">
@@ -78,6 +81,7 @@ const HeroWithImage: React.FC<HeroWithImageProps> = ({
                     variant={primaryButton.variant || 'primary'}
                     rightIcon={primaryButton.rightIcon}
                     fullWidth
+                    locale={locale as 'en' | 'ar'}
                   >
                     {primaryButton.label}
                   </Button>
@@ -89,6 +93,7 @@ const HeroWithImage: React.FC<HeroWithImageProps> = ({
                     variant={secondaryButton.variant || 'light'}
                     rightIcon={secondaryButton.rightIcon}
                     fullWidth
+                    locale={locale as 'en' | 'ar'}
                   >
                     {secondaryButton.label}
                   </Button>

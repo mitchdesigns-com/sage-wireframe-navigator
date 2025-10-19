@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Button from '../ui/Button'
 import Tagline from './Tagline'
+import { useLocale } from 'next-intl'
 
 interface GetInTouchProps {
   tagline: string
@@ -12,7 +13,6 @@ interface GetInTouchProps {
     url: string
     alternativeText: string
   }
-  locale?: 'en' | 'ar'
 }
 
 const GetInTouch: React.FC<GetInTouchProps> = ({
@@ -20,8 +20,9 @@ const GetInTouch: React.FC<GetInTouchProps> = ({
   title,
   description,
   image,
-  locale,
 }) => {
+  const locale = useLocale()
+
   return (
     <section className="py-8 md:py-25  px-4">
       <div className="mx-auto max-w-[1392px] flex gap-8 md:gap-35 bg-Primary-Palm py-4 md:py-16 px-4 md:px-15 rounded-3xl md:rounded-[40px] flex-col md:flex-row justify-between">

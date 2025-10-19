@@ -8,17 +8,16 @@ import 'swiper/css/navigation'
 import { Navigation } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Testimonials } from '../../types/homePage'
+import { useLocale } from 'next-intl'
 
 export default function ClientExperiences({
   title,
   description,
   testimonials,
-  locale,
 }: {
   title: string
   description: string
   testimonials: Testimonials[]
-  locale?: 'en' | 'ar'
 }) {
   const [activeIndex, setActiveIndex] = useState(0)
   const swiperRef = useRef<SwiperType | null>(null)
@@ -26,6 +25,8 @@ export default function ClientExperiences({
   for (let i = 0; i < testimonials.length; i += 6) {
     grouped.push(testimonials.slice(i, i + 6))
   }
+  const locale = useLocale()
+
   return (
     <section className="py-8 md:py-16 bg-gray-50">
       <div>

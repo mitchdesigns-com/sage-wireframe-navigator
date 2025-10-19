@@ -11,6 +11,7 @@ import Script from 'next/script'
 import { useState } from 'react'
 import 'react-phone-number-input/style.css'
 import { ContactPageData } from '../../types/contactPageData'
+import { useLocale } from 'next-intl'
 
 type TabType = 'general' | 'business' | 'patient'
 type TabType2 = 'patientSupport' | 'partnership'
@@ -18,6 +19,7 @@ type TabType2 = 'patientSupport' | 'partnership'
 export default function ContactPage({ data }: { data: ContactPageData }) {
   const [currentTab, setCurrentTab] = useState<TabType>('general')
   const [currentTab2, setCurrentTab2] = useState<TabType2>('patientSupport')
+  const locale = useLocale()
 
   return (
     <div className="min-h-screen">
@@ -74,8 +76,13 @@ export default function ContactPage({ data }: { data: ContactPageData }) {
                           <div className="bg-Primary-Palm rounded-full p-[6px] size-7 flex items-center justify-center">
                             <div className="relative shrink-0 size-6">
                               <div className="absolute flex h-[28.284px] items-center justify-center top-[-2.14px] left-[calc(50%+0.084px)] translate-x-[-50%] w-[28.284px]">
-                                <div className="flex-none group-hover:rotate-[45deg] text-Primary-Palm group-hover:text-Secondary-Dark-Palm transition-all duration-300">
-                                  <ButtonIcon strokeColor="white" />
+                                <div
+                                  className={`flex-none  ${locale === 'ar' ? 'group-hover:-rotate-[45deg]' : 'group-hover:rotate-[45deg]'} text-Primary-Palm group-hover:text-Secondary-Dark-Palm transition-all duration-300`}
+                                >
+                                  <ButtonIcon
+                                    strokeColor="white"
+                                    locale={locale}
+                                  />
                                 </div>
                               </div>
                             </div>

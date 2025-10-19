@@ -1,5 +1,5 @@
 export default function MinusIcon({
-  className = 'w-24 h-24',
+  className = '',
   color = '#CAF48E',
 }: {
   className?: string

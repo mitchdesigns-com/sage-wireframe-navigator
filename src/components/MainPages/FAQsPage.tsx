@@ -4,6 +4,7 @@ import GetInTouch from '@/components/sections/GetInTouch'
 import HeroPages from '@/components/sections/HeroPages'
 import ToggleButton from '@/components/sections/ToggleButton'
 import { Plus } from 'lucide-react'
+import { useLocale } from 'next-intl'
 import React, { useState } from 'react'
 
 type FaqCategory = string
@@ -95,6 +96,7 @@ const BLOCKS: Record<string, React.ComponentType<Block>> = {
 export default function FAQsPage({ data }: { data: PageData[] }) {
   const [openFaq, setOpenFaq] = useState<number>(-1)
   const [currentTab, setCurrentTab] = useState<FaqCategory>('all')
+  const locale = useLocale()
 
   const page = data?.[0]
   const blocks = page?.blocks
@@ -143,12 +145,16 @@ export default function FAQsPage({ data }: { data: PageData[] }) {
                     {filteredFaqs.map((faq, index) => (
                       <div key={faq.id} className="border-b border-[#D2D2D2]">
                         <button
-                          className="w-full py-5 flex items-center justify-between gap-6 text-left transition-colors cursor-pointer"
+                          className={`w-full py-5 flex items-center justify-between gap-6 text-left transition-colors cursor-pointer ${locale === 'ar' ? 'flex-row-reverse text-right' : 'text-left'}`}
                           onClick={() =>
                             setOpenFaq(openFaq === index ? -1 : index)
                           }
                         >
-                          <h3 className="text-black font-bold text-base md:text-lg flex-1">
+                          <h3
+                            className={`text-black font-bold text-base md:text-lg flex-1 ${
+                              locale === 'ar' ? 'text-right' : 'text-left'
+                            }`}
+                          >
                             {faq.question}
                           </h3>
                           <div

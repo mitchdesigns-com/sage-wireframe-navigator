@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import { ArrowUpRight } from 'lucide-react'
 import Link from 'next/link'
+import { useLocale } from 'next-intl'
 export interface BreadcrumbItem {
   id: number
   label: string
@@ -51,6 +52,8 @@ interface BlogCardProps {
 }
 
 export default function BlogCard({ blog, href, news }: BlogCardProps) {
+  const locale = useLocale()
+
   return (
     <Link href={href} key={blog.slug} className="flex flex-col group">
       <div className="h-[270px] w-full relative rounded-2xl overflow-hidden mb-4">
@@ -96,7 +99,10 @@ export default function BlogCard({ blog, href, news }: BlogCardProps) {
             </p>
           </div>
         </div>
-        <ArrowUpRight size={38} className="text-Primary-Palm" />
+        <ArrowUpRight
+          size={38}
+          className={`text-Primary-Palm ${locale === 'ar' ? '-rotate-90' : ''}`}
+        />
       </div>
     </Link>
   )

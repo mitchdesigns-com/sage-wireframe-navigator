@@ -4,6 +4,7 @@ import Button from '@/components/ui/Button'
 import PhoneInput from 'react-phone-number-input'
 import 'react-phone-number-input/style.css'
 import useContactForm from '../hooks/useContactForm'
+import { useLocale } from 'next-intl'
 
 export default function GeneralInquiryForm() {
   const {
@@ -15,6 +16,7 @@ export default function GeneralInquiryForm() {
     handleInputCheckChange,
     handleSubmit,
   } = useContactForm()
+  const locale = useLocale()
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
@@ -147,6 +149,7 @@ export default function GeneralInquiryForm() {
         rightIcon={true}
         fullWidth
         disabled={isSubmitting}
+        locale={locale as 'en' | 'ar'}
       >
         {isSubmitting ? 'Submitting...' : 'Submit Request'}
       </Button>

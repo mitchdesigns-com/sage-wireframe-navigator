@@ -1,12 +1,13 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ChevronLeft } from 'lucide-react'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ServiceCategories } from '../../types/header'
 import ButtonIcon from '../svg/ButtonIcon'
 import KeyboardArrowDown from '../svg/KeyboardArrowDown'
+import { useLocale } from 'next-intl'
 
 interface ServicesMenuProps {
   serviceCategories: ServiceCategories
@@ -19,6 +20,8 @@ export default function ServicesMenu({
   isOpen,
   onClose,
 }: ServicesMenuProps) {
+  const locale = useLocale()
+
   if (!isOpen) return null
 
   return (
@@ -40,7 +43,8 @@ export default function ServicesMenu({
                 onClick={onClose}
               >
                 <div className="flex gap-2 justify-center items-center">
-                  <ChevronLeft /> Services
+                  {locale === 'en' ? <ChevronLeft /> : <ChevronRight />}
+                  Services
                 </div>
               </p>
               {/* Service Categories */}
@@ -55,7 +59,7 @@ export default function ServicesMenu({
                       </div>
                       <div className="relative shrink-0 size-[17px] text-primary-black flex items-center justify-center">
                         <KeyboardArrowDown
-                          className="rotate-270 "
+                          className={`${locale === 'ar' ? 'rotate-90' : 'rotate-270'}`}
                           color="#1e1e1e"
                         />
                       </div>
@@ -101,7 +105,7 @@ export default function ServicesMenu({
                       </div>
                       <div className="relative shrink-0 size-[17px] text-primary-black flex items-center justify-center">
                         <KeyboardArrowDown
-                          className="rotate-270 "
+                          className={`${locale === 'ar' ? 'rotate-90' : 'rotate-270'}`}
                           color="#1e1e1e"
                         />{' '}
                       </div>
@@ -145,7 +149,7 @@ export default function ServicesMenu({
                       </div>
                       <div className="relative shrink-0 size-[17px] text-primary-black flex items-center justify-center">
                         <KeyboardArrowDown
-                          className="rotate-270 "
+                          className={`${locale === 'ar' ? 'rotate-90' : 'rotate-270'}`}
                           color="#1e1e1e"
                         />{' '}
                       </div>
@@ -209,8 +213,10 @@ export default function ServicesMenu({
               <div className="bg-primary-palm rounded-full p-[6px] size-7 flex items-center justify-center">
                 <div className="relative shrink-0 size-6">
                   <div className="absolute flex h-[28.284px] items-center justify-center top-[-2.14px] left-[calc(50%+0.084px)] translate-x-[-50%] w-[28.284px]">
-                    <div className="flex-none group-hover:rotate-[45deg] text-Primary-Palm group-hover:text-Secondary-Dark-Palm transition-all duration-300">
-                      <ButtonIcon strokeColor="white" />
+                    <div
+                      className={`flex-none ${locale === 'ar' ? 'group-hover:-rotate-[45deg]' : 'group-hover:rotate-[45deg]'} text-Primary-Palm group-hover:text-Secondary-Dark-Palm transition-all duration-300`}
+                    >
+                      <ButtonIcon strokeColor="white" locale={locale} />
                     </div>
                   </div>
                 </div>

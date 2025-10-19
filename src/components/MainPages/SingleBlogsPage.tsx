@@ -2,7 +2,7 @@
 import Link from 'next/link'
 import HeroSinglePages from '@/components/sections/HeroSinglePages'
 import BlogCard from '@/components/sections/BlogCard'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import ButtonIcon from '@/components/svg/ButtonIcon'
 import { BlogPost, ListItem, TextChild } from '../../types/blog'
 
@@ -28,6 +28,7 @@ export default function SingleBlogsPage({
   allBlogs: BlogPost[]
 }) {
   const t = useTranslations()
+  const locale = useLocale()
 
   return (
     <>
@@ -125,7 +126,9 @@ export default function SingleBlogsPage({
                     <div className="bg-primary-palm rounded-full p-[6px] size-7 flex items-center justify-center">
                       <div className="relative shrink-0 size-6">
                         <div className="absolute flex h-[28.284px] items-center justify-center top-[-2.14px] left-[calc(50%+0.084px)] translate-x-[-50%] w-[28.284px]">
-                          <div className="flex-none group-hover:rotate-[45deg] text-Primary-Palm group-hover:text-Secondary-Dark-Palm transition-all duration-300">
+                          <div
+                            className={`flex-none ${locale === 'ar' ? 'group-hover:-rotate-[45deg]' : 'group-hover:rotate-[45deg]'} text-Primary-Palm group-hover:text-Secondary-Dark-Palm transition-all duration-300`}
+                          >
                             <ButtonIcon strokeColor="white" />
                           </div>
                         </div>

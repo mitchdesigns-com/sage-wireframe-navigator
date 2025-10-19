@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Button from '../ui/Button'
 import Tagline from './Tagline'
 import Image from 'next/image'
+import { useLocale } from 'next-intl'
 
 interface List {
   list: { url: string; alternativeText: string }[]
@@ -19,7 +20,6 @@ interface CentersSectionProps {
   textColor?: string
   reverse?: boolean // if true => List first
   secondaryButton?: boolean
-  locale?: 'en' | 'ar'
 }
 
 const CentersSection: React.FC<CentersSectionProps> = ({
@@ -33,8 +33,9 @@ const CentersSection: React.FC<CentersSectionProps> = ({
   textColor = 'black',
   reverse = false,
   secondaryButton,
-  locale,
 }) => {
+  const locale = useLocale()
+
   const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {

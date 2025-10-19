@@ -5,9 +5,11 @@ import Link from 'next/link'
 import ButtonIcon from '../svg/ButtonIcon'
 import { CareerItem } from '../../types/careersPageData'
 import Dot from '../svg/Dot'
+import { useLocale } from 'next-intl'
 
 export default function AccordionJobs({ data }: { data: CareerItem[] }) {
   const [openIndex, setOpenIndex] = useState<number>(-1)
+  const locale = useLocale()
 
   return (
     <div className="mx-auto">
@@ -56,7 +58,9 @@ export default function AccordionJobs({ data }: { data: CareerItem[] }) {
                         <div className="bg-primary-palm rounded-full p-[6px] size-7 flex items-center justify-center">
                           <div className="relative shrink-0 size-6">
                             <div className="absolute flex h-[28.284px] items-center justify-center top-[-2.14px] left-[calc(50%+0.084px)] translate-x-[-50%] w-[28.284px]">
-                              <div className="flex-none group-hover:rotate-[45deg] text-Primary-Palm group-hover:text-Secondary-Dark-Palm transition-all duration-300">
+                              <div
+                                className={`flex-none ${locale === 'ar' ? 'group-hover:-rotate-[45deg]' : 'group-hover:rotate-[45deg]'} text-Primary-Palm group-hover:text-Secondary-Dark-Palm transition-all duration-300`}
+                              >
                                 <ButtonIcon strokeColor="white" />
                               </div>
                             </div>

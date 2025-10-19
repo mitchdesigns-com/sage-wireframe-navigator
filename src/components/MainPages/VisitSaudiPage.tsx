@@ -8,6 +8,7 @@ import { BlogPost } from '../../types/blog'
 import BlogCard from '../sections/BlogCard'
 import Link from 'next/link'
 import ButtonIcon from '../svg/ButtonIcon'
+import { useLocale } from 'next-intl'
 
 export default function VisitSaudiPage({
   data,
@@ -16,6 +17,8 @@ export default function VisitSaudiPage({
   data: VisitSaudiData
   blogs: BlogPost[]
 }) {
+  const locale = useLocale()
+
   return (
     <div className="min-h-screen">
       <HeroWithVideo
@@ -99,8 +102,10 @@ export default function VisitSaudiPage({
               <div className="bg-primary-palm rounded-full p-[6px] size-7 flex items-center justify-center">
                 <div className="relative shrink-0 size-6">
                   <div className="absolute flex h-[28.284px] items-center justify-center top-[-2.14px] left-[calc(50%+0.084px)] translate-x-[-50%] w-[28.284px]">
-                    <div className="flex-none group-hover:rotate-[45deg] text-Primary-Palm group-hover:text-Secondary-Dark-Palm transition-all duration-300">
-                      <ButtonIcon strokeColor="white" />
+                    <div
+                      className={`flex-none ${locale === 'ar' ? 'group-hover:-rotate-[45deg]' : 'group-hover:rotate-[45deg]'} text-Primary-Palm group-hover:text-Secondary-Dark-Palm transition-all duration-300`}
+                    >
+                      <ButtonIcon strokeColor="white" locale={locale} />
                     </div>
                   </div>
                 </div>

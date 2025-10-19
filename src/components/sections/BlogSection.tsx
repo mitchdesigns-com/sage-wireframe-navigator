@@ -6,6 +6,7 @@ import ButtonIcon from '../svg/ButtonIcon'
 import BlogCard from './BlogCard'
 import Tagline from './Tagline'
 import BlogCardHomepage from './BlogCardHomePage'
+import { useLocale } from 'next-intl'
 
 interface BlogSectionProps {
   heading?: string
@@ -20,6 +21,8 @@ export default function BlogSection({
   blogs,
   homePage,
 }: BlogSectionProps) {
+  const locale = useLocale()
+
   return (
     <section className="max-w-[1392px] mx-auto px-6 py-8 md:py-25">
       <div className="flex items-end justify-between mb-15 flex-col md:flex-row">
@@ -43,7 +46,9 @@ export default function BlogSection({
             <div className="bg-primary-palm rounded-full p-[6px] size-7 flex items-center justify-center">
               <div className="relative shrink-0 size-6">
                 <div className="absolute flex h-[28.284px] items-center justify-center top-[-2.14px] left-[calc(50%+0.084px)] translate-x-[-50%] w-[28.284px]">
-                  <div className="flex-none group-hover:rotate-[45deg] text-Primary-Palm group-hover:text-Secondary-Dark-Palm transition-all duration-300">
+                  <div
+                    className={`flex-none ${locale === 'ar' ? 'group-hover:-rotate-[45deg]' : 'group-hover:rotate-[45deg]'} text-Primary-Palm group-hover:text-Secondary-Dark-Palm transition-all duration-300`}
+                  >
                     <ButtonIcon strokeColor="white" />
                   </div>
                 </div>

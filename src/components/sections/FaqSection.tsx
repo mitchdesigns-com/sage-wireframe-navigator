@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { Plus } from 'lucide-react'
+import { useLocale } from 'next-intl'
 
 type FAQ = {
   id: string | number
@@ -23,6 +24,7 @@ export default function FAQSection({
   faqData,
 }: FAQSectionProps) {
   const [openFaq, setOpenFaq] = useState<number | null>(null)
+  const locale = useLocale()
 
   return (
     <section key={id} className="py-15 md:py-25 bg-Secondary-Scrub">
@@ -45,12 +47,18 @@ export default function FAQSection({
                   className="border-t border-[rgba(0,4,4,0.02)]"
                 >
                   <button
-                    className="w-full py-5 flex items-center justify-between gap-6 text-left hover:bg-Secondary-Scrub transition-colors"
+                    className={`w-full py-5 flex items-center justify-between gap-6 hover:bg-Secondary-Scrub transition-colors
+        ${locale === 'ar' ? 'flex-row-reverse text-right' : 'text-left'}`}
                     onClick={() => setOpenFaq(openFaq === index ? null : index)}
                   >
-                    <h3 className="text-black font-bold text-base md:text-lg flex-1">
+                    <h3
+                      className={`text-black font-bold text-base md:text-lg flex-1 ${
+                        locale === 'ar' ? 'text-right' : 'text-left'
+                      }`}
+                    >
                       {faq.question}
                     </h3>
+
                     <div
                       className={`w-8 h-8 transition-transform ${
                         openFaq === index ? 'rotate-45' : ''

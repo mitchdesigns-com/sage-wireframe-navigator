@@ -3,6 +3,7 @@ import Link from 'next/link'
 import React from 'react'
 import { usePathname } from '../../i18n/navigation'
 import Button from '../ui/Button'
+import { useLocale } from 'next-intl'
 
 interface Feature {
   iconElement?: {
@@ -36,6 +37,8 @@ const WhySection: React.FC<WhySectionProps> = ({
   buttonText,
 }) => {
   const pathname = usePathname()
+  const locale = useLocale()
+
   return (
     <section className="py-8 md:py-28 bg-Primary-Spring-Med">
       <div className="px-4 md:px-0">
@@ -121,7 +124,12 @@ const WhySection: React.FC<WhySectionProps> = ({
             >
               {' '}
               {buttonText && (
-                <Button variant="primary" rightIcon={true} fullWidth>
+                <Button
+                  variant="primary"
+                  rightIcon={true}
+                  fullWidth
+                  locale={locale as 'en' | 'ar'}
+                >
                   {buttonText}
                 </Button>
               )}

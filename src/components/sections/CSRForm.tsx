@@ -1,6 +1,7 @@
 'use client'
 
 import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { useLocale } from 'next-intl'
 import Image from 'next/image'
 import React, { useState } from 'react'
 
@@ -37,6 +38,8 @@ const initialData: FormData = {
 }
 
 export default function MultiStepForm() {
+  const locale = useLocale()
+
   const [formData, setFormData] = useState<FormData>(initialData)
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [step, setStep] = useState(1)
@@ -624,7 +627,7 @@ export default function MultiStepForm() {
                   onClick={prevStep}
                   className="px-4 py-2 text-[#9ABCB9] font-bold rounded-full cursor-pointer flex items-center gap-3 hover:gap-4 hover:transition-all hover:duration-200 hover:bg-white"
                 >
-                  <ChevronLeft /> Back
+                  {locale === 'en' ? <ChevronLeft /> : <ChevronRight />} Back
                 </button>
               </div>
             )}
@@ -636,7 +639,7 @@ export default function MultiStepForm() {
                   onClick={nextStep}
                   className="px-8 md:px-28 py-3 md:py-[17px] bg-Primary-Spring text-Primary-Palm rounded-full font-bold cursor-pointer flex items-center gap-3 hover:gap-4 hover:transition-all hover:duration-200 hover:bg-white"
                 >
-                  <ChevronRight /> Next
+                  {locale === 'ar' ? <ChevronLeft /> : <ChevronRight />} Next
                 </button>
               </div>
             )}
@@ -647,7 +650,7 @@ export default function MultiStepForm() {
                   type="submit"
                   className="px-8 md:px-28 py-3 md:py-[17px] bg-Primary-Spring text-Primary-Palm rounded-full font-bold cursor-pointer flex items-center gap-3 hover:gap-4 hover:transition-all hover:duration-200 hover:bg-white"
                 >
-                  <ChevronRight /> Submit
+                  {locale === 'ar' ? <ChevronLeft /> : <ChevronRight />} Submit
                 </button>{' '}
               </div>
             )}
