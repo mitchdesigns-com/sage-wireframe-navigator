@@ -1,103 +1,25 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import Link from 'next/link'
-import KeyboardArrowDown from '../svg/KeyboardArrowDown'
-import PersonPinIcon from '../svg/PersonPinIcon'
-import HotelIcon from '../svg/HotelIcon'
-import GroupsIcon from '../svg/GroupsIcon'
-import ConciergeIcon from '../svg/ConciergeIcon'
-import PersonRaisedHandIcon from '../svg/PersonRaisedHandIcon'
-import CorporateFareIcon from '../svg/CorporateFareIcon'
-import FlightsAndHotelsIcon from '../svg/FlightsAndHotelsIcon'
-import EditDocumentIcon from '../svg/EditDocumentIcon'
-import Image from 'next/image'
-import ButtonIcon from '../svg/ButtonIcon'
 import { ChevronLeft } from 'lucide-react'
+import Image from 'next/image'
+import Link from 'next/link'
+import { ServiceCategories } from '../../types/header'
+import ButtonIcon from '../svg/ButtonIcon'
+import KeyboardArrowDown from '../svg/KeyboardArrowDown'
 
 interface ServicesMenuProps {
+  serviceCategories: ServiceCategories
   isOpen: boolean
   onClose: () => void
 }
 
-export default function ServicesMenu({ isOpen, onClose }: ServicesMenuProps) {
+export default function ServicesMenu({
+  serviceCategories,
+  isOpen,
+  onClose,
+}: ServicesMenuProps) {
   if (!isOpen) return null
-
-  const serviceCategories = {
-    individuals: {
-      title: 'For Individuals',
-      items: [
-        {
-          icon: <PersonPinIcon />,
-          title: 'Healthcare Services',
-          description: (
-            <>
-              Access premium healthcare <strong>packages</strong> and expert
-              care across Saudi hospitals.
-            </>
-          ),
-          href: '/services/individual/healthcare',
-        },
-        {
-          icon: <HotelIcon />,
-          title: 'Concierge Services',
-          description:
-            'We handle everything from airport transfers to dietary needs.',
-          href: '/services/individual/concierge',
-        },
-      ],
-    },
-    businesses: {
-      title: 'For Businesses',
-      items: [
-        {
-          icon: <GroupsIcon />,
-          title: 'Healthcare Services',
-          description:
-            'We offer customized corporate healthcare and VIP medical access for your employee.',
-          href: '/services/businesses/healthcare',
-        },
-        {
-          icon: <ConciergeIcon />,
-          title: 'Concierge Services',
-          description:
-            'We offer concierge services for executives, featuring corporate rates.',
-          href: '/services/businesses/concierge',
-        },
-        {
-          icon: <PersonRaisedHandIcon />,
-          title: 'Consultation & Training',
-          description: 'We provide wellness and medical travel guidance.',
-          href: '/services/businesses/consultation',
-        },
-      ],
-    },
-    organizations: {
-      title: 'For Organizations',
-      items: [
-        {
-          icon: <CorporateFareIcon />,
-          title: 'Healthcare Services',
-          description:
-            'We streamline cross-border care with institutional-level coordination.',
-          href: '/services/organizations/healthcare',
-        },
-        {
-          icon: <FlightsAndHotelsIcon />,
-          title: 'Concierge Services',
-          description:
-            'We manage group concierge services with compliance and care.',
-          href: '/services/organizations/concierge',
-        },
-        {
-          icon: <EditDocumentIcon />,
-          title: 'Consultation & Training Services',
-          description: 'We advise on health programs and medical tourism.',
-          href: '/services/organizations/consultation',
-        },
-      ],
-    },
-  }
 
   return (
     <motion.div
@@ -148,7 +70,14 @@ export default function ServicesMenu({ isOpen, onClose }: ServicesMenuProps) {
                         className="group flex gap-2 md:h-[116px] items-start px-11 md:px-3 py-4 rounded-[10px] hover:bg-Secondary-Light-Scrub transition-colors duration-200 w-80"
                       >
                         <div className="relative shrink-0 size-6 text-primary-light-sage group-hover:text-Primary-Scrub">
-                          {item.icon}
+                          <Image
+                            src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${item.icon.url}`}
+                            alt={item.icon.url || ''}
+                            width={24}
+                            height={24}
+                          />
+
+                          {/* {item.icon} */}
                         </div>
                         <div className="flex flex-col items-start justify-start flex-1">
                           <div className="font-aeonik-bold text-Neutral-Darkest text-sm md:text-base leading-[1.5]">
@@ -187,7 +116,12 @@ export default function ServicesMenu({ isOpen, onClose }: ServicesMenuProps) {
                         className="group flex gap-2 md:h-[116px] items-start px-11 md:px-3 py-4 rounded-[10px] hover:bg-Secondary-Light-Scrub transition-colors duration-200 w-80"
                       >
                         <div className="relative shrink-0 size-6 text-primary-light-sage group-hover:text-Primary-Scrub">
-                          {item.icon}
+                          <Image
+                            src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${item.icon.url}`}
+                            alt={item.icon.url || ''}
+                            width={24}
+                            height={24}
+                          />{' '}
                         </div>
                         <div className="flex flex-col items-start justify-start flex-1">
                           <div className="font-aeonik-bold text-primary-black text-sm md:text-base leading-[1.5]">
@@ -227,7 +161,12 @@ export default function ServicesMenu({ isOpen, onClose }: ServicesMenuProps) {
                           className="group flex gap-2 md:h-[116px] items-start px-11 md:px-3 py-4 rounded-[10px] hover:bg-Secondary-Light-Scrub transition-colors duration-200 w-80"
                         >
                           <div className="relative shrink-0 size-6 text-primary-light-sage group-hover:text-Primary-Scrub">
-                            {item.icon}
+                            <Image
+                              src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${item.icon.url}`}
+                              alt={item.icon.url || ''}
+                              width={24}
+                              height={24}
+                            />{' '}
                           </div>
                           <div className="flex flex-col items-start justify-start flex-1">
                             <div className="font-aeonik-bold text-primary-black text-sm md:text-base leading-[1.5]">

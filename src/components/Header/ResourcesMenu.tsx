@@ -1,97 +1,23 @@
 'use client'
 
-import Link from 'next/link'
 import { motion } from 'framer-motion'
-import DocumentScannerIcon from '../svg/DocumentScannerIcon'
-import PersonCheckIcon from '../svg/PersonCheckIcon'
-import VideoLibraryIcon from '../svg/VideoLibraryIcon'
-import EditDocumentIcon from '../svg/EditDocumentIcon'
-import LiveHelpIcon from '../svg/LiveHelpIcon'
-import PartnerExchangeIcon from '../svg/PartnerExchangeIcon'
-import VerifiedIcon from '../svg/VerifiedIcon'
-import BreakingNewsIcon from '../svg/BreakingNewsIcon'
-import ArticlePersonIcon from '../svg/ArticlePersonIcon'
-import PhoneInTalkIcon from '../svg/PhoneInTalkIcon'
-import Image from 'next/image'
 import { ChevronLeft } from 'lucide-react'
+import Image from 'next/image'
+import Link from 'next/link'
+import { ResourceColumns } from '../../types/header'
 
 interface ResourcesMenuProps {
+  resourceItems: ResourceColumns
   isOpen: boolean
   onClose: () => void
 }
 
-export default function ResourcesMenu({ isOpen, onClose }: ResourcesMenuProps) {
+export default function ResourcesMenu({
+  resourceItems,
+  isOpen,
+  onClose,
+}: ResourcesMenuProps) {
   if (!isOpen) return null
-
-  const resourceItems = {
-    column1: [
-      {
-        icon: <DocumentScannerIcon />,
-        title: 'Guides',
-        description: 'Healthcare resources and insights',
-        href: '/resources/guides',
-      },
-      {
-        icon: <PersonCheckIcon />,
-        title: 'Case Studies',
-        description: 'Real-life success stories from our clients',
-        href: '/resources/case-studies',
-      },
-      {
-        icon: <VideoLibraryIcon />,
-        title: 'Webinars',
-        description: 'Interactive sessions with industry experts',
-        href: '/resources/webinars',
-      },
-      {
-        icon: <EditDocumentIcon />,
-        title: 'Blog',
-        description: 'Latest trends and tips in healthcare',
-        href: '/resources/blog',
-      },
-    ],
-    column2: [
-      {
-        icon: <LiveHelpIcon />,
-        title: 'FAQs',
-        description: 'Our frequently asked questions',
-        href: '/resources/faqs',
-      },
-      {
-        icon: <PartnerExchangeIcon />,
-        title: 'CSR Initiatives',
-        description: 'Support our community projects',
-        href: '/resources/csr',
-      },
-      {
-        icon: <VerifiedIcon />,
-        title: 'Certifications',
-        description: 'Verified Trust and Compliance',
-        href: '/resources/certifications',
-      },
-      {
-        icon: <BreakingNewsIcon />,
-        title: 'News & Events',
-        description: 'Stay Informed with Sage',
-        href: '/resources/news-events',
-      },
-    ],
-    column3: [
-      {
-        icon: <ArticlePersonIcon />,
-        title: 'Careers',
-        description: 'Join our dedicated team',
-        href: '/careers',
-      },
-      {
-        icon: <PhoneInTalkIcon />,
-        title: 'Contact Us',
-        description: "Let's get in touch",
-        href: '/contact',
-      },
-    ],
-  }
-
   return (
     <motion.div
       initial={{ opacity: 0, y: -10 }}
@@ -111,7 +37,7 @@ export default function ResourcesMenu({ isOpen, onClose }: ResourcesMenuProps) {
             </p>
             {/* Column 1 */}
             <div className="flex-1 flex flex-col gap-0 md:gap-2 md:h-[358px]">
-              {resourceItems.column1.map((item, index) => (
+              {resourceItems?.column1.map((item, index) => (
                 <Link
                   key={index}
                   href={item.href}
@@ -119,7 +45,12 @@ export default function ResourcesMenu({ isOpen, onClose }: ResourcesMenuProps) {
                   className="group flex gap-2 items-start px-[30px] md:px-3 py-4 rounded-[10px] hover:bg-Secondary-Light-Scrub transition-colors duration-200 w-80"
                 >
                   <div className="relative shrink-0 size-6 text-primary-light-sage group-hover:text-Primary-Scrub">
-                    {item.icon}
+                    <Image
+                      src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${item.icon.url}`}
+                      alt={item.icon.url || ''}
+                      width={24}
+                      height={24}
+                    />{' '}
                   </div>
                   <div className="flex flex-col items-start justify-start flex-1">
                     <div className="font-aeonik-bold text-Neutral-Darkest text-sm md:text-base leading-[1.5]">
@@ -135,7 +66,7 @@ export default function ResourcesMenu({ isOpen, onClose }: ResourcesMenuProps) {
 
             {/* Column 2 */}
             <div className="flex-1 flex flex-col gap-0 md:gap-2 md:h-[358px]">
-              {resourceItems.column2.map((item, index) => (
+              {resourceItems?.column2.map((item, index) => (
                 <Link
                   key={index}
                   href={item.href}
@@ -143,7 +74,12 @@ export default function ResourcesMenu({ isOpen, onClose }: ResourcesMenuProps) {
                   className="group flex gap-2 items-start px-[30px] md:px-3 py-4 rounded-[10px] hover:bg-Secondary-Light-Scrub transition-colors duration-200 w-80"
                 >
                   <div className="relative shrink-0 size-6 text-primary-light-sage group-hover:text-Primary-Scrub">
-                    {item.icon}
+                    <Image
+                      src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${item.icon.url}`}
+                      alt={item.icon.url || ''}
+                      width={24}
+                      height={24}
+                    />{' '}
                   </div>
                   <div className="flex flex-col items-start justify-start flex-1">
                     <div className="font-aeonik-bold text-Neutral-Darkest text-sm md:text-base leading-[1.5]">
@@ -159,7 +95,7 @@ export default function ResourcesMenu({ isOpen, onClose }: ResourcesMenuProps) {
 
             {/* Column 3 */}
             <div className="flex-1 flex flex-col gap-0 md:gap-2 md:h-[358px]">
-              {resourceItems.column3.map((item, index) => (
+              {resourceItems?.column3.map((item, index) => (
                 <Link
                   key={index}
                   href={item.href}
@@ -167,7 +103,12 @@ export default function ResourcesMenu({ isOpen, onClose }: ResourcesMenuProps) {
                   className="group flex gap-2 items-start px-[30px] md:px-3 py-4 rounded-[10px] hover:bg-Secondary-Light-Scrub transition-colors duration-200 w-80"
                 >
                   <div className="relative shrink-0 size-6 text-primary-light-sage group-hover:text-Primary-Scrub">
-                    {item.icon}
+                    <Image
+                      src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${item.icon.url}`}
+                      alt={item.icon.url || ''}
+                      width={24}
+                      height={24}
+                    />{' '}
                   </div>
                   <div className="flex flex-col items-start justify-start flex-1">
                     <div className="font-aeonik-bold text-Neutral-Darkest text-sm md:text-base leading-[1.5]">

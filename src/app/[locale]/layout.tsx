@@ -1,6 +1,6 @@
 import type { Viewport } from 'next'
 import '../globals.css'
-import Header from '@/components/layout/Header'
+import Header from '@/components/Header/page'
 // import Footer from '@/components/layout/Footer'
 import { ReactNode } from 'react'
 import { hasLocale, Locale, NextIntlClientProvider } from 'next-intl'
@@ -8,7 +8,7 @@ import { routing } from '../../i18n/routing'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
 import NotFound from './[...rest]/page'
 import clsx from 'clsx'
-import Footer from '../../components/Footer/page'
+import Footer from '@/components/Footer/page'
 type Props = {
   children: ReactNode
   params: Promise<{ locale: Locale }>
@@ -119,7 +119,7 @@ export default async function LocaleLayout({ children, params }: Props) {
         <NextIntlClientProvider>
           {' '}
           <div className="flex flex-col">
-            <Header />
+            <Header locale="en" />
             <main className="flex-1">{children}</main>
             <Footer locale="en" />
           </div>
