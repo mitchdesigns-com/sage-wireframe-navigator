@@ -69,10 +69,13 @@ const defaultSections: ServiceSection[] = [
     description:
       'Our concierge services provide you with personalized support throughout your healthcare journey.',
     links: [
-      { label: 'Learn for Businesses', href: '/services/businesses/training' },
+      {
+        label: 'Learn for Businesses',
+        href: '/services/businesses/consultation',
+      },
       {
         label: 'Learn for Organizations',
-        href: '/services/organizations/training',
+        href: '/services/organizations/consultation',
       },
     ],
     backgroundColor: 'bg-[#013530]',
