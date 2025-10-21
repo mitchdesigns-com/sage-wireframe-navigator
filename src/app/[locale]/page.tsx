@@ -5,11 +5,14 @@ import { fetchServer } from '../api/general'
 import HomePage from '../../components/MainPages/HomePage'
 type Locale = 'en' | 'ar'
 
-export default async function Page(props: unknown) {
-  const { params } = props as { params: { locale: Locale } }
-  const { locale } = params
+// TODO: enhance props with Next.js 15 typings
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ locale: Locale }>
+}) {
+  const { locale } = await params
 
-  // const { data: network } = await fetchServer(`home-page`, locale)
   const [PageRes, singlesRes] = await Promise.all([
     fetchServer(`home-page`, locale),
     fetchServer(`news`, locale),

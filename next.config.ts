@@ -6,6 +6,8 @@ const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts')
 const nextConfig: NextConfig = {
   experimental: {
     viewTransition: true,
+    // Enable modern ES features transpilation for better performance
+    esmExternals: true,
   },
   images: {
     domains: ['localhost'],
@@ -22,6 +24,9 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  // Optimize production builds
+  productionBrowserSourceMaps: false,
+  // Reduce bundle size by excluding unused locales in moment.js if used
 }
 
 export default withNextIntl(nextConfig)

@@ -7,7 +7,7 @@ type Locale = 'en' | 'ar'
 
 export default async function Page(props: unknown) {
   const { params } = props as { params: { locale: Locale } }
-  const { locale } = params
+  const { locale } = await params
 
   const [caseStudyPageRes, singlesRes] = await Promise.all([
     fetchServer(`case-study-page`, locale),

@@ -1,17 +1,13 @@
-import type { Viewport } from 'next'
-import '../globals.css'
-import Header from '@/components/Header/page'
-import { ReactNode } from 'react'
-import { hasLocale, Locale, NextIntlClientProvider } from 'next-intl'
-import { routing } from '../../i18n/routing'
-import { getTranslations, setRequestLocale } from 'next-intl/server'
-import NotFound from './[...rest]/page'
-import clsx from 'clsx'
 import Footer from '@/components/Footer/page'
-// type Props = {
-//   children: ReactNode
-//   params: Promise<{ locale: Locale }>
-// }
+import Header from '@/components/Header/page'
+import clsx from 'clsx'
+import type { Viewport } from 'next'
+import { hasLocale, Locale, NextIntlClientProvider } from 'next-intl'
+import { getTranslations, setRequestLocale } from 'next-intl/server'
+import { ReactNode } from 'react'
+import { routing } from '../../i18n/routing'
+import '../globals.css'
+import NotFound from './[...rest]/page'
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }))
@@ -68,14 +64,6 @@ export async function generateMetadata(props: Omit<Props, 'children'>) {
     },
   }
 }
-// export const metadata: Metadata = {
-//   title:
-//     'Sage Healthcare Platform - Your Trusted Gateway to Saudi Medical Care',
-//   description:
-//     'Experience the perfect blend of healthcare expertise, cultural hospitality, and personalized service with Sage. We are dedicated to guiding you through every step of your medical journey.',
-//   keywords:
-//     'healthcare, saudi arabia, medical tourism, treatment, hospitals, medical care',
-// }
 
 type Props = {
   children: ReactNode
@@ -83,7 +71,7 @@ type Props = {
 }
 
 export default async function LocaleLayout({ children, params }: Props) {
-  const { locale } = params
+  const { locale } = await params
 
   if (!hasLocale(routing.locales, locale)) {
     NotFound()
@@ -116,7 +104,7 @@ export default async function LocaleLayout({ children, params }: Props) {
       </head>
       <body
         className={clsx(
-          'flex h-full flex-col overflow-x-hidden antialiased',
+          'flex flex-col h-full overflow-x-hidden antialiased',
           locale === 'ar' ? 'font-GE-SS' : 'font-aeonik'
         )}
         suppressHydrationWarning

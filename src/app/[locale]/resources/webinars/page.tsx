@@ -7,7 +7,7 @@ type Locale = 'en' | 'ar'
 
 export default async function Page(props: unknown) {
   const { params } = props as { params: { locale: Locale } }
-  const { locale } = params
+  const { locale } = await params
   const [{ data: webinar }, { data: events }] = await Promise.all([
     fetchServer(`webinar`, locale),
     fetchServer(`events`, locale),

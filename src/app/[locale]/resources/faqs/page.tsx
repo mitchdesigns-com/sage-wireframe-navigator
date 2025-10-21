@@ -6,7 +6,7 @@ import { fetchServer } from '../../../api/general'
 type Locale = 'en' | 'ar'
 export default async function Page(props: unknown) {
   const { params } = props as { params: { locale: Locale } }
-  const { locale } = params
+  const { locale } = await params
 
   const { data: faqs } = await fetchServer(
     `resources-pages?filters[slug][$eq]=resources-faqs`,
