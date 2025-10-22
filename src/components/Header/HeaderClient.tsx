@@ -4,11 +4,11 @@ import Button from '@/components/ui/Button'
 import { usePathname, useRouter } from '@/i18n/navigation'
 import { AnimatePresence, motion } from 'framer-motion'
 import { ChevronRight, Menu, X } from 'lucide-react'
-import Link from 'next/link'
-import { useEffect, useRef, useState, useTransition } from 'react'
 import { Locale, useLocale } from 'next-intl'
 import Image from 'next/image'
+import Link from 'next/link'
 import { useParams } from 'next/navigation'
+import { useEffect, useRef, useState, useTransition } from 'react'
 import { ResourceData } from '../../types/header'
 import KeyboardArrowDown from '../svg/KeyboardArrowDown'
 import MinusIcon from '../svg/MinusIcon'
@@ -23,7 +23,7 @@ export default function HeaderClient({ ResourceData }: HeaderClientProps) {
   const locale = useLocale()
 
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isScrolled, setIsScrolled] = useState(false)
+
   const [servicesOpen, setServicesOpen] = useState(false)
   const [resourcesOpen, setResourcesOpen] = useState(false)
   const headerRef = useRef<HTMLDivElement>(null)
@@ -31,14 +31,12 @@ export default function HeaderClient({ ResourceData }: HeaderClientProps) {
     null | 'services' | 'resources'
   >(null)
 
-  console.log(isScrolled)
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10)
-    }
+  const [isScrolled, setIsScrolled] = useState(false)
 
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
+  useEffect(() => {
+    const onScroll = () => setIsScrolled(window.scrollY > 10)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
   useEffect(() => {
@@ -97,34 +95,26 @@ export default function HeaderClient({ ResourceData }: HeaderClientProps) {
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
   }, [])
-  // const handleMenuClick = (type: 'services' | 'resources') => {
-  //   if (type === 'services') {
-  //     setServicesOpen(true)
-  //     setIsMenuOpen(false)
-  //   } else if (type === 'resources') {
-  //     setResourcesOpen(true)
-  //     setIsMenuOpen(false)
-  //   }
-  // }
+
   const [isPending, startTransition] = useTransition()
-  console.log(isPending)
-  function handleLanguageSwitch(nextLocale: Locale) {
+
+  function handleLanguageSwitch(
+    nextLocale: Locale,
+    nextParams: Record<string, string>
+  ) {
     startTransition(() => {
-      router.replace(
-        // @ts-expect-error: we skip runtime checks because pathname and params match
-        { pathname, params },
-        { locale: nextLocale }
-      )
+      router.replace({ pathname, params: nextParams }, { locale: nextLocale })
     })
   }
+
   return (
     <div
       ref={headerRef}
       className={`bg-primary-palm content-stretch flex flex-col items-center justify-start w-full top-0 z-50 relative`}
     >
       {/* Top Banner */}
-      <div className="bg-secondary-dark-palm box-border content-stretch flex gap-2.5 items-center justify-center px-2.5 py-0.5 relative shrink-0 w-full z-50">
-        <div className="font-aeonik-medium leading-[0] not-italic relative shrink-0 text-primary-scrub text-[12px] text-nowrap">
+      <div className="z-50 box-border relative flex justify-center items-center content-stretch gap-2.5 bg-secondary-dark-palm px-2.5 py-0.5 w-full shrink-0">
+        <div className="relative font-aeonik-medium text-[12px] text-primary-scrub not-italic text-nowrap leading-[0] shrink-0">
           <p className="leading-[1.5] whitespace-pre">
             Empowering Wellness, Globally.
           </p>
@@ -133,22 +123,22 @@ export default function HeaderClient({ ResourceData }: HeaderClientProps) {
 
       {/* Main Header */}
       <motion.div
-        className="box-border max-w-[1392px] w-full mx-auto flex items-center justify-between overflow-clip py-[14px] md:py-[22px] relative shrink-0 "
+        className="box-border relative flex justify-between items-center mx-auto py-[14px] md:py-[22px] w-full max-w-[1392px] overflow-clip shrink-0"
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.3 }}
       >
         {/* Left Section - Logo & Navigation */}
-        <div className="content-stretch flex gap-[72px] items-center justify-start relative shrink-0">
+        <div className="relative flex justify-start items-center content-stretch gap-[72px] shrink-0">
           {/* Logo */}
           <Link
             href="/"
-            className="flex items-center space-x-2 z-50 ps-4 md:ps-0"
+            className="z-50 flex items-center space-x-2 ps-4 md:ps-0"
             onClick={closeAllDropdowns}
           >
-            <motion.div className="h-12 relative shrink-0 w-[110px]">
-              <div className="text-primary-spring font-aeonik-regular text-[32px] leading-[1.2]">
-                <div className="w-[110px] h-[48px] relative">
+            <motion.div className="relative w-[110px] h-12 shrink-0">
+              <div className="font-aeonik-regular text-[32px] text-primary-spring leading-[1.2]">
+                <div className="relative w-[110px] h-[48px]">
                   {isMobile ? (
                     <Image
                       fill
@@ -171,12 +161,12 @@ export default function HeaderClient({ ResourceData }: HeaderClientProps) {
 
           {/* Desktop Navigation */}
           <div className="hidden lg:block">
-            <nav className="content-stretch flex gap-6 items-center justify-start overflow-clip relative shrink-0">
-              <div className="content-stretch flex gap-2.5 items-start justify-start relative shrink-0">
+            <nav className="relative flex justify-start items-center content-stretch gap-6 overflow-clip shrink-0">
+              <div className="relative flex justify-start items-start content-stretch gap-2.5 shrink-0">
                 <Link
                   href="/"
                   onClick={closeAllDropdowns}
-                  className="font-aeonik-regular leading-[0] not-italic relative shrink-0 text-primary-spring text-[16px] text-nowrap hover:opacity-80 transition-all duration-200"
+                  className="relative hover:opacity-80 font-aeonik-regular text-[16px] text-primary-spring not-italic text-nowrap leading-[0] transition-all duration-200 shrink-0"
                 >
                   <p className="leading-[1.5] whitespace-pre">Home</p>
                 </Link>
@@ -184,12 +174,12 @@ export default function HeaderClient({ ResourceData }: HeaderClientProps) {
 
               <button
                 onClick={handleServicesToggle}
-                className="box-border content-stretch cursor-pointer flex gap-1 items-center justify-start overflow-visible p-0 relative shrink-0 group"
+                className="group box-border relative flex justify-start items-center content-stretch gap-1 p-0 overflow-visible cursor-pointer shrink-0"
               >
-                <div className="font-aeonik-regular leading-[0] not-italic relative shrink-0 text-primary-spring text-[16px] text-nowrap group-hover:opacity-80 transition-all duration-200">
+                <div className="relative group-hover:opacity-80 font-aeonik-regular text-[16px] text-primary-spring not-italic text-nowrap leading-[0] transition-all duration-200 shrink-0">
                   <p className="leading-[1.5] whitespace-pre">Services</p>
                 </div>
-                <div className="overflow-clip relative shrink-0 size-6">
+                <div className="relative size-6 overflow-clip shrink-0">
                   {servicesOpen ? (
                     <MinusIcon color="#CAF48E" />
                   ) : (
@@ -198,11 +188,11 @@ export default function HeaderClient({ ResourceData }: HeaderClientProps) {
                 </div>
               </button>
 
-              <div className="content-stretch flex gap-2.5 items-start justify-start relative shrink-0">
+              <div className="relative flex justify-start items-start content-stretch gap-2.5 shrink-0">
                 <Link
                   href="/about"
                   onClick={closeAllDropdowns}
-                  className="font-aeonik-regular leading-[0] not-italic relative shrink-0 text-primary-spring text-[16px] text-nowrap hover:opacity-80 transition-all duration-200"
+                  className="relative hover:opacity-80 font-aeonik-regular text-[16px] text-primary-spring not-italic text-nowrap leading-[0] transition-all duration-200 shrink-0"
                 >
                   <p className="leading-[1.5] whitespace-pre">About Us</p>
                 </Link>
@@ -210,12 +200,12 @@ export default function HeaderClient({ ResourceData }: HeaderClientProps) {
 
               <button
                 onClick={handleResourcesToggle}
-                className="box-border content-stretch cursor-pointer flex gap-1 items-center justify-start overflow-visible p-0 relative shrink-0 group"
+                className="group box-border relative flex justify-start items-center content-stretch gap-1 p-0 overflow-visible cursor-pointer shrink-0"
               >
-                <div className="font-aeonik-regular leading-[0] not-italic relative shrink-0 text-primary-spring text-[16px] text-nowrap group-hover:opacity-80 transition-all duration-200">
+                <div className="relative group-hover:opacity-80 font-aeonik-regular text-[16px] text-primary-spring not-italic text-nowrap leading-[0] transition-all duration-200 shrink-0">
                   <p className="leading-[1.5] whitespace-pre">Resources</p>
                 </div>
-                <div className="overflow-clip relative shrink-0 size-6">
+                <div className="relative size-6 overflow-clip shrink-0">
                   {resourcesOpen ? (
                     <MinusIcon />
                   ) : (
@@ -224,21 +214,21 @@ export default function HeaderClient({ ResourceData }: HeaderClientProps) {
                 </div>
               </button>
 
-              <div className="content-stretch flex gap-2.5 items-start justify-start relative shrink-0">
+              <div className="relative flex justify-start items-start content-stretch gap-2.5 shrink-0">
                 <Link
                   href="/our-network"
                   onClick={closeAllDropdowns}
-                  className="font-aeonik-regular leading-[0] not-italic relative shrink-0 text-primary-spring text-[16px] text-nowrap hover:opacity-80 transition-all duration-200"
+                  className="relative hover:opacity-80 font-aeonik-regular text-[16px] text-primary-spring not-italic text-nowrap leading-[0] transition-all duration-200 shrink-0"
                 >
                   <p className="leading-[1.5] whitespace-pre">Our Network</p>
                 </Link>
               </div>
 
-              <div className="font-aeonik-regular leading-[0] not-italic relative shrink-0 text-primary-spring text-[16px] text-nowrap">
+              <div className="relative font-aeonik-regular text-[16px] text-primary-spring not-italic text-nowrap leading-[0] shrink-0">
                 <Link
                   href="/visit-saudi"
                   onClick={closeAllDropdowns}
-                  className="leading-[1.5] whitespace-pre hover:opacity-80 transition-all duration-200"
+                  className="hover:opacity-80 leading-[1.5] whitespace-pre transition-all duration-200"
                 >
                   Visit Saudi
                 </Link>
@@ -248,20 +238,20 @@ export default function HeaderClient({ ResourceData }: HeaderClientProps) {
         </div>
 
         {/* Right Section - Language Toggle & CTA Button */}
-        <div className="content-stretch flex gap-4 items-center justify-start relative shrink-0">
+        <div className="relative flex justify-start items-center content-stretch gap-4 shrink-0">
           {/* Arabic Language Toggle */}
-          <div className="hidden lg:block font-['GE_SS_Two:Medium',_sans-serif] leading-[0] not-italic relative shrink-0 text-primary-spring text-[12px] text-nowrap hover:opacity-80 transition-all duration-200 cursor-pointer">
+          <div className="hidden lg:block relative hover:opacity-80 font-['GE_SS_Two:Medium',_sans-serif] text-[12px] text-primary-spring not-italic text-nowrap leading-[0] transition-all duration-200 cursor-pointer shrink-0">
             <p
               className="leading-[1.5] whitespace-pre"
               dir="auto"
-              onClick={() => handleLanguageSwitch('ar')}
+              onClick={() => handleLanguageSwitch('ar', params)}
             >
               تصفح بالعربية
             </p>
           </div>
 
           {/* Schedule Call Button - Desktop */}
-          <div className="hidden lg:block group cursor-pointer">
+          <div className="group hidden lg:block cursor-pointer">
             <Button
               variant="light"
               righticon={true}
@@ -273,7 +263,7 @@ export default function HeaderClient({ ResourceData }: HeaderClientProps) {
 
           {/* Mobile Menu Button */}
           <motion.button
-            className="lg:hidden p-2 rounded-md text-primary-spring hover:opacity-80 hover:bg-[#036e65] z-50"
+            className="lg:hidden z-50 hover:bg-[#036e65] hover:opacity-80 p-2 rounded-md text-primary-spring"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
             whileTap={{ scale: 0.95 }}
@@ -318,10 +308,10 @@ export default function HeaderClient({ ResourceData }: HeaderClientProps) {
             animate={{ x: 0 }}
             exit={{ x: '-100%' }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className="lg:hidden fixed top-0 left-0 h-full w-full bg-primary-palm shadow-2xl z-40 overflow-y-auto"
+            className="lg:hidden top-0 left-0 z-40 fixed bg-primary-palm shadow-2xl w-full h-full overflow-y-auto"
           >
             <div className="px-4 sm:px-6 pt-22 sm:pt-20 pb-8 w-full">
-              <nav className="flex flex-col space-y-3 sm:space-y-4 w-full pt-8">
+              <nav className="flex flex-col space-y-3 sm:space-y-4 pt-8 w-full">
                 {[
                   { href: '/', label: 'Home' },
                   { href: '/services', label: 'Services', hasSubMenu: true },
@@ -332,7 +322,7 @@ export default function HeaderClient({ ResourceData }: HeaderClientProps) {
                 ].map(({ href, label, hasSubMenu }) => (
                   <div
                     key={href}
-                    className="flex items-center justify-between text-primary-spring font-aeonik-regular text-lg font-medium sm:text-lg py-[9px] sm:py-[10px] hover:opacity-80 transition-all duration-200"
+                    className="flex justify-between items-center hover:opacity-80 py-[9px] sm:py-[10px] font-aeonik-regular font-medium text-primary-spring text-lg sm:text-lg transition-all duration-200"
                   >
                     {hasSubMenu ? (
                       <button
@@ -341,7 +331,7 @@ export default function HeaderClient({ ResourceData }: HeaderClientProps) {
                             label.toLowerCase() as 'services' | 'resources'
                           )
                         }
-                        className="flex items-center justify-between w-full text-left"
+                        className="flex justify-between items-center w-full text-left"
                       >
                         <span>{label}</span>
                         <ChevronRight className="w-5 h-5" />
@@ -354,17 +344,17 @@ export default function HeaderClient({ ResourceData }: HeaderClientProps) {
                   </div>
                 ))}
               </nav>
-              <div className="my-2 ">
+              <div className="my-2">
                 {' '}
                 <div
-                  className="font-['GE_SS_Two:Medium',_sans-serif] text-primary-spring text-lg font-mediums mb-4"
+                  className="mb-4 font-['GE_SS_Two:Medium',_sans-serif] font-mediums text-primary-spring text-lg"
                   // dir="auto"
                 >
                   {' '}
                   تصفح بالعربية{' '}
                 </div>{' '}
               </div>
-              <div className="mt-15 group">
+              <div className="group mt-15">
                 {' '}
                 <Button
                   variant="light"

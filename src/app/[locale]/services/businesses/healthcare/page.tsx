@@ -1,8 +1,9 @@
 export const runtime = 'edge'
 
+import BusinessHealthcarePage from '@/components/MainPages/BusinessHealthcarePage'
 import { notFound } from 'next/navigation'
 import { fetchServer } from '../../../../api/general'
-import BusinessHealthcarePage from '@/components/MainPages/BusinessHealthcarePage'
+
 type Locale = 'en' | 'ar'
 
 export default async function Page({

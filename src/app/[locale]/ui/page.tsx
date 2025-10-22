@@ -1,4 +1,3 @@
-import React from 'react'
 import Button from '@/components/ui/Button'
 import VerticalSlider from '@/components/ui/VerticalSlider'
 export const runtime = 'edge'
@@ -6,23 +5,12 @@ export const runtime = 'edge'
 export default function page() {
   return (
     <div>
-      {/* <Button variant="primary" rightiIcon={true} size="large">
-        Get Started
-      </Button>
-      <Button variant="light" righticon={true}>
-        Schedule Call
-      </Button> */}
-
       <Button variant="dark" leftIcon={true}>
         Add New
       </Button>
       <Button variant="primary" size="small">
         Save
       </Button>
-      {/* 
-      <Button variant="dark-link" righticon={true} href="/learn-more">
-        Learn More
-      </Button> */}
       <Button variant="light-link" leftIcon={true}>
         Contact Us
       </Button>

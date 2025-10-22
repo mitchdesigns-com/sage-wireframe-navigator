@@ -2,14 +2,14 @@ export const runtime = 'edge'
 
 export default function NotFound() {
   return (
-    <div className="h-[calc(100vh-305px)] md:h-[calc(100vh-105px)] bg-white flex justify-center items-center flex-col gap-5 relative">
+    <div className="relative flex flex-col justify-center items-center gap-5 bg-white h-[calc(100vh-305px)] md:h-[calc(100vh-105px)]">
       <svg
         width="200"
         height="119"
         viewBox="0 0 200 119"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="absolute bottom-10 md:top-24 -left-3 md:left-2/3"
+        className="md:top-24 bottom-10 -left-3 md:left-2/3 absolute"
       >
         <path
           opacity="0.5"
@@ -24,7 +24,7 @@ export default function NotFound() {
         viewBox="0 0 212 250"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="absolute top-16 md:top-1/2 -left-4"
+        className="top-16 md:top-1/2 -left-4 absolute"
       >
         <path
           opacity="0.5"
@@ -39,7 +39,7 @@ export default function NotFound() {
         viewBox="0 0 166 166"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="absolute top-28 -right-12 md:bottom-5 md:right-24"
+        className="top-28 -right-12 md:right-24 md:bottom-5 absolute"
       >
         <path
           d="M25.8751 48.4466L0.867486 41.3276L39.4732 0.276057L64.9067 5.67945L76.1913 10.8488L91.6277 11.7667L108.053 66.6623L158.699 73.2249L165.634 92.9787L150.575 165.376L142.352 144.938L130.268 122.449L79.6585 112.07L56.3291 56.3714L41.7056 54.3803L25.8751 48.4466Z"
@@ -53,7 +53,7 @@ export default function NotFound() {
         viewBox="0 0 195 86"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="absolute bottom-0 md:bottom-5 -right-20 md:left-1/4"
+        className="-right-20 bottom-0 md:bottom-5 md:left-1/4 absolute"
       >
         <path
           d="M23.7422 73.4751L0.698224 85.5182L0.460951 29.166L22.6334 15.5849L34.3784 11.5705L46.2105 1.61418L95.9039 30.1427L137.168 0.0533441L155.793 9.61408L194.685 72.5069L174.655 63.3358L150.411 55.3337L106.548 82.6292L51.2925 58.2687L39.3117 66.8869L23.7422 73.4751Z"
@@ -62,11 +62,11 @@ export default function NotFound() {
         />
       </svg>
 
-      <h4 className="text-base md:text-h4">Error 404</h4>
-      <h2 className="text-4xl leading-[1em] md:text-h1 font-horseland -mb-2 text-center">
+      <h4 className="md:text-h4 text-base">Error 404</h4>
+      <h2 className="-mb-2 font-horseland md:text-h1 text-4xl text-center leading-[1em]">
         This page doesn’t exist.
       </h2>
-      <p className="text-base md:text-h4">
+      <p className="md:text-h4 text-base">
         Sorry, can't find the page you're looking for.
       </p>
       <button>Go to homepage</button>

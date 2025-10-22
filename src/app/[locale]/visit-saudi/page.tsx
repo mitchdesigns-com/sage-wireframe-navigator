@@ -3,6 +3,7 @@ export const runtime = 'edge'
 import VisitSaudiPage from '@/components/MainPages/VisitSaudiPage'
 import { notFound } from 'next/navigation'
 import { fetchServer } from '../../api/general'
+
 type Locale = 'en' | 'ar'
 
 export default async function Page({
@@ -12,7 +13,6 @@ export default async function Page({
 }) {
   const { locale } = await params
 
-  // const { data: network } = await fetchServer(`visit-saudi`, locale)
   const [data, singlesRes] = await Promise.all([
     fetchServer(`visit-saudi`, locale),
     fetchServer(`blogs`, locale),

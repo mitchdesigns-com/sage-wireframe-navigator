@@ -1,10 +1,10 @@
 'use client'
+
 import Link from 'next/link'
 import React from 'react'
 import Button from '../ui/Button'
 import Breadcrumb from './Breadcrumb'
 import VideoPlayer from './VideoPlayer'
-import parse, { domToReact, DOMNode, Element } from 'html-react-parser'
 
 interface BreadcrumbItem {
   label: string
@@ -33,24 +33,13 @@ const HeroWithVideo: React.FC<HeroProps> = ({
   video,
   locale,
 }) => {
-  const parsedTitle = parse(title || '', {
-    replace: (domNode: DOMNode) => {
-      if (domNode instanceof Element && domNode.name === 'span') {
-        return (
-          <span className="font-bold text-Primary-Spring ">
-            {domToReact(domNode.children as DOMNode[])}
-          </span>
-        )
-      }
-    },
-  })
   return (
     <section
       className={`pb-4 md:pb-20 bg-gradient-to-t from-[#013530] to-[#025850]`}
     >
       <div className="px-4 md:px-16">
-        <div className="max-w-[1392px] mx-auto">
-          <div className="mx-auto flex justify-center flex-col text-center max-w-[768px]">
+        <div className="mx-auto max-w-[1392px]">
+          <div className="flex flex-col justify-center mx-auto max-w-[768px] text-center">
             {breadcrumbItems && (
               <div className="pt-10">
                 {' '}
@@ -61,24 +50,29 @@ const HeroWithVideo: React.FC<HeroProps> = ({
                 />
               </div>
             )}
-            <h1 className="text-white  text-4xl md:text-[56px] leading-[1.2] tracking-[-1px] md:tracking-[-0.56px] pt-2 pb-8 md:pb-6 ">
-              {parsedTitle}
-            </h1>
-            <p className="text-white text-sm md:text-lg leading-[1.5] px-5 md:px-0">
+            <h1
+              className="pt-2 pb-8 md:pb-6 text-white md:text-[56px] text-4xl leading-[1.2] tracking-[-1px] md:tracking-[-0.56px]"
+              dangerouslySetInnerHTML={{
+                __html: title.replace(
+                  /<span>/g,
+                  '<span class="font-bold text-Primary-Spring">'
+                ),
+              }}
+            ></h1>
+            <p className="px-5 md:px-0 text-white text-sm md:text-lg leading-[1.5]">
               {description}
             </p>
             {btn && (
-              <div className="flex justify-between md:justify-center items-center w-full pt-8">
+              <div className="flex justify-between md:justify-center items-center pt-8 w-full">
                 <Link
                   href={href || '/contact'}
-                  className="inline-block  bg-primary text-white rounded-lg font-medium group cursor-pointer w-full md:w-fit"
+                  className="group inline-block bg-primary rounded-lg w-full md:w-fit font-medium text-white cursor-pointer"
                 >
                   <Button
                     variant={'light'}
                     righticon={true}
                     fullwidth
                     locale={locale as 'en' | 'ar'}
-                    //   onClick={() => setIsMenuOpen(false)}
                   >
                     {btn}
                   </Button>

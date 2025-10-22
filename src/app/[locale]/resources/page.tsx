@@ -3,30 +3,30 @@ export const runtime = 'edge'
 
 export default function ResourcesPage() {
   return (
-    <div className="min-h-screen bg-white">
-      <div className="container mx-auto px-4 py-16">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">Resources</h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+    <div className="bg-white min-h-screen">
+      <div className="mx-auto px-4 py-16 container">
+        <div className="mb-12 text-center">
+          <h1 className="mb-4 font-bold text-gray-900 text-4xl">Resources</h1>
+          <p className="mx-auto max-w-2xl text-gray-600 text-xl">
             Explore our comprehensive collection of healthcare resources,
             insights, and tools to support your healthcare journey.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="gap-8 grid md:grid-cols-2 lg:grid-cols-3">
           <Link
             href="/resources/guides"
-            className="bg-gray-50 p-6 rounded-lg hover:shadow-md transition-shadow"
+            className="bg-gray-50 hover:shadow-md p-6 rounded-lg transition-shadow"
           >
-            <h3 className="text-xl font-semibold text-gray-900 mb-2">Guides</h3>
+            <h3 className="mb-2 font-semibold text-gray-900 text-xl">Guides</h3>
             <p className="text-gray-600">Healthcare resources and insights</p>
           </Link>
 
           <Link
             href="/resources/case-studies"
-            className="bg-gray-50 p-6 rounded-lg hover:shadow-md transition-shadow"
+            className="bg-gray-50 hover:shadow-md p-6 rounded-lg transition-shadow"
           >
-            <h3 className="text-xl font-semibold text-gray-900 mb-2">
+            <h3 className="mb-2 font-semibold text-gray-900 text-xl">
               Case Studies
             </h3>
             <p className="text-gray-600">
@@ -36,9 +36,9 @@ export default function ResourcesPage() {
 
           <Link
             href="/resources/webinars"
-            className="bg-gray-50 p-6 rounded-lg hover:shadow-md transition-shadow"
+            className="bg-gray-50 hover:shadow-md p-6 rounded-lg transition-shadow"
           >
-            <h3 className="text-xl font-semibold text-gray-900 mb-2">
+            <h3 className="mb-2 font-semibold text-gray-900 text-xl">
               Webinars
             </h3>
             <p className="text-gray-600">
@@ -48,9 +48,9 @@ export default function ResourcesPage() {
 
           <Link
             href="/resources/blog"
-            className="bg-gray-50 p-6 rounded-lg hover:shadow-md transition-shadow"
+            className="bg-gray-50 hover:shadow-md p-6 rounded-lg transition-shadow"
           >
-            <h3 className="text-xl font-semibold text-gray-900 mb-2">Blog</h3>
+            <h3 className="mb-2 font-semibold text-gray-900 text-xl">Blog</h3>
             <p className="text-gray-600">
               Latest trends and tips in healthcare
             </p>
@@ -58,17 +58,17 @@ export default function ResourcesPage() {
 
           <Link
             href="/resources/faqs"
-            className="bg-gray-50 p-6 rounded-lg hover:shadow-md transition-shadow"
+            className="bg-gray-50 hover:shadow-md p-6 rounded-lg transition-shadow"
           >
-            <h3 className="text-xl font-semibold text-gray-900 mb-2">FAQs</h3>
+            <h3 className="mb-2 font-semibold text-gray-900 text-xl">FAQs</h3>
             <p className="text-gray-600">Our frequently asked questions</p>
           </Link>
 
           <Link
             href="/resources/csr"
-            className="bg-gray-50 p-6 rounded-lg hover:shadow-md transition-shadow"
+            className="bg-gray-50 hover:shadow-md p-6 rounded-lg transition-shadow"
           >
-            <h3 className="text-xl font-semibold text-gray-900 mb-2">
+            <h3 className="mb-2 font-semibold text-gray-900 text-xl">
               CSR Initiatives
             </h3>
             <p className="text-gray-600">Support our community projects</p>
@@ -76,9 +76,9 @@ export default function ResourcesPage() {
 
           <Link
             href="/resources/certifications"
-            className="bg-gray-50 p-6 rounded-lg hover:shadow-md transition-shadow"
+            className="bg-gray-50 hover:shadow-md p-6 rounded-lg transition-shadow"
           >
-            <h3 className="text-xl font-semibold text-gray-900 mb-2">
+            <h3 className="mb-2 font-semibold text-gray-900 text-xl">
               Certifications
             </h3>
             <p className="text-gray-600">Verified Trust and Compliance</p>
@@ -86,9 +86,9 @@ export default function ResourcesPage() {
 
           <Link
             href="/resources/news-events"
-            className="bg-gray-50 p-6 rounded-lg hover:shadow-md transition-shadow"
+            className="bg-gray-50 hover:shadow-md p-6 rounded-lg transition-shadow"
           >
-            <h3 className="text-xl font-semibold text-gray-900 mb-2">
+            <h3 className="mb-2 font-semibold text-gray-900 text-xl">
               News & Events
             </h3>
             <p className="text-gray-600">Stay Informed with Sage</p>

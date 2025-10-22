@@ -1,6 +1,6 @@
 import { fetchServer } from '@/app/api/general'
-import { notFound } from 'next/navigation'
 import SingleBlogsPage from '@/components/MainPages/SingleBlogsPage'
+import { notFound } from 'next/navigation'
 
 export const runtime = 'edge'
 

@@ -1,14 +1,14 @@
-import Link from 'next/link'
 import {
-  MessageCircle,
-  FileText,
-  Heart,
+  Calendar,
   CheckCircle,
   Clock,
-  User,
-  Calendar,
+  FileText,
+  Heart,
+  MessageCircle,
   Phone,
+  User,
 } from 'lucide-react'
+import Link from 'next/link'
 export const runtime = 'edge'
 
 const detailedSteps = [
@@ -134,12 +134,12 @@ export default function HowItWorksPage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="section-padding bg-gradient-to-br from-sage-50 to-white">
-        <div className="container-custom mx-auto text-center">
-          <h1 className="heading-xl mb-6">
+      <section className="bg-gradient-to-br from-sage-50 to-white section-padding">
+        <div className="mx-auto text-center container-custom">
+          <h1 className="mb-6 heading-xl">
             How <span className="text-sage-400">It Works</span>
           </h1>
-          <p className="text-body max-w-5xl mx-auto mb-8">
+          <p className="mx-auto mb-8 max-w-5xl text-body">
             Your healthcare journey with Sage follows a carefully designed
             process that prioritizes your comfort, safety, and peace of mind.
             From initial consultation to post-treatment care, we guide you
@@ -153,8 +153,8 @@ export default function HowItWorksPage() {
       </section>
 
       {/* Detailed Process Steps */}
-      <section className="section-padding bg-white">
-        <div className="container-custom mx-auto">
+      <section className="bg-white section-padding">
+        <div className="mx-auto container-custom">
           <div className="space-y-16">
             {detailedSteps.map((step, index) => {
               const Icon = step.icon
@@ -168,28 +168,28 @@ export default function HowItWorksPage() {
                   {/* Content */}
                   <div className={isEven ? '' : 'lg:col-start-2'}>
                     <div className="flex items-center space-x-4 mb-6">
-                      <div className="w-16 h-16 bg-sage-400 text-white rounded-full flex items-center justify-center text-2xl font-bold">
+                      <div className="flex justify-center items-center bg-sage-400 rounded-full w-16 h-16 font-bold text-white text-2xl">
                         {step.number}
                       </div>
                       <div>
-                        <h2 className="text-2xl font-bold text-gray-900">
+                        <h2 className="font-bold text-gray-900 text-2xl">
                           {step.title}
                         </h2>
-                        <p className="text-sage-400 font-medium">
+                        <p className="font-medium text-sage-400">
                           {step.subtitle}
                         </p>
                       </div>
                     </div>
 
-                    <p className="text-body mb-6">{step.description}</p>
+                    <p className="mb-6 text-body">{step.description}</p>
 
                     <div className="mb-6">
-                      <div className="flex items-center space-x-2 text-sm text-gray-600 mb-4">
+                      <div className="flex items-center space-x-2 mb-4 text-gray-600 text-sm">
                         <Clock size={16} className="text-sage-400" />
                         <span>Typical Duration: {step.duration}</span>
                       </div>
 
-                      <h3 className="font-semibold text-gray-900 mb-3">
+                      <h3 className="mb-3 font-semibold text-gray-900">
                         What's Included:
                       </h3>
                       <ul className="space-y-2">
@@ -198,18 +198,18 @@ export default function HowItWorksPage() {
                             key={detailIndex}
                             className="flex items-start space-x-2 text-gray-600"
                           >
-                            <div className="w-1.5 h-1.5 bg-sage-400 rounded-full mt-2 flex-shrink-0"></div>
+                            <div className="flex-shrink-0 bg-sage-400 mt-2 rounded-full w-1.5 h-1.5"></div>
                             <span>{detail}</span>
                           </li>
                         ))}
                       </ul>
                     </div>
 
-                    <div className="bg-sage-50 rounded-lg p-4">
-                      <h4 className="font-semibold text-gray-900 mb-2">
+                    <div className="bg-sage-50 p-4 rounded-lg">
+                      <h4 className="mb-2 font-semibold text-gray-900">
                         What to Expect:
                       </h4>
-                      <p className="text-sm text-gray-600">
+                      <p className="text-gray-600 text-sm">
                         {step.whatToExpect}
                       </p>
                     </div>
@@ -219,10 +219,10 @@ export default function HowItWorksPage() {
                   <div
                     className={isEven ? '' : 'lg:col-start-1 lg:row-start-1'}
                   >
-                    <div className="bg-gray-200 rounded-2xl h-96 flex items-center justify-center">
-                      <div className="text-center text-gray-400">
+                    <div className="flex justify-center items-center bg-gray-200 rounded-2xl h-96">
+                      <div className="text-gray-400 text-center">
                         <Icon size={64} className="mx-auto mb-4" />
-                        <p className="text-lg font-medium">{step.title}</p>
+                        <p className="font-medium text-lg">{step.title}</p>
                         <p className="text-sm">{step.subtitle}</p>
                       </div>
                     </div>
@@ -235,28 +235,28 @@ export default function HowItWorksPage() {
       </section>
 
       {/* Support Services */}
-      <section className="section-padding bg-gray-50">
-        <div className="container-custom mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="heading-lg mb-6">
+      <section className="bg-gray-50 section-padding">
+        <div className="mx-auto container-custom">
+          <div className="mb-16 text-center">
+            <h2 className="mb-6 heading-lg">
               Comprehensive Support Throughout Your Journey
             </h2>
-            <p className="text-body max-w-3xl mx-auto">
+            <p className="mx-auto max-w-3xl text-body">
               Beyond medical treatment, we provide comprehensive support
               services to ensure your entire experience is comfortable,
               convenient, and stress-free.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="gap-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
             {supportServices.map((service, index) => {
               const Icon = service.icon
               return (
                 <div key={index} className="text-center">
-                  <div className="inline-flex items-center justify-center w-16 h-16 bg-sage-100 rounded-full mb-6">
+                  <div className="inline-flex justify-center items-center bg-sage-100 mb-6 rounded-full w-16 h-16">
                     <Icon size={32} className="text-sage-400" />
                   </div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-3">
+                  <h3 className="mb-3 font-bold text-gray-900 text-lg">
                     {service.title}
                   </h3>
                   <p className="text-gray-600">{service.description}</p>
@@ -268,20 +268,20 @@ export default function HowItWorksPage() {
       </section>
 
       {/* FAQ Section */}
-      <section className="section-padding bg-white">
-        <div className="container-custom mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="heading-lg mb-6">Frequently Asked Questions</h2>
-            <p className="text-body max-w-3xl mx-auto">
+      <section className="bg-white section-padding">
+        <div className="mx-auto container-custom">
+          <div className="mb-16 text-center">
+            <h2 className="mb-6 heading-lg">Frequently Asked Questions</h2>
+            <p className="mx-auto max-w-3xl text-body">
               Get answers to common questions about our process and what to
               expect during your healthcare journey with Sage.
             </p>
           </div>
 
-          <div className="max-w-5xl mx-auto space-y-6">
+          <div className="space-y-6 mx-auto max-w-5xl">
             {faqs.map((faq, index) => (
               <div key={index} className="card">
-                <h3 className="text-lg font-bold text-gray-900 mb-3">
+                <h3 className="mb-3 font-bold text-gray-900 text-lg">
                   {faq.question}
                 </h3>
                 <p className="text-gray-600">{faq.answer}</p>
@@ -292,27 +292,27 @@ export default function HowItWorksPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="section-padding bg-sage-400 text-white">
-        <div className="container-custom mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-6">
+      <section className="bg-sage-400 text-white section-padding">
+        <div className="mx-auto text-center container-custom">
+          <h2 className="mb-6 font-bold text-3xl">
             Ready to Begin Your Healthcare Journey?
           </h2>
-          <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
+          <p className="opacity-90 mx-auto mb-8 max-w-2xl text-xl">
             Take the first step towards exceptional medical care. Our team is
             ready to guide you through our proven process with personalized
             attention.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex sm:flex-row flex-col justify-center gap-4">
             <Link
               href="/contact"
-              className="inline-flex items-center space-x-2 bg-white text-sage-400 px-8 py-4 rounded-lg font-medium hover:bg-gray-100 transition-colors duration-200"
+              className="inline-flex items-center space-x-2 bg-white hover:bg-gray-100 px-8 py-4 rounded-lg font-medium text-sage-400 transition-colors duration-200"
             >
               <span>Schedule Free Consultation</span>
               <MessageCircle size={20} />
             </Link>
             <Link
               href="/services"
-              className="inline-flex items-center space-x-2 border-2 border-white text-white px-8 py-4 rounded-lg font-medium hover:bg-white hover:text-sage-400 transition-all duration-200"
+              className="inline-flex items-center space-x-2 hover:bg-white px-8 py-4 border-2 border-white rounded-lg font-medium text-white hover:text-sage-400 transition-all duration-200"
             >
               <span>Explore Our Services</span>
               <Heart size={20} />

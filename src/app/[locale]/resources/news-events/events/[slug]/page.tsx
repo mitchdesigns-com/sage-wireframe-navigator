@@ -1,6 +1,6 @@
 import { fetchServer } from '@/app/api/general'
-import { notFound } from 'next/navigation'
 import SingleNewsPage from '@/components/MainPages/SingleNewsPage'
+import { notFound } from 'next/navigation'
 export const runtime = 'edge'
 type Locale = 'en' | 'ar'
 

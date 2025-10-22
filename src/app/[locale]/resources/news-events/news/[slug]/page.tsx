@@ -1,8 +1,11 @@
 import { fetchServer } from '@/app/api/general'
-import { notFound } from 'next/navigation'
 import SingleNewsOnlyPage from '@/components/MainPages/SingleNewsOnlyPage'
+import { notFound } from 'next/navigation'
+
 export const runtime = 'edge'
+
 type Locale = 'en' | 'ar'
+
 export default async function Page(props: unknown) {
   // Cast props to expected shape
   const { params } = props as { params: { slug: string; locale: Locale } }

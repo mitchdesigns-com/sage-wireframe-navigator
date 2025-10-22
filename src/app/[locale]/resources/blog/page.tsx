@@ -1,7 +1,7 @@
 export const runtime = 'edge'
 
-import { notFound } from 'next/navigation'
 import BlogPage from '@/components/MainPages/BlogPage'
+import { notFound } from 'next/navigation'
 import { fetchServer } from '../../../api/general'
 type Locale = 'en' | 'ar'
 

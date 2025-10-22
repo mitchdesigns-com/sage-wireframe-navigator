@@ -1,6 +1,6 @@
 import { fetchServer } from '@/app/api/general'
-import { notFound } from 'next/navigation'
 import SingleCaseStudyPage from '@/components/MainPages/SingleCaseStudyPage'
+import { notFound } from 'next/navigation'
 export const runtime = 'edge'
 type Locale = 'en' | 'ar'
 

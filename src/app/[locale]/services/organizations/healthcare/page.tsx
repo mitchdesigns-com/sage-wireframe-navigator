@@ -3,6 +3,7 @@ export const runtime = 'edge'
 import OrganizationHealthcarePage from '@/components/MainPages/OrganizationHealthcarePage'
 import { notFound } from 'next/navigation'
 import { fetchServer } from '../../../../api/general'
+
 type Locale = 'en' | 'ar'
 
 export default async function Page({

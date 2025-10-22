@@ -1,8 +1,9 @@
 export const runtime = 'edge'
 
+import BusinessConciergePage from '@/components/MainPages/BusinessConciergePage'
 import { notFound } from 'next/navigation'
 import { fetchServer } from '../../../../api/general'
-import BusinessConciergePage from '@/components/MainPages/BusinessConciergePage'
+
 type Locale = 'en' | 'ar'
 
 export default async function Page({

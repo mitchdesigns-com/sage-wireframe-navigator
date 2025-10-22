@@ -1,7 +1,7 @@
 export const runtime = 'edge'
 
-import { notFound } from 'next/navigation'
 import FAQsPage from '@/components/MainPages/FAQsPage'
+import { notFound } from 'next/navigation'
 import { fetchServer } from '../../../api/general'
 type Locale = 'en' | 'ar'
 export default async function Page({
