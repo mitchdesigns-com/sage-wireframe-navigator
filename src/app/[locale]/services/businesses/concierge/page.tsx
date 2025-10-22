@@ -5,8 +5,11 @@ import { fetchServer } from '../../../../api/general'
 import BusinessConciergePage from '@/components/MainPages/BusinessConciergePage'
 type Locale = 'en' | 'ar'
 
-export default async function Page(props: unknown) {
-  const { params } = props as { params: { locale: Locale } }
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ locale: Locale }>
+}) {
   const { locale } = await params
 
   const { data: businessesConcierge } = await fetchServer(

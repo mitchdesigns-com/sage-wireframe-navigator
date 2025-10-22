@@ -86,8 +86,8 @@ const WebinarList: React.FC<WebinarListProps> = ({ webinars, events }) => {
                   >
                     <Button
                       variant={'light'}
-                      rightIcon={webinars.news ? false : true}
-                      fullWidth
+                      righticon={webinars.news ? false : true}
+                      fullwidth
                     >
                       {webinars.news ? (
                         <div className="flex">

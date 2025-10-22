@@ -264,7 +264,7 @@ export default function HeaderClient({ ResourceData }: HeaderClientProps) {
           <div className="hidden lg:block group cursor-pointer">
             <Button
               variant="light"
-              rightIcon={true}
+              righticon={true}
               locale={locale as 'en' | 'ar'}
             >
               Schedule Call
@@ -368,8 +368,8 @@ export default function HeaderClient({ ResourceData }: HeaderClientProps) {
                 {' '}
                 <Button
                   variant="light"
-                  rightIcon
-                  fullWidth
+                  righticon
+                  fullwidth
                   onClick={() => setIsMenuOpen(false)}
                   locale={locale as 'en' | 'ar'}
                 >

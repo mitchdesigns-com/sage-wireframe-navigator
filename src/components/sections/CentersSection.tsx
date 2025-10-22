@@ -96,8 +96,8 @@ const CentersSection: React.FC<CentersSectionProps> = ({
                               ? 'primary'
                               : 'light'
                       }
-                      rightIcon={secondaryButton ? false : true}
-                      fullWidth
+                      righticon={secondaryButton ? false : true}
+                      fullwidth
                       locale={locale as 'en' | 'ar'}
                     >
                       {ctaText}
@@ -108,7 +108,7 @@ const CentersSection: React.FC<CentersSectionProps> = ({
                   <Button
                     href="/our-network"
                     variant="light-link"
-                    rightIcon={true}
+                    righticon={true}
                     locale={locale as 'en' | 'ar'}
                   >
                     Explore Our Network
@@ -155,8 +155,8 @@ const CentersSection: React.FC<CentersSectionProps> = ({
                             ? 'primary'
                             : 'light'
                     }
-                    rightIcon={secondaryButton ? false : true}
-                    fullWidth
+                    righticon={secondaryButton ? false : true}
+                    fullwidth
                     locale={locale as 'en' | 'ar'}
                   >
                     {ctaText}
@@ -167,7 +167,7 @@ const CentersSection: React.FC<CentersSectionProps> = ({
                 <Button
                   href="/our-network"
                   variant="light-link"
-                  rightIcon={true}
+                  righticon={true}
                   locale={locale as 'en' | 'ar'}
                 >
                   Explore Our Network

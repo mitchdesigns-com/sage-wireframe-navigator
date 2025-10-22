@@ -47,8 +47,8 @@ const ServiceSection: React.FC<ServiceSectionProps> = ({
             >
               <Button
                 variant="light"
-                rightIcon
-                fullWidth
+                righticon
+                fullwidth
                 locale={locale as 'en' | 'ar'}
               >
                 {buttonText}

@@ -84,7 +84,7 @@ function ServiceCard({
         <Button
           variant="link"
           href={href}
-          rightIcon={false}
+          righticon={false}
           locale={locale as 'en' | 'ar'}
         >
           <span className="text-sm md:text-base font-medium text-Primary-Palm">
@@ -136,7 +136,7 @@ export default function Services({
           <Button
             variant="primary"
             href={href}
-            rightIcon={true}
+            righticon={true}
             size="large"
             locale={locale as 'en' | 'ar'}
           >

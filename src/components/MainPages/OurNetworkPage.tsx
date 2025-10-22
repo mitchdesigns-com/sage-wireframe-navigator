@@ -116,7 +116,7 @@ export default function OurNetworkPage({ data }: { data: NetworkData }) {
                 href={data.LoginSection.cta.url}
                 className="inline-block  bg-primary text-white rounded-lg font-medium group cursor-pointer"
               >
-                <Button variant={'primary'} rightIcon={false} fullWidth>
+                <Button variant={'primary'} righticon={false} fullwidth>
                   {data.LoginSection.cta.label}
                 </Button>
               </Link>

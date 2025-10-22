@@ -233,7 +233,7 @@
 
 //           {/* Schedule Call Button - Desktop */}
 //           <div className="hidden lg:block group cursor-pointer">
-//             <Button variant="light" rightIcon={true}>
+//             <Button variant="light" righticon={true}>
 //               Schedule Call
 //             </Button>
 //           </div>
@@ -333,8 +333,8 @@
 //                 {' '}
 //                 <Button
 //                   variant="light"
-//                   rightIcon
-//                   fullWidth
+//                   righticon
+//                   fullwidth
 //                   onClick={() => setIsMenuOpen(false)}
 //                 >
 //                   {' '}

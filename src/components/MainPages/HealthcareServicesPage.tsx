@@ -115,7 +115,7 @@ const BLOCKS: {
                     </p>
                     {step.button && (
                       <Link href="/contact" className="inline-block group">
-                        <Button variant="primary" rightIcon fullWidth>
+                        <Button variant="primary" righticon fullwidth>
                           {step.button}
                         </Button>
                       </Link>

@@ -6,12 +6,12 @@ export const runtime = 'edge'
 export default function page() {
   return (
     <div>
-      <Button variant="primary" rightIcon={true} size="large">
+      {/* <Button variant="primary" rightiIcon={true} size="large">
         Get Started
       </Button>
-      <Button variant="light" rightIcon={true}>
+      <Button variant="light" righticon={true}>
         Schedule Call
-      </Button>
+      </Button> */}
 
       <Button variant="dark" leftIcon={true}>
         Add New
@@ -19,10 +19,10 @@ export default function page() {
       <Button variant="primary" size="small">
         Save
       </Button>
-
-      <Button variant="dark-link" rightIcon={true} href="/learn-more">
+      {/* 
+      <Button variant="dark-link" righticon={true} href="/learn-more">
         Learn More
-      </Button>
+      </Button> */}
       <Button variant="light-link" leftIcon={true}>
         Contact Us
       </Button>

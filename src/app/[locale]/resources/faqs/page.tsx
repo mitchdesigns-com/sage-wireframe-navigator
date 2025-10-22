@@ -4,8 +4,11 @@ import { notFound } from 'next/navigation'
 import FAQsPage from '@/components/MainPages/FAQsPage'
 import { fetchServer } from '../../../api/general'
 type Locale = 'en' | 'ar'
-export default async function Page(props: unknown) {
-  const { params } = props as { params: { locale: Locale } }
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ locale: Locale }>
+}) {
   const { locale } = await params
 
   const { data: faqs } = await fetchServer(

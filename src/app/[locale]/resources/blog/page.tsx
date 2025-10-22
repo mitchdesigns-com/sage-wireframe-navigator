@@ -5,8 +5,11 @@ import BlogPage from '@/components/MainPages/BlogPage'
 import { fetchServer } from '../../../api/general'
 type Locale = 'en' | 'ar'
 
-export default async function Page(props: unknown) {
-  const { params } = props as { params: { locale: Locale } }
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ locale: Locale }>
+}) {
   const { locale } = await params
   const [blogPageRes, singlesRes] = await Promise.all([
     fetchServer(`blog-page`, locale),

@@ -62,14 +62,12 @@ const isLinkVariant = (variant: ButtonVariant): boolean =>
 const getContainerPadding = (
   sizeConfig: SizeConfig | undefined,
   leftIcon: boolean,
-  rightIcon: boolean
+  righticon: boolean
 ): string => {
-  // Fallback to medium size config if sizeConfig is undefined
   const config = sizeConfig || DESIGN_CONFIG.sizes.medium
-
-  if (leftIcon && rightIcon) return config.container.withBothIcons
+  if (leftIcon && righticon) return config.container.withBothIcons
   if (leftIcon) return config.container.withLeftIcon
-  if (rightIcon) return config.container.withRightIcon
+  if (righticon) return config.container.withRightIcon
   return config.container.default
 }
 
@@ -77,41 +75,27 @@ const getGapClass = (
   variant: ButtonVariant,
   size: ButtonSize,
   leftIcon: boolean,
-  rightIcon: boolean
+  righticon: boolean
 ): string => {
   if (isLinkVariant(variant)) {
     return (
       DESIGN_CONFIG.linkSizes[size]?.gap || DESIGN_CONFIG.linkSizes.medium.gap
     )
   }
-
   const sizeConfig = DESIGN_CONFIG.sizes[size] || DESIGN_CONFIG.sizes.medium
-
-  if (leftIcon && rightIcon) {
-    return sizeConfig.gaps.compact
-  }
-
-  if (leftIcon || (!leftIcon && !rightIcon)) {
-    return sizeConfig.gaps.compact
-  }
-
+  if (leftIcon && righticon) return sizeConfig.gaps.compact
+  if (leftIcon || (!leftIcon && !righticon)) return sizeConfig.gaps.compact
   return sizeConfig.gaps.default
 }
 
 // Icon components
 const LeftIcon = ({ size, variant }: IconProps) => {
-  if (variant === 'link') {
+  if (variant === 'link' || isLinkVariant(variant)) {
     return <Plus size={16} className="text-current" />
   }
-
-  if (isLinkVariant(variant)) {
-    return <Plus size={16} className="text-current" />
-  }
-
   const sizeConfig = DESIGN_CONFIG.sizes[size] || DESIGN_CONFIG.sizes.medium
   const variantConfig =
     DESIGN_CONFIG.variants[variant] || DESIGN_CONFIG.variants.primary
-
   return (
     <div
       className={cn(
@@ -154,42 +138,35 @@ const useButtonClasses = (props: BaseButtonProps) => {
   const {
     variant = 'primary',
     size = 'medium',
-    fullWidth = false,
+    fullwidth = false,
     loading = false,
     leftIcon = false,
-    rightIcon = false,
+    righticon = false,
     className,
   } = props
-
-  // Ensure we have valid variant and size with fallbacks
   const safeVariant = (
     DESIGN_CONFIG.variants[variant] ? variant : 'primary'
   ) as ButtonVariant
   const safeSize = (DESIGN_CONFIG.sizes[size] ? size : 'medium') as ButtonSize
-
   const variantConfig = DESIGN_CONFIG.variants[safeVariant]
   const sizeConfig = DESIGN_CONFIG.sizes[safeSize]
 
-  // For simple 'link' variant, match Figma design exactly
   if (safeVariant === 'link') {
     return cn(
       'content-stretch flex gap-2 items-center justify-between md:justify-center relative rounded-[100px] group',
       'whitespace-nowrap transition-all duration-200',
-      '',
       'disabled:opacity-50 disabled:cursor-not-allowed',
       'text-[16px] leading-[1.5] not-italic text-[#000404] text-nowrap',
-      // Use Aeonik Medium font with fallback
       "font-['Aeonik:Medium',_sans-serif]",
       'hover:text-[#000404]/80 hover:opacity-80',
-      fullWidth && 'w-full size-full',
+      fullwidth && 'w-full size-full',
       loading && 'cursor-wait',
       className
     )
   }
 
-  const paddingClass = getContainerPadding(sizeConfig, leftIcon, rightIcon)
-  const gapClass = getGapClass(safeVariant, safeSize, leftIcon, rightIcon)
-
+  const paddingClass = getContainerPadding(sizeConfig, leftIcon, righticon)
+  const gapClass = getGapClass(safeVariant, safeSize, leftIcon, righticon)
   const textClass = isLinkVariant(safeVariant)
     ? DESIGN_CONFIG.linkSizes[safeSize]?.text ||
       DESIGN_CONFIG.linkSizes.medium.text
@@ -202,7 +179,7 @@ const useButtonClasses = (props: BaseButtonProps) => {
     paddingClass,
     gapClass,
     textClass,
-    fullWidth && 'w-full',
+    fullwidth && 'w-full',
     loading && 'cursor-wait',
     className
   )
@@ -213,20 +190,17 @@ const useButtonContent = (props: BaseButtonProps) => {
   const {
     loading,
     leftIcon,
-    rightIcon,
+    righticon,
     children,
     size = 'medium',
     variant = 'primary',
     locale,
   } = props
-
-  // Ensure we have valid variant and size with fallbacks
   const safeVariant = (
     DESIGN_CONFIG.variants[variant] ? variant : 'primary'
   ) as ButtonVariant
   const safeSize = (DESIGN_CONFIG.sizes[size] ? size : 'medium') as ButtonSize
 
-  // Simple content for 'link' variant matching Figma
   if (safeVariant === 'link') {
     return (
       <>
@@ -237,25 +211,23 @@ const useButtonContent = (props: BaseButtonProps) => {
         <div className="font-['Aeonik:Medium',_sans-serif] leading-[0] not-italic relative shrink-0 text-[#000404] text-sm md:text-base text-nowrap">
           <p className="leading-[1.5] whitespace-pre">{children}</p>
         </div>
-        {!loading && rightIcon && <CubeIcon size={24} />}
+        {!loading && righticon && <CubeIcon size={24} />}
       </>
     )
   }
 
   return (
     <>
-      {/* Transparent border for consistent sizing */}
       <div
         aria-hidden="true"
         className={`absolute border ${variant === 'light' ? 'border-Primary-Palm' : 'border-transparent'}  inset-[-1px] pointer-events-none rounded-[101px] cursor-pointer`}
       />
-
       {loading && <LoadingSpinner />}
       {!loading && leftIcon && (
         <LeftIcon size={safeSize} variant={safeVariant} />
       )}
       <span className="relative shrink-0">{children}</span>
-      {!loading && rightIcon && (
+      {!loading && righticon && (
         <div
           className={`flex-none ${locale === 'en' ? 'group-hover:rotate-[45deg]' : 'group-hover:-rotate-[45deg]'} ${variant === 'dark' ? 'text-Primary-Spring ' : variant === 'primary' ? 'text-Primary-Spring ' : 'text-Primary-Palm '} group-hover:ms-2 transition-all duration-300`}
         >
@@ -291,9 +263,30 @@ function Button(
 ): JSX.Element {
   const buttonClassName = useButtonClasses(props)
   const buttonContent = useButtonContent(props)
+
   // Handle Link rendering
   if ('href' in props) {
-    const { href, external, target, rel, onClick, ...linkRest } = props
+    const {
+      // These are the props for the `<a>` tag
+      href,
+      external,
+      target,
+      rel,
+      onClick,
+      // The rest are custom props that we want to omit
+      ...rest
+    } = props
+
+    // We create a copy and delete the custom props.
+    // This prevents them from being passed to the DOM and avoids the React warning.
+    const domProps: Partial<LinkButtonProps> = { ...rest }
+    delete domProps.variant
+    delete domProps.size
+    delete domProps.fullwidth
+    delete domProps.loading
+    delete domProps.leftIcon
+    delete domProps.righticon
+    delete domProps.locale
 
     if (external || href.startsWith('http')) {
       return (
@@ -303,15 +296,21 @@ function Button(
           rel={rel || 'noopener noreferrer'}
           className={buttonClassName}
           onClick={onClick}
-          {...linkRest}
+          {...domProps}
         >
           {buttonContent}
         </a>
       )
     }
 
+    // Next's Link component is smart and won't pass most invalid props.
+    // We can spread the original `props` object.
     return (
-      <Link href={href} className={buttonClassName} onClick={onClick}>
+      <Link
+        // href={href}
+        className={buttonClassName}
+        {...props}
+      >
         {buttonContent}
       </Link>
     )
@@ -326,8 +325,16 @@ function Button(
       whileHover = { scale: 1.02 },
       whileTap = { scale: 0.98 },
       motionProps,
-      ...motionRest
-    } = props as MotionButtonProps
+      ...rest
+    } = props
+
+    const domProps: Partial<MotionButtonProps> = { ...rest }
+    delete domProps.variant
+    delete domProps.size
+    delete domProps.fullwidth
+    delete domProps.leftIcon
+    delete domProps.righticon
+    delete domProps.locale
 
     return (
       <motion.button
@@ -337,7 +344,7 @@ function Button(
         whileHover={whileHover}
         whileTap={whileTap}
         {...motionProps}
-        {...motionRest}
+        {...domProps}
       >
         {buttonContent}
       </motion.button>
@@ -345,13 +352,20 @@ function Button(
   }
 
   // Regular button
-  const { disabled, loading, ...buttonRest } = props as ButtonProps
+  const { disabled, loading, ...rest } = props
+  const domProps: Partial<ButtonProps> = { ...rest }
+  delete domProps.variant
+  delete domProps.size
+  delete domProps.fullwidth
+  delete domProps.leftIcon
+  delete domProps.righticon
+  delete domProps.locale
 
   return (
     <button
       className={buttonClassName}
       disabled={disabled || loading}
-      {...buttonRest}
+      {...domProps}
     >
       {buttonContent}
     </button>
@@ -374,6 +388,14 @@ const MotionButton = forwardRef<HTMLButtonElement, MotionButtonProps>(
     const buttonClassName = useButtonClasses(props)
     const buttonContent = useButtonContent(props)
 
+    const domProps: Partial<MotionButtonProps> = { ...rest }
+    delete domProps.variant
+    delete domProps.size
+    delete domProps.fullwidth
+    delete domProps.leftIcon
+    delete domProps.righticon
+    delete domProps.locale
+
     return (
       <motion.button
         ref={ref}
@@ -383,7 +405,7 @@ const MotionButton = forwardRef<HTMLButtonElement, MotionButtonProps>(
         whileHover={whileHover}
         whileTap={whileTap}
         {...motionProps}
-        {...rest}
+        {...domProps}
       >
         {buttonContent}
       </motion.button>

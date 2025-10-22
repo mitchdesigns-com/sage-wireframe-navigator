@@ -126,7 +126,7 @@ export default function JobDetailsPage({ data }: { data: CareerItem }) {
           href={'/contact'}
           className="inline-block bg-primary text-white rounded-lg font-medium group cursor-pointer pt-6"
         >
-          <Button variant={'primary'} rightIcon={true} fullWidth>
+          <Button variant={'primary'} righticon={true} fullwidth>
             Apply On This Job
           </Button>
         </Link>

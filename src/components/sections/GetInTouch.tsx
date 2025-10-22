@@ -41,8 +41,8 @@ const GetInTouch: React.FC<GetInTouchProps> = ({
           >
             <Button
               variant="dark"
-              rightIcon={true}
-              fullWidth
+              righticon={true}
+              fullwidth
               locale={locale as 'en' | 'ar'}
               //   onClick={() => setIsMenuOpen(false)}
             >

@@ -75,8 +75,8 @@ const HeroWithVideo: React.FC<HeroProps> = ({
                 >
                   <Button
                     variant={'light'}
-                    rightIcon={true}
-                    fullWidth
+                    righticon={true}
+                    fullwidth
                     locale={locale as 'en' | 'ar'}
                     //   onClick={() => setIsMenuOpen(false)}
                   >

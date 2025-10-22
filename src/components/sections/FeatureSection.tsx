@@ -200,8 +200,8 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
                           ? 'primary'
                           : 'light'
                   }
-                  rightIcon={true}
-                  fullWidth={isMobile ? true : false}
+                  righticon={true}
+                  fullwidth={isMobile ? true : false}
                   locale={locale as 'en' | 'ar'}
 
                   //   onClick={() => setIsMenuOpen(false)}

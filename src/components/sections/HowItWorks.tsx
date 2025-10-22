@@ -73,8 +73,8 @@ export default function HowItWorks({
                       <div className="mt-5 w-full">
                         <Button
                           href="/contact"
-                          rightIcon={true}
-                          fullWidth
+                          righticon={true}
+                          fullwidth
                           locale={locale as 'en' | 'ar'}
                         >
                           Request Free Consultation

@@ -50,10 +50,10 @@ export interface LinkSizeConfig {
 export interface BaseButtonProps {
   variant?: ButtonVariant
   size?: ButtonSize
-  fullWidth?: boolean
+  fullwidth?: boolean
   loading?: boolean
   leftIcon?: boolean
-  rightIcon?: boolean
+  righticon?: boolean
   children: React.ReactNode
   className?: string
   locale?: 'en' | 'ar'

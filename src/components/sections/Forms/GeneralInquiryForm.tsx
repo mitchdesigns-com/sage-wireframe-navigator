@@ -146,8 +146,8 @@ export default function GeneralInquiryForm() {
       {/* Submit button */}
       <Button
         variant="primary"
-        rightIcon={true}
-        fullWidth
+        righticon={true}
+        fullwidth
         disabled={isSubmitting}
         locale={locale as 'en' | 'ar'}
       >

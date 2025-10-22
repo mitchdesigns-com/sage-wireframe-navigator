@@ -126,8 +126,8 @@ const WhySection: React.FC<WhySectionProps> = ({
               {buttonText && (
                 <Button
                   variant="primary"
-                  rightIcon={true}
-                  fullWidth
+                  righticon={true}
+                  fullwidth
                   locale={locale as 'en' | 'ar'}
                 >
                   {buttonText}
