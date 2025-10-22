@@ -266,20 +266,10 @@ function Button(
 
   // Handle Link rendering
   if ('href' in props) {
-    const {
-      // These are the props for the `<a>` tag
-      href,
-      external,
-      target,
-      rel,
-      onClick,
-      // The rest are custom props that we want to omit
-      ...rest
-    } = props
+    const { href, external, ...rest } = props
+    const domProps: Omit<LinkButtonProps, 'href' | 'external'> = { ...rest }
 
-    // We create a copy and delete the custom props.
-    // This prevents them from being passed to the DOM and avoids the React warning.
-    const domProps: Partial<LinkButtonProps> = { ...rest }
+    // Clean all custom props from the object that will be spread onto the DOM element
     delete domProps.variant
     delete domProps.size
     delete domProps.fullwidth
@@ -290,27 +280,14 @@ function Button(
 
     if (external || href.startsWith('http')) {
       return (
-        <a
-          href={href}
-          target={target || '_blank'}
-          rel={rel || 'noopener noreferrer'}
-          className={buttonClassName}
-          onClick={onClick}
-          {...domProps}
-        >
+        <a href={href} className={buttonClassName} {...domProps}>
           {buttonContent}
         </a>
       )
     }
 
-    // Next's Link component is smart and won't pass most invalid props.
-    // We can spread the original `props` object.
     return (
-      <Link
-        // href={href}
-        className={buttonClassName}
-        {...props}
-      >
+      <Link href={href} className={buttonClassName} {...domProps}>
         {buttonContent}
       </Link>
     )
@@ -318,17 +295,12 @@ function Button(
 
   // Handle motion props
   if ('motionProps' in props) {
-    const {
-      disabled,
-      onClick,
-      loading,
-      whileHover = { scale: 1.02 },
-      whileTap = { scale: 0.98 },
-      motionProps,
-      ...rest
-    } = props
+    const { disabled, loading, motionProps, ...rest } = props
+    const domProps: Omit<
+      MotionButtonProps,
+      'disabled' | 'loading' | 'motionProps'
+    > = { ...rest }
 
-    const domProps: Partial<MotionButtonProps> = { ...rest }
     delete domProps.variant
     delete domProps.size
     delete domProps.fullwidth
@@ -340,9 +312,6 @@ function Button(
       <motion.button
         className={buttonClassName}
         disabled={disabled || loading}
-        onClick={onClick}
-        whileHover={whileHover}
-        whileTap={whileTap}
         {...motionProps}
         {...domProps}
       >
@@ -353,7 +322,8 @@ function Button(
 
   // Regular button
   const { disabled, loading, ...rest } = props
-  const domProps: Partial<ButtonProps> = { ...rest }
+  const domProps: Omit<ButtonProps, 'disabled' | 'loading'> = { ...rest }
+
   delete domProps.variant
   delete domProps.size
   delete domProps.fullwidth
@@ -375,20 +345,14 @@ function Button(
 // Standalone Motion Button component
 const MotionButton = forwardRef<HTMLButtonElement, MotionButtonProps>(
   (props, ref) => {
-    const {
-      disabled,
-      onClick,
-      loading,
-      whileHover = { scale: 1.02 },
-      whileTap = { scale: 0.98 },
-      motionProps,
-      ...rest
-    } = props
-
+    const { disabled, loading, motionProps, ...rest } = props
     const buttonClassName = useButtonClasses(props)
     const buttonContent = useButtonContent(props)
 
-    const domProps: Partial<MotionButtonProps> = { ...rest }
+    const domProps: Omit<
+      MotionButtonProps,
+      'disabled' | 'loading' | 'motionProps'
+    > = { ...rest }
     delete domProps.variant
     delete domProps.size
     delete domProps.fullwidth
@@ -401,9 +365,6 @@ const MotionButton = forwardRef<HTMLButtonElement, MotionButtonProps>(
         ref={ref}
         className={buttonClassName}
         disabled={disabled || loading}
-        onClick={onClick}
-        whileHover={whileHover}
-        whileTap={whileTap}
         {...motionProps}
         {...domProps}
       >
