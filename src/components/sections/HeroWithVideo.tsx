@@ -51,8 +51,9 @@ const HeroWithVideo: React.FC<HeroProps> = ({
               </div>
             )}
             <h1
-              className="pt-2 pb-8 md:pb-6 text-white md:text-[56px] text-4xl leading-[1.2] tracking-[-1px] md:tracking-[-0.56px] [&>span]:text-Primary-Spring [&>span]:font-bold"
+              className="pt-2 pb-8 md:pb-6 [&>span]:font-bold text-white [&>span]:text-Primary-Spring md:text-[56px] text-4xl leading-[1.2] tracking-[-1px] md:tracking-[-0.56px]"
               dangerouslySetInnerHTML={{ __html: title }}
+              suppressHydrationWarning
             />
 
             <p className="px-5 md:px-0 text-white text-sm md:text-lg leading-[1.5]">
