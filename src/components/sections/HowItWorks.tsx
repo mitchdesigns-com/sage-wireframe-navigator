@@ -74,7 +74,6 @@ export default function HowItWorks({
                         <Button
                           href="/contact"
                           righticon={true}
-                          fullwidth
                           locale={locale as 'en' | 'ar'}
                         >
                           Request Free Consultation

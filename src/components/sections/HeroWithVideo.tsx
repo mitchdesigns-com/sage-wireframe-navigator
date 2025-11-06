@@ -78,7 +78,7 @@ const HeroWithVideo: React.FC<HeroProps> = ({
             )}
           </div>
           <div className="pt-8 md:pt-16">
-            <div className="relative">
+            <div className="relative rounded-xl ">
               {' '}
               {video?.url && (
                 <VideoPlayer

@@ -54,11 +54,11 @@ export default function VideoPlayer({ video }: { video: string }) {
   }
 
   return (
-    <div className="relative">
+    <div className="relative rounded-xl h-[80vh]">
       <video
         ref={videoRef}
         src={video}
-        className="w-full rounded-xl md:rounded-[40px]"
+        className="w-full rounded-xl md:rounded-[40px] "
         playsInline
         preload="auto"
         controls
