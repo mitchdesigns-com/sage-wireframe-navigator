@@ -53,7 +53,7 @@ export default function ServicesMenu({
                 <div className=" flex-1 flex flex-col gap-4 h-[296px]">
                   <Link href={'/services/individual'} onClick={onClose}>
                     {' '}
-                    <div className="flex gap-1.5 items-center cursor-pointer ps-11">
+                    <div className="flex gap-1.5 items-center cursor-pointer ps-3">
                       <div className="font-aeonik-bold text-primary-black text-xs md:text-sm leading-[1.5]">
                         {serviceCategories.individuals.title}
                       </div>
@@ -99,7 +99,7 @@ export default function ServicesMenu({
                 {/* For Businesses */}
                 <div className="flex-1 flex flex-col gap-4 h-[296px]">
                   <Link href={'/services/businesses'} onClick={onClose}>
-                    <div className="flex gap-1.5 items-center cursor-pointer ps-11">
+                    <div className="flex gap-1.5 items-center cursor-pointer ps-3">
                       <div className="font-aeonik-bold text-primary-black text-xs md:text-sm leading-[1.5]">
                         {serviceCategories.businesses.title}
                       </div>
@@ -143,7 +143,7 @@ export default function ServicesMenu({
                 {/* For Organizations */}
                 <div className="flex-1 flex flex-col gap-4 h-[296px]">
                   <Link href={'/services/organizations'} onClick={onClose}>
-                    <div className="flex gap-1.5 items-center cursor-pointer  ps-11">
+                    <div className="flex gap-1.5 items-center cursor-pointer  ps-3">
                       <div className="font-aeonik-bold text-primary-black text-xs md:text-sm leading-[1.5]">
                         {serviceCategories.organizations.title}
                       </div>

@@ -87,7 +87,7 @@ export default function GalleryPopup({
                   src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${image.attributes.url}`}
                   alt={image.attributes.alternativeText || 'Gallery Image'}
                   fill
-                  className="object-cover rounded-xl"
+                  className="object-cover rounded-xl object-top"
                 />
               </SwiperSlide>
             ))}

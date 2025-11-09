@@ -7,8 +7,20 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Button from '@/components/ui/Button'
 import { NetworkData } from '../../types/ourNetworkPage'
+import { useState } from 'react'
 
 export default function OurNetworkPage({ data }: { data: NetworkData }) {
+  const [email, setEmail] = useState('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
+
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+    await new Promise((resolve) => setTimeout(resolve, 1000))
+    setEmail('')
+    setIsSubmitting(false)
+    alert('Successfully subscribed to updates!')
+  }
   return (
     <div className="min-h-screen">
       <HeroPages {...data.HeroPages} />
@@ -71,9 +83,26 @@ export default function OurNetworkPage({ data }: { data: NetworkData }) {
                 <span className="text-white text-base md:text-[18px] mb-8">
                   {data.TrustedPartner.shortDescription}
                 </span>
-                <p
-                  className={`text-base md:text-lg text-Secondary-Dark-Palm  md:whitespace-pre-line pt-4`}
+                <form
+                  onSubmit={handleNewsletterSubmit}
+                  className="flex gap-4 items-center flex-col md:flex-row pt-8 max-w-[513px]"
                 >
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Enter Your Email"
+                    className="bg-white  rounded-[6px] px-3 py-2 h-12 w-full md:w-[479px] text-base text-[#626262] "
+                  />
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="bg-[#025850] text-white w-full md:w-fit px-7 py-3 text-nowrap rounded-full font-medium text-base hover:bg-[#024440] transition-colors cursor-pointer disabled:opacity-50"
+                  >
+                    {isSubmitting ? 'Signing Up...' : 'Sign Up'}
+                  </button>
+                </form>
+                <p className={`text-xs text-Secondary-Dark-Palm  pt-4`}>
                   {data.TrustedPartner.description}
                 </p>
               </div>

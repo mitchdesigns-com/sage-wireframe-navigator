@@ -20,6 +20,7 @@ import {
 } from '../../types/individualHealthcareServices'
 import DownloadIcon from '../svg/DownloadIcon'
 import Button from '../ui/Button'
+import { useLocale } from 'next-intl'
 
 type IndividualHealthcareBlock =
   | (HeroWithImageBlock & { __component: 'blocks.hero-with-image' })
@@ -58,129 +59,142 @@ const BLOCKS: {
   ),
   'blocks.feature-section':
     FeatureSection as React.ComponentType<FeatureSectionBlock>,
-  'blocks.how-it-works': (props: HowItWorksBlock) => (
-    <section className="py-8 md:py-28 bg-Secondary-Light-Scrub">
-      <div className="px-4 max-w-[1280px] mx-auto">
-        <div className="text-center">
-          <Tagline text={props.tagline} className="items-center" />
-          <h2 className="text-[#000404] heading-lg">{props.title}</h2>
-          <p className="text-[#000404] text-base md:text-lg">
-            {props.description}
-          </p>
-        </div>
-        <div className="mt-10 md:mt-20 hidden md:block">
-          {props.timelineSteps?.map((step, index: number) => (
-            <div
-              key={step.id}
-              className="grid grid-cols-1 lg:grid-cols-11 items-start gap-3 mt-20"
-            >
-              {index % 2 === 0 ? (
-                <>
-                  <div className="lg:col-span-5 pb-12">
-                    <div className="aspect-square relative rounded-[40px] overflow-hidden w-full md:w-[448px] ml-auto">
-                      <Image
-                        fill
-                        src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${step.image?.url}`}
-                        alt={step.image?.alternativeText || step.title}
-                        className="object-cover"
-                      />
+  'blocks.how-it-works': (props: HowItWorksBlock) => {
+    const locale = useLocale()
+
+    return (
+      <section className="py-8 md:py-28 bg-Secondary-Light-Scrub">
+        <div className="px-4 max-w-[1280px] mx-auto">
+          <div className="text-center">
+            <Tagline text={props.tagline} className="items-center" />
+            <h2 className="text-[#000404] heading-lg">{props.title}</h2>
+            <p className="text-[#000404] text-base md:text-lg">
+              {props.description}
+            </p>
+          </div>
+          <div className="mt-10 md:mt-20 hidden md:block">
+            {props.timelineSteps?.map((step, index: number) => (
+              <div
+                key={step.id}
+                className="grid grid-cols-1 lg:grid-cols-11 items-start gap-3 mt-20"
+              >
+                {index % 2 === 0 ? (
+                  <>
+                    <div className="lg:col-span-5 pb-12">
+                      <div className="aspect-square relative rounded-[40px] overflow-hidden w-full md:w-[448px] ml-auto">
+                        <Image
+                          fill
+                          src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${step.image?.url}`}
+                          alt={step.image?.alternativeText || step.title}
+                          className="object-cover"
+                        />
+                      </div>
                     </div>
-                  </div>
-                  <div className="lg:col-span-1 flex justify-center">
-                    <div className="flex flex-col items-center h-full min-h-[500px]">
-                      <div className="bg-Primary-Palm h-6 w-[3px]" />
-                      <div className="w-[15px] h-[15px] bg-Primary-Scrub rounded-full my-2" />
-                      <div className="bg-Primary-Palm flex-1 w-[3px]" />
+                    <div className="lg:col-span-1 flex justify-center">
+                      <div className="flex flex-col items-center h-full min-h-[500px]">
+                        <div className="bg-Primary-Palm h-6 w-[3px]" />
+                        <div className="w-[15px] h-[15px] bg-Primary-Scrub rounded-full my-2" />
+                        <div className="bg-Primary-Palm flex-1 w-[3px]" />
+                      </div>
                     </div>
+                    <div className="lg:col-span-5 pt-4 space-y-4">
+                      <h3 className="text-[#9ABCB9] heading-1">
+                        {step.number}
+                      </h3>
+                      <h4 className="text-Primary-Black heading-4">
+                        {step.title}
+                      </h4>
+                      <p className="text-Secondary-Text text-lg">
+                        {step.description}
+                      </p>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div className="lg:col-span-5 pt-4 space-y-4 text-right">
+                      <h3 className="text-[#9ABCB9] heading-1">
+                        {step.number}
+                      </h3>
+                      <h4 className="text-Primary-Black heading-4">
+                        {step.title}
+                      </h4>
+                      <p className="text-Secondary-Text text-lg">
+                        {step.description}
+                      </p>
+                      {step.button && (
+                        <Link href="/contact" className="inline-block group">
+                          <Button
+                            variant="primary"
+                            righticon={true}
+                            fullwidth
+                            locale={locale as 'en' | 'ar'}
+                          >
+                            {step.button}
+                          </Button>
+                        </Link>
+                      )}
+                    </div>
+                    <div className="lg:col-span-1 flex justify-center">
+                      <div className="flex flex-col items-center h-full min-h-[500px]">
+                        <div className="bg-Primary-Palm h-6 w-[3px]" />
+                        <div className="w-[15px] h-[15px] bg-Primary-Scrub rounded-full my-2" />
+                        <div className="bg-Primary-Palm flex-1 w-[3px]" />
+                      </div>
+                    </div>
+                    <div className="lg:col-span-5 pb-12">
+                      <div className="aspect-square relative rounded-[40px] overflow-hidden w-full md:w-[448px] mr-auto">
+                        <Image
+                          fill
+                          src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${step.image?.url}`}
+                          alt={step.image?.alternativeText || step.title}
+                          className="object-cover"
+                        />
+                      </div>
+                    </div>
+                  </>
+                )}
+              </div>
+            ))}
+          </div>
+          <div className="mt-10 md:mt-20 md:hidden block">
+            {props.timelineSteps?.map((step, index) => (
+              <div
+                key={step.number + index}
+                className="relative flex items-start "
+              >
+                <div className="lg:col-span-1 flex justify-center">
+                  <div className="flex flex-col items-center h-full min-h-[532px]">
+                    <div className="bg-Primary-Palm h-6 w-[3px]" />
+                    <div className="w-[15px] h-[15px] bg-Primary-Scrub rounded-full my-2" />
+                    <div className="bg-Primary-Palm flex-1 w-[3px]" />
                   </div>
-                  <div className="lg:col-span-5 pt-4 space-y-4">
-                    <h3 className="text-[#9ABCB9] heading-1">{step.number}</h3>
-                    <h4 className="text-Primary-Black heading-4">
-                      {step.title}
+                </div>
+                <div className="ml-8 pb-0 space-y-4 mt-4">
+                  <div className="aspect-square relative rounded-[40px] overflow-hidden w-full md:w-[448px] ml-auto">
+                    <Image
+                      fill
+                      src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${step.image?.url}`}
+                      alt={step.image?.alternativeText || step.title}
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="mb-4">
+                    <h4 className="text-[#9ABCB9] text-[40px] font-bold md:heading-1">
+                      {step.number}
                     </h4>
-                    <p className="text-Secondary-Text text-lg">
-                      {step.description}
-                    </p>
                   </div>
-                </>
-              ) : (
-                <>
-                  <div className="lg:col-span-5 pt-4 space-y-4 text-right">
-                    <h3 className="text-[#9ABCB9] heading-1">{step.number}</h3>
-                    <h4 className="text-Primary-Black heading-4">
-                      {step.title}
-                    </h4>
-                    <p className="text-Secondary-Text text-lg">
-                      {step.description}
-                    </p>
-                    {step.button && (
-                      <Link href="/contact" className="inline-block group">
-                        <Button variant="primary" righticon fullwidth>
-                          {step.button}
-                        </Button>
-                      </Link>
-                    )}
-                  </div>
-                  <div className="lg:col-span-1 flex justify-center">
-                    <div className="flex flex-col items-center h-full min-h-[500px]">
-                      <div className="bg-Primary-Palm h-6 w-[3px]" />
-                      <div className="w-[15px] h-[15px] bg-Primary-Scrub rounded-full my-2" />
-                      <div className="bg-Primary-Palm flex-1 w-[3px]" />
-                    </div>
-                  </div>
-                  <div className="lg:col-span-5 pb-12">
-                    <div className="aspect-square relative rounded-[40px] overflow-hidden w-full md:w-[448px] mr-auto">
-                      <Image
-                        fill
-                        src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${step.image?.url}`}
-                        alt={step.image?.alternativeText || step.title}
-                        className="object-cover"
-                      />
-                    </div>
-                  </div>
-                </>
-              )}
-            </div>
-          ))}
-        </div>
-        <div className="mt-10 md:mt-20 md:hidden block">
-          {props.timelineSteps?.map((step, index) => (
-            <div
-              key={step.number + index}
-              className="relative flex items-start "
-            >
-              <div className="lg:col-span-1 flex justify-center">
-                <div className="flex flex-col items-center h-full min-h-[532px]">
-                  <div className="bg-Primary-Palm h-6 w-[3px]" />
-                  <div className="w-[15px] h-[15px] bg-Primary-Scrub rounded-full my-2" />
-                  <div className="bg-Primary-Palm flex-1 w-[3px]" />
+                  <h3 className="mb-2 heading-4">{step.title}</h3>
+                  <p className="max-w-md text-base md:text-lg text-Secondary-Text">
+                    {step.description}
+                  </p>
                 </div>
               </div>
-              <div className="ml-8 pb-0 space-y-4 mt-4">
-                <div className="aspect-square relative rounded-[40px] overflow-hidden w-full md:w-[448px] ml-auto">
-                  <Image
-                    fill
-                    src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${step.image?.url}`}
-                    alt={step.image?.alternativeText || step.title}
-                    className="object-cover"
-                  />
-                </div>
-                <div className="mb-4">
-                  <h4 className="text-[#9ABCB9] text-[40px] font-bold md:heading-1">
-                    {step.number}
-                  </h4>
-                </div>
-                <h3 className="mb-2 heading-4">{step.title}</h3>
-                <p className="max-w-md text-base md:text-lg text-Secondary-Text">
-                  {step.description}
-                </p>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
-  ),
+      </section>
+    )
+  },
   'blocks.cards': (props: CardsBlock) => (
     <section className="bg-Secondary-Scrub ">
       <div className="py-8 md:py-25 max-w-[1392px] mx-auto w-full px-4 md:px-0">

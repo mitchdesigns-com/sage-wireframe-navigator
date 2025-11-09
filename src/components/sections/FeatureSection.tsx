@@ -69,6 +69,7 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
   }, [])
+  const isMainImage = title === 'Discover the Excellence of Saudi Healthcare'
   return (
     <section style={{ backgroundColor }}>
       <div className="container-custom mx-auto max-w-[1392px] py-8 md:py-28">
@@ -198,7 +199,9 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
                         ? 'primary'
                         : backgroundColor === '#F0F8F8'
                           ? 'primary'
-                          : 'light'
+                          : backgroundColor === 'white'
+                            ? 'primary'
+                            : 'light'
                   }
                   righticon={true}
                   fullwidth={isMobile ? true : false}
@@ -216,7 +219,7 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
           {!isMobile && (
             <div className="flex-1">
               <div
-                className="aspect[396/351] md:aspect-[606/646] rounded-[40px] bg-cover bg-center w-[396px] md:h-[646px] h-[351px] md:w-[606px]"
+                className={`aspect[396/351] md:aspect-[654/580] ${isMainImage ? 'rounded-b-0' : 'rounded-b-[40px] rounded-t-[40px]'} bg-cover bg-center w-[396px] md:h-[580px] h-[351px] md:w-[654px]`}
                 style={{
                   backgroundImage: `url('${process.env.NEXT_PUBLIC_API_BASE_URL}${image.url}')`,
                 }}

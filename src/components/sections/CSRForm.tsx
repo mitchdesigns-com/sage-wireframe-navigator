@@ -345,23 +345,33 @@ export default function MultiStepForm() {
                         </label>
 
                         {field.type === 'select' ? (
-                          <select
-                            id={field.name}
-                            name={field.name}
-                            value={
-                              formData[field.name as keyof FormData] as string
-                            }
-                            onChange={handleChange}
-                            className="w-full h-12 px-3 py-2 bg-white border border-[#D2D2D2] rounded-[6px] focus:outline-none focus:ring-2 focus:ring-[#025850] focus:border-transparent"
-                          >
-                            <option value="">Select {field.label}</option>
-                            {'options' in field &&
-                              field.options?.map((option) => (
-                                <option key={option} value={option}>
-                                  {option}
-                                </option>
-                              ))}
-                          </select>
+                          <div className="relative w-full">
+                            <select
+                              id={field.name}
+                              name={field.name}
+                              value={
+                                formData[field.name as keyof FormData] as string
+                              }
+                              onChange={handleChange}
+                              className="w-full h-12 px-3 pr-10 py-2 bg-white border border-[#D2D2D2] rounded-[6px] 
+               focus:outline-none focus:ring-2 focus:ring-[#025850] focus:border-transparent 
+               appearance-none"
+                            >
+                              <option value="">Select {field.label}</option>
+                              {'options' in field &&
+                                field.options?.map((option) => (
+                                  <option key={option} value={option}>
+                                    {option}
+                                  </option>
+                                ))}
+                            </select>
+
+                            {/* Custom Chevron icon */}
+                            <ChevronRight
+                              className="rotate-90 absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none"
+                              size={20}
+                            />
+                          </div>
                         ) : (
                           <input
                             id={field.name}

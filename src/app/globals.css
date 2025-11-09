@@ -823,3 +823,7 @@ body {
 .radio input[type='radio'] + .radio-label:empty::before {
   margin-right: 0;
 }
+
+.swiper-pagination-bullet-active {
+  background-color: var(--color-Neutral-Darkest) !important;
+}

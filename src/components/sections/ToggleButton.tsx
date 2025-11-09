@@ -54,7 +54,7 @@ const ToggleButton: React.FC<ToggleButtonProps> = ({
       role="tablist"
       aria-label="Toggle Button Group"
     >
-      <div className="relative flex items-center md:justify-center overflow-x-auto scrollbar-hide rounded-full bg-Secondary-Light-Scrub text-Secondary-Light-Scrub">
+      <div className="relative flex items-center md:justify-center overflow-x-auto scrollbar-hide rounded-full  text-Secondary-Text">
         <motion.div
           className={clsx(
             'absolute top-0 h-full rounded-full',
@@ -74,9 +74,9 @@ const ToggleButton: React.FC<ToggleButtonProps> = ({
               key={option.id}
               onClick={() => onChange(option.value)}
               className={clsx(
-                'relative z-10 flex-shrink-0 cursor-pointer items-center justify-center whitespace-nowrap px-5 py-2 text-center text-sm font-medium transition-colors sm:text-base',
+                'relative z-10 flex-shrink-0 cursor-pointer items-center justify-center whitespace-nowrap px-8 py-2 text-center text-sm font-medium transition-colors sm:text-base',
                 isSelected
-                  ? 'text-white'
+                  ? `${contact ? 'text-Primary-Palm' : 'text-white'} `
                   : contact
                     ? 'text-Secondary-Text hover:text-Primary-Palm'
                     : 'text-Primary-Black hover:text-Primary-Palm'

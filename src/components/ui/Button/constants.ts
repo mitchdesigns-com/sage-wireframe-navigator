@@ -11,7 +11,7 @@ export const DESIGN_CONFIG = {
   variants: {
     primary: {
       base: 'bg-primary-palm text-primary-white cursor-pointer',
-      hover: 'hover:bg-secondary-dark-palm',
+      hover: 'hover:bg-secondary-dark-palm hover:outline-none',
       icon: {
         background: 'bg-primary-spring',
         color: 'text-primary-black',
@@ -19,7 +19,7 @@ export const DESIGN_CONFIG = {
     },
     dark: {
       base: 'bg-primary-black text-primary-white cursor-pointer',
-      hover: 'hover:bg-pure-black',
+      hover: 'hover:bg-black',
       icon: {
         background: 'bg-primary-spring',
         color: 'text-primary-black',

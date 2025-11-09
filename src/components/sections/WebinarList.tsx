@@ -9,6 +9,7 @@ import type {
   EventData,
   WebinarList as WebinarListType,
 } from '../../types/newsEvents' // <-- fix here
+import { useLocale } from 'next-intl'
 export type TabType = 'comingSoon' | 'previous'
 
 export interface ToggleOption {
@@ -29,6 +30,7 @@ export interface WebinarListProps {
 
 const WebinarList: React.FC<WebinarListProps> = ({ webinars, events }) => {
   const [currentTab, setCurrentTab] = useState<TabType>('comingSoon')
+  const locale = useLocale()
 
   return (
     <div className="bg-Secondary-Light-Scrub">
@@ -88,11 +90,12 @@ const WebinarList: React.FC<WebinarListProps> = ({ webinars, events }) => {
                       variant={'light'}
                       righticon={webinars.news ? false : true}
                       fullwidth
+                      locale={locale as 'en' | 'ar'}
                     >
                       {webinars.news ? (
                         <div className="flex">
                           <Bookmark className="text-Primary-Palm w-6 h-6" />
-                          <span className="ps-3">Save my spot</span>
+                          <span className="ps-3">Save My Spot</span>
                         </div>
                       ) : (
                         <>

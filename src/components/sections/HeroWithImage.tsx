@@ -24,7 +24,7 @@ interface HeroWithImageProps {
     label: string
     href: string
     variant?: 'primary' | 'light'
-    righticon?: boolean
+    rightIcon?: boolean
   }
   secondaryButton?: {
     label: string
@@ -79,7 +79,7 @@ const HeroWithImage: React.FC<HeroWithImageProps> = ({
                 <Link href={primaryButton.href} className="inline-block group">
                   <Button
                     variant={primaryButton.variant || 'primary'}
-                    righticon={primaryButton.righticon}
+                    righticon={primaryButton.rightIcon}
                     fullwidth
                     locale={locale as 'en' | 'ar'}
                   >

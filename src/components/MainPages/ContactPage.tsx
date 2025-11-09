@@ -150,7 +150,7 @@ export default function ContactPage({ data }: { data: ContactPageData }) {
             </h2>
             <p className="text-sm md:text-lg">{data.ContactData.description}</p>
           </div>
-          <div className="max-w-[486px] mx-auto pt-4 md:pt-8">
+          <div className=" mx-auto pt-4 md:pt-8">
             {' '}
             <ToggleButton
               options={data.ContactData.ToggleButton.options}
