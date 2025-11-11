@@ -71,7 +71,7 @@ export default function ClientExperiences({
                     : 'text-Primary-Black'
                 } font-aeonik-light`}
               >
-                “{testimonial.quote}”
+                {testimonial.quote}
               </blockquote>
 
               <div className="flex items-center mt-6">
@@ -94,38 +94,40 @@ export default function ClientExperiences({
           </SwiperSlide>
         ))}
       </Swiper>
-      <div className="flex gap-4 mt-8 md:mt-12 justify-center">
-        <button
-          onClick={() => swiper?.slidePrev()}
-          disabled={isBeginning}
-          className={`w-12 h-12 rounded-full flex justify-center items-center transition cursor-pointer
+      {testimonials.length > 2 && (
+        <div className="flex gap-4 mt-8 md:mt-12 justify-center">
+          <button
+            onClick={() => swiper?.slidePrev()}
+            disabled={isBeginning}
+            className={`w-12 h-12 rounded-full flex justify-center items-center transition cursor-pointer
               ${
                 isBeginning
                   ? 'bg-Secondary-Dark-Palm/20 cursor-not-allowed opacity-50'
                   : 'bg-Secondary-Dark-Palm hover:opacity-80'
               }`}
-        >
-          <ArrowLeft
-            color="#CAF48E"
-            className={`${locale === 'ar' ? 'rotate-180' : ''}`}
-          />
-        </button>
-        <button
-          onClick={() => swiper?.slideNext()}
-          disabled={isEnd}
-          className={`w-12 h-12 rounded-full flex justify-center items-center transition cursor-pointer
+          >
+            <ArrowLeft
+              color="#CAF48E"
+              className={`${locale === 'ar' ? 'rotate-180' : ''}`}
+            />
+          </button>
+          <button
+            onClick={() => swiper?.slideNext()}
+            disabled={isEnd}
+            className={`w-12 h-12 rounded-full flex justify-center items-center transition cursor-pointer
               ${
                 isEnd
                   ? 'bg-Secondary-Dark-Palm/20 cursor-not-allowed opacity-50'
                   : 'bg-Secondary-Dark-Palm hover:opacity-80'
               }`}
-        >
-          <ArrowRight
-            color="#CAF48E"
-            className={`${locale === 'ar' ? 'rotate-180' : ''}`}
-          />
-        </button>
-      </div>
+          >
+            <ArrowRight
+              color="#CAF48E"
+              className={`${locale === 'ar' ? 'rotate-180' : ''}`}
+            />
+          </button>
+        </div>
+      )}
     </section>
   )
 }

@@ -47,7 +47,7 @@ export default function FAQSection({
                   className="border-t border-[rgba(0,4,4,0.02)]"
                 >
                   <button
-                    className={`w-full py-5 flex items-center justify-between gap-6 hover:bg-Secondary-Scrub transition-colors
+                    className={`w-full py-5 flex items-center justify-between gap-6 hover:bg-Secondary-Scrub transition-colors cursor-pointer
         ${locale === 'ar' ? 'flex-row-reverse text-right' : 'text-left'}`}
                     onClick={() => setOpenFaq(openFaq === index ? null : index)}
                   >

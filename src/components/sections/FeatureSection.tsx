@@ -227,7 +227,7 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
                 >
                   <Button
                     variant={secondaryButton[0]?.variant || 'ghost'}
-                    righticon={true}
+                    righticon={secondaryButton[0]?.righticon}
                     fullwidth
                     locale={locale as 'en' | 'ar'}
                   >
