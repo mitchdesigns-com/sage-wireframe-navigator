@@ -1,6 +1,6 @@
 'use client'
-import React, { useEffect, useRef } from 'react'
 import SageIcon from '@/components/icons/SageIcon'
+import { useEffect, useRef } from 'react'
 import { Words } from '../../types/homePage'
 /**
  * DirectionScrollSection
@@ -9,14 +9,6 @@ import { Words } from '../../types/homePage'
  * - Scroll-based animation for dynamic movement
  * - Matching colors and styling from design
  */
-const WORDS = [
-  'Care',
-  'Hospitality',
-  'World-Class',
-  'Comprehensive',
-  'Trusted',
-  'Seamless',
-]
 
 export default function DirectionScrollSection({
   Words,
@@ -25,7 +17,7 @@ export default function DirectionScrollSection({
   Words: Words[]
   locale: 'en' | 'ar'
 }) {
-  console.log(Words)
+  console.log(locale)
   // Add proper typing for refs to avoid TS errors
   const innerA = useRef<HTMLDivElement>(null)
   const innerB = useRef<HTMLDivElement>(null)
