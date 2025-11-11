@@ -102,7 +102,7 @@ export default function GeneralInquiryForm() {
       {/* Message */}
       <div className="space-y-1">
         <label className="text-Primary-Black text-base md:text-lg font-medium">
-          Message*
+          Your inquiry*
         </label>
         <textarea
           name="message"
@@ -151,7 +151,7 @@ export default function GeneralInquiryForm() {
         disabled={isSubmitting}
         locale={locale as 'en' | 'ar'}
       >
-        {isSubmitting ? 'Submitting...' : 'Submit Request'}
+        {isSubmitting ? 'Submitting...' : 'Submit'}
       </Button>
 
       {/* Submission status feedback */}

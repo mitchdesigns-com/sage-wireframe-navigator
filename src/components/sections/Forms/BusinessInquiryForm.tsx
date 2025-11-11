@@ -189,7 +189,7 @@ export default function BusinessInquiryForm() {
         disabled={isSubmitting}
         locale={locale as 'en' | 'ar'}
       >
-        {isSubmitting ? 'Submitting...' : 'Submit Request'}
+        {isSubmitting ? 'Submitting...' : 'Submit'}
       </Button>
 
       {/* Submission status feedback */}
