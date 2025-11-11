@@ -1,6 +1,7 @@
 'use client'
 import React, { useEffect, useRef } from 'react'
 import SageIcon from '@/components/icons/SageIcon'
+import { Words } from '../../types/homePage'
 /**
  * DirectionScrollSection
  * A scroll-based marquee component matching the Figma design
@@ -17,7 +18,14 @@ const WORDS = [
   'Seamless',
 ]
 
-export default function DirectionScrollSection() {
+export default function DirectionScrollSection({
+  Words,
+  locale,
+}: {
+  Words: Words[]
+  locale: 'en' | 'ar'
+}) {
+  console.log(Words)
   // Add proper typing for refs to avoid TS errors
   const innerA = useRef<HTMLDivElement>(null)
   const innerB = useRef<HTMLDivElement>(null)
@@ -92,15 +100,17 @@ export default function DirectionScrollSection() {
 
   // render repeated items
   const renderRepeat = (keyPrefix: string) =>
-    Array.from({ length: REPEAT }).map((_, idx) =>
-      WORDS.map((w, j) => (
-        <div className="ds-item" key={`${keyPrefix}-${idx}-${j}`}>
-          <span className="ds-word">{w}</span>
-          <div className="ds-separator text-Primary-Scrub">
-            <SageIcon />
+    Array.from({ length: REPEAT }).map(
+      (_, idx) =>
+        Words &&
+        Words.map((w, j) => (
+          <div className="ds-item" key={`${keyPrefix}-${idx}-${j}`}>
+            <span className="ds-word">{w.word}</span>
+            <div className="ds-separator text-Primary-Scrub">
+              <SageIcon />
+            </div>
           </div>
-        </div>
-      ))
+        ))
     )
 
   return (

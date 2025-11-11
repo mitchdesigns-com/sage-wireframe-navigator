@@ -83,7 +83,7 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
               <div
                 className="aspect[396/351] md:aspect-[606/646] rounded-[40px] bg-cover bg-center w-full md:h-[646px] h-[351px] md:w-[606px] px-4"
                 style={{
-                  backgroundImage: `url('${process.env.NEXT_PUBLIC_API_BASE_URL}${image.url}')`,
+                  backgroundImage: `url('${process.env.NEXT_PUBLIC_API_BASE_URL}${image?.url}')`,
                 }}
               />
             </div>
@@ -221,7 +221,7 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
               <div
                 className={`aspect[396/351] md:aspect-[654/580] ${isMainImage ? 'rounded-b-0' : 'rounded-b-[40px] rounded-t-[40px]'} bg-cover bg-center w-[396px] md:h-[580px] h-[351px] md:w-[654px]`}
                 style={{
-                  backgroundImage: `url('${process.env.NEXT_PUBLIC_API_BASE_URL}${image.url}')`,
+                  backgroundImage: `url('${process.env.NEXT_PUBLIC_API_BASE_URL}${image?.url}')`,
                 }}
               />
             </div>
@@ -231,7 +231,7 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
               <div
                 className="aspect[396/351] md:aspect-[606/646] rounded-[40px] bg-cover bg-center w-[396px] md:h-[646px] h-[351px] md:w-[606px]"
                 style={{
-                  backgroundImage: `url('${process.env.NEXT_PUBLIC_API_BASE_URL}${image.url}')`,
+                  backgroundImage: `url('${process.env.NEXT_PUBLIC_API_BASE_URL}${image?.url}')`,
                 }}
               />
             </div>

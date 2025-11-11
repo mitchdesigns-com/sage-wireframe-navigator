@@ -2,9 +2,16 @@
 import React, { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+export interface Image {
+  id: number
+  documentId: string
+  alternativeText: string
+  url: string
+}
 
 // Types for props
 interface ServiceLink {
+  id: number
   label: string
   href: string
 }
@@ -15,74 +22,20 @@ interface ServiceSection {
   links: ServiceLink[]
   backgroundColor?: string
   textColor?: string
-  imageUrl?: string
+  imageUrl?: Image
   hasDecorativeVector?: boolean
+  id: number
 }
 
 interface ComprehensiveServicesProps {
-  title?: string
+  before_highlight?: string
+  highlight?: string
+  after_highlight?: string
   subtitle?: string
-  sections?: ServiceSection[]
+  ServiceSection: ServiceSection[]
   className?: string
   locale?: 'en' | 'ar'
 }
-
-// Default data
-const defaultSections: ServiceSection[] = [
-  {
-    title: 'Healthcare Services',
-    description:
-      'At Sage, we offer a wide range of healthcare services designed to meet your unique needs.',
-    links: [
-      { label: 'Explore for Individuals', href: '/services/individuals' },
-      { label: 'Explore for Businesses', href: '/services/businesses' },
-      { label: 'Explore for Organizations', href: '/services/organizations' },
-    ],
-    backgroundColor: 'bg-[#025850]',
-    textColor: 'text-[#e2f2f1]',
-    imageUrl: '/api/placeholder/532/386',
-    hasDecorativeVector: true,
-  },
-  {
-    title: 'Concierge Services',
-    description:
-      'Our medical services ensure you receive top-notch care from leading professionals.',
-    links: [
-      {
-        label: 'Discover for Individuals',
-        href: '/services/individuals/concierge',
-      },
-      {
-        label: 'Discover for Businesses',
-        href: '/services/businesses/concierge',
-      },
-      {
-        label: 'Discover for Organizations',
-        href: '/services/organizations/concierge',
-      },
-    ],
-    backgroundColor: 'bg-[#1e1e1e]',
-    textColor: 'text-white',
-  },
-  {
-    title: 'Consultation & Training',
-    description:
-      'Our concierge services provide you with personalized support throughout your healthcare journey.',
-    links: [
-      {
-        label: 'Learn for Businesses',
-        href: '/services/businesses/consultation',
-      },
-      {
-        label: 'Learn for Organizations',
-        href: '/services/organizations/consultation',
-      },
-    ],
-    backgroundColor: 'bg-[#013530]',
-    textColor: 'text-white',
-    imageUrl: '/images/generalImages/Training.png',
-  },
-]
 
 const TitleDecorationVector: React.FC<{ className?: string }> = ({
   className,
@@ -198,7 +151,7 @@ const ServiceButton: React.FC<{
     className={`
       group flex items-center justify-between w-full py-4 px-0 
       transition-all duration-300 hover:translate-x-1
-      ${textColor} hover:text-[#caf48e]
+      text-${textColor} hover:text-[#caf48e]
     `}
   >
     <span className="font-aeonik font-normal text-base leading-6">
@@ -211,7 +164,7 @@ const ServiceButton: React.FC<{
 )
 
 // Service Section component
-const ServiceSection: React.FC<{
+const ServiceSectionComponent: React.FC<{
   section: ServiceSection
   isReversed?: boolean
   hasImage?: boolean
@@ -223,7 +176,7 @@ const ServiceSection: React.FC<{
     >
       {/* Content Card */}
       <div
-        className={`relative ${section.backgroundColor} rounded-[24px] px-4 py-10 md:p-10  ${hasImage ? 'flex-1' : 'w-full'} max-w-full min-h-full md:overflow-hidden md:min-h-[368px]`}
+        className={`relative bg-${section.backgroundColor}  rounded-[24px] px-4 py-10 md:p-10  ${hasImage ? 'flex-1' : 'w-full'} max-w-full min-h-full md:overflow-hidden md:min-h-[368px]`}
       >
         {/* Content */}
         <div
@@ -235,7 +188,7 @@ const ServiceSection: React.FC<{
               {section.title}
             </h3>
             <p
-              className={`font-aeonik font-normal text-base leading-6 max-w-[453px] ${section.textColor}`}
+              className={`font-aeonik font-normal text-base leading-6 max-w-[453px] text-${section.textColor}`}
             >
               {section.description}
             </p>
@@ -283,7 +236,7 @@ const ServiceSection: React.FC<{
           <div
             className="relative md:absolute left-8 md:left-0 -bottom-10 md:top-0 w-[344px] h-[395px] bg-cover bg-center bg-no-repeat rounded-[24px]"
             style={{
-              backgroundImage: `url('${section.imageUrl}')`,
+              backgroundImage: `url('${process.env.NEXT_PUBLIC_API_BASE_URL}${section.imageUrl.url}')`,
               // backgroundPosition: '99.04% 26.47%',
               // backgroundSize: '115.56% 151.11%',
             }}
@@ -306,8 +259,10 @@ const ServiceSection: React.FC<{
 
 // Main component
 export default function ComprehensiveServices({
-  // title = 'Discover Our Comprehensive Solutions Tailored for Your Needs',
-  sections = defaultSections,
+  before_highlight,
+  highlight,
+  after_highlight,
+  ServiceSection,
   className = '',
   locale,
 }: ComprehensiveServicesProps) {
@@ -386,44 +341,62 @@ export default function ComprehensiveServices({
             {/* Title with decorative vector */}
             <div className="relative flex flex-wrap justify-center items-center gap-x-4 max-w-[768px]">
               <h2 className="font-aeonik text-[28px] md:text-[40px] font-bold text-[#1e1e1e] text-center">
-                <span>Discover Our Comprehensive </span>
+                <span>{before_highlight} </span>
                 <span className="relative inline-block">
-                  <span className="z-[2] relative">Solutions</span>
-                  {/* Title Decorative Vector positioned near "Solutions" */}
+                  <span className="z-[2] relative">{highlight}</span>
                   <div className="absolute -inset-3 z-[1]">
-                    <TitleDecorationVector className="" />
+                    <TitleDecorationVector />
                   </div>
                 </span>
-                <span> Tailored for Your Needs</span>
+                <span> {after_highlight}</span>
               </h2>
             </div>
 
             {/* Content Grid */}
             <div className="w-full flex flex-col gap-4 relative">
-              {/* First Row - Healthcare Services + Image */}
-              <ServiceSection
-                section={sections[0]}
-                hasImage={true}
-                locale={locale}
-              />
+              {ServiceSection.map((section, index) => {
+                if (index === 0) {
+                  // First row (Healthcare Services + Image)
+                  return (
+                    <ServiceSectionComponent
+                      key={index}
+                      section={section}
+                      hasImage={true}
+                      locale={locale}
+                    />
+                  )
+                }
 
-              {/* Second Row - Concierge + Consultation */}
-              <div className="flex gap-4 flex-col md:flex-row">
-                <div className="w-fit md:w-[532px]">
-                  <ServiceSection
-                    section={sections[1]}
-                    hasImage={false}
-                    locale={locale}
-                  />
-                </div>
-                <div className="flex-1">
-                  <ServiceSection
-                    section={sections[2]}
-                    isReversed={true}
-                    locale={locale}
-                  />
-                </div>
-              </div>
+                // Second row (Concierge + Consultation)
+                if (index === 1) {
+                  return (
+                    <div
+                      key="second-row"
+                      className="flex gap-4 flex-col md:flex-row"
+                    >
+                      <div className="w-fit md:w-[532px]">
+                        <ServiceSectionComponent
+                          section={ServiceSection[1]}
+                          hasImage={false}
+                          locale={locale}
+                        />
+                      </div>
+                      <div className="flex-1">
+                        {ServiceSection[2] && (
+                          <ServiceSectionComponent
+                            section={ServiceSection[2]}
+                            isReversed={true}
+                            locale={locale}
+                          />
+                        )}
+                      </div>
+                    </div>
+                  )
+                }
+
+                // Skip the ones already handled (indexes 0, 1, 2)
+                return null
+              })}
             </div>
           </div>
         </div>

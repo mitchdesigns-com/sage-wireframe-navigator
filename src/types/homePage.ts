@@ -71,7 +71,10 @@ export interface ServiceLink {
   label: string
   href: string
 }
-
+export interface Words {
+  id: number
+  word: string
+}
 export interface ServiceSectionItem {
   id: number
   title: string
@@ -86,6 +89,10 @@ export interface ServiceSectionItem {
 export interface ComprehensiveServices {
   id: number
   ServiceSection: ServiceSectionItem[]
+  before_highlight: string
+  highlight: string
+  after_highlight: string
+  Words: Words[]
 }
 
 export interface HowItWorksStep {

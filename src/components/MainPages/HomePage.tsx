@@ -28,7 +28,7 @@ export default function HomePage({
   locale: 'en' | 'ar'
 }) {
   const [isMobile, setIsMobile] = useState(false)
-
+  console.log(data)
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768)
@@ -46,8 +46,14 @@ export default function HomePage({
         {data.featureSection.map((section, index) => (
           <FeatureSection key={index} {...section} home />
         ))}
-        <DirectionScrollSection />
-        <ComprehensiveServices locale={locale} />
+        <DirectionScrollSection
+          {...data?.ComprehensiveServices}
+          locale={locale}
+        />
+        <ComprehensiveServices
+          {...data.ComprehensiveServices}
+          locale={locale}
+        />
       </div>
 
       <HowItWorks {...data.HowItWorks} locale={locale} />

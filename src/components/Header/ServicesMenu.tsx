@@ -87,9 +87,12 @@ export default function ServicesMenu({
                           <div className="font-aeonik-bold text-Neutral-Darkest text-sm md:text-base leading-[1.5]">
                             {item.title}
                           </div>
-                          <div className="font-aeonik-regular text-[#626262] text-xs md:text-sm leading-[1.5] w-[236px]">
-                            {item.description}
-                          </div>
+                          <div
+                            className="font-aeonik-regular text-[#626262] text-xs md:text-sm leading-[1.5] w-[236px] [&>span]:font-bold"
+                            dangerouslySetInnerHTML={{
+                              __html: item.description,
+                            }}
+                          />
                         </div>
                       </Link>
                     ))}
