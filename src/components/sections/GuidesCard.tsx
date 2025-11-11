@@ -16,6 +16,7 @@ export interface Guide {
   date: string
   readTime: string
   description: string
+  ShareButtons: string
 }
 
 interface GuidesCardProps {

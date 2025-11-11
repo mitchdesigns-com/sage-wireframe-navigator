@@ -1,7 +1,6 @@
 export const runtime = 'edge'
 
 import { fetchServer } from '@/app/api/general'
-import { Metadata } from 'next'
 import PrivacyPage from '../../../components/MainPages/PrivacyPage'
 
 type Props = {

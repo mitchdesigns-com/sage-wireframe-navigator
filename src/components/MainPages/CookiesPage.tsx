@@ -37,10 +37,8 @@ interface CookiesPageProps {
   locale: string
 }
 
-export default async function CookiesPage({ data, locale }: CookiesPageProps) {
-  const isRTL = locale === 'ar'
-
-  const renderChildren = (children: any[]) =>
+export default async function CookiesPage({ data }: CookiesPageProps) {
+  const renderChildren = (children: ParagraphChild[]) =>
     children.map((child, i) => {
       if (child.type === 'text') {
         return (

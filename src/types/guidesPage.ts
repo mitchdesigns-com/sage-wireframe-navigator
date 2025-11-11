@@ -54,6 +54,7 @@ export interface GuidesCardBlock {
   readTime: string
   category: string
   image: ImageData
+  ShareButtons: string
 }
 
 export type GuidesBlock = HeroPageBlock | GetInTouchBlock

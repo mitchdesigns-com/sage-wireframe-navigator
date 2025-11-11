@@ -25,6 +25,7 @@ export interface HeroSinglePage {
   href: string
   breadcrumbItems: BreadcrumbItem[]
   bgImage: ImageData
+  ShareButtons: string
 }
 export interface Blog {
   slug: string

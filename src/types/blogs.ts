@@ -40,6 +40,7 @@ export interface HeroSinglePage {
   breadcrumbItems: BreadcrumbItem[]
   bgImage: ImageData
   category: string
+  ShareButtons: string
 }
 
 export interface BlogItem {
@@ -57,6 +58,7 @@ export interface BlogItem {
   readTime: string
   bgImage: ImageData
   author: string
+  ShareButtons: string
 }
 
 export interface BlogDataResponse {

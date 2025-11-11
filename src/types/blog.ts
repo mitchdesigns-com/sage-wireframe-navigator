@@ -93,6 +93,7 @@ export interface HeroSinglePages {
   slug: string
   image: ImageData
   HeroSinglePages: HeroSinglePages
+  ShareButtons: string
 }
 
 // ---------- Blog Post ----------
@@ -111,6 +112,7 @@ export interface BlogPost {
   readTime: string
   bgImage: ImageData
   author: string
+  ShareButtons: string
 }
 
 // ---------- API Response ----------

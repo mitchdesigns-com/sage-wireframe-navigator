@@ -37,10 +37,8 @@ interface TermsPageProps {
   locale: string
 }
 
-export default async function TermsPage({ data, locale }: TermsPageProps) {
-  const isRTL = locale === 'ar'
-
-  const renderChildren = (children: any[]) =>
+export default async function TermsPage({ data }: TermsPageProps) {
+  const renderChildren = (children: ParagraphChild[]) =>
     children.map((child, i) => {
       if (child.type === 'text') {
         return (

@@ -37,10 +37,8 @@ interface PrivacyPageProps {
   locale: string
 }
 
-export default async function PrivacyPage({ data, locale }: PrivacyPageProps) {
-  const isRTL = locale === 'ar'
-
-  const renderChildren = (children: any[]) =>
+export default async function PrivacyPage({ data }: PrivacyPageProps) {
+  const renderChildren = (children: ParagraphChild[]) =>
     children.map((child, i) => {
       if (child.type === 'text') {
         return (
