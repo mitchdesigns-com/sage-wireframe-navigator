@@ -10,6 +10,7 @@ export type ButtonVariant =
   | 'link'
   | 'ghost'
   | 'home'
+  | 'ghostLight'
 export type ButtonSize = 'small' | 'medium' | 'large'
 
 // Configuration types

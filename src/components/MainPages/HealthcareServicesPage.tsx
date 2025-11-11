@@ -284,7 +284,6 @@ export default function HealthcareServicesPage({
   if (!blocks || blocks.length === 0) {
     return null
   }
-
   return (
     <div className="min-h-screen ">
       {blocks.map((block) => (

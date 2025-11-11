@@ -54,7 +54,15 @@ export const DESIGN_CONFIG = {
       hover: 'hover:text-primary-light-sage',
       icon: {
         background: 'bg-primary-scrub hover:bg-primary-light-sage',
-        color: 'text-primary-white',
+        color: 'text-Primary-Scrub',
+      },
+    },
+    ghostLight: {
+      base: 'bg-transparent text-Primary-Palm cursor-pointer',
+      hover: 'hover:text-primary-light-sage',
+      icon: {
+        background: 'bg-Primary-Palm hover:bg-primary-light-sage',
+        color: 'text-Primary-Palm',
       },
     },
     home: {

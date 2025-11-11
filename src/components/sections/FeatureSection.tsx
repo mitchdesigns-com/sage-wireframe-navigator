@@ -39,6 +39,12 @@ interface FeatureSectionProps {
   textColor?: string
   reverse?: boolean // if true => image first
   home?: boolean
+  secondaryButton?: {
+    label: string
+    href: string
+    variant?: 'primary' | 'light' | 'ghost' | 'home' | 'ghostLight'
+    righticon?: boolean
+  }[]
 }
 
 const FeatureSection: React.FC<FeatureSectionProps> = ({
@@ -54,6 +60,7 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
   textColor = 'black',
   reverse = false,
   home,
+  secondaryButton,
 }) => {
   const pathname = usePathname()
   const locale = useLocale()
@@ -184,35 +191,51 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
                 ))}
               </div>
             )}
-
-            {/* CTA */}
-            {ctaText && (
-              <Link
-                href={href || '/contact'}
-                className={`flex justify-center w-full md:inline-block  bg-primary text-white rounded-lg font-medium group cursor-pointer `}
-              >
-                <Button
-                  variant={
-                    home
-                      ? 'home'
-                      : backgroundColor === '#DAF7AF'
-                        ? 'primary'
-                        : backgroundColor === '#F0F8F8'
-                          ? 'primary'
-                          : backgroundColor === 'white'
-                            ? 'primary'
-                            : 'light'
-                  }
-                  righticon={true}
-                  fullwidth={isMobile ? true : false}
-                  locale={locale as 'en' | 'ar'}
-
-                  //   onClick={() => setIsMenuOpen(false)}
+            <div className="flex gap-8">
+              {/* CTA */}
+              {ctaText && (
+                <Link
+                  href={href || '/contact'}
+                  className={`flex justify-center  bg-primary text-white rounded-lg font-medium group cursor-pointer `}
                 >
-                  {ctaText}
-                </Button>
-              </Link>
-            )}
+                  <Button
+                    variant={
+                      home
+                        ? 'home'
+                        : backgroundColor === '#DAF7AF'
+                          ? 'primary'
+                          : backgroundColor === '#F0F8F8'
+                            ? 'primary'
+                            : backgroundColor === 'white'
+                              ? 'primary'
+                              : 'light'
+                    }
+                    righticon={true}
+                    fullwidth={isMobile ? true : false}
+                    locale={locale as 'en' | 'ar'}
+
+                    //   onClick={() => setIsMenuOpen(false)}
+                  >
+                    {ctaText}
+                  </Button>
+                </Link>
+              )}
+              {secondaryButton && (
+                <Link
+                  href={secondaryButton[0]?.href || '/'}
+                  className="inline-block"
+                >
+                  <Button
+                    variant={secondaryButton[0]?.variant || 'ghost'}
+                    righticon={true}
+                    fullwidth
+                    locale={locale as 'en' | 'ar'}
+                  >
+                    {secondaryButton[0]?.label}
+                  </Button>
+                </Link>
+              )}
+            </div>
           </div>
 
           {/* Image */}

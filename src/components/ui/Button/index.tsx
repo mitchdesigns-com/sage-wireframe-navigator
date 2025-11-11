@@ -229,7 +229,7 @@ const useButtonContent = (props: BaseButtonProps) => {
       <span className="relative shrink-0">{children}</span>
       {!loading && righticon && (
         <div
-          className={`flex-none ${locale === 'en' ? 'group-hover:rotate-[45deg]' : 'group-hover:-rotate-[45deg]'} ${variant === 'dark' ? 'text-Primary-Spring ' : variant === 'primary' ? 'text-Primary-Spring ' : 'text-Primary-Palm '} group-hover:ms-2 transition-all duration-300`}
+          className={`flex-none ${locale === 'en' ? 'group-hover:rotate-[45deg]' : 'group-hover:-rotate-[45deg]'} ${variant === 'ghost' ? 'text-Primary-Scrub' : variant === 'dark' ? 'text-Primary-Spring ' : variant === 'primary' ? 'text-Primary-Spring ' : 'text-Primary-Palm '} group-hover:ms-2 transition-all duration-300`}
         >
           <ButtonIcon
             locale={locale}
