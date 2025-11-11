@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import React from 'react'
+import { motion } from 'framer-motion'
 import Button from '../ui/Button'
 import Breadcrumb from './Breadcrumb'
 import VideoPlayer from './VideoPlayer'
@@ -33,34 +34,67 @@ const HeroWithVideo: React.FC<HeroProps> = ({
   video,
   locale,
 }) => {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.25,
+      },
+    },
+  }
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 40 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: 'easeOut',
+      },
+    },
+  }
+
   return (
-    <section
-      className={`pb-4 md:pb-20 bg-gradient-to-t from-[#013530] to-[#025850]`}
-    >
+    <section className="pb-4 md:pb-20 bg-gradient-to-t from-[#013530] to-[#025850]">
       <div className="px-4 md:px-16">
         <div className="mx-auto max-w-[1392px]">
-          <div className="flex flex-col justify-center mx-auto max-w-[768px] text-center">
+          <motion.div
+            className="flex flex-col justify-center mx-auto max-w-[768px] text-center"
+            variants={containerVariants}
+            initial="hidden"
+            animate="show"
+          >
             {breadcrumbItems && (
-              <div className="pt-10">
-                {' '}
+              <motion.div variants={itemVariants} className="pt-10">
                 <Breadcrumb
                   items={breadcrumbItems}
                   className="justify-center"
                   heroPages
                 />
-              </div>
+              </motion.div>
             )}
-            <h1
+
+            <motion.h1
+              variants={itemVariants}
               className="pt-2 pb-8 md:pb-6 [&>span]:font-bold text-white [&>span]:text-Primary-Spring md:text-[56px] text-4xl leading-[1.2] tracking-[-1px] md:tracking-[-0.56px]"
               dangerouslySetInnerHTML={{ __html: title }}
               suppressHydrationWarning
             />
 
-            <p className="px-5 md:px-0 text-white text-sm md:text-lg leading-[1.5]">
+            <motion.p
+              variants={itemVariants}
+              className="px-5 md:px-0 text-white text-sm md:text-lg leading-[1.5]"
+            >
               {description}
-            </p>
+            </motion.p>
+
             {btn && (
-              <div className="flex justify-between md:justify-center items-center pt-8 w-full">
+              <motion.div
+                variants={itemVariants}
+                className="flex justify-between md:justify-center items-center pt-8 w-full"
+              >
                 <Link
                   href={href || '/contact'}
                   className="group inline-block bg-primary rounded-lg w-full md:w-fit font-medium text-white cursor-pointer"
@@ -74,19 +108,24 @@ const HeroWithVideo: React.FC<HeroProps> = ({
                     {btn}
                   </Button>
                 </Link>
-              </div>
+              </motion.div>
             )}
-          </div>
-          <div className="pt-8 md:pt-16">
-            <div className="relative rounded-xl ">
-              {' '}
+          </motion.div>
+
+          <motion.div
+            className="pt-8 md:pt-16"
+            variants={itemVariants}
+            initial="hidden"
+            animate="show"
+          >
+            <div className="relative rounded-xl">
               {video?.url && (
                 <VideoPlayer
                   video={`${process.env.NEXT_PUBLIC_API_BASE_URL}${video?.url}`}
                 />
               )}
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

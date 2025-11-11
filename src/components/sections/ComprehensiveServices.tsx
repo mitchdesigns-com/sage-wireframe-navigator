@@ -2,6 +2,9 @@
 import React, { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { motion, useAnimation } from 'framer-motion'
+import { useInView } from 'react-intersection-observer'
+
 export interface Image {
   id: number
   documentId: string
@@ -164,26 +167,57 @@ const ServiceButton: React.FC<{
 )
 
 // Service Section component
+
 const ServiceSectionComponent: React.FC<{
   section: ServiceSection
   isReversed?: boolean
   hasImage?: boolean
   locale?: 'en' | 'ar'
 }> = ({ section, isReversed = false, hasImage = false, locale }) => {
+  const controls = useAnimation()
+  const [ref, inView] = useInView({
+    threshold: 0.5, // Trigger when 50% visible
+    triggerOnce: true,
+  })
+
+  useEffect(() => {
+    if (inView) controls.start('visible')
+  }, [inView, controls])
+
+  // Simple fade-up animation
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 40 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: 'easeOut' },
+    },
+  }
+
   return (
-    <div
+    <motion.div
+      ref={ref}
+      variants={fadeInUp}
+      initial="hidden"
+      animate={controls}
       className={`flex gap-4 items-start flex-col md:flex-row ${isReversed ? 'flex-row-reverse' : ''}`}
     >
       {/* Content Card */}
-      <div
-        className={`relative bg-${section.backgroundColor}  rounded-[24px] px-4 py-10 md:p-10  ${hasImage ? 'flex-1' : 'w-full'} max-w-full min-h-full md:overflow-hidden md:min-h-[368px]`}
+      <motion.div
+        variants={fadeInUp}
+        className={`relative bg-${section.backgroundColor} rounded-[24px] px-4 py-10 md:p-10 ${
+          hasImage ? 'flex-1' : 'w-full'
+        } max-w-full min-h-full md:overflow-hidden md:min-h-[368px]`}
       >
         {/* Content */}
-        <div
-          className={`relative z-10 flex flex-col gap-4 md:gap-[30px] min-w-full ${section.imageUrl && isReversed && 'items-end'}`}
+        <motion.div
+          variants={fadeInUp}
+          className={`relative z-10 flex flex-col gap-4 md:gap-[30px] min-w-full ${
+            section.imageUrl && isReversed && 'items-end'
+          }`}
         >
           {/* Header */}
-          <div className="flex flex-col gap-2 ">
+          <motion.div variants={fadeInUp} className="flex flex-col gap-2">
             <h3 className="font-aeonik font-bold text-2xl leading-[1.4] tracking-[-0.24px] text-[#caf48e]">
               {section.title}
             </h3>
@@ -192,10 +226,13 @@ const ServiceSectionComponent: React.FC<{
             >
               {section.description}
             </p>
-          </div>
+          </motion.div>
 
           {/* Links */}
-          <div className="flex gap-15 md:gap-22 justify-between flex-col md:flex-row w-full md:w-fit items-end">
+          <motion.div
+            variants={fadeInUp}
+            className="flex gap-15 md:gap-22 justify-between flex-col md:flex-row w-full md:w-fit items-end"
+          >
             <div className="flex flex-col md:min-w-[452px] max-w-full justify-end w-full md:w-fit">
               {section.links.map((link, index) => (
                 <div key={index}>
@@ -205,55 +242,52 @@ const ServiceSectionComponent: React.FC<{
                     locale={locale}
                   />
                   {index < section.links.length - 1 && (
-                    <div className="w-full h-px bg-gray-400/20 " />
+                    <div className="w-full h-px bg-gray-400/20" />
                   )}
                 </div>
-              ))}{' '}
+              ))}
             </div>
+
             {hasImage && (
-              <div className="relative h-[190px] w-[225px] flex ">
+              <motion.div
+                variants={fadeInUp}
+                className="relative h-[190px] w-[225px] flex"
+              >
                 <Image
                   src="/images/generalImages/VectorHome.png"
                   alt="vector"
                   fill
-                  className="object-cover md:object-bottom object-right-bottom "
+                  className="object-cover md:object-bottom object-right-bottom"
                   priority
                 />
-
-                {/* <div
-                  className="w-full h-full bg-cover bg-center bg-no-repeat "
-                  style={{
-                    backgroundImage: `url('/images/generalImages/VectorHome.png')`,
-                  }}
-                /> */}
-              </div>
+              </motion.div>
             )}
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
-        {/* Background Image for third section */}
+        {/* Background Image for reversed layout */}
         {section.imageUrl && isReversed && (
-          <div
+          <motion.div
+            variants={fadeInUp}
             className="relative md:absolute left-8 md:left-0 -bottom-10 md:top-0 w-[344px] h-[395px] bg-cover bg-center bg-no-repeat rounded-[24px]"
             style={{
               backgroundImage: `url('${process.env.NEXT_PUBLIC_API_BASE_URL}${section.imageUrl.url}')`,
-              // backgroundPosition: '99.04% 26.47%',
-              // backgroundSize: '115.56% 151.11%',
             }}
           />
         )}
-      </div>
+      </motion.div>
 
-      {/* Image */}
+      {/* Image (non-reversed layout) */}
       {hasImage && section.imageUrl && !isReversed && (
-        <div
-          className=" w-full md:w-[532px] h-[386px] rounded-[32px] bg-cover bg-center bg-no-repeat shrink-0"
+        <motion.div
+          variants={fadeInUp}
+          className="w-full md:w-[532px] h-[386px] rounded-[32px] bg-cover bg-center bg-no-repeat shrink-0"
           style={{
             backgroundImage: `url('/images/generalImages/Solutions.png')`,
           }}
         />
       )}
-    </div>
+    </motion.div>
   )
 }
 

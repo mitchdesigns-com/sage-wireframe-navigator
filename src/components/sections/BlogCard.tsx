@@ -1,9 +1,13 @@
 'use client'
+import React from 'react'
 
 import Image from 'next/image'
 import { ArrowUpRight } from 'lucide-react'
 import Link from 'next/link'
 import { useLocale } from 'next-intl'
+import { motion, useAnimation } from 'framer-motion'
+import { useInView } from 'react-intersection-observer'
+
 export interface BreadcrumbItem {
   id: number
   label: string
@@ -55,56 +59,81 @@ interface BlogCardProps {
 export default function BlogCard({ blog, href, news }: BlogCardProps) {
   const locale = useLocale()
 
+  // Framer Motion setup
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.5 })
+  const controls = useAnimation()
+
+  React.useEffect(() => {
+    if (inView) controls.start('visible')
+  }, [controls, inView])
+
+  const variants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: 'easeOut' },
+    },
+  }
+
   return (
-    <Link href={href} key={blog.slug} className="flex flex-col group">
-      <div className="h-[270px] w-full relative rounded-2xl overflow-hidden mb-4">
-        {news ? (
-          <Image
-            src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${blog.image.url}`}
-            alt={blog.title || 'blog image'}
-            fill
-            className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-105"
-          />
-        ) : (
-          <Image
-            src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${blog?.bgImage?.url || blog?.image?.url || '/images/generalImages/fallback.jpg'}`}
-            alt={blog.title || 'blog image'}
-            fill
-            className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-105"
-          />
-        )}
-      </div>
-      {blog.category && (
-        <span className="text-sm text-Primary-Light-Sage font-medium">
-          {blog.category}
-        </span>
-      )}
-      <h3 className="text-[20px] md:text-2xl font-bold text-Neutral-Darkest leading-snug mb-2">
-        {news ? blog.HeroSinglePages.title : blog.title}
-      </h3>
-      <div className="flex items-center justify-between mt-auto">
-        <div className="flex items-center gap-2">
-          <div className="w-6 h-6 rounded-full overflow-hidden">
+    <motion.div
+      ref={ref}
+      initial="hidden"
+      animate={controls}
+      variants={variants}
+      className="flex flex-col group"
+    >
+      <Link href={href} key={blog.slug} className="flex flex-col">
+        <div className="h-[270px] w-full relative rounded-2xl overflow-hidden mb-4">
+          {news ? (
             <Image
-              src="/images/generalImages/avatar1.png"
-              alt={blog.author || 'blog author image'}
-              width={24}
-              height={24}
+              src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${blog.image.url}`}
+              alt={blog.title || 'blog image'}
+              fill
+              className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-105"
             />
-          </div>
-          <div className="text-xs md:text-sm text-Secondary-Text">
-            <p>{news ? blog.HeroSinglePages.author : blog.author}</p>
-            <p>
-              {news ? blog.HeroSinglePages.date : blog.date} •{' '}
-              {news ? blog.HeroSinglePages.readTime : blog.readTime}
-            </p>
-          </div>
+          ) : (
+            <Image
+              src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${blog?.bgImage?.url || blog?.image?.url || '/images/generalImages/fallback.jpg'}`}
+              alt={blog.title || 'blog image'}
+              fill
+              className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-105"
+            />
+          )}
         </div>
-        <ArrowUpRight
-          size={38}
-          className={`text-Primary-Palm ${locale === 'ar' ? '-rotate-90' : ''}`}
-        />
-      </div>
-    </Link>
+        {blog.category && (
+          <span className="text-sm text-Primary-Light-Sage font-medium">
+            {blog.category}
+          </span>
+        )}
+        <h3 className="text-[20px] md:text-2xl font-bold text-Neutral-Darkest leading-snug mb-2">
+          {news ? blog.HeroSinglePages.title : blog.title}
+        </h3>
+        <div className="flex items-center justify-between mt-auto">
+          <div className="flex items-center gap-2">
+            <div className="w-6 h-6 rounded-full overflow-hidden">
+              <Image
+                src="/images/generalImages/avatar1.png"
+                alt={blog.author || 'blog author image'}
+                width={24}
+                height={24}
+              />
+            </div>
+            <div className="text-xs md:text-sm text-Secondary-Text">
+              <p>{news ? blog.HeroSinglePages.author : blog.author}</p>
+              <p>
+                {news ? blog.HeroSinglePages.date : blog.date} •{' '}
+                {news ? blog.HeroSinglePages.readTime : blog.readTime}
+              </p>
+            </div>
+          </div>
+          <ArrowUpRight
+            size={38}
+            className={`text-Primary-Palm ${locale === 'ar' ? '-rotate-90' : ''}`}
+          />
+        </div>
+      </Link>
+    </motion.div>
   )
 }

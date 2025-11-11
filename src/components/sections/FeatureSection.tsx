@@ -6,6 +6,8 @@ import Tagline from './Tagline'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { useLocale } from 'next-intl'
+import { motion, useAnimation } from 'framer-motion'
+import { useInView } from 'react-intersection-observer'
 
 interface Feature {
   text: string
@@ -37,7 +39,7 @@ interface FeatureSectionProps {
   }
   backgroundColor?: string
   textColor?: string
-  reverse?: boolean // if true => image first
+  reverse?: boolean
   home?: boolean
   secondaryButton?: {
     label: string
@@ -64,9 +66,31 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
 }) => {
   const pathname = usePathname()
   const locale = useLocale()
-
   const isNotHome = pathname !== '/'
   const [isMobile, setIsMobile] = useState(false)
+
+  // Animation controls
+  const controls = useAnimation()
+  const [ref, inView] = useInView({
+    threshold: 0.5, // Trigger when 50% of section is visible
+    triggerOnce: true,
+  })
+
+  useEffect(() => {
+    if (inView) {
+      controls.start('visible')
+    }
+  }, [inView, controls])
+
+  // Variants for smooth entry animation
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.9, ease: 'easeOut' },
+    },
+  }
 
   useEffect(() => {
     const handleResize = () => {
@@ -76,18 +100,25 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
   }, [])
+
   const isMainImage = title === 'Discover the Excellence of Saudi Healthcare'
+
   return (
-    <section style={{ backgroundColor }}>
+    <section ref={ref} style={{ backgroundColor }}>
       <div className="container-custom mx-auto max-w-[1392px] py-8 md:py-28">
-        <div
+        <motion.div
+          variants={fadeInUp}
+          initial="hidden"
+          animate={controls}
           className={`flex items-center ${isNotHome ? 'gap-8' : 'gap-20'} md:gap-18  ${
             reverse ? 'flex-col md:flex-row-reverse' : 'flex-col md:flex-row'
           }`}
         >
+          {/* Image for mobile first */}
           {isNotHome && isMobile && (
             <div className="flex-1 w-full">
-              <div
+              <motion.div
+                variants={fadeInUp}
                 className="aspect[396/351] md:aspect-[606/646] rounded-[40px] bg-cover bg-center w-full md:h-[646px] h-[351px] md:w-[606px] px-4"
                 style={{
                   backgroundImage: `url('${process.env.NEXT_PUBLIC_API_BASE_URL}${image?.url}')`,
@@ -95,26 +126,16 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
               />
             </div>
           )}
+
           {/* Content */}
-          <div className="flex-1">
+          <motion.div variants={fadeInUp} className="flex-1">
             <div className="mb-8">
-              <div>
-                {backgroundColor === '#DAF7AF' ? (
-                  <Tagline
-                    text={tagline}
-                    taglineColor={'#025850'}
-                    // className="items-center md:items-start"
-                  />
-                ) : (
-                  // <span className="text-Primary-Palm text-base font-medium pb-4">
-                  //  {tagline}
-                  // </span>
-                  <Tagline
-                    text={tagline}
-                    // className="items-center md:items-start"
-                  />
-                )}
-              </div>
+              {backgroundColor === '#DAF7AF' ? (
+                <Tagline text={tagline} taglineColor={'#025850'} />
+              ) : (
+                <Tagline text={tagline} />
+              )}
+
               <div
                 className={`mb-8 ${isNotHome ? 'text-start' : 'text-center'} md:text-start`}
               >
@@ -125,8 +146,11 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
                   {title}
                 </h2>
                 <p
-                  className={`text-base md:text-lg md:whitespace-pre-line ${textColor === '#1E1E1E' ? 'text-Secondary-Text' : 'text-Secondary-Light-Scrub'}`}
-                  // style={{ color: textColor }}
+                  className={`text-base md:text-lg md:whitespace-pre-line ${
+                    textColor === '#1E1E1E'
+                      ? 'text-Secondary-Text'
+                      : 'text-Secondary-Light-Scrub'
+                  }`}
                 >
                   {description}
                 </p>
@@ -135,8 +159,8 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
 
             {/* Features */}
             {features && (
-              <div className=" mb-8">
-                {features?.map((feature, idx) => (
+              <motion.div variants={fadeInUp} className="mb-8">
+                {features.map((feature, idx) => (
                   <div key={idx} className="flex items-center gap-4 mb-4">
                     <div className="w-6 h-[21px] flex items-center justify-center relative">
                       <Image
@@ -155,12 +179,16 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
                     </span>
                   </div>
                 ))}
-              </div>
+              </motion.div>
             )}
+
             {/* List */}
             {list && (
-              <div className="flex mb-8 gap-6 flex-col md:flex-row ">
-                {list?.map((li, idx) => (
+              <motion.div
+                variants={fadeInUp}
+                className="flex mb-8 gap-6 flex-col md:flex-row "
+              >
+                {list.map((li, idx) => (
                   <div
                     key={idx}
                     className="flex items-start gap-2 flex-col max-w-[316px]"
@@ -178,26 +206,34 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
                       </div>
                     )}
                     <h5
-                      className={`${li.theme === 'dark' ? 'text-Primary-Black' : !li.icon ? 'text-[#CAF48E]' : 'text-white'}  text-lg md:text-[20px] font-bold`}
+                      className={`${
+                        li.theme === 'dark'
+                          ? 'text-Primary-Black'
+                          : !li.icon
+                            ? 'text-[#CAF48E]'
+                            : 'text-white'
+                      } text-lg md:text-[20px] font-bold`}
                     >
                       {li.title}
                     </h5>
                     <span
-                      className={`${li.theme === 'dark' ? 'text-Secondary-Text' : 'text-Secondary-Light-Scrub'} text-sm md:text-[16px] leading-[1.5] flex-1 `}
+                      className={`${
+                        li.theme === 'dark'
+                          ? 'text-Secondary-Text'
+                          : 'text-Secondary-Light-Scrub'
+                      } text-sm md:text-[16px] leading-[1.5] flex-1 `}
                     >
                       {li.description}
                     </span>
                   </div>
                 ))}
-              </div>
+              </motion.div>
             )}
-            <div className="flex gap-8">
-              {/* CTA */}
+
+            {/* CTA Buttons */}
+            <motion.div variants={fadeInUp} className="flex gap-8">
               {ctaText && (
-                <Link
-                  href={href || '/contact'}
-                  className={`flex justify-center  bg-primary text-white rounded-lg font-medium group cursor-pointer `}
-                >
+                <Link href={href || '/contact'}>
                   <Button
                     variant={
                       home
@@ -210,21 +246,16 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
                               ? 'primary'
                               : 'light'
                     }
-                    righticon={true}
-                    fullwidth={isMobile ? true : false}
+                    righticon
+                    fullwidth={isMobile}
                     locale={locale as 'en' | 'ar'}
-
-                    //   onClick={() => setIsMenuOpen(false)}
                   >
                     {ctaText}
                   </Button>
                 </Link>
               )}
               {secondaryButton && (
-                <Link
-                  href={secondaryButton[0]?.href || '/'}
-                  className="inline-block"
-                >
+                <Link href={secondaryButton[0]?.href || '/'}>
                   <Button
                     variant={secondaryButton[0]?.variant || 'ghost'}
                     righticon={secondaryButton[0]?.righticon}
@@ -235,31 +266,25 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
                   </Button>
                 </Link>
               )}
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
-          {/* Image */}
+          {/* Image for desktop */}
           {!isMobile && (
-            <div className="flex-1">
+            <motion.div variants={fadeInUp} className="flex-1">
               <div
-                className={`aspect[396/351] md:aspect-[654/580] ${isMainImage ? 'rounded-b-0' : 'rounded-b-[40px] rounded-t-[40px]'} bg-cover bg-center w-[396px] md:h-[580px] h-[351px] md:w-[654px]`}
+                className={`aspect[396/351] md:aspect-[654/580] ${
+                  isMainImage
+                    ? 'rounded-b-0'
+                    : 'rounded-b-[40px] rounded-t-[40px]'
+                } bg-cover bg-center w-[396px] md:h-[580px] h-[351px] md:w-[654px]`}
                 style={{
                   backgroundImage: `url('${process.env.NEXT_PUBLIC_API_BASE_URL}${image?.url}')`,
                 }}
               />
-            </div>
+            </motion.div>
           )}
-          {isMobile && !isNotHome && (
-            <div className="flex-1">
-              <div
-                className="aspect[396/351] md:aspect-[606/646] rounded-[40px] bg-cover bg-center w-[396px] md:h-[646px] h-[351px] md:w-[606px]"
-                style={{
-                  backgroundImage: `url('${process.env.NEXT_PUBLIC_API_BASE_URL}${image?.url}')`,
-                }}
-              />
-            </div>
-          )}
-        </div>
+        </motion.div>
       </div>
     </section>
   )

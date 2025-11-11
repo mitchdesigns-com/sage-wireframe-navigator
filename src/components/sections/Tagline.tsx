@@ -1,4 +1,7 @@
+'use client'
+import { motion, useAnimation } from 'framer-motion'
 import React from 'react'
+import { useInView } from 'react-intersection-observer'
 
 interface TaglineProps {
   text?: string
@@ -13,7 +16,17 @@ const Tagline: React.FC<TaglineProps> = ({
   taglineColor,
   category,
 }) => {
+  // Framer Motion animation setup
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.5 })
+  const controls = useAnimation()
+
+  React.useEffect(() => {
+    if (inView) controls.start('visible')
+  }, [controls, inView])
+
+  // Early return AFTER hooks
   if (!text) return null
+
   const categoryClasses =
     category === 'individuals'
       ? 'bg-[#6CBEB8] text-[#F0F8F8]'
@@ -33,22 +46,36 @@ const Tagline: React.FC<TaglineProps> = ({
             : 'bg-Primary-Spring text-Primary-Black'
 
   const finalClasses = taglineColor ? taglineClasses : categoryClasses
+
+  const variants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: 'easeOut' },
+    },
+  }
+
   return (
-    <div
+    <motion.div
+      ref={ref}
+      initial="hidden"
+      animate={controls}
+      variants={variants}
       className={`flex flex-col justify-center md:justify-start pb-1 w-full ${className || 'items-start'}`}
     >
       <div className="flex h-[34.788px] items-center justify-center">
         <div className="transform rotate-[-6deg]">
-          <div className={`${finalClasses} px-1.5 py-0 rounded-[6px] `}>
+          <div className={`${finalClasses} px-1.5 py-0 rounded-[6px]`}>
             <div
-              className={` font-aeonik-medium  text-xs md:text-base text-center leading-[1.5] text-nowrap capitalize`}
+              className={`font-aeonik-medium text-xs md:text-base text-center leading-[1.5] text-nowrap capitalize`}
             >
               {text}
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   )
 }
 

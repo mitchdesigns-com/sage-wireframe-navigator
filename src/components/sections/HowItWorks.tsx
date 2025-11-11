@@ -1,6 +1,10 @@
 'use client'
+
 import Button from '@/components/ui/Button'
 import Tagline from './Tagline'
+import { motion, useAnimation } from 'framer-motion'
+import { useInView } from 'react-intersection-observer'
+import { useEffect } from 'react'
 
 interface HowItWorksStep {
   id: number
@@ -22,15 +26,49 @@ export default function HowItWorks({
   steps: HowItWorksStep[]
   locale: 'en' | 'ar'
 }) {
+  // Observe section visibility
+  const [sectionRef, inView] = useInView({ threshold: 0.3, triggerOnce: true })
+  const controls = useAnimation()
+
+  useEffect(() => {
+    if (inView) controls.start('visible')
+  }, [inView, controls])
+
+  // Animation variants
+  const fadeUpParent = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.5, // delay between each step animation
+      },
+    },
+  }
+
+  const fadeUpChild = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.7, ease: 'easeOut' },
+    },
+  }
+
   return (
-    <section className="py-11 md:py-25 bg-Secondary-Light-Scrub overflow-visible">
+    <section
+      ref={sectionRef}
+      className="py-11 md:py-25 bg-Secondary-Light-Scrub overflow-visible"
+    >
       <div className="max-w-[1392px] mx-auto px-4">
         <div className="grid grid-cols-1 items-start gap-20 md:grid-cols-2">
           {/* Left Content */}
-          <div className="md:sticky md:top-24 bg-Primary-Palm rounded-3xl">
+          <motion.div
+            variants={fadeUpChild}
+            initial="hidden"
+            animate={controls}
+            className="md:sticky md:top-24 bg-Primary-Palm rounded-3xl"
+          >
             <div className="p-10">
               <Tagline text={tagline} category="individuals" />
-
               <h2 className="mb-4 md:mb-6 text-[28px] font-bold leading-tight text-Primary-Spring md:text-[40px] tracking-[-0.48px]">
                 {title}
               </h2>
@@ -38,17 +76,23 @@ export default function HowItWorks({
                 {description}
               </p>
             </div>
-          </div>
+          </motion.div>
 
           {/* Right Content - Timeline Steps */}
-          <div className="relative">
+          <motion.div
+            variants={fadeUpParent}
+            initial="hidden"
+            animate={controls}
+            className="relative"
+          >
             {/* Connecting Line */}
             <div className="absolute bottom-0 left-3 top-0 -z-10 w-px bg-gray-900"></div>
 
-            <div className="">
+            <div>
               {steps.map((step, index) => (
-                <div
-                  key={step.number + index}
+                <motion.div
+                  key={step.id || index}
+                  variants={fadeUpChild}
                   className="relative flex items-start space-x-4"
                 >
                   <div className="lg:col-span-1 flex justify-center">
@@ -81,10 +125,10 @@ export default function HowItWorks({
                       </div>
                     )}
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

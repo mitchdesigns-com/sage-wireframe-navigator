@@ -6,7 +6,7 @@ import HowItWorks from '@/components/sections/HowItWorks'
 import Resources from '@/components/sections/Resources'
 import Services from '@/components/sections/Services'
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import CentersSection from '../../components/sections/CentersSection'
 import FeatureSection from '../../components/sections/FeatureSection'
 import GetInTouch from '../../components/sections/GetInTouch'
@@ -17,6 +17,8 @@ import { NewsArticle } from '../../types/newsEvents'
 import BlogCard from '../sections/BlogCard'
 import Tagline from '../sections/Tagline'
 import ButtonIcon from '../svg/ButtonIcon'
+import { useAnimation, motion } from 'framer-motion'
+import { useInView } from 'react-intersection-observer'
 
 export default function HomePage({
   data,
@@ -28,7 +30,6 @@ export default function HomePage({
   locale: 'en' | 'ar'
 }) {
   const [isMobile, setIsMobile] = useState(false)
-  console.log(data)
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768)
@@ -37,6 +38,22 @@ export default function HomePage({
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
   }, [])
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.5 })
+  const controls = useAnimation()
+
+  React.useEffect(() => {
+    if (inView) controls.start('visible')
+  }, [controls, inView])
+
+  const variants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.9, ease: 'easeOut' },
+    },
+  }
+
   return (
     <div className="min-h-screen">
       <HeroWithVideo {...data.HeroWithVideo[0]} locale={locale} />
@@ -71,7 +88,12 @@ export default function HomePage({
 
       <section className="max-w-[1392px] mx-auto px-4 py-8 md:py-25">
         <div className="flex items-end justify-between mb-15 flex-col md:flex-row">
-          <div className="">
+          <motion.div
+            ref={ref}
+            initial="hidden"
+            animate={controls}
+            variants={variants}
+          >
             <Tagline text="Our News" className="items-center md:items-start" />
 
             <h2 className="text-Primary-Black text-[28px] md:text-[48px] font-bold leading-tight pb-3 md:pb-6">
@@ -82,11 +104,17 @@ export default function HomePage({
               keeping you informed about advancements in healthcare and our
               services.{' '}
             </p>
-          </div>
+          </motion.div>
           {!isMobile && (
             <Link href={'/resources/news-events'}>
               {' '}
-              <div className="group flex gap-1.5 items-center justify-start rounded-[100px] pt-8 cursor-pointer">
+              <motion.div
+                ref={ref}
+                initial="hidden"
+                animate={controls}
+                variants={variants}
+                className="group flex gap-1.5 items-center justify-start rounded-[100px] pt-8 cursor-pointer"
+              >
                 {' '}
                 <div className="font-aeonik-bold text-primary-palm group-hover:text-Secondary-Dark-Palm text-lg leading-[1.5]">
                   Explore All News
@@ -102,7 +130,7 @@ export default function HomePage({
                     </div>
                   </div>
                 </div>
-              </div>{' '}
+              </motion.div>{' '}
             </Link>
           )}
         </div>

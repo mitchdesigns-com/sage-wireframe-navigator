@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import { motion } from 'framer-motion'
 import Button from '../ui/Button'
 import SectionHeader from '../ui/SectionHeader'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
@@ -32,6 +33,29 @@ interface ServicesProps {
   locale: 'en' | 'ar'
 }
 
+// Animation variants
+const containerVariants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.25,
+    },
+  },
+}
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 40 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: 'easeOut',
+    },
+  },
+}
+
 function ServiceCard({
   label,
   imageLabel,
@@ -50,7 +74,10 @@ function ServiceCard({
   const imageSrc = `${process.env.NEXT_PUBLIC_API_BASE_URL}${imageLabel?.url}`
 
   return (
-    <div className="flex-1 flex flex-col gap-3 items-center justify-start">
+    <motion.div
+      className="flex-1 flex flex-col gap-3 items-center justify-start"
+      variants={itemVariants}
+    >
       <div className="relative inline-grid place-items-start">
         <Image
           src={imageSrc}
@@ -93,7 +120,7 @@ function ServiceCard({
         </Button>
         {locale === 'ar' ? <ChevronLeft /> : <ChevronRight />}
       </div>
-    </div>
+    </motion.div>
   )
 }
 
@@ -107,17 +134,36 @@ export default function Services({
   locale,
 }: ServicesProps) {
   return (
-    <section className="bg-secondary-dark-palm px-4 md:px-[60px] py-8 md:py-20">
-      <div className="bg-secondary-light-scrub rounded-[40px] px-5 py-8 md:py-15 md:p-[60px] max-w-[1392px] mx-auto">
-        <SectionHeader
-          heading={heading}
-          description={description}
-          tagline={tagline}
-          home={true}
-        />
+    <motion.section
+      className="bg-secondary-dark-palm px-4 md:px-[60px] py-8 md:py-20"
+      // variants={containerVariants}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.5 }} // 👈 triggers when 50% of section is visible
+    >
+      <motion.div
+        className="bg-secondary-light-scrub rounded-[40px] px-5 py-8 md:py-15 md:p-[60px] max-w-[1392px] mx-auto"
+        variants={containerVariants}
+      >
+        {/* Header */}
+        <motion.div variants={itemVariants}>
+          <SectionHeader
+            heading={heading}
+            description={description}
+            tagline={tagline}
+            home={true}
+          />
+        </motion.div>
 
-        <div className="flex flex-col gap-16 items-start justify-start w-full mb-8">
-          <div className="flex gap-8 md:gap-12 items-start justify-start w-full flex-col md:flex-row">
+        {/* Services Grid */}
+        <motion.div
+          className="flex flex-col gap-16 items-start justify-start w-full mb-8"
+          variants={containerVariants}
+        >
+          <motion.div
+            className="flex gap-8 md:gap-12 items-start justify-start w-full flex-col md:flex-row"
+            variants={containerVariants}
+          >
             {SERVICES?.map((service) => (
               <ServiceCard
                 key={service.id}
@@ -129,10 +175,14 @@ export default function Services({
                 locale={locale}
               />
             ))}
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
-        <div className="flex justify-center w-full">
+        {/* CTA Button */}
+        <motion.div
+          className="flex justify-center w-full"
+          variants={itemVariants}
+        >
           <Button
             variant="primary"
             href={href}
@@ -142,8 +192,8 @@ export default function Services({
           >
             {cta}
           </Button>
-        </div>
-      </div>
-    </section>
+        </motion.div>
+      </motion.div>
+    </motion.section>
   )
 }

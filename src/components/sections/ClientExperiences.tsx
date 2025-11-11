@@ -9,6 +9,8 @@ import 'swiper/css/navigation'
 import { Navigation } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Testimonials } from '../../types/homePage'
+import { motion, useAnimation } from 'framer-motion'
+import { useInView } from 'react-intersection-observer'
 
 export default function ClientExperiences({
   title,
@@ -29,18 +31,48 @@ export default function ClientExperiences({
     setIsEnd(swiperInstance.isEnd)
   }
 
+  // Animation setup
+  const [ref, inView] = useInView({ threshold: 0.5, triggerOnce: true })
+  const controls = useAnimation()
+
+  const containerVariants = {
+    hidden: {},
+    visible: { transition: { staggerChildren: 0.2 } },
+  }
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.7, ease: 'easeOut' },
+    },
+  }
+
+  if (inView) controls.start('visible')
+
   return (
-    <section className="py-8 md:py-16 bg-gray-50 overflow-hidden">
+    <motion.section
+      ref={ref}
+      initial="hidden"
+      animate={controls}
+      variants={containerVariants}
+      className="py-8 md:py-16 bg-gray-50 overflow-hidden"
+    >
       <div className="max-w-[1392px] mx-auto">
-        <div className="text-center mb-8 md:mb-15 px-4">
+        <motion.div
+          variants={itemVariants}
+          className="text-center mb-8 md:mb-15 px-4"
+        >
           <h2 className="text-[28px] md:text-5xl font-bold text-[#000404] tracking-[-0.48px] mb-2">
             {title}
           </h2>
           <p className="text-base md:text-lg leading-relaxed text-[#000404]">
             {description}
           </p>
-        </div>
+        </motion.div>
       </div>
+
       <Swiper
         onSwiper={setSwiper}
         onSlideChange={handleSlideChange}
@@ -49,11 +81,7 @@ export default function ClientExperiences({
         slidesPerView="auto"
         centeredSlides={true}
         spaceBetween={16}
-        breakpoints={{
-          768: {
-            spaceBetween: 48,
-          },
-        }}
+        breakpoints={{ 768: { spaceBetween: 48 } }}
         className="!px-4 md:!px-8"
       >
         {testimonials.map((testimonial) => (
@@ -61,7 +89,8 @@ export default function ClientExperiences({
             key={testimonial.id}
             className="!w-[85vw] max-w-[324px] md:!w-[680px] md:max-w-none"
           >
-            <div
+            <motion.div
+              variants={itemVariants}
               className={`rounded-4xl ${testimonial.bg} p-8 h-[360px] md:h-[420px] flex flex-col justify-between`}
             >
               <blockquote
@@ -90,10 +119,11 @@ export default function ClientExperiences({
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </SwiperSlide>
         ))}
       </Swiper>
+
       {testimonials.length > 2 && (
         <div className="flex gap-4 mt-8 md:mt-12 justify-center">
           <button
@@ -128,6 +158,6 @@ export default function ClientExperiences({
           </button>
         </div>
       )}
-    </section>
+    </motion.section>
   )
 }
