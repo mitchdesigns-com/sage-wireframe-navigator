@@ -110,6 +110,7 @@ export interface HeroSinglePage {
   href: string
   breadcrumbItems: BreadcrumbItem[]
   bgImage: ImageData
+  ShareButtons: string
 }
 
 export interface NewsArticle {
@@ -125,6 +126,7 @@ export interface NewsArticle {
   bgImage: ImageData
   author: string
   date: string
+  ShareButtons: string
 }
 
 export interface NewsArticlesResponse {

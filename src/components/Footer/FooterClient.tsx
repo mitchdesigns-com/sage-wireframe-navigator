@@ -28,13 +28,35 @@ export default function FooterClient({ footerData }: FooterClientProps) {
 
   const handleNewsletterSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setIsSubmitting(true)
-    await new Promise((resolve) => setTimeout(resolve, 1000))
-    setEmail('')
-    setIsSubmitting(false)
-    alert('Successfully subscribed to updates!')
-  }
 
+    setIsSubmitting(true)
+
+    const payload = {
+      data: { email },
+    }
+
+    try {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/subscribe-to-updates
+
+`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        }
+      )
+
+      if (!res.ok) throw new Error('Failed to submit form')
+
+      await res.json()
+      setEmail('')
+    } catch (err) {
+      console.error(err)
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
   return (
     <footer className="bg-gradient-to-t from-[#013530] to-[#025850]">
       <div className="flex justify-center md:justify-between items-center pb-5 pt-11 md:pt-25 md:pb-8 max-w-[1392px] mx-auto px-4 md:px-0 flex-col md:flex-row">

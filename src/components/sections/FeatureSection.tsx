@@ -173,7 +173,7 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
                           className="object-cover"
                           priority
                           width={48}
-                          height={48}
+                          height={58}
                         />
                       </div>
                     )}

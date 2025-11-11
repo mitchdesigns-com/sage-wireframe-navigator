@@ -30,6 +30,7 @@
     "react-dom": "^19.0.0",
     "react-markdown": "^10.1.0",
     "react-phone-number-input": "^3.4.12",
+    "react-share": "^5.2.2",
     "swiper": "^11.2.10"
   },
   "devDependencies": {

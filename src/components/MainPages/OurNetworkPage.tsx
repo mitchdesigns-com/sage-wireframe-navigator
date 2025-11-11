@@ -15,11 +15,33 @@ export default function OurNetworkPage({ data }: { data: NetworkData }) {
 
   const handleNewsletterSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+
     setIsSubmitting(true)
-    await new Promise((resolve) => setTimeout(resolve, 1000))
-    setEmail('')
-    setIsSubmitting(false)
-    alert('Successfully subscribed to updates!')
+
+    const payload = {
+      data: { email },
+    }
+
+    try {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/trusted-partner-forms
+`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        }
+      )
+
+      if (!res.ok) throw new Error('Failed to submit form')
+
+      await res.json()
+      setEmail('')
+    } catch (err) {
+      console.error(err)
+    } finally {
+      setIsSubmitting(false)
+    }
   }
   return (
     <div className="min-h-screen">

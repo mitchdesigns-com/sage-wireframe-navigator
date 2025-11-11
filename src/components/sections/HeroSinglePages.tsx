@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { ChevronLeft } from 'lucide-react'
 import { useLocale } from 'next-intl'
+import ShareButtonsComponent from './ShareButtons'
 
 interface BreadcrumbItem {
   label: string
@@ -22,6 +23,7 @@ interface HeroProps {
   readTime?: string
   button?: string
   href: string
+  ShareButtons: string
 }
 
 const HeroSinglePages: React.FC<HeroProps> = ({
@@ -33,6 +35,7 @@ const HeroSinglePages: React.FC<HeroProps> = ({
   readTime,
   button,
   href,
+  ShareButtons,
 }) => {
   const locale = useLocale()
 
@@ -72,27 +75,34 @@ const HeroSinglePages: React.FC<HeroProps> = ({
               />
             </div>
           )}
-          <div className="space-x-12 pt-8 flex">
-            <div>
-              <h4 className="text-sm md:font-base text-white">Author</h4>
-              <p className="text-white font-medium text-xs md:font-base">
-                {author}
-              </p>
+          <div className="space-x-12 pt-8 flex justify-between items-start">
+            <div className="flex gap-12">
+              <div>
+                <h4 className="text-sm md:font-base text-white">Author</h4>
+                <p className="text-white font-medium text-xs md:font-base">
+                  {author}
+                </p>
+              </div>
+              <div>
+                <h4 className="text-sm md:font-base text-white">
+                  Published on
+                </h4>
+                <p className="text-white font-medium text-xs md:font-base">
+                  {date}
+                </p>
+              </div>
+              <div>
+                <h4 className="text-sm md:font-base text-white">
+                  Reading Duration
+                </h4>
+                <p className="text-white font-medium text-xs md:font-base">
+                  {readTime}
+                </p>
+              </div>
             </div>
-            <div>
-              <h4 className="text-sm md:font-base text-white">Published on</h4>
-              <p className="text-white font-medium text-xs md:font-base">
-                {date}
-              </p>
-            </div>
-            <div>
-              <h4 className="text-sm md:font-base text-white">
-                Reading Duration
-              </h4>
-              <p className="text-white font-medium text-xs md:font-base">
-                {readTime}
-              </p>
-            </div>
+            <ShareButtonsComponent
+              url={`${locale == 'en' ? '/en/' : '/'}${ShareButtons}`}
+            />
           </div>
         </div>
       </div>
