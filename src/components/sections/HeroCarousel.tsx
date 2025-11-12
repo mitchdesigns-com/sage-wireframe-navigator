@@ -30,7 +30,7 @@ const HeroCarousel: React.FC<HeroProps> = ({
       className={`md:pb-20 md:pt-10 py-10 bg-gradient-to-t from-[#013530] to-[#025850]`}
     >
       <div>
-        <div className="max-w-[1392px] mx-auto px-4 md:px-0">
+        <div className="max-w-[1392px] mx-auto  px-4">
           <div className="flex flex-col items-center">
             <div className="pb-8 md:pb-16">
               <Breadcrumb

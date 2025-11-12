@@ -111,7 +111,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ data }) => {
       <div
         className={`relative z-10 h-full flex flex-col  ${getAlignmentClass()}`}
       >
-        <div className="max-w-[1392px] w-full mx-auto py-20 md:py-16 px-4 md:px-0">
+        <div className="max-w-[1392px] w-full mx-auto py-20 md:py-16  px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

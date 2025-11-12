@@ -25,7 +25,7 @@ export default function NewsPage({ data }: NewsPageProps) {
     <div className="min-h-screen bg-white">
       <HeroPages {...newsEvents.HeroPages} />
       <section className="bg-Secondary-Dark-Palm">
-        <div className="px-4 md:px-0 mx-auto max-w-[1392px] py-8 md:py-28">
+        <div className="px-4  mx-auto max-w-[1392px] py-8 md:py-28">
           <div
             className={`flex items-center gap-8 md:gap-15 flex-col md:flex-row`}
           >
@@ -101,7 +101,7 @@ export default function NewsPage({ data }: NewsPageProps) {
             onChange={(val) => setCurrentTab(val as TabType)}
           /> */}
         </div>
-        <div className="max-w-[1392px] mx-auto px-4 md:px-0">
+        <div className="max-w-[1392px] mx-auto  px-4">
           <span className="text-Secondary-Dark-Palm text-base font-medium">
             News
           </span>
@@ -110,7 +110,7 @@ export default function NewsPage({ data }: NewsPageProps) {
             Stay updated with Sage's latest achievements and announcements.
           </p>
         </div>
-        <div className="max-w-[1392px] mx-auto py-8 md:py-20 px-4 md:px-0">
+        <div className="max-w-[1392px] mx-auto py-8 md:py-20  px-4">
           <div className="grid md:grid-cols-3 gap-8">
             {news.map((blog) => (
               <BlogCard

@@ -1,6 +1,10 @@
+'use client'
+
 import Link from 'next/link'
 import KeyboardArrowDown from '../svg/KeyboardArrowDown'
 import { useLocale } from 'next-intl'
+import { motion } from 'framer-motion'
+import { useInView } from 'react-intersection-observer'
 
 interface BreadcrumbItem {
   label: string
@@ -23,20 +27,56 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({
   heroWithImage,
 }) => {
   const locale = useLocale()
+
+  // Animation trigger setup
+  const { ref, inView } = useInView({
+    threshold: 0.5, // Trigger when 50% visible
+    triggerOnce: true,
+  })
+
+  const containerVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        staggerChildren: 0.15, // animate items one by one
+        duration: 0.6,
+        ease: 'easeOut',
+      },
+    },
+  }
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
+  }
+
   const defaultSeparator = (
     <KeyboardArrowDown
-      className={` w-4 h-4 ${locale === 'ar' ? 'rotate-90' : 'rotate-270'}`}
+      className={`w-4 h-4 ${locale === 'ar' ? 'rotate-90' : 'rotate-270'}`}
       color={heroWithImage ? '#025850' : '#ffffff'}
     />
   )
 
   return (
-    <nav aria-label="Breadcrumb" className={`flex items-center ${className}`}>
+    <motion.nav
+      ref={ref}
+      aria-label="Breadcrumb"
+      className={`flex items-center ${className}`}
+      variants={containerVariants}
+      initial="hidden"
+      animate={inView ? 'visible' : 'hidden'}
+    >
       {items.map((item, index) => {
         const isLast = index === items.length - 1
 
         return (
-          <div key={index} className="flex items-center">
+          <motion.div
+            key={index}
+            className="flex items-center"
+            variants={itemVariants}
+          >
             {item.href && !isLast ? (
               <Link
                 href={item.href}
@@ -65,10 +105,10 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({
                 {separator ?? defaultSeparator}
               </span>
             )}
-          </div>
+          </motion.div>
         )
       })}
-    </nav>
+    </motion.nav>
   )
 }
 

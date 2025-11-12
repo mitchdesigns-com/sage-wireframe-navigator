@@ -45,7 +45,7 @@ export default function Awards({
       variants={containerVariants}
       initial="hidden"
       animate={controls}
-      className="bg-Primary-Black content-stretch flex flex-col gap-8 md:gap-15 items-center justify-center md:py-42 py-8 relative size-full px-4 md:px-0"
+      className="bg-Primary-Black content-stretch flex flex-col gap-8 md:gap-15 items-center justify-center md:py-42 py-8 relative size-full  px-4"
     >
       {/* Title */}
       <motion.h3

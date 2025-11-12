@@ -34,7 +34,7 @@ const WebinarList: React.FC<WebinarListProps> = ({ webinars, events }) => {
 
   return (
     <div className="bg-Secondary-Light-Scrub">
-      <div className=" mx-auto max-w-[1280px] py-8 md:py-28 px-4 md:px-0">
+      <div className=" mx-auto max-w-[1280px] py-8 md:py-28  px-4">
         {webinars.news && (
           <div className="pb-15">
             <span className="text-Primary-Palm text-base font-medium">

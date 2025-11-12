@@ -26,7 +26,7 @@ export default function ContactPage({ data }: { data: ContactPageData }) {
       {/* Send Message Section */}
       <section className="py-8 md:py-16 bg-gradient-to-t from-[#013530] to-[#025850]">
         <div>
-          <div className="max-w-[1280px] mx-auto px-4 md:px-0">
+          <div className="max-w-[1280px] mx-auto  px-4">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-17">
               {/* Form Section */}
 
@@ -143,7 +143,7 @@ export default function ContactPage({ data }: { data: ContactPageData }) {
 
       {/* Contact Us Section */}
       <section className="py-8 md:py-28 bg-Secondary-Light-Scrub">
-        <div className=" mx-auto px-4 md:px-0 text-center">
+        <div className=" mx-auto  px-4 text-center">
           <div className="space-y-4">
             <h2 className="text-Primary-Black text-[28px] md:text-[48px] font-bold">
               {data.ContactData.title}
@@ -160,7 +160,7 @@ export default function ContactPage({ data }: { data: ContactPageData }) {
             />
           </div>
         </div>
-        <div className="max-w-[1392px] mx-auto w-full pt-8 md:pt-15 px-4 md:px-0">
+        <div className="max-w-[1392px] mx-auto w-full pt-8 md:pt-15  px-4">
           <div className="flex w-full gap-8 md:gap-12 justify-center items-start text-start flex-col md:flex-row">
             {data.ContactData.CardsList?.map((li, idx) => (
               <div

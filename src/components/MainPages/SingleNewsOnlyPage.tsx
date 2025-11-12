@@ -87,7 +87,7 @@ export default function SingleNewsOnlyPage({
               })}
             </div>
           )}
-          <div className="px-4 md:px-0">
+          <div className=" px-4">
             <div className="rounded-[40px] aspect-[396/263] md:aspect-[930/505] relative w-full my-8 md:my-12 ">
               <Image
                 src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${data[0].image.url}`}
@@ -170,7 +170,7 @@ export default function SingleNewsOnlyPage({
       </section>
 
       <section className="bg-Secondary-Scrub">
-        <div className="py-8 md:py-20 max-w-[1390px] mx-auto w-full px-4 md:px-0">
+        <div className="py-8 md:py-20 max-w-[1390px] mx-auto w-full  px-4">
           <div className="flex justify-between items-end w-full">
             <h4 className="text-2xl md:text-[32px] font-bold text-[#000404] ">
               {' '}

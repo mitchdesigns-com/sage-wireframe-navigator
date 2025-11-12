@@ -1,20 +1,20 @@
 'use client'
 
-import Image from 'next/image'
-import HeroWithImage from '@/components/sections/HeroWithImage'
-import WhyChooseSection from '@/components/sections/WhyChooseSection'
 import FeatureSection from '@/components/sections/FeatureSection'
 import GetInTouch from '@/components/sections/GetInTouch'
-import parse, { domToReact, DOMNode, Element } from 'html-react-parser' // Corrected import
+import HeroWithImage from '@/components/sections/HeroWithImage'
+import WhyChooseSection from '@/components/sections/WhyChooseSection'
+import parse, { DOMNode, domToReact, Element } from 'html-react-parser' // Corrected import
 import {
-  ServiceIndividualItem,
-  ServiceIndividualBlocks,
-  HeroWithImageBlock,
-  WhyChooseSectionBlock,
   DetailsSectionBlock,
   FeatureSectionBlock,
   GetInTouchBlock,
+  HeroWithImageBlock,
+  ServiceIndividualBlocks,
+  ServiceIndividualItem,
+  WhyChooseSectionBlock,
 } from '../../types/conciergeIndividual'
+import ServiceSection from '../sections/ServiceSection'
 
 type BusinessConciergeBlockPage =
   | (HeroWithImageBlock & { __component: 'blocks.hero-with-image' })
@@ -52,32 +52,7 @@ const BLOCKS: {
   ),
   'blocks.feature-section':
     FeatureSection as React.ComponentType<FeatureSectionBlock>,
-  'blocks.details-section': (props: DetailsSectionBlock) => (
-    <section className="py-8 md:py-28 bg-Primary-Palm">
-      <div className="max-w-[1392px] mx-auto space-y-6 md:space-y-20 px-4">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-20">
-          <div>
-            <h2 className="text-white text-[28px] md:text-[40px] font-bold leading-[2.75rem]">
-              {props.title}
-            </h2>
-          </div>
-          <div>
-            <p className="text-white text-base md:text-lg">
-              {props.description}
-            </p>
-          </div>
-        </div>
-        <div className="aspect-[1384/540] bg-center bg-cover bg-no-repeat rounded-3xl md:rounded-[40px] relative">
-          <Image
-            fill
-            src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${props.image.url}`}
-            alt={props.image.alternativeText || 'Culturally Sensitive Care'}
-            className="rounded-3xl md:rounded-[40px] object-cover"
-          />
-        </div>
-      </div>
-    </section>
-  ),
+  'blocks.details-section': ServiceSection,
   'blocks.get-in-touch': GetInTouch as React.ComponentType<GetInTouchBlock>,
 }
 

@@ -185,9 +185,9 @@ export default function ServicesPage({ data }: { data: ServicesPageData[] }) {
   return (
     <AnimatePresence mode="wait">
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -20 }}
+        exit={{ opacity: 0, y: 10 }}
         transition={{ duration: 0.5 }}
       >
         {heroBlock && (
@@ -196,7 +196,7 @@ export default function ServicesPage({ data }: { data: ServicesPageData[] }) {
             <motion.section
               id="services-nav"
               className="sticky top-0 z-40 bg-Primary-Palm pt-15 md:py-10 transition-all duration-300"
-              initial={{ opacity: 0, y: -20 }}
+              initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >

@@ -66,7 +66,7 @@ export default function SingleCaseStudyPage({
           <FeatureSection key={index} {...section} />
         ))}
       </section>{' '}
-      <section className=" bg-[#E6EEED] flex items-start py-8 md:py-28 flex-col px-4 md:px-0">
+      <section className=" bg-[#E6EEED] flex items-start py-8 md:py-28 flex-col  px-4">
         <div className="max-w-[1280px] mx-auto w-full gap-8 md:gap-20 flex items-center flex-col md:flex-row">
           <div>
             <p className="text-base text-Primary-Palm font-medium mb-1">
@@ -170,7 +170,7 @@ export default function SingleCaseStudyPage({
         </div>
       </section>
       <div className="bg-Secondary-Dark-Palm text-white">
-        <div className="py-8 md:py-25 max-w-[1392px] mx-auto px-4 md:px-0">
+        <div className="py-8 md:py-25 max-w-[1392px] mx-auto  px-4">
           <div className="text-center pb-8 md:pb-20">
             <h3 className=" font-bold text-[28px] md:text-[48px] leading-[1.2] tracking-[-0.48px] pb-4">
               {data[0].GallerySection.title}
@@ -228,7 +228,7 @@ export default function SingleCaseStudyPage({
         </div>
       </div>
       <section className="bg-Secondary-Light-Scrub">
-        <div className="py-8 md:py-20 max-w-[1390px] mx-auto w-full px-4 md:px-0">
+        <div className="py-8 md:py-20 max-w-[1390px] mx-auto w-full  px-4">
           <div className="flex justify-between items-end w-full">
             <h4 className="text-2xl md:text-[32px] font-bold text-[#000404] ">
               {' '}

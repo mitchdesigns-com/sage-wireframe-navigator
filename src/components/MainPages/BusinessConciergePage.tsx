@@ -10,19 +10,110 @@ import GetInTouch from '@/components/sections/GetInTouch'
 import {
   BusinessConciergePageData,
   HeroWithImageBlock,
-  ConciergeHelpBlock,
+  ConciergeHelpBlock as ConciergeHelpBlockType, // Renamed to avoid conflict
   WhyChooseSectionBlock,
   ConciergeHelpItem,
   FeatureSectionBlock,
   DetailsSectionBlock,
   GetInTouchBlock,
 } from '../../types/businessesConcierge'
+import { motion, useAnimation } from 'framer-motion'
+import { useInView } from 'react-intersection-observer'
+import { useEffect } from 'react'
+
+// Define the props type for the new component
+type ConciergeHelpProps = ConciergeHelpBlockType & {
+  __component: 'blocks.concierge-help'
+}
+
+const ConciergeHelpBlockComponent: React.FC<ConciergeHelpProps> = (props) => {
+  const controls = useAnimation()
+  const [ref, inView] = useInView({ threshold: 0.5, triggerOnce: true })
+
+  useEffect(() => {
+    if (inView) controls.start('visible')
+  }, [controls, inView])
+
+  const containerVariants = {
+    hidden: {},
+    visible: { transition: { staggerChildren: 0.2 } },
+  }
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.7, ease: 'easeOut' },
+    },
+  }
+
+  return (
+    <section ref={ref} className="py-8 md:py-25 bg-Secondary-Light-Scrub">
+      {/* Title + Description */}
+      <motion.div
+        initial="hidden"
+        animate={controls}
+        variants={containerVariants}
+        className="max-w-[764px] mx-auto text-center space-y-4  px-4"
+      >
+        <motion.h2
+          variants={itemVariants}
+          className="text-Primary-Black heading-lg text-nowrap"
+        >
+          {props.title}
+        </motion.h2>
+        <motion.p
+          variants={itemVariants}
+          className="text-Secondary-Text text-sm md:text-base"
+        >
+          {props.description}
+        </motion.p>
+      </motion.div>
+
+      {/* Items */}
+      <motion.div
+        initial="hidden"
+        animate={controls}
+        variants={containerVariants}
+        className="max-w-[1392px] mx-auto w-full pt-8 md:pt-20  px-4"
+      >
+        <div className="flex mb-8 gap-12 justify-center items-center text-center flex-wrap">
+          {/* Removed unused 'index' variable */}
+          {props.list.map((li: ConciergeHelpItem) => (
+            <motion.div
+              key={li.id}
+              variants={itemVariants}
+              className="flex items-center gap-2 flex-col max-w-[432px]"
+            >
+              <div className="flex items-center justify-center relative w-12 h-12">
+                <Image
+                  src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${li.icon.url}`}
+                  alt={li.icon.alternativeText || 'icon'}
+                  className="object-cover"
+                  priority
+                  fill
+                />
+              </div>
+              <h5 className="text-[#000404] text-[20px] md:text-2xl font-bold">
+                {li.title}
+              </h5>
+              <span className="text-Secondary-Text text-sm md:text-base leading-[1.5] flex-1">
+                {li.description}
+              </span>
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
+    </section>
+  )
+}
 
 type BusinessConciergeBlockPage =
   | (HeroWithImageBlock & { __component: 'blocks.hero-with-image' })
   | (WhyChooseSectionBlock & { __component: 'blocks.why-choose-section' })
   | (FeatureSectionBlock & { __component: 'blocks.feature-section' })
-  | (ConciergeHelpBlock & { __component: 'blocks.concierge-help' })
+  | (ConciergeHelpBlockType & { __component: 'blocks.concierge-help' })
   | (DetailsSectionBlock & { __component: 'blocks.details-section' })
   | (GetInTouchBlock & { __component: 'blocks.get-in-touch' })
 
@@ -56,44 +147,7 @@ const BLOCKS: {
     />
   ),
   'blocks.feature-section': FeatureSection,
-  'blocks.concierge-help': (props) => (
-    <section className="py-8 md:py-25 bg-Secondary-Light-Scrub">
-      <div className="max-w-[764px] mx-auto text-center space-y-4 px-4 md:px-0">
-        <h2 className="text-Primary-Black heading-lg text-nowrap">
-          {props.title}
-        </h2>
-        <p className="text-Secondary-Text text-sm md:text-base">
-          {props.description}
-        </p>
-      </div>
-      <div className="max-w-[1392px] mx-auto w-full pt-8 md:pt-20 px-4 md:px-0">
-        <div className="flex mb-8 gap-12 justify-center items-center text-center flex-wrap">
-          {props.list.map((li: ConciergeHelpItem) => (
-            <div
-              key={li.id}
-              className="flex items-center gap-2 flex-col max-w-[432px]"
-            >
-              <div className="flex items-center justify-center relative w-12 h-12">
-                <Image
-                  src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${li.icon.url}`}
-                  alt={li.icon.alternativeText || 'icon'}
-                  className="object-cover"
-                  priority
-                  fill
-                />
-              </div>
-              <h5 className="text-[#000404] text-[20px] md:text-2xl font-bold">
-                {li.title}
-              </h5>
-              <span className="text-Secondary-Text text-sm md:text-base leading-[1.5] flex-1">
-                {li.description}
-              </span>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  ),
+  'blocks.concierge-help': ConciergeHelpBlockComponent, // Use the new component
   'blocks.details-section': ServiceSection,
   'blocks.get-in-touch': GetInTouch,
 }

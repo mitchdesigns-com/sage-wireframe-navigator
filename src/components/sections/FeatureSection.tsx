@@ -254,11 +254,11 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
                   </Button>
                 </Link>
               )}
-              {secondaryButton && (
+              {secondaryButton && secondaryButton?.length > 0 && (
                 <Link href={secondaryButton[0]?.href || '/'}>
                   <Button
                     variant={secondaryButton[0]?.variant || 'ghost'}
-                    righticon={secondaryButton[0]?.righticon}
+                    righticon={secondaryButton[0]?.righticon || true}
                     fullwidth
                     locale={locale as 'en' | 'ar'}
                   >

@@ -83,7 +83,7 @@ export default async function PrivacyPage({ data }: PrivacyPageProps) {
       </section>
 
       <section>
-        <div className="my-8 md:my-[60px] max-w-[1432px] mx-auto px-4 md:px-0 text-dark-80">
+        <div className="my-8 md:my-[60px] max-w-[1432px] mx-auto  px-4 text-dark-80">
           {data?.content?.map((item, index) => {
             if (item.type === 'paragraph') {
               return (

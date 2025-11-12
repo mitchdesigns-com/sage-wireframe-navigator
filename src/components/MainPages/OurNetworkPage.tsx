@@ -48,7 +48,7 @@ export default function OurNetworkPage({ data }: { data: NetworkData }) {
       <HeroPages {...data.HeroPages} />
       <FeatureSection {...data.FeatureSection[0]} />
       <section className="bg-Secondary-Scrub">
-        <div className="px-4 md:px-0 mx-auto max-w-[1392px] py-8 md:py-28">
+        <div className="px-4 mx-auto max-w-[1392px] py-8 md:py-28">
           <div
             className={`flex items-center gap-8 md:gap-15 md:flex-row-reverse flex-col`}
           >
@@ -93,7 +93,7 @@ export default function OurNetworkPage({ data }: { data: NetworkData }) {
         <CentersSection key={index} {...section} />
       ))}
       <section className="bg-Primary-Scrub">
-        <div className=" mx-auto max-w-[1392px] py-8 md:py-28 w-full px-4 md:px-0">
+        <div className=" mx-auto max-w-[1392px] py-8 md:py-28 w-full  px-4">
           <div
             className={`flex items-center gap-8 md:gap-20 flex-col md:flex-row `}
           >
@@ -147,7 +147,7 @@ export default function OurNetworkPage({ data }: { data: NetworkData }) {
         </div>
       </section>
       <section className="bg-Secondary-Scrub">
-        <div className="px-4 md:px-0 mx-auto max-w-[1392px] py-8 md:py-28">
+        <div className="px-4 mx-auto max-w-[1392px] py-8 md:py-28">
           <div
             className={`flex items-start gap-8 md:gap-15 flex-col md:flex-row`}
           >

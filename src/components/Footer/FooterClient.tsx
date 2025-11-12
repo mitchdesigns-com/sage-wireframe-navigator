@@ -76,7 +76,7 @@ export default function FooterClient({ footerData }: FooterClientProps) {
       variants={variants}
       className="bg-gradient-to-t from-[#013530] to-[#025850]"
     >
-      <div className="flex justify-center md:justify-between items-center pb-5 pt-11 md:pt-25 md:pb-8 max-w-[1392px] mx-auto px-4 md:px-0 flex-col md:flex-row">
+      <div className="flex justify-center md:justify-between items-center pb-5 pt-11 md:pt-25 md:pb-8 max-w-[1392px] mx-auto px-4  flex-col md:flex-row">
         {logo && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -141,7 +141,7 @@ export default function FooterClient({ footerData }: FooterClientProps) {
         initial="hidden"
         animate={inView ? 'visible' : 'hidden'}
         variants={variants}
-        className="flex justify-between px-4 md:px-0"
+        className="flex justify-between px-4 "
       >
         <motion.div
           className="hidden md:grid grid-cols-6 gap-8 flex-1 max-w-[1392px] mx-auto bg-white py-8 px-4 md:p-8 rounded-4xl"
@@ -209,7 +209,7 @@ export default function FooterClient({ footerData }: FooterClientProps) {
         initial={{ opacity: 0, y: 20 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.6, delay: 0.4 }}
-        className="gap-4 items-center justify-center relative hidden md:grid grid-cols-3 md:grid-cols-6 w-full py-5 md:py-8 max-w-[1392px] mx-auto px-4 md:px-0"
+        className="gap-4 items-center justify-center relative hidden md:grid grid-cols-3 md:grid-cols-6 w-full py-5 md:py-8 max-w-[1392px] mx-auto px-4 "
       >
         {awards.map((award, idx) => (
           <div

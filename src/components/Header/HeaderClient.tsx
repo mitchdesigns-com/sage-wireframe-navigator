@@ -81,7 +81,7 @@ export default function HeaderClient({ ResourceData }: HeaderClientProps) {
     >
       <HeaderTopBanner />
       <motion.div
-        className="box-border relative flex justify-between items-center mx-auto py-[14px] md:py-[22px] w-full max-w-[1392px] overflow-clip shrink-0"
+        className="box-border relative flex justify-between items-center mx-auto py-[14px] md:py-[22px] w-full max-w-[1392px] overflow-clip shrink-0 px-4"
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.3 }}

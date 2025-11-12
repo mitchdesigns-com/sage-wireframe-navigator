@@ -92,7 +92,7 @@ export default function AboutPage({ data }: { data: AboutPageData }) {
       </section>
       {/* Video Section */}
       <section className="bg-Primary-Palm">
-        <div className="max-w-[1392px] mx-auto w-full relative py-8 px-4 md:px-0 md:py-25">
+        <div className="max-w-[1392px] mx-auto w-full relative py-8  px-4 md:py-25">
           <video
             src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${data.videoSection.video.url}`}
             className="w-full rounded-[40px] "
@@ -117,7 +117,7 @@ export default function AboutPage({ data }: { data: AboutPageData }) {
       </section>
       {/* Mission Section */}
       <section className=" bg-Primary-Palm">
-        <div className="max-w-[1390px] mx-auto py-8 md:py-47 px-4 md:px-0">
+        <div className="max-w-[1390px] mx-auto py-8 md:py-47  px-4">
           <div className="w-full md:min-w-[768px] mx-auto text-center  flex flex-col items-center justify-center">
             <div className="w-full md:max-w-[980px]">
               {' '}
@@ -143,7 +143,7 @@ export default function AboutPage({ data }: { data: AboutPageData }) {
       </section>
       {/* Values Section */}
       <section className="py-8 md:py-28 bg-Secondary-Light-Scrub">
-        <div className="w-full md:max-w-[616px] mx-auto px-4 md:px-0">
+        <div className="w-full md:max-w-[616px] mx-auto  px-4">
           <div className=" mx-auto  text-center">
             <Tagline
               text={data.ValuesSection.tagline}
@@ -159,7 +159,7 @@ export default function AboutPage({ data }: { data: AboutPageData }) {
             </div>
           </div>
         </div>
-        <div className="max-w-[1392px] mx-auto w-full pt-8 md:pt-15  px-4 md:px-0">
+        <div className="max-w-[1392px] mx-auto w-full pt-8 md:pt-15   px-4">
           <div className="flex gap-8 md:gap-15 justify-center items-start text-start flex-col md:flex-row">
             {data.ValuesSection.CardsList?.map((li, idx) => (
               <div

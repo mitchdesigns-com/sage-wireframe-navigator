@@ -17,7 +17,7 @@ export default function CareersPage({
         <FeatureSection key={index} {...section} />
       ))}
       <section className="bg-Secondary-Light-Scrub">
-        <div className=" mx-auto max-w-[1392px] py-8 md:py-25 px-4 md:px-0">
+        <div className=" mx-auto max-w-[1392px] py-8 md:py-25  px-4">
           <h3 className="heading-lg pb-3 md:pb-6">{data.jobOpenings.title}</h3>
           <p className="text-Secondary-Text text-base md:text-lg max-w-[768px]">
             {data.jobOpenings.description}

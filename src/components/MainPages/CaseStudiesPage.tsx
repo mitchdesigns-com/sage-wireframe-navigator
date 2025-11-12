@@ -39,7 +39,7 @@ export default function CaseStudiesPage({
     <div className="min-h-screen ">
       <HeroPages {...data.HeroPages} />
       <section className="py-8 md:py-20 bg-Secondary-Light-Scrub">
-        <div className="max-w-[1392px] mx-auto space-y-8 md:space-y-20 px-4 md:px-0">
+        <div className="max-w-[1392px] mx-auto space-y-8 md:space-y-20  px-4">
           <div className="max-w-[768px] mx-auto ">
             <ToggleButton
               options={data.ToggleButton.options}

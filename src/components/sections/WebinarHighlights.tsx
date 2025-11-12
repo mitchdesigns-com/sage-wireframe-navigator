@@ -22,7 +22,7 @@ export default function WebinarHighlights({
 }: WebinarHighlightsProps) {
   return (
     <div className="bg-Secondary-Scrub">
-      <div className="mx-auto max-w-[1392px] py-8 md:py-28 px-4 md:px-0">
+      <div className="mx-auto max-w-[1392px] py-8 md:py-28  px-4">
         <h2 className="text-[32px] md:text-[40px] font-bold text-center pb-8 md:pb-20">
           {title}
         </h2>

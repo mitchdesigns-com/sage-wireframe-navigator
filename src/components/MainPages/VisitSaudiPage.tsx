@@ -31,7 +31,7 @@ export default function VisitSaudiPage({
         <FeatureSection key={index} {...section} />
       ))}
       <section className="py-8 md:py-28 bg-Secondary-Light-Scrub">
-        <div className="w-full md:max-w-[764px] mx-auto px-4 md:px-0">
+        <div className="w-full md:max-w-[764px] mx-auto  px-4">
           <div className=" mx-auto  text-center">
             <div className="space-y-4">
               <h2 className="text-Primary-Black text-[26px] md:text-[40px] font-bold">
@@ -40,7 +40,7 @@ export default function VisitSaudiPage({
             </div>
           </div>
         </div>
-        <div className="max-w-[1392px] mx-auto w-full pt-8 md:pt-15 px-4 md:px-0">
+        <div className="max-w-[1392px] mx-auto w-full pt-8 md:pt-15  px-4">
           <div className="flex flex-col md:flex-row gap-8 md:gap-15 justify-center items-start text-start">
             {data.ChangingColorsCards.CardsList?.map((li, idx) => (
               <div
@@ -113,7 +113,7 @@ export default function VisitSaudiPage({
             </div>{' '}
           </Link>
         </div>{' '}
-        <div className=" max-w-[1392px] mx-auto px-4 md:px-0">
+        <div className=" max-w-[1392px] mx-auto  px-4">
           <div className="grid md:grid-cols-3 gap-x-12 gap-y-8 md:gap-y-16">
             {blogs.map((blog) => (
               <BlogCard

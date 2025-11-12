@@ -179,7 +179,7 @@
 
 //       {/* Footer */}
 //       <footer className="bg-gradient-to-t from-[#013530] to-[#025850]">
-//         <div className="flex justify-center md:justify-between items-center pb-5 pt-11 md:pt-25 md:pb-11 max-w-[1392px] mx-auto px-4 md:px-0 flex-col md:flex-row">
+//         <div className="flex justify-center md:justify-between items-center pb-5 pt-11 md:pt-25 md:pb-11 max-w-[1392px] mx-auto  px-4 flex-col md:flex-row">
 //           {' '}
 //           <div className="w-[269px] md:w-[373px] h-[128px] md:h-[178px] relative ">
 //             <Image
@@ -232,7 +232,7 @@
 //             </div>
 //           </section>
 //         </div>
-//         <div className="flex justify-between px-4 md:px-0">
+//         <div className="flex justify-between  px-4">
 //           {/* Logo */}
 
 //           {/* Footer Links */}
@@ -454,7 +454,7 @@
 //             ))}
 //           </Swiper>
 //         </div> */}
-//         <div className="gap-4 items-center justify-center relative hidden md:grid grid-cols-3 md:grid-cols-6 w-full py-5 md:py-[44px] max-w-[1392px] mx-auto px-4 md:px-0">
+//         <div className="gap-4 items-center justify-center relative hidden md:grid grid-cols-3 md:grid-cols-6 w-full py-5 md:py-[44px] max-w-[1392px] mx-auto  px-4">
 //           {awards.map((award, idx) => (
 //             <div
 //               key={idx}

@@ -58,7 +58,7 @@ export default function JobDetailsPage({ data }: { data: CareerItem }) {
           </div>
         </div>
       </div>{' '}
-      <div className="max-w-[768px] mx-auto py-8 md:py-15 px-4 md:px-0">
+      <div className="max-w-[768px] mx-auto py-8 md:py-15  px-4">
         {' '}
         {data.content.map((block, index) => {
           switch (block.type) {

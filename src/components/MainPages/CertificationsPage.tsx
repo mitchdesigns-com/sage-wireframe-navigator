@@ -66,7 +66,7 @@ export default function CertificationsPage({ data }: CertificationsPageProps) {
 
               {certificates.length > 0 && (
                 <section className="py-8 md:py-20 bg-Secondary-Light-Scrub">
-                  <div className="max-w-[1392px] mx-auto space-y-8 md:space-y-20 px-4 md:px-0">
+                  <div className="max-w-[1392px] mx-auto space-y-8 md:space-y-20  px-4">
                     <div className="grid md:grid-cols-3 gap-x-12 gap-y-8 md:gap-y-20">
                       {certificates.map((certificate) => (
                         <CertificateCard
