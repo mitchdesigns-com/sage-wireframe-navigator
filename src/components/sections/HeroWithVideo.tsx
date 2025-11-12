@@ -118,7 +118,7 @@ const HeroWithVideo: React.FC<HeroProps> = ({
             initial="hidden"
             animate="show"
           >
-            <div className="relative rounded-xl">
+            <div className="relative rounded-xl h-[80vh]">
               {video?.url && (
                 <VideoPlayer
                   video={`${process.env.NEXT_PUBLIC_API_BASE_URL}${video?.url}`}

@@ -152,7 +152,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ data }) => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
-                className="text-base md:text-[18px] max-w-[396px] "
+                className="text-base md:text-[18px]  "
                 dangerouslySetInnerHTML={{ __html: description }}
               />
             )}

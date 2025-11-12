@@ -1,11 +1,12 @@
 'use client'
 
+import React, { useState } from 'react'
+import { Plus } from 'lucide-react'
+import { useLocale } from 'next-intl'
+import { motion, AnimatePresence } from 'framer-motion'
 import GetInTouch from '@/components/sections/GetInTouch'
 import HeroPages from '@/components/sections/HeroPages'
 import ToggleButton from '@/components/sections/ToggleButton'
-import { Plus } from 'lucide-react'
-import { useLocale } from 'next-intl'
-import React, { useState } from 'react'
 
 type FaqCategory = string
 
@@ -102,9 +103,7 @@ export default function FAQsPage({ data }: { data: PageData[] }) {
   const blocks = page?.blocks
   const resources = page?.BlocksResources?.[0]
 
-  if (!page || !blocks || blocks.length === 0) {
-    return null
-  }
+  if (!page || !blocks || blocks.length === 0) return null
 
   const options = resources?.options || []
 
@@ -118,34 +117,53 @@ export default function FAQsPage({ data }: { data: PageData[] }) {
       ? faqData
       : faqData.filter((faq) => faq.category === currentTab)
 
+  // Framer Motion variants
+  const faqVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+  }
+
+  const answerVariants = {
+    hidden: { height: 0, opacity: 0 },
+    visible: { height: 'auto', opacity: 1, transition: { duration: 0.5 } },
+  }
+
   return (
     <div className="min-h-screen bg-white">
       {blocks.map((block) => {
         const Component = BLOCKS[block.__component]
-        if (Component) {
-          // The 'block' prop is now fully typed.
-          return <Component key={block.id} {...block} />
-        }
+        if (Component) return <Component key={block.id} {...block} />
 
-        // Check for the specific block type to render it.
         if (block.__component === 'blocks.faq-section') {
           return (
             <section
               key={block.id}
               className="py-8 md:py-20 bg-Secondary-Light-Scrub"
             >
-              <div className="max-w-[1392px] mx-auto  px-4">
+              <div className="max-w-[1392px] mx-auto px-4">
                 <div className="max-w-[768px] mx-auto space-y-8 md:space-y-20">
                   <ToggleButton
                     options={options}
                     selectedValue={currentTab}
                     onChange={(val: FaqCategory) => setCurrentTab(val)}
                   />
-                  <div className="border-0">
+
+                  <div className="border-0 space-y-4">
                     {filteredFaqs.map((faq, index) => (
-                      <div key={faq.id} className="border-b border-[#D2D2D2]">
+                      <motion.div
+                        key={faq.id}
+                        className="border-b border-[#D2D2D2] overflow-hidden"
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, amount: 0.5 }}
+                        variants={faqVariants}
+                      >
                         <button
-                          className={`w-full py-5 flex items-center justify-between gap-6 text-left transition-colors cursor-pointer ${locale === 'ar' ? 'flex-row-reverse text-right' : 'text-left'}`}
+                          className={`w-full py-5 flex items-center justify-between gap-6 text-left transition-colors cursor-pointer ${
+                            locale === 'ar'
+                              ? 'flex-row-reverse text-right'
+                              : 'text-left'
+                          }`}
                           onClick={() =>
                             setOpenFaq(openFaq === index ? -1 : index)
                           }
@@ -157,22 +175,32 @@ export default function FAQsPage({ data }: { data: PageData[] }) {
                           >
                             {faq.question}
                           </h3>
-                          <div
-                            className={`w-8 h-8 transition-transform ${
-                              openFaq === index ? 'rotate-45' : ''
-                            }`}
+                          <motion.div
+                            animate={{ rotate: openFaq === index ? 45 : 0 }}
+                            transition={{ duration: 0.3 }}
+                            className="w-8 h-8"
                           >
                             <Plus size={32} className="text-black" />
-                          </div>
+                          </motion.div>
                         </button>
-                        {openFaq === index && (
-                          <div className="pb-6">
-                            <p className="text-black text-sm md:text-base leading-[1.5]">
-                              {faq.answer}
-                            </p>
-                          </div>
-                        )}
-                      </div>
+
+                        <AnimatePresence initial={false}>
+                          {openFaq === index && (
+                            <motion.div
+                              key="content"
+                              variants={answerVariants}
+                              initial="hidden"
+                              animate="visible"
+                              exit="hidden"
+                              className="pb-6"
+                            >
+                              <p className="text-black text-sm md:text-base leading-[1.5]">
+                                {faq.answer}
+                              </p>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </motion.div>
                     ))}
                   </div>
                 </div>

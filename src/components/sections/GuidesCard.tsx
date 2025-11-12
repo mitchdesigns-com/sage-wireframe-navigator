@@ -3,6 +3,9 @@
 import Image from 'next/image'
 import DownloadIcon from '../svg/DownloadIcon'
 import Button from '../ui/Button'
+import { motion, useAnimation } from 'framer-motion'
+import { useInView } from 'react-intersection-observer'
+import { useEffect } from 'react'
 
 export interface Guide {
   id: number
@@ -24,8 +27,30 @@ interface GuidesCardProps {
 }
 
 export default function GuidesCard({ guide }: GuidesCardProps) {
+  const controls = useAnimation()
+  const [ref, inView] = useInView({ threshold: 0.3, triggerOnce: true })
+
+  useEffect(() => {
+    if (inView) controls.start('visible')
+  }, [controls, inView])
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.7, ease: 'easeOut' },
+    },
+  }
+
   return (
-    <div key={guide.id} className="flex flex-col bg-white rounded-4xl">
+    <motion.div
+      ref={ref}
+      variants={cardVariants}
+      initial="hidden"
+      animate={controls}
+      className="flex flex-col bg-white rounded-4xl w-full overflow-x-hidden"
+    >
       <div className="h-[293px] w-full relative rounded-t-4xl overflow-hidden ">
         <Image
           src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${guide.image.url}`}
@@ -36,12 +61,17 @@ export default function GuidesCard({ guide }: GuidesCardProps) {
       </div>
       <div className="p-6">
         <div className="flex gap-4 items-center">
-          {' '}
           <span
-            className={`text-xs md:text-sm px-2 py-1 rounded-[4px] ${guide.category === 'individuals' ? 'bg-Primary-Scrub text-Secondary-Light-Scrub' : guide.category === 'businesses' ? 'bg-Primary-Spring text-Secondary-Dark-Palm' : 'bg-Dark-Scrub text-white'} font-medium`}
+            className={`text-xs md:text-sm px-2 py-1 rounded-[4px] ${
+              guide.category === 'individuals'
+                ? 'bg-Primary-Scrub text-Secondary-Light-Scrub'
+                : guide.category === 'businesses'
+                  ? 'bg-Primary-Spring text-Secondary-Dark-Palm'
+                  : 'bg-Dark-Scrub text-white'
+            } font-medium`}
           >
             {guide.category}
-          </span>{' '}
+          </span>
           <p className="text-xs md:text-sm font-medium text-Secondary-Text">
             {guide.readTime}
           </p>
@@ -69,9 +99,9 @@ export default function GuidesCard({ guide }: GuidesCardProps) {
                 </div>
               </Button>
             </div>
-          </div>{' '}
+          </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   )
 }

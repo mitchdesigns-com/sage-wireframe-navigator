@@ -1,8 +1,8 @@
 'use client'
 
-import React, { useState, useEffect, useRef } from 'react'
 import clsx from 'clsx'
 import { motion } from 'framer-motion'
+import React, { useEffect, useRef, useState } from 'react'
 
 export interface ToggleOption {
   id: number | string
@@ -48,13 +48,31 @@ const ToggleButton: React.FC<ToggleButtonProps> = ({
     }
   }, [selectedValue, options])
 
+  const containerVariants = {
+    hidden: {},
+    visible: { transition: { staggerChildren: 0.1 } },
+  }
+
+  const buttonVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.4, ease: 'easeOut' },
+    },
+  }
+
   return (
-    <div
-      className={clsx('relative w-full  rounded-full p-1', className)}
+    <motion.div
+      className={clsx('relative w-full rounded-full p-1', className)}
       role="tablist"
       aria-label="Toggle Button Group"
+      initial="hidden"
+      animate="visible"
+      variants={containerVariants}
     >
-      <div className="relative flex items-center md:justify-center overflow-x-auto scrollbar-hide rounded-full  text-Secondary-Text">
+      <div className="relative flex items-center md:justify-center flex-wrap rounded-full text-Secondary-Text">
+        {/* Sliding pill */}
         <motion.div
           className={clsx(
             'absolute top-0 h-full rounded-full',
@@ -67,29 +85,30 @@ const ToggleButton: React.FC<ToggleButtonProps> = ({
         {options.map((option, index) => {
           const isSelected = option.value === selectedValue
           return (
-            <button
+            <motion.button
+              key={option.id}
               ref={(el) => {
                 buttonRefs.current[index] = el
               }}
-              key={option.id}
               onClick={() => onChange(option.value)}
+              role="tab"
+              aria-selected={isSelected}
+              variants={buttonVariants}
               className={clsx(
-                'relative z-10 flex-shrink-0 cursor-pointer items-center justify-center whitespace-nowrap px-8 py-2 text-center text-sm font-medium transition-colors sm:text-base',
+                'relative z-10 flex-shrink-0 cursor-pointer items-center justify-center whitespace-nowrap px-6 py-2 text-center text-sm font-medium transition-colors sm:text-base',
                 isSelected
                   ? `${contact ? 'text-Primary-Palm' : 'text-white'} `
                   : contact
                     ? 'text-Secondary-Text hover:text-Primary-Palm'
                     : 'text-Primary-Black hover:text-Primary-Palm'
               )}
-              role="tab"
-              aria-selected={isSelected}
             >
               {option.title}
-            </button>
+            </motion.button>
           )
         })}
       </div>
-    </div>
+    </motion.div>
   )
 }
 

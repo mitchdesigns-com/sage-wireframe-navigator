@@ -7,14 +7,15 @@ import CertificateCard from '@/components/sections/CertificateCard'
 
 import {
   ResourceItem,
-  ResourceBlocks, // This should be your main discriminated union
+  ResourceBlocks,
   HeroPagesBlock,
   CentersSectionBlock,
   GetInTouchBlock,
   CertificateCardBlock,
 } from '../../types/resourcesPages'
+import { motion, useInView } from 'framer-motion'
+import { useRef } from 'react'
 
-// FIX: Add the missing 'blocks.certificate-card' to the BLOCKS map
 const BLOCKS: {
   [K in ResourceBlocks['__component']]: React.ComponentType<
     Extract<ResourceBlocks, { __component: K }>
@@ -24,16 +25,12 @@ const BLOCKS: {
   'blocks.centers-section-data':
     CentersSection as React.ComponentType<CentersSectionBlock>,
   'blocks.get-in-touch': GetInTouch as React.ComponentType<GetInTouchBlock>,
-  // Assuming 'blocks.certificate-card' is a valid __component type
-  // If not, you might not need it in the main blocks loop.
-  // But if it IS a block type, it should be here.
 }
 
 interface CertificationsPageProps {
   data: ResourceItem[]
 }
 
-// FIX: Create a dedicated component to render a single block
 function Block({ block }: { block: ResourceBlocks }) {
   const Component = BLOCKS[block.__component]
 
@@ -42,7 +39,6 @@ function Block({ block }: { block: ResourceBlocks }) {
     return null
   }
 
-  // TypeScript can now correctly infer the props, so no casting is needed.
   const TypedComponent = Component as React.ComponentType<typeof block>
   return <TypedComponent {...block} />
 }
@@ -52,29 +48,56 @@ export default function CertificationsPage({ data }: CertificationsPageProps) {
   const blocks: ResourceBlocks[] = page?.blocks || []
   const certificates: CertificateCardBlock[] = page?.BlocksResources || []
 
-  if (!blocks.length) return null
+  // Always declare hooks first
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, amount: 0.4 })
+
+  const container = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  }
+
+  const item = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: 'easeOut' },
+    },
+  }
+
+  if (!blocks.length && !certificates.length) return null
 
   return (
     <div className="min-h-screen">
       {blocks.map((block) => {
-        // FIX: Handle the special rendering case for 'hero-pages'
         if (block.__component === 'blocks.hero-pages') {
           return (
-            // The key must be on the top-level element in the loop
             <div key={`${block.__component}-${block.id}`}>
               <Block block={block} />
 
               {certificates.length > 0 && (
                 <section className="py-8 md:py-20 bg-Secondary-Light-Scrub">
-                  <div className="max-w-[1392px] mx-auto space-y-8 md:space-y-20  px-4">
-                    <div className="grid md:grid-cols-3 gap-x-12 gap-y-8 md:gap-y-20">
+                  <div
+                    className="max-w-[1392px] mx-auto space-y-8 md:space-y-20 px-4"
+                    ref={ref}
+                  >
+                    <motion.div
+                      className="grid md:grid-cols-3 gap-x-12 gap-y-8 md:gap-y-20"
+                      variants={container}
+                      initial="hidden"
+                      animate={isInView ? 'visible' : 'hidden'}
+                    >
                       {certificates.map((certificate) => (
-                        <CertificateCard
-                          key={certificate.id}
-                          certificate={certificate}
-                        />
+                        <motion.div key={certificate.id} variants={item}>
+                          <CertificateCard certificate={certificate} />
+                        </motion.div>
                       ))}
-                    </div>
+                    </motion.div>
                   </div>
                 </section>
               )}
@@ -82,7 +105,6 @@ export default function CertificationsPage({ data }: CertificationsPageProps) {
           )
         }
 
-        // For all other blocks, render the Block component normally
         return <Block key={`${block.__component}-${block.id}`} block={block} />
       })}
     </div>

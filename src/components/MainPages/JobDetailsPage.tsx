@@ -1,4 +1,5 @@
 'use client'
+import { motion } from 'framer-motion'
 import Button from '@/components/ui/Button'
 import { ChevronLeft } from 'lucide-react'
 import Image from 'next/image'
@@ -9,15 +10,13 @@ import {
   RichTextElement,
 } from '../../types/jobDetailsPage'
 import Dot from '../svg/Dot'
+
 function extractText(node: RichTextChild | RichTextElement): string {
-  if ('text' in node) {
-    return node.text
-  }
-  if ('children' in node) {
-    return node.children.map(extractText).join('')
-  }
+  if ('text' in node) return node.text
+  if ('children' in node) return node.children.map(extractText).join('')
   return ''
 }
+
 export default function JobDetailsPage({ data }: { data: CareerItem }) {
   const tagsArray = data.tags
     ? data.tags
@@ -26,61 +25,101 @@ export default function JobDetailsPage({ data }: { data: CareerItem }) {
         .map((tag) => tag.trim())
     : []
 
+  const container = {
+    hidden: {},
+    show: { transition: { staggerChildren: 0.15 } },
+  }
+
+  const fadeUp = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
+  }
+
   return (
     <section>
-      <div className="h-[387px] relative">
-        <Image
-          src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${data.image.url}`}
-          fill
-          alt={data.image.alternativeText}
-          className="object-cover"
-        />
-        <div className="absolute bottom-0 left-0 w-full h-full bg-gradient-to-t from-black/70 to-black/70 text-white px-2 py-3"></div>
-        <div className="flex justify-center items-center w-full h-full flex-col absolute">
-          <div className="flex ">
-            {' '}
-            <ChevronLeft className="text-white" />{' '}
-            <Link
-              href="/careers"
-              className="text-[#F2F2F2] font-medium text-sm md:text-base ps-2"
+      {/* Hero Section */}
+      <motion.div
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true }}
+        variants={fadeUp}
+      >
+        <div className="h-[387px] relative">
+          <Image
+            src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${data.image.url}`}
+            fill
+            alt={data.image.alternativeText}
+            className="object-cover"
+          />
+          <div className="absolute bottom-0 left-0 w-full h-full bg-gradient-to-t from-black/70 to-black/70 text-white px-2 py-3"></div>
+          <motion.div
+            className="flex justify-center items-center w-full h-full flex-col absolute"
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            variants={container}
+          >
+            <motion.div className="flex items-center gap-2" variants={fadeUp}>
+              <ChevronLeft className="text-white" />
+              <Link
+                href="/careers"
+                className="text-[#F2F2F2] font-medium text-sm md:text-base"
+              >
+                All Jobs
+              </Link>
+            </motion.div>
+            <motion.h1
+              className="heading-1 font-bold mt-6 text-white"
+              variants={fadeUp}
             >
-              All Jobs
-            </Link>
-          </div>
-          <h1 className="heading-1 font-bold mt-6 text-white">{data.title}</h1>
-          <div className="flex gap-4 mt-6 text-[#F2F2F2] font-medium text-sm md:text-base">
-            {tagsArray.map((tag, i) => (
-              <span key={i} className="flex items-center gap-4">
-                {tag}
-                {i < tagsArray.length - 1 && <Dot color="#ffffff" />}
-              </span>
-            ))}
-          </div>
+              {data.title}
+            </motion.h1>
+            <motion.div
+              className="flex gap-4 mt-6 text-[#F2F2F2] font-medium text-sm md:text-base"
+              variants={fadeUp}
+            >
+              {tagsArray.map((tag, i) => (
+                <span key={i} className="flex items-center gap-4">
+                  {tag}
+                  {i < tagsArray.length - 1 && <Dot color="#ffffff" />}
+                </span>
+              ))}
+            </motion.div>
+          </motion.div>
         </div>
-      </div>{' '}
-      <div className="max-w-[768px] mx-auto py-8 md:py-15  px-4">
-        {' '}
+      </motion.div>
+
+      {/* Content Section */}
+      <motion.div
+        className="max-w-[768px] mx-auto py-8 md:py-15 px-4 space-y-4"
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true }}
+        variants={container}
+      >
         {data.content.map((block, index) => {
           switch (block.type) {
             case 'heading':
               if (block.level === 4) {
                 return (
-                  <h4
+                  <motion.h4
                     key={index}
                     className="text-2xl md:text-[32px] font-bold text-[#000404] py-2"
+                    variants={fadeUp}
                   >
                     {block.children.map(extractText).join('')}
-                  </h4>
+                  </motion.h4>
                 )
               }
               if (block.level === 6) {
                 return (
-                  <h6
+                  <motion.h6
                     key={index}
                     className="mt-4 text-[#000404] text-lg leading-relaxed"
+                    variants={fadeUp}
                   >
                     {block.children.map(extractText).join('')}
-                  </h6>
+                  </motion.h6>
                 )
               }
               return null
@@ -93,19 +132,23 @@ export default function JobDetailsPage({ data }: { data: CareerItem }) {
               )
                 return null
               return (
-                <p
+                <motion.p
                   key={index}
                   className="text-[#000404] text-base md:text-lg leading-relaxed pb-2"
+                  variants={fadeUp}
                 >
                   {block.children.map(extractText).join('')}
-                </p>
+                </motion.p>
               )
 
             case 'list':
               return (
-                <ul key={index} className="list-disc ps-6 space-y-2">
+                <motion.ul
+                  key={index}
+                  className="list-disc ps-6 space-y-2"
+                  variants={fadeUp}
+                >
                   {block.children.map((li, liIndex) => {
-                    // Type guard to ensure 'li' has a 'children' property
                     if ('children' in li) {
                       return (
                         <li key={liIndex} className="text-[#000404] text-lg">
@@ -113,24 +156,25 @@ export default function JobDetailsPage({ data }: { data: CareerItem }) {
                         </li>
                       )
                     }
-                    return null // Or handle RichTextChild directly if needed
+                    return null
                   })}
-                </ul>
+                </motion.ul>
               )
 
             default:
               return null
           }
         })}
-        <Link
-          href={'/contact'}
-          className="inline-block bg-primary text-white rounded-lg font-medium group cursor-pointer pt-6"
-        >
-          <Button variant={'primary'} righticon={true} fullwidth>
-            Apply On This Job
-          </Button>
-        </Link>
-      </div>
+
+        {/* Apply Button */}
+        <motion.div variants={fadeUp}>
+          <Link href={'/contact'} className="inline-block">
+            <Button variant={'primary'} righticon={true} fullwidth>
+              Apply On This Job
+            </Button>
+          </Link>
+        </motion.div>
+      </motion.div>
     </section>
   )
 }

@@ -1,4 +1,5 @@
 'use client'
+import { motion } from 'framer-motion'
 import BlogCard from '@/components/sections/BlogCard'
 import HeroSinglePages from '@/components/sections/HeroSinglePages'
 import { ChevronRight } from 'lucide-react'
@@ -10,15 +11,13 @@ import {
   RichTextChild,
   RichTextElement,
 } from '../../types/newsEvents'
+
 function extractText(node: RichTextChild | RichTextElement): string {
-  if ('text' in node) {
-    return node.text
-  }
-  if ('children' in node) {
-    return node.children.map(extractText).join('')
-  }
+  if ('text' in node) return node.text
+  if ('children' in node) return node.children.map(extractText).join('')
   return ''
 }
+
 export default function SingleNewsOnlyPage({
   data,
   allBlogs,
@@ -27,43 +26,56 @@ export default function SingleNewsOnlyPage({
   allBlogs: NewsArticle[]
 }) {
   const t = useTranslations()
-  //   if (!news) {
-  //     return <div className="p-8">New not found.</div>
-  //   }
+  const news = data[0]
+
+  const fadeUp = {
+    hidden: { opacity: 0, y: 40 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
+  }
 
   return (
     <>
       <section>
-        <HeroSinglePages {...data[0].HeroSinglePages} />
+        {/* Hero */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+        >
+          <HeroSinglePages {...news.HeroSinglePages} />
+        </motion.div>
 
-        <div className="max-w-[930px] mx-auto ">
-          {' '}
-          {data[0].firstContent && (
+        {/* Content */}
+        <div className="max-w-[930px] mx-auto">
+          {news.firstContent && (
             <div className="mx-auto max-w-[1448px] pt-8 md:py-20 md:px-4 px-4 space-y-2 md:space-y-6">
-              {data[0].firstContent.map((block, index: number) => {
+              {news.firstContent.map((block, index: number) => {
                 switch (block.type) {
                   case 'heading':
-                    if (block.level === 4) {
-                      return (
-                        <h4
-                          key={index}
-                          className="text-2xl md:text-[32px] font-bold text-[#000404] py-2"
-                        >
-                          {block.children.map(extractText).join('')}
-                        </h4>
-                      )
-                    }
-                    if (block.level === 6) {
-                      return (
-                        <h6
-                          key={index}
-                          className="mt-2 md:mt-4 text-[#000404] text-base md:text-lg leading-relaxed"
-                        >
-                          {block.children.map(extractText).join('')}
-                        </h6>
-                      )
-                    }
-                    return null
+                    const headingClass =
+                      block.level === 4
+                        ? 'text-2xl md:text-[32px] font-bold text-[#000404] py-2'
+                        : 'mt-2 md:mt-4 text-[#000404] text-base md:text-lg leading-relaxed'
+
+                    return (
+                      <motion.div
+                        key={index}
+                        variants={fadeUp}
+                        initial="hidden"
+                        whileInView="show"
+                        viewport={{ once: true }}
+                      >
+                        {block.level === 4 ? (
+                          <h4 className={headingClass}>
+                            {block.children.map(extractText).join('')}
+                          </h4>
+                        ) : (
+                          <h6 className={headingClass}>
+                            {block.children.map(extractText).join('')}
+                          </h6>
+                        )}
+                      </motion.div>
+                    )
 
                   case 'paragraph':
                     if (
@@ -73,12 +85,16 @@ export default function SingleNewsOnlyPage({
                     )
                       return null
                     return (
-                      <p
+                      <motion.p
                         key={index}
                         className="text-[#000404] text-base md:text-lg leading-relaxed"
+                        variants={fadeUp}
+                        initial="hidden"
+                        whileInView="show"
+                        viewport={{ once: true }}
                       >
                         {block.children.map(extractText).join('')}
-                      </p>
+                      </motion.p>
                     )
 
                   default:
@@ -87,42 +103,55 @@ export default function SingleNewsOnlyPage({
               })}
             </div>
           )}
-          <div className=" px-4">
-            <div className="rounded-[40px] aspect-[396/263] md:aspect-[930/505] relative w-full my-8 md:my-12 ">
+
+          {/* Featured Image */}
+          <motion.div
+            className="px-4"
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, ease: 'easeOut' }}
+            viewport={{ once: true }}
+          >
+            <div className="rounded-[40px] aspect-[396/263] md:aspect-[930/505] relative w-full my-8 md:my-12">
               <Image
-                src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${data[0].image.url}`}
+                src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${news.image.url}`}
                 alt="scr header"
                 fill
                 className="object-cover rounded-[40px] w-full"
               />
             </div>
-          </div>
-          {data[0].secondContent && (
+          </motion.div>
+
+          {/* Second Content */}
+          {news.secondContent && (
             <div className="mx-auto max-w-[1448px] py-8 md:py-20 md:px-4 px-4 space-y-2 md:space-y-6">
-              {data[0].secondContent.map((block, index: number) => {
+              {news.secondContent.map((block, index: number) => {
                 switch (block.type) {
                   case 'heading':
-                    if (block.level === 4) {
-                      return (
-                        <h4
-                          key={index}
-                          className="text-2xl md:text-[32px] font-bold text-[#000404] py-2"
-                        >
-                          {block.children.map(extractText).join('')}
-                        </h4>
-                      )
-                    }
-                    if (block.level === 6) {
-                      return (
-                        <h6
-                          key={index}
-                          className="mt-2 md:mt-4 text-[#000404] text-base md:text-lg leading-relaxed"
-                        >
-                          {block.children.map(extractText).join('')}
-                        </h6>
-                      )
-                    }
-                    return null
+                    const headingClass2 =
+                      block.level === 4
+                        ? 'text-2xl md:text-[32px] font-bold text-[#000404] py-2'
+                        : 'mt-2 md:mt-4 text-[#000404] text-base md:text-lg leading-relaxed'
+
+                    return (
+                      <motion.div
+                        key={index}
+                        variants={fadeUp}
+                        initial="hidden"
+                        whileInView="show"
+                        viewport={{ once: true }}
+                      >
+                        {block.level === 4 ? (
+                          <h4 className={headingClass2}>
+                            {block.children.map(extractText).join('')}
+                          </h4>
+                        ) : (
+                          <h6 className={headingClass2}>
+                            {block.children.map(extractText).join('')}
+                          </h6>
+                        )}
+                      </motion.div>
+                    )
 
                   case 'paragraph':
                     if (
@@ -132,19 +161,29 @@ export default function SingleNewsOnlyPage({
                     )
                       return null
                     return (
-                      <p
+                      <motion.p
                         key={index}
                         className="text-[#000404] text-base md:text-lg leading-relaxed"
+                        variants={fadeUp}
+                        initial="hidden"
+                        whileInView="show"
+                        viewport={{ once: true }}
                       >
                         {block.children.map(extractText).join('')}
-                      </p>
+                      </motion.p>
                     )
 
                   case 'list':
                     return (
-                      <ul key={index} className="list-disc ps-6 space-y-2">
+                      <motion.ul
+                        key={index}
+                        className="list-disc ps-6 space-y-2"
+                        variants={fadeUp}
+                        initial="hidden"
+                        whileInView="show"
+                        viewport={{ once: true }}
+                      >
                         {block.children.map((li, liIndex) => {
-                          // Type guard to ensure 'li' has a 'children' property
                           if ('children' in li) {
                             return (
                               <li
@@ -155,9 +194,9 @@ export default function SingleNewsOnlyPage({
                               </li>
                             )
                           }
-                          return null // Or handle RichTextChild directly if needed
+                          return null
                         })}
-                      </ul>
+                      </motion.ul>
                     )
 
                   default:
@@ -169,35 +208,61 @@ export default function SingleNewsOnlyPage({
         </div>
       </section>
 
+      {/* More News Section */}
       <section className="bg-Secondary-Scrub">
-        <div className="py-8 md:py-20 max-w-[1390px] mx-auto w-full  px-4">
+        <motion.div
+          className="py-8 md:py-20 max-w-[1390px] mx-auto w-full px-4"
+          initial="hidden"
+          whileInView="show"
+          variants={{
+            hidden: { opacity: 0, y: 60 },
+            show: { opacity: 1, y: 0, transition: { duration: 0.8 } },
+          }}
+          viewport={{ once: true }}
+        >
           <div className="flex justify-between items-end w-full">
-            <h4 className="text-2xl md:text-[32px] font-bold text-[#000404] ">
-              {' '}
+            <h4 className="text-2xl md:text-[32px] font-bold text-[#000404]">
               {t('News.moreNews')}
             </h4>
-            <div className="flex ">
-              {' '}
+            <div className="flex">
               <Link
                 href="/resources/news-events"
                 className="text-[#000404] font-medium text-sm md:text-base pe-2"
               >
                 {t('News.viewAll')}
-              </Link>{' '}
-              <ChevronRight className="text-[#000404] w-6 h-6" />{' '}
+              </Link>
+              <ChevronRight className="text-[#000404] w-6 h-6" />
             </div>
           </div>
-          <div className="grid md:grid-cols-3 gap-8 pt-8 md:pt-20">
+
+          <motion.div
+            className="grid md:grid-cols-3 gap-8 pt-8 md:pt-20"
+            initial="hidden"
+            whileInView="show"
+            variants={{
+              hidden: {},
+              show: {
+                transition: { staggerChildren: 0.2 },
+              },
+            }}
+            viewport={{ once: true }}
+          >
             {allBlogs.slice(0, 3).map((blog) => (
-              <BlogCard
+              <motion.div
                 key={blog.slug}
-                blog={blog}
-                href={`/resources/news-events/news/${blog.slug}`}
-                news={true}
-              />
+                variants={fadeUp}
+                whileHover={{ scale: 1.03 }}
+                transition={{ duration: 0.3 }}
+              >
+                <BlogCard
+                  blog={blog}
+                  href={`/resources/news-events/news/${blog.slug}`}
+                  news={true}
+                />
+              </motion.div>
             ))}
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </section>
     </>
   )

@@ -48,8 +48,12 @@ export default function CaseStudiesPage({
             />
           </div>
           <div className="grid md:grid-cols-2 gap-x-12 gap-y-8 md:gap-y-20">
-            {filteredCaseStudy.map((caseStudy) => (
-              <CaseStudyCard key={caseStudy.slug} caseStudy={caseStudy} />
+            {filteredCaseStudy.map((caseStudy, idx) => (
+              <CaseStudyCard
+                key={caseStudy.slug}
+                caseStudy={caseStudy}
+                index={idx}
+              />
             ))}
           </div>
         </div>

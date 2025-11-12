@@ -1,3 +1,4 @@
+'use client'
 import FeatureSection from '@/components/sections/FeatureSection'
 import GetInTouch from '@/components/sections/GetInTouch'
 import HeroWithVideo from '@/components/sections/HeroWithVideo'
@@ -9,7 +10,8 @@ import BlogCard from '../sections/BlogCard'
 import Link from 'next/link'
 import ButtonIcon from '../svg/ButtonIcon'
 import { useLocale } from 'next-intl'
-
+import { motion, useAnimation } from 'framer-motion'
+import { useInView } from 'react-intersection-observer'
 export default function VisitSaudiPage({
   data,
   blogs,
@@ -18,6 +20,26 @@ export default function VisitSaudiPage({
   blogs: BlogPost[]
 }) {
   const locale = useLocale()
+  const controls = useAnimation()
+  const [ref, inView] = useInView({ threshold: 0.3, triggerOnce: true })
+  const [ref2, inView2] = useInView({ threshold: 0.3, triggerOnce: true })
+
+  const containerVariants = {
+    hidden: {},
+    visible: { transition: { staggerChildren: 0.2 } },
+  }
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.7, ease: 'easeOut' },
+    },
+  }
+
+  if (inView) controls.start('visible')
+  if (inView2) controls.start('visible')
 
   return (
     <div className="min-h-screen">
@@ -30,26 +52,36 @@ export default function VisitSaudiPage({
       {data.FeatureSection.map((section, index) => (
         <FeatureSection key={index} {...section} />
       ))}
-      <section className="py-8 md:py-28 bg-Secondary-Light-Scrub">
-        <div className="w-full md:max-w-[764px] mx-auto  px-4">
-          <div className=" mx-auto  text-center">
-            <div className="space-y-4">
-              <h2 className="text-Primary-Black text-[26px] md:text-[40px] font-bold">
-                {data.ChangingColorsCards.title}
-              </h2>
-            </div>
-          </div>
-        </div>
-        <div className="max-w-[1392px] mx-auto w-full pt-8 md:pt-15  px-4">
+      <section ref={ref} className="py-8 md:py-28 bg-Secondary-Light-Scrub">
+        <motion.div
+          initial="hidden"
+          animate={controls}
+          variants={containerVariants}
+          className="w-full md:max-w-[764px] mx-auto px-4 text-center space-y-4"
+        >
+          <motion.h2
+            variants={itemVariants}
+            className="text-Primary-Black text-[26px] md:text-[40px] font-bold"
+          >
+            {data.ChangingColorsCards.title}
+          </motion.h2>
+        </motion.div>
+
+        <motion.div
+          initial="hidden"
+          animate={controls}
+          variants={containerVariants}
+          className="max-w-[1392px] mx-auto w-full pt-8 md:pt-15 px-4"
+        >
           <div className="flex flex-col md:flex-row gap-8 md:gap-15 justify-center items-start text-start">
             {data.ChangingColorsCards.CardsList?.map((li, idx) => (
-              <div
+              <motion.div
                 key={idx}
+                variants={itemVariants}
                 style={{ backgroundColor: li.bgColor }}
                 className="flex items-start gap-2 flex-col w-full md:max-w-[432px] p-5 md:p-10 rounded-3xl relative"
               >
                 <div className="absolute -top-5 left-6 w-full">
-                  {' '}
                   <Tagline text={li.tagline} taglineColor={li.taglineColor} />
                 </div>
                 <Image
@@ -57,44 +89,58 @@ export default function VisitSaudiPage({
                   alt={li.image.alternativeText || li.title}
                   width={181}
                   height={188}
-                  className={`rounded-lg `}
+                  className="rounded-lg"
                 />
                 <h5
-                  className={`text-2xl md:text-[32px] font-bold`}
+                  className="text-2xl md:text-[32px] font-bold"
                   style={{ color: li.titleColor }}
                 >
                   {li.title}
                 </h5>
                 <span
-                  className={`text-sm md:text-base leading-[1.5] flex-1 `}
+                  className="text-sm md:text-base leading-[1.5] flex-1"
                   style={{ color: li.descriptionColor }}
                 >
                   {li.description}
                 </span>
-              </div>
+              </motion.div>
             ))}
           </div>
-        </div>
+        </motion.div>
       </section>
       {data.FeatureSectionLast.map((section, index) => (
         <FeatureSection key={index} {...section} />
       ))}
-      <section className="max-w-[1392px] mx-auto px-6 py-8 md:py-25">
-        <div className="flex items-end justify-between mb-15 flex-col md:flex-row">
+      <section ref={ref2} className="max-w-[1392px] mx-auto px-6 py-8 md:py-25">
+        <motion.div
+          initial="hidden"
+          animate={controls}
+          variants={containerVariants}
+          className="flex items-end justify-between mb-15 flex-col md:flex-row"
+        >
           <div className="text-center md:text-start">
             <Tagline text="Blogs" className="items-center md:items-start" />
 
-            <h2 className="text-Primary-Black text-[28px] md:text-[48px] font-bold leading-tight pb-6">
+            <motion.h2
+              variants={itemVariants}
+              className="text-Primary-Black text-[28px] md:text-[48px] font-bold leading-tight pb-6"
+            >
               Tips from the Experts
-            </h2>
-            <p className="text-Secondary-Text text-base md:text-[18px] max-w-[647px]">
+            </motion.h2>
+            <motion.p
+              variants={itemVariants}
+              className="text-Secondary-Text text-base md:text-[18px] max-w-[647px]"
+            >
               Find curated travel advice from those who know Saudi best—insider
               tips, updates, and more.
-            </p>
+            </motion.p>
           </div>
           <Link href={'/resources/blog'}>
             {' '}
-            <div className="group flex gap-1.5 items-center justify-start rounded-[100px] pt-8 cursor-pointer">
+            <motion.div
+              variants={itemVariants}
+              className="group flex gap-1.5 items-center justify-start rounded-[100px] pt-8 cursor-pointer"
+            >
               {' '}
               <div className="font-aeonik-bold text-primary-palm group-hover:text-Secondary-Dark-Palm text-lg leading-[1.5]">
                 Explore All Blogs
@@ -110,9 +156,9 @@ export default function VisitSaudiPage({
                   </div>
                 </div>
               </div>
-            </div>{' '}
+            </motion.div>{' '}
           </Link>
-        </div>{' '}
+        </motion.div>{' '}
         <div className=" max-w-[1392px] mx-auto  px-4">
           <div className="grid md:grid-cols-3 gap-x-12 gap-y-8 md:gap-y-16">
             {blogs.map((blog) => (

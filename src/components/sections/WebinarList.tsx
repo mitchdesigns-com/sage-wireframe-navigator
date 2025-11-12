@@ -5,10 +5,11 @@ import Button from '../ui/Button'
 import Link from 'next/link'
 import ToggleButton from './ToggleButton'
 import { Bookmark } from 'lucide-react'
+import { motion } from 'framer-motion'
 import type {
   EventData,
   WebinarList as WebinarListType,
-} from '../../types/newsEvents' // <-- fix here
+} from '../../types/newsEvents'
 import { useLocale } from 'next-intl'
 export type TabType = 'comingSoon' | 'previous'
 
@@ -32,9 +33,23 @@ const WebinarList: React.FC<WebinarListProps> = ({ webinars, events }) => {
   const [currentTab, setCurrentTab] = useState<TabType>('comingSoon')
   const locale = useLocale()
 
+  const containerVariants = {
+    hidden: {},
+    visible: { transition: { staggerChildren: 0.15 } }, // animate each webinar sequentially
+  }
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: 'easeOut' },
+    },
+  }
+
   return (
     <div className="bg-Secondary-Light-Scrub">
-      <div className=" mx-auto max-w-[1280px] py-8 md:py-28  px-4">
+      <div className="mx-auto max-w-[1280px] py-8 md:py-28 px-4">
         {webinars.news && (
           <div className="pb-15">
             <span className="text-Primary-Palm text-base font-medium">
@@ -45,7 +60,7 @@ const WebinarList: React.FC<WebinarListProps> = ({ webinars, events }) => {
               Join us as we bring together healthcare leaders, patients, and
               organizations to explore innovation, transparency, and
               personalized care. Our events are designed to inspire, inform, and
-              connect, all in one place.{' '}
+              connect, all in one place.
             </p>
           </div>
         )}
@@ -56,11 +71,18 @@ const WebinarList: React.FC<WebinarListProps> = ({ webinars, events }) => {
             onChange={(val) => setCurrentTab(val as TabType)}
           />
         </div>
-        <div className="flex  overflow-x-auto flex-col">
+
+        <motion.div
+          className="flex flex-col"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={containerVariants}
+        >
           {events.map((webinar, index) => (
-            <Link
-              href={`/resources/news-events/events/${webinar.slug}`}
+            <motion.div
               key={index}
+              variants={itemVariants}
               className="flex flex-col md:flex-row items-start md:items-center p-8 w-full gap-8 border-b border-[#00040426]"
             >
               <div className="flex flex-col items-center justify-center bg-Primary-Spring-Med text-Primary-Palm rounded-3xl px-1 py-[11px] w-[112px]">
@@ -81,10 +103,9 @@ const WebinarList: React.FC<WebinarListProps> = ({ webinars, events }) => {
                   </p>
                 </div>
                 <div>
-                  {' '}
                   <Link
                     href={`/resources/news-events/events/${webinar.slug}`}
-                    className="inline-block  bg-primary text-Primary-Black rounded-lg font-medium group cursor-pointer"
+                    className="inline-block bg-primary text-Primary-Black rounded-lg font-medium group cursor-pointer"
                   >
                     <Button
                       variant={'light'}
@@ -98,17 +119,15 @@ const WebinarList: React.FC<WebinarListProps> = ({ webinars, events }) => {
                           <span className="ps-3">Save My Spot</span>
                         </div>
                       ) : (
-                        <>
-                          <span>Watch Webinar</span>
-                        </>
+                        <span>Watch Webinar</span>
                       )}
                     </Button>
                   </Link>
                 </div>
               </div>
-            </Link>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </div>
   )

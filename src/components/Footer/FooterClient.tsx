@@ -209,7 +209,7 @@ export default function FooterClient({ footerData }: FooterClientProps) {
         initial={{ opacity: 0, y: 20 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.6, delay: 0.4 }}
-        className="gap-4 items-center justify-center relative hidden md:grid grid-cols-3 md:grid-cols-6 w-full py-5 md:py-8 max-w-[1392px] mx-auto px-4 "
+        className="gap-4 items-center justify-center relative hidden md:grid grid-cols-3 md:grid-cols-6 w-full py-5 md:py-8 max-w-[1392px] mx-auto"
       >
         {awards.map((award, idx) => (
           <div

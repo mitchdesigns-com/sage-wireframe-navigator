@@ -43,7 +43,7 @@ export default function GuidesPage({ data }: { data: GuidesPage[] }) {
       : guidsData.filter((guide) => guide.category === currentTab)
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen overflow-hidden">
       {/* HeroPages */}
       {blocks.map((block) =>
         block.__component === 'blocks.hero-pages' ? (
@@ -52,7 +52,7 @@ export default function GuidesPage({ data }: { data: GuidesPage[] }) {
       )}
 
       {/* Toggle Button + Guides */}
-      <section className="py-8 md:py-20 bg-Secondary-Light-Scrub">
+      <section className="py-8 md:py-20 bg-Secondary-Light-Scrub ">
         <div className="max-w-[1392px] mx-auto space-y-8 md:space-y-20">
           <div className="max-w-[768px] mx-auto">
             <ToggleButton

@@ -11,6 +11,17 @@ import { BlogPost, ListItem, TextChild } from '../../types/blog'
 //   const minutes = Math.ceil(words / 200)
 //   return `${minutes} min read`
 // }
+import { motion } from 'framer-motion'
+
+const containerVariants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.15 } },
+}
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
+}
 function extractText(node: TextChild | ListItem): string {
   if ('text' in node) {
     return node.text
@@ -34,16 +45,22 @@ export default function SingleBlogsPage({
     <>
       <section>
         <HeroSinglePages {...data.HeroSinglePages} />
-
-        <div className="max-w-[930px] mx-auto py-8 md:py-15">
-          {' '}
+        <motion.div
+          className="max-w-[930px] mx-auto py-8 md:py-15"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.5 }}
+          variants={containerVariants}
+        >
           {data.content && (
             <div className="mx-auto max-w-[1448px] py-0 md:py-20 md:px-4 px-4 space-y-4 md:space-y-6">
-              {data.content.map((block, index: number) => {
+              {data.content.map((block: any, index: number) => {
+                let contentElement = null
+
                 switch (block.type) {
                   case 'heading':
                     if (block.level === 4) {
-                      return (
+                      contentElement = (
                         <h4
                           key={index}
                           className="text-xl md:text-[32px] font-bold text-[#000404]"
@@ -51,9 +68,8 @@ export default function SingleBlogsPage({
                           {block.children.map(extractText).join('')}
                         </h4>
                       )
-                    }
-                    if (block.level === 6) {
-                      return (
+                    } else if (block.level === 6) {
+                      contentElement = (
                         <h6
                           key={index}
                           className="mt-4 text-[#000404] text-base md:text-lg leading-relaxed"
@@ -62,28 +78,29 @@ export default function SingleBlogsPage({
                         </h6>
                       )
                     }
-                    return null
+                    break
 
                   case 'paragraph':
                     if (
-                      !block.children.some(
-                        (c) => 'text' in c && c.text?.trim()?.length > 0
+                      block.children.some(
+                        (c: any) => 'text' in c && c.text?.trim()?.length > 0
                       )
-                    )
-                      return null
-                    return (
-                      <p
-                        key={index}
-                        className="text-[#000404] text-base md:text-lg leading-relaxed"
-                      >
-                        {block.children.map(extractText).join('')}
-                      </p>
-                    )
+                    ) {
+                      contentElement = (
+                        <p
+                          key={index}
+                          className="text-[#000404] text-base md:text-lg leading-relaxed"
+                        >
+                          {block.children.map(extractText).join('')}
+                        </p>
+                      )
+                    }
+                    break
 
                   case 'list':
-                    return (
+                    contentElement = (
                       <ul key={index} className="list-disc ps-6 space-y-2">
-                        {block.children.map((li, liIndex) => {
+                        {block.children.map((li: any, liIndex: number) => {
                           if ('children' in li) {
                             return (
                               <li
@@ -98,14 +115,21 @@ export default function SingleBlogsPage({
                         })}
                       </ul>
                     )
+                    break
 
                   default:
-                    return null
+                    break
                 }
+
+                return contentElement ? (
+                  <motion.div key={index} variants={itemVariants}>
+                    {contentElement}
+                  </motion.div>
+                ) : null
               })}
             </div>
           )}
-        </div>
+        </motion.div>
       </section>
       {allBlogs?.length > 2 && (
         <section className="bg-Secondary-Scrub">

@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import Breadcrumb from './Breadcrumb'
 import Link from 'next/link'
@@ -5,6 +7,7 @@ import Image from 'next/image'
 import { ChevronLeft } from 'lucide-react'
 import { useLocale } from 'next-intl'
 import ShareButtonsComponent from './ShareButtons'
+import { motion } from 'framer-motion'
 
 interface BreadcrumbItem {
   label: string
@@ -39,43 +42,73 @@ const HeroSinglePages: React.FC<HeroProps> = ({
 }) => {
   const locale = useLocale()
 
+  const containerVariants = {
+    hidden: {},
+    visible: { transition: { staggerChildren: 0.2 } },
+  }
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: 'easeOut' },
+    },
+  }
+
   return (
-    <section
-      className={`md:pb-20 md:pt-10 py-8 bg-gradient-to-t from-[#013530] to-[#025850]`}
+    <motion.section
+      className="md:pb-20 md:pt-10 py-8 bg-gradient-to-t from-[#013530] to-[#025850]"
+      initial="hidden"
+      animate="visible"
+      variants={containerVariants}
     >
       <div className="px-4 md:px-16">
         <div className="max-w-[1392px] mx-auto">
-          <div className="grid grid-cols-1">
-            <div className="pb-6 md:pb-16">
-              <Breadcrumb items={breadcrumbItems} heroPages />
-            </div>
-            <div className="flex pb-6 md:pb-12">
-              {' '}
-              <ChevronLeft
-                className={`text-white ${locale === 'ar' ? 'rotate-180' : ''}`}
-              />{' '}
-              <Link
-                href={href}
-                className="text-[#F2F2F2] font-medium text-base ps-2"
-              >
-                {button}
-              </Link>
-            </div>
-            <h1 className="text-white font-bold text-[26px] md:text-[48px] leading-[1.2] tracking-[-0.56px] pb-8 md:pb-20">
-              {title}
-            </h1>
-          </div>
+          <motion.div variants={itemVariants} className="pb-6 md:pb-16">
+            <Breadcrumb items={breadcrumbItems} heroPages />
+          </motion.div>
+
+          <motion.div
+            variants={itemVariants}
+            className="flex pb-6 md:pb-12 items-center"
+          >
+            <ChevronLeft
+              className={`text-white ${locale === 'ar' ? 'rotate-180' : ''}`}
+            />
+            <Link
+              href={href}
+              className="text-[#F2F2F2] font-medium text-base ps-2"
+            >
+              {button}
+            </Link>
+          </motion.div>
+
+          <motion.h1
+            variants={itemVariants}
+            className="text-white font-bold text-[26px] md:text-[48px] leading-[1.2] tracking-[-0.56px] pb-8 md:pb-20"
+          >
+            {title}
+          </motion.h1>
+
           {bgImage && (
-            <div className="rounded-3xl aspect-[1390/600] relative w-full">
+            <motion.div
+              variants={itemVariants}
+              className="rounded-3xl aspect-[1390/600] relative w-full mb-8"
+            >
               <Image
                 src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${bgImage.url}`}
                 alt={bgImage.alternativeText}
                 fill
                 className="object-cover rounded-3xl"
               />
-            </div>
+            </motion.div>
           )}
-          <div className="space-x-12 pt-8 flex justify-between items-start">
+
+          <motion.div
+            variants={itemVariants}
+            className="space-x-12 pt-8 flex justify-between items-start"
+          >
             <div className="flex gap-12">
               <div>
                 <h4 className="text-sm md:font-base text-white">Author</h4>
@@ -101,12 +134,12 @@ const HeroSinglePages: React.FC<HeroProps> = ({
               </div>
             </div>
             <ShareButtonsComponent
-              url={`${locale == 'en' ? '/en/' : '/'}${ShareButtons}`}
+              url={`${locale === 'en' ? '/en/' : '/'}${ShareButtons}`}
             />
-          </div>
+          </motion.div>
         </div>
       </div>
-    </section>
+    </motion.section>
   )
 }
 

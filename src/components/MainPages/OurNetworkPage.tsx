@@ -7,7 +7,9 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Button from '@/components/ui/Button'
 import { NetworkData } from '../../types/ourNetworkPage'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { motion, useAnimation } from 'framer-motion'
+import { useInView } from 'react-intersection-observer'
 
 export default function OurNetworkPage({ data }: { data: NetworkData }) {
   const [email, setEmail] = useState('')
@@ -15,26 +17,20 @@ export default function OurNetworkPage({ data }: { data: NetworkData }) {
 
   const handleNewsletterSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-
     setIsSubmitting(true)
 
-    const payload = {
-      data: { email },
-    }
+    const payload = { data: { email } }
 
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/trusted-partner-forms
-`,
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/trusted-partner-forms`,
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload),
         }
       )
-
       if (!res.ok) throw new Error('Failed to submit form')
-
       await res.json()
       setEmail('')
     } catch (err) {
@@ -43,40 +39,71 @@ export default function OurNetworkPage({ data }: { data: NetworkData }) {
       setIsSubmitting(false)
     }
   }
+
+  // Animation setup
+  const controls = useAnimation()
+  const [ref, inView] = useInView({ threshold: 0.3, triggerOnce: true })
+
+  useEffect(() => {
+    if (inView) controls.start('visible')
+  }, [controls, inView])
+
+  const containerVariants = {
+    hidden: {},
+    visible: { transition: { staggerChildren: 0.3 } },
+  }
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.7, ease: 'easeOut' },
+    },
+  }
+
   return (
     <div className="min-h-screen">
       <HeroPages {...data.HeroPages} />
       <FeatureSection {...data.FeatureSection[0]} />
-      <section className="bg-Secondary-Scrub">
+
+      {/* Single Center Section */}
+      <section ref={ref} className="bg-Secondary-Scrub">
         <div className="px-4 mx-auto max-w-[1392px] py-8 md:py-28">
-          <div
-            className={`flex items-center gap-8 md:gap-15 md:flex-row-reverse flex-col`}
-          >
+          <div className="flex items-center gap-8 md:gap-15 md:flex-row-reverse flex-col">
             <div className="flex-1">
-              <div className="mb-8">
-                <div>
+              <motion.div
+                // initial="hidden"
+                // animate={controls}
+                // variants={containerVariants}
+                className="mb-8"
+              >
+                <motion.div variants={itemVariants}>
                   <Tagline text={data.SingleCenter.tagline} />
-                </div>
-                <div className="mb-8">
+                </motion.div>
+                <motion.div variants={itemVariants} className="mb-8">
                   <h2 className="text-3xl md:text-[48px] font-bold leading-[1.2] tracking-[-0.48px] mb-2 whitespace-pre-line text-Primary-Black">
                     {data.SingleCenter.title}
                   </h2>
                   <span className="text-Primary-Palm text-base font-medium mb-2">
                     {data.SingleCenter.category}
                   </span>
-                  <p
-                    className={`text-base md:text-lg text-Secondary-Text whitespace-pre-line`}
-                  >
+                  <p className="text-base md:text-lg text-Secondary-Text whitespace-pre-line">
                     {data.SingleCenter.description}
                   </p>
-                </div>
-              </div>
+                </motion.div>
+              </motion.div>
             </div>
 
             {/* Image */}
-            <div className="flex-1  w-full">
-              <div className="grid grid-cols-1 gap-4 w-full">
-                <div className="flex items-start  flex-col bg-white w-full h-[332px] rounded-[8px] relative overflow-hidden">
+            <div className="flex-1 w-full">
+              <motion.div
+                variants={itemVariants}
+                // initial="hidden"
+                animate={controls}
+                className="grid grid-cols-1 gap-4 w-full"
+              >
+                <div className="flex items-start flex-col bg-white w-full h-[332px] rounded-[8px] relative overflow-hidden">
                   <Image
                     fill
                     src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${data.SingleCenter.image.url}`}
@@ -84,29 +111,43 @@ export default function OurNetworkPage({ data }: { data: NetworkData }) {
                     className="object-contain p-5"
                   />
                 </div>
-              </div>
+              </motion.div>
             </div>
           </div>
         </div>
       </section>
+
+      {/* Centers Section */}
       {data.CentersSection.map((section, index) => (
         <CentersSection key={index} {...section} />
       ))}
-      <section className="bg-Primary-Scrub">
-        <div className=" mx-auto max-w-[1392px] py-8 md:py-28 w-full  px-4">
-          <div
-            className={`flex items-center gap-8 md:gap-20 flex-col md:flex-row `}
-          >
+
+      {/* Trusted Partner Section */}
+      <section ref={ref} className="bg-Primary-Scrub">
+        <div className="mx-auto max-w-[1392px] py-8 md:py-28 w-full px-4">
+          <div className="flex items-center gap-8 md:gap-20 flex-col md:flex-row">
             <div className="w-full md:w-1/2">
-              <div className="gap-4 md:mb-8">
-                <h2 className="text-3xl md:text-[48px] font-bold leading-[1.2] tracking-[-0.48px] mb-3 md:mb-6 whitespace-pre-line text-white">
+              <motion.div
+                initial="hidden"
+                animate={controls}
+                variants={containerVariants}
+                className="gap-4 md:mb-8"
+              >
+                <motion.h2
+                  variants={itemVariants}
+                  className="text-3xl md:text-[48px] font-bold leading-[1.2] tracking-[-0.48px] mb-3 md:mb-6 whitespace-pre-line text-white"
+                >
                   {data.TrustedPartner.title}
-                </h2>
-                <span className="text-white text-base md:text-[18px] mb-8">
+                </motion.h2>
+                <motion.span
+                  variants={itemVariants}
+                  className="text-white text-base md:text-[18px] mb-8"
+                >
                   {data.TrustedPartner.shortDescription}
-                </span>
-                <form
+                </motion.span>
+                <motion.form
                   onSubmit={handleNewsletterSubmit}
+                  variants={itemVariants}
                   className="flex gap-4 items-center flex-col md:flex-row pt-8 max-w-[513px]"
                 >
                   <input
@@ -114,7 +155,7 @@ export default function OurNetworkPage({ data }: { data: NetworkData }) {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Enter Your Email"
-                    className="bg-white  rounded-[6px] px-3 py-2 h-12 w-full md:w-[479px] text-base text-[#626262] "
+                    className="bg-white rounded-[6px] px-3 py-2 h-12 w-full md:w-[479px] text-base text-[#626262]"
                   />
                   <button
                     type="submit"
@@ -123,55 +164,68 @@ export default function OurNetworkPage({ data }: { data: NetworkData }) {
                   >
                     {isSubmitting ? 'Signing Up...' : 'Sign Up'}
                   </button>
-                </form>
-                <p className={`text-xs text-Secondary-Dark-Palm  pt-4`}>
+                </motion.form>
+                <motion.p
+                  variants={itemVariants}
+                  className="text-xs text-Secondary-Dark-Palm pt-4"
+                >
                   {data.TrustedPartner.description}
-                </p>
-              </div>
+                </motion.p>
+              </motion.div>
             </div>
 
             {/* Image */}
             <div className="w-full md:w-1/2">
-              <div className="grid grid-cols-1 gap-4 ">
-                <div className="flex items-start  flex-col w-full h-[270px] md:h-[400px] rounded-[8px] relative overflow-hidden">
+              <motion.div
+                variants={itemVariants}
+                initial="hidden"
+                animate={controls}
+                className="grid grid-cols-1 gap-4"
+              >
+                <div className="flex items-start flex-col w-full h-[270px] md:h-[400px] rounded-[8px] relative overflow-hidden">
                   <Image
                     fill
                     src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${data.TrustedPartner.image.url}`}
                     alt="center"
-                    className="object-contain "
+                    className="object-contain"
                   />
                 </div>
-              </div>
+              </motion.div>
             </div>
           </div>
         </div>
       </section>
-      <section className="bg-Secondary-Scrub">
+
+      {/* Login Section */}
+      <section ref={ref} className="bg-Secondary-Scrub">
         <div className="px-4 mx-auto max-w-[1392px] py-8 md:py-28">
-          <div
-            className={`flex items-start gap-8 md:gap-15 flex-col md:flex-row`}
-          >
-            <div className="flex-1 ">
+          <div className="flex items-start gap-8 md:gap-15 flex-col md:flex-row">
+            <motion.div
+              variants={itemVariants}
+              initial="hidden"
+              animate={controls}
+              className="flex-1"
+            >
               <h2 className="text-3xl md:text-[48px] font-bold leading-[1.2] tracking-[-0.48px] whitespace-pre-line text-Primary-Black">
                 {data.LoginSection.title}
               </h2>
-            </div>
+            </motion.div>
 
-            <div className="flex-1">
-              <p
-                className={`text-base md:text-lg text-Secondary-Text whitespace-pre-line pb-4 md:pb-8`}
-              >
+            <motion.div
+              variants={itemVariants}
+              initial="hidden"
+              animate={controls}
+              className="flex-1"
+            >
+              <p className="text-base md:text-lg text-Secondary-Text whitespace-pre-line pb-4 md:pb-8">
                 {data.LoginSection.description}
               </p>
-              <Link
-                href={data.LoginSection.cta.url}
-                className="inline-block  bg-primary text-white rounded-lg font-medium group cursor-pointer"
-              >
+              <Link href={data.LoginSection.cta.url} className="inline-block">
                 <Button variant={'primary'} righticon={false} fullwidth>
                   {data.LoginSection.cta.label}
                 </Button>
               </Link>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
