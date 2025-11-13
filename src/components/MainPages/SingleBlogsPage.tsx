@@ -1,10 +1,18 @@
 'use client'
-import Link from 'next/link'
-import HeroSinglePages from '@/components/sections/HeroSinglePages'
 import BlogCard from '@/components/sections/BlogCard'
-import { useLocale, useTranslations } from 'next-intl'
+import HeroSinglePages from '@/components/sections/HeroSinglePages'
 import ButtonIcon from '@/components/svg/ButtonIcon'
-import { BlogPost, ListItem, TextChild } from '../../types/blog'
+import { useLocale, useTranslations } from 'next-intl'
+import Link from 'next/link'
+// Import specific types for content blocks
+import {
+  BlogContent,
+  BlogPost,
+  ListBlock,
+  ListItem,
+  ParagraphBlock,
+  TextChild,
+} from '../../types/blog'
 
 // function calculateReadTime(text: string) {
 //   const words = text.trim().split(/\s+/).length
@@ -54,7 +62,8 @@ export default function SingleBlogsPage({
         >
           {data.content && (
             <div className="mx-auto max-w-[1448px] py-0 md:py-20 md:px-4 px-4 space-y-4 md:space-y-6">
-              {data.content.map((block: any, index: number) => {
+              {/* FIX 1: Replaced 'any' with the more specific 'ContentBlock' type */}
+              {data.content.map((block: BlogContent, index: number) => {
                 let contentElement = null
 
                 switch (block.type) {
@@ -81,9 +90,11 @@ export default function SingleBlogsPage({
                     break
 
                   case 'paragraph':
+                    // FIX 2: Replaced 'any' with 'TextChild' for the child 'c'
                     if (
-                      block.children.some(
-                        (c: any) => 'text' in c && c.text?.trim()?.length > 0
+                      (block as ParagraphBlock).children.some(
+                        (c: TextChild) =>
+                          'text' in c && c.text?.trim()?.length > 0
                       )
                     ) {
                       contentElement = (
@@ -100,19 +111,22 @@ export default function SingleBlogsPage({
                   case 'list':
                     contentElement = (
                       <ul key={index} className="list-disc ps-6 space-y-2">
-                        {block.children.map((li: any, liIndex: number) => {
-                          if ('children' in li) {
-                            return (
-                              <li
-                                key={liIndex}
-                                className="text-[#000404] text-base md:text-lg"
-                              >
-                                {li.children.map(extractText).join('')}
-                              </li>
-                            )
+                        {/* FIX 3: Replaced 'any' with 'ListItem' for the list item 'li' */}
+                        {(block as ListBlock).children.map(
+                          (li: ListItem, liIndex: number) => {
+                            if ('children' in li) {
+                              return (
+                                <li
+                                  key={liIndex}
+                                  className="text-[#000404] text-base md:text-lg"
+                                >
+                                  {li.children.map(extractText).join('')}
+                                </li>
+                              )
+                            }
+                            return null
                           }
-                          return null
-                        })}
+                        )}
                       </ul>
                     )
                     break

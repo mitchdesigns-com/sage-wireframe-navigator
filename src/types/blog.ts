@@ -120,3 +120,40 @@ export interface BlogPost {
 export interface SingleBlogResponse {
   data: BlogPost[]
 }
+// In your types/blog.ts file
+
+export interface TextChild {
+  text: string
+  // Add other properties like 'bold', 'italic' if they exist
+}
+
+export interface ListItem {
+  type: 'list-item'
+  children: TextChild[]
+}
+
+export interface HeadingBlock {
+  type: 'heading'
+  level: number
+  children: TextChild[]
+}
+
+export interface ParagraphBlock {
+  type: 'paragraph'
+  children: TextChild[]
+}
+
+export interface ListBlock {
+  type: 'list'
+  format: 'ordered' | 'unordered'
+  children: ListItem[]
+}
+
+// A union type for any possible content block
+export type ContentBlock = HeadingBlock | ParagraphBlock | ListBlock
+
+export interface BlogPost {
+  slug: string
+  HeroSinglePages: HeroSinglePages // Define this more accurately if possible
+  content: BlogContent[]
+}
