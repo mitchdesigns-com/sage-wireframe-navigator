@@ -21,7 +21,6 @@ export default function GuidesPage({ data }: { data: GuidesPage[] }) {
 
   const [currentTab, setCurrentTab] = useState<TabType>('all')
 
-  // Extract toggle options
   const toggleBlock = resources.find(
     (res) => res.__component === 'resources.toggle-button'
   )
@@ -32,27 +31,23 @@ export default function GuidesPage({ data }: { data: GuidesPage[] }) {
       value: opt.value,
     })) || []
 
-  // Extract guides data
   const guidsData =
     resources.filter((res) => res.__component === 'resources.guides-card') || []
 
-  // Filter guides
   const filteredGuids =
     currentTab === 'all'
       ? guidsData
       : guidsData.filter((guide) => guide.category === currentTab)
 
   return (
-    <div className="min-h-screen overflow-hidden">
-      {/* HeroPages */}
+    <div className="min-h-screen">
       {blocks.map((block) =>
         block.__component === 'blocks.hero-pages' ? (
           <HeroPages key={block.id} {...block} />
         ) : null
       )}
-
-      {/* Toggle Button + Guides */}
-      <section className="py-8 md:py-20 bg-Secondary-Light-Scrub ">
+      <section className="py-8 md:py-20 bg-Secondary-Light-Scrub">
+        {' '}
         <div className="max-w-[1392px] mx-auto space-y-8 md:space-y-20">
           <div className="max-w-[768px] mx-auto">
             <ToggleButton
@@ -62,15 +57,14 @@ export default function GuidesPage({ data }: { data: GuidesPage[] }) {
             />
           </div>
 
-          <div className="grid md:grid-cols-3 gap-x-8 gap-y-8 md:gap-y-20  px-4 ">
+          <div className="grid md:grid-cols-3 gap-x-8 gap-y-8 md:gap-y-20 px-4 overflow-hidden">
+            {' '}
             {filteredGuids.map((guide) => (
               <GuidesCard key={guide.id} guide={guide} />
             ))}
           </div>
         </div>
       </section>
-
-      {/* GetInTouch */}
       {blocks.map((block) =>
         block.__component === 'blocks.get-in-touch' ? (
           <GetInTouch key={block.id} {...block} />

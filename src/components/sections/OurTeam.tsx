@@ -9,6 +9,7 @@ import 'swiper/css/pagination'
 import 'swiper/css/navigation'
 import '../../app/team.css'
 
+import { motion } from 'framer-motion'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -69,11 +70,38 @@ export default function OurTeam({ data }: OurTeamProps) {
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
   }, [])
+
+  // Animation Variants
+  const fadeUp = {
+    hidden: { opacity: 0, y: 40 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.7, ease: 'easeOut' },
+    },
+  }
+
+  const staggerContainer = {
+    hidden: {},
+    visible: {
+      transition: { staggerChildren: 0.2 },
+    },
+  }
+
   return (
-    <section className="py-8 md:py-25 bg-Secondary-Light-Scrub">
+    <motion.section
+      className="py-8 md:py-25 bg-Secondary-Light-Scrub"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
+      variants={staggerContainer}
+    >
       <div className="container mx-auto px-4">
         {/* Header */}
-        <div className="flex pb-4 md:pb-15 justify-between items-end text-center md:text-start">
+        <motion.div
+          className="flex pb-4 md:pb-15 justify-between items-end text-center md:text-start"
+          variants={fadeUp}
+        >
           <div>
             <h6 className="text-[#000404] font-bold text-[28px] md:text-[48px] leading-[1.2] tracking-[-0.48px] pb-4">
               {data.title}
@@ -118,100 +146,117 @@ export default function OurTeam({ data }: OurTeamProps) {
               </button>
             </div>
           )}
-        </div>
+        </motion.div>
 
         {/* Swiper */}
-        <Swiper
-          modules={[Pagination, Navigation]}
-          onSwiper={(swiper) => (swiperRef.current = swiper)}
-          onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
-          pagination={{ clickable: true }}
-          spaceBetween={20}
-          slidesPerView={1}
-          breakpoints={{
-            0: {
-              slidesPerView: 1.2, // show a peek of next slide
-              spaceBetween: 15,
-            },
-            768: {
-              slidesPerView: 1,
-              spaceBetween: 30,
-            },
-          }}
-          className="team-swiper"
-        >
-          {/* MOBILE: each member is a slide */}
-          {isMobile && (
-            <div className="md:hidden">
-              {data.TeamMember.map((member) => (
-                <SwiperSlide key={member.id}>
-                  <div className="relative rounded-xl overflow-hidden w-full">
-                    <div className="aspect-[265/300] w-full relative">
-                      <Image
-                        fill
-                        src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${member.image.url}`}
-                        alt={member.image.alternativeText || member.name}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/70 to-transparent text-white px-2 py-3">
-                      <div className="text-base font-medium">{member.name}</div>
-                      <div className="text-sm text-[#D2D2D2]">
-                        {member.title}
+        <motion.div variants={fadeUp}>
+          <Swiper
+            modules={[Pagination, Navigation]}
+            onSwiper={(swiper) => (swiperRef.current = swiper)}
+            onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
+            pagination={{ clickable: true }}
+            spaceBetween={20}
+            slidesPerView={1}
+            breakpoints={{
+              0: {
+                slidesPerView: 1.2, // show a peek of next slide
+                spaceBetween: 15,
+              },
+              768: {
+                slidesPerView: 1,
+                spaceBetween: 30,
+              },
+            }}
+            className="team-swiper"
+          >
+            {/* MOBILE: each member is a slide */}
+            {isMobile && (
+              <div className="md:hidden">
+                {data.TeamMember.map((member) => (
+                  <SwiperSlide key={member.id}>
+                    <motion.div
+                      className="relative rounded-xl overflow-hidden w-full"
+                      variants={fadeUp}
+                      whileInView="visible"
+                      initial="hidden"
+                      viewport={{ once: true }}
+                    >
+                      <div className="aspect-[265/300] w-full relative">
+                        <Image
+                          fill
+                          src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${member.image.url}`}
+                          alt={member.image.alternativeText || member.name}
+                          className="w-full h-full object-cover"
+                        />
                       </div>
-                    </div>
-                  </div>
-                </SwiperSlide>
-              ))}
-            </div>
-          )}
-          {/* DESKTOP: grouped slides */}
-          {!isMobile && (
-            <div className="hidden md:block">
-              {grouped.map((group, index) => (
-                <SwiperSlide key={index}>
-                  <div className="grid grid-cols-5 gap-4 w-full">
-                    {group.map((member) => (
-                      <div
-                        key={member.id}
-                        className="relative rounded-xl overflow-hidden"
-                      >
-                        <div className="aspect-[265/300] w-full relative">
-                          <Image
-                            fill
-                            src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${member.image.url}`}
-                            alt={member.image.alternativeText || member.name}
-                            className="w-full h-full object-cover"
-                          />
+                      <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/70 to-transparent text-white px-2 py-3">
+                        <div className="text-base font-medium">
+                          {member.name}
                         </div>
-                        <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/70 to-transparent text-white px-2 py-3">
-                          <div className="text-base font-medium">
-                            {member.name}
-                          </div>
-                          <div className="text-sm text-[#D2D2D2]">
-                            {member.title}
-                          </div>
+                        <div className="text-sm text-[#D2D2D2]">
+                          {member.title}
                         </div>
                       </div>
-                    ))}
-                  </div>
-                </SwiperSlide>
-              ))}
-            </div>
-          )}
+                    </motion.div>
+                  </SwiperSlide>
+                ))}
+              </div>
+            )}
+            {/* DESKTOP: grouped slides */}
+            {!isMobile && (
+              <div className="hidden md:block">
+                {grouped.map((group, index) => (
+                  <SwiperSlide key={index}>
+                    <motion.div
+                      className="grid grid-cols-5 gap-4 w-full"
+                      variants={staggerContainer}
+                    >
+                      {group.map((member) => (
+                        <motion.div
+                          key={member.id}
+                          variants={fadeUp}
+                          className="relative rounded-xl overflow-hidden"
+                        >
+                          <div className="aspect-[265/300] w-full relative">
+                            <Image
+                              fill
+                              src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${member.image.url}`}
+                              alt={member.image.alternativeText || member.name}
+                              className="w-full h-full object-cover"
+                            />
+                          </div>
+                          <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/70 to-transparent text-white px-2 py-3">
+                            <div className="text-base font-medium">
+                              {member.name}
+                            </div>
+                            <div className="text-sm text-[#D2D2D2]">
+                              {member.title}
+                            </div>
+                          </div>
+                        </motion.div>
+                      ))}
+                    </motion.div>
+                  </SwiperSlide>
+                ))}
+              </div>
+            )}
 
-          <div className="swiper-pagination mt-8 md:hidden" />
-        </Swiper>
+            <div className="swiper-pagination mt-8 md:hidden" />
+          </Swiper>
+        </motion.div>
 
         {/* Hiring Section */}
-        <div className="bg-white rounded-2xl p-8 max-w-[1072px] mx-auto relative mt-10">
+        <motion.div
+          className="bg-white rounded-2xl p-8 max-w-[1072px] mx-auto relative mt-10"
+          variants={fadeUp}
+        >
           <Tagline
             text={data.hiringSection.tagline}
             className="absolute -top-5 left-8 items-start"
           />
           <div className="flex justify-between items-center flex-col md:flex-row">
             <div className="pb-8 md:pb-0">
-              <h6 className="text-Primary-Black font-bold text-2xl md:text-[32px] leading-[1.2] tracking-[-0.48px] pb-4">
+              <h6 className="text-Primary-Black font-bold text-2xl md:text-[32px] pb-4">
                 {data.hiringSection.title}
               </h6>
               <p className="text-Secondary-Text text-base md:text-lg">
@@ -227,7 +272,11 @@ export default function OurTeam({ data }: OurTeamProps) {
                   <div className="relative shrink-0 size-6">
                     <div className="absolute flex h-[28.284px] items-center justify-center top-[-2.14px] left-[calc(50%+0.084px)] translate-x-[-50%] w-[28.284px]">
                       <div
-                        className={`flex-none ${locale === 'ar' ? 'group-hover:-rotate-[45deg]' : 'group-hover:rotate-[45deg]'} text-Primary-Palm group-hover:text-Secondary-Dark-Palm transition-all duration-300`}
+                        className={`flex-none ${
+                          locale === 'ar'
+                            ? 'group-hover:-rotate-[45deg]'
+                            : 'group-hover:rotate-[45deg]'
+                        } text-Primary-Palm group-hover:text-Secondary-Dark-Palm transition-all duration-300`}
                       >
                         <ButtonIcon strokeColor="white" locale={locale} />
                       </div>
@@ -237,8 +286,8 @@ export default function OurTeam({ data }: OurTeamProps) {
               </div>
             </Link>
           </div>
-        </div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   )
 }

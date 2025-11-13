@@ -11,6 +11,7 @@ import type {
   WebinarList as WebinarListType,
 } from '../../types/newsEvents'
 import { useLocale } from 'next-intl'
+
 export type TabType = 'comingSoon' | 'previous'
 
 export interface ToggleOption {
@@ -33,9 +34,10 @@ const WebinarList: React.FC<WebinarListProps> = ({ webinars, events }) => {
   const [currentTab, setCurrentTab] = useState<TabType>('comingSoon')
   const locale = useLocale()
 
+  // --- Motion Variants ---
   const containerVariants = {
     hidden: {},
-    visible: { transition: { staggerChildren: 0.15 } }, // animate each webinar sequentially
+    visible: { transition: { staggerChildren: 0.15 } },
   }
 
   const itemVariants = {
@@ -47,31 +49,65 @@ const WebinarList: React.FC<WebinarListProps> = ({ webinars, events }) => {
     },
   }
 
+  const fadeUp = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: 'easeOut' },
+    },
+  }
+
   return (
-    <div className="bg-Secondary-Light-Scrub">
+    <div className="bg-Secondary-Light-Scrub overflow-hidden">
       <div className="mx-auto max-w-[1280px] py-8 md:py-28 px-4">
         {webinars.news && (
-          <div className="pb-15">
-            <span className="text-Primary-Palm text-base font-medium">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={containerVariants}
+            className="pb-15"
+          >
+            <motion.span
+              variants={fadeUp}
+              className="text-Primary-Palm text-base font-medium block mb-2"
+            >
               Where Healthcare Meets Insight and Impact
-            </span>
-            <h6 className="heading-lg">Sage Events</h6>
-            <p className="text-lg max-w-[893px]">
+            </motion.span>
+
+            <motion.h6 variants={fadeUp} className="heading-lg">
+              Sage Events
+            </motion.h6>
+
+            <motion.p
+              variants={fadeUp}
+              className="text-lg max-w-[893px] mt-3 text-Secondary-Text"
+            >
               Join us as we bring together healthcare leaders, patients, and
               organizations to explore innovation, transparency, and
               personalized care. Our events are designed to inspire, inform, and
               connect, all in one place.
-            </p>
-          </div>
+            </motion.p>
+          </motion.div>
         )}
-        <div className="max-w-[325px]">
+
+        {/* ToggleButton with fade-in animation */}
+        <motion.div
+          className="max-w-[325px]"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          viewport={{ once: true }}
+        >
           <ToggleButton
             options={webinars.ToggleButton.options}
             selectedValue={currentTab}
             onChange={(val) => setCurrentTab(val as TabType)}
           />
-        </div>
+        </motion.div>
 
+        {/* Animated Event List */}
         <motion.div
           className="flex flex-col"
           initial="hidden"
@@ -85,24 +121,34 @@ const WebinarList: React.FC<WebinarListProps> = ({ webinars, events }) => {
               variants={itemVariants}
               className="flex flex-col md:flex-row items-start md:items-center p-8 w-full gap-8 border-b border-[#00040426]"
             >
-              <div className="flex flex-col items-center justify-center bg-Primary-Spring-Med text-Primary-Palm rounded-3xl px-1 py-[11px] w-[112px]">
+              {/* Date box */}
+              <motion.div
+                variants={fadeUp}
+                className="flex flex-col items-center justify-center bg-Primary-Spring-Med text-Primary-Palm rounded-3xl px-1 py-[11px] w-[112px]"
+              >
                 <span className="text-base">{webinar.HeroCarousel.day}</span>
                 <span className="text-[32px] font-bold">
                   {webinar.HeroCarousel.dayNumbers}
                 </span>
                 <span className="text-base">{webinar.HeroCarousel.year}</span>
-              </div>
+              </motion.div>
 
+              {/* Content and button */}
               <div className="md:flex-row flex-col flex justify-between w-full items-start md:items-center">
-                <div>
+                <motion.div variants={fadeUp}>
                   <h3 className="text-lg md:text-[20px] font-bold mb-2 text-Primary-Black">
                     {webinar.HeroCarousel.title}
                   </h3>
                   <p className="text-sm md:text-base text-Secondary-Text max-w-[565px] pb-8 md:pb-0">
                     {webinar.HeroCarousel.description}
                   </p>
-                </div>
-                <div>
+                </motion.div>
+
+                <motion.div
+                  variants={fadeUp}
+                  transition={{ delay: 0.2 }}
+                  className="w-full md:w-auto"
+                >
                   <Link
                     href={`/resources/news-events/events/${webinar.slug}`}
                     className="inline-block bg-primary text-Primary-Black rounded-lg font-medium group cursor-pointer"
@@ -123,7 +169,7 @@ const WebinarList: React.FC<WebinarListProps> = ({ webinars, events }) => {
                       )}
                     </Button>
                   </Link>
-                </div>
+                </motion.div>
               </div>
             </motion.div>
           ))}

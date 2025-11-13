@@ -10,6 +10,7 @@ import { EventData, NewsArticle, NewsEventsData } from '../../types/newsEvents'
 import { useLocale } from 'next-intl'
 import { motion, useAnimation } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
+import { useEffect } from 'react'
 
 interface NewsPageProps {
   data: {
@@ -26,10 +27,22 @@ export default function NewsPage({ data }: NewsPageProps) {
   const [ref, inView] = useInView({ threshold: 0.3, triggerOnce: true })
 
   const containerVariants = {
-    hidden: {},
-    visible: { transition: { staggerChildren: 0.2 } },
+    hidden: { opacity: 0, y: 40 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, staggerChildren: 0.2, ease: 'easeOut' },
+    },
   }
-  console.log(inView)
+
+  useEffect(() => {
+    if (inView) {
+      controls.start('visible')
+    }
+  }, [controls, inView])
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [])
 
   return (
     <div className="min-h-screen bg-white">

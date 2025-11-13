@@ -33,9 +33,8 @@ export default function GuidesCard({ guide }: GuidesCardProps) {
   useEffect(() => {
     if (inView) controls.start('visible')
   }, [controls, inView])
-
   const cardVariants = {
-    hidden: { opacity: 0, y: 50 },
+    hidden: { opacity: 0, y: 50 }, // The card starts 50px down
     visible: {
       opacity: 1,
       y: 0,
@@ -49,7 +48,7 @@ export default function GuidesCard({ guide }: GuidesCardProps) {
       variants={cardVariants}
       initial="hidden"
       animate={controls}
-      className="flex flex-col bg-white rounded-4xl w-full overflow-x-hidden"
+      className="flex flex-col bg-white rounded-4xl w-full "
     >
       <div className="h-[293px] w-full relative rounded-t-4xl overflow-hidden ">
         <Image
@@ -82,17 +81,18 @@ export default function GuidesCard({ guide }: GuidesCardProps) {
         <p className="text-Secondary-Text text-sm md:text-base pb-6">
           {guide.description}
         </p>
-        <div className="overflow-x-hidden">
+        <div className="">
           <div className="flex items-center justify-between mt-auto">
             <div className="w-fit">
               <Button
                 variant="light-link"
-                className="p-0 text-Primary-Palm font-bold text-base md:text-lg cursor-pointer"
+                // className="p-0 text-Primary-Palm font-bold text-base md:text-lg cursor-pointer"
               >
                 <div className="flex items-center gap-[2px]">
+                  {' '}
                   <DownloadIcon color="#025850" />
                   <div className="overflow-hidden">
-                    <span className="inline-block hover:text-Primary-Black hover:translate-x-[2px] transition-all duration-300">
+                    <span className="inline-block px-1 py-0.5 transition-transform duration-300 ease-out hover:translate-x-[2px] hover:text-Primary-Black">
                       Download PDF
                     </span>
                   </div>
