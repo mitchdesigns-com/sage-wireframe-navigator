@@ -30,10 +30,10 @@ export default function ServicesMenu({
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -10 }}
       transition={{ duration: 0.2 }}
-      className="absolute top-full left-0 w-screen bg-white shadow-xl border-t border-gray-200 z-50 max-h-[90vh] overflow-y-auto"
+      className="absolute top-full left-0 w-full bg-white shadow-xl border-t border-gray-200 z-50 max-h-[90vh] overflow-y-hidden"
     >
       {/* Menu content */}
-      <div className="bg-[#e6eeed] px-[60px] py-8 ">
+      <div className="bg-[#e6eeed] px-5 py-8 ">
         <div className="max-w-[1392px] w-full mx-auto">
           {' '}
           <div className="flex gap-8 items-start justify-end">
@@ -195,7 +195,7 @@ export default function ServicesMenu({
 
             {/* Image placeholder */}
             <div className="flex-shrink-0 hidden md:block">
-              <div className="relative  w-[314px] h-[386px] ">
+              <div className="relative md:w-[250px] lg:w-[314px] md:h-[300px] lg:h-[386px] ">
                 <Image
                   src="/images/generalImages/Placeholder.png"
                   alt="Doctor"

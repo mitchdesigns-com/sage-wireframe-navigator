@@ -1,7 +1,7 @@
 'use client'
 
 import { motion, useAnimation } from 'framer-motion'
-import { Mail, Phone } from 'lucide-react'
+import { ChevronDown, Mail, Phone } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
@@ -26,6 +26,7 @@ export default function FooterClient({ footerData }: FooterClientProps) {
 
   const [email, setEmail] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [openIndex, setOpenIndex] = useState(-1)
 
   const handleNewsletterSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -204,20 +205,57 @@ export default function FooterClient({ footerData }: FooterClientProps) {
           </div>
         </motion.div>
       </motion.div>
-
+      <div className="md:hidden flex flex-col w-full bg-white py-8 px-4 rounded-4xl">
+        {menu.map((section, index) => {
+          const isOpen = openIndex === index
+          return (
+            <div key={section.id} className="py-3">
+              <button
+                onClick={() => setOpenIndex(isOpen ? -1 : index)}
+                className="w-full flex justify-between items-center text-left"
+              >
+                <h3 className="text-Primary-Black font-bold text-sm">
+                  {section.title}
+                </h3>
+                <ChevronDown
+                  className={`w-5 h-5 text-Primary-Black transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
+                />
+              </button>
+              <div
+                className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-96 mt-2' : 'max-h-0'}`}
+              >
+                <div className="space-y-2">
+                  {section.SingleLink.map((link) => (
+                    <div key={link.id} className="py-1">
+                      <Link
+                        href={link.href}
+                        className="text-Primary-Black text-xs"
+                      >
+                        {link.title}
+                      </Link>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )
+        })}
+      </div>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.6, delay: 0.4 }}
-        className="gap-4 items-center justify-center relative hidden md:grid grid-cols-3 md:grid-cols-6 w-full py-5 md:py-8 max-w-[1392px] mx-auto"
+        className="flex justify-between px-4 "
       >
-        {awards.map((award, idx) => (
-          <div
-            key={idx}
-            className={`bg-no-repeat aspect-[104/42] md:aspect-[218/88] rounded-[4px] md:rounded-xl bg-white bg-center bg-contain`}
-            style={{ backgroundImage: `url('${award.img}')` }}
-          />
-        ))}
+        <div className="gap-4 items-center justify-center relative hidden md:grid grid-cols-3 md:grid-cols-6 w-full py-5 md:py-8 max-w-[1392px] mx-auto">
+          {awards.map((award, idx) => (
+            <div
+              key={idx}
+              className={`bg-no-repeat aspect-[104/42] md:aspect-[218/88] rounded-[4px] md:rounded-xl bg-white bg-center bg-contain`}
+              style={{ backgroundImage: `url('${award.img}')` }}
+            />
+          ))}
+        </div>
       </motion.div>
 
       <motion.div

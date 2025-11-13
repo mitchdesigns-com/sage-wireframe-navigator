@@ -232,7 +232,7 @@ export default function DirectionScrollSection({
           }
         }
       `}</style>
-      <div className="select-none">
+      <div className="select-none ">
         <section className="ds-section">
           <div className="ds-container">
             <div className="ds-strip">

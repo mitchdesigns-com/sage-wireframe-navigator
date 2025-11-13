@@ -77,7 +77,7 @@ export default function HeaderClient({ ResourceData }: HeaderClientProps) {
   return (
     <div
       ref={headerRef}
-      className={`bg-primary-palm content-stretch flex flex-col items-center justify-start w-full top-0 z-50 relative`}
+      className={`bg-primary-palm content-stretch flex flex-col items-center justify-start w-full top-0 z-50 relative `}
     >
       <HeaderTopBanner />
       <motion.div

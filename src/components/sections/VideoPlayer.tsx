@@ -81,7 +81,7 @@ export default function VideoPlayer({ video }: { video: string }) {
       <video
         ref={videoRef}
         src={video}
-        className="w-full rounded-xl md:rounded-[40px]"
+        className="w-full h-full rounded-xl md:rounded-[40px] object-cover"
         playsInline
         preload="auto"
         controls

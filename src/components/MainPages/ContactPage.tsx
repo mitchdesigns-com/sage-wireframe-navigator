@@ -9,7 +9,7 @@ import ButtonIcon from '@/components/svg/ButtonIcon'
 import Image from 'next/image'
 import Link from 'next/link'
 import Script from 'next/script'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import 'react-phone-number-input/style.css'
 import { ContactPageData } from '../../types/contactPageData'
 import { useLocale } from 'next-intl'
@@ -32,10 +32,12 @@ export default function ContactPage({ data }: { data: ContactPageData }) {
     hidden: { opacity: 0, y: 30 },
     show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
   }
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [])
 
   return (
     <div className="min-h-screen">
-      {/* 📨 Send Message Section */}
       <section className="py-8 md:py-16 bg-gradient-to-t from-[#013530] to-[#025850]">
         <div className="max-w-[1280px] mx-auto px-4">
           <motion.div
@@ -45,7 +47,6 @@ export default function ContactPage({ data }: { data: ContactPageData }) {
             whileInView="show"
             viewport={{ once: true, amount: 0.3 }}
           >
-            {/* Form Section */}
             <motion.div
               variants={fadeUp}
               className="space-y-3 md:space-y-6 bg-white rounded-3xl p-4 md:p-8 relative"
@@ -113,7 +114,6 @@ export default function ContactPage({ data }: { data: ContactPageData }) {
               )}
             </motion.div>
 
-            {/* Image Section */}
             <motion.div
               className="h-[480px] md:h-[780px] rounded-[40px] relative"
               variants={fadeUp}
@@ -129,7 +129,6 @@ export default function ContactPage({ data }: { data: ContactPageData }) {
         </div>
       </section>
 
-      {/* 📅 Schedule Zoom Meeting Section */}
       <motion.section
         className="py-9 md:py-28 bg-Primary-Spring-Med"
         initial="hidden"
@@ -163,7 +162,6 @@ export default function ContactPage({ data }: { data: ContactPageData }) {
         </div>
       </motion.section>
 
-      {/* 📞 Contact Us Section */}
       <motion.section
         className="py-8 md:py-28 bg-Secondary-Light-Scrub"
         initial="hidden"
@@ -189,7 +187,6 @@ export default function ContactPage({ data }: { data: ContactPageData }) {
           </motion.div>
         </div>
 
-        {/* Cards with staggered animation */}
         <motion.div
           className="max-w-[1392px] mx-auto w-full pt-8 md:pt-15 px-4"
           variants={container}

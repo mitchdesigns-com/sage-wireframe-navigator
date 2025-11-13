@@ -110,7 +110,7 @@ export default async function LocaleLayout({ children, params }: Props) {
         suppressHydrationWarning
       >
         <NextIntlClientProvider locale={locale} messages={messages}>
-          <div className="flex flex-col">
+          <div className="flex flex-col ">
             <Header locale={locale} />
             <main className="flex-1">{children}</main>
             <Footer locale={locale} />
