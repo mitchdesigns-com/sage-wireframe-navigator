@@ -128,7 +128,7 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
           )}
 
           {/* Content */}
-          <motion.div variants={fadeInUp} className="flex-1">
+          <motion.div variants={fadeInUp} className="flex-1 w-full">
             <div className="mb-8">
               {backgroundColor === '#DAF7AF' ? (
                 <Tagline text={tagline} taglineColor={'#025850'} />
@@ -186,7 +186,7 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
             {list && (
               <motion.div
                 variants={fadeInUp}
-                className="flex mb-8 gap-6 flex-col md:flex-row "
+                className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8"
               >
                 {list.map((li, idx) => (
                   <div
@@ -231,7 +231,7 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
             )}
 
             {/* CTA Buttons */}
-            <motion.div variants={fadeInUp} className="flex gap-8">
+            <motion.div variants={fadeInUp} className="flex gap-0 md:gap-8">
               {ctaText && (
                 <Link href={href || '/contact'}>
                   <Button

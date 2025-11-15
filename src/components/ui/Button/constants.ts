@@ -105,12 +105,12 @@ export const DESIGN_CONFIG = {
       container: {
         default: 'px-6 py-2',
         withLeftIcon: 'px-6 py-2',
-        withRightIcon: 'ps-6 pe-2 py-2',
+        withRightIcon: 'ps-4 md:ps-6 pe-2 py-2',
         withBothIcons: 'px-2 py-2',
       },
       text: 'text-[16px] font-aeonik-medium leading-[1.5]',
       gaps: {
-        default: 'gap-4',
+        default: 'gap-2 md:gap-4',
         compact: 'gap-3',
       },
       icon: {

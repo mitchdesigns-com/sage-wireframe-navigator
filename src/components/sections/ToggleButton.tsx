@@ -71,7 +71,15 @@ const ToggleButton: React.FC<ToggleButtonProps> = ({
       animate="visible"
       variants={containerVariants}
     >
-      <div className="relative flex items-center md:justify-center flex-wrap rounded-full text-Secondary-Text">
+      <div
+        className={clsx(
+          // Mobile: horizontal scroll + hide scrollbar
+          'relative flex items-center overflow-x-auto scrollbar-hide no-scrollbar gap-2 px-1',
+          // Desktop: center, no scroll, wrap normally
+          'md:justify-center md:overflow-visible md:flex-wrap',
+          'rounded-full text-Secondary-Text'
+        )}
+      >
         {/* Sliding pill */}
         <motion.div
           className={clsx(
