@@ -73,21 +73,18 @@ const WebinarList: React.FC<WebinarListProps> = ({ webinars, events }) => {
               variants={fadeUp}
               className="text-Primary-Palm text-base font-medium block mb-2"
             >
-              Where Healthcare Meets Insight and Impact
+              {webinars.subTitle}
             </motion.span>
 
             <motion.h6 variants={fadeUp} className="heading-lg">
-              Sage Events
+              {webinars.title}
             </motion.h6>
 
             <motion.p
               variants={fadeUp}
               className="text-lg max-w-[893px] mt-3 text-Secondary-Text"
             >
-              Join us as we bring together healthcare leaders, patients, and
-              organizations to explore innovation, transparency, and
-              personalized care. Our events are designed to inspire, inform, and
-              connect, all in one place.
+              {webinars.description}
             </motion.p>
           </motion.div>
         )}
