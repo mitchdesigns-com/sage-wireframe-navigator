@@ -7,6 +7,7 @@ import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
 import { FooterData } from '../../types/footer'
+import { useTranslations } from 'next-intl'
 
 const awards = [
   { name: 'image 10', img: '/images/awards/01.png' },
@@ -68,7 +69,7 @@ export default function FooterClient({ footerData }: FooterClientProps) {
       transition: { duration: 0.6, ease: 'easeOut' },
     },
   }
-
+  const t = useTranslations()
   return (
     <motion.footer
       ref={ref}
@@ -103,10 +104,10 @@ export default function FooterClient({ footerData }: FooterClientProps) {
         >
           <div className="px-4 py-8 md:px-8 md:py-[20px]">
             <h2 className="text-[#000404] font-bold text-base md:text-lg">
-              Subscribe to Updates
+              {t('Footer.Subscribe')}
             </h2>
             <p className="text-[#000404] text-sm leading-[1.5]">
-              Stay informed about our services and healthcare insights.
+              {t('Footer.stayInformed')}
             </p>
             <form
               onSubmit={handleNewsletterSubmit}
@@ -116,7 +117,7 @@ export default function FooterClient({ footerData }: FooterClientProps) {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter Your Email"
+                placeholder={t('Form.email')}
                 className="bg-white rounded-[6px] px-3 py-2 h-12 w-full md:w-[479px] text-base text-[#626262]"
               />
               <button
@@ -124,13 +125,13 @@ export default function FooterClient({ footerData }: FooterClientProps) {
                 disabled={isSubmitting}
                 className="bg-[#025850] text-white w-full md:w-fit px-15 py-3 h-12 rounded-full font-medium text-base hover:bg-[#024440] transition-colors cursor-pointer disabled:opacity-50"
               >
-                {isSubmitting ? 'Joining...' : 'Join'}
+                {isSubmitting ? t('Footer.Joining') : t('Footer.Join')}
               </button>
             </form>
             <p className="text-Primary-Black text-xs leading-[1.5] mt-2">
-              We respect your privacy. Read our{' '}
+              {t('Footer.respectPrivacy')}
               <Link href="/privacy" className="text-[#025850] underline">
-                Privacy Policy.
+                {t('Footer.privacy')} .
               </Link>
             </p>
           </div>

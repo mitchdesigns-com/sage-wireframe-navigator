@@ -75,7 +75,7 @@ export default function ImageCarousel() {
                   >
                     <ArrowLeft
                       color="#025850"
-                      className={`${locale === 'ar' ? 'rotate-180' : ''}`}
+                      className={`${locale === 'ar' ? '' : ''}`}
                     />
                   </button>
 
@@ -91,7 +91,7 @@ export default function ImageCarousel() {
                   >
                     <ArrowRight
                       color="#025850"
-                      className={`${locale === 'ar' ? 'rotate-180' : ''}`}
+                      className={`${locale === 'ar' ? '' : ''}`}
                     />
                   </button>
                 </>

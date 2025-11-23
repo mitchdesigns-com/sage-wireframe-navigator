@@ -7,7 +7,7 @@ import ButtonIcon from '@/components/svg/ButtonIcon'
 import Image from 'next/image'
 import Link from 'next/link'
 import { EventData, NewsArticle, NewsEventsData } from '../../types/newsEvents'
-import { useLocale } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import { motion, useAnimation } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { useEffect } from 'react'
@@ -43,7 +43,7 @@ export default function NewsPage({ data }: NewsPageProps) {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }, [])
-
+  const t = useTranslations()
   return (
     <div className="min-h-screen bg-white">
       <HeroPages {...newsEvents.HeroPages} />
@@ -136,7 +136,7 @@ export default function NewsPage({ data }: NewsPageProps) {
                   <Link href="/">
                     <div className="group flex gap-1.5 items-center justify-start rounded-[100px] cursor-pointer">
                       <div className="font-aeonik-bold text-Primary-Scrub group-hover:text-Primary-Light-Sage text-lg leading-[1.5]">
-                        Read More
+                        {t('News.cta')}
                       </div>
                       <div className="bg-Primary-Scrub rounded-full p-[6px] size-7 flex items-center justify-center">
                         <div className="relative shrink-0 size-6">
@@ -177,12 +177,10 @@ export default function NewsPage({ data }: NewsPageProps) {
           className="max-w-[1392px] mx-auto  px-4"
         >
           <span className="text-Secondary-Dark-Palm text-base font-medium">
-            News
+            {t('News.News')}
           </span>
-          <motion.h6 className="heading-lg">Latest News and Events</motion.h6>
-          <motion.p className="text-lg">
-            Stay updated with Sage's latest achievements and announcements.
-          </motion.p>
+          <motion.h6 className="heading-lg"> {t('News.latestNews')}</motion.h6>
+          <motion.p className="text-lg">{t('News.announcements')}</motion.p>
         </motion.div>
         <div className="max-w-[1392px] mx-auto py-8 md:py-20  px-4">
           <div className="grid md:grid-cols-3 gap-8">

@@ -2,7 +2,7 @@
 
 import Button from '@/components/ui/Button'
 import { AnimatePresence, motion } from 'framer-motion'
-import { useLocale } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import { useEffect, useRef, useState } from 'react'
 import { ResourceData } from '../../types/header'
 import DesktopNavigation from './DesktopNavigation'
@@ -74,6 +74,8 @@ export default function HeaderClient({ ResourceData }: HeaderClientProps) {
     setServicesOpen(false)
     setResourcesOpen(false)
   }
+  const t = useTranslations()
+
   return (
     <div
       ref={headerRef}
@@ -104,7 +106,7 @@ export default function HeaderClient({ ResourceData }: HeaderClientProps) {
               righticon={true}
               locale={locale as 'en' | 'ar'}
             >
-              Schedule Call
+              {t('Header.Schedule')}
             </Button>
           </div>
           <MobileMenuButton

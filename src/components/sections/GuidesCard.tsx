@@ -6,6 +6,7 @@ import Button from '../ui/Button'
 import { motion, useAnimation } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { useEffect } from 'react'
+import { useTranslations } from 'next-intl'
 
 export interface Guide {
   id: number
@@ -41,6 +42,7 @@ export default function GuidesCard({ guide }: GuidesCardProps) {
       transition: { duration: 0.7, ease: 'easeOut' },
     },
   }
+  const t = useTranslations()
 
   return (
     <motion.div
@@ -93,7 +95,7 @@ export default function GuidesCard({ guide }: GuidesCardProps) {
                   <DownloadIcon color="#025850" />
                   <div className="overflow-hidden">
                     <span className="inline-block px-1 py-0.5 transition-transform duration-300 ease-out hover:translate-x-[2px] hover:text-Primary-Black">
-                      Download PDF
+                      {t('Home.downloadPDF')}
                     </span>
                   </div>
                 </div>

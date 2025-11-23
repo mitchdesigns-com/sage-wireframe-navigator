@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import Button from '../ui/Button'
 import SectionHeader from '../ui/SectionHeader'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 
 interface ImageLabel {
   id: number
@@ -72,6 +73,7 @@ function ServiceCard({
   locale: 'en' | 'ar'
 }) {
   const imageSrc = `${process.env.NEXT_PUBLIC_API_BASE_URL}${imageLabel?.url}`
+  const t = useTranslations()
 
   return (
     <motion.div
@@ -91,7 +93,7 @@ function ServiceCard({
       <div className="font-aeonik-bold text-primary-black text-center tracking-[-0.32px]">
         <p className={label === 'Individuals' ? 'whitespace-pre' : undefined}>
           <span className="font-aeonik-regular text-lg md:text-[20px] leading-[1.5]">
-            for{' '}
+            {t('Home.for')}
           </span>
           <span className="text-primary-palm text-2xl md:text-[32px] leading-[1.3]">
             {label}
@@ -115,7 +117,7 @@ function ServiceCard({
           locale={locale as 'en' | 'ar'}
         >
           <span className="text-sm md:text-base font-medium text-Primary-Palm">
-            Learn More
+            {t('GeneralContracting.cta')}
           </span>
         </Button>
         {locale === 'ar' ? <ChevronLeft /> : <ChevronRight />}

@@ -7,7 +7,7 @@ import Link from 'next/link'
 import { ServiceCategories } from '../../types/header'
 import ButtonIcon from '../svg/ButtonIcon'
 import KeyboardArrowDown from '../svg/KeyboardArrowDown'
-import { useLocale } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 
 interface ServicesMenuProps {
   serviceCategories: ServiceCategories
@@ -20,6 +20,8 @@ export default function ServicesMenu({
   isOpen,
   onClose,
 }: ServicesMenuProps) {
+  const t = useTranslations()
+
   const locale = useLocale()
 
   if (!isOpen) return null
@@ -211,7 +213,7 @@ export default function ServicesMenu({
             <div className="group flex gap-1.5 items-center justify-start rounded-[100px] pt-8 cursor-pointer">
               {' '}
               <div className="font-aeonik-bold text-primary-palm group-hover:text-Secondary-Dark-Palm text-lg leading-[1.5]">
-                Explore All Services
+                {t('Services.Explore')}
               </div>
               <div className="bg-primary-palm rounded-full p-[6px] size-7 flex items-center justify-center">
                 <div className="relative shrink-0 size-6">

@@ -44,14 +44,53 @@
   "GeneralContracting": {
     "title": "GENERAL CONTRACTING",
     "description": "We provide comprehensive general contracting services, managing every aspect of your construction project from initial planning to final completion. Our experienced team ensures quality, safety, and timely delivery.",
-    "cta": "Learn More"
+    "cta": "Learn More",
+    "requestFreeConsultation": "Request Free Consultation",
+    "Explore": "Explore",
+    "individuals": "individuals",
+    "businesses": "businesses",
+    "organizations": "organizations",
+    "watchWebinar": "Watch Webinar",
+    "saveMySpot": "Save My Spot",
+    "Author": "Author",
+    "Published": "Published on",
+    "readingDuration": "Reading Duration",
+    "ViewDetails": "View Details",
+    "Apply": "Apply On This Job",
+    "AllJobs": "All Jobs",
+    "ScheduleMeeting": "Schedule a Zoom Meeting",
+    "ScheduleOne": "Schedule your one-on-one meeting with our experts to explore innovative solutions tailored to your needs."
+  },
+  "Services": {
+    "heading": "ما نقوم به",
+    "title": "المقاولات العامة",
+    "description": "نقدم مجموعة شاملة من خدمات البناء، ينفذها محترفون ذوو خبرة عالية في مجالاتهم.",
+    "cta": "اكتشف المزيد",
+    "Explore": "Explore All Services"
+  },
+  "Home": {
+    "for": "For",
+    "exploreNetwork": "Explore Our Network",
+    "downloadPDF": "Download PDF"
   },
   "News": {
     "title": "News & Insights",
     "viewAll": "View all",
     "moreNews": "More News",
     "caseStudy": "More Case Studies",
+    "readCaseStudy": "Read Case Study",
+    "Blogs": "Blogs",
+    "tips": "Tips from the Experts",
+    "tipsDescription": "Find curated travel advice from those who know Saudi best—insider tips, updates, and more.",
+    "exploreBlogs": " Explore All Blogs",
     "cta": "Read More",
+    "ourNews": "Our News",
+    "stayUpdated": "Stay Updated on Our News",
+    "discoverNews": "Discover the latest news and events at Sage. We are committed to keeping you informed about advancements in healthcare and our services.",
+    "exploreAll": "Explore All News",
+    "News": "News",
+    "latestNews": "Latest News and Events",
+    "announcements": "Stay updated with Sage's latest achievements and announcements.",
 
     "article1": {
       "title": "Construction industry continues to leverage technology with virtual connectivity",
@@ -96,16 +135,33 @@
     "cta": "Explore Works"
   },
   "Header": {
-    "getInTouch": "Get In Touch"
+    "getInTouch": "Get In Touch",
+    "topBanner": "Empowering Wellness, Globally.",
+    "Home": "Home",
+    "Services": "Services",
+    "About": "About Us",
+    "Resources": "Resources",
+    "Network": "Our Network",
+    "Visit": "Visit Saudi",
+    "Schedule": "Schedule Call"
   },
   "Footer": {
-    "Subscribe": "Subscribe",
+    "Subscribe": "Subscribe to Updates",
+    "stayInformed": "Stay informed about our services and healthcare insights.",
 
     "quick": "Quick Links",
     "contact": "Contact Data",
     "directions": "Get directions",
+    "SignUpForm": "Sign Up",
+    "SigningUp": "Signing Up...",
+
     "signUp": "Sign up for exclusive updates, new projects, events, and more.",
     "newsletter": "Newsletter - Sign up.",
+    "privacy": "Privacy Policy",
+    "respectPrivacy": "We respect your privacy. Read our",
+    "Join": "Join",
+    "Joining": "Joining...",
+
     "company": {
       "name": "Sage Engineering",
       "description": "Building excellence through innovative construction solutions and unmatched expertise."
@@ -135,7 +191,57 @@
     "firstName": "First Name",
     "lastName": "Last Name",
     "phone": "Phone Number",
-    "inquiry": "Inquiry type",
-    "message": "Your Message"
+    "inquiry": "Your inquiry",
+    "message": "Your Message",
+    "acceptTerms": "I accept the Terms",
+    "Submit": "Submit",
+    "Submitting": "Submitting",
+    "companyName": "Company Name",
+    "Position": "Position",
+    "partnership": "What kind of partnership"
+  },
+  "CSR": {
+    "title": "Submit a Case for Review",
+    "description": "Please provide the following information to help us understand your needs",
+    "PersonalInformation": "Personal Information",
+    "MedicalDetails": "Medical Details",
+    "Support": "Support",
+    "Select": "Select",
+    "Next": "Next",
+    "Back": "Back",
+    "email": "Email address",
+    "fullName": "Applicant's full name",
+    "date": "Date of birth",
+    "Nationality": "Nationality",
+    "Country": "Country of residence",
+    "phone": "Phone Number",
+    "inquiry": "Your inquiry",
+    "message": "Your Message",
+    "acceptTerms": "I accept the Terms",
+    "Submit": "Submit",
+    "Submitting": "Submitting",
+    "companyName": "Company Name",
+    "Position": "Position",
+    "partnership": "What kind of partnership",
+
+    "primaryCondition": "Primary medical condition / diagnosis",
+    "briefDescription": "Brief Description of medical history & current symptoms",
+    "provideDetail": "Please provide as much detail as possible including duration and previous treatment",
+    "Initiative": "Why are you seeking support from SAGE's CSR Initiative?",
+    "specificTourism": "Explain your specific need for medical tourism or why your case is considered rare/complex",
+    "medicalReports": "Are you able to provide medical reports and diagnostic images?",
+    "Yes": "Yes",
+    "No": "No",
+    "language": "Choose preferred language for communication",
+    "hearAbout": "How did you hear about our CSR?",
+    "SelectOption": "Select an option",
+    "SocialMedia": "Social Media",
+    "Website": "Website",
+    "FriendReferral": "Friend/Referral",
+    "Other": "Other",
+    "Approve": " By submitting this form, I confirm that the information provided is accurate to the best of my knowledge and I understand that this application does not guarantee acceptance into the SAGE CSR program.",
+    "Thank": "Thank You for Your Submission",
+    "received": "Your application has been received",
+    "dedicated": "Our dedicated team is reviewing it and will be in touch as soon as possible."
   }
 }

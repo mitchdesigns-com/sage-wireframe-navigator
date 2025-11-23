@@ -1,7 +1,10 @@
 import Button from '@/components/ui/Button'
 import { Image as ImageIcon } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 
 export default function StartJourney() {
+  const t = useTranslations()
+
   return (
     <section className="section-padding bg-white">
       <div className="container-custom mx-auto">
@@ -17,7 +20,10 @@ export default function StartJourney() {
             </p>
 
             {/* CTA Button */}
-            <Button href="/contact">Request Free Consultation</Button>
+            <Button href="/contact">
+              {' '}
+              {t('GeneralContracting.requestFreeConsultation')}
+            </Button>
           </div>
 
           {/* Right Content - Large Image */}

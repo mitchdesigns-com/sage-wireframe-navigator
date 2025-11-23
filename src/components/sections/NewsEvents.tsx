@@ -1,5 +1,6 @@
 import Button from '@/components/ui/Button'
 import { Image as ImageIcon, User } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 
 const newsArticles = [
   {
@@ -38,6 +39,8 @@ const newsArticles = [
 ]
 
 export default function NewsEvents() {
+  const t = useTranslations()
+
   return (
     <section className="section-padding bg-white">
       <div className="container-custom mx-auto">
@@ -108,7 +111,7 @@ export default function NewsEvents() {
 
         {/* Learn More Button */}
         <div className="text-left">
-          <Button href="/news">Learn More</Button>
+          <Button href="/news">{t('GeneralContracting.cta')}</Button>
         </div>
       </div>
     </section>

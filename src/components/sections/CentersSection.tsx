@@ -5,7 +5,7 @@ import Link from 'next/link'
 import Button from '../ui/Button'
 import Tagline from './Tagline'
 import Image from 'next/image'
-import { useLocale } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import { motion, useAnimation } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 
@@ -66,7 +66,7 @@ const CentersSection: React.FC<CentersSectionProps> = ({
   }
 
   if (inView) controls.start('visible')
-
+  const t = useTranslations()
   return (
     <motion.section
       ref={ref}
@@ -142,7 +142,7 @@ const CentersSection: React.FC<CentersSectionProps> = ({
                   righticon={true}
                   locale={locale as 'en' | 'ar'}
                 >
-                  Explore Our Network
+                  {t('Home.exploreNetwork')}
                 </Button>
               )}
             </motion.div>
@@ -210,7 +210,7 @@ const CentersSection: React.FC<CentersSectionProps> = ({
                 righticon={true}
                 locale={locale as 'en' | 'ar'}
               >
-                Explore Our Network
+                {t('Home.exploreNetwork')}
               </Button>
             )}
           </motion.div>

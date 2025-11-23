@@ -5,6 +5,7 @@ import Tagline from './Tagline'
 import { motion, useAnimation } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { useEffect } from 'react'
+import { useTranslations } from 'next-intl'
 
 interface HowItWorksStep {
   id: number
@@ -52,6 +53,7 @@ export default function HowItWorks({
       transition: { duration: 0.7, ease: 'easeOut' },
     },
   }
+  const t = useTranslations()
 
   return (
     <section
@@ -120,7 +122,7 @@ export default function HowItWorks({
                           righticon={true}
                           locale={locale as 'en' | 'ar'}
                         >
-                          Request Free Consultation
+                          {t('GeneralContracting.requestFreeConsultation')}
                         </Button>
                       </div>
                     )}

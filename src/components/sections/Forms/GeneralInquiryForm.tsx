@@ -4,7 +4,7 @@ import Button from '@/components/ui/Button'
 import PhoneInput from 'react-phone-number-input'
 import 'react-phone-number-input/style.css'
 import useContactForm from '../hooks/useContactForm'
-import { useLocale } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 
 export default function GeneralInquiryForm() {
   const {
@@ -17,6 +17,7 @@ export default function GeneralInquiryForm() {
     handleSubmit,
   } = useContactForm()
   const locale = useLocale()
+  const t = useTranslations()
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
@@ -25,7 +26,7 @@ export default function GeneralInquiryForm() {
         {/* First name */}
         <div className="space-y-1 w-full">
           <label className="text-Primary-Black text-base md:text-lg font-medium">
-            First name*
+            {t('Form.firstName')} *
           </label>
           <input
             type="text"
@@ -44,7 +45,7 @@ export default function GeneralInquiryForm() {
         {/* Last name */}
         <div className="space-y-1 w-full">
           <label className="text-Primary-Black text-base md:text-lg font-medium">
-            Last name*
+            {t('Form.lastName')} *
           </label>
           <input
             type="text"
@@ -64,7 +65,7 @@ export default function GeneralInquiryForm() {
       {/* Email */}
       <div className="space-y-1">
         <label className="text-Primary-Black text-base md:text-lg font-medium">
-          Email*
+          {t('Form.email')} *
         </label>
         <input
           type="email"
@@ -84,7 +85,7 @@ export default function GeneralInquiryForm() {
           htmlFor="phone"
           className="text-Primary-Black text-base md:text-lg font-medium"
         >
-          Phone number*
+          {t('Form.phone')} *
         </label>
         <PhoneInput
           id="phone"
@@ -102,7 +103,7 @@ export default function GeneralInquiryForm() {
       {/* Message */}
       <div className="space-y-1">
         <label className="text-Primary-Black text-base md:text-lg font-medium">
-          Your inquiry*
+          {t('Form.inquiry')} *
         </label>
         <textarea
           name="message"
@@ -136,7 +137,7 @@ export default function GeneralInquiryForm() {
           htmlFor="acceptTerms"
           className="text-black text-[14px] leading-[1.5]"
         >
-          I accept the Terms
+          {t('Form.acceptTerms')}
         </label>
       </div>
       {errors.acceptTerms && (
@@ -151,7 +152,7 @@ export default function GeneralInquiryForm() {
         disabled={isSubmitting}
         locale={locale as 'en' | 'ar'}
       >
-        {isSubmitting ? 'Submitting...' : 'Submit'}
+        {isSubmitting ? t('Form.Submitting') : t('Form.Submit')}
       </Button>
 
       {/* Submission status feedback */}

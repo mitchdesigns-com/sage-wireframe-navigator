@@ -5,7 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Button from '../ui/Button'
 import Tagline from './Tagline'
-import { useLocale } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import { motion, useAnimation } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 
@@ -43,7 +43,7 @@ const GetInTouch: React.FC<GetInTouchProps> = ({
       transition: { duration: 0.6, ease: 'easeOut' },
     },
   }
-
+  const t = useTranslations()
   return (
     <section className="bg-[#E2F2F1]">
       <motion.div
@@ -79,7 +79,7 @@ const GetInTouch: React.FC<GetInTouchProps> = ({
                 fullwidth
                 locale={locale as 'en' | 'ar'}
               >
-                Request Free Consultation
+                {t('GeneralContracting.requestFreeConsultation')}
               </Button>
             </Link>
           </motion.div>

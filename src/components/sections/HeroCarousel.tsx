@@ -80,7 +80,7 @@ const HeroCarousel: React.FC<HeroProps> = ({
               className="text-Primary-Spring text-base md:text-lg pb-3 md:pb-6"
             >
               {dayNumbers}
-              {year} {' | Riyadh, Saudi Arabia'}
+              {year}
             </motion.p>
           )}
 

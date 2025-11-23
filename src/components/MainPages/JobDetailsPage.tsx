@@ -10,6 +10,7 @@ import {
   RichTextElement,
 } from '../../types/jobDetailsPage'
 import Dot from '../svg/Dot'
+import { useLocale, useTranslations } from 'next-intl'
 
 function extractText(node: RichTextChild | RichTextElement): string {
   if ('text' in node) return node.text
@@ -34,6 +35,8 @@ export default function JobDetailsPage({ data }: { data: CareerItem }) {
     hidden: { opacity: 0, y: 20 },
     show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
   }
+  const t = useTranslations()
+  const locale = useLocale()
 
   return (
     <section>
@@ -60,12 +63,14 @@ export default function JobDetailsPage({ data }: { data: CareerItem }) {
             variants={container}
           >
             <motion.div className="flex items-center gap-2" variants={fadeUp}>
-              <ChevronLeft className="text-white" />
+              <ChevronLeft
+                className={`${locale === 'ar' ? 'rotate-180' : ''} text-white`}
+              />
               <Link
                 href="/careers"
                 className="text-[#F2F2F2] font-medium text-sm md:text-base"
               >
-                All Jobs
+                {t('GeneralContracting.AllJobs')}
               </Link>
             </motion.div>
             <motion.h1
@@ -170,7 +175,7 @@ export default function JobDetailsPage({ data }: { data: CareerItem }) {
         <motion.div variants={fadeUp}>
           <Link href={'/contact'} className="inline-block">
             <Button variant={'primary'} righticon={true} fullwidth>
-              Apply On This Job
+              {t('GeneralContracting.Apply')}
             </Button>
           </Link>
         </motion.div>

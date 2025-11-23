@@ -10,6 +10,7 @@ import { NetworkData } from '../../types/ourNetworkPage'
 import { useState, useEffect } from 'react'
 import { motion, useAnimation } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
+import { useTranslations } from 'next-intl'
 
 export default function OurNetworkPage({ data }: { data: NetworkData }) {
   const [email, setEmail] = useState('')
@@ -61,6 +62,7 @@ export default function OurNetworkPage({ data }: { data: NetworkData }) {
       transition: { duration: 0.7, ease: 'easeOut' },
     },
   }
+  const t = useTranslations()
 
   return (
     <div className="min-h-screen">
@@ -154,7 +156,7 @@ export default function OurNetworkPage({ data }: { data: NetworkData }) {
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Enter Your Email"
+                    placeholder={t('Form.email')}
                     className="bg-white rounded-[6px] px-3 py-2 h-12 w-full md:w-[479px] text-base text-[#626262]"
                   />
                   <button
@@ -162,7 +164,9 @@ export default function OurNetworkPage({ data }: { data: NetworkData }) {
                     disabled={isSubmitting}
                     className="bg-[#025850] text-white w-full md:w-fit px-7 py-3 text-nowrap rounded-full font-medium text-base hover:bg-[#024440] transition-colors cursor-pointer disabled:opacity-50"
                   >
-                    {isSubmitting ? 'Signing Up...' : 'Sign Up'}
+                    {isSubmitting
+                      ? t('Footer.SigningUp')
+                      : t('Footer.SignUpForm')}
                   </button>
                 </motion.form>
                 <motion.p

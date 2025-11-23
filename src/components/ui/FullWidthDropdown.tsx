@@ -18,6 +18,7 @@ import {
   ChevronRight,
 } from 'lucide-react'
 import Button from './Button'
+import { useTranslations } from 'next-intl'
 
 interface DropdownItem {
   label: string
@@ -52,6 +53,8 @@ function ServicesFullWidthDropdown({
   items: DropdownItem[]
   onItemClick: () => void
 }) {
+  const t = useTranslations()
+
   return (
     <div className="bg-white">
       <div className="container-custom mx-auto">
@@ -226,7 +229,7 @@ function ServicesFullWidthDropdown({
               className="bg-[rgba(0,4,4,0.05)] border-none hover:bg-gray-100 flex items-center gap-3"
               onClick={onItemClick}
             >
-              Explore All Services
+              {t('Services.Explore')}
               <ChevronRight size={24} />
             </Button>
           </div>

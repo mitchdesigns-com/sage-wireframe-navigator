@@ -19,6 +19,7 @@ import Tagline from '../sections/Tagline'
 import ButtonIcon from '../svg/ButtonIcon'
 import { useAnimation, motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
+import { useTranslations } from 'next-intl'
 
 export default function HomePage({
   data,
@@ -53,6 +54,7 @@ export default function HomePage({
       transition: { duration: 0.9, ease: 'easeOut' },
     },
   }
+  const t = useTranslations()
 
   return (
     <div className="min-h-screen">
@@ -94,15 +96,16 @@ export default function HomePage({
             animate={controls}
             variants={variants}
           >
-            <Tagline text="Our News" className="items-center md:items-start" />
+            <Tagline
+              text={t('News.ourNews')}
+              className="items-center md:items-start"
+            />
 
             <h2 className="text-Primary-Black text-[28px] md:text-[48px] font-bold leading-tight pb-3 md:pb-6">
-              Stay Updated on Our News
+              {t('News.stayUpdated')}
             </h2>
             <p className="text-Secondary-Text text-base md:text-[18px] max-w-[647px]">
-              Discover the latest news and events at Sage. We are committed to
-              keeping you informed about advancements in healthcare and our
-              services.{' '}
+              {t('News.discoverNews')}
             </p>
           </motion.div>
           {!isMobile && (
@@ -117,7 +120,7 @@ export default function HomePage({
               >
                 {' '}
                 <div className="font-aeonik-bold text-primary-palm group-hover:text-Secondary-Dark-Palm text-lg leading-[1.5]">
-                  Explore All News
+                  {t('News.exploreAll')}
                 </div>
                 <div className="bg-primary-palm rounded-full p-[6px] size-7 flex items-center justify-center">
                   <div className="relative shrink-0 size-6">
@@ -151,7 +154,7 @@ export default function HomePage({
               <div className="group flex gap-1.5 items-center justify-center rounded-[100px] pt-8 cursor-pointer">
                 {' '}
                 <div className="font-aeonik-bold text-primary-palm group-hover:text-Secondary-Dark-Palm text-lg leading-[1.5]">
-                  Explore All News
+                  {t('News.exploreAll')}
                 </div>
                 <div className="bg-primary-palm rounded-full p-[6px] size-7 flex items-center justify-center">
                   <div className="relative shrink-0 size-6">

@@ -73,7 +73,7 @@ const TitleDecorationVector: React.FC<{ className?: string }> = ({
     <div
       ref={ref}
       className={`title-decoration ${className || ''} ${
-        isVisible ? 'animate' : ''
+        isVisible ? 'animate rtl:-bottom-4 rtl:h-full rtl:absolute' : ''
       }`}
     >
       <svg
@@ -269,7 +269,7 @@ const ServiceSectionComponent: React.FC<{
         {section.imageUrl && isReversed && (
           <motion.div
             variants={fadeInUp}
-            className="relative md:absolute left-8 md:left-0 -bottom-10 md:top-0 w-[344px] h-[395px] bg-cover bg-center bg-no-repeat rounded-[24px]"
+            className="relative md:absolute rtl:right-0 ltr:left-8 md:left-0 -bottom-10 md:top-0 w-[344px] h-[395px] bg-cover bg-center bg-no-repeat rounded-[24px]"
             style={{
               backgroundImage: `url('${process.env.NEXT_PUBLIC_API_BASE_URL}${section.imageUrl.url}')`,
             }}
@@ -328,6 +328,7 @@ export default function ComprehensiveServices({
         }
 
         .title-decoration {
+          height: 100%;
           opacity: 0;
           animation: fadeInTitle 1s ease-out 1s forwards;
         }
@@ -378,7 +379,7 @@ export default function ComprehensiveServices({
                 <span>{before_highlight} </span>
                 <span className="relative inline-block">
                   <span className="z-[2] relative">{highlight}</span>
-                  <div className="absolute -inset-3 z-[1]">
+                  <div className="absolute rtl:-inset-5 rtl:bottom-0 ltr:-inset-3 z-[1]">
                     <TitleDecorationVector />
                   </div>
                 </span>

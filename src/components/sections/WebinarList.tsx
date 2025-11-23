@@ -10,7 +10,7 @@ import type {
   EventData,
   WebinarList as WebinarListType,
 } from '../../types/newsEvents'
-import { useLocale } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 
 export type TabType = 'comingSoon' | 'previous'
 
@@ -57,7 +57,7 @@ const WebinarList: React.FC<WebinarListProps> = ({ webinars, events }) => {
       transition: { duration: 0.6, ease: 'easeOut' },
     },
   }
-
+  const t = useTranslations()
   return (
     <div className="bg-Secondary-Light-Scrub overflow-hidden">
       <div className="mx-auto max-w-[1280px] py-8 md:py-28 px-4">
@@ -159,10 +159,12 @@ const WebinarList: React.FC<WebinarListProps> = ({ webinars, events }) => {
                       {webinars.news ? (
                         <div className="flex">
                           <Bookmark className="text-Primary-Palm w-6 h-6" />
-                          <span className="ps-3">Save My Spot</span>
+                          <span className="ps-3">
+                            {t('GeneralContracting.saveMySpot')}
+                          </span>
                         </div>
                       ) : (
-                        <span>Watch Webinar</span>
+                        <span>{t('GeneralContracting.watchWebinar')}</span>
                       )}
                     </Button>
                   </Link>

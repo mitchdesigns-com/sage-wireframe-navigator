@@ -4,7 +4,7 @@ import Image from 'next/image'
 import Tagline from './Tagline'
 import Link from 'next/link'
 import ButtonIcon from '../svg/ButtonIcon'
-import { useLocale } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import { motion, useAnimation } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { useEffect } from 'react'
@@ -49,6 +49,7 @@ export default function CaseStudyCard({
       transition: { duration: 0.7, delay: index * 0.2, ease: 'easeOut' },
     },
   }
+  const t = useTranslations()
 
   return (
     <motion.div
@@ -91,7 +92,7 @@ export default function CaseStudyCard({
 
             <div className="group flex gap-1.5 items-center justify-start rounded-[100px] cursor-pointer">
               <div className="font-aeonik-bold text-Primary-Spring group-hover:text-Primary-Light-Sage text-base md:text-lg leading-[1.5]">
-                Read Case Study
+                {t('News.readCaseStudy')}
               </div>
               <div className="bg-Primary-Spring rounded-full p-[6px] size-7 flex items-center justify-center">
                 <div className="relative shrink-0 size-6">

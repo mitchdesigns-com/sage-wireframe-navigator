@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react'
 import { motion, useAnimation } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import ButtonIcon from '../svg/ButtonIcon'
-import { useLocale } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 
 interface Service {
   title: string
@@ -70,6 +70,7 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({
       transition: { duration: 0.6, ease: 'easeOut' },
     },
   }
+  const t = useTranslations()
 
   return (
     <section
@@ -142,7 +143,7 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({
                   className="group flex gap-1.5 items-center justify-start rounded-[100px] pt-24 md:pt-20 cursor-pointer"
                 >
                   <div className="font-aeonik-bold text-Primary-Scrub group-hover:text-Primary-Light-Sage text-base md:text-lg leading-[1.5]">
-                    Explore
+                    {t('GeneralContracting.Explore')}
                   </div>
                   <div className="bg-primary-palm rounded-full p-[6px] size-7 flex items-center justify-center">
                     <div className="relative shrink-0 size-6">

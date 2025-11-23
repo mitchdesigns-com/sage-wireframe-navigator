@@ -12,7 +12,7 @@ import Script from 'next/script'
 import { useEffect, useState } from 'react'
 import 'react-phone-number-input/style.css'
 import { ContactPageData } from '../../types/contactPageData'
-import { useLocale } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 
 type TabType = 'general' | 'business' | 'patient'
 type TabType2 = 'patientSupport' | 'partnership'
@@ -22,6 +22,7 @@ export default function ContactPage({ data }: { data: ContactPageData }) {
   const [currentTab2, setCurrentTab2] = useState<TabType2>('patientSupport')
   const locale = useLocale()
 
+  const t = useTranslations()
   // Animation variants
   const container = {
     hidden: {},
@@ -139,11 +140,10 @@ export default function ContactPage({ data }: { data: ContactPageData }) {
         <div className="px-4 md:px-16">
           <motion.div className="text-center pb-4 md:pb-0" variants={fadeUp}>
             <h2 className="text-black font-bold text-[28px] md:text-[48px] leading-[1.2] tracking-[-0.48px]">
-              Schedule a Zoom Meeting
+              {t('GeneralContracting.ScheduleMeeting')}
             </h2>
             <p className="text-black text-base md:text-lg w-full md:w-[544px] mx-auto">
-              Schedule your one-on-one meeting with our experts to explore
-              innovative solutions tailored to your needs.
+              {t('GeneralContracting.ScheduleOne')}
             </p>
           </motion.div>
 

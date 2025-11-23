@@ -1,5 +1,6 @@
 import Button from '@/components/ui/Button'
 import { Image as ImageIcon } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 
 const networkImages = [
   { id: 1 },
@@ -11,6 +12,7 @@ const networkImages = [
 ]
 
 export default function JoinNetwork() {
+  const t = useTranslations()
   return (
     <section className="section-padding bg-gray-50">
       <div className="container-custom mx-auto">
@@ -29,7 +31,7 @@ export default function JoinNetwork() {
             <div className="flex flex-col gap-4 sm:flex-row">
               <Button href="/join">Join</Button>
               <Button href="/our-network" variant="ghost">
-                Explore Our Network
+                {t('Home.exploreNetwork')}
               </Button>
             </div>
           </div>

@@ -5,12 +5,12 @@ import Link from 'next/link'
 import ButtonIcon from '../svg/ButtonIcon'
 import { CareerItem } from '../../types/careersPageData'
 import Dot from '../svg/Dot'
-import { useLocale } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 
 export default function AccordionJobs({ data }: { data: CareerItem[] }) {
   const [openIndex, setOpenIndex] = useState<number>(-1)
   const locale = useLocale()
-
+  const t = useTranslations()
   return (
     <div className="mx-auto">
       {data.map((job, index) => {
@@ -53,7 +53,7 @@ export default function AccordionJobs({ data }: { data: CareerItem[] }) {
                     <Link href={`/careers/${job.slug}`}>
                       <div className="group flex gap-1.5 items-center justify-start rounded-[100px] cursor-pointer">
                         <div className="font-aeonik-bold text-primary-palm group-hover:text-Secondary-Dark-Palm text-lg leading-[1.5]">
-                          View Details
+                          {t('GeneralContracting.ViewDetails')}
                         </div>
                         <div className="bg-primary-palm rounded-full p-[6px] size-7 flex items-center justify-center">
                           <div className="relative shrink-0 size-6">
@@ -61,7 +61,12 @@ export default function AccordionJobs({ data }: { data: CareerItem[] }) {
                               <div
                                 className={`flex-none ${locale === 'ar' ? 'group-hover:-rotate-[45deg]' : 'group-hover:rotate-[45deg]'} text-Primary-Palm group-hover:text-Secondary-Dark-Palm transition-all duration-300`}
                               >
-                                <ButtonIcon strokeColor="white" />
+                                <ButtonIcon
+                                  strokeColor="white"
+                                  className={
+                                    locale === 'ar' ? '-rotate-90' : ''
+                                  }
+                                />
                               </div>
                             </div>
                           </div>

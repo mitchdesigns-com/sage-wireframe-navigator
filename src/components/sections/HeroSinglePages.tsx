@@ -5,7 +5,7 @@ import Breadcrumb from './Breadcrumb'
 import Link from 'next/link'
 import Image from 'next/image'
 import { ChevronLeft } from 'lucide-react'
-import { useLocale } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import ShareButtonsComponent from './ShareButtons'
 import { motion } from 'framer-motion'
 
@@ -55,7 +55,7 @@ const HeroSinglePages: React.FC<HeroProps> = ({
       transition: { duration: 0.6, ease: 'easeOut' },
     },
   }
-
+  const t = useTranslations()
   return (
     <motion.section
       className="md:pb-20 md:pt-10 py-8 bg-gradient-to-t from-[#013530] to-[#025850]"
@@ -111,14 +111,16 @@ const HeroSinglePages: React.FC<HeroProps> = ({
           >
             <div className="flex gap-12">
               <div>
-                <h4 className="text-sm md:font-base text-white">Author</h4>
+                <h4 className="text-sm md:font-base text-white">
+                  {t('GeneralContracting.Author')}
+                </h4>
                 <p className="text-white font-medium text-xs md:font-base">
                   {author}
                 </p>
               </div>
               <div>
                 <h4 className="text-sm md:font-base text-white">
-                  Published on
+                  {t('GeneralContracting.Published')}
                 </h4>
                 <p className="text-white font-medium text-xs md:font-base">
                   {date}
@@ -126,7 +128,7 @@ const HeroSinglePages: React.FC<HeroProps> = ({
               </div>
               <div>
                 <h4 className="text-sm md:font-base text-white">
-                  Reading Duration
+                  {t('GeneralContracting.readingDuration')}
                 </h4>
                 <p className="text-white font-medium text-xs md:font-base">
                   {readTime}

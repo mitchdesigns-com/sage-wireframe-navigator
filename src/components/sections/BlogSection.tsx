@@ -6,7 +6,7 @@ import ButtonIcon from '../svg/ButtonIcon'
 import BlogCard from './BlogCard'
 import Tagline from './Tagline'
 import BlogCardHomepage from './BlogCardHomePage'
-import { useLocale } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 
 interface BlogSectionProps {
   heading?: string
@@ -22,6 +22,7 @@ export default function BlogSection({
   homePage,
 }: BlogSectionProps) {
   const locale = useLocale()
+  const t = useTranslations()
 
   return (
     <section className="max-w-[1392px] mx-auto px-6 py-8 md:py-25">
@@ -41,7 +42,7 @@ export default function BlogSection({
           <div className="group flex gap-1.5 items-center justify-start rounded-[100px] pt-8 cursor-pointer">
             {' '}
             <div className="font-aeonik-bold text-primary-palm group-hover:text-Secondary-Dark-Palm text-lg leading-[1.5]">
-              Explore All Blogs
+              {t('News.exploreBlogs')}
             </div>
             <div className="bg-primary-palm rounded-full p-[6px] size-7 flex items-center justify-center">
               <div className="relative shrink-0 size-6">

@@ -1,7 +1,7 @@
 'use client'
 
 import { ChevronLeft, ChevronRight } from 'lucide-react'
-import { useLocale } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import Image from 'next/image'
 import React, { useState } from 'react'
 
@@ -39,15 +39,16 @@ const initialData: FormData = {
 
 export default function MultiStepForm() {
   const locale = useLocale()
+  const t = useTranslations()
 
   const [formData, setFormData] = useState<FormData>(initialData)
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [step, setStep] = useState(1)
   const totalSteps = 3
   const steps = [
-    { number: 1, label: 'Personal Information' },
-    { number: 2, label: 'Medical Details' },
-    { number: 3, label: 'Support' },
+    { number: 1, label: t('CSR.PersonalInformation') },
+    { number: 2, label: t('CSR.MedicalDetails') },
+    { number: 3, label: t('CSR.Support') },
   ]
   const [isSubmitting, setIsSubmitting] = useState(false)
   console.log(isSubmitting)
@@ -254,12 +255,9 @@ export default function MultiStepForm() {
         (submitStatus === 'idle' && (
           <div className="border-b border-[#9ABCB9] text-white">
             <h5 className="pb-2 text-2xl md:text-[32px] font-bold">
-              Submit a Case for Review
+              {t('CSR.title')}
             </h5>
-            <p className="text-base md:text-lg pb-5">
-              Please provide the following information to help us understand
-              your needs
-            </p>
+            <p className="text-base md:text-lg pb-5">{t('CSR.description')}</p>
           </div>
         ))}
       {submitStatus === 'error' ||
@@ -302,30 +300,30 @@ export default function MultiStepForm() {
               <div className="form-step space-y-4">
                 {[
                   [
-                    { name: 'fullName', label: "Applicant's full name" },
+                    { name: 'fullName', label: t('CSR.fullName') },
                     {
                       name: 'dateOfBirth',
-                      label: 'Date of birth',
+                      label: t('CSR.date'),
                       type: 'date',
                     },
                   ],
                   [
                     {
                       name: 'nationality',
-                      label: 'Nationality',
+                      label: t('CSR.Nationality'),
                       type: 'select',
                       options: ['Egyptian', 'American', 'French', 'Other'],
                     },
                     {
                       name: 'countryOfResidence',
-                      label: 'Country of residence',
+                      label: t('CSR.Country'),
                       type: 'select',
                       options: ['Egypt', 'USA', 'France', 'Other'],
                     },
                   ],
                   [
-                    { name: 'email', label: 'Email address', type: 'email' },
-                    { name: 'phoneNumber', label: 'Phone number' },
+                    { name: 'email', label: t('CSR.email'), type: 'email' },
+                    { name: 'phoneNumber', label: t('CSR.phone') },
                   ],
                 ].map((row, rowIndex) => (
                   <div
@@ -357,7 +355,9 @@ export default function MultiStepForm() {
                focus:outline-none focus:ring-2 focus:ring-[#025850] focus:border-transparent 
                appearance-none"
                             >
-                              <option value="">Select {field.label}</option>
+                              <option value="">
+                                {t('CSR.Select')} {field.label}
+                              </option>
                               {'options' in field &&
                                 field.options?.map((option) => (
                                   <option key={option} value={option}>
@@ -409,7 +409,7 @@ export default function MultiStepForm() {
                     htmlFor="medicalCondition"
                     className="text-white text-lg font-medium  leading-[1.5] block pb-2"
                   >
-                    Primary medical condition / diagnosis
+                    {t('CSR.primaryCondition')}
                   </label>
                   <textarea
                     id="medicalCondition"
@@ -431,10 +431,9 @@ export default function MultiStepForm() {
                     htmlFor="medicalHistory"
                     className="text-white text-lg font-medium  leading-[1.5] block pb-2"
                   >
-                    Brief Description of medical history & current symptoms
+                    {t('CSR.briefDescription')}
                     <p className="pt-1 text-xs font-regular">
-                      Please provide as much detail as possible including
-                      duration and previous treatment
+                      {t('CSR.provideDetail')}
                     </p>
                   </label>
                   <textarea
@@ -457,10 +456,10 @@ export default function MultiStepForm() {
                     htmlFor="supportReason"
                     className="text-white text-lg font-medium  leading-[1.5] block pb-2"
                   >
-                    Why are you seeking support from SAGE's CSR Initiative?
+                    {t('CSR.Initiative')}
+
                     <p className="pt-1 text-xs font-regular">
-                      Explain your specific need for medical tourism or why your
-                      case is considered rare/complex
+                      {t('CSR.specificTourism')}
                     </p>
                   </label>
                   <textarea
@@ -480,11 +479,10 @@ export default function MultiStepForm() {
 
                 <div className="form-group">
                   <p className="text-white text-lg font-medium  leading-[1.5] block">
-                    Are you able to provide medical reports and diagnostic
-                    images?
+                    {t('CSR.medicalReports')}
                   </p>
                   <div className="flex gap-4">
-                    {['Yes', 'No'].map((val) => (
+                    {[t('CSR.Yes'), t('CSR.No')].map((val) => (
                       <label
                         key={val}
                         className="flex items-center gap-2 text-white radio"
@@ -518,7 +516,7 @@ export default function MultiStepForm() {
               <div className="form-step space-y-4">
                 <div>
                   <p className="mb-1 text-white text-lg font-medium  leading-[1.5] block">
-                    Choose preferred language for communication
+                    {t('CSR.language')}
                   </p>
                   <div className="flex gap-4 text-white">
                     {['Arabic', 'English', 'French'].map((lang) => (
@@ -551,7 +549,7 @@ export default function MultiStepForm() {
                     htmlFor="hearAbout"
                     className="block mb-1 font-medium text-white"
                   >
-                    How did you hear about our CSR?
+                    {t('CSR.hearAbout')}
                   </label>
                   <select
                     id="hearAbout"
@@ -560,11 +558,14 @@ export default function MultiStepForm() {
                     onChange={handleChange}
                     className="w-full h-12 px-3 py-2 bg-white border border-[#D2D2D2] rounded-[6px] focus:outline-none focus:ring-2 focus:ring-[#025850] focus:border-transparent"
                   >
-                    <option value="">Select an option</option>
-                    <option value="social media">Social Media</option>
-                    <option value="website">Website</option>
-                    <option value="friend">Friend/Referral</option>
-                    <option value="other">Other</option>
+                    <option value=""> {t('CSR.SelectOption')}</option>
+                    <option value="social media">
+                      {' '}
+                      {t('CSR.SocialMedia')}
+                    </option>
+                    <option value="website"> {t('CSR.Website')}</option>
+                    <option value="friend"> {t('CSR.FriendReferral')}</option>
+                    <option value="other"> {t('CSR.Other')}</option>
                   </select>
                   {errors.hearAbout && (
                     <p className="text-red-500 text-sm">{errors.hearAbout}</p>
@@ -583,10 +584,7 @@ export default function MultiStepForm() {
                      before:w-[5px] before:h-[10px] before:border-r-[2px] before:border-b-[2px]
                       before:border-[#025850] before:rotate-45 before:opacity-0 checked:before:opacity-100"
                   />
-                  By submitting this form, I confirm that the information
-                  provided is accurate to the best of my knowledge and I
-                  understand that this application does not guarantee acceptance
-                  into the SAGE CSR program.
+                  {t('CSR.Approve')}
                 </label>
                 {errors.confirmation && (
                   <p className="text-red-500 text-sm">{errors.confirmation}</p>
@@ -607,14 +605,13 @@ export default function MultiStepForm() {
             />
           </div>
           <h5 className={`text-2xl md:text-[32px] font-bold pb-4`}>
-            Thank You for Your Submission
+            {t('CSR.Thank')}
           </h5>
           <p className={`text-sm md:text-[16px] leading-[1.5] flex-1 `}>
-            Your application has been received
+            {t('CSR.received')}
           </p>
           <p className={`text-sm md:text-[16px] leading-[1.5] flex-1 `}>
-            Our dedicated team is reviewing it and will be in touch as soon as
-            possible.
+            {t('CSR.dedicated')}
           </p>
         </div>
       )}
@@ -637,7 +634,8 @@ export default function MultiStepForm() {
                   onClick={prevStep}
                   className="px-4 py-2 text-[#9ABCB9] font-bold rounded-full cursor-pointer flex items-center gap-3 hover:gap-4 hover:transition-all hover:duration-200 hover:bg-white"
                 >
-                  {locale === 'en' ? <ChevronLeft /> : <ChevronRight />} Back
+                  {locale === 'en' ? <ChevronLeft /> : <ChevronRight />}
+                  {t('CSR.Back')}
                 </button>
               </div>
             )}
@@ -649,7 +647,8 @@ export default function MultiStepForm() {
                   onClick={nextStep}
                   className="px-8 md:px-28 py-3 md:py-[17px] bg-Primary-Spring text-Primary-Palm rounded-full font-bold cursor-pointer flex items-center gap-3 hover:gap-4 hover:transition-all hover:duration-200 hover:bg-white"
                 >
-                  {locale === 'ar' ? <ChevronLeft /> : <ChevronRight />} Next
+                  {locale === 'ar' ? <ChevronLeft /> : <ChevronRight />}{' '}
+                  {t('CSR.Next')}
                 </button>
               </div>
             )}
@@ -660,7 +659,8 @@ export default function MultiStepForm() {
                   type="submit"
                   className="px-8 md:px-28 py-3 md:py-[17px] bg-Primary-Spring text-Primary-Palm rounded-full font-bold cursor-pointer flex items-center gap-3 hover:gap-4 hover:transition-all hover:duration-200 hover:bg-white"
                 >
-                  {locale === 'ar' ? <ChevronLeft /> : <ChevronRight />} Submit
+                  {locale === 'ar' ? <ChevronLeft /> : <ChevronRight />}{' '}
+                  {t('CSR.Submit')}
                 </button>{' '}
               </div>
             )}

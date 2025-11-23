@@ -9,7 +9,7 @@ import { BlogPost } from '../../types/blog'
 import BlogCard from '../sections/BlogCard'
 import Link from 'next/link'
 import ButtonIcon from '../svg/ButtonIcon'
-import { useLocale } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import { motion, useAnimation } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 export default function VisitSaudiPage({
@@ -40,6 +40,7 @@ export default function VisitSaudiPage({
 
   if (inView) controls.start('visible')
   if (inView2) controls.start('visible')
+  const t = useTranslations()
 
   return (
     <div className="min-h-screen">
@@ -119,20 +120,22 @@ export default function VisitSaudiPage({
           className="flex items-end justify-between mb-15 flex-col md:flex-row"
         >
           <div className="text-center md:text-start">
-            <Tagline text="Blogs" className="items-center md:items-start" />
+            <Tagline
+              text={t('News.Blogs')}
+              className="items-center md:items-start"
+            />
 
             <motion.h2
               variants={itemVariants}
               className="text-Primary-Black text-[28px] md:text-[48px] font-bold leading-tight pb-6"
             >
-              Tips from the Experts
+              {t('News.tips')}
             </motion.h2>
             <motion.p
               variants={itemVariants}
               className="text-Secondary-Text text-base md:text-[18px] max-w-[647px]"
             >
-              Find curated travel advice from those who know Saudi best—insider
-              tips, updates, and more.
+              {t('News.tipsDescription')}
             </motion.p>
           </div>
           <Link href={'/resources/blog'}>
@@ -143,7 +146,7 @@ export default function VisitSaudiPage({
             >
               {' '}
               <div className="font-aeonik-bold text-primary-palm group-hover:text-Secondary-Dark-Palm text-lg leading-[1.5]">
-                Explore All Blogs
+                {t('News.exploreBlogs')}
               </div>
               <div className="bg-primary-palm rounded-full p-[6px] size-7 flex items-center justify-center">
                 <div className="relative shrink-0 size-6">
