@@ -160,7 +160,7 @@
     "firstName": "الاسم الأول",
     "lastName": "اسم العائلة",
     "phone": "رقم الهاتف",
-    "inquiry": "استفسارك ",
+    "inquiry": " نص استفسارك ",
     "message": "رسالتك",
     "acceptTerms": "أوافق على الشروط",
     "Submit": "إرسال",

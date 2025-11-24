@@ -24,6 +24,9 @@ export interface FeatureWithTagline {
   tagline: string
   title: string
   description: string
+  btn: string
+  href: string
+
   name: string
   date: string
   image: ImageData

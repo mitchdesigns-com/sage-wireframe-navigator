@@ -133,10 +133,10 @@ export default function NewsPage({ data }: NewsPageProps) {
                   transition={{ duration: 0.6, delay: 0.7 }}
                   viewport={{ once: true }}
                 >
-                  <Link href="/">
+                  <Link href={newsEvents.featureWithTagline.href}>
                     <div className="group flex gap-1.5 items-center justify-start rounded-[100px] cursor-pointer">
                       <div className="font-aeonik-bold text-Primary-Scrub group-hover:text-Primary-Light-Sage text-lg leading-[1.5]">
-                        {t('News.cta')}
+                        {newsEvents.featureWithTagline.btn}
                       </div>
                       <div className="bg-Primary-Scrub rounded-full p-[6px] size-7 flex items-center justify-center">
                         <div className="relative shrink-0 size-6">
