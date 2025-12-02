@@ -231,9 +231,12 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
             )}
 
             {/* CTA Buttons */}
-            <motion.div variants={fadeInUp} className="flex gap-0 md:gap-8">
+            <motion.div
+              variants={fadeInUp}
+              className="flex flex-col md:flex-row items-center gap-0 md:gap-8"
+            >
               {ctaText && (
-                <Link href={href || '/contact'}>
+                <Link href={href || '/contact'} className="group">
                   <Button
                     variant={
                       home
@@ -246,7 +249,7 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
                               ? 'primary'
                               : 'light'
                     }
-                    righticon
+                    righticon={true}
                     fullwidth={isMobile}
                     locale={locale as 'en' | 'ar'}
                   >
@@ -259,7 +262,7 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
                   <Button
                     variant={secondaryButton[0]?.variant || 'ghost'}
                     righticon={secondaryButton[0]?.righticon || true}
-                    fullwidth
+                    fullwidth={isMobile ? false : true}
                     locale={locale as 'en' | 'ar'}
                   >
                     {secondaryButton[0]?.label}

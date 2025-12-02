@@ -5,8 +5,9 @@ import HeroPages from '@/components/sections/HeroPages'
 import ToggleButton from '@/components/sections/ToggleButton'
 import { useState } from 'react'
 import { CaseStudy, CaseStudyPageData } from '../../types/caseStudyPageData'
+import { useLocale } from 'next-intl'
 
-type TabType = 'all' | 'individuals' | 'businesses' | 'organizations'
+type TabType = string
 
 // interface ToggleOption {
 //   id: string
@@ -21,7 +22,11 @@ export default function CaseStudiesPage({
   data: CaseStudyPageData
   singles: CaseStudy[]
 }) {
-  const [currentTab, setCurrentTab] = useState<TabType>('all')
+  const locale = useLocale()
+
+  const [currentTab, setCurrentTab] = useState<TabType>(
+    locale === 'ar' ? 'الكل' : 'all'
+  )
 
   // const options: ToggleOption[] = [
   //   { id: 'all', label: 'View All', value: 'all' },
