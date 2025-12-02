@@ -95,9 +95,12 @@ const BLOCKS: Record<string, React.ComponentType<Block>> = {
 }
 
 export default function FAQsPage({ data }: { data: PageData[] }) {
-  const [openFaq, setOpenFaq] = useState<number>(-1)
-  const [currentTab, setCurrentTab] = useState<FaqCategory>('all')
   const locale = useLocale()
+
+  const [openFaq, setOpenFaq] = useState<number>(-1)
+  const [currentTab, setCurrentTab] = useState<FaqCategory>(
+    locale === 'ar' ? 'الكل' : 'all'
+  )
 
   const page = data?.[0]
   const blocks = page?.blocks
@@ -112,10 +115,11 @@ export default function FAQsPage({ data }: { data: PageData[] }) {
   )
   const faqData = faqBlock?.faqData || []
 
-  const filteredFaqs =
-    currentTab === 'all'
-      ? faqData
-      : faqData.filter((faq) => faq.category === currentTab)
+  const isAll = locale === 'ar' ? currentTab === 'الكل' : currentTab === 'all'
+
+  const filteredFaqs = isAll
+    ? faqData
+    : faqData.filter((faq) => faq.category === currentTab)
 
   // Framer Motion variants
   const faqVariants = {
@@ -141,7 +145,7 @@ export default function FAQsPage({ data }: { data: PageData[] }) {
               className="py-8 md:py-20 bg-Secondary-Light-Scrub"
             >
               <div className="max-w-[1392px] mx-auto px-4">
-                <div className="max-w-[768px] mx-auto space-y-8 md:space-y-20">
+                <div className="max-w-[1000px] mx-auto space-y-8 md:space-y-20">
                   <ToggleButton
                     options={options}
                     selectedValue={currentTab}

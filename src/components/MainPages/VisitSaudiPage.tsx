@@ -80,7 +80,7 @@ export default function VisitSaudiPage({
                 key={idx}
                 variants={itemVariants}
                 style={{ backgroundColor: li.bgColor }}
-                className="flex items-start gap-2 flex-col w-full md:max-w-[432px] p-5 md:p-10 rounded-3xl relative"
+                className="flex items-start gap-2 flex-col w-full md:max-w-[432px] p-5 md:p-10 rounded-3xl relative min-h-[565px]"
               >
                 <div className="absolute -top-5 left-6 w-full">
                   <Tagline text={li.tagline} taglineColor={li.taglineColor} />

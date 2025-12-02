@@ -61,6 +61,7 @@ const ToggleButton: React.FC<ToggleButtonProps> = ({
       transition: { duration: 0.4, ease: 'easeOut' },
     },
   }
+  console.log(options)
 
   return (
     <motion.div

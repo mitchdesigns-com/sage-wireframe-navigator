@@ -58,7 +58,7 @@ export default function AboutPage({ data }: { data: AboutPageData }) {
               className="py-8 md:py-25 px-4 md:px-15 flex justify-between flex-col md:min-h-screen"
               variants={fadeUp}
             >
-              <div className="max-w-[817px]">
+              <div className="max-w-[897px]">
                 <motion.p
                   variants={fadeUp}
                   className="text-Primary-Palm font-medium text-sm md:text-base leading-[1.5]"
@@ -108,7 +108,7 @@ export default function AboutPage({ data }: { data: AboutPageData }) {
                 </h2>
                 <motion.p
                   variants={fadeUp}
-                  className="text-Secondary-Light-Scrub text-sm md:text-base max-w-[786px]"
+                  className="text-Secondary-Light-Scrub text-sm md:text-base max-w-[786px] whitespace-pre-line"
                 >
                   {data.OverviewSection.description}
                 </motion.p>
