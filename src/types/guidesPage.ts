@@ -55,6 +55,10 @@ export interface GuidesCardBlock {
   category: string
   image: ImageData
   ShareButtons: string
+  file: {
+    url: string
+    alternativeText: string
+  }
 }
 
 export type GuidesBlock = HeroPageBlock | GetInTouchBlock

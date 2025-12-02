@@ -59,7 +59,8 @@
     "Apply": "Apply On This Job",
     "AllJobs": "All Jobs",
     "ScheduleMeeting": "Schedule a Zoom Meeting",
-    "ScheduleOne": "Schedule your one-on-one meeting with our experts to explore innovative solutions tailored to your needs."
+    "ScheduleOne": "Schedule your one-on-one meeting with our experts to explore innovative solutions tailored to your needs.",
+    "NoData": " No data available in this section."
   },
   "Services": {
     "heading": "ما نقوم به",

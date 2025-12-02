@@ -21,6 +21,10 @@ export interface Guide {
   readTime: string
   description: string
   ShareButtons: string
+  file: {
+    url: string
+    alternativeText: string
+  }
 }
 
 interface GuidesCardProps {
@@ -43,6 +47,12 @@ export default function GuidesCard({ guide }: GuidesCardProps) {
     },
   }
   const t = useTranslations()
+  const handleDownload = () => {
+    if (!guide.file?.url || null) return
+
+    const fullUrl = `${process.env.NEXT_PUBLIC_API_BASE_URL}${guide.file?.url || null}`
+    window.open(fullUrl, '_blank')
+  }
 
   return (
     <motion.div
@@ -88,7 +98,8 @@ export default function GuidesCard({ guide }: GuidesCardProps) {
             <div className="w-fit">
               <Button
                 variant="light-link"
-                // className="p-0 text-Primary-Palm font-bold text-base md:text-lg cursor-pointer"
+                className="p-0 text-Primary-Palm font-bold text-base md:text-lg cursor-pointer"
+                onClick={handleDownload}
               >
                 <div className="flex items-center gap-[2px]">
                   {' '}

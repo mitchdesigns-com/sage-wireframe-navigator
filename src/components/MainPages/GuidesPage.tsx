@@ -5,8 +5,9 @@ import ToggleButton from '@/components/sections/ToggleButton'
 import GuidesCard from '@/components/sections/GuidesCard'
 import GetInTouch from '@/components/sections/GetInTouch'
 import type { GuidesPage } from '../../types/guidesPage'
+import { useLocale, useTranslations } from 'next-intl'
 
-type TabType = 'all' | 'individuals' | 'businesses' | 'organizations'
+type TabType = string
 
 interface ToggleOption {
   id: number
@@ -15,11 +16,15 @@ interface ToggleOption {
 }
 
 export default function GuidesPage({ data }: { data: GuidesPage[] }) {
+  const locale = useLocale()
+
   const page = data?.[0]
   const blocks = page?.blocks || []
   const resources = page?.BlocksResources || []
 
-  const [currentTab, setCurrentTab] = useState<TabType>('all')
+  const [currentTab, setCurrentTab] = useState<TabType>(
+    locale === 'ar' ? 'الكل' : 'all'
+  )
 
   const toggleBlock = resources.find(
     (res) => res.__component === 'resources.toggle-button'
@@ -33,11 +38,12 @@ export default function GuidesPage({ data }: { data: GuidesPage[] }) {
 
   const guidsData =
     resources.filter((res) => res.__component === 'resources.guides-card') || []
+  const isAll = locale === 'ar' ? currentTab === 'الكل' : currentTab === 'all'
 
-  const filteredGuids =
-    currentTab === 'all'
-      ? guidsData
-      : guidsData.filter((guide) => guide.category === currentTab)
+  const filteredGuids = isAll
+    ? guidsData
+    : guidsData.filter((guide) => guide.category === currentTab)
+  const t = useTranslations()
 
   return (
     <div className="min-h-screen">
@@ -62,6 +68,11 @@ export default function GuidesPage({ data }: { data: GuidesPage[] }) {
             {filteredGuids.map((guide) => (
               <GuidesCard key={guide.id} guide={guide} />
             ))}
+            {filteredGuids.length === 0 && (
+              <p className="text-center col-span-3 text-Gray-600">
+                {t('GeneralContracting.NoData')}{' '}
+              </p>
+            )}
           </div>
         </div>
       </section>
