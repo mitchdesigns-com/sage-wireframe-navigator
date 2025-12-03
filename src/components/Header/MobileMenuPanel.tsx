@@ -4,6 +4,7 @@ import { Locale } from 'next-intl'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import React from 'react'
+import LanguageSwitchButton from './LanguageSwitchButton'
 
 interface MobileMenuPanelProps {
   setIsMenuOpen: (isOpen: boolean) => void
@@ -62,9 +63,7 @@ export default function MobileMenuPanel({
           ))}
         </nav>
         <div className="my-2">
-          <div className="mb-4 font-['GE_SS_Two:Medium',_sans-serif] font-mediums text-primary-spring text-lg">
-            تصفح بالعربية
-          </div>
+          <LanguageSwitchButton className="hover:opacity-80 font-['GE_SS_Two:Medium',_sans-serif] text-[12px] text-primary-spring" />
         </div>
         <div className="group mt-15">
           <Button

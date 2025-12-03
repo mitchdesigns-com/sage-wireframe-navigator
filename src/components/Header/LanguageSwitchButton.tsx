@@ -25,7 +25,7 @@ export default function LanguageSwitchButton({
 
   return (
     <div
-      className={`hidden lg:block relative  cursor-pointer ${className}`}
+      className={`relative  cursor-pointer ${className}`}
       onClick={handleLanguageSwitch}
     >
       <p className="leading-[1.5] whitespace-pre" dir="auto">

@@ -66,12 +66,16 @@ const HeroSinglePages: React.FC<HeroProps> = ({
       <div className="px-4 md:px-16">
         <div className="max-w-[1392px] mx-auto">
           <motion.div variants={itemVariants} className="pb-6 md:pb-16">
-            <Breadcrumb items={breadcrumbItems} heroPages />
+            <Breadcrumb
+              items={breadcrumbItems}
+              heroPages
+              className="justify-center md:justify-start"
+            />
           </motion.div>
 
           <motion.div
             variants={itemVariants}
-            className="flex pb-6 md:pb-12 items-center"
+            className="hidden md:flex pb-6 md:pb-12 items-center"
           >
             <ChevronLeft
               className={`text-white ${locale === 'ar' ? 'rotate-180' : ''}`}
@@ -86,7 +90,7 @@ const HeroSinglePages: React.FC<HeroProps> = ({
 
           <motion.h1
             variants={itemVariants}
-            className="text-white font-bold text-[26px] md:text-[48px] leading-[1.2] tracking-[-0.56px] pb-8 md:pb-20"
+            className="text-white font-bold text-[26px] md:text-[48px] leading-[1.2] tracking-[-0.56px] pb-8 md:pb-20 text-center md:text-left"
           >
             {title}
           </motion.h1>
@@ -107,7 +111,7 @@ const HeroSinglePages: React.FC<HeroProps> = ({
 
           <motion.div
             variants={itemVariants}
-            className="space-x-12 pt-8 flex justify-between items-start"
+            className="space-x-12 pt-8 flex justify-between items-center md:items-start flex-col md:flex-row gap-4"
           >
             <div className="flex gap-12">
               <div>
