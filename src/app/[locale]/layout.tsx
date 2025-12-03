@@ -105,7 +105,7 @@ export default async function LocaleLayout({ children, params }: Props) {
       <body
         className={clsx(
           'flex flex-col h-full antialiased',
-          locale === 'ar' ? 'font-GE-SS' : 'font-aeonik'
+          locale === 'ar' ? 'font-arabic' : 'font-aeonik'
         )}
         suppressHydrationWarning
       >
