@@ -3,7 +3,7 @@
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { useLocale, useTranslations } from 'next-intl'
 import Image from 'next/image'
-import React, { use, useState } from 'react'
+import React, { useState } from 'react'
 
 type FormData = {
   fullName: string
