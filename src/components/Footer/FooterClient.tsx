@@ -1,15 +1,15 @@
 'use client'
 
 import { motion, useAnimation } from 'framer-motion'
-import { ChevronDown, Mail, MinusIcon, Phone, PlusIcon } from 'lucide-react'
+import { Mail, MinusIcon, Phone, PlusIcon } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
-import { FooterData } from '../../types/footer'
-import { useTranslations } from 'next-intl'
-import LanguageSwitchButton from '../Header/LanguageSwitchButton'
 import { Swiper, SwiperSlide } from 'swiper/react'
+import { FooterData } from '../../types/footer'
+import LanguageSwitchButton from '../Header/LanguageSwitchButton'
 
 const awards = [
   { name: 'image 10', img: '/images/awards/01.png' },
