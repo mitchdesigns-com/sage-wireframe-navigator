@@ -5,15 +5,15 @@ import HeroPages from '@/components/sections/HeroPages'
 import ToggleButton from '@/components/sections/ToggleButton'
 import { useState } from 'react'
 import { CaseStudy, CaseStudyPageData } from '../../types/caseStudyPageData'
-import { useLocale } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 
 type TabType = string
 
-// interface ToggleOption {
-//   id: string
-//   label: string
-//   value: TabType
-// }
+interface ToggleOption {
+  id: string
+  label: string
+  value: TabType
+}
 
 export default function CaseStudiesPage({
   data,
@@ -23,22 +23,33 @@ export default function CaseStudiesPage({
   singles: CaseStudy[]
 }) {
   const locale = useLocale()
+  const t = useTranslations()
 
-  const [currentTab, setCurrentTab] = useState<TabType>(
-    locale === 'ar' ? 'الكل' : 'all'
-  )
+  const options: ToggleOption[] =
+    locale === 'ar'
+      ? [
+          { id: 'all', label: 'عرض الكل', value: 'all' },
+          { id: 'individuals', label: 'الأفراد', value: 'الأفراد' },
+          { id: 'businesses', label: 'الأعمال', value: 'الأعمال' },
+          { id: 'organizations', label: 'المؤسسات', value: 'المؤسسات' },
+        ]
+      : [
+          { id: 'all', label: 'View All', value: 'all' },
+          { id: 'individuals', label: 'Individuals', value: 'individuals' },
+          { id: 'businesses', label: 'Businesses', value: 'businesses' },
+          {
+            id: 'organizations',
+            label: 'Organizations',
+            value: 'organizations',
+          },
+        ]
 
-  // const options: ToggleOption[] = [
-  //   { id: 'all', label: 'View All', value: 'all' },
-  //   { id: 'individuals', label: 'Individuals', value: 'individuals' },
-  //   { id: 'businesses', label: 'Businesses', value: 'businesses' },
-  //   { id: 'organizations', label: 'Organizations', value: 'organizations' },
-  // ]
+  const [currentTab, setCurrentTab] = useState<TabType>(options[0].value)
 
   const filteredCaseStudy =
     currentTab === 'all'
       ? singles
-      : singles.filter((faq) => faq.category === currentTab)
+      : singles.filter((item) => item.case_study_type?.title === currentTab)
 
   return (
     <div className="min-h-screen ">
@@ -60,6 +71,11 @@ export default function CaseStudiesPage({
                 index={idx}
               />
             ))}
+            {filteredCaseStudy.length === 0 && (
+              <p className="text-center col-span-3 text-Gray-600">
+                {t('GeneralContracting.NoData')}{' '}
+              </p>
+            )}
           </div>
         </div>
       </section>
