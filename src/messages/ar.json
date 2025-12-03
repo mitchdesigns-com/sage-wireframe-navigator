@@ -219,7 +219,19 @@
     "Submitting": "Submitting",
     "companyName": "Company Name",
     "Position": "Position",
-    "partnership": "What kind of partnership"
+    "partnership": "What kind of partnership",
+    "errorFullName": "الاسم الكامل يجب أن يتكون من 3 أحرف على الأقل.",
+    "errorDate": "تاريخ الميلاد مطلوب",
+    "errorNationality": "الرجاء تحديد جنسيتك",
+    "errorEmail": "يرجى إدخال عنوان بريد إلكتروني صالح",
+    "errorPhone": "رقم الهاتف مطلوب",
+    "errorCountry": "الرجاء تحديد بلد إقامتك",
+    "errorPrimaryCondition": "يجب أن يكون الحد الأدنى 50 حرفًا",
+    "errorBriefDescription": "يجب أن يكون الحد الأدنى 50 حرفًا",
+    "errorMedicalReports": "الرجاء تحديد خيار",
+    "errorLanguage": "الرجاء اختيار اللغة المفضلة",
+    "errorHearAbout": "الرجاء تحديد خيار",
+    "errorAcceptTerms": "يجب عليك التأكيد للإرسال"
   },
   "NotFound": {
     "title": "هذه الصفحة غير موجودة.",

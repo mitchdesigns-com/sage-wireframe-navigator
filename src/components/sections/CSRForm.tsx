@@ -3,7 +3,7 @@
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { useLocale, useTranslations } from 'next-intl'
 import Image from 'next/image'
-import React, { useState } from 'react'
+import React, { use, useState } from 'react'
 
 type FormData = {
   fullName: string
@@ -59,7 +59,6 @@ export default function MultiStepForm() {
     setFormData(initialData)
     setErrors({})
   }
-
   // Validation rules
   const rules: Record<
     string,
@@ -75,11 +74,11 @@ export default function MultiStepForm() {
       required: true,
       minLength: 2,
       pattern: /^[a-zA-Z\s]+$/,
-      message: 'Please enter a valid full name',
+      message: t('CSR.errorFullName'),
     },
     dateOfBirth: {
       required: true,
-      message: 'Please enter a valid date of birth',
+      message: t('CSR.errorDate'),
       validate: (v) => {
         const d = new Date(v)
         const age = new Date().getFullYear() - d.getFullYear()
@@ -89,48 +88,48 @@ export default function MultiStepForm() {
     nationality: {
       required: true,
       pattern: /^[a-zA-Z\s]+$/,
-      message: 'Please enter a valid nationality',
+      message: t('CSR.errorNationality'),
     },
     countryOfResidence: {
       required: true,
       pattern: /^[a-zA-Z\s]+$/,
-      message: 'Please enter a valid country',
+      message: t('CSR.errorCountry'),
     },
     email: {
       required: true,
       pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-      message: 'Please enter a valid email',
+      message: t('CSR.errorEmail'),
     },
     phoneNumber: {
       required: true,
       pattern: /^[\+]?[0-9\s\-\(\)]{10,}$/,
-      message: 'Please enter a valid phone number',
+      message: t('CSR.errorPhone'),
     },
     medicalCondition: {
       required: true,
       minLength: 10,
-      message: 'Please provide a detailed medical condition',
+      message: t('CSR.errorPrimaryCondition'),
     },
     medicalHistory: {
       required: true,
       minLength: 20,
-      message: 'Please provide a detailed medical history',
+      message: t('CSR.errorPrimaryCondition'),
     },
     supportReason: {
       required: true,
       minLength: 20,
-      message: 'Please explain why you are seeking support',
+      message: t('CSR.errorPrimaryCondition'),
     },
     medicalReports: {
       required: true,
-      message: 'Please select if you can provide reports',
+      message: t('CSR.errorMedicalReports'),
     },
-    preferredLanguage: { required: true, message: 'Please select a language' },
+    preferredLanguage: { required: true, message: t('CSR.errorLanguage') },
     hearAbout: {
       required: true,
-      message: 'Please select how you heard about us',
+      message: t('CSR.errorHearAbout'),
     },
-    confirmation: { required: true, message: 'You must confirm to submit' },
+    confirmation: { required: true, message: t('CSR.errorAcceptTerms') },
   }
 
   const stepFields: Record<number, (keyof FormData)[]> = {
@@ -278,7 +277,7 @@ export default function MultiStepForm() {
                   {number}
                 </div>
                 <span
-                  className={`text-xs md:text-sm ${
+                  className={`text-xs md:text-sm text-nowrap ${
                     number === step
                       ? 'text-Primary-Spring font-bold'
                       : number < step

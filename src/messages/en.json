@@ -251,7 +251,19 @@
     "Approve": " By submitting this form, I confirm that the information provided is accurate to the best of my knowledge and I understand that this application does not guarantee acceptance into the SAGE CSR program.",
     "Thank": "Thank You for Your Submission",
     "received": "Your application has been received",
-    "dedicated": "Our dedicated team is reviewing it and will be in touch as soon as possible."
+    "dedicated": "Our dedicated team is reviewing it and will be in touch as soon as possible.",
+    "errorFullName": "Full name must be at least 3 characters.",
+    "errorDate": "Date of birth is required",
+    "errorNationality": "Please select your nationality",
+    "errorEmail": "Please enter a valid email address",
+    "errorPhone": "Phone number is required",
+    "errorCountry": "Please select your country of residence",
+    "errorPrimaryCondition": "A minimum of 50 characters is required",
+    "errorBriefDescription": "A minimum of 50 characters is required",
+    "errorMedicalReports": "Please select an option",
+    "errorLanguage": "Please select a preferred language",
+    "errorHearAbout": "Please select an option",
+    "errorAcceptTerms": "You must confirm to submit"
   },
   "NotFound": {
     "title": "This page doesn’t exist.",
