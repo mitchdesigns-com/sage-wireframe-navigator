@@ -1,7 +1,7 @@
 'use client'
 
 import { motion, useAnimation } from 'framer-motion'
-import { ChevronDown, Mail, Phone } from 'lucide-react'
+import { ChevronDown, Mail, MinusIcon, Phone, PlusIcon } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
@@ -9,6 +9,7 @@ import { useInView } from 'react-intersection-observer'
 import { FooterData } from '../../types/footer'
 import { useTranslations } from 'next-intl'
 import LanguageSwitchButton from '../Header/LanguageSwitchButton'
+import { Swiper, SwiperSlide } from 'swiper/react'
 
 const awards = [
   { name: 'image 10', img: '/images/awards/01.png' },
@@ -237,41 +238,77 @@ export default function FooterClient({ footerData }: FooterClientProps) {
           </div>
         </motion.div>
       </motion.div>
-      <div className="md:hidden flex flex-col w-full bg-white py-8 px-4 rounded-4xl">
-        {menu.map((section, index) => {
-          const isOpen = openIndex === index
-          return (
-            <div key={section.id} className="py-3">
-              <button
-                onClick={() => setOpenIndex(isOpen ? -1 : index)}
-                className="w-full flex justify-between items-center text-left"
-              >
-                <h3 className="text-Primary-Black font-bold text-sm">
-                  {section.title}
-                </h3>
-                <ChevronDown
-                  className={`w-5 h-5 text-Primary-Black transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
-                />
-              </button>
-              <div
-                className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-96 mt-2' : 'max-h-0'}`}
-              >
-                <div className="space-y-2">
-                  {section.SingleLink.map((link) => (
-                    <div key={link.id} className="py-1">
-                      <Link
-                        href={link.href}
-                        className="text-Primary-Black text-xs"
-                      >
-                        {link.title}
-                      </Link>
-                    </div>
-                  ))}
+      <div className="px-4">
+        <div className="md:hidden flex flex-col w-full bg-white py-8 px-4 rounded-4xl">
+          {menu.map((section, index) => {
+            const isOpen = openIndex === index
+            return (
+              <div key={section.id} className="py-3">
+                <button
+                  onClick={() => setOpenIndex(isOpen ? -1 : index)}
+                  className="w-full flex justify-between items-center text-left"
+                >
+                  <h3 className="text-Primary-Black font-bold text-sm">
+                    {section.title}
+                  </h3>
+                  {isOpen ? <MinusIcon /> : <PlusIcon />}
+                  {/* <ChevronDown
+                    className={`w-5 h-5 text-Primary-Black transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
+                  /> */}
+                </button>
+                <div
+                  className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-96 mt-2' : 'max-h-0'}`}
+                >
+                  <div className="space-y-2">
+                    {section.SingleLink.map((link) => (
+                      <div key={link.id} className="py-1">
+                        <Link
+                          href={link.href}
+                          className="text-Primary-Black text-xs"
+                        >
+                          {link.title}
+                        </Link>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
+            )
+          })}
+          <div className="space-y-4">
+            {phone && (
+              <div className="gap-1 flex text-sm items-center">
+                <Phone className="text-Primary-Palm" />
+                <a href={`tel:${phone}`}>{phone}</a>
+              </div>
+            )}
+            {contactEmail && (
+              <div className="gap-1 flex text-sm items-center">
+                <Mail className="text-Primary-Palm" />
+                <a href={`mailto:${contactEmail}`}>{contactEmail}</a>
+              </div>
+            )}
+            <div className="flex space-x-3">
+              {socialMedia.map((social) => (
+                <a
+                  key={social.id}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Image
+                    src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${social.icon.url}`}
+                    alt={social.icon.alternativeText || ''}
+                    width={20}
+                    height={20}
+                  />
+                </a>
+              ))}
             </div>
-          )
-        })}
+
+            <LanguageSwitchButton className="text-Secondary-Text font-medium text-xs text-end" />
+          </div>
+        </div>
       </div>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -289,7 +326,23 @@ export default function FooterClient({ footerData }: FooterClientProps) {
           ))}
         </div>
       </motion.div>
-
+      <div className="md:hidden w-full py-6 px-4">
+        <Swiper
+          spaceBetween={16}
+          slidesPerView={2.2}
+          loop={true}
+          className="w-full"
+        >
+          {awards.map((award, idx) => (
+            <SwiperSlide key={idx}>
+              <div
+                className="bg-no-repeat aspect-[104/42] rounded-[6px] bg-white bg-center bg-contain"
+                style={{ backgroundImage: `url('${award.img}')` }}
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
