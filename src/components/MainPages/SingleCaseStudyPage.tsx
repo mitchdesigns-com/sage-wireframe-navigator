@@ -77,7 +77,7 @@ export default function SingleCaseStudyPage({
         ))}
       </section>{' '}
       <section className="bg-[#E6EEED] flex flex-col items-start pt-8 md:pt-28 ">
-        <div className="max-w-[1280px] mx-auto w-full gap-8 md:gap-20 flex flex-col md:flex-row items-start">
+        <div className="max-w-[1280px] mx-auto w-full gap-8 md:gap-20 flex flex-col md:flex-row items-start px-4 md:px-0">
           {/* Main Challenge Title & Description */}
           <motion.div
             initial="hidden"
@@ -125,12 +125,12 @@ export default function SingleCaseStudyPage({
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="mt-8 md:mt-28 flex justify-center max-w-[768px] mx-auto w-full"
+          className="mt-8 md:mt-28 flex justify-center max-w-[768px] mx-auto w-full px-4 md:px-0"
         >
           <motion.div
             custom={1}
             variants={fadeUp}
-            className="w-full bg-white shadow-sm border border-transparent relative"
+            className="w-full bg-white shadow-sm border border-transparent relative px-4 md:px-0"
           >
             <div className="absolute -top-1 left-0 right-0 mx-auto h-1 bg-Primary-Palm" />
             <div className="px-0 md:px-10 py-10 md:py-20">

@@ -139,7 +139,7 @@ export default function Services({
     <motion.section
       className="bg-secondary-dark-palm px-4 md:px-[60px] py-8 md:py-20"
       // variants={containerVariants}
-      initial="hidden"
+      // initial="hidden"
       whileInView="show"
       viewport={{ once: true, amount: 0.5 }} // 👈 triggers when 50% of section is visible
     >
