@@ -67,6 +67,8 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
   const pathname = usePathname()
   const locale = useLocale()
   const isNotHome = pathname !== '/'
+  const isHome = pathname == '/'
+
   const [isMobile, setIsMobile] = useState(false)
 
   // Animation controls
@@ -131,7 +133,11 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
           <motion.div variants={fadeInUp} className="flex-1 w-full">
             <div className="mb-8">
               {backgroundColor === '#DAF7AF' ? (
-                <Tagline text={tagline} taglineColor={'#025850'} />
+                <Tagline
+                  text={tagline}
+                  taglineColor={'#025850'}
+                  className={`${isHome && isMobile ? 'items-center' : ''}`}
+                />
               ) : (
                 <Tagline text={tagline} />
               )}
@@ -271,7 +277,20 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
               )}
             </motion.div>
           </motion.div>
-
+          {isHome && isMobile && (
+            <motion.div variants={fadeInUp} className="flex-1">
+              <div
+                className={`aspect[396/351] md:aspect-[654/580] ${
+                  isMainImage
+                    ? 'rounded-b-0'
+                    : 'rounded-b-[40px] rounded-t-[40px]'
+                } bg-cover bg-center w-[396px] md:h-[580px] h-[351px] md:w-[654px]`}
+                style={{
+                  backgroundImage: `url('${process.env.NEXT_PUBLIC_API_BASE_URL}${image?.url}')`,
+                }}
+              />
+            </motion.div>
+          )}
           {/* Image for desktop */}
           {!isMobile && (
             <motion.div variants={fadeInUp} className="flex-1">

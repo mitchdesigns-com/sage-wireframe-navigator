@@ -131,7 +131,7 @@ export default function GalleryPopup({
           <Swiper
             onSwiper={setThumbsSwiper}
             watchSlidesProgress
-            slidesPerView={10}
+            slidesPerView={'auto'}
             slideToClickedSlide
             spaceBetween={10}
             initialSlide={4}
@@ -141,7 +141,7 @@ export default function GalleryPopup({
             {Images?.map((image) => (
               <SwiperSlide
                 key={image.id}
-                className="relative !w-[166px] !h-20 border-[4px] transition-all duration-500 border-transparent hover:border-Gold"
+                className="relative !w-[100px] md:!w-[166px] !h-16 md:!h-20 border-[4px] transition-all duration-500 border-transparent hover:border-Gold"
               >
                 <Image
                   src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${image.attributes.url}`}

@@ -8,6 +8,7 @@ import Image from 'next/image'
 import { useLocale, useTranslations } from 'next-intl'
 import { motion, useAnimation } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
+import ButtonIcon from '../svg/ButtonIcon'
 
 interface List {
   list: { url: string; alternativeText: string }[]
@@ -46,7 +47,14 @@ const CentersSection: React.FC<CentersSectionProps> = ({
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
   }, [])
-
+  const variants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.9, ease: 'easeOut' },
+    },
+  }
   // Framer Motion
   const [ref, inView] = useInView({ threshold: 0.3, triggerOnce: true })
   const controls = useAnimation()
@@ -204,14 +212,32 @@ const CentersSection: React.FC<CentersSectionProps> = ({
               </Link>
             )}
             {secondaryButton && (
-              <Button
-                href="/our-network"
-                variant="light-link"
-                righticon={true}
-                locale={locale as 'en' | 'ar'}
-              >
-                {t('Home.exploreNetwork')}
-              </Button>
+              <Link href={'/our-network'}>
+                {' '}
+                <motion.div
+                  ref={ref}
+                  initial="hidden"
+                  animate={controls}
+                  variants={variants}
+                  className="group flex gap-1.5 items-center justify-center md:justify-start rounded-[100px] pt-8 cursor-pointer"
+                >
+                  {' '}
+                  <div className="font-aeonik-bold text-primary-palm group-hover:text-Secondary-Dark-Palm text-lg leading-[1.5]">
+                    {t('Home.exploreNetwork')}
+                  </div>
+                  <div className="bg-primary-palm rounded-full p-[6px] size-7 flex items-center justify-center">
+                    <div className="relative shrink-0 size-6">
+                      <div className="absolute flex h-[28.284px] items-center justify-center top-[-2.14px] left-[calc(50%+0.084px)] translate-x-[-50%] w-[28.284px]">
+                        <div
+                          className={`flex-none ${locale === 'ar' ? 'group-hover:-rotate-[45deg]' : 'group-hover:rotate-[45deg]'} text-Primary-Palm group-hover:text-Secondary-Dark-Palm transition-all duration-300`}
+                        >
+                          <ButtonIcon locale={locale} strokeColor="white" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>{' '}
+              </Link>
             )}
           </motion.div>
         )}
