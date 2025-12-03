@@ -31,7 +31,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ data }) => {
       case 'medium':
         return 'h-80 md:h-96'
       case 'large':
-        return 'h-80 md:h-[30rem]'
+        return ''
       case 'full':
         return 'h-screen'
       default:
@@ -125,7 +125,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ data }) => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
-                className="text-lg md:text-xl font-medium mb-4 text-current "
+                className="text-lg md:text-xl font-medium mb-4 text-current rtl:text-right"
               >
                 {subtitle}
               </motion.p>
@@ -141,7 +141,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ data }) => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-4xl md:text-[56px] lg:text-[56px] font-bold mb-4 leading-tight"
+              className="text-4xl md:text-[56px] lg:text-[56px] font-bold mb-4 leading-tight rtl:text-right"
             >
               {title}
             </motion.h1>
@@ -152,7 +152,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ data }) => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
-                className="text-base md:text-[18px]  "
+                className="text-base md:text-[18px] rtl:text-right "
                 dangerouslySetInnerHTML={{ __html: description }}
               />
             )}

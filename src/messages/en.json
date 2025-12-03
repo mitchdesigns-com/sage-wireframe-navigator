@@ -149,7 +149,8 @@
   "Footer": {
     "Subscribe": "Subscribe to Updates",
     "stayInformed": "Stay informed about our services and healthcare insights.",
-
+    "emailRequired": "Email is required",
+    "invalidEmail": "Invalid email address",
     "quick": "Quick Links",
     "contact": "Contact Data",
     "directions": "Get directions",
@@ -199,7 +200,14 @@
     "Submitting": "Submitting",
     "companyName": "Company Name",
     "Position": "Position",
-    "partnership": "What kind of partnership"
+    "partnership": "What kind of partnership",
+    "errorFirstName": "First name must be at least 3 characters.",
+    "errorLastName": "Last name must be at least 3 characters.",
+    "errorEmail": "Please enter a valid email.",
+    "errorPhone": "Phone number is required",
+    "errorInquiry": "Inquiry text is required",
+    "errorMessage": "Message is required",
+    "errorAcceptTerms": "You must accept the terms"
   },
   "CSR": {
     "title": "Submit a Case for Review",
@@ -244,5 +252,10 @@
     "Thank": "Thank You for Your Submission",
     "received": "Your application has been received",
     "dedicated": "Our dedicated team is reviewing it and will be in touch as soon as possible."
+  },
+  "NotFound": {
+    "title": "This page doesn’t exist.",
+    "description": "Sorry, can't find the page you're looking for.",
+    "button": "Go to homepage"
   }
 }

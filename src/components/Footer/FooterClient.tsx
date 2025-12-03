@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
 import { FooterData } from '../../types/footer'
 import { useTranslations } from 'next-intl'
+import LanguageSwitchButton from '../Header/LanguageSwitchButton'
 
 const awards = [
   { name: 'image 10', img: '/images/awards/01.png' },
@@ -24,14 +25,33 @@ interface FooterClientProps {
 
 export default function FooterClient({ footerData }: FooterClientProps) {
   const { menu, socialMedia, logo, phone, email: contactEmail } = footerData
+  const t = useTranslations()
 
   const [email, setEmail] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [openIndex, setOpenIndex] = useState(-1)
+  const [error, setError] = useState('')
+  const validateEmail = (value: string) => {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    return regex.test(value)
+  }
 
   const handleNewsletterSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+
+    if (!email.trim()) {
+      setError(t('Footer.emailRequired'))
+      return
+    }
+
+    if (!validateEmail(email)) {
+      setError(t('Footer.invalidEmail'))
+      return
+    }
+
+    setError('')
     setIsSubmitting(true)
+
     const payload = { data: { email } }
 
     try {
@@ -43,11 +63,14 @@ export default function FooterClient({ footerData }: FooterClientProps) {
           body: JSON.stringify(payload),
         }
       )
+
       if (!res.ok) throw new Error('Failed to submit form')
+
       await res.json()
       setEmail('')
     } catch (err) {
       console.error(err)
+      setError('Something went wrong. Please try again.')
     } finally {
       setIsSubmitting(false)
     }
@@ -69,7 +92,6 @@ export default function FooterClient({ footerData }: FooterClientProps) {
       transition: { duration: 0.6, ease: 'easeOut' },
     },
   }
-  const t = useTranslations()
   return (
     <motion.footer
       ref={ref}
@@ -113,13 +135,22 @@ export default function FooterClient({ footerData }: FooterClientProps) {
               onSubmit={handleNewsletterSubmit}
               className="flex gap-4 items-center flex-col md:flex-row mt-2"
             >
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder={t('Form.email')}
-                className="bg-white rounded-[6px] px-3 py-2 h-12 w-full md:w-[479px] text-base text-[#626262]"
-              />
+              <div className="w-full md:w-[479px] flex flex-col">
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => {
+                    setEmail(e.target.value)
+                    if (error) setError('')
+                  }}
+                  placeholder={t('Form.email')}
+                  className={`bg-white rounded-[6px] px-3 py-2 h-12 w-full text-base text-[#626262] 
+        ${error ? 'border border-red-500' : 'border border-transparent'}`}
+                />
+
+                {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
+              </div>
+
               <button
                 type="submit"
                 disabled={isSubmitting}
@@ -128,6 +159,7 @@ export default function FooterClient({ footerData }: FooterClientProps) {
                 {isSubmitting ? t('Footer.Joining') : t('Footer.Join')}
               </button>
             </form>
+
             <p className="text-Primary-Black text-xs leading-[1.5] mt-2">
               {t('Footer.respectPrivacy')}
               <Link href="/privacy" className="text-[#025850] underline">
@@ -200,9 +232,8 @@ export default function FooterClient({ footerData }: FooterClientProps) {
                 </a>
               ))}
             </div>
-            <p className="text-Secondary-Text font-medium text-xs">
-              تصفح بالعربية
-            </p>
+
+            <LanguageSwitchButton className="text-Secondary-Text font-medium text-xs text-end" />
           </div>
         </motion.div>
       </motion.div>

@@ -104,12 +104,12 @@ export default function ClientExperiences({
               </blockquote>
 
               <div className="flex items-center mt-6">
-                <div className="mr-4 flex h-12 w-12 items-center justify-center rounded-full bg-gray-200">
+                <div className="me-4 flex h-12 w-12 items-center justify-center rounded-full bg-gray-200">
                   <User className="h-6 w-6 text-gray-400" />
                 </div>
                 <div>
                   <div
-                    className={`text-xs md:text-[20px] font-medium ${
+                    className={`text-xs md:text-[20px] font-medium  ${
                       testimonial.bg === 'bg-Secondary-Dark-Palm'
                         ? 'text-white'
                         : 'text-Secondary-Text'

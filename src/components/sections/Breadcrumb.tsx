@@ -93,7 +93,7 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({
                     ? 'text-[#a5a5a5]'
                     : heroWithImage
                       ? 'text-[#9ABCB9]'
-                      : 'text-[#626262]'
+                      : 'text-[#e4e4e4c9]'
                 }`}
               >
                 {item.label}

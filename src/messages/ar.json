@@ -153,7 +153,8 @@
     "respectPrivacy": "نحن نحترم خصوصيتك. اقرأ",
     "Join": "انضم",
     "Joining": "الانضمام...",
-
+    "emailRequired": "البريد الإلكتروني مطلوب",
+    "invalidEmail": "عنوان البريد الإلكتروني غير صالح",
     "cookies": "سياسة ملفات تعريف الارتباط"
   },
   "Form": {
@@ -168,7 +169,12 @@
     "Submitting": "إرسال",
     "companyName": "اسم الشركة",
     "Position": "منصب  ",
-    "partnership": "ما نوع الشراكة"
+    "partnership": "ما نوع الشراكة",
+    "errorFirstName": "الاسم الأول يجب أن يتكون من 3 أحرف على الأقل.",
+    "errorLastName": "يجب أن يتكون الاسم الأخير من 3 أحرف على الأقل.",
+    "errorEmail": "الرجاء إدخال بريد إلكتروني صالح.",
+    "errorPhone": "رقم الهاتف مطلوب",
+    "errorAcceptTerms": "يجب عليك قبول الشروط"
   },
   "CSR": {
     "title": "تقديم حالة للمراجعة",
@@ -214,5 +220,10 @@
     "companyName": "Company Name",
     "Position": "Position",
     "partnership": "What kind of partnership"
+  },
+  "NotFound": {
+    "title": "هذه الصفحة غير موجودة.",
+    "description": "عذرًا، لا يمكن العثور على الصفحة التي تبحث عنها.",
+    "button": "العودة إلى الصفحة الرئيسية"
   }
 }

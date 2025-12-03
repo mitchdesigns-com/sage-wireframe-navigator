@@ -1,3 +1,4 @@
+import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 
 interface FormData {
@@ -59,27 +60,28 @@ const useBusinessInquiryForm = () => {
     setForm((prev) => ({ ...prev, [name]: checked }))
     setErrors((prev) => ({ ...prev, [name]: '' }))
   }
+  const t = useTranslations()
 
   const validate = (): boolean => {
     const newErrors: FormErrors = {}
 
     if (!form.firstName.trim() || form.firstName.length < 3) {
-      newErrors.firstName = 'First name must be at least 3 characters.'
+      newErrors.firstName = t('Form.errorFirstName')
     }
     if (!form.lastName.trim() || form.lastName.length < 3) {
-      newErrors.lastName = 'Last name must be at least 3 characters.'
+      newErrors.lastName = t('Form.errorLastName')
     }
     if (!form.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
-      newErrors.email = 'Please enter a valid email.'
+      newErrors.email = t('Form.errorEmail')
     }
     if (!form.phone.trim()) {
-      newErrors.phone = 'Phone number is required.'
+      newErrors.phone = t('Form.errorPhone')
     }
-    if (!form.partnership.trim() || form.partnership.length < 5) {
-      newErrors.partnership = 'partnership must be at least 5 characters.'
-    }
+    // if (!form.partnership.trim() || form.partnership.length < 5) {
+    //   newErrors.partnership = 'partnership must be at least 5 characters.'
+    // }
     if (!form.acceptTerms) {
-      newErrors.acceptTerms = 'You must accept the terms.'
+      newErrors.acceptTerms = t('Form.errorAcceptTerms')
     }
 
     setErrors(newErrors)
