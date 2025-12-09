@@ -29,7 +29,7 @@ export default function LanguageSwitchButton({
       onClick={handleLanguageSwitch}
     >
       <p className="leading-[1.5] whitespace-pre" dir="auto">
-        {nextLocale === 'ar' ? 'تصفح بالعربية' : 'English'}
+        {nextLocale === 'ar' ? 'تصفح بالعربية' : 'Browse in English'}
       </p>
     </div>
   )
