@@ -157,7 +157,7 @@ const useButtonClasses = (props: BaseButtonProps) => {
       'whitespace-nowrap transition-all duration-200',
       'disabled:opacity-50 disabled:cursor-not-allowed',
       'text-[16px] leading-[1.5] not-italic text-[#000404] text-nowrap',
-      "font-['Aeonik:Medium',_sans-serif]",
+      "rtl:font-arabic ltr:font-['Aeonik:Medium',_sans-serif]",
       'hover:text-[#000404]/80 hover:opacity-80',
       fullwidth && 'w-full size-full',
       loading && 'cursor-wait',
@@ -208,7 +208,7 @@ const useButtonContent = (props: BaseButtonProps) => {
         {!loading && leftIcon && (
           <LeftIcon size={safeSize} variant={safeVariant} />
         )}
-        <div className="font-['Aeonik:Medium',_sans-serif] leading-[0] not-italic relative shrink-0 text-[#000404] text-sm md:text-base text-nowrap">
+        <div className="rtl:font-arabic ltr:font-['Aeonik:Medium',_sans-serif] leading-[0] not-italic relative shrink-0 text-[#000404] text-sm md:text-base text-nowrap">
           <p className="leading-[1.5] whitespace-pre">{children}</p>
         </div>
         {!loading && righticon && <CubeIcon size={24} />}

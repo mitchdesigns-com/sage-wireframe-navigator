@@ -55,7 +55,7 @@ export default function DesktopNavigation({
           onClick={closeAllDropdowns}
         />
 
-        <div className="relative font-aeonik-regular text-[16px] text-primary-spring not-italic text-nowrap leading-[0] shrink-0">
+        <div className="relative ltr:font-aeonik-regular !rtl:font-arabic text-[16px] text-primary-spring not-italic text-nowrap leading-[0] shrink-0">
           <Link
             href="/visit-saudi"
             onClick={closeAllDropdowns}

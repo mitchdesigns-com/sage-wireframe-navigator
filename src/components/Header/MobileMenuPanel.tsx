@@ -40,7 +40,7 @@ export default function MobileMenuPanel({
           {mobileNavItems.map(({ href, label, hasSubMenu }) => (
             <div
               key={href}
-              className="flex justify-between items-center hover:opacity-80 py-[9px] sm:py-[10px] font-aeonik-regular font-medium text-primary-spring text-lg sm:text-lg transition-all duration-200"
+              className="flex justify-between items-center hover:opacity-80 py-[9px] sm:py-[10px] ltr:font-aeonik-regular !rtl:font-arabic font-medium text-primary-spring text-lg sm:text-lg transition-all duration-200"
             >
               {hasSubMenu ? (
                 <button

@@ -302,7 +302,7 @@ export default function SingleCaseStudyPage({
                 {' '}
                 <div className="group flex gap-1.5 items-center justify-start rounded-[100px] pt-8 cursor-pointer">
                   {' '}
-                  <div className="font-aeonik-bold text-primary-palm group-hover:text-Secondary-Dark-Palm text-base md:text-lg leading-[1.5]">
+                  <div className="ltr:font-aeonik-bold !rtl:font-arabic text-primary-palm group-hover:text-Secondary-Dark-Palm text-base md:text-lg leading-[1.5]">
                     {t('Blog.viewAll')}
                   </div>
                   <div className="bg-primary-palm rounded-full p-[6px] size-7 flex items-center justify-center">

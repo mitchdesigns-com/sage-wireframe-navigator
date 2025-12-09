@@ -52,7 +52,7 @@ export default function AccordionJobs({ data }: { data: CareerItem[] }) {
                     </h3>
                     <Link href={`/careers/${job.slug}`}>
                       <div className="group flex gap-1.5 items-center justify-start rounded-[100px] cursor-pointer">
-                        <div className="font-aeonik-bold text-primary-palm group-hover:text-Secondary-Dark-Palm text-lg leading-[1.5]">
+                        <div className="ltr:font-aeonik-bold !rtl:font-arabic text-primary-palm group-hover:text-Secondary-Dark-Palm text-lg leading-[1.5]">
                           {t('GeneralContracting.ViewDetails')}
                         </div>
                         <div className="bg-primary-palm rounded-full p-[6px] size-7 flex items-center justify-center">
@@ -75,7 +75,7 @@ export default function AccordionJobs({ data }: { data: CareerItem[] }) {
                     </Link>
                   </div>
 
-                  <div className="text-sm md:text-base font-medium text-Primary-Palm mt-3 md:mt-0 mb-3 md:mb-6 flex gap-4">
+                  <div className="text-sm md:text-base !rtl:font-arabic ltr:font-medium text-Primary-Palm mt-3 md:mt-0 mb-3 md:mb-6 flex gap-4">
                     {tagsArray.map((tag, i) => (
                       <span key={i} className="flex items-center gap-4">
                         {tag}

@@ -172,7 +172,7 @@ export default function DirectionScrollSection({
           display: inline-flex;
           align-items: center;
           gap: 46px;
-          font-family: 'Aeonik', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+          font-family: 'GE-SS', system-ui, sans-serif;
           font-weight: 700;
           font-size: 32px;
           color: #caf48e;

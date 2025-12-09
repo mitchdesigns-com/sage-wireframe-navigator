@@ -53,10 +53,10 @@ export default function ResourcesMenu({
                     />{' '}
                   </div>
                   <div className="flex flex-col items-start justify-start flex-1">
-                    <div className="font-aeonik-bold text-Neutral-Darkest text-sm md:text-base leading-[1.5]">
+                    <div className="ltr:font-aeonik-bold !rtl:font-arabic text-Neutral-Darkest text-sm md:text-base leading-[1.5]">
                       {item.title}
                     </div>
-                    <div className="font-aeonik-regular text-[#626262] text-xs md:text-sm leading-[1.5]">
+                    <div className="ltr:font-aeonik-regular !rtl:font-arabic text-[#626262] text-xs md:text-sm leading-[1.5]">
                       {item.description}
                     </div>
                   </div>
@@ -82,10 +82,10 @@ export default function ResourcesMenu({
                     />{' '}
                   </div>
                   <div className="flex flex-col items-start justify-start flex-1">
-                    <div className="font-aeonik-bold text-Neutral-Darkest text-sm md:text-base leading-[1.5]">
+                    <div className="ltr:font-aeonik-bold !rtl:font-arabic text-Neutral-Darkest text-sm md:text-base leading-[1.5]">
                       {item.title}
                     </div>
-                    <div className="font-aeonik-regular text-[#626262] text-xs md:text-sm leading-[1.5]">
+                    <div className="ltr:font-aeonik-regular !rtl:font-arabic text-[#626262] text-xs md:text-sm leading-[1.5]">
                       {item.description}
                     </div>
                   </div>
@@ -111,10 +111,10 @@ export default function ResourcesMenu({
                     />{' '}
                   </div>
                   <div className="flex flex-col items-start justify-start flex-1">
-                    <div className="font-aeonik-bold text-Neutral-Darkest text-sm md:text-base leading-[1.5]">
+                    <div className="ltr:font-aeonik-bold !rtl:font-arabic text-Neutral-Darkest text-sm md:text-base leading-[1.5]">
                       {item.title}
                     </div>
-                    <div className="font-aeonik-regular text-[#626262] text-xs md:text-sm leading-[1.5]">
+                    <div className="ltr:font-aeonik-regular !rtl:font-arabic text-[#626262] text-xs md:text-sm leading-[1.5]">
                       {item.description}
                     </div>
                   </div>

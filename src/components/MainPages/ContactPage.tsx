@@ -91,7 +91,7 @@ export default function ContactPage({ data }: { data: ContactPageData }) {
                     </p>
                     <Link href={'/'}>
                       <div className="group flex gap-1.5 items-center justify-start rounded-[100px] pt-4 md:pt-8 cursor-pointer">
-                        <div className="font-aeonik-bold text-Primary-Palm group-hover:text-Secondary-Dark-Palm text-base md:text-lg leading-[1.5]">
+                        <div className="ltr:font-aeonik-bold !rtl:font-arabic text-Primary-Palm group-hover:text-Secondary-Dark-Palm text-base md:text-lg leading-[1.5]">
                           Apply Now
                         </div>
                         <div className="bg-Primary-Palm rounded-full p-[6px] size-7 flex items-center justify-center">

@@ -142,7 +142,7 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({
                   href={service.href || '/'}
                   className="group flex gap-1.5 items-center justify-start rounded-[100px] pt-24 md:pt-20 cursor-pointer"
                 >
-                  <div className="font-aeonik-bold text-Primary-Scrub group-hover:text-Primary-Light-Sage text-base md:text-lg leading-[1.5]">
+                  <div className="ltr:font-aeonik-bold !rtl:font-arabic text-Primary-Scrub group-hover:text-Primary-Light-Sage text-base md:text-lg leading-[1.5]">
                     {t('GeneralContracting.Explore')}
                   </div>
                   <div className="bg-primary-palm rounded-full p-[6px] size-7 flex items-center justify-center">

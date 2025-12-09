@@ -91,7 +91,7 @@ export const DESIGN_CONFIG = {
         withRightIcon: 'pl-5 pr-1.5 py-2',
         withBothIcons: 'pl-2.5 pr-1.5 py-2',
       },
-      text: 'text-[14px] font-aeonik-medium leading-[1.5]',
+      text: 'text-[14px] ltr:font-aeonik-medium !rtl:font-arabic leading-[1.5]',
       gaps: {
         default: 'gap-1.5',
         compact: 'gap-0.5',
@@ -108,7 +108,7 @@ export const DESIGN_CONFIG = {
         withRightIcon: 'ps-4 md:ps-6 pe-2 py-2',
         withBothIcons: 'px-2 py-2',
       },
-      text: 'text-[16px] font-aeonik-medium leading-[1.5]',
+      text: 'text-[16px] ltr:font-aeonik-medium !rtl:font-arabic leading-[1.5]',
       gaps: {
         default: 'gap-2 md:gap-4',
         compact: 'gap-3',
@@ -125,7 +125,7 @@ export const DESIGN_CONFIG = {
         withRightIcon: 'pl-[34px] pr-[18px] py-2',
         withBothIcons: 'pl-[18px] pr-[18px] py-2',
       },
-      text: 'text-[16px] font-aeonik-medium leading-[1.5]',
+      text: 'text-[16px] ltr:font-aeonik-medium !rtl:font-arabic leading-[1.5]',
       gaps: {
         default: 'gap-4',
         compact: 'gap-3',
@@ -139,17 +139,17 @@ export const DESIGN_CONFIG = {
 
   linkSizes: {
     small: {
-      text: 'text-[18px] font-aeonik-bold leading-[1.5]',
+      text: 'text-[18px] ltr:font-aeonik-bold !rtl:font-arabic leading-[1.5]',
       gap: 'gap-1.5',
       iconContainer: 'size-7',
     },
     medium: {
-      text: 'text-[18px] font-aeonik-bold leading-[1.5]',
+      text: 'text-[18px] ltr:font-aeonik-bold !rtl:font-arabic leading-[1.5]',
       gap: 'gap-2.5',
       iconContainer: 'size-8',
     },
     large: {
-      text: 'text-[18px] font-aeonik-bold leading-[1.5]',
+      text: 'text-[18px] ltr:font-aeonik-bold !rtl:font-arabic leading-[1.5]',
       gap: 'gap-2.5',
       iconContainer: 'size-8',
     },
@@ -163,5 +163,5 @@ export const BASE_BUTTON_STYLES = [
   'transition-all duration-200',
   'focus:outline-none focus:ring-2 focus:ring-primary-palm focus:ring-offset-2',
   'disabled:opacity-50 disabled:cursor-not-allowed',
-  'font-aeonik-medium',
+  'ltr:font-aeonik-medium !rtl:font-arabic',
 ].join(' ')

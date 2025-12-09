@@ -119,7 +119,7 @@ export default function HomePage({
                 className="group flex gap-1.5 items-center justify-start rounded-[100px] pt-8 cursor-pointer"
               >
                 {' '}
-                <div className="font-aeonik-bold text-primary-palm group-hover:text-Secondary-Dark-Palm text-lg leading-[1.5]">
+                <div className="ltr:font-aeonik-bold !rtl:font-arabic text-primary-palm group-hover:text-Secondary-Dark-Palm text-lg leading-[1.5]">
                   {t('News.exploreAll')}
                 </div>
                 <div className="bg-primary-palm rounded-full p-[6px] size-7 flex items-center justify-center">
@@ -153,7 +153,7 @@ export default function HomePage({
               {' '}
               <div className="group flex gap-1.5 items-center justify-center rounded-[100px] pt-8 cursor-pointer">
                 {' '}
-                <div className="font-aeonik-bold text-primary-palm group-hover:text-Secondary-Dark-Palm text-lg leading-[1.5]">
+                <div className="ltr:font-aeonik-bold !rtl:font-arabic text-primary-palm group-hover:text-Secondary-Dark-Palm text-lg leading-[1.5]">
                   {t('News.exploreAll')}
                 </div>
                 <div className="bg-primary-palm rounded-full p-[6px] size-7 flex items-center justify-center">

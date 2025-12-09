@@ -90,9 +90,9 @@ function ServiceCard({
         />
       </div>
 
-      <div className="font-aeonik-bold text-primary-black text-center tracking-[-0.32px]">
+      <div className="ltr:font-aeonik-bold !rtl:font-arabic text-primary-black text-center tracking-[-0.32px]">
         <p className={label === 'Individuals' ? 'whitespace-pre' : undefined}>
-          <span className="font-aeonik-regular text-lg md:text-[20px] leading-[1.5]">
+          <span className="ltr:font-aeonik-regular !rtl:font-arabic text-lg md:text-[20px] leading-[1.5]">
             {t('Home.for')}
           </span>
           <span className="text-primary-palm text-2xl md:text-[32px] leading-[1.3]">
@@ -102,7 +102,7 @@ function ServiceCard({
       </div>
 
       <div
-        className={`font-aeonik-regular text-primary-black text-base leading-[1.5] text-center${
+        className={`ltr:font-aeonik-regular !rtl:font-arabic text-primary-black text-base leading-[1.5] text-center${
           width ? ` w-[${width}px]` : ''
         }`}
       >
@@ -116,7 +116,7 @@ function ServiceCard({
           righticon={false}
           locale={locale as 'en' | 'ar'}
         >
-          <span className="text-sm md:text-base font-medium text-Primary-Palm">
+          <span className="text-sm md:text-base !rtl:font-arabic ltr:font-medium text-Primary-Palm">
             {t('GeneralContracting.cta')}
           </span>
         </Button>

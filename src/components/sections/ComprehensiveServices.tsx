@@ -157,7 +157,7 @@ const ServiceButton: React.FC<{
       text-${textColor} hover:text-[#caf48e]
     `}
   >
-    <span className="font-aeonik font-normal text-base leading-6">
+    <span className="ltr:font-aeonik !rtl:font-arabic font-normal text-base leading-6">
       {link.label}
     </span>
     <ChevronRight
@@ -218,11 +218,11 @@ const ServiceSectionComponent: React.FC<{
         >
           {/* Header */}
           <motion.div variants={fadeInUp} className="flex flex-col gap-2">
-            <h3 className="font-aeonik font-bold text-2xl leading-[1.4] tracking-[-0.24px] text-[#caf48e]">
+            <h3 className="ltr:font-aeonik !rtl:font-arabic font-bold text-2xl leading-[1.4] tracking-[-0.24px] text-[#caf48e]">
               {section.title}
             </h3>
             <p
-              className={`font-aeonik font-normal text-base leading-6 max-w-[453px] text-${section.textColor}`}
+              className={`ltr:font-aeonik !rtl:font-arabic font-normal text-base leading-6 max-w-[453px] text-${section.textColor}`}
             >
               {section.description}
             </p>
@@ -375,7 +375,7 @@ export default function ComprehensiveServices({
 
             {/* Title with decorative vector */}
             <div className="relative flex flex-wrap justify-center items-center gap-x-4 max-w-[768px]">
-              <h2 className="font-aeonik text-[28px] md:text-[40px] font-bold text-[#1e1e1e] text-center">
+              <h2 className="ltr:font-aeonik !rtl:font-arabic text-[28px] md:text-[40px] font-bold text-[#1e1e1e] text-center">
                 <span>{before_highlight} </span>
                 <span className="relative inline-block">
                   <span className="z-[2] relative">{highlight}</span>

@@ -106,7 +106,7 @@ export default function CSRPage({ data }: { data: CSRPageData }) {
       <section className="bg-Secondary-Dark-Palm" ref={ref}>
         <div className="max-w-[1392px] mx-auto py-8 md:py-42 px-4">
           <motion.h2
-            className="text-white text-2xl md:text-[32px] font-aeonik-light text-center flex flex-wrap justify-center"
+            className="text-white text-2xl md:text-[32px] ltr:font-aeonik-light !rtl:font-arabic text-center flex flex-wrap justify-center"
             variants={containerVariants}
             initial="hidden"
             animate={controls}

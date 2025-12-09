@@ -16,7 +16,7 @@ export default function HeaderLogo({ isMobile, onClick }: HeaderLogoProps) {
       onClick={onClick}
     >
       <motion.div className="relative w-[110px] h-12 shrink-0">
-        <div className="font-aeonik-regular text-[32px] text-primary-spring leading-[1.2]">
+        <div className="ltr:font-aeonik-regular !rtl:font-arabic text-[32px] text-primary-spring leading-[1.2]">
           <div className="relative w-[110px] h-[48px]">
             {isMobile ? (
               <Image

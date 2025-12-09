@@ -56,7 +56,7 @@ export default function ServicesMenu({
                   <Link href={'/services/individual'} onClick={onClose}>
                     {' '}
                     <div className="flex gap-1.5 items-center cursor-pointer ps-3">
-                      <div className="font-aeonik-bold text-primary-black text-xs md:text-sm leading-[1.5]">
+                      <div className="ltr:font-aeonik-bold !rtl:font-arabic text-primary-black text-xs md:text-sm leading-[1.5]">
                         {serviceCategories.individuals.title}
                       </div>
                       <div className="relative shrink-0 size-[17px] text-primary-black flex items-center justify-center">
@@ -86,11 +86,11 @@ export default function ServicesMenu({
                           {/* {item.icon} */}
                         </div>
                         <div className="flex flex-col items-start justify-start flex-1">
-                          <div className="font-aeonik-bold text-Neutral-Darkest text-sm md:text-base leading-[1.5]">
+                          <div className="ltr:font-aeonik-bold !rtl:font-arabic text-Neutral-Darkest text-sm md:text-base leading-[1.5]">
                             {item.title}
                           </div>
                           <div
-                            className="font-aeonik-regular text-[#626262] text-xs md:text-sm leading-[1.5] w-[236px] [&>span]:font-bold"
+                            className="ltr:font-aeonik-regular !rtl:font-arabic text-[#626262] text-xs md:text-sm leading-[1.5] w-[236px] [&>span]:font-bold"
                             dangerouslySetInnerHTML={{
                               __html: item.description,
                             }}
@@ -105,7 +105,7 @@ export default function ServicesMenu({
                 <div className="flex-1 flex flex-col gap-4 h-[296px]">
                   <Link href={'/services/businesses'} onClick={onClose}>
                     <div className="flex gap-1.5 items-center cursor-pointer ps-3">
-                      <div className="font-aeonik-bold text-primary-black text-xs md:text-sm leading-[1.5]">
+                      <div className="ltr:font-aeonik-bold !rtl:font-arabic text-primary-black text-xs md:text-sm leading-[1.5]">
                         {serviceCategories.businesses.title}
                       </div>
                       <div className="relative shrink-0 size-[17px] text-primary-black flex items-center justify-center">
@@ -133,10 +133,10 @@ export default function ServicesMenu({
                           />{' '}
                         </div>
                         <div className="flex flex-col items-start justify-start flex-1">
-                          <div className="font-aeonik-bold text-primary-black text-sm md:text-base leading-[1.5]">
+                          <div className="ltr:font-aeonik-bold !rtl:font-arabic text-primary-black text-sm md:text-base leading-[1.5]">
                             {item.title}
                           </div>
-                          <div className="font-aeonik-regular text-[#626262] text-xs md:text-sm leading-[1.5] w-[236px]">
+                          <div className="ltr:font-aeonik-regular !rtl:font-arabic text-[#626262] text-xs md:text-sm leading-[1.5] w-[236px]">
                             {item.description}
                           </div>
                         </div>
@@ -149,7 +149,7 @@ export default function ServicesMenu({
                 <div className="flex-1 flex flex-col gap-4 h-[296px]">
                   <Link href={'/services/organizations'} onClick={onClose}>
                     <div className="flex gap-1.5 items-center cursor-pointer  ps-3">
-                      <div className="font-aeonik-bold text-primary-black text-xs md:text-sm leading-[1.5]">
+                      <div className="ltr:font-aeonik-bold !rtl:font-arabic text-primary-black text-xs md:text-sm leading-[1.5]">
                         {serviceCategories.organizations.title}
                       </div>
                       <div className="relative shrink-0 size-[17px] text-primary-black flex items-center justify-center">
@@ -178,10 +178,10 @@ export default function ServicesMenu({
                             />{' '}
                           </div>
                           <div className="flex flex-col items-start justify-start flex-1">
-                            <div className="font-aeonik-bold text-primary-black text-sm md:text-base leading-[1.5]">
+                            <div className="ltr:font-aeonik-bold !rtl:font-arabic text-primary-black text-sm md:text-base leading-[1.5]">
                               {item.title}
                             </div>
-                            <div className="font-aeonik-regular text-[#626262] text-xs md:text-sm leading-[1.5] w-[236px]">
+                            <div className="ltr:font-aeonik-regular !rtl:font-arabic text-[#626262] text-xs md:text-sm leading-[1.5] w-[236px]">
                               {item.description}
                             </div>
                           </div>
@@ -212,7 +212,7 @@ export default function ServicesMenu({
             {' '}
             <div className="group flex gap-1.5 items-center justify-start rounded-[100px] pt-8 cursor-pointer">
               {' '}
-              <div className="font-aeonik-bold text-primary-palm group-hover:text-Secondary-Dark-Palm text-lg leading-[1.5]">
+              <div className="ltr:font-aeonik-bold !rtl:font-arabic text-primary-palm group-hover:text-Secondary-Dark-Palm text-lg leading-[1.5]">
                 {t('Services.Explore')}
               </div>
               <div className="bg-primary-palm rounded-full p-[6px] size-7 flex items-center justify-center">

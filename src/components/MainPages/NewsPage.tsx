@@ -135,7 +135,7 @@ export default function NewsPage({ data }: NewsPageProps) {
                 >
                   <Link href={newsEvents.featureWithTagline.href}>
                     <div className="group flex gap-1.5 items-center justify-start rounded-[100px] cursor-pointer">
-                      <div className="font-aeonik-bold text-Primary-Scrub group-hover:text-Primary-Light-Sage text-lg leading-[1.5]">
+                      <div className="ltr:font-aeonik-bold !rtl:font-arabic text-Primary-Scrub group-hover:text-Primary-Light-Sage text-lg leading-[1.5]">
                         {newsEvents.featureWithTagline.btn}
                       </div>
                       <div className="bg-Primary-Scrub rounded-full p-[6px] size-7 flex items-center justify-center">

@@ -84,7 +84,7 @@ export default function SectionHeader({
         {/* Heading */}
         <motion.h2
           variants={itemVariants}
-          className={`font-aeonik-bold ${headingText} text-[28px] md:text-[48px] leading-[1.2] tracking-[-0.48px] text-center mb-6 text-pretty ${
+          className={`ltr:font-aeonik-bold !rtl:font-arabic ${headingText} text-[28px] md:text-[48px] leading-[1.2] tracking-[-0.48px] text-center mb-6 text-pretty ${
             home ? 'max-w-[768px]' : 'max-w-[880px]'
           }`}
         >
@@ -95,7 +95,7 @@ export default function SectionHeader({
         {description && (
           <motion.p
             variants={itemVariants}
-            className={`font-aeonik-regular ${descText} text-sm md:text-lg leading-[1.5] text-center w-full ${
+            className={`ltr:font-aeonik-regular !rtl:font-arabic ${descText} text-sm md:text-lg leading-[1.5] text-center w-full ${
               home ? 'max-w-[768px]' : 'max-w-[768px]'
             }`}
           >

@@ -17,7 +17,7 @@ export default function DesktopNavLink({
       <Link
         href={href}
         onClick={onClick}
-        className="relative hover:opacity-80 font-aeonik-regular text-[16px] text-primary-spring not-italic text-nowrap leading-[0] transition-all duration-200 shrink-0"
+        className="relative hover:opacity-80 ltr:font-aeonik-regular !rtl:font-arabic text-[16px] text-primary-spring not-italic text-nowrap leading-[0] transition-all duration-200 shrink-0"
       >
         <p className="leading-[1.5] whitespace-pre">{label}</p>
       </Link>

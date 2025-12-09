@@ -91,7 +91,7 @@ export default function CaseStudyCard({
             </p>
 
             <div className="group flex gap-1.5 items-center justify-start rounded-[100px] cursor-pointer">
-              <div className="font-aeonik-bold text-Primary-Spring group-hover:text-Primary-Light-Sage text-base md:text-lg leading-[1.5]">
+              <div className="ltr:font-aeonik-bold !rtl:font-arabic text-Primary-Spring group-hover:text-Primary-Light-Sage text-base md:text-lg leading-[1.5]">
                 {t('News.readCaseStudy')}
               </div>
               <div className="bg-Primary-Spring rounded-full p-[6px] size-7 flex items-center justify-center">

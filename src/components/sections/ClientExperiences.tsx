@@ -98,7 +98,7 @@ export default function ClientExperiences({
                   testimonial.bg === 'bg-Secondary-Dark-Palm'
                     ? 'text-white'
                     : 'text-Primary-Black'
-                } font-aeonik-light`}
+                } ltr:font-aeonik-light !rtl:font-arabic`}
               >
                 {testimonial.quote}
               </blockquote>
