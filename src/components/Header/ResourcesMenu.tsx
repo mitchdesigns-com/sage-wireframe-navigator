@@ -29,7 +29,7 @@ export default function ResourcesMenu({
       {/* Menu content */}
       <div className="bg-[#e6eeed] px-4 md:px-5  py-8">
         <div className="max-w-[1392px] w-full mx-auto">
-          <div className="flex gap-0 md:gap-8 items-start justify-start flex-col md:flex-row">
+          <div className="flex gap-0 lg:gap-8 items-start justify-start flex-col md:flex-row">
             <p className="text-lg font-medium flex md:hidden" onClick={onClose}>
               <div className="flex gap-2 justify-center items-center">
                 <ChevronLeft /> Resources
@@ -42,7 +42,7 @@ export default function ResourcesMenu({
                   key={index}
                   href={item.href}
                   onClick={onClose}
-                  className="group flex gap-2 items-start px-[30px] md:px-3 py-4 rounded-[10px] hover:bg-Secondary-Light-Scrub transition-colors duration-200 w-80"
+                  className="group flex gap-2 items-start px-[30px] md:px-3 py-4 rounded-[10px] hover:bg-Secondary-Light-Scrub transition-colors duration-200 lg:max-w-[320px]"
                 >
                   <div className="relative shrink-0 size-6 text-primary-light-sage group-hover:text-Primary-Scrub">
                     <Image
@@ -71,7 +71,7 @@ export default function ResourcesMenu({
                   key={index}
                   href={item.href}
                   onClick={onClose}
-                  className="group flex gap-2 items-start px-[30px] md:px-3 py-4 rounded-[10px] hover:bg-Secondary-Light-Scrub transition-colors duration-200 w-80"
+                  className="group flex gap-2 items-start px-[30px] md:px-3 py-4 rounded-[10px] hover:bg-Secondary-Light-Scrub transition-colors duration-200 lg:max-w-[320px]"
                 >
                   <div className="relative shrink-0 size-6 text-primary-light-sage group-hover:text-Primary-Scrub">
                     <Image
@@ -100,7 +100,7 @@ export default function ResourcesMenu({
                   key={index}
                   href={item.href}
                   onClick={onClose}
-                  className="group flex gap-2 items-start px-[30px] md:px-3 py-4 rounded-[10px] hover:bg-Secondary-Light-Scrub transition-colors duration-200 w-80"
+                  className="group flex gap-2 items-start px-[30px] md:px-3 py-4 rounded-[10px] hover:bg-Secondary-Light-Scrub transition-colors duration-200 lg:max-w-[320px]"
                 >
                   <div className="relative shrink-0 size-6 text-primary-light-sage group-hover:text-Primary-Scrub">
                     <Image

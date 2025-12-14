@@ -6,6 +6,7 @@ import Button from '../ui/Button'
 import SectionHeader from '../ui/SectionHeader'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { useTranslations } from 'next-intl'
+import Link from 'next/link'
 
 interface ImageLabel {
   id: number
@@ -77,7 +78,7 @@ function ServiceCard({
 
   return (
     <motion.div
-      className="flex-1 flex flex-col gap-3 items-center justify-start"
+      className="flex flex-col gap-3 items-center justify-start self-stretch"
       variants={itemVariants}
     >
       <div className="relative inline-grid place-items-start">
@@ -106,10 +107,10 @@ function ServiceCard({
           width ? ` w-[${width}px]` : ''
         }`}
       >
-        <p className="mb-0">{description}</p>
+        <p className="mb-0 text-wrap-balance">{description}</p>
       </div>
 
-      <div className="flex flex-row gap-2 text-Primary-Palm">
+      <div className="mt-auto flex flex-row gap-2 text-Primary-Palm">
         <Button
           variant="link"
           href={href}
@@ -163,7 +164,7 @@ export default function Services({
           variants={containerVariants}
         >
           <motion.div
-            className="flex gap-8 md:gap-12 items-start justify-start w-full flex-col md:flex-row"
+            className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 w-full"
             variants={containerVariants}
           >
             {SERVICES?.map((service) => (
@@ -185,15 +186,21 @@ export default function Services({
           className="flex justify-center w-full"
           variants={itemVariants}
         >
-          <Button
-            variant="primary"
-            href={href}
-            righticon={true}
-            size="large"
-            locale={locale as 'en' | 'ar'}
+          <Link
+            href={href || '/'}
+            className="group inline-block bg-primary rounded-lg w-full md:w-fit font-medium text-white cursor-pointer"
           >
-            {cta}
-          </Button>
+            {' '}
+            <Button
+              variant="primary"
+              href={href}
+              righticon={true}
+              size="large"
+              locale={locale as 'en' | 'ar'}
+            >
+              {cta}
+            </Button>
+          </Link>
         </motion.div>
       </motion.div>
     </motion.section>

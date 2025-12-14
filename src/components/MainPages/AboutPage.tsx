@@ -35,7 +35,7 @@ export default function AboutPage({ data }: { data: AboutPageData }) {
       <section>
         <div className="flex items-start flex-col md:flex-row">
           {/* Image Column */}
-          <div className="md:sticky md:top-0 w-full max-w-[575px] md:min-w-[575px]">
+          <div className="md:sticky md:top-0 w-full max-w-full md:max-w-[420px] lg:max-w-[440px] xl:max-w-[575px] md:min-w-0">
             <div className="min-h-[320px] md:min-h-screen w-full bg-center bg-cover bg-no-repeat relative">
               <Image
                 fill
@@ -212,7 +212,7 @@ export default function AboutPage({ data }: { data: AboutPageData }) {
         </motion.div>
 
         <motion.div
-          className="max-w-[1392px] mx-auto flex gap-8 md:gap-15 justify-center items-start flex-col md:flex-row pt-8 md:pt-15 px-4"
+          className="max-w-[1392px] mx-auto flex gap-8 lg:gap-15 justify-center items-stretch flex-col md:flex-row pt-8 md:pt-15 px-4"
           variants={staggerContainer}
         >
           {data.ValuesSection.CardsList?.map((li, idx) => (
@@ -229,7 +229,7 @@ export default function AboutPage({ data }: { data: AboutPageData }) {
                 height={188}
               />
               <h5
-                className="text-2xl md:text-[32px] font-bold"
+                className="text-2xl md:text-3xl font-bold text-balance"
                 style={{ color: li.titleColor }}
               >
                 {li.title}

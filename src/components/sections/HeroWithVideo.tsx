@@ -55,6 +55,8 @@ const HeroWithVideo: React.FC<HeroProps> = ({
       },
     },
   }
+  const preventWidow = (text: string) =>
+    text.replace(/\s+([^\s]+)\s*$/, '&nbsp;$1')
 
   return (
     <section className="pb-4 md:pb-20 bg-gradient-to-t from-[#013530] to-[#025850]">
@@ -78,8 +80,8 @@ const HeroWithVideo: React.FC<HeroProps> = ({
 
             <motion.h1
               variants={itemVariants}
-              className="pt-2 pb-8 md:pb-6 [&>span]:font-bold text-white [&>span]:text-Primary-Spring md:text-[56px] text-4xl leading-[1.2] tracking-[-1px] md:tracking-[-0.56px]"
-              dangerouslySetInnerHTML={{ __html: title }}
+              className="pt-2 pb-8 md:pb-6 [&>span]:font-bold text-white [&>span]:text-Primary-Spring md:text-[56px] text-4xl leading-[1.2] tracking-[-1px] md:tracking-[-0.56px] text-wrap-balance"
+              dangerouslySetInnerHTML={{ __html: preventWidow(title) }}
               suppressHydrationWarning
             />
 

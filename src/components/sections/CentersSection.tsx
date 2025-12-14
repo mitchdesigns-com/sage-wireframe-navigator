@@ -118,7 +118,7 @@ const CentersSection: React.FC<CentersSectionProps> = ({
             {/* CTA */}
             <motion.div
               variants={itemVariants}
-              className="mt-4 flex gap-4 flex-wrap"
+              className="mt-4 flex gap-4 flex-wrap items-end"
             >
               {!isMobile && ctaText && (
                 <Link
@@ -144,14 +144,20 @@ const CentersSection: React.FC<CentersSectionProps> = ({
                 </Link>
               )}
               {secondaryButton && (
-                <Button
-                  href="/our-network"
-                  variant="light-link"
-                  righticon={true}
-                  locale={locale as 'en' | 'ar'}
+                <Link
+                  href={href || '/our-network'}
+                  className="group inline-block bg-primary rounded-lg w-full md:w-fit font-medium text-white cursor-pointer"
                 >
-                  {t('Home.exploreNetwork')}
-                </Button>
+                  {' '}
+                  <Button
+                    href="/our-network"
+                    variant="light-link"
+                    righticon={true}
+                    locale={locale as 'en' | 'ar'}
+                  >
+                    {t('Home.exploreNetwork')}
+                  </Button>
+                </Link>
               )}
             </motion.div>
           </motion.div>

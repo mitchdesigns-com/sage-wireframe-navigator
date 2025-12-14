@@ -6,6 +6,7 @@ import { motion, useAnimation } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { useEffect } from 'react'
 import { useTranslations } from 'next-intl'
+import Link from 'next/link'
 
 interface HowItWorksStep {
   id: number
@@ -117,13 +118,19 @@ export default function HowItWorks({
 
                     {index === steps.length - 1 && (
                       <div className="mt-5 w-full">
-                        <Button
-                          href="/contact"
-                          righticon={true}
-                          locale={locale as 'en' | 'ar'}
+                        <Link
+                          href={'/contact'}
+                          className="group inline-block bg-primary rounded-lg w-full md:w-fit font-medium text-white cursor-pointer"
                         >
-                          {t('GeneralContracting.requestFreeConsultation')}
-                        </Button>
+                          {' '}
+                          <Button
+                            href="/contact"
+                            righticon={true}
+                            locale={locale as 'en' | 'ar'}
+                          >
+                            {t('GeneralContracting.requestFreeConsultation')}
+                          </Button>
+                        </Link>
                       </div>
                     )}
                   </div>

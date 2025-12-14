@@ -74,7 +74,7 @@ export default function VisitSaudiPage({
           variants={containerVariants}
           className="max-w-[1392px] mx-auto w-full pt-8 md:pt-15 px-4"
         >
-          <div className="flex flex-col md:flex-row gap-8 md:gap-15 justify-center items-start text-start">
+          <div className="flex flex-col md:flex-row gap-8 md:gap-15 justify-center items-stretch text-start">
             {data.ChangingColorsCards.CardsList?.map((li, idx) => (
               <motion.div
                 key={idx}
@@ -99,7 +99,7 @@ export default function VisitSaudiPage({
                   {li.title}
                 </h5>
                 <span
-                  className="text-sm md:text-base leading-[1.5] flex-1"
+                  className="text-sm md:text-base leading-[1.5] flex-1 "
                   style={{ color: li.descriptionColor }}
                 >
                   {li.description}

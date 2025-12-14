@@ -74,17 +74,17 @@ const ToggleButton: React.FC<ToggleButtonProps> = ({
     >
       <div
         className={clsx(
-          // Mobile: horizontal scroll + hide scrollbar
-          'relative flex items-center overflow-x-auto scrollbar-hide no-scrollbar gap-2 px-1',
-          // Desktop: center, no scroll, wrap normally
-          'md:justify-center md:overflow-visible md:flex-wrap',
+          'relative flex items-center gap-2 px-1',
+          'h-12', // 🔒 lock height
+          'overflow-x-auto scrollbar-hide no-scrollbar',
+          'md:justify-center md:overflow-visible md:flex-nowrap',
           'rounded-full text-Secondary-Text'
         )}
       >
         {/* Sliding pill */}
         <motion.div
           className={clsx(
-            'absolute top-0 h-full rounded-full',
+            'absolute left-1 top-1 bottom-1 rounded-full',
             contact ? 'bg-Secondary-Scrub' : 'bg-Primary-Palm'
           )}
           animate={pillDimensions}
