@@ -2,12 +2,13 @@
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/thumbs'
-import { Navigation, Thumbs } from 'swiper/modules'
+import { Navigation, Thumbs, Mousewheel } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { useGallerySwiper } from '../../app/hooks/useGallerySwiper'
 import { ArrowLeft, ArrowRight, XIcon } from 'lucide-react'
+import { useEffect, useState } from 'react'
 export interface singleImage {
   id: number
   attributes: {
@@ -33,6 +34,16 @@ export default function GalleryPopup({
     thumbPrevRef,
     thumbNextRef,
   } = useGallerySwiper(Images.length)
+
+  const [activeThumbIndex, setActiveThumbIndex] = useState(0)
+
+  // Prevent body scroll when popup is open
+  useEffect(() => {
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.body.style.overflow = 'unset'
+    }
+  }, [])
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -44,7 +55,7 @@ export default function GalleryPopup({
         {' '}
         <button
           onClick={onClickHandle}
-          className="p-2  text-Primary-Spring rounded-full float-end z-10 flex  transition-all duration-500  justify-center items-center"
+          className="p-2  text-Primary-Spring rounded-full float-end z-10 flex  transition-all duration-500  justify-center items-center cursor-pointer"
         >
           <span className="w-6 h-6">
             <XIcon color="#CAF48E" />
@@ -75,9 +86,14 @@ export default function GalleryPopup({
         {mainNav.prevEl && mainNav.nextEl && (
           <Swiper
             onSwiper={(swiper) => (mainSwiperRef.current = swiper)}
-            modules={[Navigation, Thumbs]}
+            modules={[Navigation, Thumbs, Mousewheel]}
             navigation={mainNav}
             thumbs={{ swiper: thumbsSwiper }}
+            mousewheel={{
+              forceToAxis: true,
+              releaseOnEdges: true,
+            }}
+            onSlideChange={(swiper) => setActiveThumbIndex(swiper.activeIndex)}
             className=" h-full"
             slidesPerView={1}
           >
@@ -105,7 +121,7 @@ export default function GalleryPopup({
               main.slideTo(main.activeIndex - 1)
             }
           }}
-          className=" opacity-0 bg-Gray05 text-primary absolute inset-y-0 start-0 hover:bg-primary hover:text-Gray05 p-2 rounded-full transition flex items-center h-fit m-auto z-10"
+          className="  cursor-pointer opacity-0 bg-Gray05 text-primary absolute inset-y-0 start-0 hover:bg-primary hover:text-Gray05 p-2 rounded-full transition flex items-center h-fit m-auto z-10"
         >
           <span className="w-4 h-4 rotate-180">
             <ArrowRight />
@@ -120,7 +136,7 @@ export default function GalleryPopup({
               main.slideTo(main.activeIndex + 1)
             }
           }}
-          className="opacity-0 bg-Gray05 text-primary absolute inset-y-0 end-0 hover:bg-primary hover:text-Gray05 p-2 rounded-full transition flex items-center h-fit m-auto z-10"
+          className=" cursor-pointer opacity-0 bg-Gray05 text-primary absolute inset-y-0 end-0 hover:bg-primary hover:text-Gray05 p-2 rounded-full transition flex items-center h-fit m-auto z-10"
         >
           <span className="w-4 h-4">
             <ArrowRight />
@@ -134,11 +150,16 @@ export default function GalleryPopup({
             slidesPerView={'auto'}
             slideToClickedSlide
             spaceBetween={10}
-            initialSlide={4}
+            initialSlide={0}
             centeredSlides
+            modules={[Mousewheel]}
+            mousewheel={{
+              forceToAxis: true,
+              releaseOnEdges: true,
+            }}
             className="h-[13%]"
           >
-            {Images?.map((image) => (
+            {Images?.map((image, index) => (
               <SwiperSlide
                 key={image.id}
                 className="relative !w-[100px] md:!w-[166px] !h-16 md:!h-20 border-[4px] transition-all duration-500 border-transparent hover:border-Gold"
@@ -149,6 +170,10 @@ export default function GalleryPopup({
                   fill
                   className="w-full h-auto object-cover cursor-pointer rounded-xl"
                 />
+                {/* Overlay for inactive thumbnails */}
+                {activeThumbIndex !== index && (
+                  <div className="absolute inset-0 bg-black/50 rounded-xl transition-opacity duration-300" />
+                )}
               </SwiperSlide>
             ))}
           </Swiper>

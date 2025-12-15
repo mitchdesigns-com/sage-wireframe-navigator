@@ -6,7 +6,7 @@ import { useState } from 'react'
 import type { Swiper as SwiperType } from 'swiper'
 import 'swiper/css'
 import 'swiper/css/navigation'
-import { Navigation } from 'swiper/modules'
+import { Navigation, Mousewheel } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Testimonials } from '../../types/homePage'
 import { motion, useAnimation } from 'framer-motion'
@@ -76,12 +76,16 @@ export default function ClientExperiences({
       <Swiper
         onSwiper={setSwiper}
         onSlideChange={handleSlideChange}
-        modules={[Navigation]}
+        modules={[Navigation, Mousewheel]}
         loop={false}
         slidesPerView="auto"
         centeredSlides={true}
         spaceBetween={16}
         breakpoints={{ 768: { spaceBetween: 48 } }}
+        mousewheel={{
+          forceToAxis: true,
+          releaseOnEdges: true,
+        }}
         className="!px-4 md:!px-8"
       >
         {testimonials.map((testimonial) => (

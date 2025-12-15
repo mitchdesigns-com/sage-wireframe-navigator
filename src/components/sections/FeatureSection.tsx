@@ -258,6 +258,7 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
                     righticon={true}
                     fullwidth={isMobile}
                     locale={locale as 'en' | 'ar'}
+                    size={home ? 'large' : 'medium'}
                   >
                     {ctaText}
                   </Button>

@@ -96,7 +96,7 @@ function ServiceCard({
           <span className="ltr:font-aeonik-regular !rtl:font-arabic text-lg md:text-[20px] leading-[1.5]">
             {t('Home.for')}
           </span>
-          <span className="text-primary-palm text-2xl md:text-[32px] leading-[1.3]">
+          <span className="text-primary-palm text-2xl md:text-[32px] leading-[1.3] font-bold ms-1">
             {label}
           </span>
         </p>

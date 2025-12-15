@@ -84,7 +84,7 @@ export default function SectionHeader({
         {/* Heading */}
         <motion.h2
           variants={itemVariants}
-          className={`ltr:font-aeonik-bold !rtl:font-arabic ${headingText} text-[28px] md:text-[48px] leading-[1.2] tracking-[-0.48px] text-center mb-6 text-pretty ${
+          className={`ltr:font-aeonik-bold !rtl:font-arabic ${headingText} font-bold text-[28px] md:text-[48px] leading-[1.2] tracking-[-0.48px] text-center mb-6 text-pretty ${
             home ? 'max-w-[768px]' : 'max-w-[880px]'
           }`}
         >

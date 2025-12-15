@@ -44,6 +44,7 @@ export default function MultiStepForm() {
   const [formData, setFormData] = useState<FormData>(initialData)
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [step, setStep] = useState(1)
+  const [medicalReportsAnswered, setMedicalReportsAnswered] = useState(false)
   const totalSteps = 3
   const steps = [
     { number: 1, label: t('CSR.PersonalInformation') },
@@ -58,6 +59,7 @@ export default function MultiStepForm() {
   const resetForm = () => {
     setFormData(initialData)
     setErrors({})
+    setMedicalReportsAnswered(false)
   }
   // Validation rules
   const rules: Record<
@@ -178,7 +180,13 @@ export default function MultiStepForm() {
       const rule = rules[field]
 
       if (rule) {
-        if (rule.required && (val === '' || val === false)) {
+        // Special handling for medicalReports - check if it's been answered
+        if (field === 'medicalReports') {
+          if (rule.required && !medicalReportsAnswered) {
+            valid = false
+            newErrors[field] = rule.message
+          }
+        } else if (rule.required && (val === '' || val === false)) {
           valid = false
           newErrors[field] = rule.message
         }
@@ -489,14 +497,16 @@ export default function MultiStepForm() {
                         <input
                           type="radio"
                           name="medicalReports"
-                          value={val === 'Yes' ? 'true' : 'false'}
-                          checked={formData.medicalReports === (val === 'Yes')}
-                          onChange={(e) =>
+                          value={val === t('CSR.Yes') ? 'true' : 'false'}
+                          checked={formData.medicalReports === (val === t('CSR.Yes'))}
+                          onChange={(e) => {
                             setFormData({
                               ...formData,
                               medicalReports: e.target.value === 'true',
                             })
-                          }
+                            setMedicalReportsAnswered(true)
+                            setErrors((prev) => ({ ...prev, medicalReports: '' }))
+                          }}
                         />
                         <span className="radio-label">{val}</span>
                       </label>

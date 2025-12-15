@@ -1,3 +1,6 @@
+'use client'
+
+import { useEffect } from 'react'
 import FeatureSection from '@/components/sections/FeatureSection'
 import HeroPages from '@/components/sections/HeroPages'
 import WebinarHighlights from '@/components/sections/WebinarHighlights'
@@ -13,6 +16,11 @@ interface WebinarsPageProps {
 }
 export default function WebinarsPage({ data }: WebinarsPageProps) {
   const { webinar, events } = data
+  
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+  
   return (
     <div className="min-h-screen ">
       <HeroPages {...webinar.HeroPages} />

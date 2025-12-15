@@ -122,7 +122,7 @@ export const DESIGN_CONFIG = {
       container: {
         default: 'px-[34px] py-2',
         withLeftIcon: 'px-[34px] py-2',
-        withRightIcon: 'pl-[34px] pr-[18px] py-2',
+        withRightIcon: 'pl-0 pr-[18px] py-2',
         withBothIcons: 'pl-[18px] pr-[18px] py-2',
       },
       text: 'text-[16px] ltr:font-aeonik-medium !rtl:font-arabic leading-[1.5]',

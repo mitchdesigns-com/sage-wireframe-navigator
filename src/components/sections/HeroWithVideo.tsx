@@ -63,7 +63,7 @@ const HeroWithVideo: React.FC<HeroProps> = ({
       <div className="px-4 md:px-16">
         <div className="mx-auto max-w-[1392px]">
           <motion.div
-            className="flex flex-col justify-center mx-auto max-w-[768px] text-center"
+            className="flex flex-col justify-center mx-auto max-w-[868px] text-center"
             variants={containerVariants}
             initial="hidden"
             animate="show"

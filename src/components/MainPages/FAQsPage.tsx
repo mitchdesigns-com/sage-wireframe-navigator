@@ -128,8 +128,8 @@ export default function FAQsPage({ data }: { data: PageData[] }) {
   }
 
   const answerVariants = {
-    hidden: { height: 0, opacity: 0 },
-    visible: { height: 'auto', opacity: 1, transition: { duration: 0.5 } },
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { duration: 0.5 } },
   }
 
   return (

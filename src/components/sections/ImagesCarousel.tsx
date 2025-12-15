@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import 'swiper/css/pagination'
 import Image from 'next/image'
-import { Pagination } from 'swiper/modules'
+import { Pagination, Mousewheel } from 'swiper/modules'
 import type { Swiper as SwiperType } from 'swiper'
 import { useEffect, useRef, useState } from 'react'
 import { useLocale } from 'next-intl'
@@ -42,63 +42,64 @@ export default function ImageCarousel() {
             },
           }}
           className="!overflow-visible h-full w-full"
-          modules={[Pagination]}
+          modules={[Pagination, Mousewheel]}
           pagination={{
             clickable: true,
             el: '.custom-pagination',
           }}
+          mousewheel={{
+            forceToAxis: true,
+            releaseOnEdges: true,
+          }}
           onSwiper={(swiper) => (swiperRef.current = swiper)}
-          onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)} // Back to activeIndex
+          onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
           onAfterInit={() => setPaginationReady(true)}
         >
           {images.map((src, i) => (
             <SwiperSlide key={i} className="!w-auto relative">
-              <div className="aspect-[324/200] md:aspect-[1280/720] relative w-full h-[200px] md:h-[500px] lg:h-[620px] rounded-2xl overflow-hidden">
+              <div className="aspect-[324/200] md:aspect-[1280/720] relative w-full h-[200px] md:h-[500px] lg:h-[620px]">
                 <Image
                   src={src}
                   fill
                   alt={`Slide ${i + 1}`}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover rounded-2xl"
                 />
               </div>
-
-              {/* --- Arrows are back inside the map and conditional on activeIndex --- */}
-              {activeIndex === i && (
-                <>
-                  {/* Left Arrow */}
-                  <button
-                    onClick={() => swiperRef.current?.slidePrev()}
-                    disabled={activeIndex === 0}
-                    className={`absolute top-1/2 -left-6 -translate-y-1/2 z-10 w-12 h-12 rounded-full flex justify-center items-center bg-Primary-Spring hover:opacity-80 transition ${
-                      activeIndex === 0 ? 'opacity-50 cursor-not-allowed' : ''
-                    }`}
-                  >
-                    <ArrowLeft
-                      color="#025850"
-                      className={`${locale === 'ar' ? '' : ''}`}
-                    />
-                  </button>
-
-                  {/* Right Arrow */}
-                  <button
-                    onClick={() => swiperRef.current?.slideNext()}
-                    disabled={activeIndex === images.length - 1}
-                    className={`absolute top-1/2 -right-6 -translate-y-1/2 z-10 w-12 h-12 rounded-full flex justify-center items-center bg-Primary-Spring hover:opacity-80 transition ${
-                      activeIndex === images.length - 1
-                        ? 'opacity-50 cursor-not-allowed'
-                        : ''
-                    }`}
-                  >
-                    <ArrowRight
-                      color="#025850"
-                      className={`${locale === 'ar' ? '' : ''}`}
-                    />
-                  </button>
-                </>
-              )}
             </SwiperSlide>
           ))}
         </Swiper>
+
+        {/* Fixed Arrow Buttons - Outside Swiper */}
+        {/* Left Arrow */}
+        <button
+          onClick={() => swiperRef.current?.slidePrev()}
+          disabled={activeIndex === 0}
+          className={`absolute top-[100px] md:top-[250px] lg:top-[310px] left-8 md:left-16 lg:left-24 -translate-y-1/2 z-20 w-12 h-12 rounded-full flex justify-center items-center bg-Primary-Spring hover:opacity-80 transition ${
+            activeIndex === 0 ? 'opacity-50 cursor-not-allowed' : ''
+          }`}
+        >
+          <ArrowLeft
+            color="#025850"
+            className={`${locale === 'ar' ? 'rotate-180' : ''}`}
+          />
+        </button>
+
+        {/* Right Arrow */}
+        <button
+          onClick={() => swiperRef.current?.slideNext()}
+          disabled={activeIndex === images.length - 1}
+          className={`absolute top-[100px] md:top-[250px] lg:top-[310px] right-8 md:right-16 lg:right-24 -translate-y-1/2 z-20 w-12 h-12 rounded-full flex justify-center items-center bg-Primary-Spring hover:opacity-80 transition ${
+            activeIndex === images.length - 1
+              ? 'opacity-50 cursor-not-allowed'
+              : ''
+          }`}
+        >
+          <ArrowRight
+            color="#025850"
+            className={`${locale === 'ar' ? 'rotate-180' : ''}`}
+          />
+        </button>
+
         {/* Pagination dots below carousel */}
         <div
           className={`custom-pagination mt-6 flex justify-center items-center gap-3 ${

@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Pagination, Navigation } from 'swiper/modules'
+import { Pagination, Navigation, Mousewheel } from 'swiper/modules'
 import type { Swiper as SwiperType } from 'swiper'
 import 'swiper/css'
 import 'swiper/css/pagination'
@@ -87,7 +87,6 @@ export default function OurTeam({ data }: OurTeamProps) {
       transition: { staggerChildren: 0.2 },
     },
   }
-
   return (
     <motion.section
       className="py-8 md:py-25 bg-Secondary-Light-Scrub"
@@ -112,7 +111,7 @@ export default function OurTeam({ data }: OurTeamProps) {
           </div>
 
           {/* Navigation Buttons (Desktop only) */}
-          {grouped.length > 5 && (
+          {data.TeamMember.length > 5 && (
             <div className="md:flex gap-4 hidden">
               <button
                 onClick={() => swiperRef.current?.slidePrev()}
@@ -151,7 +150,7 @@ export default function OurTeam({ data }: OurTeamProps) {
         {/* Swiper */}
         <motion.div variants={fadeUp}>
           <Swiper
-            modules={[Pagination, Navigation]}
+            modules={[Pagination, Navigation, Mousewheel]}
             onSwiper={(swiper) => (swiperRef.current = swiper)}
             onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
             pagination={{ clickable: true }}
@@ -166,6 +165,10 @@ export default function OurTeam({ data }: OurTeamProps) {
                 slidesPerView: 1,
                 spaceBetween: 30,
               },
+            }}
+            mousewheel={{
+              forceToAxis: true,
+              releaseOnEdges: true,
             }}
             className="team-swiper"
           >

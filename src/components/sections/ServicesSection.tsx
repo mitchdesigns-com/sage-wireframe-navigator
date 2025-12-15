@@ -82,7 +82,7 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({
         initial="hidden"
         animate={controls}
         variants={containerVariants}
-        className="container-custom mx-auto max-w-[1392px] flex gap-8 flex-col md:flex-row"
+        className="container-custom mx-auto max-w-[1392px] flex gap-8 flex-col md:flex-row items-end"
       >
         {/* Header */}
         <motion.div
