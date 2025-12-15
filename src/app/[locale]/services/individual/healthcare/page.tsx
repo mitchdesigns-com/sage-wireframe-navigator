@@ -21,6 +21,5 @@ export default async function Page({
   if (!individualServicesHealthcare || !individualServicesHealthcare.length) {
     return notFound()
   }
-  console.log('individualServicesHealthcare', individualServicesHealthcare)
   return <HealthcareServicesPage data={individualServicesHealthcare} />
 }

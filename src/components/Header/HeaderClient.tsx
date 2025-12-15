@@ -98,8 +98,8 @@ export default function HeaderClient({ ResourceData }: HeaderClientProps) {
             closeAllDropdowns={closeAllDropdowns}
           />
         </div>
-        <div className="relative flex justify-start items-center content-stretch gap-4 shrink-0">
-          <LanguageSwitchButton className="hidden lg:block  hover:opacity-80 font-['GE_SS_Two:Medium',_sans-serif] text-[12px] text-primary-spring" />
+        <div className="relative flex justify-start  items-center content-stretch gap-4 shrink-0 ltr:font-arabic !rtl:font-arabic">
+          <LanguageSwitchButton className="hidden lg:block  hover:opacity-80  text-[12px] text-primary-spring" />
           <div className="group hidden lg:block cursor-pointer">
             <Button
               variant="light"

@@ -65,10 +65,7 @@ export default function HomePage({
         {data.featureSection.map((section, index) => (
           <FeatureSection key={index} {...section} home />
         ))}
-        <DirectionScrollSection
-          {...data?.ComprehensiveServices}
-          locale={locale}
-        />
+        <DirectionScrollSection {...data?.ComprehensiveServices} />
         <ComprehensiveServices
           {...data.ComprehensiveServices}
           locale={locale}

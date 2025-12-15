@@ -10,14 +10,7 @@ import { Words } from '../../types/homePage'
  * - Matching colors and styling from design
  */
 
-export default function DirectionScrollSection({
-  Words,
-  locale,
-}: {
-  Words: Words[]
-  locale: 'en' | 'ar'
-}) {
-  console.log(locale)
+export default function DirectionScrollSection({ Words }: { Words: Words[] }) {
   // Add proper typing for refs to avoid TS errors
   const innerA = useRef<HTMLDivElement>(null)
   const innerB = useRef<HTMLDivElement>(null)

@@ -25,10 +25,10 @@ export default function LanguageSwitchButton({
 
   return (
     <div
-      className={`relative  cursor-pointer ${className}`}
+      className={`relative  cursor-pointer font-arabic ${className}`}
       onClick={handleLanguageSwitch}
     >
-      <p className="leading-[1.5] whitespace-pre" dir="auto">
+      <p className="leading-[1.5] whitespace-pre font-arabic" dir="auto">
         {nextLocale === 'ar' ? 'تصفح بالعربية' : 'Browse in English'}
       </p>
     </div>
