@@ -195,7 +195,7 @@ export default function Services({
               variant="primary"
               href={href}
               righticon={true}
-              size="large"
+              size="medium"
               locale={locale as 'en' | 'ar'}
             >
               {cta}
