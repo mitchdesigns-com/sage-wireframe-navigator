@@ -12,7 +12,7 @@ import type {
 } from '../../types/newsEvents'
 import { useLocale, useTranslations } from 'next-intl'
 
-export type TabType = 'comingSoon' | 'previous'
+export type TabType = string
 
 export interface ToggleOption {
   id: number
@@ -31,7 +31,9 @@ export interface WebinarListProps {
 }
 
 const WebinarList: React.FC<WebinarListProps> = ({ webinars, events }) => {
-  const [currentTab, setCurrentTab] = useState<TabType>('comingSoon')
+  const [currentTab, setCurrentTab] = useState<TabType>(
+    webinars.ToggleButton?.options?.[0]?.value || ''
+  )
   const locale = useLocale()
 
   // --- Motion Variants ---
@@ -41,7 +43,7 @@ const WebinarList: React.FC<WebinarListProps> = ({ webinars, events }) => {
   }
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 1, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
@@ -50,7 +52,7 @@ const WebinarList: React.FC<WebinarListProps> = ({ webinars, events }) => {
   }
 
   const fadeUp = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 1, y: 30 },
     visible: {
       opacity: 1,
       y: 0,
@@ -112,66 +114,74 @@ const WebinarList: React.FC<WebinarListProps> = ({ webinars, events }) => {
           viewport={{ once: true }}
           variants={containerVariants}
         >
-          {events.map((webinar, index) => (
-            <motion.div
-              key={index}
-              variants={itemVariants}
-              className="flex flex-col md:flex-row items-start md:items-center p-8 w-full gap-8 border-b border-[#00040426]"
-            >
-              {/* Date box */}
+          {events
+            .filter((event) => {
+              const selectedOption = webinars.ToggleButton?.options?.find(
+                (opt) => opt.value === currentTab
+              )
+              if (!selectedOption) return true
+              return event.events_type?.title === selectedOption.title
+            })
+            .map((webinar, index) => (
               <motion.div
-                variants={fadeUp}
-                className="flex flex-col items-center justify-center bg-Primary-Spring-Med text-Primary-Palm rounded-3xl px-1 py-[11px] w-[112px]"
+                key={index}
+                variants={itemVariants}
+                className="flex flex-col md:flex-row items-start md:items-center p-8 w-full gap-8 border-b border-[#00040426]"
               >
-                <span className="text-base">{webinar.HeroCarousel.day}</span>
-                <span className="text-[32px] font-bold">
-                  {webinar.HeroCarousel.dayNumbers}
-                </span>
-                <span className="text-base">{webinar.HeroCarousel.year}</span>
-              </motion.div>
-
-              {/* Content and button */}
-              <div className="md:flex-row flex-col flex justify-between w-full items-start md:items-center">
-                <motion.div variants={fadeUp}>
-                  <h3 className="text-lg md:text-[20px] font-bold mb-2 text-Primary-Black">
-                    {webinar.HeroCarousel.title}
-                  </h3>
-                  <p className="text-sm md:text-base text-Secondary-Text max-w-[565px] pb-8 md:pb-0">
-                    {webinar.HeroCarousel.description}
-                  </p>
-                </motion.div>
-
+                {/* Date box */}
                 <motion.div
                   variants={fadeUp}
-                  transition={{ delay: 0.2 }}
-                  className="w-full md:w-auto"
+                  className="flex flex-col items-center justify-center bg-Primary-Spring-Med text-Primary-Palm rounded-3xl px-1 py-[11px] w-[112px]"
                 >
-                  <Link
-                    href={`/resources/news-events/events/${webinar.slug}`}
-                    className="inline-block bg-primary text-Primary-Black rounded-lg font-medium group cursor-pointer"
-                  >
-                    <Button
-                      variant={'light'}
-                      righticon={webinars.news ? false : true}
-                      fullwidth
-                      locale={locale as 'en' | 'ar'}
-                    >
-                      {webinars.news ? (
-                        <div className="flex">
-                          <Bookmark className="text-Primary-Palm w-6 h-6" />
-                          <span className="ps-3">
-                            {t('GeneralContracting.saveMySpot')}
-                          </span>
-                        </div>
-                      ) : (
-                        <span>{t('GeneralContracting.watchWebinar')}</span>
-                      )}
-                    </Button>
-                  </Link>
+                  <span className="text-base">{webinar.HeroCarousel.day}</span>
+                  <span className="text-[32px] font-bold">
+                    {webinar.HeroCarousel.dayNumbers}
+                  </span>
+                  <span className="text-base">{webinar.HeroCarousel.year}</span>
                 </motion.div>
-              </div>
-            </motion.div>
-          ))}
+
+                {/* Content and button */}
+                <div className="md:flex-row flex-col flex justify-between w-full items-start md:items-center">
+                  <motion.div variants={fadeUp}>
+                    <h3 className="text-lg md:text-[20px] font-bold mb-2 text-Primary-Black">
+                      {webinar.HeroCarousel.title}
+                    </h3>
+                    <p className="text-sm md:text-base text-Secondary-Text max-w-[565px] pb-8 md:pb-0">
+                      {webinar.HeroCarousel.description}
+                    </p>
+                  </motion.div>
+
+                  <motion.div
+                    variants={fadeUp}
+                    transition={{ delay: 0.2 }}
+                    className="w-full md:w-auto"
+                  >
+                    <Link
+                      href={`/resources/news-events/events/${webinar.slug}`}
+                      className="inline-block bg-primary text-Primary-Black rounded-lg font-medium group cursor-pointer"
+                    >
+                      <Button
+                        variant={'light'}
+                        righticon={webinars.news ? false : true}
+                        fullwidth
+                        locale={locale as 'en' | 'ar'}
+                      >
+                        {webinars.news ? (
+                          <div className="flex">
+                            <Bookmark className="text-Primary-Palm w-6 h-6" />
+                            <span className="ps-3">
+                              {t('GeneralContracting.saveMySpot')}
+                            </span>
+                          </div>
+                        ) : (
+                          <span>{t('GeneralContracting.watchWebinar')}</span>
+                        )}
+                      </Button>
+                    </Link>
+                  </motion.div>
+                </div>
+              </motion.div>
+            ))}
         </motion.div>
       </div>
     </div>
