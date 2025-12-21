@@ -42,7 +42,7 @@ export default function ServicesMenu({
             <p className="text-lg font-medium flex md:hidden" onClick={onClose}>
               <div className="flex gap-2 justify-center items-center">
                 {locale === 'en' ? <ChevronLeft /> : <ChevronRight />}
-                Services
+                {t('Header.Services')}
               </div>
             </p>
             {/* Service Categories */}

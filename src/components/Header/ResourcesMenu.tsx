@@ -5,6 +5,7 @@ import { ChevronLeft } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ResourceColumns } from '../../types/header'
+import { useTranslations } from 'next-intl'
 
 interface ResourcesMenuProps {
   resourceItems: ResourceColumns
@@ -17,6 +18,8 @@ export default function ResourcesMenu({
   isOpen,
   onClose,
 }: ResourcesMenuProps) {
+  const t = useTranslations()
+
   if (!isOpen) return null
   return (
     <motion.div
@@ -32,7 +35,8 @@ export default function ResourcesMenu({
           <div className="flex gap-0 lg:gap-8 items-start justify-start flex-col md:flex-row">
             <p className="text-lg font-medium flex md:hidden" onClick={onClose}>
               <div className="flex gap-2 justify-center items-center">
-                <ChevronLeft /> Resources
+                <ChevronLeft className="rtl:rotate-180" />{' '}
+                {t('Header.Resources')}
               </div>
             </p>
             {/* Column 1 */}

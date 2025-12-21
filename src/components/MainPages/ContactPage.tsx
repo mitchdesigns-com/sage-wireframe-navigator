@@ -34,7 +34,14 @@ export default function ContactPage({ data }: { data: ContactPageData }) {
     show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
   }
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+    if (typeof window === 'undefined') return
+
+    const hasScheduleMeetingHash =
+      window.location.hash.toLowerCase() === '#schedulemeeting'
+
+    if (!hasScheduleMeetingHash) {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
   }, [])
 
   return (
@@ -136,6 +143,7 @@ export default function ContactPage({ data }: { data: ContactPageData }) {
         whileInView="show"
         viewport={{ once: true, amount: 0.3 }}
         variants={container}
+        id="ScheduleMeeting"
       >
         <div className="px-4 md:px-16">
           <motion.div className="text-center pb-4 md:pb-0" variants={fadeUp}>

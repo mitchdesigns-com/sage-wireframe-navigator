@@ -13,6 +13,7 @@ import MobileMenuButton from './MobileMenuButton'
 import MobileMenuPanel from './MobileMenuPanel'
 import ResourcesMenu from './ResourcesMenu'
 import ServicesMenu from './ServicesMenu'
+import Link from 'next/link'
 
 interface HeaderClientProps {
   ResourceData: ResourceData
@@ -101,13 +102,15 @@ export default function HeaderClient({ ResourceData }: HeaderClientProps) {
         <div className="relative flex justify-start  items-center content-stretch gap-4 shrink-0 ltr:font-arabic !rtl:font-arabic">
           <LanguageSwitchButton className="hidden lg:block  hover:opacity-80  text-[12px] text-primary-spring" />
           <div className="group hidden lg:block cursor-pointer">
-            <Button
-              variant="light"
-              righticon={true}
-              locale={locale as 'en' | 'ar'}
-            >
-              {t('Header.Schedule')}
-            </Button>
+            <Link href="/contact#ScheduleMeeting">
+              <Button
+                variant="light"
+                righticon={true}
+                locale={locale as 'en' | 'ar'}
+              >
+                {t('Header.Schedule')}
+              </Button>
+            </Link>
           </div>
           <MobileMenuButton
             isMenuOpen={isMenuOpen}
