@@ -314,7 +314,7 @@ const CardsBlockComponent: React.FC<CardsBlock> = (props) => {
   })
 
   return (
-    <section className="bg-Secondary-Scrub ">
+    <section className="bg-Secondary-Scrub " id="ExplorePackages">
       <div className="py-8 md:py-25 max-w-[1392px] mx-auto w-full  px-4">
         <motion.h2
           ref={titleRef}
