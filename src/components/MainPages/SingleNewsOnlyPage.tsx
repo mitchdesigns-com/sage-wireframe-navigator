@@ -231,7 +231,7 @@ export default function SingleNewsOnlyPage({
               >
                 {t('News.viewAll')}
               </Link>
-              <ChevronRight className="text-[#000404] w-6 h-6" />
+              <ChevronRight className="text-[#000404] w-6 h-6 rtl:rotate-180" />
             </div>
           </div>
 

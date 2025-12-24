@@ -90,7 +90,7 @@ const HeroSinglePages: React.FC<HeroProps> = ({
 
           <motion.h1
             variants={itemVariants}
-            className="text-white font-bold text-[26px] md:text-[48px] leading-[1.2] tracking-[-0.56px] pb-8 md:pb-20 text-center md:text-left"
+            className="text-white font-bold text-[26px] md:text-[48px] leading-[1.2] tracking-[-0.56px] pb-8 md:pb-20 text-center ltr:md:text-left rtl:md:text-right"
           >
             {title}
           </motion.h1>
