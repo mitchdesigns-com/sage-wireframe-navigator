@@ -19,7 +19,7 @@ export default function Hero() {
 
         {/* CTA Button */}
         <Button href="/contact" size="large" variant="primary">
-          Speak With Our Team
+          Inquire Now{' '}
         </Button>
 
         {/* Hero Image Placeholder */}

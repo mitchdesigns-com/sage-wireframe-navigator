@@ -42,6 +42,9 @@
     "all": "All"
   },
   "GeneralContracting": {
+    "ThanksTitle": "Thank you for your interest in connecting with us.",
+    "ThanksDescription": "For patient applications, please submit your request directly through our platform to ensure smooth processing and faster support.",
+    "ApplyNow": "Apply Now",
     "title": "GENERAL CONTRACTING",
     "description": "We provide comprehensive general contracting services, managing every aspect of your construction project from initial planning to final completion. Our experienced team ensures quality, safety, and timely delivery.",
     "cta": "Learn More",

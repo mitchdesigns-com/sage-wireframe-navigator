@@ -89,17 +89,20 @@ export default function ContactPage({ data }: { data: ContactPageData }) {
                 >
                   <div className="flex justify-center items-center bg-Secondary-Light-Scrub w-full flex-col rounded-3xl py-8 md:py-15 px-6 md:px-10 text-center">
                     <h6 className="text-Secondary-Text font-bold text-lg md:text-[20px] pb-4">
-                      Thank you for your interest in connecting with us.
+                      {t('GeneralContracting.ThanksTitle')}
                     </h6>
                     <p className="text-base md:text-lg text-Secondary-Text">
-                      For patient applications, please submit your request
-                      directly through our platform to ensure smooth processing
-                      and faster support.
+                      {t('GeneralContracting.ThanksDescription')}
                     </p>
-                    <Link href={'/'}>
+                    <Link
+                      href={
+                        'https://sage.dev.lanwaresolutions.com/inquiryform/'
+                      }
+                      target="_blank"
+                    >
                       <div className="group flex gap-1.5 items-center justify-start rounded-[100px] pt-4 md:pt-8 cursor-pointer">
                         <div className="ltr:font-aeonik-bold !rtl:font-arabic text-Primary-Palm group-hover:text-Secondary-Dark-Palm text-base md:text-lg leading-[1.5]">
-                          Apply Now
+                          {t('GeneralContracting.ApplyNow')}
                         </div>
                         <div className="bg-Primary-Palm rounded-full p-[6px] size-7 flex items-center justify-center">
                           <div className="relative shrink-0 size-6">

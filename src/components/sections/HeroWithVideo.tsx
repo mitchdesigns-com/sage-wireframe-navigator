@@ -99,6 +99,7 @@ const HeroWithVideo: React.FC<HeroProps> = ({
               >
                 <Link
                   href={href || '/contact'}
+                  target="_blank"
                   className="group inline-block bg-primary rounded-lg w-full md:w-fit font-medium text-white cursor-pointer"
                 >
                   <Button
