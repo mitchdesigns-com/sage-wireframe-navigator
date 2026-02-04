@@ -31,11 +31,11 @@ export async function generateMetadata(props: Omit<Props, 'children'>) {
     creator: 'Sage',
     publisher: 'Sage',
     robots: {
-      index: false,
-      follow: false,
+      index: process.env.NODE_ENV === "production",
+      follow: process.env.NODE_ENV === "production",
       googleBot: {
-        index: false,
-        follow: false,
+        index: process.env.NODE_ENV === "production",
+        follow: process.env.NODE_ENV === "production",
         'max-video-preview': -1,
         'max-image-preview': 'large',
         'max-snippet': -1,

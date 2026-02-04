@@ -57,3 +57,6 @@ logs
 /dist/
 /.vercel/
 /.cloudflare/
+
+
+.env
