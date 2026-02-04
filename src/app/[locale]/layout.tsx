@@ -8,6 +8,7 @@ import { ReactNode } from 'react'
 import { routing } from '../../i18n/routing'
 import '../globals.css'
 import NotFound from './[...rest]/page'
+import { GoogleTagManager } from '@next/third-parties/google'
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }))
@@ -31,11 +32,11 @@ export async function generateMetadata(props: Omit<Props, 'children'>) {
     creator: 'Sage',
     publisher: 'Sage',
     robots: {
-      index: process.env.NODE_ENV === "production",
-      follow: process.env.NODE_ENV === "production",
+      index: process.env.NODE_ENV === 'production',
+      follow: process.env.NODE_ENV === 'production',
       googleBot: {
-        index: process.env.NODE_ENV === "production",
-        follow: process.env.NODE_ENV === "production",
+        index: process.env.NODE_ENV === 'production',
+        follow: process.env.NODE_ENV === 'production',
         'max-video-preview': -1,
         'max-image-preview': 'large',
         'max-snippet': -1,
@@ -101,6 +102,7 @@ export default async function LocaleLayout({ children, params }: Props) {
           href="/favicon/favicon.png"
         />
         <meta name="view-transition" content="same-origin" />
+        <GoogleTagManager gtmId="GTM-P9RN9PFP" />
       </head>
       <body
         className={clsx(
@@ -109,6 +111,14 @@ export default async function LocaleLayout({ children, params }: Props) {
         )}
         suppressHydrationWarning
       >
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-P9RN9PFP"
+            height="0"
+            width="0"
+            style={{ display: 'none', visibility: 'hidden' }}
+          />
+        </noscript>
         <NextIntlClientProvider locale={locale} messages={messages}>
           <div className="flex flex-col ">
             <Header locale={locale} />
