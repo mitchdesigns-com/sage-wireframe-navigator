@@ -8,6 +8,11 @@ interface FooterProps {
 
 export default async function Footer({ locale }: FooterProps) {
   const response = await fetchServer('footer', locale)
+
+  if (!response.data) {
+    return null
+  }
+
   const footerData = response.data as FooterData
 
   return <FooterClient footerData={footerData} />

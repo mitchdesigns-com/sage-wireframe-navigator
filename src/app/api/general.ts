@@ -1,22 +1,28 @@
 export async function fetchServer(pageURL: string, lang: string) {
   const separator = pageURL.includes('?') ? '&' : '?'
 
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/${pageURL}${separator}locale=${lang}`,
-    {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      cache: 'no-store',
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/${pageURL}${separator}locale=${lang}`,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        next: { revalidate: 60 },
+      }
+    )
+    const json = await res.json();
+    // console.log('res>>', `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/${pageURL}${separator}locale=${lang}`)
+    if (!res.ok) {
+      console.error(`Failed to fetch ${pageURL}: ${res.status} ${res.statusText}`);
+      return { data: null };
     }
-  )
-  const json = await res.json();
-  // console.log('res>>', `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/${pageURL}${separator}locale=${lang}`)
-  if (!res.ok) {
-    throw new Error(`Failed to fetch Props: ${res.status} ${res.statusText}`);
-  }
 
-  return { data: json.data }
+    return { data: json.data }
+  } catch (error) {
+    console.error(`Error fetching ${pageURL}:`, error);
+    return { data: null };
+  }
 }
 
 export async function fetchSEO(pageURL: string, lang: string) {

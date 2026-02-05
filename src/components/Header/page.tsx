@@ -8,6 +8,11 @@ interface HeaderProps {
 
 export default async function Header({ locale }: HeaderProps) {
   const response = await fetchServer('header', locale)
+
+  if (!response.data) {
+    return null
+  }
+
   const ResourceData = response.data as ResourceData
 
   return <HeaderClient ResourceData={ResourceData} />
