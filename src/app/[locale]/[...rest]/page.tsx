@@ -1,10 +1,10 @@
 export const runtime = 'edge'
+import { getTranslations } from 'next-intl/server'
 
-import { useTranslations } from 'next-intl'
 import { Link } from '@/i18n/navigation'
 
-export default function NotFound() {
-  const t = useTranslations('NotFound')
+export default async function NotFound() {
+  const t = await getTranslations('NotFound')
 
   return (
     <div className="relative flex flex-col justify-center items-center gap-5 bg-white h-[calc(100vh-305px)] md:h-[calc(100vh-105px)]">

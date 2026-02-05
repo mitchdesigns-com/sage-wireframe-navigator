@@ -79,7 +79,7 @@ export default async function LocaleLayout({ children, params }: Props) {
   }
 
   setRequestLocale(locale)
-  const messages = (await import(`../../messages/${locale}.json`)).default
+  // const messages = (await import(`../../messages/${locale}.json`)).default
 
   return (
     <html
@@ -119,7 +119,7 @@ export default async function LocaleLayout({ children, params }: Props) {
             style={{ display: 'none', visibility: 'hidden' }}
           />
         </noscript>
-        <NextIntlClientProvider locale={locale} messages={messages}>
+        <NextIntlClientProvider locale={locale}>
           <div className="flex flex-col ">
             <Header locale={locale} />
             <main className="flex-1">{children}</main>

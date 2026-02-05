@@ -6,7 +6,7 @@ import Button from '../ui/Button'
 import SectionHeader from '../ui/SectionHeader'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { useTranslations } from 'next-intl'
-import Link from 'next/link'
+import { Link } from '../../i18n/navigation'
 
 interface ImageLabel {
   id: number
@@ -193,7 +193,7 @@ export default function Services({
             {' '}
             <Button
               variant="primary"
-              href={href}
+              // href={href}
               righticon={true}
               size="medium"
               locale={locale as 'en' | 'ar'}

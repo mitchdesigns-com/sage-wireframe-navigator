@@ -124,7 +124,7 @@ export default function HowItWorks({
                         >
                           {' '}
                           <Button
-                            href="/contact"
+                            // href="/contact"
                             righticon={true}
                             locale={locale as 'en' | 'ar'}
                           >

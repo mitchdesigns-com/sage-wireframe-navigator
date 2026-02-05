@@ -10,12 +10,12 @@ export async function fetchServer(pageURL: string, lang: string) {
       cache: 'no-store',
     }
   )
-
+  const json = await res.json();
+  // console.log('res>>', `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/${pageURL}${separator}locale=${lang}`)
   if (!res.ok) {
-    throw new Error('Failed to fetch Props')
+    throw new Error(`Failed to fetch Props: ${res.status} ${res.statusText}`);
   }
 
-  const json = await res.json()
   return { data: json.data }
 }
 

@@ -137,7 +137,7 @@ const CentersSection: React.FC<CentersSectionProps> = ({
                     }
                     righticon={secondaryButton ? false : true}
                     fullwidth
-                    locale={locale as 'en' | 'ar'}
+                    // locale={locale as 'en' | 'ar'}
                   >
                     {ctaText}
                   </Button>
@@ -150,7 +150,7 @@ const CentersSection: React.FC<CentersSectionProps> = ({
                 >
                   {' '}
                   <Button
-                    href="/our-network"
+                    // href="/our-network"
                     variant="light-link"
                     righticon={true}
                     locale={locale as 'en' | 'ar'}
@@ -211,7 +211,7 @@ const CentersSection: React.FC<CentersSectionProps> = ({
                   }
                   righticon={secondaryButton ? false : true}
                   fullwidth
-                  locale={locale as 'en' | 'ar'}
+                  // locale={locale as 'en' | 'ar'}
                 >
                   {ctaText}
                 </Button>
