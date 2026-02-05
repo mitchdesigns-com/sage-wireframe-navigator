@@ -163,7 +163,7 @@ export default function FooterClient({ footerData }: FooterClientProps) {
 
             <p className="text-Primary-Black text-xs leading-[1.5] mt-2">
               {t('Footer.respectPrivacy')}
-              <Link href="/privacy" className="text-[#025850] underline">
+              <Link href="/privacy" className="text-[#025850] underline ms-1">
                 {t('Footer.privacy')} .
               </Link>
             </p>
@@ -351,7 +351,7 @@ export default function FooterClient({ footerData }: FooterClientProps) {
       >
         <div className="max-w-[1392px] mx-auto px-0 md:px-15">
           <div className="flex items-center justify-between flex-col md:flex-row text-white text-sm">
-            <div>© 2025 Sage. All rights reserved.</div>
+            <div>© 2026 Sage. All rights reserved.</div>
             <a
               href="https://www.mitchdesigns.com/"
               target="_blank"

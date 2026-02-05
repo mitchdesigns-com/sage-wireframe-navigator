@@ -51,7 +51,7 @@ export default function JobDetailsPage({ data }: { data: CareerItem }) {
           <Image
             src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${data.image.url}`}
             fill
-            alt={data.image.alternativeText}
+            alt={data.image.alternativeText || ''}
             className="object-cover"
           />
           <div className="absolute bottom-0 left-0 w-full h-full bg-gradient-to-t from-black/70 to-black/70 text-white px-2 py-3"></div>

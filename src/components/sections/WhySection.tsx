@@ -139,7 +139,7 @@ const WhySection: React.FC<WhySectionProps> = ({
                           >
                             <Image
                               src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${feature.image?.url}`}
-                              alt={feature.title}
+                              alt={feature.title || ''}
                               width={
                                 pathname === '/services/businesses' &&
                                 colIndex !== 0

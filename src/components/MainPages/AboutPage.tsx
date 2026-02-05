@@ -184,7 +184,7 @@ export default function AboutPage({ data }: { data: AboutPageData }) {
               ),
             }}
           />
-          <p className="text-Secondary-Light-Scrub text-sm md:text-lg max-w-[758px] mx-auto pt-4">
+          <p className="text-Secondary-Light-Scrub text-sm md:text-lg max-w-[798px] mx-auto pt-4 text-balance">
             {data.MissionSection.description}
           </p>
         </motion.div>

@@ -65,7 +65,7 @@ export default function VerticalSlider() {
             // slides[currentIndex]?.image ||
             'https://images.pexels.com/photos/40568/medical-appointment-doctor-healthcare-40568.jpeg?_gl=1*1opxphv*_ga*MTMzMjIyNDcwLjE3NTA1NzkyODI.*_ga_8JE65Q40S6*czE3NTY5MTAxNTAkbzIkZzEkdDE3NTY5MTAxNTQkajU2JGwwJGgw'
           }
-          alt={slides[currentIndex]?.title}
+          alt={slides[currentIndex]?.title || ''}
           className="w-full h-64 object-cover"
         />
 

@@ -102,7 +102,7 @@ const HeroSinglePages: React.FC<HeroProps> = ({
             >
               <Image
                 src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${bgImage.url}`}
-                alt={bgImage.alternativeText}
+                alt={bgImage.alternativeText || ''}
                 fill
                 className="object-cover rounded-3xl"
               />

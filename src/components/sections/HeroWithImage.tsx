@@ -81,7 +81,7 @@ const HeroWithImage: React.FC<HeroWithImageProps> = ({
         <Image
           src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${image.url}`}
           fill
-          alt={imageAlt}
+          alt={imageAlt || ''}
           className="object-cover object-top"
         />
       </motion.div>

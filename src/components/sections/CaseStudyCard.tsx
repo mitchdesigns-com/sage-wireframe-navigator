@@ -67,7 +67,7 @@ export default function CaseStudyCard({
           {/* Image */}
           <Image
             src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${caseStudy.GallerySection?.images[0].url}`}
-            alt={caseStudy.HeroCarousel.title}
+            alt={caseStudy.HeroCarousel.title || ''}
             fill
             className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-105"
           />
