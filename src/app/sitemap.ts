@@ -1,11 +1,11 @@
 import { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_FrontEnd_URL || 'https://www.sage.sa'
+  const baseUrl = process.env.NEXT_PUBLIC_FRONTEND_URL || 'https://www.sage.sa'
+
   const locales = ['en', 'ar']
   const currentDate = new Date()
 
-  // Define all static routes
   const staticRoutes = [
     '',
     '/about',
@@ -40,23 +40,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/careers',
   ]
 
-  // Generate sitemap entries for all locales and routes
   const sitemapEntries: MetadataRoute.Sitemap = []
 
-  locales.forEach((locale) => {
-    staticRoutes.forEach((route) => {
-      sitemapEntries.push({
-        url: `${baseUrl}/${locale}${route}`,
-        lastModified: currentDate,
-        changeFrequency: route === '' ? 'daily' : 'weekly',
-        priority: route === '' ? 1.0 : route.includes('/services') ? 0.9 : 0.8,
-        alternates: {
-          languages: {
-            en: `${baseUrl}/en${route}`,
-            ar: `${baseUrl}/ar${route}`,
-          },
+  staticRoutes.forEach((route) => {
+    sitemapEntries.push({
+      url: `${baseUrl}/en${route || ''}`,
+      lastModified: currentDate,
+      changeFrequency: route === '' ? 'daily' : 'weekly',
+      priority: route === '' ? 1.0 : route.includes('/services') ? 0.9 : 0.8,
+      alternates: {
+        languages: {
+          en: `${baseUrl}/en${route || ''}`,
+          ar: `${baseUrl}/ar${route || ''}`,
         },
-      })
+      },
     })
   })
 
