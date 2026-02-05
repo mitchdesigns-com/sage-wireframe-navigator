@@ -3,7 +3,7 @@ import { MetadataRoute } from 'next'
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = process.env.NEXT_PUBLIC_FRONTEND_URL || 'https://www.sage.sa'
 
-  const locales = ['en', 'ar']
+  // const locales = ['en', 'ar']
   const currentDate = new Date()
 
   const staticRoutes = [
