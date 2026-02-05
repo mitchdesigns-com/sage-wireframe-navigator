@@ -1,10 +1,20 @@
 import { MetadataRoute } from 'next'
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_FRONTEND_URL || 'https://www.sage.sa'
+const WEBSITE_HOST_URL =
+  process.env.NEXT_PUBLIC_FRONTEND_URL || 'https://www.sage.sa'
 
-  // const locales = ['en', 'ar']
-  const currentDate = new Date()
+type ChangeFrequency =
+  | 'always'
+  | 'hourly'
+  | 'daily'
+  | 'weekly'
+  | 'monthly'
+  | 'yearly'
+  | 'never'
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const currentDate = new Date().toISOString()
+  const changeFrequency: ChangeFrequency = 'weekly'
 
   const staticRoutes = [
     '',
@@ -40,22 +50,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/careers',
   ]
 
-  const sitemapEntries: MetadataRoute.Sitemap = []
+  const routes: MetadataRoute.Sitemap = staticRoutes.map((route) => {
+    const path = route || ''
 
-  staticRoutes.forEach((route) => {
-    sitemapEntries.push({
-      url: `${baseUrl}/en${route || ''}`,
+    return {
+      url: `${WEBSITE_HOST_URL}/en${path}`,
       lastModified: currentDate,
-      changeFrequency: route === '' ? 'daily' : 'weekly',
-      priority: route === '' ? 1.0 : route.includes('/services') ? 0.9 : 0.8,
+      changeFrequency: path === '' ? 'daily' : changeFrequency,
+      priority: path === '' ? 1.0 : path.includes('/services') ? 0.9 : 0.8,
       alternates: {
         languages: {
-          en: `${baseUrl}/en${route || ''}`,
-          ar: `${baseUrl}/ar${route || ''}`,
+          en: `${WEBSITE_HOST_URL}/en${path}`,
+          ar: `${WEBSITE_HOST_URL}/ar${path}`,
         },
       },
-    })
+    }
   })
 
-  return sitemapEntries
+  return routes
 }
