@@ -40,7 +40,7 @@ export default function AboutPage({ data }: { data: AboutPageData }) {
               <Image
                 fill
                 src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${data.OverviewSection.mainImage.url}`}
-                alt={data.OverviewSection.mainImage.alternativeText}
+                alt={data.OverviewSection.mainImage.alternativeText ?? ''}
                 className="object-cover"
               />
             </div>
@@ -120,7 +120,7 @@ export default function AboutPage({ data }: { data: AboutPageData }) {
                 <Image
                   src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${data.OverviewSection.vectorImage.url}`}
                   fill
-                  alt={data.OverviewSection.vectorImage.alternativeText}
+                  alt={data.OverviewSection.vectorImage.alternativeText ?? ''}
                   className="object-contain"
                 />
               </motion.div>
