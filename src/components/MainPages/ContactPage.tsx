@@ -17,6 +17,9 @@ import { useLocale, useTranslations } from 'next-intl'
 type TabType = 'general' | 'business' | 'patient'
 type TabType2 = 'patientSupport' | 'partnership'
 
+const isLikelyPhoneNumber = (text: string) =>
+  /^[\d+\-\s()]+$/.test(text.trim())
+
 export default function ContactPage({ data }: { data: ContactPageData }) {
   const [currentTab, setCurrentTab] = useState<TabType>('general')
   const [currentTab2, setCurrentTab2] = useState<TabType2>('patientSupport')
@@ -225,8 +228,17 @@ export default function ContactPage({ data }: { data: ContactPageData }) {
                   {li.title}
                 </h5>
                 <span
-                  className="text-sm md:text-[16px] leading-[1.5] flex-1"
+                  className={`text-sm md:text-[16px] leading-[1.5] flex-1 ${
+                    locale === 'ar' && isLikelyPhoneNumber(li.description)
+                      ? 'inline-block text-start'
+                      : ''
+                  }`}
                   style={{ color: li.descriptionColor }}
+                  dir={
+                    locale === 'ar' && isLikelyPhoneNumber(li.description)
+                      ? 'ltr'
+                      : undefined
+                  }
                 >
                   {li.description}
                 </span>

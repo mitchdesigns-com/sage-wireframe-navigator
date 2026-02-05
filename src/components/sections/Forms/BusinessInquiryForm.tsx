@@ -159,16 +159,19 @@ export default function BusinessInquiryForm() {
               >
                 {t('Form.phone')} *
               </label>
-              <PhoneInput
-                id="phone"
-                international
-                defaultCountry="EG"
-                value={form.phone}
-                onChange={(value) => handleInputChange('phone', value || '')}
-                className={`w-full h-12 px-3 py-2 bg-white border rounded-[6px]
-            focus:outline-none focus:ring-2 focus:ring-[#025850]
-            ${errors.phone ? 'border-red-500' : 'border-[#D2D2D2]'}`}
-              />
+              <div dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+                <PhoneInput
+                  id="phone"
+                  international
+                  defaultCountry="EG"
+                  value={form.phone}
+                  onChange={(value) => handleInputChange('phone', value || '')}
+                  dir={locale === 'ar' ? 'rtl' : 'ltr'}
+                  className={`w-full h-12 px-3 py-2 gap-2 bg-white border rounded-[6px]
+      focus:outline-none focus:ring-2 focus:ring-[#025850]
+      ${errors.phone ? 'border-red-500' : 'border-[#D2D2D2]'}`}
+                />
+              </div>
               {errors.phone && (
                 <p className="text-red-500 text-sm">{errors.phone}</p>
               )}

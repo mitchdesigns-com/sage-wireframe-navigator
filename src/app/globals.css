@@ -837,3 +837,6 @@ html,
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
+.PhoneInputCountry {
+  gap: 10px;
+}
