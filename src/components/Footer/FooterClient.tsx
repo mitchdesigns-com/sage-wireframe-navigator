@@ -10,6 +10,7 @@ import { useInView } from 'react-intersection-observer'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { FooterData } from '../../types/footer'
 import LanguageSwitchButton from '../Header/LanguageSwitchButton'
+import FooterCredit from './FooterCredit'
 
 const awards = [
   { name: 'image 10', img: '/images/awards/01.png' },
@@ -352,13 +353,9 @@ export default function FooterClient({ footerData }: FooterClientProps) {
         <div className="max-w-[1392px] mx-auto px-0 md:px-15">
           <div className="flex items-center justify-between flex-col md:flex-row text-white text-sm">
             <div>© 2026 Sage. All rights reserved.</div>
-            <a
-              href="https://www.mitchdesigns.com/"
-              target="_blank"
-              className="text-white text-sm"
-            >
-              Design & Development by Mitchdesigns
-            </a>
+            <div className="text-white text-sm">
+              <FooterCredit />
+            </div>
           </div>
         </div>
       </motion.div>
