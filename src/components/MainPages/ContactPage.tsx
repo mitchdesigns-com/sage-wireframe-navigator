@@ -17,8 +17,7 @@ import { useLocale, useTranslations } from 'next-intl'
 type TabType = 'general' | 'business' | 'patient'
 type TabType2 = 'patientSupport' | 'partnership'
 
-const isLikelyPhoneNumber = (text: string) =>
-  /^[\d+\-\s()]+$/.test(text.trim())
+const isLikelyPhoneNumber = (text: string) => /^[\d+\-\s()]+$/.test(text.trim())
 
 export default function ContactPage({ data }: { data: ContactPageData }) {
   const [currentTab, setCurrentTab] = useState<TabType>('general')
@@ -98,9 +97,7 @@ export default function ContactPage({ data }: { data: ContactPageData }) {
                       {t('GeneralContracting.ThanksDescription')}
                     </p>
                     <Link
-                      href={
-                        'https://sage.dev.lanwaresolutions.com/inquiryform/'
-                      }
+                      href={'https://rfm.sageofhealthcare.com/inquiryform'}
                       target="_blank"
                     >
                       <div className="group flex gap-1.5 items-center justify-start rounded-[100px] pt-4 md:pt-8 cursor-pointer">
