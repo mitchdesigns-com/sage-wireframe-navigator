@@ -10,7 +10,11 @@ export default async function Header({ locale }: HeaderProps) {
   const response = await fetchServer('header', locale)
 
   if (!response.data) {
-    return null
+    return (
+      <header className="flex items-center justify-center h-16 bg-white border-b border-gray-100">
+        <img src="/images/company-logo-black.webp" alt="Sage" className="h-8" />
+      </header>
+    )
   }
 
   const ResourceData = response.data as ResourceData
