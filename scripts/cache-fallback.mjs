@@ -1,6 +1,6 @@
 /**
- * Run this script ONCE while the backend is up to populate fallback data.
- * Usage: NEXT_PUBLIC_API_BASE_URL=https://api.example.com node scripts/cache-fallback.mjs
+ * Run this script while the backend is up to populate fallback data.
+ * Usage: NEXT_PUBLIC_API_BASE_URL=http://46.224.22.108:1337 node scripts/cache-fallback.mjs
  *
  * Output: src/data/fallback/index.ts
  */
@@ -20,34 +20,51 @@ if (!BASE_URL) {
 
 const LOCALES = ['en', 'ar']
 
+// Exact endpoints as called by the app pages/components
 const ENDPOINTS = [
+  // Layout
+  'header',
+  'footer',
+
+  // Pages
   'home-page',
   'news',
-  'about-page',
+  'about',
   'contact-page',
-  'services-page',
-  'how-it-works-page',
-  'our-network-page',
-  'careers-page',
-  'visit-saudi-page',
-  'resources-page',
+  'our-network',
+  'career',
+  'career-singles',
+  'visit-saudi',
   'cookies-page',
-  'privacy-page',
   'terms-page',
-  'case-studies',
-  'blogs',
-  'faqs',
-  'guides',
-  'webinars',
-  'certifications',
-  'concierge-page',
+  'title',           // privacy page
   'csr-page',
-  'businesses-page',
-  'individuals-page',
-  'organizations-page',
-  'services/business',
-  'services/healthcare',
-  'services/concierge',
+  'blog-page',
+  'blogs',
+  'case-studies',
+  'case-study-page',
+  'webinar',
+  'news-and-event',
+  'events',
+
+  // Resources (slug-filtered)
+  'resources-pages?filters[slug][$eq]=resources-faqs',
+  'resources-pages?filters[slug][$eq]=resources-guides',
+  'resources-pages?filters[slug][$eq]=resources-certifications',
+
+  // Service pages (slug-filtered)
+  'service-pages?filters[slug][$eq]=services',
+  'service-pages?filters[slug][$eq]=services-businesses',
+  'service-pages?filters[slug][$eq]=services-organizations',
+  'service-pages?filters[slug][$eq]=services-individual',
+  'service-pages?filters[slug][$eq]=services-organizations-concierge',
+  'service-pages?filters[slug][$eq]=services-organizations-healthcare',
+  'service-pages?filters[slug][$eq]=services-organizations-consultation',
+  'service-pages?filters[slug][$eq]=services-individual-concierge',
+  'service-pages?filters[slug][$eq]=services-individual-healthcare',
+  'service-pages?filters[slug][$eq]=Businesses-Concierge',
+  'service-pages?filters[slug][$eq]=Businesses-Healthcare',
+  'service-pages?filters[slug][$eq]=businesses-consultation',
 ]
 
 async function fetchEndpoint(endpoint, locale) {
@@ -82,6 +99,15 @@ async function main() {
     }
   }
 
+  const total = Object.keys(result).length * LOCALES.length
+  const nulls = Object.values(result).flatMap(v => Object.values(v)).filter(v => v === null).length
+  console.log(`\nResult: ${total - nulls}/${total} endpoints cached successfully`)
+
+  if (nulls === total) {
+    console.error('\nAll endpoints returned null — check BASE_URL and backend connectivity')
+    process.exit(1)
+  }
+
   const outDir = join(ROOT, 'src', 'data', 'fallback')
   mkdirSync(outDir, { recursive: true })
 
@@ -94,8 +120,8 @@ const fallbacks: Record<string, Record<string, any>> = ${JSON.stringify(result, 
 export default fallbacks
 `
   writeFileSync(outFile, content, 'utf8')
-  console.log(`\nWrote ${outFile}`)
-  console.log('Done. Rebuild the project to bundle the new fallback data.')
+  console.log(`Wrote ${outFile}`)
+  console.log('Done. Commit src/data/fallback/index.ts and push to redeploy.')
 }
 
 main()
