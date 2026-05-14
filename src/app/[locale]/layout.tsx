@@ -88,6 +88,8 @@ export default async function LocaleLayout({ children, params }: Props) {
       dir={locale === 'ar' ? 'rtl' : 'ltr'}
     >
       <head>
+        {/* Silently swap broken backend images with a local placeholder — keeps layout stable for SEO */}
+        <script dangerouslySetInnerHTML={{ __html: `document.addEventListener('error',function(e){if(e.target.tagName==='IMG'&&!e.target.dataset.fbDone){e.target.dataset.fbDone='1';e.target.src='/images/generalImages/fallback.jpg';}},true);` }} />
         <link
           rel="icon"
           type="image/png"

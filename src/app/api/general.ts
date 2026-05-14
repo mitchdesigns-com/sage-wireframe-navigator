@@ -1,9 +1,15 @@
 import fallbacks from '@/data/fallback/index'
 
 function getFallback(pageURL: string, lang: string) {
-  const key = pageURL.split('?')[0]
-  const fb = fallbacks[key]?.[lang] ?? fallbacks[key]?.['en'] ?? null
-  if (fb) console.warn(`[fallback] serving cached data for ${key} [${lang}]`)
+  // Try full URL first (e.g. "service-pages?filters[slug][$eq]=services")
+  // then fall back to base path only (e.g. "service-pages")
+  const fb =
+    fallbacks[pageURL]?.[lang] ??
+    fallbacks[pageURL]?.['en'] ??
+    fallbacks[pageURL.split('?')[0]]?.[lang] ??
+    fallbacks[pageURL.split('?')[0]]?.['en'] ??
+    null
+  if (fb) console.warn(`[fallback] serving cached data for ${pageURL} [${lang}]`)
   return { data: fb }
 }
 
