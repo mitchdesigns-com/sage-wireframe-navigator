@@ -228,8 +228,8 @@ export default function FooterClient({ footerData }: FooterClientProps) {
                   <Image
                     src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${social.icon.url}`}
                     alt={social.icon.alternativeText || ''}
-                    width={20}
-                    height={20}
+                    width={30}
+                    height={30}
                   />
                 </a>
               ))}
@@ -311,22 +311,24 @@ export default function FooterClient({ footerData }: FooterClientProps) {
           </div>
         </div>
       </div>
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.6, delay: 0.4 }}
-        className="flex justify-between px-4 "
-      >
-        <div className="gap-4 items-center justify-center relative hidden md:grid grid-cols-3 md:grid-cols-6 w-full py-5 md:py-8 max-w-[1392px] mx-auto">
-          {awards.map((award, idx) => (
-            <div
-              key={idx}
-              className={`bg-no-repeat aspect-[104/42] md:aspect-[218/88] rounded-[4px] md:rounded-xl bg-white bg-center bg-contain`}
-              style={{ backgroundImage: `url('${award.img}')` }}
-            />
-          ))}
-        </div>
-      </motion.div>
+      {awards && (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="flex justify-between px-4 "
+        >
+          <div className="gap-4 items-center justify-center relative hidden md:grid grid-cols-3 md:grid-cols-6 w-full py-5 md:py-8 max-w-[1392px] mx-auto">
+            {awards.map((award, idx) => (
+              <div
+                key={idx}
+                className={`bg-no-repeat aspect-[104/42] md:aspect-[218/88] rounded-[4px] md:rounded-xl bg-white bg-center bg-contain`}
+                style={{ backgroundImage: `url('${award.img}')` }}
+              />
+            ))}
+          </div>
+        </motion.div>
+      )}
       <div className="md:hidden w-full py-6 px-4">
         <Swiper
           spaceBetween={16}

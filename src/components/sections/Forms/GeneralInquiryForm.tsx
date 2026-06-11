@@ -125,7 +125,7 @@ export default function GeneralInquiryForm() {
                 <PhoneInput
                   id="phone"
                   international
-                  defaultCountry="EG"
+                  defaultCountry="SA"
                   value={form.phone}
                   onChange={(value) => {
                     const raw = value || ''

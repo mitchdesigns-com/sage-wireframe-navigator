@@ -1,12 +1,14 @@
 'use client'
-import Awards from '@/components/sections/Awards'
 import ClientExperiences from '@/components/sections/ClientExperiences'
 import ComprehensiveServices from '@/components/sections/ComprehensiveServices'
 import HowItWorks from '@/components/sections/HowItWorks'
 import Resources from '@/components/sections/Resources'
 import Services from '@/components/sections/Services'
+import { motion, useAnimation } from 'framer-motion'
+import { useTranslations } from 'next-intl'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
+import { useInView } from 'react-intersection-observer'
 import CentersSection from '../../components/sections/CentersSection'
 import FeatureSection from '../../components/sections/FeatureSection'
 import GetInTouch from '../../components/sections/GetInTouch'
@@ -17,9 +19,6 @@ import { NewsArticle } from '../../types/newsEvents'
 import BlogCard from '../sections/BlogCard'
 import Tagline from '../sections/Tagline'
 import ButtonIcon from '../svg/ButtonIcon'
-import { useAnimation, motion } from 'framer-motion'
-import { useInView } from 'react-intersection-observer'
-import { useTranslations } from 'next-intl'
 
 export default function HomePage({
   data,
@@ -74,7 +73,7 @@ export default function HomePage({
 
       <HowItWorks {...data.HowItWorks} locale={locale} />
 
-      <Awards {...data.Awards} />
+      {/* <Awards {...data.Awards} /> */}
 
       <Resources Resources={data.Resources} locale={locale} />
 

@@ -120,7 +120,58 @@ const WebinarList: React.FC<WebinarListProps> = ({ webinars, events }) => {
                 (opt) => opt.value === currentTab
               )
               if (!selectedOption) return true
-              return event.events_type?.title === selectedOption.title
+
+              const day = event.HeroCarousel?.day || ''
+              const dayNumbers = event.HeroCarousel?.dayNumbers || ''
+              const year = event.HeroCarousel?.year || ''
+              
+              let combined = `${day} ${dayNumbers} ${year}`.replace(/\s+/g, ' ').trim()
+              
+              const easternToWesternMap: Record<string, string> = {
+                '٠': '0', '١': '1', '٢': '2', '٣': '3', '٤': '4',
+                '٥': '5', '٦': '6', '٧': '7', '٨': '8', '٩': '9'
+              }
+              combined = combined.replace(/[٠-٩]/g, (d) => easternToWesternMap[d] ?? d)
+              
+              const arabicToEnglishMonths: Record<string, string> = {
+                'يناير': 'January',
+                'فبراير': 'February',
+                'مارس': 'March',
+                'أبريل': 'April',
+                'ابريل': 'April',
+                'مايو': 'May',
+                'يونيو': 'June',
+                'يوليو': 'July',
+                'أغسطس': 'August',
+                'اغسطس': 'August',
+                'سبتمبر': 'September',
+                'أكتوبر': 'October',
+                'اكتوبر': 'October',
+                'نوفمبر': 'November',
+                'ديسمبر': 'December'
+              }
+              
+              for (const [ar, en] of Object.entries(arabicToEnglishMonths)) {
+                if (combined.includes(ar)) {
+                  combined = combined.replace(ar, en)
+                }
+              }
+              
+              const parsedDate = Date.parse(combined)
+              const eventDate = isNaN(parsedDate) ? null : new Date(parsedDate)
+              
+              let computedStatus = 'comingSoon'
+              if (eventDate) {
+                const now = new Date()
+                computedStatus = eventDate < now ? 'previous' : 'comingSoon'
+              } else {
+                const title = event.events_type?.title || ''
+                if (title === 'Previous' || title === 'السابق') {
+                  computedStatus = 'previous'
+                }
+              }
+
+              return computedStatus === selectedOption.value
             })
             .map((webinar, index) => (
               <motion.div
