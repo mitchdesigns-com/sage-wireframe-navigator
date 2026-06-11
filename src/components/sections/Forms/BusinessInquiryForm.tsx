@@ -163,7 +163,7 @@ export default function BusinessInquiryForm() {
                 <PhoneInput
                   id="phone"
                   international
-                  defaultCountry="EG"
+                  defaultCountry="SA"
                   value={form.phone}
                   onChange={(value) => handleInputChange('phone', value || '')}
                   dir={locale === 'ar' ? 'rtl' : 'ltr'}
