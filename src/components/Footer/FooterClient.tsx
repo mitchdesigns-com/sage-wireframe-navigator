@@ -12,14 +12,14 @@ import { FooterData } from '../../types/footer'
 import LanguageSwitchButton from '../Header/LanguageSwitchButton'
 import FooterCredit from './FooterCredit'
 
-const awards = [
-  { name: 'image 10', img: '/images/awards/01.png' },
-  { name: 'image 11', img: '/images/awards/02.png' },
-  { name: 'image 7', img: '/images/awards/03.png' },
-  { name: 'image 12', img: '/images/awards/04.png' },
-  { name: 'image 13', img: '/images/awards/05.png' },
-  { name: 'image 14', img: '/images/awards/06.png' },
-]
+// const awards = [
+//   { name: 'image 10', img: '/images/awards/01.png' },
+//   { name: 'image 11', img: '/images/awards/02.png' },
+//   { name: 'image 7', img: '/images/awards/03.png' },
+//   { name: 'image 12', img: '/images/awards/04.png' },
+//   { name: 'image 13', img: '/images/awards/05.png' },
+//   { name: 'image 14', img: '/images/awards/06.png' },
+// ]
 
 interface FooterClientProps {
   footerData: FooterData
@@ -316,7 +316,7 @@ export default function FooterClient({ footerData }: FooterClientProps) {
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="flex justify-between px-4 "
+          className="flex justify-between px-4 hidden!"
         >
           <div className="gap-4 items-center justify-center relative hidden md:grid grid-cols-3 md:grid-cols-6 w-full py-5 md:py-8 max-w-[1392px] mx-auto">
             {awards.map((award, idx) => (
@@ -329,7 +329,7 @@ export default function FooterClient({ footerData }: FooterClientProps) {
           </div>
         </motion.div>
       )}
-      <div className="md:hidden w-full py-6 px-4">
+      <div className="md:hidden w-full py-6 px-4 hidden!">
         <Swiper
           spaceBetween={16}
           slidesPerView={2.2}
