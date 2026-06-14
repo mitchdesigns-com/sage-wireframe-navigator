@@ -12,14 +12,14 @@ import { FooterData } from '../../types/footer'
 import LanguageSwitchButton from '../Header/LanguageSwitchButton'
 import FooterCredit from './FooterCredit'
 
-// const awards = [
-//   { name: 'image 10', img: '/images/awards/01.png' },
-//   { name: 'image 11', img: '/images/awards/02.png' },
-//   { name: 'image 7', img: '/images/awards/03.png' },
-//   { name: 'image 12', img: '/images/awards/04.png' },
-//   { name: 'image 13', img: '/images/awards/05.png' },
-//   { name: 'image 14', img: '/images/awards/06.png' },
-// ]
+const awards = [
+  { name: 'image 10', img: '/images/awards/01.png' },
+  { name: 'image 11', img: '/images/awards/02.png' },
+  { name: 'image 7', img: '/images/awards/03.png' },
+  { name: 'image 12', img: '/images/awards/04.png' },
+  { name: 'image 13', img: '/images/awards/05.png' },
+  { name: 'image 14', img: '/images/awards/06.png' },
+]
 
 interface FooterClientProps {
   footerData: FooterData
