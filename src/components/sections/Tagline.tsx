@@ -65,7 +65,7 @@ const Tagline: React.FC<TaglineProps> = ({
       className={`flex flex-col justify-center md:justify-start pb-1 w-full ${className || 'items-start'}`}
     >
       <div className="flex h-[34.788px] items-center justify-center">
-        <div className="transform rotate-[-6deg]">
+        <div className="transform ltr:rotate-[-6deg] rtl:rotate-[6deg]">
           <div className={`${finalClasses} px-1.5 py-0 rounded-[6px]`}>
             <div
               className={`ltr:font-aeonik-medium !rtl:font-arabic text-xs md:text-base text-center leading-[1.5] text-nowrap capitalize`}
