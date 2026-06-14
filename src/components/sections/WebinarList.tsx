@@ -124,42 +124,55 @@ const WebinarList: React.FC<WebinarListProps> = ({ webinars, events }) => {
               const day = event.HeroCarousel?.day || ''
               const dayNumbers = event.HeroCarousel?.dayNumbers || ''
               const year = event.HeroCarousel?.year || ''
-              
-              let combined = `${day} ${dayNumbers} ${year}`.replace(/\s+/g, ' ').trim()
-              
+
+              let combined = `${day} ${dayNumbers} ${year}`
+                .replace(/\s+/g, ' ')
+                .trim()
+
               const easternToWesternMap: Record<string, string> = {
-                '٠': '0', '١': '1', '٢': '2', '٣': '3', '٤': '4',
-                '٥': '5', '٦': '6', '٧': '7', '٨': '8', '٩': '9'
+                '٠': '0',
+                '١': '1',
+                '٢': '2',
+                '٣': '3',
+                '٤': '4',
+                '٥': '5',
+                '٦': '6',
+                '٧': '7',
+                '٨': '8',
+                '٩': '9',
               }
-              combined = combined.replace(/[٠-٩]/g, (d) => easternToWesternMap[d] ?? d)
-              
+              combined = combined.replace(
+                /[٠-٩]/g,
+                (d) => easternToWesternMap[d] ?? d
+              )
+
               const arabicToEnglishMonths: Record<string, string> = {
-                'يناير': 'January',
-                'فبراير': 'February',
-                'مارس': 'March',
-                'أبريل': 'April',
-                'ابريل': 'April',
-                'مايو': 'May',
-                'يونيو': 'June',
-                'يوليو': 'July',
-                'أغسطس': 'August',
-                'اغسطس': 'August',
-                'سبتمبر': 'September',
-                'أكتوبر': 'October',
-                'اكتوبر': 'October',
-                'نوفمبر': 'November',
-                'ديسمبر': 'December'
+                يناير: 'January',
+                فبراير: 'February',
+                مارس: 'March',
+                أبريل: 'April',
+                ابريل: 'April',
+                مايو: 'May',
+                يونيو: 'June',
+                يوليو: 'July',
+                أغسطس: 'August',
+                اغسطس: 'August',
+                سبتمبر: 'September',
+                أكتوبر: 'October',
+                اكتوبر: 'October',
+                نوفمبر: 'November',
+                ديسمبر: 'December',
               }
-              
+
               for (const [ar, en] of Object.entries(arabicToEnglishMonths)) {
                 if (combined.includes(ar)) {
                   combined = combined.replace(ar, en)
                 }
               }
-              
+
               const parsedDate = Date.parse(combined)
               const eventDate = isNaN(parsedDate) ? null : new Date(parsedDate)
-              
+
               let computedStatus = 'comingSoon'
               if (eventDate) {
                 const now = new Date()
@@ -202,34 +215,56 @@ const WebinarList: React.FC<WebinarListProps> = ({ webinars, events }) => {
                     </p>
                   </motion.div>
 
-                  <motion.div
-                    variants={fadeUp}
-                    transition={{ delay: 0.2 }}
-                    className="w-full md:w-auto"
-                  >
-                    <Link
-                      href={`/resources/news-events/events/${webinar.slug}`}
-                      className="inline-block bg-primary text-Primary-Black rounded-lg font-medium group cursor-pointer"
+                  {webinars.news ? (
+                    <motion.div
+                      variants={fadeUp}
+                      transition={{ delay: 0.2 }}
+                      className="w-full md:w-auto"
                     >
-                      <Button
-                        variant={'light'}
-                        righticon={webinars.news ? false : true}
-                        fullwidth
-                        locale={locale as 'en' | 'ar'}
+                      <Link
+                        href={`${webinar.link}`}
+                        target="_blank"
+                        className="inline-block bg-primary text-Primary-Black rounded-lg font-medium group cursor-pointer"
                       >
-                        {webinars.news ? (
+                        <Button
+                          variant={'light'}
+                          righticon={false}
+                          fullwidth
+                          locale={locale as 'en' | 'ar'}
+                        >
                           <div className="flex">
                             <Bookmark className="text-Primary-Palm w-6 h-6" />
                             <span className="ps-3">
                               {t('GeneralContracting.saveMySpot')}
                             </span>
                           </div>
-                        ) : (
-                          <span>{t('GeneralContracting.watchWebinar')}</span>
-                        )}
-                      </Button>
-                    </Link>
-                  </motion.div>
+                        </Button>
+                      </Link>
+                    </motion.div>
+                  ) : (
+                    webinar.link && (
+                      <motion.div
+                        variants={fadeUp}
+                        transition={{ delay: 0.2 }}
+                        className="w-full md:w-auto"
+                      >
+                        <Link
+                          href={`${webinar.link}`}
+                          target="_blank"
+                          className="inline-block bg-primary text-Primary-Black rounded-lg font-medium group cursor-pointer"
+                        >
+                          <Button
+                            variant={'light'}
+                            righticon={true}
+                            fullwidth
+                            locale={locale as 'en' | 'ar'}
+                          >
+                            <span>{t('GeneralContracting.watchWebinar')}</span>
+                          </Button>
+                        </Link>
+                      </motion.div>
+                    )
+                  )}
                 </div>
               </motion.div>
             ))}

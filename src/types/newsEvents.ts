@@ -58,6 +58,7 @@ export interface WebinarList {
   title: string | null
   description: string | null
   ToggleButton: ToggleButton
+  link?: string
 }
 
 export interface NewsEventsData {
@@ -189,6 +190,7 @@ export interface EventData {
   events_type: EventType
   HeroCarousel: HeroCarousel
   FeatureSection: FeatureSection
+  link?: string
 }
 
 export interface EventsResponse {

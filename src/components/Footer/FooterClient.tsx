@@ -206,13 +206,13 @@ export default function FooterClient({ footerData }: FooterClientProps) {
 
           <div className="space-y-4">
             {phone && (
-              <div className="gap-1 flex text-sm items-center">
+              <div className="gap-1 flex text-sm items-center" dir="ltr">
                 <Phone className="text-Primary-Palm" />
                 <a href={`tel:${phone}`}>{phone}</a>
               </div>
             )}
             {contactEmail && (
-              <div className="gap-1 flex text-sm items-center">
+              <div className="gap-1 flex text-sm items-center" dir="ltr">
                 <Mail className="text-Primary-Palm" />
                 <a href={`mailto:${contactEmail}`}>{contactEmail}</a>
               </div>
@@ -278,7 +278,7 @@ export default function FooterClient({ footerData }: FooterClientProps) {
           })}
           <div className="space-y-4">
             {phone && (
-              <div className="gap-1 flex text-sm items-center">
+              <div className="gap-1 flex text-sm items-center" dir="ltr">
                 <Phone className="text-Primary-Palm" />
                 <a href={`tel:${phone}`}>{phone}</a>
               </div>
