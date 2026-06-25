@@ -68,36 +68,38 @@ export default function ServicesMenu({
                 </div>
               </Link>
               <div className="flex flex-col gap-0 md:gap-2 lg:max-w-[270px]">
-                {serviceCategories.individuals.items.map((item, index) => (
-                  <Link
-                    key={index}
-                    href={item.href}
-                    onClick={onClose}
-                    className="group flex gap-2 md:h-[116px] items-start px-11 md:px-3 py-4 rounded-[10px] hover:bg-Secondary-Light-Scrub transition-colors duration-200 lg:max-w-[270px]"
-                  >
-                    <div className="relative shrink-0 size-6 text-primary-light-sage group-hover:text-Primary-Scrub">
-                      <Image
-                        src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${item.icon.url}`}
-                        alt={item.icon.url || ''}
-                        width={24}
-                        height={24}
-                      />
+                {serviceCategories.individuals.items.map((item, index) =>
+                  item.hide ? null : (
+                    <Link
+                      key={index}
+                      href={item.href}
+                      onClick={onClose}
+                      className="group flex gap-2 md:h-[116px] items-start px-11 md:px-3 py-4 rounded-[10px] hover:bg-Secondary-Light-Scrub transition-colors duration-200 lg:max-w-[270px]"
+                    >
+                      <div className="relative shrink-0 size-6 text-primary-light-sage group-hover:text-Primary-Scrub">
+                        <Image
+                          src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${item.icon.url}`}
+                          alt={item.icon.url || ''}
+                          width={24}
+                          height={24}
+                        />
 
-                      {/* {item.icon} */}
-                    </div>
-                    <div className="flex flex-col items-start justify-start flex-1">
-                      <div className="ltr:font-aeonik-bold !rtl:font-arabic text-Neutral-Darkest text-sm md:text-base leading-[1.5]">
-                        {item.title}
+                        {/* {item.icon} */}
                       </div>
-                      <div
-                        className="ltr:font-aeonik-regular !rtl:font-arabic text-[#626262] text-xs md:text-sm leading-[1.5] w-[236px] [&>span]:font-bold"
-                        dangerouslySetInnerHTML={{
-                          __html: item.description,
-                        }}
-                      />
-                    </div>
-                  </Link>
-                ))}
+                      <div className="flex flex-col items-start justify-start flex-1">
+                        <div className="ltr:font-aeonik-bold !rtl:font-arabic text-Neutral-Darkest text-sm md:text-base leading-[1.5]">
+                          {item.title}
+                        </div>
+                        <div
+                          className="ltr:font-aeonik-regular !rtl:font-arabic text-[#626262] text-xs md:text-sm leading-[1.5] w-[236px] [&>span]:font-bold"
+                          dangerouslySetInnerHTML={{
+                            __html: item.description,
+                          }}
+                        />
+                      </div>
+                    </Link>
+                  )
+                )}
               </div>
             </div>
 
@@ -121,31 +123,33 @@ export default function ServicesMenu({
                 </div>
               </Link>
               <div className="flex flex-col gap-0 md:gap-2 lg:max-w-[270px]">
-                {serviceCategories.businesses.items.map((item, index) => (
-                  <Link
-                    key={index}
-                    href={item.href}
-                    onClick={onClose}
-                    className="group flex gap-2 md:h-[116px] items-start px-11 md:px-3 py-4 rounded-[10px] hover:bg-Secondary-Light-Scrub transition-colors duration-200 lg:max-w-[270px]"
-                  >
-                    <div className="relative shrink-0 size-6 text-primary-light-sage group-hover:text-Primary-Scrub">
-                      <Image
-                        src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${item.icon.url}`}
-                        alt={item.icon.url || ''}
-                        width={24}
-                        height={24}
-                      />{' '}
-                    </div>
-                    <div className="flex flex-col items-start justify-start flex-1">
-                      <div className="ltr:font-aeonik-bold !rtl:font-arabic text-primary-black text-sm md:text-base leading-[1.5]">
-                        {item.title}
+                {serviceCategories.businesses.items.map((item, index) =>
+                  item.hide ? null : (
+                    <Link
+                      key={index}
+                      href={item.href}
+                      onClick={onClose}
+                      className="group flex gap-2 md:h-[116px] items-start px-11 md:px-3 py-4 rounded-[10px] hover:bg-Secondary-Light-Scrub transition-colors duration-200 lg:max-w-[270px]"
+                    >
+                      <div className="relative shrink-0 size-6 text-primary-light-sage group-hover:text-Primary-Scrub">
+                        <Image
+                          src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${item.icon.url}`}
+                          alt={item.icon.url || ''}
+                          width={24}
+                          height={24}
+                        />{' '}
                       </div>
-                      <div className="ltr:font-aeonik-regular !rtl:font-arabic text-[#626262] text-xs md:text-sm leading-[1.5] w-[236px]">
-                        {item.description}
+                      <div className="flex flex-col items-start justify-start flex-1">
+                        <div className="ltr:font-aeonik-bold !rtl:font-arabic text-primary-black text-sm md:text-base leading-[1.5]">
+                          {item.title}
+                        </div>
+                        <div className="ltr:font-aeonik-regular !rtl:font-arabic text-[#626262] text-xs md:text-sm leading-[1.5] w-[236px]">
+                          {item.description}
+                        </div>
                       </div>
-                    </div>
-                  </Link>
-                ))}
+                    </Link>
+                  )
+                )}
               </div>
             </div>
 
@@ -169,31 +173,33 @@ export default function ServicesMenu({
                 </div>
               </Link>
               <div className="flex flex-col  gap-0 md:gap-2 lg:max-w-[270px]">
-                {serviceCategories.organizations.items.map((item, index) => (
-                  <Link
-                    key={index}
-                    href={item.href}
-                    onClick={onClose}
-                    className="group flex gap-2 md:h-[116px] items-start px-11 md:px-3 py-4 rounded-[10px] hover:bg-Secondary-Light-Scrub transition-colors duration-200 lg:max-w-[270px]"
-                  >
-                    <div className="relative shrink-0 size-6 text-primary-light-sage group-hover:text-Primary-Scrub">
-                      <Image
-                        src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${item.icon.url}`}
-                        alt={item.icon.url || ''}
-                        width={24}
-                        height={24}
-                      />{' '}
-                    </div>
-                    <div className="flex flex-col items-start justify-start flex-1">
-                      <div className="ltr:font-aeonik-bold !rtl:font-arabic text-primary-black text-sm md:text-base leading-[1.5]">
-                        {item.title}
+                {serviceCategories.organizations.items.map((item, index) =>
+                  item.hide ? null : (
+                    <Link
+                      key={index}
+                      href={item.href}
+                      onClick={onClose}
+                      className="group flex gap-2 md:h-[116px] items-start px-11 md:px-3 py-4 rounded-[10px] hover:bg-Secondary-Light-Scrub transition-colors duration-200 lg:max-w-[270px]"
+                    >
+                      <div className="relative shrink-0 size-6 text-primary-light-sage group-hover:text-Primary-Scrub">
+                        <Image
+                          src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${item.icon.url}`}
+                          alt={item.icon.url || ''}
+                          width={24}
+                          height={24}
+                        />{' '}
                       </div>
-                      <div className="ltr:font-aeonik-regular !rtl:font-arabic text-[#626262] text-xs md:text-sm leading-[1.5] w-[236px]">
-                        {item.description}
+                      <div className="flex flex-col items-start justify-start flex-1">
+                        <div className="ltr:font-aeonik-bold !rtl:font-arabic text-primary-black text-sm md:text-base leading-[1.5]">
+                          {item.title}
+                        </div>
+                        <div className="ltr:font-aeonik-regular !rtl:font-arabic text-[#626262] text-xs md:text-sm leading-[1.5] w-[236px]">
+                          {item.description}
+                        </div>
                       </div>
-                    </div>
-                  </Link>
-                ))}
+                    </Link>
+                  )
+                )}
               </div>
             </div>
             {/* Image placeholder */}

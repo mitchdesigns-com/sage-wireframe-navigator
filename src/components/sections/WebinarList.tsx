@@ -193,8 +193,7 @@ const WebinarList: React.FC<WebinarListProps> = ({ webinars, events }) => {
                 className="flex flex-col md:flex-row items-start md:items-center p-8 w-full gap-8 border-b border-[#00040426]"
               >
                 {/* Date box */}
-                <motion.div
-                  variants={fadeUp}
+                <div
                   className="flex flex-col items-center justify-center bg-Primary-Spring-Med text-Primary-Palm rounded-3xl px-1 py-[11px] w-[112px]"
                 >
                   <span className="text-base">{webinar.HeroCarousel.day}</span>
@@ -202,23 +201,21 @@ const WebinarList: React.FC<WebinarListProps> = ({ webinars, events }) => {
                     {webinar.HeroCarousel.dayNumbers}
                   </span>
                   <span className="text-base">{webinar.HeroCarousel.year}</span>
-                </motion.div>
+                </div>
 
                 {/* Content and button */}
                 <div className="md:flex-row flex-col flex justify-between w-full items-start md:items-center">
-                  <motion.div variants={fadeUp}>
-                    <h3 className="text-lg md:text-[20px] font-bold mb-2 text-Primary-Black">
+                  <div>
+                    <h3 className="text-lg md:text-[20px] font-bold mb-2 text-Primary-Black mt-0">
                       {webinar.HeroCarousel.title}
                     </h3>
-                    <p className="text-sm md:text-base text-Secondary-Text max-w-[565px] pb-8 md:pb-0">
+                    <p className="text-sm md:text-base text-Secondary-Text max-w-[565px] pb-8 md:pb-0 m-0">
                       {webinar.HeroCarousel.description}
                     </p>
-                  </motion.div>
+                  </div>
 
                   {webinars.news ? (
-                    <motion.div
-                      variants={fadeUp}
-                      transition={{ delay: 0.2 }}
+                    <div
                       className="w-full md:w-auto"
                     >
                       <Link
@@ -240,14 +237,15 @@ const WebinarList: React.FC<WebinarListProps> = ({ webinars, events }) => {
                           </div>
                         </Button>
                       </Link>
-                    </motion.div>
+                    </div>
                   ) : (
                     webinar.link && (
-                      <motion.div
-                        variants={fadeUp}
-                        transition={{ delay: 0.2 }}
-                        className="w-full md:w-auto"
+                      <div
+                        className="w-full md:w-auto flex flex-col gap-4 items-start md:items-end"
                       >
+                        <p className="text-xs font-medium text-[#626262] m-0">
+                          If you have not registered, you can register here
+                        </p>
                         <Link
                           href={`${webinar.link}`}
                           target="_blank"
@@ -262,7 +260,7 @@ const WebinarList: React.FC<WebinarListProps> = ({ webinars, events }) => {
                             <span>{t('GeneralContracting.watchWebinar')}</span>
                           </Button>
                         </Link>
-                      </motion.div>
+                      </div>
                     )
                   )}
                 </div>
