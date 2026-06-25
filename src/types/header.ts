@@ -26,6 +26,7 @@ export interface ServiceItem {
   description: string
   href: string
   icon: ResourceIcon
+  hide?: boolean
 }
 
 export interface ServiceCategory {
